@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+#
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MentorLake.Gtk4", "src\MentorLake.Gtk4\MentorLake.Gtk4.csproj", "{6DAB33BA-1C31-4A51-8055-23F1CFE0FE39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MentorLake.Gtk4.Demo", "src\MentorLake.Gtk4.Demo\MentorLake.Gtk4.Demo.csproj", "{FA66D8C3-D87A-4131-84EA-823F161252B8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DAB33BA-1C31-4A51-8055-23F1CFE0FE39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DAB33BA-1C31-4A51-8055-23F1CFE0FE39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DAB33BA-1C31-4A51-8055-23F1CFE0FE39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DAB33BA-1C31-4A51-8055-23F1CFE0FE39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA66D8C3-D87A-4131-84EA-823F161252B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA66D8C3-D87A-4131-84EA-823F161252B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA66D8C3-D87A-4131-84EA-823F161252B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA66D8C3-D87A-4131-84EA-823F161252B8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

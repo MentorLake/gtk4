@@ -1,0 +1,79 @@
+namespace MentorLake.Gtk4.GObject;
+
+public enum GTypeFlags : uint
+{
+	G_TYPE_FLAG_ABSTRACT = 1 << 4,
+	G_TYPE_FLAG_VALUE_ABSTRACT = 1 << 5,
+	G_TYPE_FLAG_FINAL = 1 << 6
+}
+
+public enum GSignalMatchType : uint
+{
+	G_SIGNAL_MATCH_ID = 1 << 0,
+	G_SIGNAL_MATCH_DETAIL = 1 << 1,
+	G_SIGNAL_MATCH_CLOSURE = 1 << 2,
+	G_SIGNAL_MATCH_FUNC = 1 << 3,
+	G_SIGNAL_MATCH_DATA = 1 << 4,
+	G_SIGNAL_MATCH_UNBLOCKED = 1 << 5
+}
+
+public enum GTypeDebugFlags : uint
+{
+	G_TYPE_DEBUG_NONE = 0,
+	G_TYPE_DEBUG_OBJECTS = 1 << 0,
+	G_TYPE_DEBUG_SIGNALS = 1 << 1,
+	G_TYPE_DEBUG_INSTANCE_COUNT = 1 << 2,
+	G_TYPE_DEBUG_MASK = 0x07
+}
+
+public enum GTypeFundamentalFlags : uint
+{
+	G_TYPE_FLAG_CLASSED = 1 << 0,
+	G_TYPE_FLAG_INSTANTIATABLE = 1 << 1,
+	G_TYPE_FLAG_DERIVABLE = 1 << 2,
+	G_TYPE_FLAG_DEEP_DERIVABLE = 1 << 3
+}
+
+public enum GBindingFlags : uint
+{
+	G_BINDING_DEFAULT = 0,
+	G_BINDING_BIDIRECTIONAL = 1 << 0,
+	G_BINDING_SYNC_CREATE = 1 << 1,
+	G_BINDING_INVERT_BOOLEAN = 1 << 2
+}
+
+public enum GParamFlags
+{
+	G_PARAM_READABLE = 1 << 0,
+	G_PARAM_WRITABLE = 1 << 1,
+	G_PARAM_READWRITE = G_PARAM_READABLE | G_PARAM_WRITABLE,
+	G_PARAM_CONSTRUCT = 1 << 2,
+	G_PARAM_CONSTRUCT_ONLY = 1 << 3,
+	G_PARAM_LAX_VALIDATION = 1 << 4,
+	G_PARAM_STATIC_NAME = 1 << 5,
+	[Obsolete] G_PARAM_PRIVATE = G_PARAM_STATIC_NAME,
+	G_PARAM_STATIC_NICK = 1 << 6,
+	G_PARAM_STATIC_BLURB = 1 << 7,
+	G_PARAM_EXPLICIT_NOTIFY = 1 << 30,
+	G_PARAM_DEPRECATED = unchecked((int)(1U << 31))
+}
+
+public enum GSignalFlags : uint
+{
+	G_SIGNAL_RUN_FIRST = 1 << 0,
+	G_SIGNAL_RUN_LAST = 1 << 1,
+	G_SIGNAL_RUN_CLEANUP = 1 << 2,
+	G_SIGNAL_NO_RECURSE = 1 << 3,
+	G_SIGNAL_DETAILED = 1 << 4,
+	G_SIGNAL_ACTION = 1 << 5,
+	G_SIGNAL_NO_HOOKS = 1 << 6,
+	G_SIGNAL_MUST_COLLECT = 1 << 7,
+	G_SIGNAL_DEPRECATED = 1 << 8,
+	G_SIGNAL_ACCUMULATOR_FIRST_RUN = 1 << 17
+}
+
+public enum GConnectFlags : uint
+{
+	G_CONNECT_AFTER = 1 << 0,
+	G_CONNECT_SWAPPED = 1 << 1
+}

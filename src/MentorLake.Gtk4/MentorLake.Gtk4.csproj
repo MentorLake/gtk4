@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<NoWarn>CS0612</NoWarn>
+		<PackageId>MentorLake.Gtk4</PackageId>
+		<Authors>MentorLake</Authors>
+		<Company>MentorLake</Company>
+		<PackageDescription>GTK4 language bindings</PackageDescription>
+		<RepositoryUrl>https://github.com/MentorLake/gtk4.git</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/MentorLake/gtk4.git</PackageProjectUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<PackageTags>gtk;ui</PackageTags>
+		<Copyright>Copyright (c) 2023-$([System.DateTime]::Now.ToString(yyyy)) MentorLake</Copyright>
+		<RootNamespace>MentorLake.Gtk4.Bindings</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+		<None Include="..\..\LICENSE.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
+
+</Project>
