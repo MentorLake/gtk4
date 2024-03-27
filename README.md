@@ -9,11 +9,16 @@ Functions from the GTK API that normally would return void (e.g., gtk_button_set
 
 ### Example
 ```csharp
-var box = GtkBoxHandle.New(GtkOrientation.GTK_ORIENTATION_HORIZONTAL, 0)
-	.Append(GtkButtonHandle.New()
-		.SetLabel("Hello World"))
+var window = GtkWindowHandle.New()
+	.SetChild(GtkBoxHandle.New(GtkOrientation.GTK_ORIENTATION_HORIZONTAL, 0)
+		.Append(GtkButtonHandle.New()
+			.SetLabel("TEST")
+			.Connect(GtkButtonSignals.Clicked, () => Console.WriteLine("CLICK")))
+		.Append(GtkImageHandle.NewFromIconName("face-smile")
+			.SetIconSize(GtkIconSize.GTK_ICON_SIZE_LARGE)
+			.SetSizeRequest(64, 64)));
 ```
 
 ### Warning
 
-I generated the initial bindings using ClangSharpPInvokeGenerator, massaged the output into safe code via regular expressions and Roslyn, and manually updated definitions where necessary.  There's no guarantee that the struct types or extern method signatures are correct.  If you find issues, please submit a pull request.
+The bindings are generated from the API docs and heuristics were needed to determine between arrays, pointers, out parameters, ref parameters, etc.  If you find an issue then please submit a pull request.

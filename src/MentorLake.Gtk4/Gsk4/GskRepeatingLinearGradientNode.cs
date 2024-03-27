@@ -1,0 +1,37 @@
+using MentorLake.Gtk4.Graphene;
+using MentorLake.Gtk4.Cairo;
+using MentorLake.Gtk4.Harfbuzz;
+using System.Runtime.InteropServices;
+using MentorLake.Gtk4.GLib;
+using MentorLake.Gtk4.GObject;
+using MentorLake.Gtk4.Gio;
+using MentorLake.Gtk4.GModule;
+using MentorLake.Gtk4.Pango;
+using MentorLake.Gtk4.GdkPixbuf;
+using MentorLake.Gtk4.Gdk4;
+using MentorLake.Gtk4.Gsk4;
+using MentorLake.Gtk4.Gtk4;
+
+namespace MentorLake.Gtk4.Gsk4;
+
+public class GskRepeatingLinearGradientNodeHandle : GskRenderNodeHandle
+{
+	public static GskRepeatingLinearGradientNodeHandle New(graphene_rect_tHandle bounds, graphene_point_tHandle start, graphene_point_tHandle end, GskColorStop[] color_stops, int n_color_stops)
+	{
+		return GskRepeatingLinearGradientNodeExterns.gsk_repeating_linear_gradient_node_new(bounds, start, end, color_stops, n_color_stops);
+	}
+}
+
+public static class GskRepeatingLinearGradientNodeSignals
+{
+}
+
+public static class GskRepeatingLinearGradientNodeHandleExtensions
+{
+}
+
+internal class GskRepeatingLinearGradientNodeExterns
+{
+	[DllImport(Libraries.Gsk4)]
+	internal static extern GskRepeatingLinearGradientNodeHandle gsk_repeating_linear_gradient_node_new(graphene_rect_tHandle bounds, graphene_point_tHandle start, graphene_point_tHandle end, GskColorStop[] color_stops, int n_color_stops);
+}
