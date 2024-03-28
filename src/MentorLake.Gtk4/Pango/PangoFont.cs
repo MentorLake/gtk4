@@ -86,6 +86,16 @@ public static class PangoFontHandleExtensions
 		return PangoFontExterns.pango_font_serialize(font);
 	}
 
+	public static void DescriptionsFree(this PangoFontDescriptionHandle[] descs, int n_descs)
+	{
+		PangoFontExterns.pango_font_descriptions_free(descs, n_descs);
+	}
+
+	public static PangoFontHandle Deserialize(this PangoContextHandle context, GBytesHandle bytes, out GErrorHandle error)
+	{
+		return PangoFontExterns.pango_font_deserialize(context, bytes, out error);
+	}
+
 }
 
 internal class PangoFontExterns
@@ -114,4 +124,8 @@ internal class PangoFontExterns
 	internal static extern bool pango_font_has_char(PangoFontHandle font, char wc);
 	[DllImport(Libraries.Pango)]
 	internal static extern GBytesHandle pango_font_serialize(PangoFontHandle font);
+	[DllImport(Libraries.Pango)]
+	internal static extern void pango_font_descriptions_free(PangoFontDescriptionHandle[] descs, int n_descs);
+	[DllImport(Libraries.Pango)]
+	internal static extern PangoFontHandle pango_font_deserialize(PangoContextHandle context, GBytesHandle bytes, out GErrorHandle error);
 }

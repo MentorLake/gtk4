@@ -30,10 +30,24 @@ public static class GtkSettingsHandleExtensions
 		return settings;
 	}
 
+	public static GtkSettingsHandle GetDefault()
+	{
+		return GtkSettingsExterns.gtk_settings_get_default();
+	}
+
+	public static GtkSettingsHandle GetForDisplay(this GdkDisplayHandle display)
+	{
+		return GtkSettingsExterns.gtk_settings_get_for_display(display);
+	}
+
 }
 
 internal class GtkSettingsExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_settings_reset_property(GtkSettingsHandle settings, string name);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkSettingsHandle gtk_settings_get_default();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkSettingsHandle gtk_settings_get_for_display(GdkDisplayHandle display);
 }

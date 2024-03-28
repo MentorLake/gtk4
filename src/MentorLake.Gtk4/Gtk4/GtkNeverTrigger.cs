@@ -24,8 +24,15 @@ public static class GtkNeverTriggerSignals
 
 public static class GtkNeverTriggerHandleExtensions
 {
+	public static GtkShortcutTriggerHandle Get()
+	{
+		return GtkNeverTriggerExterns.gtk_never_trigger_get();
+	}
+
 }
 
 internal class GtkNeverTriggerExterns
 {
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkShortcutTriggerHandle gtk_never_trigger_get();
 }

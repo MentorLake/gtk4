@@ -75,6 +75,11 @@ public static class GtkRecentManagerHandleExtensions
 		return GtkRecentManagerExterns.gtk_recent_manager_remove_item(manager, uri, out error);
 	}
 
+	public static GtkRecentManagerHandle GetDefault()
+	{
+		return GtkRecentManagerExterns.gtk_recent_manager_get_default();
+	}
+
 	public static GtkRecentManagerHandle Connect(this GtkRecentManagerHandle instance, GtkRecentManagerSignal signal, GCallback c_handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
@@ -100,6 +105,8 @@ internal class GtkRecentManagerExterns
 	internal static extern int gtk_recent_manager_purge_items(GtkRecentManagerHandle manager, out GErrorHandle error);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_recent_manager_remove_item(GtkRecentManagerHandle manager, string uri, out GErrorHandle error);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkRecentManagerHandle gtk_recent_manager_get_default();
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkRecentManagerHandle gtk_recent_manager_new();
 }

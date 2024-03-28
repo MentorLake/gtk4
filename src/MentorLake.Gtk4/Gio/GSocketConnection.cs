@@ -60,6 +60,16 @@ public static class GSocketConnectionHandleExtensions
 		return GSocketConnectionExterns.g_socket_connection_is_connected(connection);
 	}
 
+	public static GType FactoryLookupType(this GSocketFamily family, GSocketType type, int protocol_id)
+	{
+		return GSocketConnectionExterns.g_socket_connection_factory_lookup_type(family, type, protocol_id);
+	}
+
+	public static void FactoryRegisterType(this GType g_type, GSocketFamily family, GSocketType type, int protocol)
+	{
+		GSocketConnectionExterns.g_socket_connection_factory_register_type(g_type, family, type, protocol);
+	}
+
 }
 
 internal class GSocketConnectionExterns
@@ -78,4 +88,8 @@ internal class GSocketConnectionExterns
 	internal static extern GSocketHandle g_socket_connection_get_socket(GSocketConnectionHandle connection);
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_connection_is_connected(GSocketConnectionHandle connection);
+	[DllImport(Libraries.Gio)]
+	internal static extern GType g_socket_connection_factory_lookup_type(GSocketFamily family, GSocketType type, int protocol_id);
+	[DllImport(Libraries.Gio)]
+	internal static extern void g_socket_connection_factory_register_type(GType g_type, GSocketFamily family, GSocketType type, int protocol);
 }

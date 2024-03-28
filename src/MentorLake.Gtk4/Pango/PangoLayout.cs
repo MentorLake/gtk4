@@ -377,6 +377,11 @@ public static class PangoLayoutHandleExtensions
 		return PangoLayoutExterns.pango_layout_xy_to_index(layout, x, y, out index_, out trailing);
 	}
 
+	public static PangoLayoutHandle Deserialize(this PangoContextHandle context, GBytesHandle bytes, PangoLayoutDeserializeFlags flags, out GErrorHandle error)
+	{
+		return PangoLayoutExterns.pango_layout_deserialize(context, bytes, flags, out error);
+	}
+
 }
 
 internal class PangoLayoutExterns
@@ -509,6 +514,8 @@ internal class PangoLayoutExterns
 	internal static extern bool pango_layout_write_to_file(PangoLayoutHandle layout, PangoLayoutSerializeFlags flags, string filename, out GErrorHandle error);
 	[DllImport(Libraries.Pango)]
 	internal static extern bool pango_layout_xy_to_index(PangoLayoutHandle layout, int x, int y, out int index_, out int trailing);
+	[DllImport(Libraries.Pango)]
+	internal static extern PangoLayoutHandle pango_layout_deserialize(PangoContextHandle context, GBytesHandle bytes, PangoLayoutDeserializeFlags flags, out GErrorHandle error);
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoLayoutHandle pango_layout_new(PangoContextHandle context);
 }

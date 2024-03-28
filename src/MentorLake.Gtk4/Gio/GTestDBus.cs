@@ -62,6 +62,11 @@ public static class GTestDBusHandleExtensions
 		return self;
 	}
 
+	public static void GTestDbusUnset()
+	{
+		GTestDBusExterns.g_test_dbus_unset();
+	}
+
 }
 
 internal class GTestDBusExterns
@@ -78,6 +83,8 @@ internal class GTestDBusExterns
 	internal static extern void g_test_dbus_stop(GTestDBusHandle self);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_test_dbus_up(GTestDBusHandle self);
+	[DllImport(Libraries.Gio)]
+	internal static extern void g_test_dbus_unset();
 	[DllImport(Libraries.Gio)]
 	internal static extern GTestDBusHandle g_test_dbus_new(GTestDBusFlags flags);
 }

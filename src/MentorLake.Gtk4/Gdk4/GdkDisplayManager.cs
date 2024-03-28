@@ -52,6 +52,11 @@ public static class GdkDisplayManagerHandleExtensions
 		return manager;
 	}
 
+	public static GdkDisplayManagerHandle Get()
+	{
+		return GdkDisplayManagerExterns.gdk_display_manager_get();
+	}
+
 	public static GdkDisplayManagerHandle Connect(this GdkDisplayManagerHandle instance, GdkDisplayManagerSignal signal, GCallback c_handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
@@ -69,4 +74,6 @@ internal class GdkDisplayManagerExterns
 	internal static extern GdkDisplayHandle gdk_display_manager_open_display(GdkDisplayManagerHandle manager, string name);
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_display_manager_set_default_display(GdkDisplayManagerHandle manager, GdkDisplayHandle display);
+	[DllImport(Libraries.Gdk4)]
+	internal static extern GdkDisplayManagerHandle gdk_display_manager_get();
 }

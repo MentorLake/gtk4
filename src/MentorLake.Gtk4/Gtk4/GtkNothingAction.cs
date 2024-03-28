@@ -24,8 +24,15 @@ public static class GtkNothingActionSignals
 
 public static class GtkNothingActionHandleExtensions
 {
+	public static GtkShortcutActionHandle Get()
+	{
+		return GtkNothingActionExterns.gtk_nothing_action_get();
+	}
+
 }
 
 internal class GtkNothingActionExterns
 {
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkShortcutActionHandle gtk_nothing_action_get();
 }

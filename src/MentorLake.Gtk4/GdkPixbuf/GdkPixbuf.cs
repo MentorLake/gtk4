@@ -300,6 +300,53 @@ public static class GdkPixbufHandleExtensions
 		return pixbuf;
 	}
 
+	public static int CalculateRowstride(this GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height)
+	{
+		return GdkPixbufExterns.gdk_pixbuf_calculate_rowstride(colorspace, has_alpha, bits_per_sample, width, height);
+	}
+
+	public static GdkPixbufFormatHandle GetFileInfo(this string filename, out int width, out int height)
+	{
+		return GdkPixbufExterns.gdk_pixbuf_get_file_info(filename, out width, out height);
+	}
+
+	public static void GetFileInfoAsync(this string filename, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	{
+		GdkPixbufExterns.gdk_pixbuf_get_file_info_async(filename, cancellable, callback, user_data);
+	}
+
+	public static GdkPixbufFormatHandle GetFileInfoFinish(this GAsyncResultHandle async_result, out int width, out int height, out GErrorHandle error)
+	{
+		return GdkPixbufExterns.gdk_pixbuf_get_file_info_finish(async_result, out width, out height, out error);
+	}
+
+	public static GSListHandle GetFormats()
+	{
+		return GdkPixbufExterns.gdk_pixbuf_get_formats();
+	}
+
+	public static bool InitModules(this string path, out GErrorHandle error)
+	{
+		return GdkPixbufExterns.gdk_pixbuf_init_modules(path, out error);
+	}
+
+	public static GdkPixbufHandle NewFromStreamAsync(this GdkPixbufHandle @handle, GInputStreamHandle stream, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	{
+		GdkPixbufExterns.gdk_pixbuf_new_from_stream_async(stream, cancellable, callback, user_data);
+		return @handle;
+	}
+
+	public static GdkPixbufHandle NewFromStreamAtScaleAsync(this GdkPixbufHandle @handle, GInputStreamHandle stream, int width, int height, bool preserve_aspect_ratio, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	{
+		GdkPixbufExterns.gdk_pixbuf_new_from_stream_at_scale_async(stream, width, height, preserve_aspect_ratio, cancellable, callback, user_data);
+		return @handle;
+	}
+
+	public static bool SaveToStreamFinish(this GAsyncResultHandle async_result, out GErrorHandle error)
+	{
+		return GdkPixbufExterns.gdk_pixbuf_save_to_stream_finish(async_result, out error);
+	}
+
 }
 
 internal class GdkPixbufExterns
@@ -390,6 +437,24 @@ internal class GdkPixbufExterns
 	internal static extern bool gdk_pixbuf_set_option(GdkPixbufHandle pixbuf, string key, string value);
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_unref(GdkPixbufHandle pixbuf);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern int gdk_pixbuf_calculate_rowstride(GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufFormatHandle gdk_pixbuf_get_file_info(string filename, out int width, out int height);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern void gdk_pixbuf_get_file_info_async(string filename, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufFormatHandle gdk_pixbuf_get_file_info_finish(GAsyncResultHandle async_result, out int width, out int height, out GErrorHandle error);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GSListHandle gdk_pixbuf_get_formats();
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern bool gdk_pixbuf_init_modules(string path, out GErrorHandle error);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern void gdk_pixbuf_new_from_stream_async(GInputStreamHandle stream, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern void gdk_pixbuf_new_from_stream_at_scale_async(GInputStreamHandle stream, int width, int height, bool preserve_aspect_ratio, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern bool gdk_pixbuf_save_to_stream_finish(GAsyncResultHandle async_result, out GErrorHandle error);
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_new(GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height);
 	[DllImport(Libraries.GdkPixbuf)]

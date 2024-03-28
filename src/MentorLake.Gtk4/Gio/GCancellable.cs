@@ -101,6 +101,11 @@ public static class GCancellableHandleExtensions
 		return GCancellableExterns.g_cancellable_source_new(cancellable);
 	}
 
+	public static GCancellableHandle GetCurrent()
+	{
+		return GCancellableExterns.g_cancellable_get_current();
+	}
+
 	public static GCancellableHandle Connect(this GCancellableHandle instance, GCancellableSignal signal, GCallback c_handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
@@ -134,6 +139,8 @@ internal class GCancellableExterns
 	internal static extern bool g_cancellable_set_error_if_cancelled(GCancellableHandle cancellable, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern GSourceHandle g_cancellable_source_new(GCancellableHandle cancellable);
+	[DllImport(Libraries.Gio)]
+	internal static extern GCancellableHandle g_cancellable_get_current();
 	[DllImport(Libraries.Gio)]
 	internal static extern GCancellableHandle g_cancellable_new();
 }

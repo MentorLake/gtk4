@@ -181,6 +181,16 @@ public static class GdkDisplayHandleExtensions
 		return GdkDisplayExterns.gdk_display_translate_key(display, keycode, state, group, out keyval, out effective_group, out level, out consumed);
 	}
 
+	public static GdkDisplayHandle GetDefault()
+	{
+		return GdkDisplayExterns.gdk_display_get_default();
+	}
+
+	public static GdkDisplayHandle Open(this string display_name)
+	{
+		return GdkDisplayExterns.gdk_display_open(display_name);
+	}
+
 	public static GdkDisplayHandle Connect(this GdkDisplayHandle instance, GdkDisplaySignal signal, GCallback c_handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
@@ -246,4 +256,8 @@ internal class GdkDisplayExterns
 	internal static extern void gdk_display_sync(GdkDisplayHandle display);
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_display_translate_key(GdkDisplayHandle display, uint keycode, GdkModifierType state, int group, out uint keyval, out int effective_group, out int level, out GdkModifierType consumed);
+	[DllImport(Libraries.Gdk4)]
+	internal static extern GdkDisplayHandle gdk_display_get_default();
+	[DllImport(Libraries.Gdk4)]
+	internal static extern GdkDisplayHandle gdk_display_open(string display_name);
 }

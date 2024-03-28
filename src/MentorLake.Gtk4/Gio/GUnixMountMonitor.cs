@@ -42,6 +42,11 @@ public static class GUnixMountMonitorHandleExtensions
 		return mount_monitor;
 	}
 
+	public static GUnixMountMonitorHandle Get()
+	{
+		return GUnixMountMonitorExterns.g_unix_mount_monitor_get();
+	}
+
 	public static GUnixMountMonitorHandle Connect(this GUnixMountMonitorHandle instance, GUnixMountMonitorSignal signal, GCallback c_handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
@@ -53,6 +58,8 @@ internal class GUnixMountMonitorExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_unix_mount_monitor_set_rate_limit(GUnixMountMonitorHandle mount_monitor, int limit_msec);
+	[DllImport(Libraries.Gio)]
+	internal static extern GUnixMountMonitorHandle g_unix_mount_monitor_get();
 	[DllImport(Libraries.Gio)]
 	internal static extern GUnixMountMonitorHandle g_unix_mount_monitor_new();
 }

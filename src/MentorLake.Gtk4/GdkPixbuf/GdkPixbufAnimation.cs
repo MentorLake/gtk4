@@ -76,6 +76,12 @@ public static class GdkPixbufAnimationHandleExtensions
 		return animation;
 	}
 
+	public static GdkPixbufAnimationHandle NewFromStreamAsync(this GdkPixbufAnimationHandle @handle, GInputStreamHandle stream, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	{
+		GdkPixbufAnimationExterns.gdk_pixbuf_animation_new_from_stream_async(stream, cancellable, callback, user_data);
+		return @handle;
+	}
+
 }
 
 internal class GdkPixbufAnimationExterns
@@ -94,6 +100,8 @@ internal class GdkPixbufAnimationExterns
 	internal static extern GdkPixbufAnimationHandle gdk_pixbuf_animation_ref(GdkPixbufAnimationHandle animation);
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_animation_unref(GdkPixbufAnimationHandle animation);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern void gdk_pixbuf_animation_new_from_stream_async(GInputStreamHandle stream, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufAnimationHandle gdk_pixbuf_animation_new_from_file(string filename, out GErrorHandle error);
 	[DllImport(Libraries.GdkPixbuf)]

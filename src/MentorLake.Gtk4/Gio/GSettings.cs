@@ -272,6 +272,27 @@ public static class GSettingsHandleExtensions
 		return GSettingsExterns.g_settings_set_value(settings, key, value);
 	}
 
+	public static string ListRelocatableSchemas()
+	{
+		return GSettingsExterns.g_settings_list_relocatable_schemas();
+	}
+
+	public static string ListSchemas()
+	{
+		return GSettingsExterns.g_settings_list_schemas();
+	}
+
+	public static void Sync()
+	{
+		GSettingsExterns.g_settings_sync();
+	}
+
+	public static GSettingsHandle Unbind(this GSettingsHandle @handle, GObjectHandle @object, string property)
+	{
+		GSettingsExterns.g_settings_unbind(@object, property);
+		return @handle;
+	}
+
 	public static GSettingsHandle Connect(this GSettingsHandle instance, GSettingsSignal signal, GCallback c_handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
@@ -365,6 +386,14 @@ internal class GSettingsExterns
 	internal static extern bool g_settings_set_uint64(GSettingsHandle settings, string key, ulong value);
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_set_value(GSettingsHandle settings, string key, GVariantHandle value);
+	[DllImport(Libraries.Gio)]
+	internal static extern string g_settings_list_relocatable_schemas();
+	[DllImport(Libraries.Gio)]
+	internal static extern string g_settings_list_schemas();
+	[DllImport(Libraries.Gio)]
+	internal static extern void g_settings_sync();
+	[DllImport(Libraries.Gio)]
+	internal static extern void g_settings_unbind(GObjectHandle @object, string property);
 	[DllImport(Libraries.Gio)]
 	internal static extern GSettingsHandle g_settings_new(string schema_id);
 	[DllImport(Libraries.Gio)]

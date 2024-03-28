@@ -289,6 +289,27 @@ public static class GObjectHandleExtensions
 		return @object;
 	}
 
+	public static int CompatControl(this int what, IntPtr data)
+	{
+		return GObjectExterns.g_object_compat_control(what, data);
+	}
+
+	public static GParamSpecHandle InterfaceFindProperty(this GTypeInterfaceHandle g_iface, string property_name)
+	{
+		return GObjectExterns.g_object_interface_find_property(g_iface, property_name);
+	}
+
+	public static GObjectHandle InterfaceInstallProperty(this GObjectHandle @handle, GTypeInterfaceHandle g_iface, GParamSpecHandle pspec)
+	{
+		GObjectExterns.g_object_interface_install_property(g_iface, pspec);
+		return @handle;
+	}
+
+	public static GParamSpecHandle[] InterfaceListProperties(this GTypeInterfaceHandle g_iface, out uint n_properties_p)
+	{
+		return GObjectExterns.g_object_interface_list_properties(g_iface, out n_properties_p);
+	}
+
 	public static GObjectHandle GSignalStopEmissionByName(this GObjectHandle instance, string detailed_signal)
 	{
 		GObjectExterns.g_signal_stop_emission_by_name(instance, detailed_signal);
@@ -482,6 +503,14 @@ internal class GObjectExterns
 	internal static extern void g_object_weak_ref(GObjectHandle @object, GWeakNotify notify, IntPtr data);
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_weak_unref(GObjectHandle @object, GWeakNotify notify, IntPtr data);
+	[DllImport(Libraries.GObject)]
+	internal static extern int g_object_compat_control(int what, IntPtr data);
+	[DllImport(Libraries.GObject)]
+	internal static extern GParamSpecHandle g_object_interface_find_property(GTypeInterfaceHandle g_iface, string property_name);
+	[DllImport(Libraries.GObject)]
+	internal static extern void g_object_interface_install_property(GTypeInterfaceHandle g_iface, GParamSpecHandle pspec);
+	[DllImport(Libraries.GObject)]
+	internal static extern GParamSpecHandle[] g_object_interface_list_properties(GTypeInterfaceHandle g_iface, out uint n_properties_p);
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_signal_stop_emission_by_name(GObjectHandle instance, string detailed_signal);
 	[DllImport(Libraries.GObject)]

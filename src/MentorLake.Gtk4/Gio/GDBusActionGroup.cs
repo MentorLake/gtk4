@@ -24,8 +24,15 @@ public static class GDBusActionGroupSignals
 
 public static class GDBusActionGroupHandleExtensions
 {
+	public static GDBusActionGroupHandle GDbusActionGroupGet(this GDBusConnectionHandle connection, string bus_name, string object_path)
+	{
+		return GDBusActionGroupExterns.g_dbus_action_group_get(connection, bus_name, object_path);
+	}
+
 }
 
 internal class GDBusActionGroupExterns
 {
+	[DllImport(Libraries.Gio)]
+	internal static extern GDBusActionGroupHandle g_dbus_action_group_get(GDBusConnectionHandle connection, string bus_name, string object_path);
 }

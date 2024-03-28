@@ -923,6 +923,16 @@ public static class GtkWidgetHandleExtensions
 		return widget;
 	}
 
+	public static GtkTextDirection GetDefaultDirection()
+	{
+		return GtkWidgetExterns.gtk_widget_get_default_direction();
+	}
+
+	public static void SetDefaultDirection(this GtkTextDirection dir)
+	{
+		GtkWidgetExterns.gtk_widget_set_default_direction(dir);
+	}
+
 	public static GtkWidgetHandle GtkTestWidgetWaitForDraw(this GtkWidgetHandle widget)
 	{
 		GtkWidgetExterns.gtk_test_widget_wait_for_draw(widget);
@@ -1262,6 +1272,10 @@ internal class GtkWidgetExterns
 	internal static extern void gtk_widget_unrealize(GtkWidgetHandle widget);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_unset_state_flags(GtkWidgetHandle widget, GtkStateFlags flags);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkTextDirection gtk_widget_get_default_direction();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern void gtk_widget_set_default_direction(GtkTextDirection dir);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_test_widget_wait_for_draw(GtkWidgetHandle widget);
 }

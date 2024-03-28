@@ -127,6 +127,16 @@ public static class GdkGLContextHandleExtensions
 		return context;
 	}
 
+	public static void GdkGlContextClearCurrent()
+	{
+		GdkGLContextExterns.gdk_gl_context_clear_current();
+	}
+
+	public static GdkGLContextHandle GdkGlContextGetCurrent()
+	{
+		return GdkGLContextExterns.gdk_gl_context_get_current();
+	}
+
 }
 
 internal class GdkGLContextExterns
@@ -169,4 +179,8 @@ internal class GdkGLContextExterns
 	internal static extern void gdk_gl_context_set_required_version(GdkGLContextHandle context, int major, int minor);
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_context_set_use_es(GdkGLContextHandle context, int use_es);
+	[DllImport(Libraries.Gdk4)]
+	internal static extern void gdk_gl_context_clear_current();
+	[DllImport(Libraries.Gdk4)]
+	internal static extern GdkGLContextHandle gdk_gl_context_get_current();
 }

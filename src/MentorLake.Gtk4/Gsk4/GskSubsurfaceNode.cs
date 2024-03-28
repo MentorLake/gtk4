@@ -33,12 +33,19 @@ public static class GskSubsurfaceNodeHandleExtensions
 		return GskSubsurfaceNodeExterns.gsk_subsurface_node_get_child(node);
 	}
 
+	public static IntPtr GetSubsurface(this GskRenderNodeHandle node)
+	{
+		return GskSubsurfaceNodeExterns.gsk_subsurface_node_get_subsurface(node);
+	}
+
 }
 
 internal class GskSubsurfaceNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_subsurface_node_get_child(GskRenderNodeHandle node);
+	[DllImport(Libraries.Gsk4)]
+	internal static extern IntPtr gsk_subsurface_node_get_subsurface(GskRenderNodeHandle node);
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskSubsurfaceNodeHandle gsk_subsurface_node_new(GskRenderNodeHandle child, IntPtr subsurface);
 }

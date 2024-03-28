@@ -137,6 +137,11 @@ public static class GSimpleAsyncResultHandleExtensions
 		return simple;
 	}
 
+	public static bool IsValid(this GAsyncResultHandle result, GObjectHandle source, IntPtr source_tag)
+	{
+		return GSimpleAsyncResultExterns.g_simple_async_result_is_valid(result, source, source_tag);
+	}
+
 }
 
 internal class GSimpleAsyncResultExterns
@@ -175,6 +180,8 @@ internal class GSimpleAsyncResultExterns
 	internal static extern void g_simple_async_result_set_op_res_gssize(GSimpleAsyncResultHandle simple, int op_res);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_async_result_take_error(GSimpleAsyncResultHandle simple, GErrorHandle error);
+	[DllImport(Libraries.Gio)]
+	internal static extern bool g_simple_async_result_is_valid(GAsyncResultHandle result, GObjectHandle source, IntPtr source_tag);
 	[DllImport(Libraries.Gio)]
 	internal static extern GSimpleAsyncResultHandle g_simple_async_result_new(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, IntPtr source_tag);
 	[DllImport(Libraries.Gio)]

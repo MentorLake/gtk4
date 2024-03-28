@@ -24,8 +24,15 @@ public static class GtkMnemonicActionSignals
 
 public static class GtkMnemonicActionHandleExtensions
 {
+	public static GtkShortcutActionHandle Get()
+	{
+		return GtkMnemonicActionExterns.gtk_mnemonic_action_get();
+	}
+
 }
 
 internal class GtkMnemonicActionExterns
 {
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkShortcutActionHandle gtk_mnemonic_action_get();
 }

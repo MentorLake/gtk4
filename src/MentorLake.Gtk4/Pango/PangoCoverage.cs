@@ -67,6 +67,11 @@ public static class PangoCoverageHandleExtensions
 		return coverage;
 	}
 
+	public static PangoCoverageHandle FromBytes(this string bytes, int n_bytes)
+	{
+		return PangoCoverageExterns.pango_coverage_from_bytes(bytes, n_bytes);
+	}
+
 }
 
 internal class PangoCoverageExterns
@@ -85,6 +90,8 @@ internal class PangoCoverageExterns
 	internal static extern void pango_coverage_to_bytes(PangoCoverageHandle coverage, out string bytes, out int n_bytes);
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_coverage_unref(PangoCoverageHandle coverage);
+	[DllImport(Libraries.Pango)]
+	internal static extern PangoCoverageHandle pango_coverage_from_bytes(string bytes, int n_bytes);
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoCoverageHandle pango_coverage_new();
 }

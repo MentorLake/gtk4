@@ -263,6 +263,17 @@ public static class GDBusConnectionHandleExtensions
 		return GDBusConnectionExterns.g_dbus_connection_unregister_subtree(connection, registration_id);
 	}
 
+	public static GDBusConnectionHandle GDbusConnectionNew(this GDBusConnectionHandle @handle, GIOStreamHandle stream, string guid, GDBusConnectionFlags flags, GDBusAuthObserverHandle observer, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	{
+		GDBusConnectionExterns.g_dbus_connection_new(stream, guid, flags, observer, cancellable, callback, user_data);
+		return @handle;
+	}
+
+	public static void GDbusConnectionNewForAddress(this string address, GDBusConnectionFlags flags, GDBusAuthObserverHandle observer, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	{
+		GDBusConnectionExterns.g_dbus_connection_new_for_address(address, flags, observer, cancellable, callback, user_data);
+	}
+
 	public static uint GBusOwnNameOnConnectionWithClosures(this GDBusConnectionHandle connection, string name, GBusNameOwnerFlags flags, GClosureHandle name_acquired_closure, GClosureHandle name_lost_closure)
 	{
 		return GDBusConnectionExterns.g_bus_own_name_on_connection_with_closures(connection, name, flags, name_acquired_closure, name_lost_closure);
@@ -374,6 +385,10 @@ internal class GDBusConnectionExterns
 	internal static extern bool g_dbus_connection_unregister_object(GDBusConnectionHandle connection, uint registration_id);
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dbus_connection_unregister_subtree(GDBusConnectionHandle connection, uint registration_id);
+	[DllImport(Libraries.Gio)]
+	internal static extern void g_dbus_connection_new(GIOStreamHandle stream, string guid, GDBusConnectionFlags flags, GDBusAuthObserverHandle observer, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+	[DllImport(Libraries.Gio)]
+	internal static extern void g_dbus_connection_new_for_address(string address, GDBusConnectionFlags flags, GDBusAuthObserverHandle observer, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_bus_own_name_on_connection_with_closures(GDBusConnectionHandle connection, string name, GBusNameOwnerFlags flags, GClosureHandle name_acquired_closure, GClosureHandle name_lost_closure);
 	[DllImport(Libraries.Gio)]

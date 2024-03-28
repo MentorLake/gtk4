@@ -132,6 +132,18 @@ public static class GtkStyleContextHandleExtensions
 		return GtkStyleContextExterns.gtk_style_context_to_string(context, flags);
 	}
 
+	public static GtkStyleContextHandle AddProviderForDisplay(this GtkStyleContextHandle @handle, GdkDisplayHandle display, GtkStyleProviderHandle provider, uint priority)
+	{
+		GtkStyleContextExterns.gtk_style_context_add_provider_for_display(display, provider, priority);
+		return @handle;
+	}
+
+	public static GtkStyleContextHandle RemoveProviderForDisplay(this GtkStyleContextHandle @handle, GdkDisplayHandle display, GtkStyleProviderHandle provider)
+	{
+		GtkStyleContextExterns.gtk_style_context_remove_provider_for_display(display, provider);
+		return @handle;
+	}
+
 	public static GtkStyleContextHandle GtkRenderFrame(this GtkStyleContextHandle context, cairo_tHandle cr, double x, double y, double width, double height)
 	{
 		GtkStyleContextExterns.gtk_render_frame(context, cr, x, y, width, height);
@@ -246,6 +258,10 @@ internal class GtkStyleContextExterns
 	internal static extern void gtk_style_context_set_state(GtkStyleContextHandle context, GtkStateFlags flags);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_style_context_to_string(GtkStyleContextHandle context, GtkStyleContextPrintFlags flags);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern void gtk_style_context_add_provider_for_display(GdkDisplayHandle display, GtkStyleProviderHandle provider, uint priority);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern void gtk_style_context_remove_provider_for_display(GdkDisplayHandle display, GtkStyleProviderHandle provider);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_render_frame(GtkStyleContextHandle context, cairo_tHandle cr, double x, double y, double width, double height);
 	[DllImport(Libraries.Gtk4)]

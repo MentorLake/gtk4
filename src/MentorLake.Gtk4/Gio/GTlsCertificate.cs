@@ -93,6 +93,11 @@ public static class GTlsCertificateHandleExtensions
 		return GTlsCertificateExterns.g_tls_certificate_verify(cert, identity, trusted_ca);
 	}
 
+	public static GListHandle ListNewFromFile(this string file, out GErrorHandle error)
+	{
+		return GTlsCertificateExterns.g_tls_certificate_list_new_from_file(file, out error);
+	}
+
 }
 
 internal class GTlsCertificateExterns
@@ -115,6 +120,8 @@ internal class GTlsCertificateExterns
 	internal static extern bool g_tls_certificate_is_same(GTlsCertificateHandle cert_one, GTlsCertificateHandle cert_two);
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateFlags g_tls_certificate_verify(GTlsCertificateHandle cert, GSocketConnectableHandle identity, GTlsCertificateHandle trusted_ca);
+	[DllImport(Libraries.Gio)]
+	internal static extern GListHandle g_tls_certificate_list_new_from_file(string file, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_file(string file, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]

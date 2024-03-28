@@ -346,6 +346,36 @@ public static class GtkWindowHandleExtensions
 		return window;
 	}
 
+	public static string GetDefaultIconName()
+	{
+		return GtkWindowExterns.gtk_window_get_default_icon_name();
+	}
+
+	public static GListModelHandle GetToplevels()
+	{
+		return GtkWindowExterns.gtk_window_get_toplevels();
+	}
+
+	public static GListHandle ListToplevels()
+	{
+		return GtkWindowExterns.gtk_window_list_toplevels();
+	}
+
+	public static void SetAutoStartupNotification(this bool setting)
+	{
+		GtkWindowExterns.gtk_window_set_auto_startup_notification(setting);
+	}
+
+	public static void SetDefaultIconName(this string name)
+	{
+		GtkWindowExterns.gtk_window_set_default_icon_name(name);
+	}
+
+	public static void SetInteractiveDebugging(this bool enable)
+	{
+		GtkWindowExterns.gtk_window_set_interactive_debugging(enable);
+	}
+
 	public static GtkWindowHandle GtkShowUriFull(this GtkWindowHandle parent, string uri, uint timestamp, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
 	{
 		GtkWindowExterns.gtk_show_uri_full(parent, uri, timestamp, cancellable, callback, user_data);
@@ -499,6 +529,18 @@ internal class GtkWindowExterns
 	internal static extern void gtk_window_unmaximize(GtkWindowHandle window);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_unminimize(GtkWindowHandle window);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern string gtk_window_get_default_icon_name();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GListModelHandle gtk_window_get_toplevels();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GListHandle gtk_window_list_toplevels();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern void gtk_window_set_auto_startup_notification(bool setting);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern void gtk_window_set_default_icon_name(string name);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern void gtk_window_set_interactive_debugging(bool enable);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_show_uri_full(GtkWindowHandle parent, string uri, uint timestamp, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 	[DllImport(Libraries.Gtk4)]

@@ -77,6 +77,11 @@ public static class GIOStreamHandleExtensions
 		return stream1;
 	}
 
+	public static bool GIoStreamSpliceFinish(this GAsyncResultHandle result, out GErrorHandle error)
+	{
+		return GIOStreamExterns.g_io_stream_splice_finish(result, out error);
+	}
+
 }
 
 internal class GIOStreamExterns
@@ -101,4 +106,6 @@ internal class GIOStreamExterns
 	internal static extern bool g_io_stream_set_pending(GIOStreamHandle stream, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_io_stream_splice_async(GIOStreamHandle stream1, GIOStreamHandle stream2, GIOStreamSpliceFlags flags, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+	[DllImport(Libraries.Gio)]
+	internal static extern bool g_io_stream_splice_finish(GAsyncResultHandle result, out GErrorHandle error);
 }

@@ -245,6 +245,16 @@ public static class GApplicationHandleExtensions
 		return application;
 	}
 
+	public static GApplicationHandle GetDefault()
+	{
+		return GApplicationExterns.g_application_get_default();
+	}
+
+	public static bool IdIsValid(this string application_id)
+	{
+		return GApplicationExterns.g_application_id_is_valid(application_id);
+	}
+
 	public static GApplicationHandle Connect(this GApplicationHandle instance, GApplicationSignal signal, GCallback c_handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
@@ -326,6 +336,10 @@ internal class GApplicationExterns
 	internal static extern void g_application_unmark_busy(GApplicationHandle application);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_withdraw_notification(GApplicationHandle application, string id);
+	[DllImport(Libraries.Gio)]
+	internal static extern GApplicationHandle g_application_get_default();
+	[DllImport(Libraries.Gio)]
+	internal static extern bool g_application_id_is_valid(string application_id);
 	[DllImport(Libraries.Gio)]
 	internal static extern GApplicationHandle g_application_new(string application_id, GApplicationFlags flags);
 }

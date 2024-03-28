@@ -62,6 +62,11 @@ public static class GskRenderNodeHandleExtensions
 		return GskRenderNodeExterns.gsk_render_node_write_to_file(node, filename, out error);
 	}
 
+	public static GskRenderNodeHandle Deserialize(this GBytesHandle bytes, GskParseErrorFunc error_func, IntPtr user_data)
+	{
+		return GskRenderNodeExterns.gsk_render_node_deserialize(bytes, error_func, user_data);
+	}
+
 }
 
 internal class GskRenderNodeExterns
@@ -80,4 +85,6 @@ internal class GskRenderNodeExterns
 	internal static extern void gsk_render_node_unref(GskRenderNodeHandle node);
 	[DllImport(Libraries.Gsk4)]
 	internal static extern bool gsk_render_node_write_to_file(GskRenderNodeHandle node, string filename, out GErrorHandle error);
+	[DllImport(Libraries.Gsk4)]
+	internal static extern GskRenderNodeHandle gsk_render_node_deserialize(GBytesHandle bytes, GskParseErrorFunc error_func, IntPtr user_data);
 }

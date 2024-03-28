@@ -24,8 +24,15 @@ public static class GtkActivateActionSignals
 
 public static class GtkActivateActionHandleExtensions
 {
+	public static GtkShortcutActionHandle Get()
+	{
+		return GtkActivateActionExterns.gtk_activate_action_get();
+	}
+
 }
 
 internal class GtkActivateActionExterns
 {
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkShortcutActionHandle gtk_activate_action_get();
 }

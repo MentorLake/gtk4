@@ -60,6 +60,17 @@ public static class GSettingsBackendHandleExtensions
 		return backend;
 	}
 
+	public static GSettingsBackendHandle FlattenTree(this GSettingsBackendHandle @handle, GTreeHandle tree, out string path, out string[] keys, out GVariantHandle[] values)
+	{
+		GSettingsBackendExterns.g_settings_backend_flatten_tree(tree, out path, out keys, out values);
+		return @handle;
+	}
+
+	public static GSettingsBackendHandle GetDefault()
+	{
+		return GSettingsBackendExterns.g_settings_backend_get_default();
+	}
+
 }
 
 internal class GSettingsBackendExterns
@@ -76,4 +87,8 @@ internal class GSettingsBackendExterns
 	internal static extern void g_settings_backend_path_writable_changed(GSettingsBackendHandle backend, string path);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_backend_writable_changed(GSettingsBackendHandle backend, string key);
+	[DllImport(Libraries.Gio)]
+	internal static extern void g_settings_backend_flatten_tree(GTreeHandle tree, out string path, out string[] keys, out GVariantHandle[] values);
+	[DllImport(Libraries.Gio)]
+	internal static extern GSettingsBackendHandle g_settings_backend_get_default();
 }

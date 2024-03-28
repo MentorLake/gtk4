@@ -37,12 +37,19 @@ public static class GUnixCredentialsMessageHandleExtensions
 		return GUnixCredentialsMessageExterns.g_unix_credentials_message_get_credentials(message);
 	}
 
+	public static bool IsSupported()
+	{
+		return GUnixCredentialsMessageExterns.g_unix_credentials_message_is_supported();
+	}
+
 }
 
 internal class GUnixCredentialsMessageExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GCredentialsHandle g_unix_credentials_message_get_credentials(GUnixCredentialsMessageHandle message);
+	[DllImport(Libraries.Gio)]
+	internal static extern bool g_unix_credentials_message_is_supported();
 	[DllImport(Libraries.Gio)]
 	internal static extern GUnixCredentialsMessageHandle g_unix_credentials_message_new();
 	[DllImport(Libraries.Gio)]

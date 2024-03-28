@@ -67,6 +67,16 @@ public static class GVolumeMonitorHandleExtensions
 		return GVolumeMonitorExterns.g_volume_monitor_get_volumes(volume_monitor);
 	}
 
+	public static GVolumeHandle AdoptOrphanMount(this GMountHandle mount)
+	{
+		return GVolumeMonitorExterns.g_volume_monitor_adopt_orphan_mount(mount);
+	}
+
+	public static GVolumeMonitorHandle Get()
+	{
+		return GVolumeMonitorExterns.g_volume_monitor_get();
+	}
+
 	public static GVolumeMonitorHandle Connect(this GVolumeMonitorHandle instance, GVolumeMonitorSignal signal, GCallback c_handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
@@ -86,4 +96,8 @@ internal class GVolumeMonitorExterns
 	internal static extern GVolumeHandle g_volume_monitor_get_volume_for_uuid(GVolumeMonitorHandle volume_monitor, string uuid);
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_volume_monitor_get_volumes(GVolumeMonitorHandle volume_monitor);
+	[DllImport(Libraries.Gio)]
+	internal static extern GVolumeHandle g_volume_monitor_adopt_orphan_mount(GMountHandle mount);
+	[DllImport(Libraries.Gio)]
+	internal static extern GVolumeMonitorHandle g_volume_monitor_get();
 }

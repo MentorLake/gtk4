@@ -85,6 +85,11 @@ public static class GdkDragHandleExtensions
 		return drag;
 	}
 
+	public static GdkDragHandle Begin(this GdkSurfaceHandle surface, GdkDeviceHandle device, GdkContentProviderHandle content, GdkDragAction actions, double dx, double dy)
+	{
+		return GdkDragExterns.gdk_drag_begin(surface, device, content, actions, dx, dy);
+	}
+
 	public static GdkDragHandle Connect(this GdkDragHandle instance, GdkDragSignal signal, GCallback c_handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
@@ -114,4 +119,6 @@ internal class GdkDragExterns
 	internal static extern GdkSurfaceHandle gdk_drag_get_surface(GdkDragHandle drag);
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_drag_set_hotspot(GdkDragHandle drag, int hot_x, int hot_y);
+	[DllImport(Libraries.Gdk4)]
+	internal static extern GdkDragHandle gdk_drag_begin(GdkSurfaceHandle surface, GdkDeviceHandle device, GdkContentProviderHandle content, GdkDragAction actions, double dx, double dy);
 }

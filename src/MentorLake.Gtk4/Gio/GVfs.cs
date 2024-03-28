@@ -59,6 +59,16 @@ public static class GVfsHandleExtensions
 		return GVfsExterns.g_vfs_unregister_uri_scheme(vfs, scheme);
 	}
 
+	public static GVfsHandle GetDefault()
+	{
+		return GVfsExterns.g_vfs_get_default();
+	}
+
+	public static GVfsHandle GetLocal()
+	{
+		return GVfsExterns.g_vfs_get_local();
+	}
+
 }
 
 internal class GVfsExterns
@@ -77,4 +87,8 @@ internal class GVfsExterns
 	internal static extern bool g_vfs_register_uri_scheme(GVfsHandle vfs, string scheme, GVfsFileLookupFunc uri_func, IntPtr uri_data, GDestroyNotify uri_destroy, GVfsFileLookupFunc parse_name_func, IntPtr parse_name_data, GDestroyNotify parse_name_destroy);
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_vfs_unregister_uri_scheme(GVfsHandle vfs, string scheme);
+	[DllImport(Libraries.Gio)]
+	internal static extern GVfsHandle g_vfs_get_default();
+	[DllImport(Libraries.Gio)]
+	internal static extern GVfsHandle g_vfs_get_local();
 }

@@ -128,6 +128,23 @@ public static class GResolverHandleExtensions
 		return resolver;
 	}
 
+	public static GResolverHandle FreeAddresses(this GResolverHandle @handle, GListHandle addresses)
+	{
+		GResolverExterns.g_resolver_free_addresses(addresses);
+		return @handle;
+	}
+
+	public static GResolverHandle FreeTargets(this GResolverHandle @handle, GListHandle targets)
+	{
+		GResolverExterns.g_resolver_free_targets(targets);
+		return @handle;
+	}
+
+	public static GResolverHandle GetDefault()
+	{
+		return GResolverExterns.g_resolver_get_default();
+	}
+
 	public static GResolverHandle Connect(this GResolverHandle instance, GResolverSignal signal, GCallback c_handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
@@ -173,4 +190,10 @@ internal class GResolverExterns
 	internal static extern void g_resolver_set_default(GResolverHandle resolver);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_resolver_set_timeout(GResolverHandle resolver, int timeout_ms);
+	[DllImport(Libraries.Gio)]
+	internal static extern void g_resolver_free_addresses(GListHandle addresses);
+	[DllImport(Libraries.Gio)]
+	internal static extern void g_resolver_free_targets(GListHandle targets);
+	[DllImport(Libraries.Gio)]
+	internal static extern GResolverHandle g_resolver_get_default();
 }

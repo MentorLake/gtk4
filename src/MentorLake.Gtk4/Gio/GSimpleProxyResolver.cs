@@ -42,6 +42,11 @@ public static class GSimpleProxyResolverHandleExtensions
 		return resolver;
 	}
 
+	public static GProxyResolverHandle New(this string default_proxy, string[] ignore_hosts)
+	{
+		return GSimpleProxyResolverExterns.g_simple_proxy_resolver_new(default_proxy, ignore_hosts);
+	}
+
 }
 
 internal class GSimpleProxyResolverExterns
@@ -52,4 +57,6 @@ internal class GSimpleProxyResolverExterns
 	internal static extern void g_simple_proxy_resolver_set_ignore_hosts(GSimpleProxyResolverHandle resolver, string[] ignore_hosts);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_proxy_resolver_set_uri_proxy(GSimpleProxyResolverHandle resolver, string uri_scheme, string proxy);
+	[DllImport(Libraries.Gio)]
+	internal static extern GProxyResolverHandle g_simple_proxy_resolver_new(string default_proxy, string[] ignore_hosts);
 }

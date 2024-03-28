@@ -282,6 +282,11 @@ public static class GDBusMessageHandleExtensions
 		return GDBusMessageExterns.g_dbus_message_to_gerror(message, out error);
 	}
 
+	public static int GDbusMessageBytesNeeded(this string blob, int blob_len, out GErrorHandle error)
+	{
+		return GDBusMessageExterns.g_dbus_message_bytes_needed(blob, blob_len, out error);
+	}
+
 }
 
 internal class GDBusMessageExterns
@@ -376,6 +381,8 @@ internal class GDBusMessageExterns
 	internal static extern string g_dbus_message_to_blob(GDBusMessageHandle message, out int out_size, GDBusCapabilityFlags capabilities, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dbus_message_to_gerror(GDBusMessageHandle message, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
+	internal static extern int g_dbus_message_bytes_needed(string blob, int blob_len, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMessageHandle g_dbus_message_new();
 	[DllImport(Libraries.Gio)]

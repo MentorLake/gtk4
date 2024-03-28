@@ -24,8 +24,15 @@ public static class GDBusMenuModelSignals
 
 public static class GDBusMenuModelHandleExtensions
 {
+	public static GDBusMenuModelHandle GDbusMenuModelGet(this GDBusConnectionHandle connection, string bus_name, string object_path)
+	{
+		return GDBusMenuModelExterns.g_dbus_menu_model_get(connection, bus_name, object_path);
+	}
+
 }
 
 internal class GDBusMenuModelExterns
 {
+	[DllImport(Libraries.Gio)]
+	internal static extern GDBusMenuModelHandle g_dbus_menu_model_get(GDBusConnectionHandle connection, string bus_name, string object_path);
 }

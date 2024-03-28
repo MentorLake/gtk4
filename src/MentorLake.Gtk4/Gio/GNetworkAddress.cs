@@ -47,6 +47,16 @@ public static class GNetworkAddressHandleExtensions
 		return GNetworkAddressExterns.g_network_address_get_scheme(addr);
 	}
 
+	public static GSocketConnectableHandle Parse(this string host_and_port, ushort default_port, out GErrorHandle error)
+	{
+		return GNetworkAddressExterns.g_network_address_parse(host_and_port, default_port, out error);
+	}
+
+	public static GSocketConnectableHandle ParseUri(this string uri, ushort default_port, out GErrorHandle error)
+	{
+		return GNetworkAddressExterns.g_network_address_parse_uri(uri, default_port, out error);
+	}
+
 }
 
 internal class GNetworkAddressExterns
@@ -57,6 +67,10 @@ internal class GNetworkAddressExterns
 	internal static extern ushort g_network_address_get_port(GNetworkAddressHandle addr);
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_network_address_get_scheme(GNetworkAddressHandle addr);
+	[DllImport(Libraries.Gio)]
+	internal static extern GSocketConnectableHandle g_network_address_parse(string host_and_port, ushort default_port, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
+	internal static extern GSocketConnectableHandle g_network_address_parse_uri(string uri, ushort default_port, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern GNetworkAddressHandle g_network_address_new(string hostname, ushort port);
 	[DllImport(Libraries.Gio)]
