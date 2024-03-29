@@ -20,10 +20,7 @@ public class GtkVolumeButtonHandle : GtkScaleButtonHandle
 	{
 		return GtkVolumeButtonExterns.gtk_volume_button_new();
 	}
-}
 
-public static class GtkVolumeButtonSignals
-{
 }
 
 public static class GtkVolumeButtonHandleExtensions

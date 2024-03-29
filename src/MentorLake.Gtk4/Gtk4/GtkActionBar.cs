@@ -20,10 +20,7 @@ public class GtkActionBarHandle : GtkWidgetHandle
 	{
 		return GtkActionBarExterns.gtk_action_bar_new();
 	}
-}
 
-public static class GtkActionBarSignals
-{
 }
 
 public static class GtkActionBarHandleExtensions
@@ -73,6 +70,8 @@ public static class GtkActionBarHandleExtensions
 internal class GtkActionBarExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkActionBarHandle gtk_action_bar_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_action_bar_get_center_widget(GtkActionBarHandle action_bar);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_action_bar_get_revealed(GtkActionBarHandle action_bar);
@@ -86,6 +85,4 @@ internal class GtkActionBarExterns
 	internal static extern void gtk_action_bar_set_center_widget(GtkActionBarHandle action_bar, GtkWidgetHandle center_widget);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_action_bar_set_revealed(GtkActionBarHandle action_bar, bool revealed);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkActionBarHandle gtk_action_bar_new();
 }

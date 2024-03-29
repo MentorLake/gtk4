@@ -16,6 +16,16 @@ namespace MentorLake.Gtk4.Gio;
 
 public class GVolumeMonitorHandle : GObjectHandle
 {
+	public static GVolumeHandle AdoptOrphanMount(GMountHandle mount)
+	{
+		return GVolumeMonitorExterns.g_volume_monitor_adopt_orphan_mount(mount);
+	}
+
+	public static GVolumeMonitorHandle Get()
+	{
+		return GVolumeMonitorExterns.g_volume_monitor_get();
+	}
+
 }
 
 public class GVolumeMonitorSignal
@@ -65,16 +75,6 @@ public static class GVolumeMonitorHandleExtensions
 	public static GListHandle GetVolumes(this GVolumeMonitorHandle volume_monitor)
 	{
 		return GVolumeMonitorExterns.g_volume_monitor_get_volumes(volume_monitor);
-	}
-
-	public static GVolumeHandle AdoptOrphanMount(this GMountHandle mount)
-	{
-		return GVolumeMonitorExterns.g_volume_monitor_adopt_orphan_mount(mount);
-	}
-
-	public static GVolumeMonitorHandle Get()
-	{
-		return GVolumeMonitorExterns.g_volume_monitor_get();
 	}
 
 	public static GVolumeMonitorHandle Connect(this GVolumeMonitorHandle instance, GVolumeMonitorSignal signal, GCallback c_handler)

@@ -20,6 +20,7 @@ public class GtkEntryBufferHandle : GObjectHandle
 	{
 		return GtkEntryBufferExterns.gtk_entry_buffer_new(initial_chars, n_initial_chars);
 	}
+
 }
 
 public class GtkEntryBufferSignal
@@ -100,6 +101,8 @@ public static class GtkEntryBufferHandleExtensions
 internal class GtkEntryBufferExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkEntryBufferHandle gtk_entry_buffer_new(string initial_chars, int n_initial_chars);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_entry_buffer_delete_text(GtkEntryBufferHandle buffer, uint position, int n_chars);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_buffer_emit_deleted_text(GtkEntryBufferHandle buffer, uint position, uint n_chars);
@@ -119,6 +122,4 @@ internal class GtkEntryBufferExterns
 	internal static extern void gtk_entry_buffer_set_max_length(GtkEntryBufferHandle buffer, int max_length);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_buffer_set_text(GtkEntryBufferHandle buffer, string chars, int n_chars);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkEntryBufferHandle gtk_entry_buffer_new(string initial_chars, int n_initial_chars);
 }

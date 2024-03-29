@@ -20,14 +20,12 @@ public class GtkShortcutHandle : GObjectHandle
 	{
 		return GtkShortcutExterns.gtk_shortcut_new(trigger, action);
 	}
+
 	public static GtkShortcutHandle NewWithArguments(GtkShortcutTriggerHandle trigger, GtkShortcutActionHandle action, string format_string, IntPtr @__arglist)
 	{
 		return GtkShortcutExterns.gtk_shortcut_new_with_arguments(trigger, action, format_string, @__arglist);
 	}
-}
 
-public static class GtkShortcutSignals
-{
 }
 
 public static class GtkShortcutHandleExtensions
@@ -70,6 +68,10 @@ public static class GtkShortcutHandleExtensions
 internal class GtkShortcutExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkShortcutHandle gtk_shortcut_new(GtkShortcutTriggerHandle trigger, GtkShortcutActionHandle action);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkShortcutHandle gtk_shortcut_new_with_arguments(GtkShortcutTriggerHandle trigger, GtkShortcutActionHandle action, string format_string, IntPtr @__arglist);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkShortcutActionHandle gtk_shortcut_get_action(GtkShortcutHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GVariantHandle gtk_shortcut_get_arguments(GtkShortcutHandle self);
@@ -81,8 +83,4 @@ internal class GtkShortcutExterns
 	internal static extern void gtk_shortcut_set_arguments(GtkShortcutHandle self, GVariantHandle args);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_shortcut_set_trigger(GtkShortcutHandle self, GtkShortcutTriggerHandle trigger);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkShortcutHandle gtk_shortcut_new(GtkShortcutTriggerHandle trigger, GtkShortcutActionHandle action);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkShortcutHandle gtk_shortcut_new_with_arguments(GtkShortcutTriggerHandle trigger, GtkShortcutActionHandle action, string format_string, IntPtr @__arglist);
 }

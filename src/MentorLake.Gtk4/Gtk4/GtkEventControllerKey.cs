@@ -20,6 +20,7 @@ public class GtkEventControllerKeyHandle : GtkEventControllerHandle
 	{
 		return GtkEventControllerKeyExterns.gtk_event_controller_key_new();
 	}
+
 }
 
 public class GtkEventControllerKeySignal
@@ -69,6 +70,8 @@ public static class GtkEventControllerKeyHandleExtensions
 internal class GtkEventControllerKeyExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkEventControllerKeyHandle gtk_event_controller_key_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_event_controller_key_forward(GtkEventControllerKeyHandle controller, GtkWidgetHandle widget);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_event_controller_key_get_group(GtkEventControllerKeyHandle controller);
@@ -76,6 +79,4 @@ internal class GtkEventControllerKeyExterns
 	internal static extern GtkIMContextHandle gtk_event_controller_key_get_im_context(GtkEventControllerKeyHandle controller);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_event_controller_key_set_im_context(GtkEventControllerKeyHandle controller, GtkIMContextHandle im_context);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkEventControllerKeyHandle gtk_event_controller_key_new();
 }

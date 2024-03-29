@@ -20,6 +20,7 @@ public class GtkApplicationHandle : GApplicationHandle
 	{
 		return GtkApplicationExterns.gtk_application_new(application_id, flags);
 	}
+
 }
 
 public class GtkApplicationSignal
@@ -122,6 +123,8 @@ public static class GtkApplicationHandleExtensions
 internal class GtkApplicationExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkApplicationHandle gtk_application_new(string application_id, GApplicationFlags flags);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_application_add_window(GtkApplicationHandle application, GtkWindowHandle window);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string[] gtk_application_get_accels_for_action(GtkApplicationHandle application, string detailed_action_name);
@@ -149,6 +152,4 @@ internal class GtkApplicationExterns
 	internal static extern void gtk_application_set_menubar(GtkApplicationHandle application, GMenuModelHandle menubar);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_application_uninhibit(GtkApplicationHandle application, uint cookie);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkApplicationHandle gtk_application_new(string application_id, GApplicationFlags flags);
 }

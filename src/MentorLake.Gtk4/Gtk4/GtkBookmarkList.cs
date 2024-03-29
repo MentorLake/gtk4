@@ -20,10 +20,7 @@ public class GtkBookmarkListHandle : GObjectHandle
 	{
 		return GtkBookmarkListExterns.gtk_bookmark_list_new(filename, attributes);
 	}
-}
 
-public static class GtkBookmarkListSignals
-{
 }
 
 public static class GtkBookmarkListHandleExtensions
@@ -65,6 +62,8 @@ public static class GtkBookmarkListHandleExtensions
 internal class GtkBookmarkListExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkBookmarkListHandle gtk_bookmark_list_new(string filename, string attributes);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_bookmark_list_get_attributes(GtkBookmarkListHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_bookmark_list_get_filename(GtkBookmarkListHandle self);
@@ -76,6 +75,4 @@ internal class GtkBookmarkListExterns
 	internal static extern void gtk_bookmark_list_set_attributes(GtkBookmarkListHandle self, string attributes);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_bookmark_list_set_io_priority(GtkBookmarkListHandle self, int io_priority);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkBookmarkListHandle gtk_bookmark_list_new(string filename, string attributes);
 }

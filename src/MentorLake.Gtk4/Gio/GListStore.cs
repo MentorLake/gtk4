@@ -20,10 +20,7 @@ public class GListStoreHandle : GObjectHandle
 	{
 		return GListStoreExterns.g_list_store_new(item_type);
 	}
-}
 
-public static class GListStoreSignals
-{
 }
 
 public static class GListStoreHandleExtensions
@@ -89,6 +86,8 @@ public static class GListStoreHandleExtensions
 internal class GListStoreExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GListStoreHandle g_list_store_new(GType item_type);
+	[DllImport(Libraries.Gio)]
 	internal static extern void g_list_store_append(GListStoreHandle store, GObjectHandle item);
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_list_store_find(GListStoreHandle store, GObjectHandle item, out uint position);
@@ -108,6 +107,4 @@ internal class GListStoreExterns
 	internal static extern void g_list_store_sort(GListStoreHandle store, GCompareDataFunc compare_func, IntPtr user_data);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_list_store_splice(GListStoreHandle store, uint position, uint n_removals, IntPtr[] additions, uint n_additions);
-	[DllImport(Libraries.Gio)]
-	internal static extern GListStoreHandle g_list_store_new(GType item_type);
 }

@@ -20,6 +20,7 @@ public class GSocketServiceHandle : GSocketListenerHandle
 	{
 		return GSocketServiceExterns.g_socket_service_new();
 	}
+
 }
 
 public class GSocketServiceSignal
@@ -62,11 +63,11 @@ public static class GSocketServiceHandleExtensions
 internal class GSocketServiceExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GSocketServiceHandle g_socket_service_new();
+	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_service_is_active(GSocketServiceHandle service);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_service_start(GSocketServiceHandle service);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_service_stop(GSocketServiceHandle service);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSocketServiceHandle g_socket_service_new();
 }

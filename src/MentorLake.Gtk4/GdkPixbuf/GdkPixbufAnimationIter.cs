@@ -18,10 +18,6 @@ public class GdkPixbufAnimationIterHandle : GObjectHandle
 {
 }
 
-public static class GdkPixbufAnimationIterSignals
-{
-}
-
 public static class GdkPixbufAnimationIterHandleExtensions
 {
 	public static bool Advance(this GdkPixbufAnimationIterHandle iter, GTimeValHandle current_time)

@@ -20,10 +20,7 @@ public class GskGLRendererHandle : GskRendererHandle
 	{
 		return GskGLRendererExterns.gsk_gl_renderer_new();
 	}
-}
 
-public static class GskGLRendererSignals
-{
 }
 
 public static class GskGLRendererHandleExtensions

@@ -18,10 +18,6 @@ public class GInputStreamHandle : GObjectHandle
 {
 }
 
-public static class GInputStreamSignals
-{
-}
-
 public static class GInputStreamHandleExtensions
 {
 	public static GInputStreamHandle ClearPending(this GInputStreamHandle stream)

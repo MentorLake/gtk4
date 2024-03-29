@@ -20,6 +20,7 @@ public class GtkDrawingAreaHandle : GtkWidgetHandle
 	{
 		return GtkDrawingAreaExterns.gtk_drawing_area_new();
 	}
+
 }
 
 public class GtkDrawingAreaSignal
@@ -73,6 +74,8 @@ public static class GtkDrawingAreaHandleExtensions
 internal class GtkDrawingAreaExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkDrawingAreaHandle gtk_drawing_area_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_drawing_area_get_content_height(GtkDrawingAreaHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_drawing_area_get_content_width(GtkDrawingAreaHandle self);
@@ -82,6 +85,4 @@ internal class GtkDrawingAreaExterns
 	internal static extern void gtk_drawing_area_set_content_width(GtkDrawingAreaHandle self, int width);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drawing_area_set_draw_func(GtkDrawingAreaHandle self, GtkDrawingAreaDrawFunc draw_func, IntPtr user_data, GDestroyNotify destroy);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkDrawingAreaHandle gtk_drawing_area_new();
 }

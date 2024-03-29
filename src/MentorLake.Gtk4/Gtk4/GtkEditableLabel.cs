@@ -20,10 +20,7 @@ public class GtkEditableLabelHandle : GtkWidgetHandle
 	{
 		return GtkEditableLabelExterns.gtk_editable_label_new(str);
 	}
-}
 
-public static class GtkEditableLabelSignals
-{
 }
 
 public static class GtkEditableLabelHandleExtensions
@@ -50,11 +47,11 @@ public static class GtkEditableLabelHandleExtensions
 internal class GtkEditableLabelExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkEditableLabelHandle gtk_editable_label_new(string str);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_editable_label_get_editing(GtkEditableLabelHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_label_start_editing(GtkEditableLabelHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_label_stop_editing(GtkEditableLabelHandle self, bool commit);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkEditableLabelHandle gtk_editable_label_new(string str);
 }

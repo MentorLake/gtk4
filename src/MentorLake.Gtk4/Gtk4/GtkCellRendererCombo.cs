@@ -20,6 +20,7 @@ public class GtkCellRendererComboHandle : GtkCellRendererTextHandle
 	{
 		return GtkCellRendererComboExterns.gtk_cell_renderer_combo_new();
 	}
+
 }
 
 public class GtkCellRendererComboSignal

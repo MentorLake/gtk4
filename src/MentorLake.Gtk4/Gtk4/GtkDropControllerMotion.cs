@@ -20,6 +20,7 @@ public class GtkDropControllerMotionHandle : GtkEventControllerHandle
 	{
 		return GtkDropControllerMotionExterns.gtk_drop_controller_motion_new();
 	}
+
 }
 
 public class GtkDropControllerMotionSignal
@@ -62,11 +63,11 @@ public static class GtkDropControllerMotionHandleExtensions
 internal class GtkDropControllerMotionExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkDropControllerMotionHandle gtk_drop_controller_motion_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_drop_controller_motion_contains_pointer(GtkDropControllerMotionHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDropHandle gtk_drop_controller_motion_get_drop(GtkDropControllerMotionHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_drop_controller_motion_is_pointer(GtkDropControllerMotionHandle self);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkDropControllerMotionHandle gtk_drop_controller_motion_new();
 }

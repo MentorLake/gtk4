@@ -20,10 +20,7 @@ public class GZlibCompressorHandle : GObjectHandle
 	{
 		return GZlibCompressorExterns.g_zlib_compressor_new(format, level);
 	}
-}
 
-public static class GZlibCompressorSignals
-{
 }
 
 public static class GZlibCompressorHandleExtensions
@@ -44,9 +41,9 @@ public static class GZlibCompressorHandleExtensions
 internal class GZlibCompressorExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GZlibCompressorHandle g_zlib_compressor_new(GZlibCompressorFormat format, int level);
+	[DllImport(Libraries.Gio)]
 	internal static extern GFileInfoHandle g_zlib_compressor_get_file_info(GZlibCompressorHandle compressor);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_zlib_compressor_set_file_info(GZlibCompressorHandle compressor, GFileInfoHandle file_info);
-	[DllImport(Libraries.Gio)]
-	internal static extern GZlibCompressorHandle g_zlib_compressor_new(GZlibCompressorFormat format, int level);
 }

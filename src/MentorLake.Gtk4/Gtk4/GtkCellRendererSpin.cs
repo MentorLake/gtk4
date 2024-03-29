@@ -20,10 +20,7 @@ public class GtkCellRendererSpinHandle : GtkCellRendererTextHandle
 	{
 		return GtkCellRendererSpinExterns.gtk_cell_renderer_spin_new();
 	}
-}
 
-public static class GtkCellRendererSpinSignals
-{
 }
 
 public static class GtkCellRendererSpinHandleExtensions

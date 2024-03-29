@@ -20,6 +20,7 @@ public class GtkGestureZoomHandle : GtkGestureHandle
 	{
 		return GtkGestureZoomExterns.gtk_gesture_zoom_new();
 	}
+
 }
 
 public class GtkGestureZoomSignal
@@ -50,7 +51,7 @@ public static class GtkGestureZoomHandleExtensions
 internal class GtkGestureZoomExterns
 {
 	[DllImport(Libraries.Gtk4)]
-	internal static extern double gtk_gesture_zoom_get_scale_delta(GtkGestureZoomHandle gesture);
-	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkGestureZoomHandle gtk_gesture_zoom_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern double gtk_gesture_zoom_get_scale_delta(GtkGestureZoomHandle gesture);
 }

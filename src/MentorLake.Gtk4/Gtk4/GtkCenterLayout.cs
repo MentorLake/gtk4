@@ -20,10 +20,7 @@ public class GtkCenterLayoutHandle : GtkLayoutManagerHandle
 	{
 		return GtkCenterLayoutExterns.gtk_center_layout_new();
 	}
-}
 
-public static class GtkCenterLayoutSignals
-{
 }
 
 public static class GtkCenterLayoutHandleExtensions
@@ -99,6 +96,8 @@ public static class GtkCenterLayoutHandleExtensions
 internal class GtkCenterLayoutExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkCenterLayoutHandle gtk_center_layout_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBaselinePosition gtk_center_layout_get_baseline_position(GtkCenterLayoutHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_center_layout_get_center_widget(GtkCenterLayoutHandle self);
@@ -122,6 +121,4 @@ internal class GtkCenterLayoutExterns
 	internal static extern void gtk_center_layout_set_shrink_center_last(GtkCenterLayoutHandle self, bool shrink_center_last);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_center_layout_set_start_widget(GtkCenterLayoutHandle self, GtkWidgetHandle widget);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkCenterLayoutHandle gtk_center_layout_new();
 }

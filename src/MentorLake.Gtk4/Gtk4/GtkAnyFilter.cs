@@ -20,10 +20,7 @@ public class GtkAnyFilterHandle : GtkMultiFilterHandle
 	{
 		return GtkAnyFilterExterns.gtk_any_filter_new();
 	}
-}
 
-public static class GtkAnyFilterSignals
-{
 }
 
 public static class GtkAnyFilterHandleExtensions

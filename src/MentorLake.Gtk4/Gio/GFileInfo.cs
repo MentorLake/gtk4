@@ -20,10 +20,7 @@ public class GFileInfoHandle : GObjectHandle
 	{
 		return GFileInfoExterns.g_file_info_new();
 	}
-}
 
-public static class GFileInfoSignals
-{
 }
 
 public static class GFileInfoHandleExtensions
@@ -416,6 +413,8 @@ public static class GFileInfoHandleExtensions
 internal class GFileInfoExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GFileInfoHandle g_file_info_new();
+	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_clear_status(GFileInfoHandle info);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_copy_into(GFileInfoHandle src_info, GFileInfoHandle dest_info);
@@ -555,6 +554,4 @@ internal class GFileInfoExterns
 	internal static extern void g_file_info_set_symlink_target(GFileInfoHandle info, string symlink_target);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_unset_attribute_mask(GFileInfoHandle info);
-	[DllImport(Libraries.Gio)]
-	internal static extern GFileInfoHandle g_file_info_new();
 }

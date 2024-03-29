@@ -20,10 +20,7 @@ public class GdkPixbufNonAnimHandle : GdkPixbufAnimationHandle
 	{
 		return GdkPixbufNonAnimExterns.gdk_pixbuf_non_anim_new(pixbuf);
 	}
-}
 
-public static class GdkPixbufNonAnimSignals
-{
 }
 
 public static class GdkPixbufNonAnimHandleExtensions

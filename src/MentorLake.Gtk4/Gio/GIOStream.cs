@@ -16,10 +16,11 @@ namespace MentorLake.Gtk4.Gio;
 
 public class GIOStreamHandle : GObjectHandle
 {
-}
+	public static bool GIoStreamSpliceFinish(GAsyncResultHandle result, out GErrorHandle error)
+	{
+		return GIOStreamExterns.g_io_stream_splice_finish(result, out error);
+	}
 
-public static class GIOStreamSignals
-{
 }
 
 public static class GIOStreamHandleExtensions
@@ -75,11 +76,6 @@ public static class GIOStreamHandleExtensions
 	{
 		GIOStreamExterns.g_io_stream_splice_async(stream1, stream2, flags, io_priority, cancellable, callback, user_data);
 		return stream1;
-	}
-
-	public static bool GIoStreamSpliceFinish(this GAsyncResultHandle result, out GErrorHandle error)
-	{
-		return GIOStreamExterns.g_io_stream_splice_finish(result, out error);
 	}
 
 }

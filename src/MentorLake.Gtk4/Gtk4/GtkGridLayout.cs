@@ -20,10 +20,7 @@ public class GtkGridLayoutHandle : GtkLayoutManagerHandle
 	{
 		return GtkGridLayoutExterns.gtk_grid_layout_new();
 	}
-}
 
-public static class GtkGridLayoutSignals
-{
 }
 
 public static class GtkGridLayoutHandleExtensions
@@ -99,6 +96,8 @@ public static class GtkGridLayoutHandleExtensions
 internal class GtkGridLayoutExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkGridLayoutHandle gtk_grid_layout_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_grid_layout_get_baseline_row(GtkGridLayoutHandle grid);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_grid_layout_get_column_homogeneous(GtkGridLayoutHandle grid);
@@ -122,6 +121,4 @@ internal class GtkGridLayoutExterns
 	internal static extern void gtk_grid_layout_set_row_homogeneous(GtkGridLayoutHandle grid, bool homogeneous);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_grid_layout_set_row_spacing(GtkGridLayoutHandle grid, uint spacing);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkGridLayoutHandle gtk_grid_layout_new();
 }

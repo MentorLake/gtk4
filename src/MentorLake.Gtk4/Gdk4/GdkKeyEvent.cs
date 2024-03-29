@@ -18,48 +18,44 @@ public class GdkKeyEventHandle : GdkEventHandle
 {
 }
 
-public static class GdkKeyEventSignals
-{
-}
-
 public static class GdkKeyEventHandleExtensions
 {
-	public static GdkModifierType GetConsumedModifiers(this GdkEventHandle @event)
+	public static GdkModifierType GetConsumedModifiers(this GdkKeyEventHandle @event)
 	{
 		return GdkKeyEventExterns.gdk_key_event_get_consumed_modifiers(@event);
 	}
 
-	public static uint GetKeycode(this GdkEventHandle @event)
+	public static uint GetKeycode(this GdkKeyEventHandle @event)
 	{
 		return GdkKeyEventExterns.gdk_key_event_get_keycode(@event);
 	}
 
-	public static uint GetKeyval(this GdkEventHandle @event)
+	public static uint GetKeyval(this GdkKeyEventHandle @event)
 	{
 		return GdkKeyEventExterns.gdk_key_event_get_keyval(@event);
 	}
 
-	public static uint GetLayout(this GdkEventHandle @event)
+	public static uint GetLayout(this GdkKeyEventHandle @event)
 	{
 		return GdkKeyEventExterns.gdk_key_event_get_layout(@event);
 	}
 
-	public static uint GetLevel(this GdkEventHandle @event)
+	public static uint GetLevel(this GdkKeyEventHandle @event)
 	{
 		return GdkKeyEventExterns.gdk_key_event_get_level(@event);
 	}
 
-	public static bool GetMatch(this GdkEventHandle @event, out uint keyval, out GdkModifierType modifiers)
+	public static bool GetMatch(this GdkKeyEventHandle @event, out uint keyval, out GdkModifierType modifiers)
 	{
 		return GdkKeyEventExterns.gdk_key_event_get_match(@event, out keyval, out modifiers);
 	}
 
-	public static bool IsModifier(this GdkEventHandle @event)
+	public static bool IsModifier(this GdkKeyEventHandle @event)
 	{
 		return GdkKeyEventExterns.gdk_key_event_is_modifier(@event);
 	}
 
-	public static GdkKeyMatch Matches(this GdkEventHandle @event, uint keyval, GdkModifierType modifiers)
+	public static GdkKeyMatch Matches(this GdkKeyEventHandle @event, uint keyval, GdkModifierType modifiers)
 	{
 		return GdkKeyEventExterns.gdk_key_event_matches(@event, keyval, modifiers);
 	}

@@ -20,6 +20,7 @@ public class GtkPasswordEntryHandle : GtkWidgetHandle
 	{
 		return GtkPasswordEntryExterns.gtk_password_entry_new();
 	}
+
 }
 
 public class GtkPasswordEntrySignal
@@ -67,6 +68,8 @@ public static class GtkPasswordEntryHandleExtensions
 internal class GtkPasswordEntryExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPasswordEntryHandle gtk_password_entry_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GMenuModelHandle gtk_password_entry_get_extra_menu(GtkPasswordEntryHandle entry);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_password_entry_get_show_peek_icon(GtkPasswordEntryHandle entry);
@@ -74,6 +77,4 @@ internal class GtkPasswordEntryExterns
 	internal static extern void gtk_password_entry_set_extra_menu(GtkPasswordEntryHandle entry, GMenuModelHandle model);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_password_entry_set_show_peek_icon(GtkPasswordEntryHandle entry, bool show_peek_icon);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPasswordEntryHandle gtk_password_entry_new();
 }

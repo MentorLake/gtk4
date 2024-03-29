@@ -18,10 +18,6 @@ public class GdkCairoContextHandle : GdkDrawContextHandle
 {
 }
 
-public static class GdkCairoContextSignals
-{
-}
-
 public static class GdkCairoContextHandleExtensions
 {
 	public static cairo_tHandle CairoCreate(this GdkCairoContextHandle self)

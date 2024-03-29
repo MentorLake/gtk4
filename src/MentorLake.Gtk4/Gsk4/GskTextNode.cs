@@ -20,40 +20,37 @@ public class GskTextNodeHandle : GskRenderNodeHandle
 	{
 		return GskTextNodeExterns.gsk_text_node_new(font, glyphs, color, offset);
 	}
-}
 
-public static class GskTextNodeSignals
-{
 }
 
 public static class GskTextNodeHandleExtensions
 {
-	public static GdkRGBAHandle GetColor(this GskRenderNodeHandle node)
+	public static GdkRGBAHandle GetColor(this GskTextNodeHandle node)
 	{
 		return GskTextNodeExterns.gsk_text_node_get_color(node);
 	}
 
-	public static PangoFontHandle GetFont(this GskRenderNodeHandle node)
+	public static PangoFontHandle GetFont(this GskTextNodeHandle node)
 	{
 		return GskTextNodeExterns.gsk_text_node_get_font(node);
 	}
 
-	public static PangoGlyphInfo[] GetGlyphs(this GskRenderNodeHandle node, out uint n_glyphs)
+	public static PangoGlyphInfo[] GetGlyphs(this GskTextNodeHandle node, out uint n_glyphs)
 	{
 		return GskTextNodeExterns.gsk_text_node_get_glyphs(node, out n_glyphs);
 	}
 
-	public static uint GetNumGlyphs(this GskRenderNodeHandle node)
+	public static uint GetNumGlyphs(this GskTextNodeHandle node)
 	{
 		return GskTextNodeExterns.gsk_text_node_get_num_glyphs(node);
 	}
 
-	public static graphene_point_tHandle GetOffset(this GskRenderNodeHandle node)
+	public static graphene_point_tHandle GetOffset(this GskTextNodeHandle node)
 	{
 		return GskTextNodeExterns.gsk_text_node_get_offset(node);
 	}
 
-	public static bool HasColorGlyphs(this GskRenderNodeHandle node)
+	public static bool HasColorGlyphs(this GskTextNodeHandle node)
 	{
 		return GskTextNodeExterns.gsk_text_node_has_color_glyphs(node);
 	}
@@ -62,6 +59,8 @@ public static class GskTextNodeHandleExtensions
 
 internal class GskTextNodeExterns
 {
+	[DllImport(Libraries.Gsk4)]
+	internal static extern GskTextNodeHandle gsk_text_node_new(PangoFontHandle font, PangoGlyphStringHandle glyphs, GdkRGBAHandle color, graphene_point_tHandle offset);
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GdkRGBAHandle gsk_text_node_get_color(GskRenderNodeHandle node);
 	[DllImport(Libraries.Gsk4)]
@@ -74,6 +73,4 @@ internal class GskTextNodeExterns
 	internal static extern graphene_point_tHandle gsk_text_node_get_offset(GskRenderNodeHandle node);
 	[DllImport(Libraries.Gsk4)]
 	internal static extern bool gsk_text_node_has_color_glyphs(GskRenderNodeHandle node);
-	[DllImport(Libraries.Gsk4)]
-	internal static extern GskTextNodeHandle gsk_text_node_new(PangoFontHandle font, PangoGlyphStringHandle glyphs, GdkRGBAHandle color, graphene_point_tHandle offset);
 }

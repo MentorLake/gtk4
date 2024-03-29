@@ -18,10 +18,6 @@ public class GtkNotebookPageHandle : GObjectHandle
 {
 }
 
-public static class GtkNotebookPageSignals
-{
-}
-
 public static class GtkNotebookPageHandleExtensions
 {
 	public static GtkWidgetHandle GetChild(this GtkNotebookPageHandle page)

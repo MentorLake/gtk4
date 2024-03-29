@@ -20,10 +20,7 @@ public class GtkSingleSelectionHandle : GObjectHandle
 	{
 		return GtkSingleSelectionExterns.gtk_single_selection_new(model);
 	}
-}
 
-public static class GtkSingleSelectionSignals
-{
 }
 
 public static class GtkSingleSelectionHandleExtensions
@@ -82,6 +79,8 @@ public static class GtkSingleSelectionHandleExtensions
 internal class GtkSingleSelectionExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkSingleSelectionHandle gtk_single_selection_new(GListModelHandle model);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_single_selection_get_autoselect(GtkSingleSelectionHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_single_selection_get_can_unselect(GtkSingleSelectionHandle self);
@@ -99,6 +98,4 @@ internal class GtkSingleSelectionExterns
 	internal static extern void gtk_single_selection_set_model(GtkSingleSelectionHandle self, GListModelHandle model);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_single_selection_set_selected(GtkSingleSelectionHandle self, uint position);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkSingleSelectionHandle gtk_single_selection_new(GListModelHandle model);
 }

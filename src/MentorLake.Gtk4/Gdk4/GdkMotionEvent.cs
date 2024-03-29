@@ -18,10 +18,6 @@ public class GdkMotionEventHandle : GdkEventHandle
 {
 }
 
-public static class GdkMotionEventSignals
-{
-}
-
 public static class GdkMotionEventHandleExtensions
 {
 }

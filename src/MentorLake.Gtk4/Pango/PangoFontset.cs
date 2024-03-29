@@ -18,10 +18,6 @@ public class PangoFontsetHandle : GObjectHandle
 {
 }
 
-public static class PangoFontsetSignals
-{
-}
-
 public static class PangoFontsetHandleExtensions
 {
 	public static PangoFontsetHandle Foreach(this PangoFontsetHandle fontset, PangoFontsetForeachFunc func, IntPtr data)

@@ -20,14 +20,12 @@ public class GtkTreeStoreHandle : GObjectHandle
 	{
 		return GtkTreeStoreExterns.gtk_tree_store_new(n_columns, @__arglist);
 	}
+
 	public static GtkTreeStoreHandle Newv(int n_columns, GType[] types)
 	{
 		return GtkTreeStoreExterns.gtk_tree_store_newv(n_columns, types);
 	}
-}
 
-public static class GtkTreeStoreSignals
-{
 }
 
 public static class GtkTreeStoreHandleExtensions
@@ -159,6 +157,10 @@ public static class GtkTreeStoreHandleExtensions
 internal class GtkTreeStoreExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkTreeStoreHandle gtk_tree_store_new(int n_columns, IntPtr @__arglist);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkTreeStoreHandle gtk_tree_store_newv(int n_columns, GType[] types);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_store_append(GtkTreeStoreHandle tree_store, out GtkTreeIter iter, GtkTreeIterHandle parent);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_store_clear(GtkTreeStoreHandle tree_store);
@@ -200,8 +202,4 @@ internal class GtkTreeStoreExterns
 	internal static extern void gtk_tree_store_set_valuesv(GtkTreeStoreHandle tree_store, GtkTreeIterHandle iter, int[] columns, GValue[] values, int n_values);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_store_swap(GtkTreeStoreHandle tree_store, GtkTreeIterHandle a, GtkTreeIterHandle b);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkTreeStoreHandle gtk_tree_store_new(int n_columns, IntPtr @__arglist);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkTreeStoreHandle gtk_tree_store_newv(int n_columns, GType[] types);
 }

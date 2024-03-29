@@ -20,10 +20,7 @@ public class GtkSearchBarHandle : GtkWidgetHandle
 	{
 		return GtkSearchBarExterns.gtk_search_bar_new();
 	}
-}
 
-public static class GtkSearchBarSignals
-{
 }
 
 public static class GtkSearchBarHandleExtensions
@@ -83,6 +80,8 @@ public static class GtkSearchBarHandleExtensions
 internal class GtkSearchBarExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkSearchBarHandle gtk_search_bar_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_search_bar_connect_entry(GtkSearchBarHandle bar, GtkEditableHandle entry);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_search_bar_get_child(GtkSearchBarHandle bar);
@@ -100,6 +99,4 @@ internal class GtkSearchBarExterns
 	internal static extern void gtk_search_bar_set_search_mode(GtkSearchBarHandle bar, bool search_mode);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_search_bar_set_show_close_button(GtkSearchBarHandle bar, bool visible);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkSearchBarHandle gtk_search_bar_new();
 }

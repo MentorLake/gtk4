@@ -18,13 +18,9 @@ public class GdkDNDEventHandle : GdkEventHandle
 {
 }
 
-public static class GdkDNDEventSignals
-{
-}
-
 public static class GdkDNDEventHandleExtensions
 {
-	public static GdkDropHandle GdkDndEventGetDrop(this GdkEventHandle @event)
+	public static GdkDropHandle GdkDndEventGetDrop(this GdkDNDEventHandle @event)
 	{
 		return GdkDNDEventExterns.gdk_dnd_event_get_drop(@event);
 	}

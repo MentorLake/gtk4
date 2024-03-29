@@ -18,10 +18,6 @@ public class GtkTreeListRowHandle : GObjectHandle
 {
 }
 
-public static class GtkTreeListRowSignals
-{
-}
-
 public static class GtkTreeListRowHandleExtensions
 {
 	public static GtkTreeListRowHandle GetChildRow(this GtkTreeListRowHandle self, uint position)

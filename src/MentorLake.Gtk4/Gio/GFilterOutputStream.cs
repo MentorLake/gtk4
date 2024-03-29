@@ -18,10 +18,6 @@ public class GFilterOutputStreamHandle : GOutputStreamHandle
 {
 }
 
-public static class GFilterOutputStreamSignals
-{
-}
-
 public static class GFilterOutputStreamHandleExtensions
 {
 	public static GOutputStreamHandle GetBaseStream(this GFilterOutputStreamHandle stream)

@@ -20,14 +20,12 @@ public class GtkScaleHandle : GtkRangeHandle
 	{
 		return GtkScaleExterns.gtk_scale_new(orientation, adjustment);
 	}
+
 	public static GtkScaleHandle NewWithRange(GtkOrientation orientation, double min, double max, double step)
 	{
 		return GtkScaleExterns.gtk_scale_new_with_range(orientation, min, max, step);
 	}
-}
 
-public static class GtkScaleSignals
-{
 }
 
 public static class GtkScaleHandleExtensions
@@ -110,6 +108,10 @@ public static class GtkScaleHandleExtensions
 internal class GtkScaleExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkScaleHandle gtk_scale_new(GtkOrientation orientation, GtkAdjustmentHandle adjustment);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkScaleHandle gtk_scale_new_with_range(GtkOrientation orientation, double min, double max, double step);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scale_add_mark(GtkScaleHandle scale, double value, GtkPositionType position, string markup);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scale_clear_marks(GtkScaleHandle scale);
@@ -135,8 +137,4 @@ internal class GtkScaleExterns
 	internal static extern void gtk_scale_set_has_origin(GtkScaleHandle scale, bool has_origin);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scale_set_value_pos(GtkScaleHandle scale, GtkPositionType pos);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkScaleHandle gtk_scale_new(GtkOrientation orientation, GtkAdjustmentHandle adjustment);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkScaleHandle gtk_scale_new_with_range(GtkOrientation orientation, double min, double max, double step);
 }

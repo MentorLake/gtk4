@@ -18,10 +18,6 @@ public class GOutputStreamHandle : GObjectHandle
 {
 }
 
-public static class GOutputStreamSignals
-{
-}
-
 public static class GOutputStreamHandleExtensions
 {
 	public static GOutputStreamHandle ClearPending(this GOutputStreamHandle stream)

@@ -18,10 +18,6 @@ public class GdkPixbufSimpleAnimIterHandle : GdkPixbufAnimationIterHandle
 {
 }
 
-public static class GdkPixbufSimpleAnimIterSignals
-{
-}
-
 public static class GdkPixbufSimpleAnimIterHandleExtensions
 {
 }

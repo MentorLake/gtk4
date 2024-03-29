@@ -18,10 +18,6 @@ public class GInitiallyUnownedHandle : GObjectHandle
 {
 }
 
-public static class GInitiallyUnownedSignals
-{
-}
-
 public static class GInitiallyUnownedHandleExtensions
 {
 }

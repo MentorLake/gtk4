@@ -18,10 +18,6 @@ public class GTlsDatabaseHandle : GObjectHandle
 {
 }
 
-public static class GTlsDatabaseSignals
-{
-}
-
 public static class GTlsDatabaseHandleExtensions
 {
 	public static string CreateCertificateHandle(this GTlsDatabaseHandle self, GTlsCertificateHandle certificate)

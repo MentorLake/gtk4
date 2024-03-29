@@ -20,6 +20,7 @@ public class GtkPopoverHandle : GtkWidgetHandle
 	{
 		return GtkPopoverExterns.gtk_popover_new();
 	}
+
 }
 
 public class GtkPopoverSignal
@@ -159,6 +160,8 @@ public static class GtkPopoverHandleExtensions
 internal class GtkPopoverExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPopoverHandle gtk_popover_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_popover_get_autohide(GtkPopoverHandle popover);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_popover_get_cascade_popdown(GtkPopoverHandle popover);
@@ -198,6 +201,4 @@ internal class GtkPopoverExterns
 	internal static extern void gtk_popover_set_pointing_to(GtkPopoverHandle popover, GdkRectangleHandle rect);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_set_position(GtkPopoverHandle popover, GtkPositionType position);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPopoverHandle gtk_popover_new();
 }

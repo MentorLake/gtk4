@@ -20,10 +20,7 @@ public class GtkMultiSorterHandle : GtkSorterHandle
 	{
 		return GtkMultiSorterExterns.gtk_multi_sorter_new();
 	}
-}
 
-public static class GtkMultiSorterSignals
-{
 }
 
 public static class GtkMultiSorterHandleExtensions
@@ -45,9 +42,9 @@ public static class GtkMultiSorterHandleExtensions
 internal class GtkMultiSorterExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkMultiSorterHandle gtk_multi_sorter_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_multi_sorter_append(GtkMultiSorterHandle self, GtkSorterHandle sorter);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_multi_sorter_remove(GtkMultiSorterHandle self, uint position);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkMultiSorterHandle gtk_multi_sorter_new();
 }

@@ -20,6 +20,12 @@ public class GtkIconThemeHandle : GObjectHandle
 	{
 		return GtkIconThemeExterns.gtk_icon_theme_new();
 	}
+
+	public static GtkIconThemeHandle GetForDisplay(GdkDisplayHandle display)
+	{
+		return GtkIconThemeExterns.gtk_icon_theme_get_for_display(display);
+	}
+
 }
 
 public class GtkIconThemeSignal
@@ -115,11 +121,6 @@ public static class GtkIconThemeHandleExtensions
 		return self;
 	}
 
-	public static GtkIconThemeHandle GetForDisplay(this GdkDisplayHandle display)
-	{
-		return GtkIconThemeExterns.gtk_icon_theme_get_for_display(display);
-	}
-
 	public static GtkIconThemeHandle Connect(this GtkIconThemeHandle instance, GtkIconThemeSignal signal, GCallback c_handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
@@ -129,6 +130,8 @@ public static class GtkIconThemeHandleExtensions
 
 internal class GtkIconThemeExterns
 {
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkIconThemeHandle gtk_icon_theme_new();
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_theme_add_resource_path(GtkIconThemeHandle self, string path);
 	[DllImport(Libraries.Gtk4)]
@@ -161,6 +164,4 @@ internal class GtkIconThemeExterns
 	internal static extern void gtk_icon_theme_set_theme_name(GtkIconThemeHandle self, string theme_name);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkIconThemeHandle gtk_icon_theme_get_for_display(GdkDisplayHandle display);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkIconThemeHandle gtk_icon_theme_new();
 }

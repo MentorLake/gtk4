@@ -20,6 +20,7 @@ public class GtkCellRendererToggleHandle : GtkCellRendererHandle
 	{
 		return GtkCellRendererToggleExterns.gtk_cell_renderer_toggle_new();
 	}
+
 }
 
 public class GtkCellRendererToggleSignal
@@ -78,6 +79,8 @@ public static class GtkCellRendererToggleHandleExtensions
 internal class GtkCellRendererToggleExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkCellRendererToggleHandle gtk_cell_renderer_toggle_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_cell_renderer_toggle_get_activatable(GtkCellRendererToggleHandle toggle);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_cell_renderer_toggle_get_active(GtkCellRendererToggleHandle toggle);
@@ -89,6 +92,4 @@ internal class GtkCellRendererToggleExterns
 	internal static extern void gtk_cell_renderer_toggle_set_active(GtkCellRendererToggleHandle toggle, bool setting);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_toggle_set_radio(GtkCellRendererToggleHandle toggle, bool radio);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkCellRendererToggleHandle gtk_cell_renderer_toggle_new();
 }

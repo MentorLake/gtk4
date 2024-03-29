@@ -20,10 +20,7 @@ public class GtkStackSwitcherHandle : GtkWidgetHandle
 	{
 		return GtkStackSwitcherExterns.gtk_stack_switcher_new();
 	}
-}
 
-public static class GtkStackSwitcherSignals
-{
 }
 
 public static class GtkStackSwitcherHandleExtensions
@@ -44,9 +41,9 @@ public static class GtkStackSwitcherHandleExtensions
 internal class GtkStackSwitcherExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkStackSwitcherHandle gtk_stack_switcher_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStackHandle gtk_stack_switcher_get_stack(GtkStackSwitcherHandle switcher);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_switcher_set_stack(GtkStackSwitcherHandle switcher, GtkStackHandle stack);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkStackSwitcherHandle gtk_stack_switcher_new();
 }

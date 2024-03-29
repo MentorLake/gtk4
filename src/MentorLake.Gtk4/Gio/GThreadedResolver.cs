@@ -18,10 +18,6 @@ public class GThreadedResolverHandle : GResolverHandle
 {
 }
 
-public static class GThreadedResolverSignals
-{
-}
-
 public static class GThreadedResolverHandleExtensions
 {
 }

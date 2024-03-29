@@ -20,20 +20,17 @@ public class GskDebugNodeHandle : GskRenderNodeHandle
 	{
 		return GskDebugNodeExterns.gsk_debug_node_new(child, message);
 	}
-}
 
-public static class GskDebugNodeSignals
-{
 }
 
 public static class GskDebugNodeHandleExtensions
 {
-	public static GskRenderNodeHandle GetChild(this GskRenderNodeHandle node)
+	public static GskRenderNodeHandle GetChild(this GskDebugNodeHandle node)
 	{
 		return GskDebugNodeExterns.gsk_debug_node_get_child(node);
 	}
 
-	public static string GetMessage(this GskRenderNodeHandle node)
+	public static string GetMessage(this GskDebugNodeHandle node)
 	{
 		return GskDebugNodeExterns.gsk_debug_node_get_message(node);
 	}
@@ -43,9 +40,9 @@ public static class GskDebugNodeHandleExtensions
 internal class GskDebugNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
+	internal static extern GskDebugNodeHandle gsk_debug_node_new(GskRenderNodeHandle child, string message);
+	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_debug_node_get_child(GskRenderNodeHandle node);
 	[DllImport(Libraries.Gsk4)]
 	internal static extern string gsk_debug_node_get_message(GskRenderNodeHandle node);
-	[DllImport(Libraries.Gsk4)]
-	internal static extern GskDebugNodeHandle gsk_debug_node_new(GskRenderNodeHandle child, string message);
 }

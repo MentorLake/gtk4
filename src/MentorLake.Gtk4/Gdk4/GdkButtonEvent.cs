@@ -18,13 +18,9 @@ public class GdkButtonEventHandle : GdkEventHandle
 {
 }
 
-public static class GdkButtonEventSignals
-{
-}
-
 public static class GdkButtonEventHandleExtensions
 {
-	public static uint GetButton(this GdkEventHandle @event)
+	public static uint GetButton(this GdkButtonEventHandle @event)
 	{
 		return GdkButtonEventExterns.gdk_button_event_get_button(@event);
 	}

@@ -20,10 +20,7 @@ public class GtkBoxHandle : GtkWidgetHandle
 	{
 		return GtkBoxExterns.gtk_box_new(orientation, spacing);
 	}
-}
 
-public static class GtkBoxSignals
-{
 }
 
 public static class GtkBoxHandleExtensions
@@ -107,6 +104,8 @@ public static class GtkBoxHandleExtensions
 internal class GtkBoxExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkBoxHandle gtk_box_new(GtkOrientation orientation, int spacing);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_box_append(GtkBoxHandle box, GtkWidgetHandle child);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_box_get_baseline_child(GtkBoxHandle box);
@@ -132,6 +131,4 @@ internal class GtkBoxExterns
 	internal static extern void gtk_box_set_homogeneous(GtkBoxHandle box, bool homogeneous);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_box_set_spacing(GtkBoxHandle box, int spacing);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkBoxHandle gtk_box_new(GtkOrientation orientation, int spacing);
 }

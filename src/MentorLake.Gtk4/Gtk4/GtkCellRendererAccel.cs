@@ -20,6 +20,7 @@ public class GtkCellRendererAccelHandle : GtkCellRendererTextHandle
 	{
 		return GtkCellRendererAccelExterns.gtk_cell_renderer_accel_new();
 	}
+
 }
 
 public class GtkCellRendererAccelSignal

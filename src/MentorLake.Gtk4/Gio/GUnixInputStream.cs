@@ -20,10 +20,7 @@ public class GUnixInputStreamHandle : GInputStreamHandle
 	{
 		return GUnixInputStreamExterns.g_unix_input_stream_new(fd, close_fd);
 	}
-}
 
-public static class GUnixInputStreamSignals
-{
 }
 
 public static class GUnixInputStreamHandleExtensions
@@ -49,11 +46,11 @@ public static class GUnixInputStreamHandleExtensions
 internal class GUnixInputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GUnixInputStreamHandle g_unix_input_stream_new(int fd, bool close_fd);
+	[DllImport(Libraries.Gio)]
 	internal static extern bool g_unix_input_stream_get_close_fd(GUnixInputStreamHandle stream);
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_unix_input_stream_get_fd(GUnixInputStreamHandle stream);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_unix_input_stream_set_close_fd(GUnixInputStreamHandle stream, bool close_fd);
-	[DllImport(Libraries.Gio)]
-	internal static extern GUnixInputStreamHandle g_unix_input_stream_new(int fd, bool close_fd);
 }

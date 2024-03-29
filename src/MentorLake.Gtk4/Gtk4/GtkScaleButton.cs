@@ -20,6 +20,7 @@ public class GtkScaleButtonHandle : GtkWidgetHandle
 	{
 		return GtkScaleButtonExterns.gtk_scale_button_new(min, max, step, icons);
 	}
+
 }
 
 public class GtkScaleButtonSignal
@@ -106,6 +107,8 @@ public static class GtkScaleButtonHandleExtensions
 internal class GtkScaleButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkScaleButtonHandle gtk_scale_button_new(double min, double max, double step, string[] icons);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_scale_button_get_active(GtkScaleButtonHandle button);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAdjustmentHandle gtk_scale_button_get_adjustment(GtkScaleButtonHandle button);
@@ -127,6 +130,4 @@ internal class GtkScaleButtonExterns
 	internal static extern void gtk_scale_button_set_icons(GtkScaleButtonHandle button, string[] icons);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scale_button_set_value(GtkScaleButtonHandle button, double value);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkScaleButtonHandle gtk_scale_button_new(double min, double max, double step, string[] icons);
 }

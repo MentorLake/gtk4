@@ -16,6 +16,16 @@ namespace MentorLake.Gtk4.Gdk4;
 
 public class GdkDisplayHandle : GObjectHandle
 {
+	public static GdkDisplayHandle GetDefault()
+	{
+		return GdkDisplayExterns.gdk_display_get_default();
+	}
+
+	public static GdkDisplayHandle Open(string display_name)
+	{
+		return GdkDisplayExterns.gdk_display_open(display_name);
+	}
+
 }
 
 public class GdkDisplaySignal
@@ -179,16 +189,6 @@ public static class GdkDisplayHandleExtensions
 	public static bool TranslateKey(this GdkDisplayHandle display, uint keycode, GdkModifierType state, int group, out uint keyval, out int effective_group, out int level, out GdkModifierType consumed)
 	{
 		return GdkDisplayExterns.gdk_display_translate_key(display, keycode, state, group, out keyval, out effective_group, out level, out consumed);
-	}
-
-	public static GdkDisplayHandle GetDefault()
-	{
-		return GdkDisplayExterns.gdk_display_get_default();
-	}
-
-	public static GdkDisplayHandle Open(this string display_name)
-	{
-		return GdkDisplayExterns.gdk_display_open(display_name);
 	}
 
 	public static GdkDisplayHandle Connect(this GdkDisplayHandle instance, GdkDisplaySignal signal, GCallback c_handler)

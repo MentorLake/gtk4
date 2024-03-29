@@ -20,10 +20,7 @@ public class GtkConstraintGuideHandle : GObjectHandle
 	{
 		return GtkConstraintGuideExterns.gtk_constraint_guide_new();
 	}
-}
 
-public static class GtkConstraintGuideSignals
-{
 }
 
 public static class GtkConstraintGuideHandleExtensions
@@ -91,6 +88,8 @@ public static class GtkConstraintGuideHandleExtensions
 internal class GtkConstraintGuideExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkConstraintGuideHandle gtk_constraint_guide_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_constraint_guide_get_max_size(GtkConstraintGuideHandle guide, out int width, out int height);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_constraint_guide_get_min_size(GtkConstraintGuideHandle guide, out int width, out int height);
@@ -110,6 +109,4 @@ internal class GtkConstraintGuideExterns
 	internal static extern void gtk_constraint_guide_set_nat_size(GtkConstraintGuideHandle guide, int width, int height);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_constraint_guide_set_strength(GtkConstraintGuideHandle guide, GtkConstraintStrength strength);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkConstraintGuideHandle gtk_constraint_guide_new();
 }

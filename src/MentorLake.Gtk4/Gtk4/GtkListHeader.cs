@@ -18,10 +18,6 @@ public class GtkListHeaderHandle : GObjectHandle
 {
 }
 
-public static class GtkListHeaderSignals
-{
-}
-
 public static class GtkListHeaderHandleExtensions
 {
 	public static GtkWidgetHandle GetChild(this GtkListHeaderHandle self)

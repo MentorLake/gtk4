@@ -18,10 +18,6 @@ public class GtkGestureSingleHandle : GtkGestureHandle
 {
 }
 
-public static class GtkGestureSingleSignals
-{
-}
-
 public static class GtkGestureSingleHandleExtensions
 {
 	public static uint GetButton(this GtkGestureSingleHandle gesture)

@@ -20,10 +20,7 @@ public class GdkDmabufTextureBuilderHandle : GObjectHandle
 	{
 		return GdkDmabufTextureBuilderExterns.gdk_dmabuf_texture_builder_new();
 	}
-}
 
-public static class GdkDmabufTextureBuilderSignals
-{
 }
 
 public static class GdkDmabufTextureBuilderHandleExtensions
@@ -170,6 +167,8 @@ public static class GdkDmabufTextureBuilderHandleExtensions
 internal class GdkDmabufTextureBuilderExterns
 {
 	[DllImport(Libraries.Gdk4)]
+	internal static extern GdkDmabufTextureBuilderHandle gdk_dmabuf_texture_builder_new();
+	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkTextureHandle gdk_dmabuf_texture_builder_build(GdkDmabufTextureBuilderHandle self, GDestroyNotify destroy, IntPtr data, out GErrorHandle error);
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDisplayHandle gdk_dmabuf_texture_builder_get_display(GdkDmabufTextureBuilderHandle self);
@@ -219,6 +218,4 @@ internal class GdkDmabufTextureBuilderExterns
 	internal static extern void gdk_dmabuf_texture_builder_set_update_texture(GdkDmabufTextureBuilderHandle self, GdkTextureHandle texture);
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_dmabuf_texture_builder_set_width(GdkDmabufTextureBuilderHandle self, int width);
-	[DllImport(Libraries.Gdk4)]
-	internal static extern GdkDmabufTextureBuilderHandle gdk_dmabuf_texture_builder_new();
 }

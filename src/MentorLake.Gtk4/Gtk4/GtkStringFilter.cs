@@ -20,10 +20,7 @@ public class GtkStringFilterHandle : GtkFilterHandle
 	{
 		return GtkStringFilterExterns.gtk_string_filter_new(expression);
 	}
-}
 
-public static class GtkStringFilterSignals
-{
 }
 
 public static class GtkStringFilterHandleExtensions
@@ -77,6 +74,8 @@ public static class GtkStringFilterHandleExtensions
 internal class GtkStringFilterExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkStringFilterHandle gtk_string_filter_new(GtkExpressionHandle expression);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkExpressionHandle gtk_string_filter_get_expression(GtkStringFilterHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_string_filter_get_ignore_case(GtkStringFilterHandle self);
@@ -92,6 +91,4 @@ internal class GtkStringFilterExterns
 	internal static extern void gtk_string_filter_set_match_mode(GtkStringFilterHandle self, GtkStringFilterMatchMode mode);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_string_filter_set_search(GtkStringFilterHandle self, string search);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkStringFilterHandle gtk_string_filter_new(GtkExpressionHandle expression);
 }

@@ -20,22 +20,27 @@ public class GDBusMessageHandle : GObjectHandle
 	{
 		return GDBusMessageExterns.g_dbus_message_new();
 	}
+
 	public static GDBusMessageHandle GDbusMessageNewFromBlob(string blob, int blob_len, GDBusCapabilityFlags capabilities, out GErrorHandle error)
 	{
 		return GDBusMessageExterns.g_dbus_message_new_from_blob(blob, blob_len, capabilities, out error);
 	}
+
 	public static GDBusMessageHandle GDbusMessageNewMethodCall(string name, string path, string interface_, string method)
 	{
 		return GDBusMessageExterns.g_dbus_message_new_method_call(name, path, interface_, method);
 	}
+
 	public static GDBusMessageHandle GDbusMessageNewSignal(string path, string interface_, string signal)
 	{
 		return GDBusMessageExterns.g_dbus_message_new_signal(path, interface_, signal);
 	}
-}
 
-public static class GDBusMessageSignals
-{
+	public static int GDbusMessageBytesNeeded(string blob, int blob_len, out GErrorHandle error)
+	{
+		return GDBusMessageExterns.g_dbus_message_bytes_needed(blob, blob_len, out error);
+	}
+
 }
 
 public static class GDBusMessageHandleExtensions
@@ -282,15 +287,18 @@ public static class GDBusMessageHandleExtensions
 		return GDBusMessageExterns.g_dbus_message_to_gerror(message, out error);
 	}
 
-	public static int GDbusMessageBytesNeeded(this string blob, int blob_len, out GErrorHandle error)
-	{
-		return GDBusMessageExterns.g_dbus_message_bytes_needed(blob, blob_len, out error);
-	}
-
 }
 
 internal class GDBusMessageExterns
 {
+	[DllImport(Libraries.Gio)]
+	internal static extern GDBusMessageHandle g_dbus_message_new();
+	[DllImport(Libraries.Gio)]
+	internal static extern GDBusMessageHandle g_dbus_message_new_from_blob(string blob, int blob_len, GDBusCapabilityFlags capabilities, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
+	internal static extern GDBusMessageHandle g_dbus_message_new_method_call(string name, string path, string interface_, string method);
+	[DllImport(Libraries.Gio)]
+	internal static extern GDBusMessageHandle g_dbus_message_new_signal(string path, string interface_, string signal);
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMessageHandle g_dbus_message_copy(GDBusMessageHandle message, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
@@ -383,12 +391,4 @@ internal class GDBusMessageExterns
 	internal static extern bool g_dbus_message_to_gerror(GDBusMessageHandle message, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_dbus_message_bytes_needed(string blob, int blob_len, out GErrorHandle error);
-	[DllImport(Libraries.Gio)]
-	internal static extern GDBusMessageHandle g_dbus_message_new();
-	[DllImport(Libraries.Gio)]
-	internal static extern GDBusMessageHandle g_dbus_message_new_from_blob(string blob, int blob_len, GDBusCapabilityFlags capabilities, out GErrorHandle error);
-	[DllImport(Libraries.Gio)]
-	internal static extern GDBusMessageHandle g_dbus_message_new_method_call(string name, string path, string interface_, string method);
-	[DllImport(Libraries.Gio)]
-	internal static extern GDBusMessageHandle g_dbus_message_new_signal(string path, string interface_, string signal);
 }

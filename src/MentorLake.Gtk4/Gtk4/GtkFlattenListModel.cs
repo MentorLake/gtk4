@@ -20,10 +20,7 @@ public class GtkFlattenListModelHandle : GObjectHandle
 	{
 		return GtkFlattenListModelExterns.gtk_flatten_list_model_new(model);
 	}
-}
 
-public static class GtkFlattenListModelSignals
-{
 }
 
 public static class GtkFlattenListModelHandleExtensions
@@ -49,11 +46,11 @@ public static class GtkFlattenListModelHandleExtensions
 internal class GtkFlattenListModelExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkFlattenListModelHandle gtk_flatten_list_model_new(GListModelHandle model);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_flatten_list_model_get_model(GtkFlattenListModelHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_flatten_list_model_get_model_for_item(GtkFlattenListModelHandle self, uint position);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_flatten_list_model_set_model(GtkFlattenListModelHandle self, GListModelHandle model);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkFlattenListModelHandle gtk_flatten_list_model_new(GListModelHandle model);
 }

@@ -20,10 +20,22 @@ public class GTaskHandle : GObjectHandle
 	{
 		return GTaskExterns.g_task_new(source_object, cancellable, callback, callback_data);
 	}
-}
 
-public static class GTaskSignals
-{
+	public static bool IsValid(GAsyncResultHandle result, GObjectHandle source_object)
+	{
+		return GTaskExterns.g_task_is_valid(result, source_object);
+	}
+
+	public static void ReportError(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr callback_data, IntPtr source_tag, GErrorHandle error)
+	{
+		GTaskExterns.g_task_report_error(source_object, callback, callback_data, source_tag, error);
+	}
+
+	public static void ReportNewError(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr callback_data, IntPtr source_tag, GQuark domain, int code, string format, IntPtr @__arglist)
+	{
+		GTaskExterns.g_task_report_new_error(source_object, callback, callback_data, source_tag, domain, code, format, @__arglist);
+	}
+
 }
 
 public static class GTaskHandleExtensions
@@ -215,27 +227,12 @@ public static class GTaskHandleExtensions
 		return task;
 	}
 
-	public static bool IsValid(this GAsyncResultHandle result, GObjectHandle source_object)
-	{
-		return GTaskExterns.g_task_is_valid(result, source_object);
-	}
-
-	public static GTaskHandle ReportError(this GTaskHandle @handle, GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr callback_data, IntPtr source_tag, GErrorHandle error)
-	{
-		GTaskExterns.g_task_report_error(source_object, callback, callback_data, source_tag, error);
-		return @handle;
-	}
-
-	public static GTaskHandle ReportNewError(this GTaskHandle @handle, GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr callback_data, IntPtr source_tag, GQuark domain, int code, string format, IntPtr @__arglist)
-	{
-		GTaskExterns.g_task_report_new_error(source_object, callback, callback_data, source_tag, domain, code, format, @__arglist);
-		return @handle;
-	}
-
 }
 
 internal class GTaskExterns
 {
+	[DllImport(Libraries.Gio)]
+	internal static extern GTaskHandle g_task_new(GObjectHandle source_object, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr callback_data);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_attach_source(GTaskHandle task, GSourceHandle source, GSourceFunc callback);
 	[DllImport(Libraries.Gio)]
@@ -310,6 +307,4 @@ internal class GTaskExterns
 	internal static extern void g_task_report_error(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr callback_data, IntPtr source_tag, GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_report_new_error(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr callback_data, IntPtr source_tag, GQuark domain, int code, string format, IntPtr @__arglist);
-	[DllImport(Libraries.Gio)]
-	internal static extern GTaskHandle g_task_new(GObjectHandle source_object, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr callback_data);
 }

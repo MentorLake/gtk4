@@ -20,14 +20,12 @@ public class GUnixFDMessageHandle : GSocketControlMessageHandle
 	{
 		return GUnixFDMessageExterns.g_unix_fd_message_new();
 	}
+
 	public static GUnixFDMessageHandle GUnixFdMessageNewWithFdList(GUnixFDListHandle fd_list)
 	{
 		return GUnixFDMessageExterns.g_unix_fd_message_new_with_fd_list(fd_list);
 	}
-}
 
-public static class GUnixFDMessageSignals
-{
 }
 
 public static class GUnixFDMessageHandleExtensions
@@ -52,13 +50,13 @@ public static class GUnixFDMessageHandleExtensions
 internal class GUnixFDMessageExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GUnixFDMessageHandle g_unix_fd_message_new();
+	[DllImport(Libraries.Gio)]
+	internal static extern GUnixFDMessageHandle g_unix_fd_message_new_with_fd_list(GUnixFDListHandle fd_list);
+	[DllImport(Libraries.Gio)]
 	internal static extern bool g_unix_fd_message_append_fd(GUnixFDMessageHandle message, int fd, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern GUnixFDListHandle g_unix_fd_message_get_fd_list(GUnixFDMessageHandle message);
 	[DllImport(Libraries.Gio)]
 	internal static extern int[] g_unix_fd_message_steal_fds(GUnixFDMessageHandle message, out int length);
-	[DllImport(Libraries.Gio)]
-	internal static extern GUnixFDMessageHandle g_unix_fd_message_new();
-	[DllImport(Libraries.Gio)]
-	internal static extern GUnixFDMessageHandle g_unix_fd_message_new_with_fd_list(GUnixFDListHandle fd_list);
 }

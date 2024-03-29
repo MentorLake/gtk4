@@ -20,22 +20,47 @@ public class GSettingsHandle : GObjectHandle
 	{
 		return GSettingsExterns.g_settings_new(schema_id);
 	}
+
 	public static GSettingsHandle NewFull(GSettingsSchemaHandle schema, GSettingsBackendHandle backend, string path)
 	{
 		return GSettingsExterns.g_settings_new_full(schema, backend, path);
 	}
+
 	public static GSettingsHandle NewWithBackend(string schema_id, GSettingsBackendHandle backend)
 	{
 		return GSettingsExterns.g_settings_new_with_backend(schema_id, backend);
 	}
+
 	public static GSettingsHandle NewWithBackendAndPath(string schema_id, GSettingsBackendHandle backend, string path)
 	{
 		return GSettingsExterns.g_settings_new_with_backend_and_path(schema_id, backend, path);
 	}
+
 	public static GSettingsHandle NewWithPath(string schema_id, string path)
 	{
 		return GSettingsExterns.g_settings_new_with_path(schema_id, path);
 	}
+
+	public static string ListRelocatableSchemas()
+	{
+		return GSettingsExterns.g_settings_list_relocatable_schemas();
+	}
+
+	public static string ListSchemas()
+	{
+		return GSettingsExterns.g_settings_list_schemas();
+	}
+
+	public static void Sync()
+	{
+		GSettingsExterns.g_settings_sync();
+	}
+
+	public static void Unbind(GObjectHandle @object, string property)
+	{
+		GSettingsExterns.g_settings_unbind(@object, property);
+	}
+
 }
 
 public class GSettingsSignal
@@ -272,27 +297,6 @@ public static class GSettingsHandleExtensions
 		return GSettingsExterns.g_settings_set_value(settings, key, value);
 	}
 
-	public static string ListRelocatableSchemas()
-	{
-		return GSettingsExterns.g_settings_list_relocatable_schemas();
-	}
-
-	public static string ListSchemas()
-	{
-		return GSettingsExterns.g_settings_list_schemas();
-	}
-
-	public static void Sync()
-	{
-		GSettingsExterns.g_settings_sync();
-	}
-
-	public static GSettingsHandle Unbind(this GSettingsHandle @handle, GObjectHandle @object, string property)
-	{
-		GSettingsExterns.g_settings_unbind(@object, property);
-		return @handle;
-	}
-
 	public static GSettingsHandle Connect(this GSettingsHandle instance, GSettingsSignal signal, GCallback c_handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
@@ -302,6 +306,16 @@ public static class GSettingsHandleExtensions
 
 internal class GSettingsExterns
 {
+	[DllImport(Libraries.Gio)]
+	internal static extern GSettingsHandle g_settings_new(string schema_id);
+	[DllImport(Libraries.Gio)]
+	internal static extern GSettingsHandle g_settings_new_full(GSettingsSchemaHandle schema, GSettingsBackendHandle backend, string path);
+	[DllImport(Libraries.Gio)]
+	internal static extern GSettingsHandle g_settings_new_with_backend(string schema_id, GSettingsBackendHandle backend);
+	[DllImport(Libraries.Gio)]
+	internal static extern GSettingsHandle g_settings_new_with_backend_and_path(string schema_id, GSettingsBackendHandle backend, string path);
+	[DllImport(Libraries.Gio)]
+	internal static extern GSettingsHandle g_settings_new_with_path(string schema_id, string path);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_apply(GSettingsHandle settings);
 	[DllImport(Libraries.Gio)]
@@ -394,14 +408,4 @@ internal class GSettingsExterns
 	internal static extern void g_settings_sync();
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_unbind(GObjectHandle @object, string property);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSettingsHandle g_settings_new(string schema_id);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSettingsHandle g_settings_new_full(GSettingsSchemaHandle schema, GSettingsBackendHandle backend, string path);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSettingsHandle g_settings_new_with_backend(string schema_id, GSettingsBackendHandle backend);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSettingsHandle g_settings_new_with_backend_and_path(string schema_id, GSettingsBackendHandle backend, string path);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSettingsHandle g_settings_new_with_path(string schema_id, string path);
 }

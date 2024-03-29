@@ -20,6 +20,7 @@ public class GtkEventControllerLegacyHandle : GtkEventControllerHandle
 	{
 		return GtkEventControllerLegacyExterns.gtk_event_controller_legacy_new();
 	}
+
 }
 
 public class GtkEventControllerLegacySignal

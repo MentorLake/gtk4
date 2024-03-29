@@ -16,10 +16,21 @@ namespace MentorLake.Gtk4.Gtk4;
 
 public class GtkDragIconHandle : GtkWidgetHandle
 {
-}
+	public static GtkWidgetHandle CreateWidgetForValue(GValueHandle value)
+	{
+		return GtkDragIconExterns.gtk_drag_icon_create_widget_for_value(value);
+	}
 
-public static class GtkDragIconSignals
-{
+	public static GtkWidgetHandle GetForDrag(GdkDragHandle drag)
+	{
+		return GtkDragIconExterns.gtk_drag_icon_get_for_drag(drag);
+	}
+
+	public static void SetFromPaintable(GdkDragHandle drag, GdkPaintableHandle paintable, int hot_x, int hot_y)
+	{
+		GtkDragIconExterns.gtk_drag_icon_set_from_paintable(drag, paintable, hot_x, hot_y);
+	}
+
 }
 
 public static class GtkDragIconHandleExtensions
@@ -33,22 +44,6 @@ public static class GtkDragIconHandleExtensions
 	{
 		GtkDragIconExterns.gtk_drag_icon_set_child(self, child);
 		return self;
-	}
-
-	public static GtkWidgetHandle CreateWidgetForValue(this GValueHandle value)
-	{
-		return GtkDragIconExterns.gtk_drag_icon_create_widget_for_value(value);
-	}
-
-	public static GtkWidgetHandle GetForDrag(this GdkDragHandle drag)
-	{
-		return GtkDragIconExterns.gtk_drag_icon_get_for_drag(drag);
-	}
-
-	public static GtkDragIconHandle SetFromPaintable(this GtkDragIconHandle @handle, GdkDragHandle drag, GdkPaintableHandle paintable, int hot_x, int hot_y)
-	{
-		GtkDragIconExterns.gtk_drag_icon_set_from_paintable(drag, paintable, hot_x, hot_y);
-		return @handle;
 	}
 
 }

@@ -20,10 +20,7 @@ public class GCharsetConverterHandle : GObjectHandle
 	{
 		return GCharsetConverterExterns.g_charset_converter_new(to_charset, from_charset, out error);
 	}
-}
 
-public static class GCharsetConverterSignals
-{
 }
 
 public static class GCharsetConverterHandleExtensions
@@ -49,11 +46,11 @@ public static class GCharsetConverterHandleExtensions
 internal class GCharsetConverterExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GCharsetConverterHandle g_charset_converter_new(string to_charset, string from_charset, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
 	internal static extern uint g_charset_converter_get_num_fallbacks(GCharsetConverterHandle converter);
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_charset_converter_get_use_fallback(GCharsetConverterHandle converter);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_charset_converter_set_use_fallback(GCharsetConverterHandle converter, bool use_fallback);
-	[DllImport(Libraries.Gio)]
-	internal static extern GCharsetConverterHandle g_charset_converter_new(string to_charset, string from_charset, out GErrorHandle error);
 }

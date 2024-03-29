@@ -20,10 +20,7 @@ public class GUnixOutputStreamHandle : GOutputStreamHandle
 	{
 		return GUnixOutputStreamExterns.g_unix_output_stream_new(fd, close_fd);
 	}
-}
 
-public static class GUnixOutputStreamSignals
-{
 }
 
 public static class GUnixOutputStreamHandleExtensions
@@ -49,11 +46,11 @@ public static class GUnixOutputStreamHandleExtensions
 internal class GUnixOutputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GUnixOutputStreamHandle g_unix_output_stream_new(int fd, bool close_fd);
+	[DllImport(Libraries.Gio)]
 	internal static extern bool g_unix_output_stream_get_close_fd(GUnixOutputStreamHandle stream);
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_unix_output_stream_get_fd(GUnixOutputStreamHandle stream);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_unix_output_stream_set_close_fd(GUnixOutputStreamHandle stream, bool close_fd);
-	[DllImport(Libraries.Gio)]
-	internal static extern GUnixOutputStreamHandle g_unix_output_stream_new(int fd, bool close_fd);
 }

@@ -20,14 +20,12 @@ public class GBufferedOutputStreamHandle : GFilterOutputStreamHandle
 	{
 		return GBufferedOutputStreamExterns.g_buffered_output_stream_new(base_stream);
 	}
+
 	public static GBufferedOutputStreamHandle NewSized(GOutputStreamHandle base_stream, int size)
 	{
 		return GBufferedOutputStreamExterns.g_buffered_output_stream_new_sized(base_stream, size);
 	}
-}
 
-public static class GBufferedOutputStreamSignals
-{
 }
 
 public static class GBufferedOutputStreamHandleExtensions
@@ -59,6 +57,10 @@ public static class GBufferedOutputStreamHandleExtensions
 internal class GBufferedOutputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GBufferedOutputStreamHandle g_buffered_output_stream_new(GOutputStreamHandle base_stream);
+	[DllImport(Libraries.Gio)]
+	internal static extern GBufferedOutputStreamHandle g_buffered_output_stream_new_sized(GOutputStreamHandle base_stream, int size);
+	[DllImport(Libraries.Gio)]
 	internal static extern bool g_buffered_output_stream_get_auto_grow(GBufferedOutputStreamHandle stream);
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_buffered_output_stream_get_buffer_size(GBufferedOutputStreamHandle stream);
@@ -66,8 +68,4 @@ internal class GBufferedOutputStreamExterns
 	internal static extern void g_buffered_output_stream_set_auto_grow(GBufferedOutputStreamHandle stream, bool auto_grow);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_buffered_output_stream_set_buffer_size(GBufferedOutputStreamHandle stream, int size);
-	[DllImport(Libraries.Gio)]
-	internal static extern GBufferedOutputStreamHandle g_buffered_output_stream_new(GOutputStreamHandle base_stream);
-	[DllImport(Libraries.Gio)]
-	internal static extern GBufferedOutputStreamHandle g_buffered_output_stream_new_sized(GOutputStreamHandle base_stream, int size);
 }

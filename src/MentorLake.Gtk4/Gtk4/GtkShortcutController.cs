@@ -20,14 +20,12 @@ public class GtkShortcutControllerHandle : GtkEventControllerHandle
 	{
 		return GtkShortcutControllerExterns.gtk_shortcut_controller_new();
 	}
+
 	public static GtkShortcutControllerHandle NewForModel(GListModelHandle model)
 	{
 		return GtkShortcutControllerExterns.gtk_shortcut_controller_new_for_model(model);
 	}
-}
 
-public static class GtkShortcutControllerSignals
-{
 }
 
 public static class GtkShortcutControllerHandleExtensions
@@ -71,6 +69,10 @@ public static class GtkShortcutControllerHandleExtensions
 internal class GtkShortcutControllerExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkShortcutControllerHandle gtk_shortcut_controller_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkShortcutControllerHandle gtk_shortcut_controller_new_for_model(GListModelHandle model);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_shortcut_controller_add_shortcut(GtkShortcutControllerHandle self, GtkShortcutHandle shortcut);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkModifierType gtk_shortcut_controller_get_mnemonics_modifiers(GtkShortcutControllerHandle self);
@@ -82,8 +84,4 @@ internal class GtkShortcutControllerExterns
 	internal static extern void gtk_shortcut_controller_set_mnemonics_modifiers(GtkShortcutControllerHandle self, GdkModifierType modifiers);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_shortcut_controller_set_scope(GtkShortcutControllerHandle self, GtkShortcutScope scope);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkShortcutControllerHandle gtk_shortcut_controller_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkShortcutControllerHandle gtk_shortcut_controller_new_for_model(GListModelHandle model);
 }

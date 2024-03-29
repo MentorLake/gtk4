@@ -20,10 +20,7 @@ public class GBytesIconHandle : GObjectHandle
 	{
 		return GBytesIconExterns.g_bytes_icon_new(bytes);
 	}
-}
 
-public static class GBytesIconSignals
-{
 }
 
 public static class GBytesIconHandleExtensions
@@ -38,7 +35,7 @@ public static class GBytesIconHandleExtensions
 internal class GBytesIconExterns
 {
 	[DllImport(Libraries.Gio)]
-	internal static extern GBytesHandle g_bytes_icon_get_bytes(GBytesIconHandle icon);
-	[DllImport(Libraries.Gio)]
 	internal static extern GBytesIconHandle g_bytes_icon_new(GBytesHandle bytes);
+	[DllImport(Libraries.Gio)]
+	internal static extern GBytesHandle g_bytes_icon_get_bytes(GBytesIconHandle icon);
 }

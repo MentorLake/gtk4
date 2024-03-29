@@ -20,10 +20,7 @@ public class GtkFontChooserDialogHandle : GtkDialogHandle
 	{
 		return GtkFontChooserDialogExterns.gtk_font_chooser_dialog_new(title, parent);
 	}
-}
 
-public static class GtkFontChooserDialogSignals
-{
 }
 
 public static class GtkFontChooserDialogHandleExtensions

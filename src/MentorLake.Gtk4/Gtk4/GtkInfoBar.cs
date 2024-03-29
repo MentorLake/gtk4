@@ -20,10 +20,12 @@ public class GtkInfoBarHandle : GtkWidgetHandle
 	{
 		return GtkInfoBarExterns.gtk_info_bar_new();
 	}
+
 	public static GtkInfoBarHandle NewWithButtons(string first_button_text, IntPtr @__arglist)
 	{
 		return GtkInfoBarExterns.gtk_info_bar_new_with_buttons(first_button_text, @__arglist);
 	}
+
 }
 
 public class GtkInfoBarSignal
@@ -136,6 +138,10 @@ public static class GtkInfoBarHandleExtensions
 internal class GtkInfoBarExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkInfoBarHandle gtk_info_bar_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkInfoBarHandle gtk_info_bar_new_with_buttons(string first_button_text, IntPtr @__arglist);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_info_bar_add_action_widget(GtkInfoBarHandle info_bar, GtkWidgetHandle child, int response_id);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_info_bar_add_button(GtkInfoBarHandle info_bar, string button_text, int response_id);
@@ -165,8 +171,4 @@ internal class GtkInfoBarExterns
 	internal static extern void gtk_info_bar_set_revealed(GtkInfoBarHandle info_bar, bool revealed);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_info_bar_set_show_close_button(GtkInfoBarHandle info_bar, bool setting);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkInfoBarHandle gtk_info_bar_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkInfoBarHandle gtk_info_bar_new_with_buttons(string first_button_text, IntPtr @__arglist);
 }

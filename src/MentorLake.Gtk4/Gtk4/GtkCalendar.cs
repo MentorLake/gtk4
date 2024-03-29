@@ -20,6 +20,7 @@ public class GtkCalendarHandle : GtkWidgetHandle
 	{
 		return GtkCalendarExterns.gtk_calendar_new();
 	}
+
 }
 
 public class GtkCalendarSignal
@@ -149,6 +150,8 @@ public static class GtkCalendarHandleExtensions
 internal class GtkCalendarExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkCalendarHandle gtk_calendar_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_calendar_clear_marks(GtkCalendarHandle calendar);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GDateTimeHandle gtk_calendar_get_date(GtkCalendarHandle self);
@@ -184,6 +187,4 @@ internal class GtkCalendarExterns
 	internal static extern void gtk_calendar_set_year(GtkCalendarHandle self, int year);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_calendar_unmark_day(GtkCalendarHandle calendar, uint day);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkCalendarHandle gtk_calendar_new();
 }

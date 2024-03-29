@@ -20,22 +20,27 @@ public class GSimpleAsyncResultHandle : GObjectHandle
 	{
 		return GSimpleAsyncResultExterns.g_simple_async_result_new(source_object, callback, user_data, source_tag);
 	}
+
 	public static GSimpleAsyncResultHandle NewError(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, GQuark domain, int code, string format, IntPtr @__arglist)
 	{
 		return GSimpleAsyncResultExterns.g_simple_async_result_new_error(source_object, callback, user_data, domain, code, format, @__arglist);
 	}
+
 	public static GSimpleAsyncResultHandle NewFromError(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, GErrorHandle error)
 	{
 		return GSimpleAsyncResultExterns.g_simple_async_result_new_from_error(source_object, callback, user_data, error);
 	}
+
 	public static GSimpleAsyncResultHandle NewTakeError(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, GErrorHandle error)
 	{
 		return GSimpleAsyncResultExterns.g_simple_async_result_new_take_error(source_object, callback, user_data, error);
 	}
-}
 
-public static class GSimpleAsyncResultSignals
-{
+	public static bool IsValid(GAsyncResultHandle result, GObjectHandle source, IntPtr source_tag)
+	{
+		return GSimpleAsyncResultExterns.g_simple_async_result_is_valid(result, source, source_tag);
+	}
+
 }
 
 public static class GSimpleAsyncResultHandleExtensions
@@ -137,15 +142,18 @@ public static class GSimpleAsyncResultHandleExtensions
 		return simple;
 	}
 
-	public static bool IsValid(this GAsyncResultHandle result, GObjectHandle source, IntPtr source_tag)
-	{
-		return GSimpleAsyncResultExterns.g_simple_async_result_is_valid(result, source, source_tag);
-	}
-
 }
 
 internal class GSimpleAsyncResultExterns
 {
+	[DllImport(Libraries.Gio)]
+	internal static extern GSimpleAsyncResultHandle g_simple_async_result_new(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, IntPtr source_tag);
+	[DllImport(Libraries.Gio)]
+	internal static extern GSimpleAsyncResultHandle g_simple_async_result_new_error(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, GQuark domain, int code, string format, IntPtr @__arglist);
+	[DllImport(Libraries.Gio)]
+	internal static extern GSimpleAsyncResultHandle g_simple_async_result_new_from_error(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, GErrorHandle error);
+	[DllImport(Libraries.Gio)]
+	internal static extern GSimpleAsyncResultHandle g_simple_async_result_new_take_error(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_async_result_complete(GSimpleAsyncResultHandle simple);
 	[DllImport(Libraries.Gio)]
@@ -182,12 +190,4 @@ internal class GSimpleAsyncResultExterns
 	internal static extern void g_simple_async_result_take_error(GSimpleAsyncResultHandle simple, GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_simple_async_result_is_valid(GAsyncResultHandle result, GObjectHandle source, IntPtr source_tag);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSimpleAsyncResultHandle g_simple_async_result_new(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, IntPtr source_tag);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSimpleAsyncResultHandle g_simple_async_result_new_error(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, GQuark domain, int code, string format, IntPtr @__arglist);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSimpleAsyncResultHandle g_simple_async_result_new_from_error(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, GErrorHandle error);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSimpleAsyncResultHandle g_simple_async_result_new_take_error(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, GErrorHandle error);
 }

@@ -18,10 +18,6 @@ public class GtkLayoutChildHandle : GObjectHandle
 {
 }
 
-public static class GtkLayoutChildSignals
-{
-}
-
 public static class GtkLayoutChildHandleExtensions
 {
 	public static GtkWidgetHandle GetChildWidget(this GtkLayoutChildHandle layout_child)

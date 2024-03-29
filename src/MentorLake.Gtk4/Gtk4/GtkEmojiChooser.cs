@@ -20,6 +20,7 @@ public class GtkEmojiChooserHandle : GtkPopoverHandle
 	{
 		return GtkEmojiChooserExterns.gtk_emoji_chooser_new();
 	}
+
 }
 
 public class GtkEmojiChooserSignal

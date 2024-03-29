@@ -20,6 +20,7 @@ public class GtkFlowBoxHandle : GtkWidgetHandle
 	{
 		return GtkFlowBoxExterns.gtk_flow_box_new();
 	}
+
 }
 
 public class GtkFlowBoxSignal
@@ -245,6 +246,8 @@ public static class GtkFlowBoxHandleExtensions
 internal class GtkFlowBoxExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkFlowBoxHandle gtk_flow_box_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_flow_box_append(GtkFlowBoxHandle self, GtkWidgetHandle child);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_flow_box_bind_model(GtkFlowBoxHandle box, GListModelHandle model, GtkFlowBoxCreateWidgetFunc create_widget_func, IntPtr user_data, GDestroyNotify user_data_free_func);
@@ -312,6 +315,4 @@ internal class GtkFlowBoxExterns
 	internal static extern void gtk_flow_box_unselect_all(GtkFlowBoxHandle box);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_flow_box_unselect_child(GtkFlowBoxHandle box, GtkFlowBoxChildHandle child);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkFlowBoxHandle gtk_flow_box_new();
 }

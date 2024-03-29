@@ -20,6 +20,7 @@ public class GtkTextBufferHandle : GObjectHandle
 	{
 		return GtkTextBufferExterns.gtk_text_buffer_new(table);
 	}
+
 }
 
 public class GtkTextBufferSignal
@@ -451,6 +452,8 @@ public static class GtkTextBufferHandleExtensions
 internal class GtkTextBufferExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkTextBufferHandle gtk_text_buffer_new(GtkTextTagTableHandle table);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_buffer_add_mark(GtkTextBufferHandle buffer, GtkTextMarkHandle mark, GtkTextIterHandle where);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_buffer_add_selection_clipboard(GtkTextBufferHandle buffer, GdkClipboardHandle clipboard);
@@ -590,6 +593,4 @@ internal class GtkTextBufferExterns
 	internal static extern void gtk_text_buffer_set_text(GtkTextBufferHandle buffer, string text, int len);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_buffer_undo(GtkTextBufferHandle buffer);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkTextBufferHandle gtk_text_buffer_new(GtkTextTagTableHandle table);
 }

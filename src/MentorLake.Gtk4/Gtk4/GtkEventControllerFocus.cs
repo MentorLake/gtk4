@@ -20,6 +20,7 @@ public class GtkEventControllerFocusHandle : GtkEventControllerHandle
 	{
 		return GtkEventControllerFocusExterns.gtk_event_controller_focus_new();
 	}
+
 }
 
 public class GtkEventControllerFocusSignal
@@ -56,9 +57,9 @@ public static class GtkEventControllerFocusHandleExtensions
 internal class GtkEventControllerFocusExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkEventControllerFocusHandle gtk_event_controller_focus_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_event_controller_focus_contains_focus(GtkEventControllerFocusHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_event_controller_focus_is_focus(GtkEventControllerFocusHandle self);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkEventControllerFocusHandle gtk_event_controller_focus_new();
 }

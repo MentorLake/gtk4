@@ -20,6 +20,7 @@ public class GtkDragSourceHandle : GtkGestureSingleHandle
 	{
 		return GtkDragSourceExterns.gtk_drag_source_new();
 	}
+
 }
 
 public class GtkDragSourceSignal
@@ -87,6 +88,8 @@ public static class GtkDragSourceHandleExtensions
 internal class GtkDragSourceExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkDragSourceHandle gtk_drag_source_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drag_source_drag_cancel(GtkDragSourceHandle source);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDragAction gtk_drag_source_get_actions(GtkDragSourceHandle source);
@@ -100,6 +103,4 @@ internal class GtkDragSourceExterns
 	internal static extern void gtk_drag_source_set_content(GtkDragSourceHandle source, GdkContentProviderHandle content);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drag_source_set_icon(GtkDragSourceHandle source, GdkPaintableHandle paintable, int hot_x, int hot_y);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkDragSourceHandle gtk_drag_source_new();
 }

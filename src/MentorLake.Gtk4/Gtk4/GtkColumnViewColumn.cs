@@ -20,10 +20,7 @@ public class GtkColumnViewColumnHandle : GObjectHandle
 	{
 		return GtkColumnViewColumnExterns.gtk_column_view_column_new(title, factory);
 	}
-}
 
-public static class GtkColumnViewColumnSignals
-{
 }
 
 public static class GtkColumnViewColumnHandleExtensions
@@ -137,6 +134,8 @@ public static class GtkColumnViewColumnHandleExtensions
 internal class GtkColumnViewColumnExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkColumnViewColumnHandle gtk_column_view_column_new(string title, GtkListItemFactoryHandle factory);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkColumnViewHandle gtk_column_view_column_get_column_view(GtkColumnViewColumnHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_column_view_column_get_expand(GtkColumnViewColumnHandle self);
@@ -174,6 +173,4 @@ internal class GtkColumnViewColumnExterns
 	internal static extern void gtk_column_view_column_set_title(GtkColumnViewColumnHandle self, string title);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_column_set_visible(GtkColumnViewColumnHandle self, bool visible);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkColumnViewColumnHandle gtk_column_view_column_new(string title, GtkListItemFactoryHandle factory);
 }

@@ -18,10 +18,6 @@ public class GtkCellAreaContextHandle : GObjectHandle
 {
 }
 
-public static class GtkCellAreaContextSignals
-{
-}
-
 public static class GtkCellAreaContextHandleExtensions
 {
 	public static GtkCellAreaContextHandle Allocate(this GtkCellAreaContextHandle context, int width, int height)

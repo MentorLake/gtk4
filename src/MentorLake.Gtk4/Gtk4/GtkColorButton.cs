@@ -20,10 +20,12 @@ public class GtkColorButtonHandle : GtkWidgetHandle
 	{
 		return GtkColorButtonExterns.gtk_color_button_new();
 	}
+
 	public static GtkColorButtonHandle NewWithRgba(GdkRGBAHandle rgba)
 	{
 		return GtkColorButtonExterns.gtk_color_button_new_with_rgba(rgba);
 	}
+
 }
 
 public class GtkColorButtonSignal
@@ -72,6 +74,10 @@ public static class GtkColorButtonHandleExtensions
 internal class GtkColorButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkColorButtonHandle gtk_color_button_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkColorButtonHandle gtk_color_button_new_with_rgba(GdkRGBAHandle rgba);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_color_button_get_modal(GtkColorButtonHandle button);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_color_button_get_title(GtkColorButtonHandle button);
@@ -79,8 +85,4 @@ internal class GtkColorButtonExterns
 	internal static extern void gtk_color_button_set_modal(GtkColorButtonHandle button, bool modal);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_color_button_set_title(GtkColorButtonHandle button, string title);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkColorButtonHandle gtk_color_button_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkColorButtonHandle gtk_color_button_new_with_rgba(GdkRGBAHandle rgba);
 }

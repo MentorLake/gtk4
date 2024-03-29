@@ -18,10 +18,6 @@ public class GMenuAttributeIterHandle : GObjectHandle
 {
 }
 
-public static class GMenuAttributeIterSignals
-{
-}
-
 public static class GMenuAttributeIterHandleExtensions
 {
 	public static string GetName(this GMenuAttributeIterHandle iter)

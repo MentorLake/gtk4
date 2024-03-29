@@ -18,10 +18,6 @@ public class GDBusMethodInvocationHandle : GObjectHandle
 {
 }
 
-public static class GDBusMethodInvocationSignals
-{
-}
-
 public static class GDBusMethodInvocationHandleExtensions
 {
 	public static GDBusConnectionHandle GDbusMethodInvocationGetConnection(this GDBusMethodInvocationHandle invocation)

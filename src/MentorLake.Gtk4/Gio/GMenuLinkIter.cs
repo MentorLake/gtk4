@@ -18,10 +18,6 @@ public class GMenuLinkIterHandle : GObjectHandle
 {
 }
 
-public static class GMenuLinkIterSignals
-{
-}
-
 public static class GMenuLinkIterHandleExtensions
 {
 	public static string GetName(this GMenuLinkIterHandle iter)

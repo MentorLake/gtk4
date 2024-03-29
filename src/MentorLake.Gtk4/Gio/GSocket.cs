@@ -20,14 +20,12 @@ public class GSocketHandle : GObjectHandle
 	{
 		return GSocketExterns.g_socket_new(family, type, protocol, out error);
 	}
+
 	public static GSocketHandle NewFromFd(int fd, out GErrorHandle error)
 	{
 		return GSocketExterns.g_socket_new_from_fd(fd, out error);
 	}
-}
 
-public static class GSocketSignals
-{
 }
 
 public static class GSocketHandleExtensions
@@ -335,6 +333,10 @@ public static class GSocketHandleExtensions
 internal class GSocketExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GSocketHandle g_socket_new(GSocketFamily family, GSocketType type, GSocketProtocol protocol, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
+	internal static extern GSocketHandle g_socket_new_from_fd(int fd, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
 	internal static extern GSocketHandle g_socket_accept(GSocketHandle socket, GCancellableHandle cancellable, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_bind(GSocketHandle socket, GSocketAddressHandle address, bool allow_reuse, out GErrorHandle error);
@@ -450,8 +452,4 @@ internal class GSocketExterns
 	internal static extern bool g_socket_shutdown(GSocketHandle socket, bool shutdown_read, bool shutdown_write, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_speaks_ipv4(GSocketHandle socket);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSocketHandle g_socket_new(GSocketFamily family, GSocketType type, GSocketProtocol protocol, out GErrorHandle error);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSocketHandle g_socket_new_from_fd(int fd, out GErrorHandle error);
 }

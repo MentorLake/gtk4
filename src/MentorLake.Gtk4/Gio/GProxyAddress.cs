@@ -20,10 +20,7 @@ public class GProxyAddressHandle : GInetSocketAddressHandle
 	{
 		return GProxyAddressExterns.g_proxy_address_new(inetaddr, port, protocol, dest_hostname, dest_port, username, password);
 	}
-}
 
-public static class GProxyAddressSignals
-{
 }
 
 public static class GProxyAddressHandleExtensions
@@ -68,6 +65,8 @@ public static class GProxyAddressHandleExtensions
 internal class GProxyAddressExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GProxyAddressHandle g_proxy_address_new(GInetAddressHandle inetaddr, ushort port, string protocol, string dest_hostname, ushort dest_port, string username, string password);
+	[DllImport(Libraries.Gio)]
 	internal static extern string g_proxy_address_get_destination_hostname(GProxyAddressHandle proxy);
 	[DllImport(Libraries.Gio)]
 	internal static extern ushort g_proxy_address_get_destination_port(GProxyAddressHandle proxy);
@@ -81,6 +80,4 @@ internal class GProxyAddressExterns
 	internal static extern string g_proxy_address_get_uri(GProxyAddressHandle proxy);
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_proxy_address_get_username(GProxyAddressHandle proxy);
-	[DllImport(Libraries.Gio)]
-	internal static extern GProxyAddressHandle g_proxy_address_new(GInetAddressHandle inetaddr, ushort port, string protocol, string dest_hostname, ushort dest_port, string username, string password);
 }

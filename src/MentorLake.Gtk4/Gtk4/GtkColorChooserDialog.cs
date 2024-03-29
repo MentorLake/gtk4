@@ -20,10 +20,7 @@ public class GtkColorChooserDialogHandle : GtkDialogHandle
 	{
 		return GtkColorChooserDialogExterns.gtk_color_chooser_dialog_new(title, parent);
 	}
-}
 
-public static class GtkColorChooserDialogSignals
-{
 }
 
 public static class GtkColorChooserDialogHandleExtensions

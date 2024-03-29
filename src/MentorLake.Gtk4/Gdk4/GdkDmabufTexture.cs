@@ -18,10 +18,6 @@ public class GdkDmabufTextureHandle : GdkTextureHandle
 {
 }
 
-public static class GdkDmabufTextureSignals
-{
-}
-
 public static class GdkDmabufTextureHandleExtensions
 {
 }

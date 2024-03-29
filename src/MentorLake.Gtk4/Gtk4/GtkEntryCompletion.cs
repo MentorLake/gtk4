@@ -20,10 +20,12 @@ public class GtkEntryCompletionHandle : GObjectHandle
 	{
 		return GtkEntryCompletionExterns.gtk_entry_completion_new();
 	}
+
 	public static GtkEntryCompletionHandle NewWithArea(GtkCellAreaHandle area)
 	{
 		return GtkEntryCompletionExterns.gtk_entry_completion_new_with_area(area);
 	}
+
 }
 
 public class GtkEntryCompletionSignal
@@ -173,6 +175,10 @@ public static class GtkEntryCompletionHandleExtensions
 internal class GtkEntryCompletionExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkEntryCompletionHandle gtk_entry_completion_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkEntryCompletionHandle gtk_entry_completion_new_with_area(GtkCellAreaHandle area);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_completion_complete(GtkEntryCompletionHandle completion);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_entry_completion_compute_prefix(GtkEntryCompletionHandle completion, string key);
@@ -216,8 +222,4 @@ internal class GtkEntryCompletionExterns
 	internal static extern void gtk_entry_completion_set_popup_single_match(GtkEntryCompletionHandle completion, bool popup_single_match);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_completion_set_text_column(GtkEntryCompletionHandle completion, int column);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkEntryCompletionHandle gtk_entry_completion_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkEntryCompletionHandle gtk_entry_completion_new_with_area(GtkCellAreaHandle area);
 }

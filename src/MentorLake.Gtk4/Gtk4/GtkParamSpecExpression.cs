@@ -18,10 +18,6 @@ public class GtkParamSpecExpressionHandle : GParamSpecHandle
 {
 }
 
-public static class GtkParamSpecExpressionSignals
-{
-}
-
 public static class GtkParamSpecExpressionHandleExtensions
 {
 }

@@ -20,10 +20,7 @@ public class GskNglRendererHandle : GskRendererHandle
 	{
 		return GskNglRendererExterns.gsk_ngl_renderer_new();
 	}
-}
 
-public static class GskNglRendererSignals
-{
 }
 
 public static class GskNglRendererHandleExtensions

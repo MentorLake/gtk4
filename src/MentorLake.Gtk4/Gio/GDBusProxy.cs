@@ -20,18 +20,32 @@ public class GDBusProxyHandle : GObjectHandle
 	{
 		return GDBusProxyExterns.g_dbus_proxy_new_finish(res, out error);
 	}
+
 	public static GDBusProxyHandle GDbusProxyNewForBusFinish(GAsyncResultHandle res, out GErrorHandle error)
 	{
 		return GDBusProxyExterns.g_dbus_proxy_new_for_bus_finish(res, out error);
 	}
+
 	public static GDBusProxyHandle GDbusProxyNewForBusSync(GBusType bus_type, GDBusProxyFlags flags, GDBusInterfaceInfoHandle info, string name, string object_path, string interface_name, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GDBusProxyExterns.g_dbus_proxy_new_for_bus_sync(bus_type, flags, info, name, object_path, interface_name, cancellable, out error);
 	}
+
 	public static GDBusProxyHandle GDbusProxyNewSync(GDBusConnectionHandle connection, GDBusProxyFlags flags, GDBusInterfaceInfoHandle info, string name, string object_path, string interface_name, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GDBusProxyExterns.g_dbus_proxy_new_sync(connection, flags, info, name, object_path, interface_name, cancellable, out error);
 	}
+
+	public static void GDbusProxyNew(GDBusConnectionHandle connection, GDBusProxyFlags flags, GDBusInterfaceInfoHandle info, string name, string object_path, string interface_name, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	{
+		GDBusProxyExterns.g_dbus_proxy_new(connection, flags, info, name, object_path, interface_name, cancellable, callback, user_data);
+	}
+
+	public static void GDbusProxyNewForBus(GBusType bus_type, GDBusProxyFlags flags, GDBusInterfaceInfoHandle info, string name, string object_path, string interface_name, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	{
+		GDBusProxyExterns.g_dbus_proxy_new_for_bus(bus_type, flags, info, name, object_path, interface_name, cancellable, callback, user_data);
+	}
+
 }
 
 public class GDBusProxySignal
@@ -148,17 +162,6 @@ public static class GDBusProxyHandleExtensions
 		return proxy;
 	}
 
-	public static GDBusProxyHandle GDbusProxyNew(this GDBusProxyHandle @handle, GDBusConnectionHandle connection, GDBusProxyFlags flags, GDBusInterfaceInfoHandle info, string name, string object_path, string interface_name, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
-	{
-		GDBusProxyExterns.g_dbus_proxy_new(connection, flags, info, name, object_path, interface_name, cancellable, callback, user_data);
-		return @handle;
-	}
-
-	public static void GDbusProxyNewForBus(this GBusType bus_type, GDBusProxyFlags flags, GDBusInterfaceInfoHandle info, string name, string object_path, string interface_name, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
-	{
-		GDBusProxyExterns.g_dbus_proxy_new_for_bus(bus_type, flags, info, name, object_path, interface_name, cancellable, callback, user_data);
-	}
-
 	public static GDBusProxyHandle Connect(this GDBusProxyHandle instance, GDBusProxySignal signal, GCallback c_handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
@@ -168,6 +171,14 @@ public static class GDBusProxyHandleExtensions
 
 internal class GDBusProxyExterns
 {
+	[DllImport(Libraries.Gio)]
+	internal static extern GDBusProxyHandle g_dbus_proxy_new_finish(GAsyncResultHandle res, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
+	internal static extern GDBusProxyHandle g_dbus_proxy_new_for_bus_finish(GAsyncResultHandle res, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
+	internal static extern GDBusProxyHandle g_dbus_proxy_new_for_bus_sync(GBusType bus_type, GDBusProxyFlags flags, GDBusInterfaceInfoHandle info, string name, string object_path, string interface_name, GCancellableHandle cancellable, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
+	internal static extern GDBusProxyHandle g_dbus_proxy_new_sync(GDBusConnectionHandle connection, GDBusProxyFlags flags, GDBusInterfaceInfoHandle info, string name, string object_path, string interface_name, GCancellableHandle cancellable, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_proxy_call(GDBusProxyHandle proxy, string method_name, GVariantHandle parameters, GDBusCallFlags flags, int timeout_msec, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 	[DllImport(Libraries.Gio)]
@@ -210,12 +221,4 @@ internal class GDBusProxyExterns
 	internal static extern void g_dbus_proxy_new(GDBusConnectionHandle connection, GDBusProxyFlags flags, GDBusInterfaceInfoHandle info, string name, string object_path, string interface_name, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_proxy_new_for_bus(GBusType bus_type, GDBusProxyFlags flags, GDBusInterfaceInfoHandle info, string name, string object_path, string interface_name, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
-	[DllImport(Libraries.Gio)]
-	internal static extern GDBusProxyHandle g_dbus_proxy_new_finish(GAsyncResultHandle res, out GErrorHandle error);
-	[DllImport(Libraries.Gio)]
-	internal static extern GDBusProxyHandle g_dbus_proxy_new_for_bus_finish(GAsyncResultHandle res, out GErrorHandle error);
-	[DllImport(Libraries.Gio)]
-	internal static extern GDBusProxyHandle g_dbus_proxy_new_for_bus_sync(GBusType bus_type, GDBusProxyFlags flags, GDBusInterfaceInfoHandle info, string name, string object_path, string interface_name, GCancellableHandle cancellable, out GErrorHandle error);
-	[DllImport(Libraries.Gio)]
-	internal static extern GDBusProxyHandle g_dbus_proxy_new_sync(GDBusConnectionHandle connection, GDBusProxyFlags flags, GDBusInterfaceInfoHandle info, string name, string object_path, string interface_name, GCancellableHandle cancellable, out GErrorHandle error);
 }

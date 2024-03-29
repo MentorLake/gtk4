@@ -20,14 +20,12 @@ public class GtkFileFilterHandle : GtkFilterHandle
 	{
 		return GtkFileFilterExterns.gtk_file_filter_new();
 	}
+
 	public static GtkFileFilterHandle NewFromGvariant(GVariantHandle variant)
 	{
 		return GtkFileFilterExterns.gtk_file_filter_new_from_gvariant(variant);
 	}
-}
 
-public static class GtkFileFilterSignals
-{
 }
 
 public static class GtkFileFilterHandleExtensions
@@ -82,6 +80,10 @@ public static class GtkFileFilterHandleExtensions
 internal class GtkFileFilterExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkFileFilterHandle gtk_file_filter_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkFileFilterHandle gtk_file_filter_new_from_gvariant(GVariantHandle variant);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_filter_add_mime_type(GtkFileFilterHandle filter, string mime_type);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_filter_add_pattern(GtkFileFilterHandle filter, string pattern);
@@ -97,8 +99,4 @@ internal class GtkFileFilterExterns
 	internal static extern void gtk_file_filter_set_name(GtkFileFilterHandle filter, string name);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GVariantHandle gtk_file_filter_to_gvariant(GtkFileFilterHandle filter);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkFileFilterHandle gtk_file_filter_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkFileFilterHandle gtk_file_filter_new_from_gvariant(GVariantHandle variant);
 }

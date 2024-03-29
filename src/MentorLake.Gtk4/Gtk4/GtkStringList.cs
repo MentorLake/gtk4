@@ -20,10 +20,7 @@ public class GtkStringListHandle : GObjectHandle
 	{
 		return GtkStringListExterns.gtk_string_list_new(strings);
 	}
-}
 
-public static class GtkStringListSignals
-{
 }
 
 public static class GtkStringListHandleExtensions
@@ -62,6 +59,8 @@ public static class GtkStringListHandleExtensions
 internal class GtkStringListExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkStringListHandle gtk_string_list_new(string strings);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_string_list_append(GtkStringListHandle self, string @string);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_string_list_get_string(GtkStringListHandle self, uint position);
@@ -71,6 +70,4 @@ internal class GtkStringListExterns
 	internal static extern void gtk_string_list_splice(GtkStringListHandle self, uint position, uint n_removals, string additions);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_string_list_take(GtkStringListHandle self, string @string);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkStringListHandle gtk_string_list_new(string strings);
 }

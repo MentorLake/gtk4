@@ -18,10 +18,6 @@ public class GParamSpecLongHandle : GParamSpecHandle
 {
 }
 
-public static class GParamSpecLongSignals
-{
-}
-
 public static class GParamSpecLongHandleExtensions
 {
 }

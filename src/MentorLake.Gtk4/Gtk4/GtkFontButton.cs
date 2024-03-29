@@ -20,10 +20,12 @@ public class GtkFontButtonHandle : GtkWidgetHandle
 	{
 		return GtkFontButtonExterns.gtk_font_button_new();
 	}
+
 	public static GtkFontButtonHandle NewWithFont(string fontname)
 	{
 		return GtkFontButtonExterns.gtk_font_button_new_with_font(fontname);
 	}
+
 }
 
 public class GtkFontButtonSignal
@@ -94,6 +96,10 @@ public static class GtkFontButtonHandleExtensions
 internal class GtkFontButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkFontButtonHandle gtk_font_button_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkFontButtonHandle gtk_font_button_new_with_font(string fontname);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_font_button_get_modal(GtkFontButtonHandle font_button);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_font_button_get_title(GtkFontButtonHandle font_button);
@@ -109,8 +115,4 @@ internal class GtkFontButtonExterns
 	internal static extern void gtk_font_button_set_use_font(GtkFontButtonHandle font_button, bool use_font);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_button_set_use_size(GtkFontButtonHandle font_button, bool use_size);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkFontButtonHandle gtk_font_button_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkFontButtonHandle gtk_font_button_new_with_font(string fontname);
 }

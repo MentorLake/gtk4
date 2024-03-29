@@ -20,10 +20,7 @@ public class GtkGraphicsOffloadHandle : GtkWidgetHandle
 	{
 		return GtkGraphicsOffloadExterns.gtk_graphics_offload_new(child);
 	}
-}
 
-public static class GtkGraphicsOffloadSignals
-{
 }
 
 public static class GtkGraphicsOffloadHandleExtensions
@@ -55,6 +52,8 @@ public static class GtkGraphicsOffloadHandleExtensions
 internal class GtkGraphicsOffloadExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkGraphicsOffloadHandle gtk_graphics_offload_new(GtkWidgetHandle child);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_graphics_offload_get_child(GtkGraphicsOffloadHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkGraphicsOffloadEnabled gtk_graphics_offload_get_enabled(GtkGraphicsOffloadHandle self);
@@ -62,6 +61,4 @@ internal class GtkGraphicsOffloadExterns
 	internal static extern void gtk_graphics_offload_set_child(GtkGraphicsOffloadHandle self, GtkWidgetHandle child);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_graphics_offload_set_enabled(GtkGraphicsOffloadHandle self, GtkGraphicsOffloadEnabled enabled);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkGraphicsOffloadHandle gtk_graphics_offload_new(GtkWidgetHandle child);
 }

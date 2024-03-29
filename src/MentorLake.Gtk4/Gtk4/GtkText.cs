@@ -20,10 +20,12 @@ public class GtkTextHandle : GtkWidgetHandle
 	{
 		return GtkTextExterns.gtk_text_new();
 	}
+
 	public static GtkTextHandle NewWithBuffer(GtkEntryBufferHandle buffer)
 	{
 		return GtkTextExterns.gtk_text_new_with_buffer(buffer);
 	}
+
 }
 
 public class GtkTextSignal
@@ -246,6 +248,10 @@ public static class GtkTextHandleExtensions
 internal class GtkTextExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkTextHandle gtk_text_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkTextHandle gtk_text_new_with_buffer(GtkEntryBufferHandle buffer);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_compute_cursor_extents(GtkTextHandle self, int position, out graphene_rect_t strong, out graphene_rect_t weak);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_text_get_activates_default(GtkTextHandle self);
@@ -313,8 +319,4 @@ internal class GtkTextExterns
 	internal static extern void gtk_text_set_visibility(GtkTextHandle self, bool visible);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_unset_invisible_char(GtkTextHandle self);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkTextHandle gtk_text_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkTextHandle gtk_text_new_with_buffer(GtkEntryBufferHandle buffer);
 }

@@ -20,10 +20,7 @@ public class GtkHeaderBarHandle : GtkWidgetHandle
 	{
 		return GtkHeaderBarExterns.gtk_header_bar_new();
 	}
-}
 
-public static class GtkHeaderBarSignals
-{
 }
 
 public static class GtkHeaderBarHandleExtensions
@@ -84,6 +81,8 @@ public static class GtkHeaderBarHandleExtensions
 internal class GtkHeaderBarExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkHeaderBarHandle gtk_header_bar_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_header_bar_get_decoration_layout(GtkHeaderBarHandle bar);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_header_bar_get_show_title_buttons(GtkHeaderBarHandle bar);
@@ -101,6 +100,4 @@ internal class GtkHeaderBarExterns
 	internal static extern void gtk_header_bar_set_show_title_buttons(GtkHeaderBarHandle bar, bool setting);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_header_bar_set_title_widget(GtkHeaderBarHandle bar, GtkWidgetHandle title_widget);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkHeaderBarHandle gtk_header_bar_new();
 }

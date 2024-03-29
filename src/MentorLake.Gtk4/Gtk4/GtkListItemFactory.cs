@@ -18,10 +18,6 @@ public class GtkListItemFactoryHandle : GObjectHandle
 {
 }
 
-public static class GtkListItemFactorySignals
-{
-}
-
 public static class GtkListItemFactoryHandleExtensions
 {
 }

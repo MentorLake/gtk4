@@ -20,6 +20,7 @@ public class GtkGestureLongPressHandle : GtkGestureSingleHandle
 	{
 		return GtkGestureLongPressExterns.gtk_gesture_long_press_new();
 	}
+
 }
 
 public class GtkGestureLongPressSignal
@@ -57,9 +58,9 @@ public static class GtkGestureLongPressHandleExtensions
 internal class GtkGestureLongPressExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkGestureLongPressHandle gtk_gesture_long_press_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_gesture_long_press_get_delay_factor(GtkGestureLongPressHandle gesture);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gesture_long_press_set_delay_factor(GtkGestureLongPressHandle gesture, double delay_factor);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkGestureLongPressHandle gtk_gesture_long_press_new();
 }

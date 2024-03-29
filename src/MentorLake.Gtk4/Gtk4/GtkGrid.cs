@@ -20,10 +20,7 @@ public class GtkGridHandle : GtkWidgetHandle
 	{
 		return GtkGridExterns.gtk_grid_new();
 	}
-}
 
-public static class GtkGridSignals
-{
 }
 
 public static class GtkGridHandleExtensions
@@ -158,6 +155,8 @@ public static class GtkGridHandleExtensions
 internal class GtkGridExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkGridHandle gtk_grid_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_grid_attach(GtkGridHandle grid, GtkWidgetHandle child, int column, int row, int width, int height);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_grid_attach_next_to(GtkGridHandle grid, GtkWidgetHandle child, GtkWidgetHandle sibling, GtkPositionType side, int width, int height);
@@ -201,6 +200,4 @@ internal class GtkGridExterns
 	internal static extern void gtk_grid_set_row_homogeneous(GtkGridHandle grid, bool homogeneous);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_grid_set_row_spacing(GtkGridHandle grid, uint spacing);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkGridHandle gtk_grid_new();
 }

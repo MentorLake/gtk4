@@ -16,10 +16,11 @@ namespace MentorLake.Gtk4.Gio;
 
 public class GSocketControlMessageHandle : GObjectHandle
 {
-}
+	public static GSocketControlMessageHandle Deserialize(int level, int type, int size, IntPtr data)
+	{
+		return GSocketControlMessageExterns.g_socket_control_message_deserialize(level, type, size, data);
+	}
 
-public static class GSocketControlMessageSignals
-{
 }
 
 public static class GSocketControlMessageHandleExtensions
@@ -43,11 +44,6 @@ public static class GSocketControlMessageHandleExtensions
 	{
 		GSocketControlMessageExterns.g_socket_control_message_serialize(message, data);
 		return message;
-	}
-
-	public static GSocketControlMessageHandle Deserialize(this int level, int type, int size, IntPtr data)
-	{
-		return GSocketControlMessageExterns.g_socket_control_message_deserialize(level, type, size, data);
 	}
 
 }

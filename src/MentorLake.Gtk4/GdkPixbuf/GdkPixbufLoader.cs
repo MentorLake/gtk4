@@ -20,14 +20,17 @@ public class GdkPixbufLoaderHandle : GObjectHandle
 	{
 		return GdkPixbufLoaderExterns.gdk_pixbuf_loader_new();
 	}
+
 	public static GdkPixbufLoaderHandle NewWithMimeType(string mime_type, out GErrorHandle error)
 	{
 		return GdkPixbufLoaderExterns.gdk_pixbuf_loader_new_with_mime_type(mime_type, out error);
 	}
+
 	public static GdkPixbufLoaderHandle NewWithType(string image_type, out GErrorHandle error)
 	{
 		return GdkPixbufLoaderExterns.gdk_pixbuf_loader_new_with_type(image_type, out error);
 	}
+
 }
 
 public class GdkPixbufLoaderSignal
@@ -92,6 +95,12 @@ public static class GdkPixbufLoaderHandleExtensions
 internal class GdkPixbufLoaderExterns
 {
 	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufLoaderHandle gdk_pixbuf_loader_new();
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufLoaderHandle gdk_pixbuf_loader_new_with_mime_type(string mime_type, out GErrorHandle error);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufLoaderHandle gdk_pixbuf_loader_new_with_type(string image_type, out GErrorHandle error);
+	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_loader_close(GdkPixbufLoaderHandle loader, out GErrorHandle error);
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufAnimationHandle gdk_pixbuf_loader_get_animation(GdkPixbufLoaderHandle loader);
@@ -105,10 +114,4 @@ internal class GdkPixbufLoaderExterns
 	internal static extern bool gdk_pixbuf_loader_write(GdkPixbufLoaderHandle loader, string buf, int count, out GErrorHandle error);
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_loader_write_bytes(GdkPixbufLoaderHandle loader, GBytesHandle buffer, out GErrorHandle error);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufLoaderHandle gdk_pixbuf_loader_new();
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufLoaderHandle gdk_pixbuf_loader_new_with_mime_type(string mime_type, out GErrorHandle error);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufLoaderHandle gdk_pixbuf_loader_new_with_type(string image_type, out GErrorHandle error);
 }

@@ -20,10 +20,7 @@ public class GtkCClosureExpressionHandle : GtkExpressionHandle
 	{
 		return GtkCClosureExpressionExterns.gtk_cclosure_expression_new(value_type, marshal, n_params, @params, callback_func, user_data, user_destroy);
 	}
-}
 
-public static class GtkCClosureExpressionSignals
-{
 }
 
 public static class GtkCClosureExpressionHandleExtensions

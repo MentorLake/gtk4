@@ -18,10 +18,6 @@ public class GtkFixedLayoutChildHandle : GtkLayoutChildHandle
 {
 }
 
-public static class GtkFixedLayoutChildSignals
-{
-}
-
 public static class GtkFixedLayoutChildHandleExtensions
 {
 	public static GskTransformHandle GetTransform(this GtkFixedLayoutChildHandle child)

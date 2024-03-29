@@ -20,10 +20,7 @@ public class GConverterInputStreamHandle : GFilterInputStreamHandle
 	{
 		return GConverterInputStreamExterns.g_converter_input_stream_new(base_stream, converter);
 	}
-}
 
-public static class GConverterInputStreamSignals
-{
 }
 
 public static class GConverterInputStreamHandleExtensions
@@ -38,7 +35,7 @@ public static class GConverterInputStreamHandleExtensions
 internal class GConverterInputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
-	internal static extern GConverterHandle g_converter_input_stream_get_converter(GConverterInputStreamHandle converter_stream);
-	[DllImport(Libraries.Gio)]
 	internal static extern GConverterInputStreamHandle g_converter_input_stream_new(GInputStreamHandle base_stream, GConverterHandle converter);
+	[DllImport(Libraries.Gio)]
+	internal static extern GConverterHandle g_converter_input_stream_get_converter(GConverterInputStreamHandle converter_stream);
 }

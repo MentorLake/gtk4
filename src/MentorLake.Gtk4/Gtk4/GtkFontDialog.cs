@@ -20,10 +20,7 @@ public class GtkFontDialogHandle : GObjectHandle
 	{
 		return GtkFontDialogExterns.gtk_font_dialog_new();
 	}
-}
 
-public static class GtkFontDialogSignals
-{
 }
 
 public static class GtkFontDialogHandleExtensions
@@ -132,6 +129,8 @@ public static class GtkFontDialogHandleExtensions
 internal class GtkFontDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkFontDialogHandle gtk_font_dialog_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_choose_face(GtkFontDialogHandle self, GtkWindowHandle parent, PangoFontFaceHandle initial_value, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoFontFaceHandle gtk_font_dialog_choose_face_finish(GtkFontDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
@@ -167,6 +166,4 @@ internal class GtkFontDialogExterns
 	internal static extern void gtk_font_dialog_set_modal(GtkFontDialogHandle self, bool modal);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_set_title(GtkFontDialogHandle self, string title);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkFontDialogHandle gtk_font_dialog_new();
 }

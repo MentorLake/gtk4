@@ -20,6 +20,7 @@ public class GtkGesturePanHandle : GtkGestureDragHandle
 	{
 		return GtkGesturePanExterns.gtk_gesture_pan_new(orientation);
 	}
+
 }
 
 public class GtkGesturePanSignal
@@ -56,9 +57,9 @@ public static class GtkGesturePanHandleExtensions
 internal class GtkGesturePanExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkGesturePanHandle gtk_gesture_pan_new(GtkOrientation orientation);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkOrientation gtk_gesture_pan_get_orientation(GtkGesturePanHandle gesture);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gesture_pan_set_orientation(GtkGesturePanHandle gesture, GtkOrientation orientation);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkGesturePanHandle gtk_gesture_pan_new(GtkOrientation orientation);
 }

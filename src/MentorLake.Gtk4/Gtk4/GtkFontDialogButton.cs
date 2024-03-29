@@ -20,6 +20,7 @@ public class GtkFontDialogButtonHandle : GtkWidgetHandle
 	{
 		return GtkFontDialogButtonExterns.gtk_font_dialog_button_new(dialog);
 	}
+
 }
 
 public class GtkFontDialogButtonSignal
@@ -122,6 +123,8 @@ public static class GtkFontDialogButtonHandleExtensions
 internal class GtkFontDialogButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkFontDialogButtonHandle gtk_font_dialog_button_new(GtkFontDialogHandle dialog);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFontDialogHandle gtk_font_dialog_button_get_dialog(GtkFontDialogButtonHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoFontDescriptionHandle gtk_font_dialog_button_get_font_desc(GtkFontDialogButtonHandle self);
@@ -149,6 +152,4 @@ internal class GtkFontDialogButtonExterns
 	internal static extern void gtk_font_dialog_button_set_use_font(GtkFontDialogButtonHandle self, bool use_font);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_button_set_use_size(GtkFontDialogButtonHandle self, bool use_size);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkFontDialogButtonHandle gtk_font_dialog_button_new(GtkFontDialogHandle dialog);
 }

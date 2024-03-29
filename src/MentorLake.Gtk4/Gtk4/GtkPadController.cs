@@ -20,10 +20,7 @@ public class GtkPadControllerHandle : GtkEventControllerHandle
 	{
 		return GtkPadControllerExterns.gtk_pad_controller_new(group, pad);
 	}
-}
 
-public static class GtkPadControllerSignals
-{
 }
 
 public static class GtkPadControllerHandleExtensions
@@ -45,9 +42,9 @@ public static class GtkPadControllerHandleExtensions
 internal class GtkPadControllerExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPadControllerHandle gtk_pad_controller_new(GActionGroupHandle group, GdkDeviceHandle pad);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_pad_controller_set_action(GtkPadControllerHandle controller, GtkPadActionType type, int index, int mode, string label, string action_name);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_pad_controller_set_action_entries(GtkPadControllerHandle controller, GtkPadActionEntry[] entries, int n_entries);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPadControllerHandle gtk_pad_controller_new(GActionGroupHandle group, GdkDeviceHandle pad);
 }

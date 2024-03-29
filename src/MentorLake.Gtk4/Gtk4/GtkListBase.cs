@@ -18,10 +18,6 @@ public class GtkListBaseHandle : GtkWidgetHandle
 {
 }
 
-public static class GtkListBaseSignals
-{
-}
-
 public static class GtkListBaseHandleExtensions
 {
 }

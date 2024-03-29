@@ -18,10 +18,6 @@ public class GParamSpecUInt64Handle : GParamSpecHandle
 {
 }
 
-public static class GParamSpecUInt64Signals
-{
-}
-
 public static class GParamSpecUInt64HandleExtensions
 {
 }

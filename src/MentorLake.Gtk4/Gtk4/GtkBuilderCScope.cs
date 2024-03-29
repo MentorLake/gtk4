@@ -20,10 +20,7 @@ public class GtkBuilderCScopeHandle : GObjectHandle
 	{
 		return GtkBuilderCScopeExterns.gtk_builder_cscope_new();
 	}
-}
 
-public static class GtkBuilderCScopeSignals
-{
 }
 
 public static class GtkBuilderCScopeHandleExtensions
@@ -50,11 +47,11 @@ public static class GtkBuilderCScopeHandleExtensions
 internal class GtkBuilderCScopeExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkBuilderCScopeHandle gtk_builder_cscope_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_builder_cscope_add_callback_symbol(GtkBuilderCScopeHandle self, string callback_name, GCallback callback_symbol);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_builder_cscope_add_callback_symbols(GtkBuilderCScopeHandle self, string first_callback_name, GCallback first_callback_symbol, IntPtr @__arglist);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GCallback gtk_builder_cscope_lookup_callback_symbol(GtkBuilderCScopeHandle self, string callback_name);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkBuilderCScopeHandle gtk_builder_cscope_new();
 }

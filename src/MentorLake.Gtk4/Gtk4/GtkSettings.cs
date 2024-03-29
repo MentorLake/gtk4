@@ -16,10 +16,16 @@ namespace MentorLake.Gtk4.Gtk4;
 
 public class GtkSettingsHandle : GObjectHandle
 {
-}
+	public static GtkSettingsHandle GetDefault()
+	{
+		return GtkSettingsExterns.gtk_settings_get_default();
+	}
 
-public static class GtkSettingsSignals
-{
+	public static GtkSettingsHandle GetForDisplay(GdkDisplayHandle display)
+	{
+		return GtkSettingsExterns.gtk_settings_get_for_display(display);
+	}
+
 }
 
 public static class GtkSettingsHandleExtensions
@@ -28,16 +34,6 @@ public static class GtkSettingsHandleExtensions
 	{
 		GtkSettingsExterns.gtk_settings_reset_property(settings, name);
 		return settings;
-	}
-
-	public static GtkSettingsHandle GetDefault()
-	{
-		return GtkSettingsExterns.gtk_settings_get_default();
-	}
-
-	public static GtkSettingsHandle GetForDisplay(this GdkDisplayHandle display)
-	{
-		return GtkSettingsExterns.gtk_settings_get_for_display(display);
 	}
 
 }

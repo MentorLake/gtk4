@@ -20,6 +20,7 @@ public class GtkSwitchHandle : GtkWidgetHandle
 	{
 		return GtkSwitchExterns.gtk_switch_new();
 	}
+
 }
 
 public class GtkSwitchSignal
@@ -68,6 +69,8 @@ public static class GtkSwitchHandleExtensions
 internal class GtkSwitchExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkSwitchHandle gtk_switch_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_switch_get_active(GtkSwitchHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_switch_get_state(GtkSwitchHandle self);
@@ -75,6 +78,4 @@ internal class GtkSwitchExterns
 	internal static extern void gtk_switch_set_active(GtkSwitchHandle self, bool is_active);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_switch_set_state(GtkSwitchHandle self, bool state);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkSwitchHandle gtk_switch_new();
 }

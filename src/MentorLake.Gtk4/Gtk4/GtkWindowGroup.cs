@@ -20,10 +20,7 @@ public class GtkWindowGroupHandle : GObjectHandle
 	{
 		return GtkWindowGroupExterns.gtk_window_group_new();
 	}
-}
 
-public static class GtkWindowGroupSignals
-{
 }
 
 public static class GtkWindowGroupHandleExtensions
@@ -50,11 +47,11 @@ public static class GtkWindowGroupHandleExtensions
 internal class GtkWindowGroupExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkWindowGroupHandle gtk_window_group_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_group_add_window(GtkWindowGroupHandle window_group, GtkWindowHandle window);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListHandle gtk_window_group_list_windows(GtkWindowGroupHandle window_group);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_group_remove_window(GtkWindowGroupHandle window_group, GtkWindowHandle window);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkWindowGroupHandle gtk_window_group_new();
 }

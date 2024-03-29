@@ -18,10 +18,6 @@ public class GFileIOStreamHandle : GIOStreamHandle
 {
 }
 
-public static class GFileIOStreamSignals
-{
-}
-
 public static class GFileIOStreamHandleExtensions
 {
 	public static string GFileIoStreamGetEtag(this GFileIOStreamHandle stream)

@@ -20,10 +20,12 @@ public class GtkTreeViewHandle : GtkWidgetHandle
 	{
 		return GtkTreeViewExterns.gtk_tree_view_new();
 	}
+
 	public static GtkTreeViewHandle NewWithModel(GtkTreeModelHandle model)
 	{
 		return GtkTreeViewExterns.gtk_tree_view_new_with_model(model);
 	}
+
 }
 
 public class GtkTreeViewSignal
@@ -558,6 +560,10 @@ public static class GtkTreeViewHandleExtensions
 internal class GtkTreeViewExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkTreeViewHandle gtk_tree_view_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkTreeViewHandle gtk_tree_view_new_with_model(GtkTreeModelHandle model);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_view_append_column(GtkTreeViewHandle tree_view, GtkTreeViewColumnHandle column);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_collapse_all(GtkTreeViewHandle tree_view);
@@ -735,8 +741,4 @@ internal class GtkTreeViewExterns
 	internal static extern void gtk_tree_view_unset_rows_drag_dest(GtkTreeViewHandle tree_view);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_unset_rows_drag_source(GtkTreeViewHandle tree_view);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkTreeViewHandle gtk_tree_view_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkTreeViewHandle gtk_tree_view_new_with_model(GtkTreeModelHandle model);
 }

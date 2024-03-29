@@ -20,10 +20,7 @@ public class GtkApplicationWindowHandle : GtkWindowHandle
 	{
 		return GtkApplicationWindowExterns.gtk_application_window_new(application);
 	}
-}
 
-public static class GtkApplicationWindowSignals
-{
 }
 
 public static class GtkApplicationWindowHandleExtensions
@@ -60,6 +57,8 @@ public static class GtkApplicationWindowHandleExtensions
 internal class GtkApplicationWindowExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkApplicationWindowHandle gtk_application_window_new(GtkApplicationHandle application);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkShortcutsWindowHandle gtk_application_window_get_help_overlay(GtkApplicationWindowHandle window);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_application_window_get_id(GtkApplicationWindowHandle window);
@@ -69,6 +68,4 @@ internal class GtkApplicationWindowExterns
 	internal static extern void gtk_application_window_set_help_overlay(GtkApplicationWindowHandle window, GtkShortcutsWindowHandle help_overlay);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_application_window_set_show_menubar(GtkApplicationWindowHandle window, bool show_menubar);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkApplicationWindowHandle gtk_application_window_new(GtkApplicationHandle application);
 }

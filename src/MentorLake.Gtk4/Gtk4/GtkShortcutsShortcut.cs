@@ -18,10 +18,6 @@ public class GtkShortcutsShortcutHandle : GtkWidgetHandle
 {
 }
 
-public static class GtkShortcutsShortcutSignals
-{
-}
-
 public static class GtkShortcutsShortcutHandleExtensions
 {
 }

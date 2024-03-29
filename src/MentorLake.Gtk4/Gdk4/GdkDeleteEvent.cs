@@ -18,10 +18,6 @@ public class GdkDeleteEventHandle : GdkEventHandle
 {
 }
 
-public static class GdkDeleteEventSignals
-{
-}
-
 public static class GdkDeleteEventHandleExtensions
 {
 }

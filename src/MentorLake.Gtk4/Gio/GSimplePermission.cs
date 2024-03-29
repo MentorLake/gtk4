@@ -20,10 +20,7 @@ public class GSimplePermissionHandle : GPermissionHandle
 	{
 		return GSimplePermissionExterns.g_simple_permission_new(allowed);
 	}
-}
 
-public static class GSimplePermissionSignals
-{
 }
 
 public static class GSimplePermissionHandleExtensions

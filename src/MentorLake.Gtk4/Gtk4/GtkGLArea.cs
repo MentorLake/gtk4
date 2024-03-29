@@ -20,6 +20,7 @@ public class GtkGLAreaHandle : GtkWidgetHandle
 	{
 		return GtkGLAreaExterns.gtk_gl_area_new();
 	}
+
 }
 
 public class GtkGLAreaSignal
@@ -153,6 +154,8 @@ public static class GtkGLAreaHandleExtensions
 internal class GtkGLAreaExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkGLAreaHandle gtk_gl_area_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gl_area_attach_buffers(GtkGLAreaHandle area);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkGLAPI gtk_gl_area_get_allowed_apis(GtkGLAreaHandle area);
@@ -190,6 +193,4 @@ internal class GtkGLAreaExterns
 	internal static extern void gtk_gl_area_set_required_version(GtkGLAreaHandle area, int major, int minor);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gl_area_set_use_es(GtkGLAreaHandle area, bool use_es);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkGLAreaHandle gtk_gl_area_new();
 }

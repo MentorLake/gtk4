@@ -20,10 +20,7 @@ public class GtkWindowHandleHandle : GtkWidgetHandle
 	{
 		return GtkWindowHandleExterns.gtk_window_handle_new();
 	}
-}
 
-public static class GtkWindowHandleSignals
-{
 }
 
 public static class GtkWindowHandleHandleExtensions
@@ -44,9 +41,9 @@ public static class GtkWindowHandleHandleExtensions
 internal class GtkWindowHandleExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkWindowHandleHandle gtk_window_handle_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_window_handle_get_child(GtkWindowHandleHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_handle_set_child(GtkWindowHandleHandle self, GtkWidgetHandle child);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkWindowHandleHandle gtk_window_handle_new();
 }

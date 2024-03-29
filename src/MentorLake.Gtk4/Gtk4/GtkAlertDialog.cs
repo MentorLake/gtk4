@@ -20,10 +20,7 @@ public class GtkAlertDialogHandle : GObjectHandle
 	{
 		return GtkAlertDialogExterns.gtk_alert_dialog_new(format, @__arglist);
 	}
-}
 
-public static class GtkAlertDialogSignals
-{
 }
 
 public static class GtkAlertDialogHandleExtensions
@@ -116,6 +113,8 @@ public static class GtkAlertDialogHandleExtensions
 internal class GtkAlertDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkAlertDialogHandle gtk_alert_dialog_new(string format, IntPtr @__arglist);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_alert_dialog_choose(GtkAlertDialogHandle self, GtkWindowHandle parent, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_alert_dialog_choose_finish(GtkAlertDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
@@ -145,6 +144,4 @@ internal class GtkAlertDialogExterns
 	internal static extern void gtk_alert_dialog_set_modal(GtkAlertDialogHandle self, bool modal);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_alert_dialog_show(GtkAlertDialogHandle self, GtkWindowHandle parent);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkAlertDialogHandle gtk_alert_dialog_new(string format, IntPtr @__arglist);
 }

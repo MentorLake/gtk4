@@ -20,10 +20,7 @@ public class GNetworkServiceHandle : GObjectHandle
 	{
 		return GNetworkServiceExterns.g_network_service_new(service, protocol, domain);
 	}
-}
 
-public static class GNetworkServiceSignals
-{
 }
 
 public static class GNetworkServiceHandleExtensions
@@ -59,6 +56,8 @@ public static class GNetworkServiceHandleExtensions
 internal class GNetworkServiceExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GNetworkServiceHandle g_network_service_new(string service, string protocol, string domain);
+	[DllImport(Libraries.Gio)]
 	internal static extern string g_network_service_get_domain(GNetworkServiceHandle srv);
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_network_service_get_protocol(GNetworkServiceHandle srv);
@@ -68,6 +67,4 @@ internal class GNetworkServiceExterns
 	internal static extern string g_network_service_get_service(GNetworkServiceHandle srv);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_network_service_set_scheme(GNetworkServiceHandle srv, string scheme);
-	[DllImport(Libraries.Gio)]
-	internal static extern GNetworkServiceHandle g_network_service_new(string service, string protocol, string domain);
 }

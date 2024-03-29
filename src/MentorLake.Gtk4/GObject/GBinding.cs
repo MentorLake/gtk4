@@ -18,10 +18,6 @@ public class GBindingHandle : GObjectHandle
 {
 }
 
-public static class GBindingSignals
-{
-}
-
 public static class GBindingHandleExtensions
 {
 	public static GObjectHandle DupSource(this GBindingHandle binding)

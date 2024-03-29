@@ -20,6 +20,7 @@ public class GThreadedSocketServiceHandle : GSocketServiceHandle
 	{
 		return GThreadedSocketServiceExterns.g_threaded_socket_service_new(max_threads);
 	}
+
 }
 
 public class GThreadedSocketServiceSignal

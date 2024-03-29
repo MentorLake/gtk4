@@ -20,10 +20,7 @@ public class GtkTreeListRowSorterHandle : GtkSorterHandle
 	{
 		return GtkTreeListRowSorterExterns.gtk_tree_list_row_sorter_new(sorter);
 	}
-}
 
-public static class GtkTreeListRowSorterSignals
-{
 }
 
 public static class GtkTreeListRowSorterHandleExtensions
@@ -44,9 +41,9 @@ public static class GtkTreeListRowSorterHandleExtensions
 internal class GtkTreeListRowSorterExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkTreeListRowSorterHandle gtk_tree_list_row_sorter_new(GtkSorterHandle sorter);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSorterHandle gtk_tree_list_row_sorter_get_sorter(GtkTreeListRowSorterHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_list_row_sorter_set_sorter(GtkTreeListRowSorterHandle self, GtkSorterHandle sorter);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkTreeListRowSorterHandle gtk_tree_list_row_sorter_new(GtkSorterHandle sorter);
 }

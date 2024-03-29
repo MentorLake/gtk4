@@ -20,10 +20,7 @@ public class GtkPageSetupUnixDialogHandle : GtkDialogHandle
 	{
 		return GtkPageSetupUnixDialogExterns.gtk_page_setup_unix_dialog_new(title, parent);
 	}
-}
 
-public static class GtkPageSetupUnixDialogSignals
-{
 }
 
 public static class GtkPageSetupUnixDialogHandleExtensions
@@ -55,6 +52,8 @@ public static class GtkPageSetupUnixDialogHandleExtensions
 internal class GtkPageSetupUnixDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPageSetupUnixDialogHandle gtk_page_setup_unix_dialog_new(string title, GtkWindowHandle parent);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageSetupHandle gtk_page_setup_unix_dialog_get_page_setup(GtkPageSetupUnixDialogHandle dialog);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintSettingsHandle gtk_page_setup_unix_dialog_get_print_settings(GtkPageSetupUnixDialogHandle dialog);
@@ -62,6 +61,4 @@ internal class GtkPageSetupUnixDialogExterns
 	internal static extern void gtk_page_setup_unix_dialog_set_page_setup(GtkPageSetupUnixDialogHandle dialog, GtkPageSetupHandle page_setup);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_page_setup_unix_dialog_set_print_settings(GtkPageSetupUnixDialogHandle dialog, GtkPrintSettingsHandle print_settings);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPageSetupUnixDialogHandle gtk_page_setup_unix_dialog_new(string title, GtkWindowHandle parent);
 }

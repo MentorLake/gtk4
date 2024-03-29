@@ -18,10 +18,6 @@ public class PangoFontMapHandle : GObjectHandle
 {
 }
 
-public static class PangoFontMapSignals
-{
-}
-
 public static class PangoFontMapHandleExtensions
 {
 	public static PangoFontMapHandle Changed(this PangoFontMapHandle fontmap)

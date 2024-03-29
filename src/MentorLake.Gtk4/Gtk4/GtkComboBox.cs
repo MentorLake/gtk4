@@ -20,18 +20,22 @@ public class GtkComboBoxHandle : GtkWidgetHandle
 	{
 		return GtkComboBoxExterns.gtk_combo_box_new();
 	}
+
 	public static GtkComboBoxHandle NewWithEntry()
 	{
 		return GtkComboBoxExterns.gtk_combo_box_new_with_entry();
 	}
+
 	public static GtkComboBoxHandle NewWithModel(GtkTreeModelHandle model)
 	{
 		return GtkComboBoxExterns.gtk_combo_box_new_with_model(model);
 	}
+
 	public static GtkComboBoxHandle NewWithModelAndEntry(GtkTreeModelHandle model)
 	{
 		return GtkComboBoxExterns.gtk_combo_box_new_with_model_and_entry(model);
 	}
+
 }
 
 public class GtkComboBoxSignal
@@ -194,6 +198,14 @@ public static class GtkComboBoxHandleExtensions
 internal class GtkComboBoxExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkComboBoxHandle gtk_combo_box_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkComboBoxHandle gtk_combo_box_new_with_entry();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkComboBoxHandle gtk_combo_box_new_with_model(GtkTreeModelHandle model);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkComboBoxHandle gtk_combo_box_new_with_model_and_entry(GtkTreeModelHandle model);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_combo_box_get_active(GtkComboBoxHandle combo_box);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_combo_box_get_active_id(GtkComboBoxHandle combo_box);
@@ -241,12 +253,4 @@ internal class GtkComboBoxExterns
 	internal static extern void gtk_combo_box_set_popup_fixed_width(GtkComboBoxHandle combo_box, bool @fixed);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_set_row_separator_func(GtkComboBoxHandle combo_box, GtkTreeViewRowSeparatorFunc func, IntPtr data, GDestroyNotify destroy);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkComboBoxHandle gtk_combo_box_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkComboBoxHandle gtk_combo_box_new_with_entry();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkComboBoxHandle gtk_combo_box_new_with_model(GtkTreeModelHandle model);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkComboBoxHandle gtk_combo_box_new_with_model_and_entry(GtkTreeModelHandle model);
 }

@@ -20,6 +20,7 @@ public class GtkCssProviderHandle : GObjectHandle
 	{
 		return GtkCssProviderExterns.gtk_css_provider_new();
 	}
+
 }
 
 public class GtkCssProviderSignal
@@ -92,6 +93,8 @@ public static class GtkCssProviderHandleExtensions
 internal class GtkCssProviderExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkCssProviderHandle gtk_css_provider_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_css_provider_load_from_bytes(GtkCssProviderHandle css_provider, GBytesHandle data);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_css_provider_load_from_data(GtkCssProviderHandle css_provider, string data, int length);
@@ -107,6 +110,4 @@ internal class GtkCssProviderExterns
 	internal static extern void gtk_css_provider_load_named(GtkCssProviderHandle provider, string name, string variant);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_css_provider_to_string(GtkCssProviderHandle provider);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkCssProviderHandle gtk_css_provider_new();
 }

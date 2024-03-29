@@ -18,10 +18,6 @@ public class GdkSnapshotHandle : GObjectHandle
 {
 }
 
-public static class GdkSnapshotSignals
-{
-}
-
 public static class GdkSnapshotHandleExtensions
 {
 }

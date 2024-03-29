@@ -20,10 +20,7 @@ public class GMenuHandle : GMenuModelHandle
 	{
 		return GMenuExterns.g_menu_new();
 	}
-}
 
-public static class GMenuSignals
-{
 }
 
 public static class GMenuHandleExtensions
@@ -123,6 +120,8 @@ public static class GMenuHandleExtensions
 internal class GMenuExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GMenuHandle g_menu_new();
+	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_append(GMenuHandle menu, string label, string detailed_action);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_append_item(GMenuHandle menu, GMenuItemHandle item);
@@ -152,6 +151,4 @@ internal class GMenuExterns
 	internal static extern void g_menu_remove(GMenuHandle menu, int position);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_remove_all(GMenuHandle menu);
-	[DllImport(Libraries.Gio)]
-	internal static extern GMenuHandle g_menu_new();
 }

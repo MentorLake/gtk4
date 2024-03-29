@@ -20,22 +20,27 @@ public class GdkPixbufAnimationHandle : GObjectHandle
 	{
 		return GdkPixbufAnimationExterns.gdk_pixbuf_animation_new_from_file(filename, out error);
 	}
+
 	public static GdkPixbufAnimationHandle NewFromResource(string resource_path, out GErrorHandle error)
 	{
 		return GdkPixbufAnimationExterns.gdk_pixbuf_animation_new_from_resource(resource_path, out error);
 	}
+
 	public static GdkPixbufAnimationHandle NewFromStream(GInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GdkPixbufAnimationExterns.gdk_pixbuf_animation_new_from_stream(stream, cancellable, out error);
 	}
+
 	public static GdkPixbufAnimationHandle NewFromStreamFinish(GAsyncResultHandle async_result, out GErrorHandle error)
 	{
 		return GdkPixbufAnimationExterns.gdk_pixbuf_animation_new_from_stream_finish(async_result, out error);
 	}
-}
 
-public static class GdkPixbufAnimationSignals
-{
+	public static void NewFromStreamAsync(GInputStreamHandle stream, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	{
+		GdkPixbufAnimationExterns.gdk_pixbuf_animation_new_from_stream_async(stream, cancellable, callback, user_data);
+	}
+
 }
 
 public static class GdkPixbufAnimationHandleExtensions
@@ -76,16 +81,18 @@ public static class GdkPixbufAnimationHandleExtensions
 		return animation;
 	}
 
-	public static GdkPixbufAnimationHandle NewFromStreamAsync(this GdkPixbufAnimationHandle @handle, GInputStreamHandle stream, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
-	{
-		GdkPixbufAnimationExterns.gdk_pixbuf_animation_new_from_stream_async(stream, cancellable, callback, user_data);
-		return @handle;
-	}
-
 }
 
 internal class GdkPixbufAnimationExterns
 {
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufAnimationHandle gdk_pixbuf_animation_new_from_file(string filename, out GErrorHandle error);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufAnimationHandle gdk_pixbuf_animation_new_from_resource(string resource_path, out GErrorHandle error);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufAnimationHandle gdk_pixbuf_animation_new_from_stream(GInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufAnimationHandle gdk_pixbuf_animation_new_from_stream_finish(GAsyncResultHandle async_result, out GErrorHandle error);
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern int gdk_pixbuf_animation_get_height(GdkPixbufAnimationHandle animation);
 	[DllImport(Libraries.GdkPixbuf)]
@@ -102,12 +109,4 @@ internal class GdkPixbufAnimationExterns
 	internal static extern void gdk_pixbuf_animation_unref(GdkPixbufAnimationHandle animation);
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_animation_new_from_stream_async(GInputStreamHandle stream, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufAnimationHandle gdk_pixbuf_animation_new_from_file(string filename, out GErrorHandle error);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufAnimationHandle gdk_pixbuf_animation_new_from_resource(string resource_path, out GErrorHandle error);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufAnimationHandle gdk_pixbuf_animation_new_from_stream(GInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufAnimationHandle gdk_pixbuf_animation_new_from_stream_finish(GAsyncResultHandle async_result, out GErrorHandle error);
 }

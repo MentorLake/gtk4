@@ -20,15 +20,12 @@ public class GskTextureNodeHandle : GskRenderNodeHandle
 	{
 		return GskTextureNodeExterns.gsk_texture_node_new(texture, bounds);
 	}
-}
 
-public static class GskTextureNodeSignals
-{
 }
 
 public static class GskTextureNodeHandleExtensions
 {
-	public static GdkTextureHandle GetTexture(this GskRenderNodeHandle node)
+	public static GdkTextureHandle GetTexture(this GskTextureNodeHandle node)
 	{
 		return GskTextureNodeExterns.gsk_texture_node_get_texture(node);
 	}
@@ -38,7 +35,7 @@ public static class GskTextureNodeHandleExtensions
 internal class GskTextureNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
-	internal static extern GdkTextureHandle gsk_texture_node_get_texture(GskRenderNodeHandle node);
-	[DllImport(Libraries.Gsk4)]
 	internal static extern GskTextureNodeHandle gsk_texture_node_new(GdkTextureHandle texture, graphene_rect_tHandle bounds);
+	[DllImport(Libraries.Gsk4)]
+	internal static extern GdkTextureHandle gsk_texture_node_get_texture(GskRenderNodeHandle node);
 }

@@ -20,10 +20,7 @@ public class GtkFileChooserDialogHandle : GtkDialogHandle
 	{
 		return GtkFileChooserDialogExterns.gtk_file_chooser_dialog_new(title, parent, action, first_button_text, @__arglist);
 	}
-}
 
-public static class GtkFileChooserDialogSignals
-{
 }
 
 public static class GtkFileChooserDialogHandleExtensions

@@ -18,10 +18,6 @@ public class GParamSpecBoxedHandle : GParamSpecHandle
 {
 }
 
-public static class GParamSpecBoxedSignals
-{
-}
-
 public static class GParamSpecBoxedHandleExtensions
 {
 }

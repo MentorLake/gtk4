@@ -20,10 +20,7 @@ public class GtkColorChooserWidgetHandle : GtkWidgetHandle
 	{
 		return GtkColorChooserWidgetExterns.gtk_color_chooser_widget_new();
 	}
-}
 
-public static class GtkColorChooserWidgetSignals
-{
 }
 
 public static class GtkColorChooserWidgetHandleExtensions

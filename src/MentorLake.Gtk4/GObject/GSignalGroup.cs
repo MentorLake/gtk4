@@ -20,6 +20,7 @@ public class GSignalGroupHandle : GObjectHandle
 	{
 		return GSignalGroupExterns.g_signal_group_new(target_type);
 	}
+
 }
 
 public class GSignalGroupSignal
@@ -105,6 +106,8 @@ public static class GSignalGroupHandleExtensions
 internal class GSignalGroupExterns
 {
 	[DllImport(Libraries.GObject)]
+	internal static extern GSignalGroupHandle g_signal_group_new(GType target_type);
+	[DllImport(Libraries.GObject)]
 	internal static extern void g_signal_group_block(GSignalGroupHandle self);
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_signal_group_connect(GSignalGroupHandle self, string detailed_signal, GCallback c_handler, IntPtr data);
@@ -124,6 +127,4 @@ internal class GSignalGroupExterns
 	internal static extern void g_signal_group_set_target(GSignalGroupHandle self, GObjectHandle target);
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_signal_group_unblock(GSignalGroupHandle self);
-	[DllImport(Libraries.GObject)]
-	internal static extern GSignalGroupHandle g_signal_group_new(GType target_type);
 }

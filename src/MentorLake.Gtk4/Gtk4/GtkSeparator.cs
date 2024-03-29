@@ -20,10 +20,7 @@ public class GtkSeparatorHandle : GtkWidgetHandle
 	{
 		return GtkSeparatorExterns.gtk_separator_new(orientation);
 	}
-}
 
-public static class GtkSeparatorSignals
-{
 }
 
 public static class GtkSeparatorHandleExtensions

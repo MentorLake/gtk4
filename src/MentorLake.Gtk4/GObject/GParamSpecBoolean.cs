@@ -18,10 +18,6 @@ public class GParamSpecBooleanHandle : GParamSpecHandle
 {
 }
 
-public static class GParamSpecBooleanSignals
-{
-}
-
 public static class GParamSpecBooleanHandleExtensions
 {
 }

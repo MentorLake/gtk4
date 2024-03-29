@@ -20,22 +20,22 @@ public class GtkPageSetupHandle : GObjectHandle
 	{
 		return GtkPageSetupExterns.gtk_page_setup_new();
 	}
+
 	public static GtkPageSetupHandle NewFromFile(string file_name, out GErrorHandle error)
 	{
 		return GtkPageSetupExterns.gtk_page_setup_new_from_file(file_name, out error);
 	}
+
 	public static GtkPageSetupHandle NewFromGvariant(GVariantHandle variant)
 	{
 		return GtkPageSetupExterns.gtk_page_setup_new_from_gvariant(variant);
 	}
+
 	public static GtkPageSetupHandle NewFromKeyFile(GKeyFileHandle key_file, string group_name, out GErrorHandle error)
 	{
 		return GtkPageSetupExterns.gtk_page_setup_new_from_key_file(key_file, group_name, out error);
 	}
-}
 
-public static class GtkPageSetupSignals
-{
 }
 
 public static class GtkPageSetupHandleExtensions
@@ -168,6 +168,14 @@ public static class GtkPageSetupHandleExtensions
 internal class GtkPageSetupExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPageSetupHandle gtk_page_setup_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPageSetupHandle gtk_page_setup_new_from_file(string file_name, out GErrorHandle error);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPageSetupHandle gtk_page_setup_new_from_gvariant(GVariantHandle variant);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPageSetupHandle gtk_page_setup_new_from_key_file(GKeyFileHandle key_file, string group_name, out GErrorHandle error);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageSetupHandle gtk_page_setup_copy(GtkPageSetupHandle other);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_page_setup_get_bottom_margin(GtkPageSetupHandle setup, GtkUnit unit);
@@ -213,12 +221,4 @@ internal class GtkPageSetupExterns
 	internal static extern GVariantHandle gtk_page_setup_to_gvariant(GtkPageSetupHandle setup);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_page_setup_to_key_file(GtkPageSetupHandle setup, GKeyFileHandle key_file, string group_name);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPageSetupHandle gtk_page_setup_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPageSetupHandle gtk_page_setup_new_from_file(string file_name, out GErrorHandle error);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPageSetupHandle gtk_page_setup_new_from_gvariant(GVariantHandle variant);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPageSetupHandle gtk_page_setup_new_from_key_file(GKeyFileHandle key_file, string group_name, out GErrorHandle error);
 }

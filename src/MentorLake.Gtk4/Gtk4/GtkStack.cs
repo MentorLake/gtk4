@@ -20,10 +20,7 @@ public class GtkStackHandle : GtkWidgetHandle
 	{
 		return GtkStackExterns.gtk_stack_new();
 	}
-}
 
-public static class GtkStackSignals
-{
 }
 
 public static class GtkStackHandleExtensions
@@ -157,6 +154,8 @@ public static class GtkStackHandleExtensions
 internal class GtkStackExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkStackHandle gtk_stack_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStackPageHandle gtk_stack_add_child(GtkStackHandle stack, GtkWidgetHandle child);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStackPageHandle gtk_stack_add_named(GtkStackHandle stack, GtkWidgetHandle child, string name);
@@ -202,6 +201,4 @@ internal class GtkStackExterns
 	internal static extern void gtk_stack_set_visible_child_full(GtkStackHandle stack, string name, GtkStackTransitionType transition);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_set_visible_child_name(GtkStackHandle stack, string name);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkStackHandle gtk_stack_new();
 }

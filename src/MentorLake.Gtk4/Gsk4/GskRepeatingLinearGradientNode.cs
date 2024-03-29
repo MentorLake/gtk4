@@ -20,10 +20,7 @@ public class GskRepeatingLinearGradientNodeHandle : GskRenderNodeHandle
 	{
 		return GskRepeatingLinearGradientNodeExterns.gsk_repeating_linear_gradient_node_new(bounds, start, end, color_stops, n_color_stops);
 	}
-}
 
-public static class GskRepeatingLinearGradientNodeSignals
-{
 }
 
 public static class GskRepeatingLinearGradientNodeHandleExtensions

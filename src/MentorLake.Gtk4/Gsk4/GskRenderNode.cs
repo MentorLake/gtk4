@@ -16,10 +16,11 @@ namespace MentorLake.Gtk4.Gsk4;
 
 public class GskRenderNodeHandle : GTypeInstanceHandle
 {
-}
+	public static GskRenderNodeHandle Deserialize(GBytesHandle bytes, GskParseErrorFunc error_func, IntPtr user_data)
+	{
+		return GskRenderNodeExterns.gsk_render_node_deserialize(bytes, error_func, user_data);
+	}
 
-public static class GskRenderNodeSignals
-{
 }
 
 public static class GskRenderNodeHandleExtensions
@@ -60,11 +61,6 @@ public static class GskRenderNodeHandleExtensions
 	public static bool WriteToFile(this GskRenderNodeHandle node, string filename, out GErrorHandle error)
 	{
 		return GskRenderNodeExterns.gsk_render_node_write_to_file(node, filename, out error);
-	}
-
-	public static GskRenderNodeHandle Deserialize(this GBytesHandle bytes, GskParseErrorFunc error_func, IntPtr user_data)
-	{
-		return GskRenderNodeExterns.gsk_render_node_deserialize(bytes, error_func, user_data);
 	}
 
 }

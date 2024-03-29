@@ -16,6 +16,11 @@ namespace MentorLake.Gtk4.Gdk4;
 
 public class GdkDisplayManagerHandle : GObjectHandle
 {
+	public static GdkDisplayManagerHandle Get()
+	{
+		return GdkDisplayManagerExterns.gdk_display_manager_get();
+	}
+
 }
 
 public class GdkDisplayManagerSignal
@@ -50,11 +55,6 @@ public static class GdkDisplayManagerHandleExtensions
 	{
 		GdkDisplayManagerExterns.gdk_display_manager_set_default_display(manager, display);
 		return manager;
-	}
-
-	public static GdkDisplayManagerHandle Get()
-	{
-		return GdkDisplayManagerExterns.gdk_display_manager_get();
 	}
 
 	public static GdkDisplayManagerHandle Connect(this GdkDisplayManagerHandle instance, GdkDisplayManagerSignal signal, GCallback c_handler)

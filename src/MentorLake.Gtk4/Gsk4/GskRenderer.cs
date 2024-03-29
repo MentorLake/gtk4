@@ -20,10 +20,7 @@ public class GskRendererHandle : GObjectHandle
 	{
 		return GskRendererExterns.gsk_renderer_new_for_surface(surface);
 	}
-}
 
-public static class GskRendererSignals
-{
 }
 
 public static class GskRendererHandleExtensions
@@ -70,6 +67,8 @@ public static class GskRendererHandleExtensions
 internal class GskRendererExterns
 {
 	[DllImport(Libraries.Gsk4)]
+	internal static extern GskRendererHandle gsk_renderer_new_for_surface(GdkSurfaceHandle surface);
+	[DllImport(Libraries.Gsk4)]
 	internal static extern GdkSurfaceHandle gsk_renderer_get_surface(GskRendererHandle renderer);
 	[DllImport(Libraries.Gsk4)]
 	internal static extern bool gsk_renderer_is_realized(GskRendererHandle renderer);
@@ -83,6 +82,4 @@ internal class GskRendererExterns
 	internal static extern GdkTextureHandle gsk_renderer_render_texture(GskRendererHandle renderer, GskRenderNodeHandle root, graphene_rect_tHandle viewport);
 	[DllImport(Libraries.Gsk4)]
 	internal static extern void gsk_renderer_unrealize(GskRendererHandle renderer);
-	[DllImport(Libraries.Gsk4)]
-	internal static extern GskRendererHandle gsk_renderer_new_for_surface(GdkSurfaceHandle surface);
 }

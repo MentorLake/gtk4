@@ -20,10 +20,7 @@ public class GtkBinLayoutHandle : GtkLayoutManagerHandle
 	{
 		return GtkBinLayoutExterns.gtk_bin_layout_new();
 	}
-}
 
-public static class GtkBinLayoutSignals
-{
 }
 
 public static class GtkBinLayoutHandleExtensions

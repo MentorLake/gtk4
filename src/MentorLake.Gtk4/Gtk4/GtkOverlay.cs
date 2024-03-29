@@ -20,6 +20,7 @@ public class GtkOverlayHandle : GtkWidgetHandle
 	{
 		return GtkOverlayExterns.gtk_overlay_new();
 	}
+
 }
 
 public class GtkOverlaySignal
@@ -90,6 +91,8 @@ public static class GtkOverlayHandleExtensions
 internal class GtkOverlayExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkOverlayHandle gtk_overlay_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_overlay_add_overlay(GtkOverlayHandle overlay, GtkWidgetHandle widget);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_overlay_get_child(GtkOverlayHandle overlay);
@@ -105,6 +108,4 @@ internal class GtkOverlayExterns
 	internal static extern void gtk_overlay_set_clip_overlay(GtkOverlayHandle overlay, GtkWidgetHandle widget, bool clip_overlay);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_overlay_set_measure_overlay(GtkOverlayHandle overlay, GtkWidgetHandle widget, bool measure);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkOverlayHandle gtk_overlay_new();
 }

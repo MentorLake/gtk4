@@ -20,6 +20,7 @@ public class GtkGestureSwipeHandle : GtkGestureSingleHandle
 	{
 		return GtkGestureSwipeExterns.gtk_gesture_swipe_new();
 	}
+
 }
 
 public class GtkGestureSwipeSignal
@@ -50,7 +51,7 @@ public static class GtkGestureSwipeHandleExtensions
 internal class GtkGestureSwipeExterns
 {
 	[DllImport(Libraries.Gtk4)]
-	internal static extern bool gtk_gesture_swipe_get_velocity(GtkGestureSwipeHandle gesture, out double velocity_x, out double velocity_y);
-	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkGestureSwipeHandle gtk_gesture_swipe_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern bool gtk_gesture_swipe_get_velocity(GtkGestureSwipeHandle gesture, out double velocity_x, out double velocity_y);
 }

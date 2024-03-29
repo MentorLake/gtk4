@@ -20,10 +20,12 @@ public class GtkExpanderHandle : GtkWidgetHandle
 	{
 		return GtkExpanderExterns.gtk_expander_new(label);
 	}
+
 	public static GtkExpanderHandle NewWithMnemonic(string label)
 	{
 		return GtkExpanderExterns.gtk_expander_new_with_mnemonic(label);
 	}
+
 }
 
 public class GtkExpanderSignal
@@ -126,6 +128,10 @@ public static class GtkExpanderHandleExtensions
 internal class GtkExpanderExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkExpanderHandle gtk_expander_new(string label);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkExpanderHandle gtk_expander_new_with_mnemonic(string label);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_expander_get_child(GtkExpanderHandle expander);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_expander_get_expanded(GtkExpanderHandle expander);
@@ -153,8 +159,4 @@ internal class GtkExpanderExterns
 	internal static extern void gtk_expander_set_use_markup(GtkExpanderHandle expander, bool use_markup);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_expander_set_use_underline(GtkExpanderHandle expander, bool use_underline);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkExpanderHandle gtk_expander_new(string label);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkExpanderHandle gtk_expander_new_with_mnemonic(string label);
 }

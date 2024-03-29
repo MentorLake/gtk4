@@ -18,10 +18,6 @@ public class GtkMultiFilterHandle : GtkFilterHandle
 {
 }
 
-public static class GtkMultiFilterSignals
-{
-}
-
 public static class GtkMultiFilterHandleExtensions
 {
 	public static GtkMultiFilterHandle Append(this GtkMultiFilterHandle self, GtkFilterHandle filter)

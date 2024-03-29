@@ -20,10 +20,7 @@ public class GtkCenterBoxHandle : GtkWidgetHandle
 	{
 		return GtkCenterBoxExterns.gtk_center_box_new();
 	}
-}
 
-public static class GtkCenterBoxSignals
-{
 }
 
 public static class GtkCenterBoxHandleExtensions
@@ -88,6 +85,8 @@ public static class GtkCenterBoxHandleExtensions
 internal class GtkCenterBoxExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkCenterBoxHandle gtk_center_box_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBaselinePosition gtk_center_box_get_baseline_position(GtkCenterBoxHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_center_box_get_center_widget(GtkCenterBoxHandle self);
@@ -107,6 +106,4 @@ internal class GtkCenterBoxExterns
 	internal static extern void gtk_center_box_set_shrink_center_last(GtkCenterBoxHandle self, bool shrink_center_last);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_center_box_set_start_widget(GtkCenterBoxHandle self, GtkWidgetHandle child);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkCenterBoxHandle gtk_center_box_new();
 }

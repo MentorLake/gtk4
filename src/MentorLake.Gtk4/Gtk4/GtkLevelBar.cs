@@ -20,10 +20,12 @@ public class GtkLevelBarHandle : GtkWidgetHandle
 	{
 		return GtkLevelBarExterns.gtk_level_bar_new();
 	}
+
 	public static GtkLevelBarHandle NewForInterval(double min_value, double max_value)
 	{
 		return GtkLevelBarExterns.gtk_level_bar_new_for_interval(min_value, max_value);
 	}
+
 }
 
 public class GtkLevelBarSignal
@@ -121,6 +123,10 @@ public static class GtkLevelBarHandleExtensions
 internal class GtkLevelBarExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkLevelBarHandle gtk_level_bar_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkLevelBarHandle gtk_level_bar_new_for_interval(double min_value, double max_value);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_level_bar_add_offset_value(GtkLevelBarHandle self, string name, double value);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_level_bar_get_inverted(GtkLevelBarHandle self);
@@ -146,8 +152,4 @@ internal class GtkLevelBarExterns
 	internal static extern void gtk_level_bar_set_mode(GtkLevelBarHandle self, GtkLevelBarMode mode);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_level_bar_set_value(GtkLevelBarHandle self, double value);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkLevelBarHandle gtk_level_bar_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkLevelBarHandle gtk_level_bar_new_for_interval(double min_value, double max_value);
 }

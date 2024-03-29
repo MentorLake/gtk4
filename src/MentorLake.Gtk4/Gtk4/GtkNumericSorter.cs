@@ -20,10 +20,7 @@ public class GtkNumericSorterHandle : GtkSorterHandle
 	{
 		return GtkNumericSorterExterns.gtk_numeric_sorter_new(expression);
 	}
-}
 
-public static class GtkNumericSorterSignals
-{
 }
 
 public static class GtkNumericSorterHandleExtensions
@@ -55,6 +52,8 @@ public static class GtkNumericSorterHandleExtensions
 internal class GtkNumericSorterExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkNumericSorterHandle gtk_numeric_sorter_new(GtkExpressionHandle expression);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkExpressionHandle gtk_numeric_sorter_get_expression(GtkNumericSorterHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSortType gtk_numeric_sorter_get_sort_order(GtkNumericSorterHandle self);
@@ -62,6 +61,4 @@ internal class GtkNumericSorterExterns
 	internal static extern void gtk_numeric_sorter_set_expression(GtkNumericSorterHandle self, GtkExpressionHandle expression);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_numeric_sorter_set_sort_order(GtkNumericSorterHandle self, GtkSortType sort_order);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkNumericSorterHandle gtk_numeric_sorter_new(GtkExpressionHandle expression);
 }

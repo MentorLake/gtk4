@@ -18,10 +18,6 @@ public class GdkDrawContextHandle : GObjectHandle
 {
 }
 
-public static class GdkDrawContextSignals
-{
-}
-
 public static class GdkDrawContextHandleExtensions
 {
 	public static GdkDrawContextHandle BeginFrame(this GdkDrawContextHandle context, cairo_region_tHandle region)

@@ -20,40 +20,37 @@ public class GskOutsetShadowNodeHandle : GskRenderNodeHandle
 	{
 		return GskOutsetShadowNodeExterns.gsk_outset_shadow_node_new(outline, color, dx, dy, spread, blur_radius);
 	}
-}
 
-public static class GskOutsetShadowNodeSignals
-{
 }
 
 public static class GskOutsetShadowNodeHandleExtensions
 {
-	public static float GetBlurRadius(this GskRenderNodeHandle node)
+	public static float GetBlurRadius(this GskOutsetShadowNodeHandle node)
 	{
 		return GskOutsetShadowNodeExterns.gsk_outset_shadow_node_get_blur_radius(node);
 	}
 
-	public static GdkRGBAHandle GetColor(this GskRenderNodeHandle node)
+	public static GdkRGBAHandle GetColor(this GskOutsetShadowNodeHandle node)
 	{
 		return GskOutsetShadowNodeExterns.gsk_outset_shadow_node_get_color(node);
 	}
 
-	public static float GetDx(this GskRenderNodeHandle node)
+	public static float GetDx(this GskOutsetShadowNodeHandle node)
 	{
 		return GskOutsetShadowNodeExterns.gsk_outset_shadow_node_get_dx(node);
 	}
 
-	public static float GetDy(this GskRenderNodeHandle node)
+	public static float GetDy(this GskOutsetShadowNodeHandle node)
 	{
 		return GskOutsetShadowNodeExterns.gsk_outset_shadow_node_get_dy(node);
 	}
 
-	public static GskRoundedRectHandle GetOutline(this GskRenderNodeHandle node)
+	public static GskRoundedRectHandle GetOutline(this GskOutsetShadowNodeHandle node)
 	{
 		return GskOutsetShadowNodeExterns.gsk_outset_shadow_node_get_outline(node);
 	}
 
-	public static float GetSpread(this GskRenderNodeHandle node)
+	public static float GetSpread(this GskOutsetShadowNodeHandle node)
 	{
 		return GskOutsetShadowNodeExterns.gsk_outset_shadow_node_get_spread(node);
 	}
@@ -62,6 +59,8 @@ public static class GskOutsetShadowNodeHandleExtensions
 
 internal class GskOutsetShadowNodeExterns
 {
+	[DllImport(Libraries.Gsk4)]
+	internal static extern GskOutsetShadowNodeHandle gsk_outset_shadow_node_new(GskRoundedRectHandle outline, GdkRGBAHandle color, float dx, float dy, float spread, float blur_radius);
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_outset_shadow_node_get_blur_radius(GskRenderNodeHandle node);
 	[DllImport(Libraries.Gsk4)]
@@ -74,6 +73,4 @@ internal class GskOutsetShadowNodeExterns
 	internal static extern GskRoundedRectHandle gsk_outset_shadow_node_get_outline(GskRenderNodeHandle node);
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_outset_shadow_node_get_spread(GskRenderNodeHandle node);
-	[DllImport(Libraries.Gsk4)]
-	internal static extern GskOutsetShadowNodeHandle gsk_outset_shadow_node_new(GskRoundedRectHandle outline, GdkRGBAHandle color, float dx, float dy, float spread, float blur_radius);
 }

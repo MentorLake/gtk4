@@ -18,10 +18,6 @@ public class GtkColumnViewRowHandle : GObjectHandle
 {
 }
 
-public static class GtkColumnViewRowSignals
-{
-}
-
 public static class GtkColumnViewRowHandleExtensions
 {
 	public static string GetAccessibleDescription(this GtkColumnViewRowHandle self)

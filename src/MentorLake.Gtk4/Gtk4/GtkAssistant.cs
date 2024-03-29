@@ -20,6 +20,7 @@ public class GtkAssistantHandle : GtkWindowHandle
 	{
 		return GtkAssistantExterns.gtk_assistant_new();
 	}
+
 }
 
 public class GtkAssistantSignal
@@ -176,6 +177,8 @@ public static class GtkAssistantHandleExtensions
 internal class GtkAssistantExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkAssistantHandle gtk_assistant_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_assistant_add_action_widget(GtkAssistantHandle assistant, GtkWidgetHandle child);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_assistant_append_page(GtkAssistantHandle assistant, GtkWidgetHandle page);
@@ -221,6 +224,4 @@ internal class GtkAssistantExterns
 	internal static extern void gtk_assistant_set_page_type(GtkAssistantHandle assistant, GtkWidgetHandle page, GtkAssistantPageType type);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_assistant_update_buttons_state(GtkAssistantHandle assistant);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkAssistantHandle gtk_assistant_new();
 }

@@ -20,6 +20,7 @@ public class GtkAboutDialogHandle : GtkWindowHandle
 	{
 		return GtkAboutDialogExterns.gtk_about_dialog_new();
 	}
+
 }
 
 public class GtkAboutDialogSignal
@@ -227,6 +228,8 @@ public static class GtkAboutDialogHandleExtensions
 internal class GtkAboutDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkAboutDialogHandle gtk_about_dialog_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_add_credit_section(GtkAboutDialogHandle about, string section_name, string[] people);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_about_dialog_get_artists(GtkAboutDialogHandle about);
@@ -292,6 +295,4 @@ internal class GtkAboutDialogExterns
 	internal static extern void gtk_about_dialog_set_website_label(GtkAboutDialogHandle about, string website_label);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_wrap_license(GtkAboutDialogHandle about, bool wrap_license);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkAboutDialogHandle gtk_about_dialog_new();
 }

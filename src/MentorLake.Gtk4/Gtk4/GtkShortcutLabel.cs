@@ -20,10 +20,7 @@ public class GtkShortcutLabelHandle : GtkWidgetHandle
 	{
 		return GtkShortcutLabelExterns.gtk_shortcut_label_new(accelerator);
 	}
-}
 
-public static class GtkShortcutLabelSignals
-{
 }
 
 public static class GtkShortcutLabelHandleExtensions
@@ -55,6 +52,8 @@ public static class GtkShortcutLabelHandleExtensions
 internal class GtkShortcutLabelExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkShortcutLabelHandle gtk_shortcut_label_new(string accelerator);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_shortcut_label_get_accelerator(GtkShortcutLabelHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_shortcut_label_get_disabled_text(GtkShortcutLabelHandle self);
@@ -62,6 +61,4 @@ internal class GtkShortcutLabelExterns
 	internal static extern void gtk_shortcut_label_set_accelerator(GtkShortcutLabelHandle self, string accelerator);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_shortcut_label_set_disabled_text(GtkShortcutLabelHandle self, string disabled_text);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkShortcutLabelHandle gtk_shortcut_label_new(string accelerator);
 }

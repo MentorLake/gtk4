@@ -20,22 +20,22 @@ public class GtkPrintSettingsHandle : GObjectHandle
 	{
 		return GtkPrintSettingsExterns.gtk_print_settings_new();
 	}
+
 	public static GtkPrintSettingsHandle NewFromFile(string file_name, out GErrorHandle error)
 	{
 		return GtkPrintSettingsExterns.gtk_print_settings_new_from_file(file_name, out error);
 	}
+
 	public static GtkPrintSettingsHandle NewFromGvariant(GVariantHandle variant)
 	{
 		return GtkPrintSettingsExterns.gtk_print_settings_new_from_gvariant(variant);
 	}
+
 	public static GtkPrintSettingsHandle NewFromKeyFile(GKeyFileHandle key_file, string group_name, out GErrorHandle error)
 	{
 		return GtkPrintSettingsExterns.gtk_print_settings_new_from_key_file(key_file, group_name, out error);
 	}
-}
 
-public static class GtkPrintSettingsSignals
-{
 }
 
 public static class GtkPrintSettingsHandleExtensions
@@ -438,6 +438,14 @@ public static class GtkPrintSettingsHandleExtensions
 internal class GtkPrintSettingsExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPrintSettingsHandle gtk_print_settings_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPrintSettingsHandle gtk_print_settings_new_from_file(string file_name, out GErrorHandle error);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPrintSettingsHandle gtk_print_settings_new_from_gvariant(GVariantHandle variant);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPrintSettingsHandle gtk_print_settings_new_from_key_file(GKeyFileHandle key_file, string group_name, out GErrorHandle error);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintSettingsHandle gtk_print_settings_copy(GtkPrintSettingsHandle other);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_foreach(GtkPrintSettingsHandle settings, GtkPrintSettingsFunc func, IntPtr user_data);
@@ -581,12 +589,4 @@ internal class GtkPrintSettingsExterns
 	internal static extern void gtk_print_settings_to_key_file(GtkPrintSettingsHandle settings, GKeyFileHandle key_file, string group_name);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_unset(GtkPrintSettingsHandle settings, string key);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPrintSettingsHandle gtk_print_settings_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPrintSettingsHandle gtk_print_settings_new_from_file(string file_name, out GErrorHandle error);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPrintSettingsHandle gtk_print_settings_new_from_gvariant(GVariantHandle variant);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPrintSettingsHandle gtk_print_settings_new_from_key_file(GKeyFileHandle key_file, string group_name, out GErrorHandle error);
 }

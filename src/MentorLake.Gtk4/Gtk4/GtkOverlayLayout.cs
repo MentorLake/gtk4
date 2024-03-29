@@ -20,10 +20,7 @@ public class GtkOverlayLayoutHandle : GtkLayoutManagerHandle
 	{
 		return GtkOverlayLayoutExterns.gtk_overlay_layout_new();
 	}
-}
 
-public static class GtkOverlayLayoutSignals
-{
 }
 
 public static class GtkOverlayLayoutHandleExtensions

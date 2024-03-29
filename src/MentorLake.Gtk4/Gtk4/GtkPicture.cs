@@ -20,30 +20,32 @@ public class GtkPictureHandle : GtkWidgetHandle
 	{
 		return GtkPictureExterns.gtk_picture_new();
 	}
+
 	public static GtkPictureHandle NewForFile(GFileHandle file)
 	{
 		return GtkPictureExterns.gtk_picture_new_for_file(file);
 	}
+
 	public static GtkPictureHandle NewForFilename(string filename)
 	{
 		return GtkPictureExterns.gtk_picture_new_for_filename(filename);
 	}
+
 	public static GtkPictureHandle NewForPaintable(GdkPaintableHandle paintable)
 	{
 		return GtkPictureExterns.gtk_picture_new_for_paintable(paintable);
 	}
+
 	public static GtkPictureHandle NewForPixbuf(GdkPixbufHandle pixbuf)
 	{
 		return GtkPictureExterns.gtk_picture_new_for_pixbuf(pixbuf);
 	}
+
 	public static GtkPictureHandle NewForResource(string resource_path)
 	{
 		return GtkPictureExterns.gtk_picture_new_for_resource(resource_path);
 	}
-}
 
-public static class GtkPictureSignals
-{
 }
 
 public static class GtkPictureHandleExtensions
@@ -137,6 +139,18 @@ public static class GtkPictureHandleExtensions
 internal class GtkPictureExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPictureHandle gtk_picture_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPictureHandle gtk_picture_new_for_file(GFileHandle file);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPictureHandle gtk_picture_new_for_filename(string filename);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPictureHandle gtk_picture_new_for_paintable(GdkPaintableHandle paintable);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPictureHandle gtk_picture_new_for_pixbuf(GdkPixbufHandle pixbuf);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPictureHandle gtk_picture_new_for_resource(string resource_path);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_picture_get_alternative_text(GtkPictureHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_picture_get_can_shrink(GtkPictureHandle self);
@@ -166,16 +180,4 @@ internal class GtkPictureExterns
 	internal static extern void gtk_picture_set_pixbuf(GtkPictureHandle self, GdkPixbufHandle pixbuf);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_picture_set_resource(GtkPictureHandle self, string resource_path);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPictureHandle gtk_picture_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPictureHandle gtk_picture_new_for_file(GFileHandle file);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPictureHandle gtk_picture_new_for_filename(string filename);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPictureHandle gtk_picture_new_for_paintable(GdkPaintableHandle paintable);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPictureHandle gtk_picture_new_for_pixbuf(GdkPixbufHandle pixbuf);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPictureHandle gtk_picture_new_for_resource(string resource_path);
 }

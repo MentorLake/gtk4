@@ -18,10 +18,6 @@ public class GTypeModuleHandle : GObjectHandle
 {
 }
 
-public static class GTypeModuleSignals
-{
-}
-
 public static class GTypeModuleHandleExtensions
 {
 	public static GTypeModuleHandle AddInterface(this GTypeModuleHandle module, GType instance_type, GType interface_type, GInterfaceInfoHandle interface_info)

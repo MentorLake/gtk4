@@ -20,10 +20,12 @@ public class GdkSurfaceHandle : GObjectHandle
 	{
 		return GdkSurfaceExterns.gdk_surface_new_popup(parent, autohide);
 	}
+
 	public static GdkSurfaceHandle NewToplevel(GdkDisplayHandle display)
 	{
 		return GdkSurfaceExterns.gdk_surface_new_toplevel(display);
 	}
+
 }
 
 public class GdkSurfaceSignal
@@ -187,6 +189,10 @@ public static class GdkSurfaceHandleExtensions
 internal class GdkSurfaceExterns
 {
 	[DllImport(Libraries.Gdk4)]
+	internal static extern GdkSurfaceHandle gdk_surface_new_popup(GdkSurfaceHandle parent, bool autohide);
+	[DllImport(Libraries.Gdk4)]
+	internal static extern GdkSurfaceHandle gdk_surface_new_toplevel(GdkDisplayHandle display);
+	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_surface_beep(GdkSurfaceHandle surface);
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkCairoContextHandle gdk_surface_create_cairo_context(GdkSurfaceHandle surface);
@@ -236,8 +242,4 @@ internal class GdkSurfaceExterns
 	internal static extern void gdk_surface_set_opaque_region(GdkSurfaceHandle surface, cairo_region_tHandle region);
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_surface_translate_coordinates(GdkSurfaceHandle from, GdkSurfaceHandle to, ref double x, ref double y);
-	[DllImport(Libraries.Gdk4)]
-	internal static extern GdkSurfaceHandle gdk_surface_new_popup(GdkSurfaceHandle parent, bool autohide);
-	[DllImport(Libraries.Gdk4)]
-	internal static extern GdkSurfaceHandle gdk_surface_new_toplevel(GdkDisplayHandle display);
 }

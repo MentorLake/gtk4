@@ -20,6 +20,7 @@ public class GtkStatusbarHandle : GtkWidgetHandle
 	{
 		return GtkStatusbarExterns.gtk_statusbar_new();
 	}
+
 }
 
 public class GtkStatusbarSignal
@@ -74,6 +75,8 @@ public static class GtkStatusbarHandleExtensions
 internal class GtkStatusbarExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkStatusbarHandle gtk_statusbar_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_statusbar_get_context_id(GtkStatusbarHandle statusbar, string context_description);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_statusbar_pop(GtkStatusbarHandle statusbar, uint context_id);
@@ -83,6 +86,4 @@ internal class GtkStatusbarExterns
 	internal static extern void gtk_statusbar_remove(GtkStatusbarHandle statusbar, uint context_id, uint message_id);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_statusbar_remove_all(GtkStatusbarHandle statusbar, uint context_id);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkStatusbarHandle gtk_statusbar_new();
 }

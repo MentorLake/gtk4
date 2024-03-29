@@ -20,10 +20,7 @@ public class GskVulkanRendererHandle : GskRendererHandle
 	{
 		return GskVulkanRendererExterns.gsk_vulkan_renderer_new();
 	}
-}
 
-public static class GskVulkanRendererSignals
-{
 }
 
 public static class GskVulkanRendererHandleExtensions

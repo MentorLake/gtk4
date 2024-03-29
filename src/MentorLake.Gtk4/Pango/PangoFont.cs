@@ -16,10 +16,16 @@ namespace MentorLake.Gtk4.Pango;
 
 public class PangoFontHandle : GObjectHandle
 {
-}
+	public static void DescriptionsFree(PangoFontDescriptionHandle[] descs, int n_descs)
+	{
+		PangoFontExterns.pango_font_descriptions_free(descs, n_descs);
+	}
 
-public static class PangoFontSignals
-{
+	public static PangoFontHandle Deserialize(PangoContextHandle context, GBytesHandle bytes, out GErrorHandle error)
+	{
+		return PangoFontExterns.pango_font_deserialize(context, bytes, out error);
+	}
+
 }
 
 public static class PangoFontHandleExtensions
@@ -84,16 +90,6 @@ public static class PangoFontHandleExtensions
 	public static GBytesHandle Serialize(this PangoFontHandle font)
 	{
 		return PangoFontExterns.pango_font_serialize(font);
-	}
-
-	public static void DescriptionsFree(this PangoFontDescriptionHandle[] descs, int n_descs)
-	{
-		PangoFontExterns.pango_font_descriptions_free(descs, n_descs);
-	}
-
-	public static PangoFontHandle Deserialize(this PangoContextHandle context, GBytesHandle bytes, out GErrorHandle error)
-	{
-		return PangoFontExterns.pango_font_deserialize(context, bytes, out error);
 	}
 
 }

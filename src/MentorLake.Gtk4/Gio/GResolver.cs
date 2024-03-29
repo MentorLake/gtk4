@@ -16,6 +16,21 @@ namespace MentorLake.Gtk4.Gio;
 
 public class GResolverHandle : GObjectHandle
 {
+	public static void FreeAddresses(GListHandle addresses)
+	{
+		GResolverExterns.g_resolver_free_addresses(addresses);
+	}
+
+	public static void FreeTargets(GListHandle targets)
+	{
+		GResolverExterns.g_resolver_free_targets(targets);
+	}
+
+	public static GResolverHandle GetDefault()
+	{
+		return GResolverExterns.g_resolver_get_default();
+	}
+
 }
 
 public class GResolverSignal
@@ -126,23 +141,6 @@ public static class GResolverHandleExtensions
 	{
 		GResolverExterns.g_resolver_set_timeout(resolver, timeout_ms);
 		return resolver;
-	}
-
-	public static GResolverHandle FreeAddresses(this GResolverHandle @handle, GListHandle addresses)
-	{
-		GResolverExterns.g_resolver_free_addresses(addresses);
-		return @handle;
-	}
-
-	public static GResolverHandle FreeTargets(this GResolverHandle @handle, GListHandle targets)
-	{
-		GResolverExterns.g_resolver_free_targets(targets);
-		return @handle;
-	}
-
-	public static GResolverHandle GetDefault()
-	{
-		return GResolverExterns.g_resolver_get_default();
 	}
 
 	public static GResolverHandle Connect(this GResolverHandle instance, GResolverSignal signal, GCallback c_handler)

@@ -20,10 +20,7 @@ public class GtkSignalActionHandle : GtkShortcutActionHandle
 	{
 		return GtkSignalActionExterns.gtk_signal_action_new(signal_name);
 	}
-}
 
-public static class GtkSignalActionSignals
-{
 }
 
 public static class GtkSignalActionHandleExtensions
@@ -38,7 +35,7 @@ public static class GtkSignalActionHandleExtensions
 internal class GtkSignalActionExterns
 {
 	[DllImport(Libraries.Gtk4)]
-	internal static extern string gtk_signal_action_get_signal_name(GtkSignalActionHandle self);
-	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSignalActionHandle gtk_signal_action_new(string signal_name);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern string gtk_signal_action_get_signal_name(GtkSignalActionHandle self);
 }

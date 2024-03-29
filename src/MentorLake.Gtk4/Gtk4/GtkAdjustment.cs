@@ -20,6 +20,7 @@ public class GtkAdjustmentHandle : GInitiallyUnownedHandle
 	{
 		return GtkAdjustmentExterns.gtk_adjustment_new(value, lower, upper, step_increment, page_increment, page_size);
 	}
+
 }
 
 public class GtkAdjustmentSignal
@@ -129,6 +130,8 @@ public static class GtkAdjustmentHandleExtensions
 internal class GtkAdjustmentExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkAdjustmentHandle gtk_adjustment_new(double value, double lower, double upper, double step_increment, double page_increment, double page_size);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_adjustment_clamp_page(GtkAdjustmentHandle adjustment, double lower, double upper);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_adjustment_configure(GtkAdjustmentHandle adjustment, double value, double lower, double upper, double step_increment, double page_increment, double page_size);
@@ -158,6 +161,4 @@ internal class GtkAdjustmentExterns
 	internal static extern void gtk_adjustment_set_upper(GtkAdjustmentHandle adjustment, double upper);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_adjustment_set_value(GtkAdjustmentHandle adjustment, double value);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkAdjustmentHandle gtk_adjustment_new(double value, double lower, double upper, double step_increment, double page_increment, double page_size);
 }

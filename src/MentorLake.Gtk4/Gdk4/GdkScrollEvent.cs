@@ -18,29 +18,25 @@ public class GdkScrollEventHandle : GdkEventHandle
 {
 }
 
-public static class GdkScrollEventSignals
-{
-}
-
 public static class GdkScrollEventHandleExtensions
 {
-	public static GdkScrollEventHandle GetDeltas(this GdkScrollEventHandle @handle, GdkEventHandle @event, out double delta_x, out double delta_y)
+	public static GdkScrollEventHandle GetDeltas(this GdkScrollEventHandle @event, out double delta_x, out double delta_y)
 	{
 		GdkScrollEventExterns.gdk_scroll_event_get_deltas(@event, out delta_x, out delta_y);
-		return @handle;
+		return @event;
 	}
 
-	public static GdkScrollDirection GetDirection(this GdkEventHandle @event)
+	public static GdkScrollDirection GetDirection(this GdkScrollEventHandle @event)
 	{
 		return GdkScrollEventExterns.gdk_scroll_event_get_direction(@event);
 	}
 
-	public static GdkScrollUnit GetUnit(this GdkEventHandle @event)
+	public static GdkScrollUnit GetUnit(this GdkScrollEventHandle @event)
 	{
 		return GdkScrollEventExterns.gdk_scroll_event_get_unit(@event);
 	}
 
-	public static bool IsStop(this GdkEventHandle @event)
+	public static bool IsStop(this GdkScrollEventHandle @event)
 	{
 		return GdkScrollEventExterns.gdk_scroll_event_is_stop(@event);
 	}

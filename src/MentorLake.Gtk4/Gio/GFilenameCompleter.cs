@@ -20,6 +20,7 @@ public class GFilenameCompleterHandle : GObjectHandle
 	{
 		return GFilenameCompleterExterns.g_filename_completer_new();
 	}
+
 }
 
 public class GFilenameCompleterSignal
@@ -61,11 +62,11 @@ public static class GFilenameCompleterHandleExtensions
 internal class GFilenameCompleterExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GFilenameCompleterHandle g_filename_completer_new();
+	[DllImport(Libraries.Gio)]
 	internal static extern string g_filename_completer_get_completion_suffix(GFilenameCompleterHandle completer, string initial_text);
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_filename_completer_get_completions(GFilenameCompleterHandle completer, string initial_text);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_filename_completer_set_dirs_only(GFilenameCompleterHandle completer, bool dirs_only);
-	[DllImport(Libraries.Gio)]
-	internal static extern GFilenameCompleterHandle g_filename_completer_new();
 }

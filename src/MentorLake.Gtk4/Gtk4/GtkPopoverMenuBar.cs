@@ -20,10 +20,7 @@ public class GtkPopoverMenuBarHandle : GtkWidgetHandle
 	{
 		return GtkPopoverMenuBarExterns.gtk_popover_menu_bar_new_from_model(model);
 	}
-}
 
-public static class GtkPopoverMenuBarSignals
-{
 }
 
 public static class GtkPopoverMenuBarHandleExtensions
@@ -54,6 +51,8 @@ public static class GtkPopoverMenuBarHandleExtensions
 internal class GtkPopoverMenuBarExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPopoverMenuBarHandle gtk_popover_menu_bar_new_from_model(GMenuModelHandle model);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_popover_menu_bar_add_child(GtkPopoverMenuBarHandle bar, GtkWidgetHandle child, string id);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GMenuModelHandle gtk_popover_menu_bar_get_menu_model(GtkPopoverMenuBarHandle bar);
@@ -61,6 +60,4 @@ internal class GtkPopoverMenuBarExterns
 	internal static extern bool gtk_popover_menu_bar_remove_child(GtkPopoverMenuBarHandle bar, GtkWidgetHandle child);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_menu_bar_set_menu_model(GtkPopoverMenuBarHandle bar, GMenuModelHandle model);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPopoverMenuBarHandle gtk_popover_menu_bar_new_from_model(GMenuModelHandle model);
 }

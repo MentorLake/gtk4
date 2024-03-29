@@ -20,10 +20,12 @@ public class GtkTextViewHandle : GtkWidgetHandle
 	{
 		return GtkTextViewExterns.gtk_text_view_new();
 	}
+
 	public static GtkTextViewHandle NewWithBuffer(GtkTextBufferHandle buffer)
 	{
 		return GtkTextViewExterns.gtk_text_view_new_with_buffer(buffer);
 	}
+
 }
 
 public class GtkTextViewSignal
@@ -454,6 +456,10 @@ public static class GtkTextViewHandleExtensions
 internal class GtkTextViewExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkTextViewHandle gtk_text_view_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkTextViewHandle gtk_text_view_new_with_buffer(GtkTextBufferHandle buffer);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_view_add_child_at_anchor(GtkTextViewHandle text_view, GtkWidgetHandle child, GtkTextChildAnchorHandle anchor);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_view_add_overlay(GtkTextViewHandle text_view, GtkWidgetHandle child, int xpos, int ypos);
@@ -595,8 +601,4 @@ internal class GtkTextViewExterns
 	internal static extern bool gtk_text_view_starts_display_line(GtkTextViewHandle text_view, GtkTextIterHandle iter);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_view_window_to_buffer_coords(GtkTextViewHandle text_view, GtkTextWindowType win, int window_x, int window_y, out int buffer_x, out int buffer_y);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkTextViewHandle gtk_text_view_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkTextViewHandle gtk_text_view_new_with_buffer(GtkTextBufferHandle buffer);
 }

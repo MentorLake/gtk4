@@ -20,14 +20,17 @@ public class GtkTreeViewColumnHandle : GInitiallyUnownedHandle
 	{
 		return GtkTreeViewColumnExterns.gtk_tree_view_column_new();
 	}
+
 	public static GtkTreeViewColumnHandle NewWithArea(GtkCellAreaHandle area)
 	{
 		return GtkTreeViewColumnExterns.gtk_tree_view_column_new_with_area(area);
 	}
+
 	public static GtkTreeViewColumnHandle NewWithAttributes(string title, GtkCellRendererHandle cell, IntPtr @__arglist)
 	{
 		return GtkTreeViewColumnExterns.gtk_tree_view_column_new_with_attributes(title, cell, @__arglist);
 	}
+
 }
 
 public class GtkTreeViewColumnSignal
@@ -331,6 +334,12 @@ public static class GtkTreeViewColumnHandleExtensions
 internal class GtkTreeViewColumnExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkTreeViewColumnHandle gtk_tree_view_column_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkTreeViewColumnHandle gtk_tree_view_column_new_with_area(GtkCellAreaHandle area);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkTreeViewColumnHandle gtk_tree_view_column_new_with_attributes(string title, GtkCellRendererHandle cell, IntPtr @__arglist);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_add_attribute(GtkTreeViewColumnHandle tree_column, GtkCellRendererHandle cell_renderer, string attribute, int column);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_column_cell_get_position(GtkTreeViewColumnHandle tree_column, GtkCellRendererHandle cell_renderer, out int x_offset, out int width);
@@ -430,10 +439,4 @@ internal class GtkTreeViewColumnExterns
 	internal static extern void gtk_tree_view_column_set_visible(GtkTreeViewColumnHandle tree_column, bool visible);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_widget(GtkTreeViewColumnHandle tree_column, GtkWidgetHandle widget);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkTreeViewColumnHandle gtk_tree_view_column_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkTreeViewColumnHandle gtk_tree_view_column_new_with_area(GtkCellAreaHandle area);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkTreeViewColumnHandle gtk_tree_view_column_new_with_attributes(string title, GtkCellRendererHandle cell, IntPtr @__arglist);
 }

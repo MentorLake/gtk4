@@ -20,10 +20,12 @@ public class GtkSpinButtonHandle : GtkWidgetHandle
 	{
 		return GtkSpinButtonExterns.gtk_spin_button_new(adjustment, climb_rate, digits);
 	}
+
 	public static GtkSpinButtonHandle NewWithRange(double min, double max, double step)
 	{
 		return GtkSpinButtonExterns.gtk_spin_button_new_with_range(min, max, step);
 	}
+
 }
 
 public class GtkSpinButtonSignal
@@ -200,6 +202,10 @@ public static class GtkSpinButtonHandleExtensions
 internal class GtkSpinButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkSpinButtonHandle gtk_spin_button_new(GtkAdjustmentHandle adjustment, double climb_rate, uint digits);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkSpinButtonHandle gtk_spin_button_new_with_range(double min, double max, double step);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_configure(GtkSpinButtonHandle spin_button, GtkAdjustmentHandle adjustment, double climb_rate, uint digits);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_spin_button_get_activates_default(GtkSpinButtonHandle spin_button);
@@ -251,8 +257,4 @@ internal class GtkSpinButtonExterns
 	internal static extern void gtk_spin_button_spin(GtkSpinButtonHandle spin_button, GtkSpinType direction, double increment);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_update(GtkSpinButtonHandle spin_button);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkSpinButtonHandle gtk_spin_button_new(GtkAdjustmentHandle adjustment, double climb_rate, uint digits);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkSpinButtonHandle gtk_spin_button_new_with_range(double min, double max, double step);
 }

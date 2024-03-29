@@ -20,10 +20,7 @@ public class GdkGLTextureHandle : GdkTextureHandle
 	{
 		return GdkGLTextureExterns.gdk_gl_texture_new(context, id, width, height, destroy, data);
 	}
-}
 
-public static class GdkGLTextureSignals
-{
 }
 
 public static class GdkGLTextureHandleExtensions
@@ -39,7 +36,7 @@ public static class GdkGLTextureHandleExtensions
 internal class GdkGLTextureExterns
 {
 	[DllImport(Libraries.Gdk4)]
-	internal static extern void gdk_gl_texture_release(GdkGLTextureHandle self);
-	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkGLTextureHandle gdk_gl_texture_new(GdkGLContextHandle context, uint id, int width, int height, GDestroyNotify destroy, IntPtr data);
+	[DllImport(Libraries.Gdk4)]
+	internal static extern void gdk_gl_texture_release(GdkGLTextureHandle self);
 }

@@ -20,10 +20,7 @@ public class GtkMnemonicTriggerHandle : GtkShortcutTriggerHandle
 	{
 		return GtkMnemonicTriggerExterns.gtk_mnemonic_trigger_new(keyval);
 	}
-}
 
-public static class GtkMnemonicTriggerSignals
-{
 }
 
 public static class GtkMnemonicTriggerHandleExtensions
@@ -38,7 +35,7 @@ public static class GtkMnemonicTriggerHandleExtensions
 internal class GtkMnemonicTriggerExterns
 {
 	[DllImport(Libraries.Gtk4)]
-	internal static extern uint gtk_mnemonic_trigger_get_keyval(GtkMnemonicTriggerHandle self);
-	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMnemonicTriggerHandle gtk_mnemonic_trigger_new(uint keyval);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern uint gtk_mnemonic_trigger_get_keyval(GtkMnemonicTriggerHandle self);
 }

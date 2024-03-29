@@ -16,19 +16,15 @@ namespace MentorLake.Gtk4.Gtk4;
 
 public class GtkNothingActionHandle : GtkShortcutActionHandle
 {
-}
-
-public static class GtkNothingActionSignals
-{
-}
-
-public static class GtkNothingActionHandleExtensions
-{
 	public static GtkShortcutActionHandle Get()
 	{
 		return GtkNothingActionExterns.gtk_nothing_action_get();
 	}
 
+}
+
+public static class GtkNothingActionHandleExtensions
+{
 }
 
 internal class GtkNothingActionExterns

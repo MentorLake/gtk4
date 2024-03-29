@@ -18,10 +18,6 @@ public class GdkContentDeserializerHandle : GObjectHandle
 {
 }
 
-public static class GdkContentDeserializerSignals
-{
-}
-
 public static class GdkContentDeserializerHandleExtensions
 {
 	public static GCancellableHandle GetCancellable(this GdkContentDeserializerHandle deserializer)

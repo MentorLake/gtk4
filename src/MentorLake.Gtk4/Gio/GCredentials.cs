@@ -20,10 +20,7 @@ public class GCredentialsHandle : GObjectHandle
 	{
 		return GCredentialsExterns.g_credentials_new();
 	}
-}
 
-public static class GCredentialsSignals
-{
 }
 
 public static class GCredentialsHandleExtensions
@@ -69,6 +66,8 @@ public static class GCredentialsHandleExtensions
 internal class GCredentialsExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GCredentialsHandle g_credentials_new();
+	[DllImport(Libraries.Gio)]
 	internal static extern IntPtr g_credentials_get_native(GCredentialsHandle credentials, GCredentialsType native_type);
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_credentials_get_unix_pid(GCredentialsHandle credentials, out GErrorHandle error);
@@ -82,6 +81,4 @@ internal class GCredentialsExterns
 	internal static extern bool g_credentials_set_unix_user(GCredentialsHandle credentials, int uid, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_credentials_to_string(GCredentialsHandle credentials);
-	[DllImport(Libraries.Gio)]
-	internal static extern GCredentialsHandle g_credentials_new();
 }

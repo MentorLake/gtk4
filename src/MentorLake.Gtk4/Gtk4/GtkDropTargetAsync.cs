@@ -20,6 +20,7 @@ public class GtkDropTargetAsyncHandle : GtkEventControllerHandle
 	{
 		return GtkDropTargetAsyncExterns.gtk_drop_target_async_new(formats, actions);
 	}
+
 }
 
 public class GtkDropTargetAsyncSignal
@@ -77,6 +78,8 @@ public static class GtkDropTargetAsyncHandleExtensions
 internal class GtkDropTargetAsyncExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkDropTargetAsyncHandle gtk_drop_target_async_new(GdkContentFormatsHandle formats, GdkDragAction actions);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDragAction gtk_drop_target_async_get_actions(GtkDropTargetAsyncHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkContentFormatsHandle gtk_drop_target_async_get_formats(GtkDropTargetAsyncHandle self);
@@ -86,6 +89,4 @@ internal class GtkDropTargetAsyncExterns
 	internal static extern void gtk_drop_target_async_set_actions(GtkDropTargetAsyncHandle self, GdkDragAction actions);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drop_target_async_set_formats(GtkDropTargetAsyncHandle self, GdkContentFormatsHandle formats);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkDropTargetAsyncHandle gtk_drop_target_async_new(GdkContentFormatsHandle formats, GdkDragAction actions);
 }

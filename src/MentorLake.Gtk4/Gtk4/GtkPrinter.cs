@@ -20,6 +20,7 @@ public class GtkPrinterHandle : GObjectHandle
 	{
 		return GtkPrinterExterns.gtk_printer_new(name, backend, virtual_);
 	}
+
 }
 
 public class GtkPrinterSignal
@@ -156,6 +157,8 @@ public static class GtkPrinterHandleExtensions
 internal class GtkPrinterExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPrinterHandle gtk_printer_new(string name, GtkPrintBackendHandle backend, bool virtual_);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_printer_accepts_pdf(GtkPrinterHandle printer);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_printer_accepts_ps(GtkPrinterHandle printer);
@@ -199,6 +202,4 @@ internal class GtkPrinterExterns
 	internal static extern GListHandle gtk_printer_list_papers(GtkPrinterHandle printer);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_printer_request_details(GtkPrinterHandle printer);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPrinterHandle gtk_printer_new(string name, GtkPrintBackendHandle backend, bool virtual_);
 }

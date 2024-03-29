@@ -18,10 +18,6 @@ public class GFilterInputStreamHandle : GInputStreamHandle
 {
 }
 
-public static class GFilterInputStreamSignals
-{
-}
-
 public static class GFilterInputStreamHandleExtensions
 {
 	public static GInputStreamHandle GetBaseStream(this GFilterInputStreamHandle stream)

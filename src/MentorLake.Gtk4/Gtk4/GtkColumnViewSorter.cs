@@ -18,10 +18,6 @@ public class GtkColumnViewSorterHandle : GtkSorterHandle
 {
 }
 
-public static class GtkColumnViewSorterSignals
-{
-}
-
 public static class GtkColumnViewSorterHandleExtensions
 {
 	public static uint GetNSortColumns(this GtkColumnViewSorterHandle self)

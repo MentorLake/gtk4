@@ -16,6 +16,11 @@ namespace MentorLake.Gtk4.Gio;
 
 public class GAppInfoMonitorHandle : GObjectHandle
 {
+	public static GAppInfoMonitorHandle Get()
+	{
+		return GAppInfoMonitorExterns.g_app_info_monitor_get();
+	}
+
 }
 
 public class GAppInfoMonitorSignal
@@ -31,11 +36,6 @@ public static class GAppInfoMonitorSignals
 
 public static class GAppInfoMonitorHandleExtensions
 {
-	public static GAppInfoMonitorHandle Get()
-	{
-		return GAppInfoMonitorExterns.g_app_info_monitor_get();
-	}
-
 	public static GAppInfoMonitorHandle Connect(this GAppInfoMonitorHandle instance, GAppInfoMonitorSignal signal, GCallback c_handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);

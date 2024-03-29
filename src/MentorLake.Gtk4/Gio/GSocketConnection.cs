@@ -16,10 +16,16 @@ namespace MentorLake.Gtk4.Gio;
 
 public class GSocketConnectionHandle : GIOStreamHandle
 {
-}
+	public static GType FactoryLookupType(GSocketFamily family, GSocketType type, int protocol_id)
+	{
+		return GSocketConnectionExterns.g_socket_connection_factory_lookup_type(family, type, protocol_id);
+	}
 
-public static class GSocketConnectionSignals
-{
+	public static void FactoryRegisterType(GType g_type, GSocketFamily family, GSocketType type, int protocol)
+	{
+		GSocketConnectionExterns.g_socket_connection_factory_register_type(g_type, family, type, protocol);
+	}
+
 }
 
 public static class GSocketConnectionHandleExtensions
@@ -58,16 +64,6 @@ public static class GSocketConnectionHandleExtensions
 	public static bool IsConnected(this GSocketConnectionHandle connection)
 	{
 		return GSocketConnectionExterns.g_socket_connection_is_connected(connection);
-	}
-
-	public static GType FactoryLookupType(this GSocketFamily family, GSocketType type, int protocol_id)
-	{
-		return GSocketConnectionExterns.g_socket_connection_factory_lookup_type(family, type, protocol_id);
-	}
-
-	public static void FactoryRegisterType(this GType g_type, GSocketFamily family, GSocketType type, int protocol)
-	{
-		GSocketConnectionExterns.g_socket_connection_factory_register_type(g_type, family, type, protocol);
 	}
 
 }

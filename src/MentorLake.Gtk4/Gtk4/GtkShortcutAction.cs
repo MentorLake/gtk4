@@ -20,10 +20,7 @@ public class GtkShortcutActionHandle : GObjectHandle
 	{
 		return GtkShortcutActionExterns.gtk_shortcut_action_parse_string(@string);
 	}
-}
 
-public static class GtkShortcutActionSignals
-{
 }
 
 public static class GtkShortcutActionHandleExtensions
@@ -49,11 +46,11 @@ public static class GtkShortcutActionHandleExtensions
 internal class GtkShortcutActionExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkShortcutActionHandle gtk_shortcut_action_parse_string(string @string);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_shortcut_action_activate(GtkShortcutActionHandle self, GtkShortcutActionFlags flags, GtkWidgetHandle widget, GVariantHandle args);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_shortcut_action_print(GtkShortcutActionHandle self, GStringHandle @string);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_shortcut_action_to_string(GtkShortcutActionHandle self);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkShortcutActionHandle gtk_shortcut_action_parse_string(string @string);
 }

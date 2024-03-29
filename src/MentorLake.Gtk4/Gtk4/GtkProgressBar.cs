@@ -20,10 +20,7 @@ public class GtkProgressBarHandle : GtkWidgetHandle
 	{
 		return GtkProgressBarExterns.gtk_progress_bar_new();
 	}
-}
 
-public static class GtkProgressBarSignals
-{
 }
 
 public static class GtkProgressBarHandleExtensions
@@ -105,6 +102,8 @@ public static class GtkProgressBarHandleExtensions
 internal class GtkProgressBarExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkProgressBarHandle gtk_progress_bar_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoEllipsizeMode gtk_progress_bar_get_ellipsize(GtkProgressBarHandle pbar);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_progress_bar_get_fraction(GtkProgressBarHandle pbar);
@@ -130,6 +129,4 @@ internal class GtkProgressBarExterns
 	internal static extern void gtk_progress_bar_set_show_text(GtkProgressBarHandle pbar, bool show_text);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_progress_bar_set_text(GtkProgressBarHandle pbar, string text);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkProgressBarHandle gtk_progress_bar_new();
 }

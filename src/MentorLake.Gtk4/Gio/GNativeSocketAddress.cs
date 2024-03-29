@@ -20,10 +20,7 @@ public class GNativeSocketAddressHandle : GSocketAddressHandle
 	{
 		return GNativeSocketAddressExterns.g_native_socket_address_new(native, len);
 	}
-}
 
-public static class GNativeSocketAddressSignals
-{
 }
 
 public static class GNativeSocketAddressHandleExtensions

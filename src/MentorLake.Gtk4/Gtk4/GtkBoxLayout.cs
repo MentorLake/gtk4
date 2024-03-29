@@ -20,10 +20,7 @@ public class GtkBoxLayoutHandle : GtkLayoutManagerHandle
 	{
 		return GtkBoxLayoutExterns.gtk_box_layout_new(orientation);
 	}
-}
 
-public static class GtkBoxLayoutSignals
-{
 }
 
 public static class GtkBoxLayoutHandleExtensions
@@ -77,6 +74,8 @@ public static class GtkBoxLayoutHandleExtensions
 internal class GtkBoxLayoutExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkBoxLayoutHandle gtk_box_layout_new(GtkOrientation orientation);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_box_layout_get_baseline_child(GtkBoxLayoutHandle box_layout);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBaselinePosition gtk_box_layout_get_baseline_position(GtkBoxLayoutHandle box_layout);
@@ -92,6 +91,4 @@ internal class GtkBoxLayoutExterns
 	internal static extern void gtk_box_layout_set_homogeneous(GtkBoxLayoutHandle box_layout, bool homogeneous);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_box_layout_set_spacing(GtkBoxLayoutHandle box_layout, uint spacing);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkBoxLayoutHandle gtk_box_layout_new(GtkOrientation orientation);
 }

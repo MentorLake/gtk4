@@ -20,10 +20,7 @@ public class GtkIMMulticontextHandle : GtkIMContextHandle
 	{
 		return GtkIMMulticontextExterns.gtk_im_multicontext_new();
 	}
-}
 
-public static class GtkIMMulticontextSignals
-{
 }
 
 public static class GtkIMMulticontextHandleExtensions
@@ -44,9 +41,9 @@ public static class GtkIMMulticontextHandleExtensions
 internal class GtkIMMulticontextExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkIMMulticontextHandle gtk_im_multicontext_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_im_multicontext_get_context_id(GtkIMMulticontextHandle context);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_im_multicontext_set_context_id(GtkIMMulticontextHandle context, string context_id);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkIMMulticontextHandle gtk_im_multicontext_new();
 }

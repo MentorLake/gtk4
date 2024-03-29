@@ -20,6 +20,7 @@ public class GtkSignalListItemFactoryHandle : GtkListItemFactoryHandle
 	{
 		return GtkSignalListItemFactoryExterns.gtk_signal_list_item_factory_new();
 	}
+
 }
 
 public class GtkSignalListItemFactorySignal

@@ -18,13 +18,9 @@ public class GdkFocusEventHandle : GdkEventHandle
 {
 }
 
-public static class GdkFocusEventSignals
-{
-}
-
 public static class GdkFocusEventHandleExtensions
 {
-	public static bool GetIn(this GdkEventHandle @event)
+	public static bool GetIn(this GdkFocusEventHandle @event)
 	{
 		return GdkFocusEventExterns.gdk_focus_event_get_in(@event);
 	}

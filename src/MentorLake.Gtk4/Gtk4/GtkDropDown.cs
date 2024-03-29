@@ -20,10 +20,12 @@ public class GtkDropDownHandle : GtkWidgetHandle
 	{
 		return GtkDropDownExterns.gtk_drop_down_new(model, expression);
 	}
+
 	public static GtkDropDownHandle NewFromStrings(string strings)
 	{
 		return GtkDropDownExterns.gtk_drop_down_new_from_strings(strings);
 	}
+
 }
 
 public class GtkDropDownSignal
@@ -153,6 +155,10 @@ public static class GtkDropDownHandleExtensions
 internal class GtkDropDownExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkDropDownHandle gtk_drop_down_new(GListModelHandle model, GtkExpressionHandle expression);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkDropDownHandle gtk_drop_down_new_from_strings(string strings);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_drop_down_get_enable_search(GtkDropDownHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkExpressionHandle gtk_drop_down_get_expression(GtkDropDownHandle self);
@@ -190,8 +196,4 @@ internal class GtkDropDownExterns
 	internal static extern void gtk_drop_down_set_selected(GtkDropDownHandle self, uint position);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drop_down_set_show_arrow(GtkDropDownHandle self, bool show_arrow);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkDropDownHandle gtk_drop_down_new(GListModelHandle model, GtkExpressionHandle expression);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkDropDownHandle gtk_drop_down_new_from_strings(string strings);
 }

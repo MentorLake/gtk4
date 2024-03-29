@@ -20,6 +20,7 @@ public class GtkAppChooserWidgetHandle : GtkWidgetHandle
 	{
 		return GtkAppChooserWidgetExterns.gtk_app_chooser_widget_new(content_type);
 	}
+
 }
 
 public class GtkAppChooserWidgetSignal
@@ -112,6 +113,8 @@ public static class GtkAppChooserWidgetHandleExtensions
 internal class GtkAppChooserWidgetExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkAppChooserWidgetHandle gtk_app_chooser_widget_new(string content_type);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_app_chooser_widget_get_default_text(GtkAppChooserWidgetHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_app_chooser_widget_get_show_all(GtkAppChooserWidgetHandle self);
@@ -135,6 +138,4 @@ internal class GtkAppChooserWidgetExterns
 	internal static extern void gtk_app_chooser_widget_set_show_other(GtkAppChooserWidgetHandle self, bool setting);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_app_chooser_widget_set_show_recommended(GtkAppChooserWidgetHandle self, bool setting);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkAppChooserWidgetHandle gtk_app_chooser_widget_new(string content_type);
 }

@@ -20,6 +20,7 @@ public class GtkPrintOperationHandle : GObjectHandle
 	{
 		return GtkPrintOperationExterns.gtk_print_operation_new();
 	}
+
 }
 
 public class GtkPrintOperationSignal
@@ -219,6 +220,8 @@ public static class GtkPrintOperationHandleExtensions
 internal class GtkPrintOperationExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPrintOperationHandle gtk_print_operation_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_cancel(GtkPrintOperationHandle op);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_draw_page_finish(GtkPrintOperationHandle op);
@@ -276,6 +279,4 @@ internal class GtkPrintOperationExterns
 	internal static extern void gtk_print_operation_set_unit(GtkPrintOperationHandle op, GtkUnit unit);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_use_full_page(GtkPrintOperationHandle op, bool full_page);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPrintOperationHandle gtk_print_operation_new();
 }

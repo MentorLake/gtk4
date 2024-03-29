@@ -20,6 +20,7 @@ public class GtkAppChooserButtonHandle : GtkWidgetHandle
 	{
 		return GtkAppChooserButtonExterns.gtk_app_chooser_button_new(content_type);
 	}
+
 }
 
 public class GtkAppChooserButtonSignal
@@ -109,6 +110,8 @@ public static class GtkAppChooserButtonHandleExtensions
 internal class GtkAppChooserButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkAppChooserButtonHandle gtk_app_chooser_button_new(string content_type);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_app_chooser_button_append_custom_item(GtkAppChooserButtonHandle self, string name, string label, GIconHandle icon);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_app_chooser_button_append_separator(GtkAppChooserButtonHandle self);
@@ -130,6 +133,4 @@ internal class GtkAppChooserButtonExterns
 	internal static extern void gtk_app_chooser_button_set_show_default_item(GtkAppChooserButtonHandle self, bool setting);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_app_chooser_button_set_show_dialog_item(GtkAppChooserButtonHandle self, bool setting);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkAppChooserButtonHandle gtk_app_chooser_button_new(string content_type);
 }

@@ -20,18 +20,32 @@ public class GDesktopAppInfoHandle : GObjectHandle
 	{
 		return GDesktopAppInfoExterns.g_desktop_app_info_new(desktop_id);
 	}
+
 	public static GDesktopAppInfoHandle NewFromFilename(string filename)
 	{
 		return GDesktopAppInfoExterns.g_desktop_app_info_new_from_filename(filename);
 	}
+
 	public static GDesktopAppInfoHandle NewFromKeyfile(GKeyFileHandle key_file)
 	{
 		return GDesktopAppInfoExterns.g_desktop_app_info_new_from_keyfile(key_file);
 	}
-}
 
-public static class GDesktopAppInfoSignals
-{
+	public static GListHandle GetImplementations(string @interface)
+	{
+		return GDesktopAppInfoExterns.g_desktop_app_info_get_implementations(@interface);
+	}
+
+	public static string[][] Search(string search_string)
+	{
+		return GDesktopAppInfoExterns.g_desktop_app_info_search(search_string);
+	}
+
+	public static void SetDesktopEnv(string desktop_env)
+	{
+		GDesktopAppInfoExterns.g_desktop_app_info_set_desktop_env(desktop_env);
+	}
+
 }
 
 public static class GDesktopAppInfoHandleExtensions
@@ -127,25 +141,16 @@ public static class GDesktopAppInfoHandleExtensions
 		return GDesktopAppInfoExterns.g_desktop_app_info_list_actions(info);
 	}
 
-	public static GListHandle GetImplementations(this string @interface)
-	{
-		return GDesktopAppInfoExterns.g_desktop_app_info_get_implementations(@interface);
-	}
-
-	public static string[][] Search(this string search_string)
-	{
-		return GDesktopAppInfoExterns.g_desktop_app_info_search(search_string);
-	}
-
-	public static void SetDesktopEnv(this string desktop_env)
-	{
-		GDesktopAppInfoExterns.g_desktop_app_info_set_desktop_env(desktop_env);
-	}
-
 }
 
 internal class GDesktopAppInfoExterns
 {
+	[DllImport(Libraries.Gio)]
+	internal static extern GDesktopAppInfoHandle g_desktop_app_info_new(string desktop_id);
+	[DllImport(Libraries.Gio)]
+	internal static extern GDesktopAppInfoHandle g_desktop_app_info_new_from_filename(string filename);
+	[DllImport(Libraries.Gio)]
+	internal static extern GDesktopAppInfoHandle g_desktop_app_info_new_from_keyfile(GKeyFileHandle key_file);
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_desktop_app_info_get_action_name(GDesktopAppInfoHandle info, string action_name);
 	[DllImport(Libraries.Gio)]
@@ -188,10 +193,4 @@ internal class GDesktopAppInfoExterns
 	internal static extern string[][] g_desktop_app_info_search(string search_string);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_desktop_app_info_set_desktop_env(string desktop_env);
-	[DllImport(Libraries.Gio)]
-	internal static extern GDesktopAppInfoHandle g_desktop_app_info_new(string desktop_id);
-	[DllImport(Libraries.Gio)]
-	internal static extern GDesktopAppInfoHandle g_desktop_app_info_new_from_filename(string filename);
-	[DllImport(Libraries.Gio)]
-	internal static extern GDesktopAppInfoHandle g_desktop_app_info_new_from_keyfile(GKeyFileHandle key_file);
 }

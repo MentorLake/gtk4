@@ -20,22 +20,22 @@ public class GMenuItemHandle : GObjectHandle
 	{
 		return GMenuItemExterns.g_menu_item_new(label, detailed_action);
 	}
+
 	public static GMenuItemHandle NewFromModel(GMenuModelHandle model, int item_index)
 	{
 		return GMenuItemExterns.g_menu_item_new_from_model(model, item_index);
 	}
+
 	public static GMenuItemHandle NewSection(string label, GMenuModelHandle section)
 	{
 		return GMenuItemExterns.g_menu_item_new_section(label, section);
 	}
+
 	public static GMenuItemHandle NewSubmenu(string label, GMenuModelHandle submenu)
 	{
 		return GMenuItemExterns.g_menu_item_new_submenu(label, submenu);
 	}
-}
 
-public static class GMenuItemSignals
-{
 }
 
 public static class GMenuItemHandleExtensions
@@ -120,6 +120,14 @@ public static class GMenuItemHandleExtensions
 internal class GMenuItemExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GMenuItemHandle g_menu_item_new(string label, string detailed_action);
+	[DllImport(Libraries.Gio)]
+	internal static extern GMenuItemHandle g_menu_item_new_from_model(GMenuModelHandle model, int item_index);
+	[DllImport(Libraries.Gio)]
+	internal static extern GMenuItemHandle g_menu_item_new_section(string label, GMenuModelHandle section);
+	[DllImport(Libraries.Gio)]
+	internal static extern GMenuItemHandle g_menu_item_new_submenu(string label, GMenuModelHandle submenu);
+	[DllImport(Libraries.Gio)]
 	internal static extern bool g_menu_item_get_attribute(GMenuItemHandle menu_item, string attribute, string format_string, IntPtr @__arglist);
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_menu_item_get_attribute_value(GMenuItemHandle menu_item, string attribute, GVariantTypeHandle expected_type);
@@ -145,12 +153,4 @@ internal class GMenuItemExterns
 	internal static extern void g_menu_item_set_section(GMenuItemHandle menu_item, GMenuModelHandle section);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_item_set_submenu(GMenuItemHandle menu_item, GMenuModelHandle submenu);
-	[DllImport(Libraries.Gio)]
-	internal static extern GMenuItemHandle g_menu_item_new(string label, string detailed_action);
-	[DllImport(Libraries.Gio)]
-	internal static extern GMenuItemHandle g_menu_item_new_from_model(GMenuModelHandle model, int item_index);
-	[DllImport(Libraries.Gio)]
-	internal static extern GMenuItemHandle g_menu_item_new_section(string label, GMenuModelHandle section);
-	[DllImport(Libraries.Gio)]
-	internal static extern GMenuItemHandle g_menu_item_new_submenu(string label, GMenuModelHandle submenu);
 }

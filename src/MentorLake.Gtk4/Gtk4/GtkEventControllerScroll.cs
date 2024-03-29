@@ -20,6 +20,7 @@ public class GtkEventControllerScrollHandle : GtkEventControllerHandle
 	{
 		return GtkEventControllerScrollExterns.gtk_event_controller_scroll_new(flags);
 	}
+
 }
 
 public class GtkEventControllerScrollSignal
@@ -64,11 +65,11 @@ public static class GtkEventControllerScrollHandleExtensions
 internal class GtkEventControllerScrollExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkEventControllerScrollHandle gtk_event_controller_scroll_new(GtkEventControllerScrollFlags flags);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEventControllerScrollFlags gtk_event_controller_scroll_get_flags(GtkEventControllerScrollHandle scroll);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkScrollUnit gtk_event_controller_scroll_get_unit(GtkEventControllerScrollHandle scroll);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_event_controller_scroll_set_flags(GtkEventControllerScrollHandle scroll, GtkEventControllerScrollFlags flags);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkEventControllerScrollHandle gtk_event_controller_scroll_new(GtkEventControllerScrollFlags flags);
 }

@@ -20,6 +20,7 @@ public class GtkPrintJobHandle : GObjectHandle
 	{
 		return GtkPrintJobExterns.gtk_print_job_new(title, printer, settings, page_setup);
 	}
+
 }
 
 public class GtkPrintJobSignal
@@ -207,6 +208,8 @@ public static class GtkPrintJobHandleExtensions
 internal class GtkPrintJobExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPrintJobHandle gtk_print_job_new(string title, GtkPrinterHandle printer, GtkPrintSettingsHandle settings, GtkPageSetupHandle page_setup);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_job_get_collate(GtkPrintJobHandle job);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_print_job_get_n_up(GtkPrintJobHandle job);
@@ -266,6 +269,4 @@ internal class GtkPrintJobExterns
 	internal static extern bool gtk_print_job_set_source_file(GtkPrintJobHandle job, string filename, out GErrorHandle error);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_job_set_track_print_status(GtkPrintJobHandle job, bool track_status);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPrintJobHandle gtk_print_job_new(string title, GtkPrinterHandle printer, GtkPrintSettingsHandle settings, GtkPageSetupHandle page_setup);
 }

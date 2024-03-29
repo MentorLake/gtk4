@@ -18,23 +18,19 @@ public class GdkCrossingEventHandle : GdkEventHandle
 {
 }
 
-public static class GdkCrossingEventSignals
-{
-}
-
 public static class GdkCrossingEventHandleExtensions
 {
-	public static GdkNotifyType GetDetail(this GdkEventHandle @event)
+	public static GdkNotifyType GetDetail(this GdkCrossingEventHandle @event)
 	{
 		return GdkCrossingEventExterns.gdk_crossing_event_get_detail(@event);
 	}
 
-	public static bool GetFocus(this GdkEventHandle @event)
+	public static bool GetFocus(this GdkCrossingEventHandle @event)
 	{
 		return GdkCrossingEventExterns.gdk_crossing_event_get_focus(@event);
 	}
 
-	public static GdkCrossingMode GetMode(this GdkEventHandle @event)
+	public static GdkCrossingMode GetMode(this GdkCrossingEventHandle @event)
 	{
 		return GdkCrossingEventExterns.gdk_crossing_event_get_mode(@event);
 	}

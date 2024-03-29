@@ -18,10 +18,6 @@ public class GdkDropHandle : GObjectHandle
 {
 }
 
-public static class GdkDropSignals
-{
-}
-
 public static class GdkDropHandleExtensions
 {
 	public static GdkDropHandle Finish(this GdkDropHandle self, GdkDragAction action)

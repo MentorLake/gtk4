@@ -18,10 +18,6 @@ public class GtkLayoutManagerHandle : GObjectHandle
 {
 }
 
-public static class GtkLayoutManagerSignals
-{
-}
-
 public static class GtkLayoutManagerHandleExtensions
 {
 	public static GtkLayoutManagerHandle Allocate(this GtkLayoutManagerHandle manager, GtkWidgetHandle widget, int width, int height, int baseline)

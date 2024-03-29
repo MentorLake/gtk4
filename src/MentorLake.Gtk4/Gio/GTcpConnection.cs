@@ -18,10 +18,6 @@ public class GTcpConnectionHandle : GSocketConnectionHandle
 {
 }
 
-public static class GTcpConnectionSignals
-{
-}
-
 public static class GTcpConnectionHandleExtensions
 {
 	public static bool GetGracefulDisconnect(this GTcpConnectionHandle connection)

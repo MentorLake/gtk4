@@ -20,10 +20,7 @@ public class GtkNamedActionHandle : GtkShortcutActionHandle
 	{
 		return GtkNamedActionExterns.gtk_named_action_new(name);
 	}
-}
 
-public static class GtkNamedActionSignals
-{
 }
 
 public static class GtkNamedActionHandleExtensions
@@ -38,7 +35,7 @@ public static class GtkNamedActionHandleExtensions
 internal class GtkNamedActionExterns
 {
 	[DllImport(Libraries.Gtk4)]
-	internal static extern string gtk_named_action_get_action_name(GtkNamedActionHandle self);
-	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkNamedActionHandle gtk_named_action_new(string name);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern string gtk_named_action_get_action_name(GtkNamedActionHandle self);
 }

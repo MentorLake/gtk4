@@ -18,10 +18,6 @@ public class GtkOverlayLayoutChildHandle : GtkLayoutChildHandle
 {
 }
 
-public static class GtkOverlayLayoutChildSignals
-{
-}
-
 public static class GtkOverlayLayoutChildHandleExtensions
 {
 	public static bool GetClipOverlay(this GtkOverlayLayoutChildHandle child)

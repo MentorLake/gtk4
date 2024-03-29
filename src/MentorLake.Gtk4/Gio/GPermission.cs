@@ -18,10 +18,6 @@ public class GPermissionHandle : GObjectHandle
 {
 }
 
-public static class GPermissionSignals
-{
-}
-
 public static class GPermissionHandleExtensions
 {
 	public static bool Acquire(this GPermissionHandle permission, GCancellableHandle cancellable, out GErrorHandle error)

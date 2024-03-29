@@ -16,19 +16,15 @@ namespace MentorLake.Gtk4.Gio;
 
 public class GDBusMenuModelHandle : GMenuModelHandle
 {
-}
-
-public static class GDBusMenuModelSignals
-{
-}
-
-public static class GDBusMenuModelHandleExtensions
-{
-	public static GDBusMenuModelHandle GDbusMenuModelGet(this GDBusConnectionHandle connection, string bus_name, string object_path)
+	public static GDBusMenuModelHandle GDbusMenuModelGet(GDBusConnectionHandle connection, string bus_name, string object_path)
 	{
 		return GDBusMenuModelExterns.g_dbus_menu_model_get(connection, bus_name, object_path);
 	}
 
+}
+
+public static class GDBusMenuModelHandleExtensions
+{
 }
 
 internal class GDBusMenuModelExterns

@@ -20,6 +20,7 @@ public class GDBusAuthObserverHandle : GObjectHandle
 	{
 		return GDBusAuthObserverExterns.g_dbus_auth_observer_new();
 	}
+
 }
 
 public class GDBusAuthObserverSignal
@@ -56,9 +57,9 @@ public static class GDBusAuthObserverHandleExtensions
 internal class GDBusAuthObserverExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GDBusAuthObserverHandle g_dbus_auth_observer_new();
+	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dbus_auth_observer_allow_mechanism(GDBusAuthObserverHandle observer, string mechanism);
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dbus_auth_observer_authorize_authenticated_peer(GDBusAuthObserverHandle observer, GIOStreamHandle stream, GCredentialsHandle credentials);
-	[DllImport(Libraries.Gio)]
-	internal static extern GDBusAuthObserverHandle g_dbus_auth_observer_new();
 }

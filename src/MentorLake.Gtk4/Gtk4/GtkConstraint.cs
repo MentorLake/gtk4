@@ -20,14 +20,12 @@ public class GtkConstraintHandle : GObjectHandle
 	{
 		return GtkConstraintExterns.gtk_constraint_new(target, target_attribute, relation, source, source_attribute, multiplier, constant, strength);
 	}
+
 	public static GtkConstraintHandle NewConstant(GtkConstraintTargetHandle target, GtkConstraintAttribute target_attribute, GtkConstraintRelation relation, double constant, int strength)
 	{
 		return GtkConstraintExterns.gtk_constraint_new_constant(target, target_attribute, relation, constant, strength);
 	}
-}
 
-public static class GtkConstraintSignals
-{
 }
 
 public static class GtkConstraintHandleExtensions
@@ -92,6 +90,10 @@ public static class GtkConstraintHandleExtensions
 internal class GtkConstraintExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkConstraintHandle gtk_constraint_new(GtkConstraintTargetHandle target, GtkConstraintAttribute target_attribute, GtkConstraintRelation relation, GtkConstraintTargetHandle source, GtkConstraintAttribute source_attribute, double multiplier, double constant, int strength);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkConstraintHandle gtk_constraint_new_constant(GtkConstraintTargetHandle target, GtkConstraintAttribute target_attribute, GtkConstraintRelation relation, double constant, int strength);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_constraint_get_constant(GtkConstraintHandle constraint);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_constraint_get_multiplier(GtkConstraintHandle constraint);
@@ -113,8 +115,4 @@ internal class GtkConstraintExterns
 	internal static extern bool gtk_constraint_is_constant(GtkConstraintHandle constraint);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_constraint_is_required(GtkConstraintHandle constraint);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkConstraintHandle gtk_constraint_new(GtkConstraintTargetHandle target, GtkConstraintAttribute target_attribute, GtkConstraintRelation relation, GtkConstraintTargetHandle source, GtkConstraintAttribute source_attribute, double multiplier, double constant, int strength);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkConstraintHandle gtk_constraint_new_constant(GtkConstraintTargetHandle target, GtkConstraintAttribute target_attribute, GtkConstraintRelation relation, double constant, int strength);
 }

@@ -20,18 +20,42 @@ public class GObjectHandle : GTypeInstanceHandle
 	{
 		return GObjectExterns.g_object_new(object_type, first_property_name, @__arglist);
 	}
+
 	public static GObjectHandle NewValist(GType object_type, string first_property_name, IntPtr var_args)
 	{
 		return GObjectExterns.g_object_new_valist(object_type, first_property_name, var_args);
 	}
+
 	public static GObjectHandle NewWithProperties(GType object_type, uint n_properties, string[] names, GValue[] values)
 	{
 		return GObjectExterns.g_object_new_with_properties(object_type, n_properties, names, values);
 	}
+
 	public static GObjectHandle Newv(GType object_type, uint n_parameters, GParameter[] parameters)
 	{
 		return GObjectExterns.g_object_newv(object_type, n_parameters, parameters);
 	}
+
+	public static int CompatControl(int what, IntPtr data)
+	{
+		return GObjectExterns.g_object_compat_control(what, data);
+	}
+
+	public static GParamSpecHandle InterfaceFindProperty(GTypeInterfaceHandle g_iface, string property_name)
+	{
+		return GObjectExterns.g_object_interface_find_property(g_iface, property_name);
+	}
+
+	public static void InterfaceInstallProperty(GTypeInterfaceHandle g_iface, GParamSpecHandle pspec)
+	{
+		GObjectExterns.g_object_interface_install_property(g_iface, pspec);
+	}
+
+	public static GParamSpecHandle[] InterfaceListProperties(GTypeInterfaceHandle g_iface, out uint n_properties_p)
+	{
+		return GObjectExterns.g_object_interface_list_properties(g_iface, out n_properties_p);
+	}
+
 }
 
 public class GObjectSignal
@@ -289,27 +313,6 @@ public static class GObjectHandleExtensions
 		return @object;
 	}
 
-	public static int CompatControl(this int what, IntPtr data)
-	{
-		return GObjectExterns.g_object_compat_control(what, data);
-	}
-
-	public static GParamSpecHandle InterfaceFindProperty(this GTypeInterfaceHandle g_iface, string property_name)
-	{
-		return GObjectExterns.g_object_interface_find_property(g_iface, property_name);
-	}
-
-	public static GObjectHandle InterfaceInstallProperty(this GObjectHandle @handle, GTypeInterfaceHandle g_iface, GParamSpecHandle pspec)
-	{
-		GObjectExterns.g_object_interface_install_property(g_iface, pspec);
-		return @handle;
-	}
-
-	public static GParamSpecHandle[] InterfaceListProperties(this GTypeInterfaceHandle g_iface, out uint n_properties_p)
-	{
-		return GObjectExterns.g_object_interface_list_properties(g_iface, out n_properties_p);
-	}
-
 	public static GObjectHandle GSignalStopEmissionByName(this GObjectHandle instance, string detailed_signal)
 	{
 		GObjectExterns.g_signal_stop_emission_by_name(instance, detailed_signal);
@@ -418,6 +421,14 @@ public static class GObjectHandleExtensions
 internal class GObjectExterns
 {
 	[DllImport(Libraries.GObject)]
+	internal static extern GObjectHandle g_object_new(GType object_type, string first_property_name, IntPtr @__arglist);
+	[DllImport(Libraries.GObject)]
+	internal static extern GObjectHandle g_object_new_valist(GType object_type, string first_property_name, IntPtr var_args);
+	[DllImport(Libraries.GObject)]
+	internal static extern GObjectHandle g_object_new_with_properties(GType object_type, uint n_properties, string[] names, GValue[] values);
+	[DllImport(Libraries.GObject)]
+	internal static extern GObjectHandle g_object_newv(GType object_type, uint n_parameters, GParameter[] parameters);
+	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_add_toggle_ref(GObjectHandle @object, GToggleNotify notify, IntPtr data);
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_add_weak_pointer(GObjectHandle @object, ref IntPtr weak_pointer_location);
@@ -504,14 +515,6 @@ internal class GObjectExterns
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_weak_unref(GObjectHandle @object, GWeakNotify notify, IntPtr data);
 	[DllImport(Libraries.GObject)]
-	internal static extern int g_object_compat_control(int what, IntPtr data);
-	[DllImport(Libraries.GObject)]
-	internal static extern GParamSpecHandle g_object_interface_find_property(GTypeInterfaceHandle g_iface, string property_name);
-	[DllImport(Libraries.GObject)]
-	internal static extern void g_object_interface_install_property(GTypeInterfaceHandle g_iface, GParamSpecHandle pspec);
-	[DllImport(Libraries.GObject)]
-	internal static extern GParamSpecHandle[] g_object_interface_list_properties(GTypeInterfaceHandle g_iface, out uint n_properties_p);
-	[DllImport(Libraries.GObject)]
 	internal static extern void g_signal_stop_emission_by_name(GObjectHandle instance, string detailed_signal);
 	[DllImport(Libraries.GObject)]
 	internal static extern ulong g_signal_handler_find(GObjectHandle instance, GSignalMatchType mask, uint signal_id, GQuark detail, GClosureHandle closure, IntPtr func, IntPtr data);
@@ -548,11 +551,11 @@ internal class GObjectExterns
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_signal_stop_emission(GObjectHandle instance, uint signal_id, GQuark detail);
 	[DllImport(Libraries.GObject)]
-	internal static extern GObjectHandle g_object_new(GType object_type, string first_property_name, IntPtr @__arglist);
+	internal static extern int g_object_compat_control(int what, IntPtr data);
 	[DllImport(Libraries.GObject)]
-	internal static extern GObjectHandle g_object_new_valist(GType object_type, string first_property_name, IntPtr var_args);
+	internal static extern GParamSpecHandle g_object_interface_find_property(GTypeInterfaceHandle g_iface, string property_name);
 	[DllImport(Libraries.GObject)]
-	internal static extern GObjectHandle g_object_new_with_properties(GType object_type, uint n_properties, string[] names, GValue[] values);
+	internal static extern void g_object_interface_install_property(GTypeInterfaceHandle g_iface, GParamSpecHandle pspec);
 	[DllImport(Libraries.GObject)]
-	internal static extern GObjectHandle g_object_newv(GType object_type, uint n_parameters, GParameter[] parameters);
+	internal static extern GParamSpecHandle[] g_object_interface_list_properties(GTypeInterfaceHandle g_iface, out uint n_properties_p);
 }

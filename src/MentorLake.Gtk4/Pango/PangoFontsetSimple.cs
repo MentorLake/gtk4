@@ -20,10 +20,7 @@ public class PangoFontsetSimpleHandle : PangoFontsetHandle
 	{
 		return PangoFontsetSimpleExterns.pango_fontset_simple_new(language);
 	}
-}
 
-public static class PangoFontsetSimpleSignals
-{
 }
 
 public static class PangoFontsetSimpleHandleExtensions
@@ -44,9 +41,9 @@ public static class PangoFontsetSimpleHandleExtensions
 internal class PangoFontsetSimpleExterns
 {
 	[DllImport(Libraries.Pango)]
+	internal static extern PangoFontsetSimpleHandle pango_fontset_simple_new(PangoLanguageHandle language);
+	[DllImport(Libraries.Pango)]
 	internal static extern void pango_fontset_simple_append(PangoFontsetSimpleHandle fontset, PangoFontHandle font);
 	[DllImport(Libraries.Pango)]
 	internal static extern int pango_fontset_simple_size(PangoFontsetSimpleHandle fontset);
-	[DllImport(Libraries.Pango)]
-	internal static extern PangoFontsetSimpleHandle pango_fontset_simple_new(PangoLanguageHandle language);
 }

@@ -18,10 +18,6 @@ public class GtkGridLayoutChildHandle : GtkLayoutChildHandle
 {
 }
 
-public static class GtkGridLayoutChildSignals
-{
-}
-
 public static class GtkGridLayoutChildHandleExtensions
 {
 	public static int GetColumn(this GtkGridLayoutChildHandle child)

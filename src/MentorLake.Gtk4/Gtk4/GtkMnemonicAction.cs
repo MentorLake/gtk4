@@ -16,19 +16,15 @@ namespace MentorLake.Gtk4.Gtk4;
 
 public class GtkMnemonicActionHandle : GtkShortcutActionHandle
 {
-}
-
-public static class GtkMnemonicActionSignals
-{
-}
-
-public static class GtkMnemonicActionHandleExtensions
-{
 	public static GtkShortcutActionHandle Get()
 	{
 		return GtkMnemonicActionExterns.gtk_mnemonic_action_get();
 	}
 
+}
+
+public static class GtkMnemonicActionHandleExtensions
+{
 }
 
 internal class GtkMnemonicActionExterns

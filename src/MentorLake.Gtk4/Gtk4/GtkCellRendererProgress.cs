@@ -20,10 +20,7 @@ public class GtkCellRendererProgressHandle : GtkCellRendererHandle
 	{
 		return GtkCellRendererProgressExterns.gtk_cell_renderer_progress_new();
 	}
-}
 
-public static class GtkCellRendererProgressSignals
-{
 }
 
 public static class GtkCellRendererProgressHandleExtensions

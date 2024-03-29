@@ -20,6 +20,7 @@ public class GAppLaunchContextHandle : GObjectHandle
 	{
 		return GAppLaunchContextExterns.g_app_launch_context_new();
 	}
+
 }
 
 public class GAppLaunchContextSignal
@@ -80,6 +81,8 @@ public static class GAppLaunchContextHandleExtensions
 internal class GAppLaunchContextExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GAppLaunchContextHandle g_app_launch_context_new();
+	[DllImport(Libraries.Gio)]
 	internal static extern string g_app_launch_context_get_display(GAppLaunchContextHandle context, GAppInfoHandle info, GListHandle files);
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_app_launch_context_get_environment(GAppLaunchContextHandle context);
@@ -91,6 +94,4 @@ internal class GAppLaunchContextExterns
 	internal static extern void g_app_launch_context_setenv(GAppLaunchContextHandle context, string variable, string value);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_app_launch_context_unsetenv(GAppLaunchContextHandle context, string variable);
-	[DllImport(Libraries.Gio)]
-	internal static extern GAppLaunchContextHandle g_app_launch_context_new();
 }

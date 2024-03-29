@@ -20,10 +20,7 @@ public class GtkStringSorterHandle : GtkSorterHandle
 	{
 		return GtkStringSorterExterns.gtk_string_sorter_new(expression);
 	}
-}
 
-public static class GtkStringSorterSignals
-{
 }
 
 public static class GtkStringSorterHandleExtensions
@@ -66,6 +63,8 @@ public static class GtkStringSorterHandleExtensions
 internal class GtkStringSorterExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkStringSorterHandle gtk_string_sorter_new(GtkExpressionHandle expression);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCollation gtk_string_sorter_get_collation(GtkStringSorterHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkExpressionHandle gtk_string_sorter_get_expression(GtkStringSorterHandle self);
@@ -77,6 +76,4 @@ internal class GtkStringSorterExterns
 	internal static extern void gtk_string_sorter_set_expression(GtkStringSorterHandle self, GtkExpressionHandle expression);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_string_sorter_set_ignore_case(GtkStringSorterHandle self, bool ignore_case);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkStringSorterHandle gtk_string_sorter_new(GtkExpressionHandle expression);
 }

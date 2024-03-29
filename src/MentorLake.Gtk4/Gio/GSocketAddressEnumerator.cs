@@ -18,10 +18,6 @@ public class GSocketAddressEnumeratorHandle : GObjectHandle
 {
 }
 
-public static class GSocketAddressEnumeratorSignals
-{
-}
-
 public static class GSocketAddressEnumeratorHandleExtensions
 {
 	public static GSocketAddressHandle Next(this GSocketAddressEnumeratorHandle enumerator, GCancellableHandle cancellable, out GErrorHandle error)

@@ -18,10 +18,6 @@ public class GFileInputStreamHandle : GInputStreamHandle
 {
 }
 
-public static class GFileInputStreamSignals
-{
-}
-
 public static class GFileInputStreamHandleExtensions
 {
 	public static GFileInfoHandle QueryInfo(this GFileInputStreamHandle stream, string attributes, GCancellableHandle cancellable, out GErrorHandle error)

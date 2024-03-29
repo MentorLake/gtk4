@@ -20,10 +20,7 @@ public class GtkDirectoryListHandle : GObjectHandle
 	{
 		return GtkDirectoryListExterns.gtk_directory_list_new(attributes, file);
 	}
-}
 
-public static class GtkDirectoryListSignals
-{
 }
 
 public static class GtkDirectoryListHandleExtensions
@@ -87,6 +84,8 @@ public static class GtkDirectoryListHandleExtensions
 internal class GtkDirectoryListExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkDirectoryListHandle gtk_directory_list_new(string attributes, GFileHandle file);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_directory_list_get_attributes(GtkDirectoryListHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GErrorHandle gtk_directory_list_get_error(GtkDirectoryListHandle self);
@@ -106,6 +105,4 @@ internal class GtkDirectoryListExterns
 	internal static extern void gtk_directory_list_set_io_priority(GtkDirectoryListHandle self, int io_priority);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_directory_list_set_monitored(GtkDirectoryListHandle self, bool monitored);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkDirectoryListHandle gtk_directory_list_new(string attributes, GFileHandle file);
 }

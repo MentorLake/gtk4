@@ -18,10 +18,6 @@ public class GParamSpecEnumHandle : GParamSpecHandle
 {
 }
 
-public static class GParamSpecEnumSignals
-{
-}
-
 public static class GParamSpecEnumHandleExtensions
 {
 }

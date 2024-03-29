@@ -20,6 +20,7 @@ public class GDBusServerHandle : GObjectHandle
 	{
 		return GDBusServerExterns.g_dbus_server_new_sync(address, flags, guid, observer, cancellable, out error);
 	}
+
 }
 
 public class GDBusServerSignal
@@ -77,6 +78,8 @@ public static class GDBusServerHandleExtensions
 internal class GDBusServerExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GDBusServerHandle g_dbus_server_new_sync(string address, GDBusServerFlags flags, string guid, GDBusAuthObserverHandle observer, GCancellableHandle cancellable, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_server_get_client_address(GDBusServerHandle server);
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusServerFlags g_dbus_server_get_flags(GDBusServerHandle server);
@@ -88,6 +91,4 @@ internal class GDBusServerExterns
 	internal static extern void g_dbus_server_start(GDBusServerHandle server);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_server_stop(GDBusServerHandle server);
-	[DllImport(Libraries.Gio)]
-	internal static extern GDBusServerHandle g_dbus_server_new_sync(string address, GDBusServerFlags flags, string guid, GDBusAuthObserverHandle observer, GCancellableHandle cancellable, out GErrorHandle error);
 }

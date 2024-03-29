@@ -18,10 +18,6 @@ public class GFileEnumeratorHandle : GObjectHandle
 {
 }
 
-public static class GFileEnumeratorSignals
-{
-}
-
 public static class GFileEnumeratorHandleExtensions
 {
 	public static bool Close(this GFileEnumeratorHandle enumerator, GCancellableHandle cancellable, out GErrorHandle error)

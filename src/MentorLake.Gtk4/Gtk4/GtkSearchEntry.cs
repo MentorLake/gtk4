@@ -20,6 +20,7 @@ public class GtkSearchEntryHandle : GtkWidgetHandle
 	{
 		return GtkSearchEntryExterns.gtk_search_entry_new();
 	}
+
 }
 
 public class GtkSearchEntrySignal
@@ -105,6 +106,8 @@ public static class GtkSearchEntryHandleExtensions
 internal class GtkSearchEntryExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkSearchEntryHandle gtk_search_entry_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkInputHints gtk_search_entry_get_input_hints(GtkSearchEntryHandle entry);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkInputPurpose gtk_search_entry_get_input_purpose(GtkSearchEntryHandle entry);
@@ -124,6 +127,4 @@ internal class GtkSearchEntryExterns
 	internal static extern void gtk_search_entry_set_placeholder_text(GtkSearchEntryHandle entry, string text);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_search_entry_set_search_delay(GtkSearchEntryHandle entry, uint delay);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkSearchEntryHandle gtk_search_entry_new();
 }

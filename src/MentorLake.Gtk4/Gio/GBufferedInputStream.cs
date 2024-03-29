@@ -20,14 +20,12 @@ public class GBufferedInputStreamHandle : GFilterInputStreamHandle
 	{
 		return GBufferedInputStreamExterns.g_buffered_input_stream_new(base_stream);
 	}
+
 	public static GBufferedInputStreamHandle NewSized(GInputStreamHandle base_stream, int size)
 	{
 		return GBufferedInputStreamExterns.g_buffered_input_stream_new_sized(base_stream, size);
 	}
-}
 
-public static class GBufferedInputStreamSignals
-{
 }
 
 public static class GBufferedInputStreamHandleExtensions
@@ -84,6 +82,10 @@ public static class GBufferedInputStreamHandleExtensions
 internal class GBufferedInputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GBufferedInputStreamHandle g_buffered_input_stream_new(GInputStreamHandle base_stream);
+	[DllImport(Libraries.Gio)]
+	internal static extern GBufferedInputStreamHandle g_buffered_input_stream_new_sized(GInputStreamHandle base_stream, int size);
+	[DllImport(Libraries.Gio)]
 	internal static extern int g_buffered_input_stream_fill(GBufferedInputStreamHandle stream, int count, GCancellableHandle cancellable, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_buffered_input_stream_fill_async(GBufferedInputStreamHandle stream, int count, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
@@ -101,8 +103,4 @@ internal class GBufferedInputStreamExterns
 	internal static extern int g_buffered_input_stream_read_byte(GBufferedInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_buffered_input_stream_set_buffer_size(GBufferedInputStreamHandle stream, int size);
-	[DllImport(Libraries.Gio)]
-	internal static extern GBufferedInputStreamHandle g_buffered_input_stream_new(GInputStreamHandle base_stream);
-	[DllImport(Libraries.Gio)]
-	internal static extern GBufferedInputStreamHandle g_buffered_input_stream_new_sized(GInputStreamHandle base_stream, int size);
 }

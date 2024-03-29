@@ -20,10 +20,7 @@ public class GtkInscriptionHandle : GtkWidgetHandle
 	{
 		return GtkInscriptionExterns.gtk_inscription_new(text);
 	}
-}
 
-public static class GtkInscriptionSignals
-{
 }
 
 public static class GtkInscriptionHandleExtensions
@@ -149,6 +146,8 @@ public static class GtkInscriptionHandleExtensions
 internal class GtkInscriptionExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkInscriptionHandle gtk_inscription_new(string text);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoAttrListHandle gtk_inscription_get_attributes(GtkInscriptionHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_inscription_get_min_chars(GtkInscriptionHandle self);
@@ -190,6 +189,4 @@ internal class GtkInscriptionExterns
 	internal static extern void gtk_inscription_set_xalign(GtkInscriptionHandle self, float xalign);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_inscription_set_yalign(GtkInscriptionHandle self, float yalign);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkInscriptionHandle gtk_inscription_new(string text);
 }

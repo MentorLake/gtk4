@@ -20,6 +20,7 @@ public class GMountOperationHandle : GObjectHandle
 	{
 		return GMountOperationExterns.g_mount_operation_new();
 	}
+
 }
 
 public class GMountOperationSignal
@@ -155,6 +156,8 @@ public static class GMountOperationHandleExtensions
 internal class GMountOperationExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GMountOperationHandle g_mount_operation_new();
+	[DllImport(Libraries.Gio)]
 	internal static extern bool g_mount_operation_get_anonymous(GMountOperationHandle op);
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_mount_operation_get_choice(GMountOperationHandle op);
@@ -192,6 +195,4 @@ internal class GMountOperationExterns
 	internal static extern void g_mount_operation_set_pim(GMountOperationHandle op, uint pim);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_operation_set_username(GMountOperationHandle op, string username);
-	[DllImport(Libraries.Gio)]
-	internal static extern GMountOperationHandle g_mount_operation_new();
 }

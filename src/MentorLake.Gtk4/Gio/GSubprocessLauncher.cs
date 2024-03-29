@@ -20,10 +20,7 @@ public class GSubprocessLauncherHandle : GObjectHandle
 	{
 		return GSubprocessLauncherExterns.g_subprocess_launcher_new(flags);
 	}
-}
 
-public static class GSubprocessLauncherSignals
-{
 }
 
 public static class GSubprocessLauncherHandleExtensions
@@ -132,6 +129,8 @@ public static class GSubprocessLauncherHandleExtensions
 internal class GSubprocessLauncherExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GSubprocessLauncherHandle g_subprocess_launcher_new(GSubprocessFlags flags);
+	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_launcher_close(GSubprocessLauncherHandle self);
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_subprocess_launcher_getenv(GSubprocessLauncherHandle self, string variable);
@@ -165,6 +164,4 @@ internal class GSubprocessLauncherExterns
 	internal static extern void g_subprocess_launcher_take_stdout_fd(GSubprocessLauncherHandle self, int fd);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_launcher_unsetenv(GSubprocessLauncherHandle self, string variable);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSubprocessLauncherHandle g_subprocess_launcher_new(GSubprocessFlags flags);
 }

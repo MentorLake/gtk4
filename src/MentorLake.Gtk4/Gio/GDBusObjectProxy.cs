@@ -20,10 +20,7 @@ public class GDBusObjectProxyHandle : GObjectHandle
 	{
 		return GDBusObjectProxyExterns.g_dbus_object_proxy_new(connection, object_path);
 	}
-}
 
-public static class GDBusObjectProxySignals
-{
 }
 
 public static class GDBusObjectProxyHandleExtensions
@@ -38,7 +35,7 @@ public static class GDBusObjectProxyHandleExtensions
 internal class GDBusObjectProxyExterns
 {
 	[DllImport(Libraries.Gio)]
-	internal static extern GDBusConnectionHandle g_dbus_object_proxy_get_connection(GDBusObjectProxyHandle proxy);
-	[DllImport(Libraries.Gio)]
 	internal static extern GDBusObjectProxyHandle g_dbus_object_proxy_new(GDBusConnectionHandle connection, string object_path);
+	[DllImport(Libraries.Gio)]
+	internal static extern GDBusConnectionHandle g_dbus_object_proxy_get_connection(GDBusObjectProxyHandle proxy);
 }

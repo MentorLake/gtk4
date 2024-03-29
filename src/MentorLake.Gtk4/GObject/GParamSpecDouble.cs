@@ -18,10 +18,6 @@ public class GParamSpecDoubleHandle : GParamSpecHandle
 {
 }
 
-public static class GParamSpecDoubleSignals
-{
-}
-
 public static class GParamSpecDoubleHandleExtensions
 {
 }

@@ -20,10 +20,7 @@ public class GSimpleIOStreamHandle : GIOStreamHandle
 	{
 		return GSimpleIOStreamExterns.g_simple_io_stream_new(input_stream, output_stream);
 	}
-}
 
-public static class GSimpleIOStreamSignals
-{
 }
 
 public static class GSimpleIOStreamHandleExtensions

@@ -20,10 +20,7 @@ public class GtkWindowControlsHandle : GtkWidgetHandle
 	{
 		return GtkWindowControlsExterns.gtk_window_controls_new(side);
 	}
-}
 
-public static class GtkWindowControlsSignals
-{
 }
 
 public static class GtkWindowControlsHandleExtensions
@@ -60,6 +57,8 @@ public static class GtkWindowControlsHandleExtensions
 internal class GtkWindowControlsExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkWindowControlsHandle gtk_window_controls_new(GtkPackType side);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_window_controls_get_decoration_layout(GtkWindowControlsHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_window_controls_get_empty(GtkWindowControlsHandle self);
@@ -69,6 +68,4 @@ internal class GtkWindowControlsExterns
 	internal static extern void gtk_window_controls_set_decoration_layout(GtkWindowControlsHandle self, string layout);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_controls_set_side(GtkWindowControlsHandle self, GtkPackType side);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkWindowControlsHandle gtk_window_controls_new(GtkPackType side);
 }

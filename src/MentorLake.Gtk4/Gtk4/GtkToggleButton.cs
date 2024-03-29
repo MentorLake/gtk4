@@ -20,14 +20,17 @@ public class GtkToggleButtonHandle : GtkButtonHandle
 	{
 		return GtkToggleButtonExterns.gtk_toggle_button_new();
 	}
+
 	public static GtkToggleButtonHandle NewWithLabel(string label)
 	{
 		return GtkToggleButtonExterns.gtk_toggle_button_new_with_label(label);
 	}
+
 	public static GtkToggleButtonHandle NewWithMnemonic(string label)
 	{
 		return GtkToggleButtonExterns.gtk_toggle_button_new_with_mnemonic(label);
 	}
+
 }
 
 public class GtkToggleButtonSignal
@@ -76,6 +79,12 @@ public static class GtkToggleButtonHandleExtensions
 internal class GtkToggleButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkToggleButtonHandle gtk_toggle_button_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkToggleButtonHandle gtk_toggle_button_new_with_label(string label);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkToggleButtonHandle gtk_toggle_button_new_with_mnemonic(string label);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_toggle_button_get_active(GtkToggleButtonHandle toggle_button);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_toggle_button_set_active(GtkToggleButtonHandle toggle_button, bool is_active);
@@ -83,10 +92,4 @@ internal class GtkToggleButtonExterns
 	internal static extern void gtk_toggle_button_set_group(GtkToggleButtonHandle toggle_button, GtkToggleButtonHandle group);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_toggle_button_toggled(GtkToggleButtonHandle toggle_button);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkToggleButtonHandle gtk_toggle_button_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkToggleButtonHandle gtk_toggle_button_new_with_label(string label);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkToggleButtonHandle gtk_toggle_button_new_with_mnemonic(string label);
 }

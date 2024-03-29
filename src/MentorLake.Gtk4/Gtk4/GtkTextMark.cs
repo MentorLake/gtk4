@@ -20,10 +20,7 @@ public class GtkTextMarkHandle : GObjectHandle
 	{
 		return GtkTextMarkExterns.gtk_text_mark_new(name, left_gravity);
 	}
-}
 
-public static class GtkTextMarkSignals
-{
 }
 
 public static class GtkTextMarkHandleExtensions
@@ -64,6 +61,8 @@ public static class GtkTextMarkHandleExtensions
 internal class GtkTextMarkExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkTextMarkHandle gtk_text_mark_new(string name, bool left_gravity);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTextBufferHandle gtk_text_mark_get_buffer(GtkTextMarkHandle mark);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_text_mark_get_deleted(GtkTextMarkHandle mark);
@@ -75,6 +74,4 @@ internal class GtkTextMarkExterns
 	internal static extern bool gtk_text_mark_get_visible(GtkTextMarkHandle mark);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_mark_set_visible(GtkTextMarkHandle mark, bool setting);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkTextMarkHandle gtk_text_mark_new(string name, bool left_gravity);
 }

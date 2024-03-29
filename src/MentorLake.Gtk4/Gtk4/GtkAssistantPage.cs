@@ -18,10 +18,6 @@ public class GtkAssistantPageHandle : GObjectHandle
 {
 }
 
-public static class GtkAssistantPageSignals
-{
-}
-
 public static class GtkAssistantPageHandleExtensions
 {
 	public static GtkWidgetHandle GetChild(this GtkAssistantPageHandle page)

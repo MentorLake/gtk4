@@ -18,10 +18,6 @@ public class GtkTreeModelFilterHandle : GObjectHandle
 {
 }
 
-public static class GtkTreeModelFilterSignals
-{
-}
-
 public static class GtkTreeModelFilterHandleExtensions
 {
 	public static GtkTreeModelFilterHandle ClearCache(this GtkTreeModelFilterHandle filter)

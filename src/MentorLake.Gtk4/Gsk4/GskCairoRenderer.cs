@@ -20,10 +20,7 @@ public class GskCairoRendererHandle : GskRendererHandle
 	{
 		return GskCairoRendererExterns.gsk_cairo_renderer_new();
 	}
-}
 
-public static class GskCairoRendererSignals
-{
 }
 
 public static class GskCairoRendererHandleExtensions

@@ -20,30 +20,37 @@ public class GTlsCertificateHandle : GObjectHandle
 	{
 		return GTlsCertificateExterns.g_tls_certificate_new_from_file(file, out error);
 	}
+
 	public static GTlsCertificateHandle NewFromFileWithPassword(string file, string password, out GErrorHandle error)
 	{
 		return GTlsCertificateExterns.g_tls_certificate_new_from_file_with_password(file, password, out error);
 	}
+
 	public static GTlsCertificateHandle NewFromFiles(string cert_file, string key_file, out GErrorHandle error)
 	{
 		return GTlsCertificateExterns.g_tls_certificate_new_from_files(cert_file, key_file, out error);
 	}
+
 	public static GTlsCertificateHandle NewFromPem(string data, int length, out GErrorHandle error)
 	{
 		return GTlsCertificateExterns.g_tls_certificate_new_from_pem(data, length, out error);
 	}
+
 	public static GTlsCertificateHandle NewFromPkcs11Uris(string pkcs11_uri, string private_key_pkcs11_uri, out GErrorHandle error)
 	{
 		return GTlsCertificateExterns.g_tls_certificate_new_from_pkcs11_uris(pkcs11_uri, private_key_pkcs11_uri, out error);
 	}
+
 	public static GTlsCertificateHandle NewFromPkcs12(byte[] data, int length, string password, out GErrorHandle error)
 	{
 		return GTlsCertificateExterns.g_tls_certificate_new_from_pkcs12(data, length, password, out error);
 	}
-}
 
-public static class GTlsCertificateSignals
-{
+	public static GListHandle ListNewFromFile(string file, out GErrorHandle error)
+	{
+		return GTlsCertificateExterns.g_tls_certificate_list_new_from_file(file, out error);
+	}
+
 }
 
 public static class GTlsCertificateHandleExtensions
@@ -93,15 +100,22 @@ public static class GTlsCertificateHandleExtensions
 		return GTlsCertificateExterns.g_tls_certificate_verify(cert, identity, trusted_ca);
 	}
 
-	public static GListHandle ListNewFromFile(this string file, out GErrorHandle error)
-	{
-		return GTlsCertificateExterns.g_tls_certificate_list_new_from_file(file, out error);
-	}
-
 }
 
 internal class GTlsCertificateExterns
 {
+	[DllImport(Libraries.Gio)]
+	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_file(string file, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
+	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_file_with_password(string file, string password, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
+	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_files(string cert_file, string key_file, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
+	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_pem(string data, int length, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
+	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_pkcs11_uris(string pkcs11_uri, string private_key_pkcs11_uri, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
+	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_pkcs12(byte[] data, int length, string password, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern GPtrArray[] g_tls_certificate_get_dns_names(GTlsCertificateHandle cert);
 	[DllImport(Libraries.Gio)]
@@ -122,16 +136,4 @@ internal class GTlsCertificateExterns
 	internal static extern GTlsCertificateFlags g_tls_certificate_verify(GTlsCertificateHandle cert, GSocketConnectableHandle identity, GTlsCertificateHandle trusted_ca);
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_tls_certificate_list_new_from_file(string file, out GErrorHandle error);
-	[DllImport(Libraries.Gio)]
-	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_file(string file, out GErrorHandle error);
-	[DllImport(Libraries.Gio)]
-	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_file_with_password(string file, string password, out GErrorHandle error);
-	[DllImport(Libraries.Gio)]
-	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_files(string cert_file, string key_file, out GErrorHandle error);
-	[DllImport(Libraries.Gio)]
-	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_pem(string data, int length, out GErrorHandle error);
-	[DllImport(Libraries.Gio)]
-	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_pkcs11_uris(string pkcs11_uri, string private_key_pkcs11_uri, out GErrorHandle error);
-	[DllImport(Libraries.Gio)]
-	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_pkcs12(byte[] data, int length, string password, out GErrorHandle error);
 }

@@ -18,10 +18,6 @@ public class GtkExpressionHandle : GTypeInstanceHandle
 {
 }
 
-public static class GtkExpressionSignals
-{
-}
-
 public static class GtkExpressionHandleExtensions
 {
 	public static GtkExpressionWatchHandle Bind(this GtkExpressionHandle self, GObjectHandle target, string property, GObjectHandle this_)

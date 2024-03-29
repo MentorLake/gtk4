@@ -20,10 +20,7 @@ public class GPropertyActionHandle : GObjectHandle
 	{
 		return GPropertyActionExterns.g_property_action_new(name, @object, property_name);
 	}
-}
 
-public static class GPropertyActionSignals
-{
 }
 
 public static class GPropertyActionHandleExtensions

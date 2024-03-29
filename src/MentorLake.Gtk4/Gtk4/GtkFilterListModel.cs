@@ -20,10 +20,7 @@ public class GtkFilterListModelHandle : GObjectHandle
 	{
 		return GtkFilterListModelExterns.gtk_filter_list_model_new(model, filter);
 	}
-}
 
-public static class GtkFilterListModelSignals
-{
 }
 
 public static class GtkFilterListModelHandleExtensions
@@ -71,6 +68,8 @@ public static class GtkFilterListModelHandleExtensions
 internal class GtkFilterListModelExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkFilterListModelHandle gtk_filter_list_model_new(GListModelHandle model, GtkFilterHandle filter);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFilterHandle gtk_filter_list_model_get_filter(GtkFilterListModelHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_filter_list_model_get_incremental(GtkFilterListModelHandle self);
@@ -84,6 +83,4 @@ internal class GtkFilterListModelExterns
 	internal static extern void gtk_filter_list_model_set_incremental(GtkFilterListModelHandle self, bool incremental);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_filter_list_model_set_model(GtkFilterListModelHandle self, GListModelHandle model);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkFilterListModelHandle gtk_filter_list_model_new(GListModelHandle model, GtkFilterHandle filter);
 }

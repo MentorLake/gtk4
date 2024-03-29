@@ -20,10 +20,7 @@ public class GZlibDecompressorHandle : GObjectHandle
 	{
 		return GZlibDecompressorExterns.g_zlib_decompressor_new(format);
 	}
-}
 
-public static class GZlibDecompressorSignals
-{
 }
 
 public static class GZlibDecompressorHandleExtensions
@@ -38,7 +35,7 @@ public static class GZlibDecompressorHandleExtensions
 internal class GZlibDecompressorExterns
 {
 	[DllImport(Libraries.Gio)]
-	internal static extern GFileInfoHandle g_zlib_decompressor_get_file_info(GZlibDecompressorHandle decompressor);
-	[DllImport(Libraries.Gio)]
 	internal static extern GZlibDecompressorHandle g_zlib_decompressor_new(GZlibCompressorFormat format);
+	[DllImport(Libraries.Gio)]
+	internal static extern GFileInfoHandle g_zlib_decompressor_get_file_info(GZlibDecompressorHandle decompressor);
 }

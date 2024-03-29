@@ -18,34 +18,30 @@ public class GdkTouchpadEventHandle : GdkEventHandle
 {
 }
 
-public static class GdkTouchpadEventSignals
-{
-}
-
 public static class GdkTouchpadEventHandleExtensions
 {
-	public static GdkTouchpadEventHandle GetDeltas(this GdkTouchpadEventHandle @handle, GdkEventHandle @event, out double dx, out double dy)
+	public static GdkTouchpadEventHandle GetDeltas(this GdkTouchpadEventHandle @event, out double dx, out double dy)
 	{
 		GdkTouchpadEventExterns.gdk_touchpad_event_get_deltas(@event, out dx, out dy);
-		return @handle;
+		return @event;
 	}
 
-	public static GdkTouchpadGesturePhase GetGesturePhase(this GdkEventHandle @event)
+	public static GdkTouchpadGesturePhase GetGesturePhase(this GdkTouchpadEventHandle @event)
 	{
 		return GdkTouchpadEventExterns.gdk_touchpad_event_get_gesture_phase(@event);
 	}
 
-	public static uint GetNFingers(this GdkEventHandle @event)
+	public static uint GetNFingers(this GdkTouchpadEventHandle @event)
 	{
 		return GdkTouchpadEventExterns.gdk_touchpad_event_get_n_fingers(@event);
 	}
 
-	public static double GetPinchAngleDelta(this GdkEventHandle @event)
+	public static double GetPinchAngleDelta(this GdkTouchpadEventHandle @event)
 	{
 		return GdkTouchpadEventExterns.gdk_touchpad_event_get_pinch_angle_delta(@event);
 	}
 
-	public static double GetPinchScale(this GdkEventHandle @event)
+	public static double GetPinchScale(this GdkTouchpadEventHandle @event)
 	{
 		return GdkTouchpadEventExterns.gdk_touchpad_event_get_pinch_scale(@event);
 	}

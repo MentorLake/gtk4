@@ -20,10 +20,7 @@ public class GtkPrintUnixDialogHandle : GtkDialogHandle
 	{
 		return GtkPrintUnixDialogExterns.gtk_print_unix_dialog_new(title, parent);
 	}
-}
 
-public static class GtkPrintUnixDialogSignals
-{
 }
 
 public static class GtkPrintUnixDialogHandleExtensions
@@ -126,6 +123,8 @@ public static class GtkPrintUnixDialogHandleExtensions
 internal class GtkPrintUnixDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPrintUnixDialogHandle gtk_print_unix_dialog_new(string title, GtkWindowHandle parent);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_unix_dialog_add_custom_tab(GtkPrintUnixDialogHandle dialog, GtkWidgetHandle child, GtkWidgetHandle tab_label);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_print_unix_dialog_get_current_page(GtkPrintUnixDialogHandle dialog);
@@ -159,6 +158,4 @@ internal class GtkPrintUnixDialogExterns
 	internal static extern void gtk_print_unix_dialog_set_settings(GtkPrintUnixDialogHandle dialog, GtkPrintSettingsHandle settings);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_unix_dialog_set_support_selection(GtkPrintUnixDialogHandle dialog, bool support_selection);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPrintUnixDialogHandle gtk_print_unix_dialog_new(string title, GtkWindowHandle parent);
 }

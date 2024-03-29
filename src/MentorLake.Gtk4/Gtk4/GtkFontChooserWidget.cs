@@ -20,10 +20,7 @@ public class GtkFontChooserWidgetHandle : GtkWidgetHandle
 	{
 		return GtkFontChooserWidgetExterns.gtk_font_chooser_widget_new();
 	}
-}
 
-public static class GtkFontChooserWidgetSignals
-{
 }
 
 public static class GtkFontChooserWidgetHandleExtensions

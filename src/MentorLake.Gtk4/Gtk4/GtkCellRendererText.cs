@@ -20,6 +20,7 @@ public class GtkCellRendererTextHandle : GtkCellRendererHandle
 	{
 		return GtkCellRendererTextExterns.gtk_cell_renderer_text_new();
 	}
+
 }
 
 public class GtkCellRendererTextSignal
@@ -51,7 +52,7 @@ public static class GtkCellRendererTextHandleExtensions
 internal class GtkCellRendererTextExterns
 {
 	[DllImport(Libraries.Gtk4)]
-	internal static extern void gtk_cell_renderer_text_set_fixed_height_from_font(GtkCellRendererTextHandle renderer, int number_of_rows);
-	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellRendererTextHandle gtk_cell_renderer_text_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern void gtk_cell_renderer_text_set_fixed_height_from_font(GtkCellRendererTextHandle renderer, int number_of_rows);
 }

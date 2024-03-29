@@ -18,10 +18,6 @@ public class GParamSpecPointerHandle : GParamSpecHandle
 {
 }
 
-public static class GParamSpecPointerSignals
-{
-}
-
 public static class GParamSpecPointerHandleExtensions
 {
 }

@@ -20,6 +20,7 @@ public class GtkGestureRotateHandle : GtkGestureHandle
 	{
 		return GtkGestureRotateExterns.gtk_gesture_rotate_new();
 	}
+
 }
 
 public class GtkGestureRotateSignal
@@ -50,7 +51,7 @@ public static class GtkGestureRotateHandleExtensions
 internal class GtkGestureRotateExterns
 {
 	[DllImport(Libraries.Gtk4)]
-	internal static extern double gtk_gesture_rotate_get_angle_delta(GtkGestureRotateHandle gesture);
-	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkGestureRotateHandle gtk_gesture_rotate_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern double gtk_gesture_rotate_get_angle_delta(GtkGestureRotateHandle gesture);
 }

@@ -20,10 +20,7 @@ public class GDataOutputStreamHandle : GFilterOutputStreamHandle
 	{
 		return GDataOutputStreamExterns.g_data_output_stream_new(base_stream);
 	}
-}
 
-public static class GDataOutputStreamSignals
-{
 }
 
 public static class GDataOutputStreamHandleExtensions
@@ -84,6 +81,8 @@ public static class GDataOutputStreamHandleExtensions
 internal class GDataOutputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GDataOutputStreamHandle g_data_output_stream_new(GOutputStreamHandle base_stream);
+	[DllImport(Libraries.Gio)]
 	internal static extern GDataStreamByteOrder g_data_output_stream_get_byte_order(GDataOutputStreamHandle stream);
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_data_output_stream_put_byte(GDataOutputStreamHandle stream, char data, GCancellableHandle cancellable, out GErrorHandle error);
@@ -103,6 +102,4 @@ internal class GDataOutputStreamExterns
 	internal static extern bool g_data_output_stream_put_uint64(GDataOutputStreamHandle stream, ulong data, GCancellableHandle cancellable, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_data_output_stream_set_byte_order(GDataOutputStreamHandle stream, GDataStreamByteOrder order);
-	[DllImport(Libraries.Gio)]
-	internal static extern GDataOutputStreamHandle g_data_output_stream_new(GOutputStreamHandle base_stream);
 }

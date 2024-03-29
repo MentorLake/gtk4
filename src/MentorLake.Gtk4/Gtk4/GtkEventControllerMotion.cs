@@ -20,6 +20,7 @@ public class GtkEventControllerMotionHandle : GtkEventControllerHandle
 	{
 		return GtkEventControllerMotionExterns.gtk_event_controller_motion_new();
 	}
+
 }
 
 public class GtkEventControllerMotionSignal
@@ -57,9 +58,9 @@ public static class GtkEventControllerMotionHandleExtensions
 internal class GtkEventControllerMotionExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkEventControllerMotionHandle gtk_event_controller_motion_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_event_controller_motion_contains_pointer(GtkEventControllerMotionHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_event_controller_motion_is_pointer(GtkEventControllerMotionHandle self);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkEventControllerMotionHandle gtk_event_controller_motion_new();
 }

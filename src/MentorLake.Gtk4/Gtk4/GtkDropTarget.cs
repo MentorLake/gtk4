@@ -20,6 +20,7 @@ public class GtkDropTargetHandle : GtkEventControllerHandle
 	{
 		return GtkDropTargetExterns.gtk_drop_target_new(type, actions);
 	}
+
 }
 
 public class GtkDropTargetSignal
@@ -108,6 +109,8 @@ public static class GtkDropTargetHandleExtensions
 internal class GtkDropTargetExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkDropTargetHandle gtk_drop_target_new(GType type, GdkDragAction actions);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDragAction gtk_drop_target_get_actions(GtkDropTargetHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDropHandle gtk_drop_target_get_current_drop(GtkDropTargetHandle self);
@@ -129,6 +132,4 @@ internal class GtkDropTargetExterns
 	internal static extern void gtk_drop_target_set_gtypes(GtkDropTargetHandle self, GType[] types, int n_types);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drop_target_set_preload(GtkDropTargetHandle self, bool preload);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkDropTargetHandle gtk_drop_target_new(GType type, GdkDragAction actions);
 }

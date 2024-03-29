@@ -20,10 +20,7 @@ public class GtkFrameHandle : GtkWidgetHandle
 	{
 		return GtkFrameExterns.gtk_frame_new(label);
 	}
-}
 
-public static class GtkFrameSignals
-{
 }
 
 public static class GtkFrameHandleExtensions
@@ -77,6 +74,8 @@ public static class GtkFrameHandleExtensions
 internal class GtkFrameExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkFrameHandle gtk_frame_new(string label);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_frame_get_child(GtkFrameHandle frame);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_frame_get_label(GtkFrameHandle frame);
@@ -92,6 +91,4 @@ internal class GtkFrameExterns
 	internal static extern void gtk_frame_set_label_align(GtkFrameHandle frame, float xalign);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_frame_set_label_widget(GtkFrameHandle frame, GtkWidgetHandle label_widget);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkFrameHandle gtk_frame_new(string label);
 }

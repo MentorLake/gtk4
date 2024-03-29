@@ -16,10 +16,11 @@ namespace MentorLake.Gtk4.Gio;
 
 public class GSimpleProxyResolverHandle : GObjectHandle
 {
-}
+	public static GProxyResolverHandle New(string default_proxy, string[] ignore_hosts)
+	{
+		return GSimpleProxyResolverExterns.g_simple_proxy_resolver_new(default_proxy, ignore_hosts);
+	}
 
-public static class GSimpleProxyResolverSignals
-{
 }
 
 public static class GSimpleProxyResolverHandleExtensions
@@ -40,11 +41,6 @@ public static class GSimpleProxyResolverHandleExtensions
 	{
 		GSimpleProxyResolverExterns.g_simple_proxy_resolver_set_uri_proxy(resolver, uri_scheme, proxy);
 		return resolver;
-	}
-
-	public static GProxyResolverHandle New(this string default_proxy, string[] ignore_hosts)
-	{
-		return GSimpleProxyResolverExterns.g_simple_proxy_resolver_new(default_proxy, ignore_hosts);
 	}
 
 }

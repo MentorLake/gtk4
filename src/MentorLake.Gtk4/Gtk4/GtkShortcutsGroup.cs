@@ -18,10 +18,6 @@ public class GtkShortcutsGroupHandle : GtkBoxHandle
 {
 }
 
-public static class GtkShortcutsGroupSignals
-{
-}
-
 public static class GtkShortcutsGroupHandleExtensions
 {
 	public static GtkShortcutsGroupHandle AddShortcut(this GtkShortcutsGroupHandle self, GtkShortcutsShortcutHandle shortcut)

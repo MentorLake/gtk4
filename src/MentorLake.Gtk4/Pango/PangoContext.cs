@@ -20,10 +20,7 @@ public class PangoContextHandle : GObjectHandle
 	{
 		return PangoContextExterns.pango_context_new();
 	}
-}
 
-public static class PangoContextSignals
-{
 }
 
 public static class PangoContextHandleExtensions
@@ -168,6 +165,8 @@ public static class PangoContextHandleExtensions
 internal class PangoContextExterns
 {
 	[DllImport(Libraries.Pango)]
+	internal static extern PangoContextHandle pango_context_new();
+	[DllImport(Libraries.Pango)]
 	internal static extern void pango_context_changed(PangoContextHandle context);
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoDirection pango_context_get_base_dir(PangoContextHandle context);
@@ -217,6 +216,4 @@ internal class PangoContextExterns
 	internal static extern GListHandle pango_itemize(PangoContextHandle context, string text, int start_index, int length, PangoAttrListHandle attrs, PangoAttrIteratorHandle cached_iter);
 	[DllImport(Libraries.Pango)]
 	internal static extern GListHandle pango_itemize_with_base_dir(PangoContextHandle context, PangoDirection base_dir, string text, int start_index, int length, PangoAttrListHandle attrs, PangoAttrIteratorHandle cached_iter);
-	[DllImport(Libraries.Pango)]
-	internal static extern PangoContextHandle pango_context_new();
 }

@@ -18,10 +18,6 @@ public class GParamSpecOverrideHandle : GParamSpecHandle
 {
 }
 
-public static class GParamSpecOverrideSignals
-{
-}
-
 public static class GParamSpecOverrideHandleExtensions
 {
 }

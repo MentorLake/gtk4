@@ -20,10 +20,7 @@ public class GtkCustomLayoutHandle : GtkLayoutManagerHandle
 	{
 		return GtkCustomLayoutExterns.gtk_custom_layout_new(request_mode, measure, allocate);
 	}
-}
 
-public static class GtkCustomLayoutSignals
-{
 }
 
 public static class GtkCustomLayoutHandleExtensions

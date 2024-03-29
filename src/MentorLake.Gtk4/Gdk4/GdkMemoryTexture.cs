@@ -20,10 +20,7 @@ public class GdkMemoryTextureHandle : GdkTextureHandle
 	{
 		return GdkMemoryTextureExterns.gdk_memory_texture_new(width, height, format, bytes, stride);
 	}
-}
 
-public static class GdkMemoryTextureSignals
-{
 }
 
 public static class GdkMemoryTextureHandleExtensions

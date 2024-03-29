@@ -20,10 +20,12 @@ public class GtkLinkButtonHandle : GtkButtonHandle
 	{
 		return GtkLinkButtonExterns.gtk_link_button_new(uri);
 	}
+
 	public static GtkLinkButtonHandle NewWithLabel(string uri, string label)
 	{
 		return GtkLinkButtonExterns.gtk_link_button_new_with_label(uri, label);
 	}
+
 }
 
 public class GtkLinkButtonSignal
@@ -71,6 +73,10 @@ public static class GtkLinkButtonHandleExtensions
 internal class GtkLinkButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkLinkButtonHandle gtk_link_button_new(string uri);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkLinkButtonHandle gtk_link_button_new_with_label(string uri, string label);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_link_button_get_uri(GtkLinkButtonHandle link_button);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_link_button_get_visited(GtkLinkButtonHandle link_button);
@@ -78,8 +84,4 @@ internal class GtkLinkButtonExterns
 	internal static extern void gtk_link_button_set_uri(GtkLinkButtonHandle link_button, string uri);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_link_button_set_visited(GtkLinkButtonHandle link_button, bool visited);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkLinkButtonHandle gtk_link_button_new(string uri);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkLinkButtonHandle gtk_link_button_new_with_label(string uri, string label);
 }

@@ -20,6 +20,7 @@ public class GtkATContextHandle : GObjectHandle
 	{
 		return GtkATContextExterns.gtk_at_context_create(accessible_role, accessible, display);
 	}
+
 }
 
 public class GtkATContextSignal
@@ -55,9 +56,9 @@ public static class GtkATContextHandleExtensions
 internal class GtkATContextExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkATContextHandle gtk_at_context_create(GtkAccessibleRole accessible_role, GtkAccessibleHandle accessible, GdkDisplayHandle display);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAccessibleHandle gtk_at_context_get_accessible(GtkATContextHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAccessibleRole gtk_at_context_get_accessible_role(GtkATContextHandle self);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkATContextHandle gtk_at_context_create(GtkAccessibleRole accessible_role, GtkAccessibleHandle accessible, GdkDisplayHandle display);
 }

@@ -18,10 +18,6 @@ public class GUnixConnectionHandle : GSocketConnectionHandle
 {
 }
 
-public static class GUnixConnectionSignals
-{
-}
-
 public static class GUnixConnectionHandleExtensions
 {
 	public static GCredentialsHandle ReceiveCredentials(this GUnixConnectionHandle connection, GCancellableHandle cancellable, out GErrorHandle error)

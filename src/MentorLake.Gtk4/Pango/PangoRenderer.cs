@@ -18,10 +18,6 @@ public class PangoRendererHandle : GObjectHandle
 {
 }
 
-public static class PangoRendererSignals
-{
-}
-
 public static class PangoRendererHandleExtensions
 {
 	public static PangoRendererHandle Activate(this PangoRendererHandle renderer)

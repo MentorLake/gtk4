@@ -18,10 +18,6 @@ public class GApplicationCommandLineHandle : GObjectHandle
 {
 }
 
-public static class GApplicationCommandLineSignals
-{
-}
-
 public static class GApplicationCommandLineHandleExtensions
 {
 	public static GFileHandle CreateFileForArg(this GApplicationCommandLineHandle cmdline, string arg)

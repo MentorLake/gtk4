@@ -16,6 +16,11 @@ namespace MentorLake.Gtk4.Gdk4;
 
 public class GdkDragHandle : GObjectHandle
 {
+	public static GdkDragHandle Begin(GdkSurfaceHandle surface, GdkDeviceHandle device, GdkContentProviderHandle content, GdkDragAction actions, double dx, double dy)
+	{
+		return GdkDragExterns.gdk_drag_begin(surface, device, content, actions, dx, dy);
+	}
+
 }
 
 public class GdkDragSignal
@@ -83,11 +88,6 @@ public static class GdkDragHandleExtensions
 	{
 		GdkDragExterns.gdk_drag_set_hotspot(drag, hot_x, hot_y);
 		return drag;
-	}
-
-	public static GdkDragHandle Begin(this GdkSurfaceHandle surface, GdkDeviceHandle device, GdkContentProviderHandle content, GdkDragAction actions, double dx, double dy)
-	{
-		return GdkDragExterns.gdk_drag_begin(surface, device, content, actions, dx, dy);
 	}
 
 	public static GdkDragHandle Connect(this GdkDragHandle instance, GdkDragSignal signal, GCallback c_handler)

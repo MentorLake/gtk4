@@ -20,10 +20,7 @@ public class GtkAlternativeTriggerHandle : GtkShortcutTriggerHandle
 	{
 		return GtkAlternativeTriggerExterns.gtk_alternative_trigger_new(first, second);
 	}
-}
 
-public static class GtkAlternativeTriggerSignals
-{
 }
 
 public static class GtkAlternativeTriggerHandleExtensions
@@ -43,9 +40,9 @@ public static class GtkAlternativeTriggerHandleExtensions
 internal class GtkAlternativeTriggerExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkAlternativeTriggerHandle gtk_alternative_trigger_new(GtkShortcutTriggerHandle first, GtkShortcutTriggerHandle second);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkShortcutTriggerHandle gtk_alternative_trigger_get_first(GtkAlternativeTriggerHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkShortcutTriggerHandle gtk_alternative_trigger_get_second(GtkAlternativeTriggerHandle self);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkAlternativeTriggerHandle gtk_alternative_trigger_new(GtkShortcutTriggerHandle first, GtkShortcutTriggerHandle second);
 }

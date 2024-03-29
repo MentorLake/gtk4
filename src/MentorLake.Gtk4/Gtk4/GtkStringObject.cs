@@ -20,10 +20,7 @@ public class GtkStringObjectHandle : GObjectHandle
 	{
 		return GtkStringObjectExterns.gtk_string_object_new(@string);
 	}
-}
 
-public static class GtkStringObjectSignals
-{
 }
 
 public static class GtkStringObjectHandleExtensions
@@ -38,7 +35,7 @@ public static class GtkStringObjectHandleExtensions
 internal class GtkStringObjectExterns
 {
 	[DllImport(Libraries.Gtk4)]
-	internal static extern string gtk_string_object_get_string(GtkStringObjectHandle self);
-	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStringObjectHandle gtk_string_object_new(string @string);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern string gtk_string_object_get_string(GtkStringObjectHandle self);
 }

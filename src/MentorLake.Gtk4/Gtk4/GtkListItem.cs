@@ -18,10 +18,6 @@ public class GtkListItemHandle : GObjectHandle
 {
 }
 
-public static class GtkListItemSignals
-{
-}
-
 public static class GtkListItemHandleExtensions
 {
 	public static string GetAccessibleDescription(this GtkListItemHandle self)

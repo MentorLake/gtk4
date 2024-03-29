@@ -20,34 +20,37 @@ public class GtkImageHandle : GtkWidgetHandle
 	{
 		return GtkImageExterns.gtk_image_new();
 	}
+
 	public static GtkImageHandle NewFromFile(string filename)
 	{
 		return GtkImageExterns.gtk_image_new_from_file(filename);
 	}
+
 	public static GtkImageHandle NewFromGicon(GIconHandle icon)
 	{
 		return GtkImageExterns.gtk_image_new_from_gicon(icon);
 	}
+
 	public static GtkImageHandle NewFromIconName(string icon_name)
 	{
 		return GtkImageExterns.gtk_image_new_from_icon_name(icon_name);
 	}
+
 	public static GtkImageHandle NewFromPaintable(GdkPaintableHandle paintable)
 	{
 		return GtkImageExterns.gtk_image_new_from_paintable(paintable);
 	}
+
 	public static GtkImageHandle NewFromPixbuf(GdkPixbufHandle pixbuf)
 	{
 		return GtkImageExterns.gtk_image_new_from_pixbuf(pixbuf);
 	}
+
 	public static GtkImageHandle NewFromResource(string resource_path)
 	{
 		return GtkImageExterns.gtk_image_new_from_resource(resource_path);
 	}
-}
 
-public static class GtkImageSignals
-{
 }
 
 public static class GtkImageHandleExtensions
@@ -141,6 +144,20 @@ public static class GtkImageHandleExtensions
 internal class GtkImageExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkImageHandle gtk_image_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkImageHandle gtk_image_new_from_file(string filename);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkImageHandle gtk_image_new_from_gicon(GIconHandle icon);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkImageHandle gtk_image_new_from_icon_name(string icon_name);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkImageHandle gtk_image_new_from_paintable(GdkPaintableHandle paintable);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkImageHandle gtk_image_new_from_pixbuf(GdkPixbufHandle pixbuf);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkImageHandle gtk_image_new_from_resource(string resource_path);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_image_clear(GtkImageHandle image);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GIconHandle gtk_image_get_gicon(GtkImageHandle image);
@@ -170,18 +187,4 @@ internal class GtkImageExterns
 	internal static extern void gtk_image_set_icon_size(GtkImageHandle image, GtkIconSize icon_size);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_image_set_pixel_size(GtkImageHandle image, int pixel_size);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkImageHandle gtk_image_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkImageHandle gtk_image_new_from_file(string filename);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkImageHandle gtk_image_new_from_gicon(GIconHandle icon);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkImageHandle gtk_image_new_from_icon_name(string icon_name);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkImageHandle gtk_image_new_from_paintable(GdkPaintableHandle paintable);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkImageHandle gtk_image_new_from_pixbuf(GdkPixbufHandle pixbuf);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkImageHandle gtk_image_new_from_resource(string resource_path);
 }

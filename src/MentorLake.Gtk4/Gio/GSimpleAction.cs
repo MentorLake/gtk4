@@ -20,10 +20,12 @@ public class GSimpleActionHandle : GObjectHandle
 	{
 		return GSimpleActionExterns.g_simple_action_new(name, parameter_type);
 	}
+
 	public static GSimpleActionHandle NewStateful(string name, GVariantTypeHandle parameter_type, GVariantHandle state)
 	{
 		return GSimpleActionExterns.g_simple_action_new_stateful(name, parameter_type, state);
 	}
+
 }
 
 public class GSimpleActionSignal
@@ -68,13 +70,13 @@ public static class GSimpleActionHandleExtensions
 internal class GSimpleActionExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GSimpleActionHandle g_simple_action_new(string name, GVariantTypeHandle parameter_type);
+	[DllImport(Libraries.Gio)]
+	internal static extern GSimpleActionHandle g_simple_action_new_stateful(string name, GVariantTypeHandle parameter_type, GVariantHandle state);
+	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_action_set_enabled(GSimpleActionHandle simple, bool enabled);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_action_set_state(GSimpleActionHandle simple, GVariantHandle value);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_action_set_state_hint(GSimpleActionHandle simple, GVariantHandle state_hint);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSimpleActionHandle g_simple_action_new(string name, GVariantTypeHandle parameter_type);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSimpleActionHandle g_simple_action_new_stateful(string name, GVariantTypeHandle parameter_type, GVariantHandle state);
 }

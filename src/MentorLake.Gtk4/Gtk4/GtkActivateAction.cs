@@ -16,19 +16,15 @@ namespace MentorLake.Gtk4.Gtk4;
 
 public class GtkActivateActionHandle : GtkShortcutActionHandle
 {
-}
-
-public static class GtkActivateActionSignals
-{
-}
-
-public static class GtkActivateActionHandleExtensions
-{
 	public static GtkShortcutActionHandle Get()
 	{
 		return GtkActivateActionExterns.gtk_activate_action_get();
 	}
 
+}
+
+public static class GtkActivateActionHandleExtensions
+{
 }
 
 internal class GtkActivateActionExterns

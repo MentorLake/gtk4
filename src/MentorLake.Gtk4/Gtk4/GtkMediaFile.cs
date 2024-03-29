@@ -20,26 +20,27 @@ public class GtkMediaFileHandle : GtkMediaStreamHandle
 	{
 		return GtkMediaFileExterns.gtk_media_file_new();
 	}
+
 	public static GtkMediaFileHandle NewForFile(GFileHandle file)
 	{
 		return GtkMediaFileExterns.gtk_media_file_new_for_file(file);
 	}
+
 	public static GtkMediaFileHandle NewForFilename(string filename)
 	{
 		return GtkMediaFileExterns.gtk_media_file_new_for_filename(filename);
 	}
+
 	public static GtkMediaFileHandle NewForInputStream(GInputStreamHandle stream)
 	{
 		return GtkMediaFileExterns.gtk_media_file_new_for_input_stream(stream);
 	}
+
 	public static GtkMediaFileHandle NewForResource(string resource_path)
 	{
 		return GtkMediaFileExterns.gtk_media_file_new_for_resource(resource_path);
 	}
-}
 
-public static class GtkMediaFileSignals
-{
 }
 
 public static class GtkMediaFileHandleExtensions
@@ -89,6 +90,16 @@ public static class GtkMediaFileHandleExtensions
 internal class GtkMediaFileExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkMediaFileHandle gtk_media_file_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkMediaFileHandle gtk_media_file_new_for_file(GFileHandle file);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkMediaFileHandle gtk_media_file_new_for_filename(string filename);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkMediaFileHandle gtk_media_file_new_for_input_stream(GInputStreamHandle stream);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkMediaFileHandle gtk_media_file_new_for_resource(string resource_path);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_file_clear(GtkMediaFileHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GFileHandle gtk_media_file_get_file(GtkMediaFileHandle self);
@@ -102,14 +113,4 @@ internal class GtkMediaFileExterns
 	internal static extern void gtk_media_file_set_input_stream(GtkMediaFileHandle self, GInputStreamHandle stream);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_file_set_resource(GtkMediaFileHandle self, string resource_path);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkMediaFileHandle gtk_media_file_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkMediaFileHandle gtk_media_file_new_for_file(GFileHandle file);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkMediaFileHandle gtk_media_file_new_for_filename(string filename);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkMediaFileHandle gtk_media_file_new_for_input_stream(GInputStreamHandle stream);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkMediaFileHandle gtk_media_file_new_for_resource(string resource_path);
 }

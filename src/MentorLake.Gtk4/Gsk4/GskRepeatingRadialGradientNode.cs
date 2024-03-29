@@ -20,10 +20,7 @@ public class GskRepeatingRadialGradientNodeHandle : GskRenderNodeHandle
 	{
 		return GskRepeatingRadialGradientNodeExterns.gsk_repeating_radial_gradient_node_new(bounds, center, hradius, vradius, start, end, color_stops, n_color_stops);
 	}
-}
 
-public static class GskRepeatingRadialGradientNodeSignals
-{
 }
 
 public static class GskRepeatingRadialGradientNodeHandleExtensions

@@ -20,6 +20,7 @@ public class GtkListBoxHandle : GtkWidgetHandle
 	{
 		return GtkListBoxExterns.gtk_list_box_new();
 	}
+
 }
 
 public class GtkListBoxSignal
@@ -236,6 +237,8 @@ public static class GtkListBoxHandleExtensions
 internal class GtkListBoxExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkListBoxHandle gtk_list_box_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_append(GtkListBoxHandle box, GtkWidgetHandle child);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_bind_model(GtkListBoxHandle box, GListModelHandle model, GtkListBoxCreateWidgetFunc create_widget_func, IntPtr user_data, GDestroyNotify user_data_free_func);
@@ -299,6 +302,4 @@ internal class GtkListBoxExterns
 	internal static extern void gtk_list_box_unselect_all(GtkListBoxHandle box);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_unselect_row(GtkListBoxHandle box, GtkListBoxRowHandle row);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkListBoxHandle gtk_list_box_new();
 }

@@ -20,6 +20,7 @@ public class GtkGestureDragHandle : GtkGestureSingleHandle
 	{
 		return GtkGestureDragExterns.gtk_gesture_drag_new();
 	}
+
 }
 
 public class GtkGestureDragSignal
@@ -57,9 +58,9 @@ public static class GtkGestureDragHandleExtensions
 internal class GtkGestureDragExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkGestureDragHandle gtk_gesture_drag_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gesture_drag_get_offset(GtkGestureDragHandle gesture, out double x, out double y);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gesture_drag_get_start_point(GtkGestureDragHandle gesture, out double x, out double y);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkGestureDragHandle gtk_gesture_drag_new();
 }

@@ -18,10 +18,6 @@ public class GFileOutputStreamHandle : GOutputStreamHandle
 {
 }
 
-public static class GFileOutputStreamSignals
-{
-}
-
 public static class GFileOutputStreamHandleExtensions
 {
 	public static string GetEtag(this GFileOutputStreamHandle stream)

@@ -20,14 +20,12 @@ public class GskGLShaderHandle : GObjectHandle
 	{
 		return GskGLShaderExterns.gsk_gl_shader_new_from_bytes(sourcecode);
 	}
+
 	public static GskGLShaderHandle GskGlShaderNewFromResource(string resource_path)
 	{
 		return GskGLShaderExterns.gsk_gl_shader_new_from_resource(resource_path);
 	}
-}
 
-public static class GskGLShaderSignals
-{
 }
 
 public static class GskGLShaderHandleExtensions
@@ -135,6 +133,10 @@ public static class GskGLShaderHandleExtensions
 internal class GskGLShaderExterns
 {
 	[DllImport(Libraries.Gsk4)]
+	internal static extern GskGLShaderHandle gsk_gl_shader_new_from_bytes(GBytesHandle sourcecode);
+	[DllImport(Libraries.Gsk4)]
+	internal static extern GskGLShaderHandle gsk_gl_shader_new_from_resource(string resource_path);
+	[DllImport(Libraries.Gsk4)]
 	internal static extern bool gsk_gl_shader_compile(GskGLShaderHandle shader, GskRendererHandle renderer, out GErrorHandle error);
 	[DllImport(Libraries.Gsk4)]
 	internal static extern int gsk_gl_shader_find_uniform_by_name(GskGLShaderHandle shader, string name);
@@ -172,8 +174,4 @@ internal class GskGLShaderExterns
 	internal static extern int gsk_gl_shader_get_uniform_offset(GskGLShaderHandle shader, int idx);
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskGLUniformType gsk_gl_shader_get_uniform_type(GskGLShaderHandle shader, int idx);
-	[DllImport(Libraries.Gsk4)]
-	internal static extern GskGLShaderHandle gsk_gl_shader_new_from_bytes(GBytesHandle sourcecode);
-	[DllImport(Libraries.Gsk4)]
-	internal static extern GskGLShaderHandle gsk_gl_shader_new_from_resource(string resource_path);
 }

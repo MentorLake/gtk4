@@ -20,14 +20,12 @@ public class GUnixFDListHandle : GObjectHandle
 	{
 		return GUnixFDListExterns.g_unix_fd_list_new();
 	}
+
 	public static GUnixFDListHandle GUnixFdListNewFromArray(int[] fds, int n_fds)
 	{
 		return GUnixFDListExterns.g_unix_fd_list_new_from_array(fds, n_fds);
 	}
-}
 
-public static class GUnixFDListSignals
-{
 }
 
 public static class GUnixFDListHandleExtensions
@@ -62,6 +60,10 @@ public static class GUnixFDListHandleExtensions
 internal class GUnixFDListExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GUnixFDListHandle g_unix_fd_list_new();
+	[DllImport(Libraries.Gio)]
+	internal static extern GUnixFDListHandle g_unix_fd_list_new_from_array(int[] fds, int n_fds);
+	[DllImport(Libraries.Gio)]
 	internal static extern int g_unix_fd_list_append(GUnixFDListHandle list, int fd, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_unix_fd_list_get(GUnixFDListHandle list, int index_, out GErrorHandle error);
@@ -71,8 +73,4 @@ internal class GUnixFDListExterns
 	internal static extern int[] g_unix_fd_list_peek_fds(GUnixFDListHandle list, out int length);
 	[DllImport(Libraries.Gio)]
 	internal static extern int[] g_unix_fd_list_steal_fds(GUnixFDListHandle list, out int length);
-	[DllImport(Libraries.Gio)]
-	internal static extern GUnixFDListHandle g_unix_fd_list_new();
-	[DllImport(Libraries.Gio)]
-	internal static extern GUnixFDListHandle g_unix_fd_list_new_from_array(int[] fds, int n_fds);
 }

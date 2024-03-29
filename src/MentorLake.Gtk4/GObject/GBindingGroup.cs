@@ -20,10 +20,7 @@ public class GBindingGroupHandle : GObjectHandle
 	{
 		return GBindingGroupExterns.g_binding_group_new();
 	}
-}
 
-public static class GBindingGroupSignals
-{
 }
 
 public static class GBindingGroupHandleExtensions
@@ -62,6 +59,8 @@ public static class GBindingGroupHandleExtensions
 internal class GBindingGroupExterns
 {
 	[DllImport(Libraries.GObject)]
+	internal static extern GBindingGroupHandle g_binding_group_new();
+	[DllImport(Libraries.GObject)]
 	internal static extern void g_binding_group_bind(GBindingGroupHandle self, string source_property, GObjectHandle target, string target_property, GBindingFlags flags);
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_binding_group_bind_full(GBindingGroupHandle self, string source_property, GObjectHandle target, string target_property, GBindingFlags flags, GBindingTransformFunc transform_to, GBindingTransformFunc transform_from, IntPtr user_data, GDestroyNotify user_data_destroy);
@@ -71,6 +70,4 @@ internal class GBindingGroupExterns
 	internal static extern GObjectHandle g_binding_group_dup_source(GBindingGroupHandle self);
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_binding_group_set_source(GBindingGroupHandle self, GObjectHandle source);
-	[DllImport(Libraries.GObject)]
-	internal static extern GBindingGroupHandle g_binding_group_new();
 }

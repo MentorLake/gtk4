@@ -20,10 +20,7 @@ public class GtkSortListModelHandle : GObjectHandle
 	{
 		return GtkSortListModelExterns.gtk_sort_list_model_new(model, sorter);
 	}
-}
 
-public static class GtkSortListModelSignals
-{
 }
 
 public static class GtkSortListModelHandleExtensions
@@ -82,6 +79,8 @@ public static class GtkSortListModelHandleExtensions
 internal class GtkSortListModelExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkSortListModelHandle gtk_sort_list_model_new(GListModelHandle model, GtkSorterHandle sorter);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_sort_list_model_get_incremental(GtkSortListModelHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_sort_list_model_get_model(GtkSortListModelHandle self);
@@ -99,6 +98,4 @@ internal class GtkSortListModelExterns
 	internal static extern void gtk_sort_list_model_set_section_sorter(GtkSortListModelHandle self, GtkSorterHandle sorter);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_sort_list_model_set_sorter(GtkSortListModelHandle self, GtkSorterHandle sorter);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkSortListModelHandle gtk_sort_list_model_new(GListModelHandle model, GtkSorterHandle sorter);
 }

@@ -20,10 +20,7 @@ public class GtkConstraintLayoutHandle : GtkLayoutManagerHandle
 	{
 		return GtkConstraintLayoutExterns.gtk_constraint_layout_new();
 	}
-}
 
-public static class GtkConstraintLayoutSignals
-{
 }
 
 public static class GtkConstraintLayoutHandleExtensions
@@ -83,6 +80,8 @@ public static class GtkConstraintLayoutHandleExtensions
 internal class GtkConstraintLayoutExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkConstraintLayoutHandle gtk_constraint_layout_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_constraint_layout_add_constraint(GtkConstraintLayoutHandle layout, GtkConstraintHandle constraint);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListHandle gtk_constraint_layout_add_constraints_from_description(GtkConstraintLayoutHandle layout, string lines, int n_lines, int hspacing, int vspacing, out GErrorHandle error, string first_view, IntPtr @__arglist);
@@ -100,6 +99,4 @@ internal class GtkConstraintLayoutExterns
 	internal static extern void gtk_constraint_layout_remove_constraint(GtkConstraintLayoutHandle layout, GtkConstraintHandle constraint);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_constraint_layout_remove_guide(GtkConstraintLayoutHandle layout, GtkConstraintGuideHandle guide);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkConstraintLayoutHandle gtk_constraint_layout_new();
 }

@@ -20,10 +20,7 @@ public class GDataInputStreamHandle : GBufferedInputStreamHandle
 	{
 		return GDataInputStreamExterns.g_data_input_stream_new(base_stream);
 	}
-}
 
-public static class GDataInputStreamSignals
-{
 }
 
 public static class GDataInputStreamHandleExtensions
@@ -148,6 +145,8 @@ public static class GDataInputStreamHandleExtensions
 internal class GDataInputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GDataInputStreamHandle g_data_input_stream_new(GInputStreamHandle base_stream);
+	[DllImport(Libraries.Gio)]
 	internal static extern GDataStreamByteOrder g_data_input_stream_get_byte_order(GDataInputStreamHandle stream);
 	[DllImport(Libraries.Gio)]
 	internal static extern GDataStreamNewlineType g_data_input_stream_get_newline_type(GDataInputStreamHandle stream);
@@ -191,6 +190,4 @@ internal class GDataInputStreamExterns
 	internal static extern void g_data_input_stream_set_byte_order(GDataInputStreamHandle stream, GDataStreamByteOrder order);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_data_input_stream_set_newline_type(GDataInputStreamHandle stream, GDataStreamNewlineType type);
-	[DllImport(Libraries.Gio)]
-	internal static extern GDataInputStreamHandle g_data_input_stream_new(GInputStreamHandle base_stream);
 }

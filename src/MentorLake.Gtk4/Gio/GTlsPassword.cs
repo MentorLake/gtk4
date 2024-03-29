@@ -20,10 +20,7 @@ public class GTlsPasswordHandle : GObjectHandle
 	{
 		return GTlsPasswordExterns.g_tls_password_new(flags, description);
 	}
-}
 
-public static class GTlsPasswordSignals
-{
 }
 
 public static class GTlsPasswordHandleExtensions
@@ -83,6 +80,8 @@ public static class GTlsPasswordHandleExtensions
 internal class GTlsPasswordExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GTlsPasswordHandle g_tls_password_new(GTlsPasswordFlags flags, string description);
+	[DllImport(Libraries.Gio)]
 	internal static extern string g_tls_password_get_description(GTlsPasswordHandle password);
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsPasswordFlags g_tls_password_get_flags(GTlsPasswordHandle password);
@@ -100,6 +99,4 @@ internal class GTlsPasswordExterns
 	internal static extern void g_tls_password_set_value_full(GTlsPasswordHandle password, string value, int length, GDestroyNotify destroy);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_password_set_warning(GTlsPasswordHandle password, string warning);
-	[DllImport(Libraries.Gio)]
-	internal static extern GTlsPasswordHandle g_tls_password_new(GTlsPasswordFlags flags, string description);
 }

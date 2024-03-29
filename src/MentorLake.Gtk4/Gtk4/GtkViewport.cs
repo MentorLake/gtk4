@@ -20,10 +20,7 @@ public class GtkViewportHandle : GtkWidgetHandle
 	{
 		return GtkViewportExterns.gtk_viewport_new(hadjustment, vadjustment);
 	}
-}
 
-public static class GtkViewportSignals
-{
 }
 
 public static class GtkViewportHandleExtensions
@@ -61,6 +58,8 @@ public static class GtkViewportHandleExtensions
 internal class GtkViewportExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkViewportHandle gtk_viewport_new(GtkAdjustmentHandle hadjustment, GtkAdjustmentHandle vadjustment);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_viewport_get_child(GtkViewportHandle viewport);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_viewport_get_scroll_to_focus(GtkViewportHandle viewport);
@@ -70,6 +69,4 @@ internal class GtkViewportExterns
 	internal static extern void gtk_viewport_set_child(GtkViewportHandle viewport, GtkWidgetHandle child);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_viewport_set_scroll_to_focus(GtkViewportHandle viewport, bool scroll_to_focus);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkViewportHandle gtk_viewport_new(GtkAdjustmentHandle hadjustment, GtkAdjustmentHandle vadjustment);
 }

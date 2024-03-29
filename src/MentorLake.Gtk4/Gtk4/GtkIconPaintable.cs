@@ -20,10 +20,7 @@ public class GtkIconPaintableHandle : GObjectHandle
 	{
 		return GtkIconPaintableExterns.gtk_icon_paintable_new_for_file(file, size, scale);
 	}
-}
 
-public static class GtkIconPaintableSignals
-{
 }
 
 public static class GtkIconPaintableHandleExtensions
@@ -48,11 +45,11 @@ public static class GtkIconPaintableHandleExtensions
 internal class GtkIconPaintableExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkIconPaintableHandle gtk_icon_paintable_new_for_file(GFileHandle file, int size, int scale);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GFileHandle gtk_icon_paintable_get_file(GtkIconPaintableHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_icon_paintable_get_icon_name(GtkIconPaintableHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_icon_paintable_is_symbolic(GtkIconPaintableHandle self);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkIconPaintableHandle gtk_icon_paintable_new_for_file(GFileHandle file, int size, int scale);
 }

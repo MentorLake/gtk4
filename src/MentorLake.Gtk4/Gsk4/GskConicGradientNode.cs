@@ -20,35 +20,32 @@ public class GskConicGradientNodeHandle : GskRenderNodeHandle
 	{
 		return GskConicGradientNodeExterns.gsk_conic_gradient_node_new(bounds, center, rotation, color_stops, n_color_stops);
 	}
-}
 
-public static class GskConicGradientNodeSignals
-{
 }
 
 public static class GskConicGradientNodeHandleExtensions
 {
-	public static float GetAngle(this GskRenderNodeHandle node)
+	public static float GetAngle(this GskConicGradientNodeHandle node)
 	{
 		return GskConicGradientNodeExterns.gsk_conic_gradient_node_get_angle(node);
 	}
 
-	public static graphene_point_tHandle GetCenter(this GskRenderNodeHandle node)
+	public static graphene_point_tHandle GetCenter(this GskConicGradientNodeHandle node)
 	{
 		return GskConicGradientNodeExterns.gsk_conic_gradient_node_get_center(node);
 	}
 
-	public static GskColorStop[] GetColorStops(this GskRenderNodeHandle node, out int n_stops)
+	public static GskColorStop[] GetColorStops(this GskConicGradientNodeHandle node, out int n_stops)
 	{
 		return GskConicGradientNodeExterns.gsk_conic_gradient_node_get_color_stops(node, out n_stops);
 	}
 
-	public static int GetNColorStops(this GskRenderNodeHandle node)
+	public static int GetNColorStops(this GskConicGradientNodeHandle node)
 	{
 		return GskConicGradientNodeExterns.gsk_conic_gradient_node_get_n_color_stops(node);
 	}
 
-	public static float GetRotation(this GskRenderNodeHandle node)
+	public static float GetRotation(this GskConicGradientNodeHandle node)
 	{
 		return GskConicGradientNodeExterns.gsk_conic_gradient_node_get_rotation(node);
 	}
@@ -57,6 +54,8 @@ public static class GskConicGradientNodeHandleExtensions
 
 internal class GskConicGradientNodeExterns
 {
+	[DllImport(Libraries.Gsk4)]
+	internal static extern GskConicGradientNodeHandle gsk_conic_gradient_node_new(graphene_rect_tHandle bounds, graphene_point_tHandle center, float rotation, GskColorStop[] color_stops, int n_color_stops);
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_conic_gradient_node_get_angle(GskRenderNodeHandle node);
 	[DllImport(Libraries.Gsk4)]
@@ -67,6 +66,4 @@ internal class GskConicGradientNodeExterns
 	internal static extern int gsk_conic_gradient_node_get_n_color_stops(GskRenderNodeHandle node);
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_conic_gradient_node_get_rotation(GskRenderNodeHandle node);
-	[DllImport(Libraries.Gsk4)]
-	internal static extern GskConicGradientNodeHandle gsk_conic_gradient_node_new(graphene_rect_tHandle bounds, graphene_point_tHandle center, float rotation, GskColorStop[] color_stops, int n_color_stops);
 }

@@ -20,10 +20,7 @@ public class GtkColorDialogHandle : GObjectHandle
 	{
 		return GtkColorDialogExterns.gtk_color_dialog_new();
 	}
-}
 
-public static class GtkColorDialogSignals
-{
 }
 
 public static class GtkColorDialogHandleExtensions
@@ -77,6 +74,8 @@ public static class GtkColorDialogHandleExtensions
 internal class GtkColorDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkColorDialogHandle gtk_color_dialog_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_color_dialog_choose_rgba(GtkColorDialogHandle self, GtkWindowHandle parent, GdkRGBAHandle initial_color, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkRGBAHandle gtk_color_dialog_choose_rgba_finish(GtkColorDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
@@ -92,6 +91,4 @@ internal class GtkColorDialogExterns
 	internal static extern void gtk_color_dialog_set_title(GtkColorDialogHandle self, string title);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_color_dialog_set_with_alpha(GtkColorDialogHandle self, bool with_alpha);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkColorDialogHandle gtk_color_dialog_new();
 }

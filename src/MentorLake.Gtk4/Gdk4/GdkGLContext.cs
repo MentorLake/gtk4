@@ -16,10 +16,16 @@ namespace MentorLake.Gtk4.Gdk4;
 
 public class GdkGLContextHandle : GdkDrawContextHandle
 {
-}
+	public static void GdkGlContextClearCurrent()
+	{
+		GdkGLContextExterns.gdk_gl_context_clear_current();
+	}
 
-public static class GdkGLContextSignals
-{
+	public static GdkGLContextHandle GdkGlContextGetCurrent()
+	{
+		return GdkGLContextExterns.gdk_gl_context_get_current();
+	}
+
 }
 
 public static class GdkGLContextHandleExtensions
@@ -125,16 +131,6 @@ public static class GdkGLContextHandleExtensions
 	{
 		GdkGLContextExterns.gdk_gl_context_set_use_es(context, use_es);
 		return context;
-	}
-
-	public static void GdkGlContextClearCurrent()
-	{
-		GdkGLContextExterns.gdk_gl_context_clear_current();
-	}
-
-	public static GdkGLContextHandle GdkGlContextGetCurrent()
-	{
-		return GdkGLContextExterns.gdk_gl_context_get_current();
 	}
 
 }

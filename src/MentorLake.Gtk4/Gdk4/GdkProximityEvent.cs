@@ -18,10 +18,6 @@ public class GdkProximityEventHandle : GdkEventHandle
 {
 }
 
-public static class GdkProximityEventSignals
-{
-}
-
 public static class GdkProximityEventHandleExtensions
 {
 }

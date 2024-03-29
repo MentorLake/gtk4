@@ -20,6 +20,7 @@ public class GtkGestureClickHandle : GtkGestureSingleHandle
 	{
 		return GtkGestureClickExterns.gtk_gesture_click_new();
 	}
+
 }
 
 public class GtkGestureClickSignal

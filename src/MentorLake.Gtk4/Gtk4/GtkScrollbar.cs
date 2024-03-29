@@ -20,10 +20,7 @@ public class GtkScrollbarHandle : GtkWidgetHandle
 	{
 		return GtkScrollbarExterns.gtk_scrollbar_new(orientation, adjustment);
 	}
-}
 
-public static class GtkScrollbarSignals
-{
 }
 
 public static class GtkScrollbarHandleExtensions
@@ -44,9 +41,9 @@ public static class GtkScrollbarHandleExtensions
 internal class GtkScrollbarExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkScrollbarHandle gtk_scrollbar_new(GtkOrientation orientation, GtkAdjustmentHandle adjustment);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAdjustmentHandle gtk_scrollbar_get_adjustment(GtkScrollbarHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrollbar_set_adjustment(GtkScrollbarHandle self, GtkAdjustmentHandle adjustment);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkScrollbarHandle gtk_scrollbar_new(GtkOrientation orientation, GtkAdjustmentHandle adjustment);
 }

@@ -20,6 +20,7 @@ public class GDebugControllerDBusHandle : GObjectHandle
 	{
 		return GDebugControllerDBusExterns.g_debug_controller_dbus_new(connection, cancellable, out error);
 	}
+
 }
 
 public class GDebugControllerDBusSignal
@@ -51,7 +52,7 @@ public static class GDebugControllerDBusHandleExtensions
 internal class GDebugControllerDBusExterns
 {
 	[DllImport(Libraries.Gio)]
-	internal static extern void g_debug_controller_dbus_stop(GDebugControllerDBusHandle self);
-	[DllImport(Libraries.Gio)]
 	internal static extern GDebugControllerDBusHandle g_debug_controller_dbus_new(GDBusConnectionHandle connection, GCancellableHandle cancellable, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
+	internal static extern void g_debug_controller_dbus_stop(GDebugControllerDBusHandle self);
 }

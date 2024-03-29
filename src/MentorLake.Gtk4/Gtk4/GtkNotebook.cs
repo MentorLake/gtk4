@@ -20,6 +20,7 @@ public class GtkNotebookHandle : GtkWidgetHandle
 	{
 		return GtkNotebookExterns.gtk_notebook_new();
 	}
+
 }
 
 public class GtkNotebookSignal
@@ -294,6 +295,8 @@ public static class GtkNotebookHandleExtensions
 internal class GtkNotebookExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkNotebookHandle gtk_notebook_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_notebook_append_page(GtkNotebookHandle notebook, GtkWidgetHandle child, GtkWidgetHandle tab_label);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_notebook_append_page_menu(GtkNotebookHandle notebook, GtkWidgetHandle child, GtkWidgetHandle tab_label, GtkWidgetHandle menu_label);
@@ -381,6 +384,4 @@ internal class GtkNotebookExterns
 	internal static extern void gtk_notebook_set_tab_pos(GtkNotebookHandle notebook, GtkPositionType pos);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_notebook_set_tab_reorderable(GtkNotebookHandle notebook, GtkWidgetHandle child, bool reorderable);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkNotebookHandle gtk_notebook_new();
 }

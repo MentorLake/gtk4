@@ -18,10 +18,6 @@ public class GdkAppLaunchContextHandle : GAppLaunchContextHandle
 {
 }
 
-public static class GdkAppLaunchContextSignals
-{
-}
-
 public static class GdkAppLaunchContextHandleExtensions
 {
 	public static GdkDisplayHandle GetDisplay(this GdkAppLaunchContextHandle context)

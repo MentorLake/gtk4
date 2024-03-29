@@ -18,10 +18,6 @@ public class GtkColumnViewCellHandle : GtkListItemHandle
 {
 }
 
-public static class GtkColumnViewCellSignals
-{
-}
-
 public static class GtkColumnViewCellHandleExtensions
 {
 	public static GtkWidgetHandle GetChild(this GtkColumnViewCellHandle self)

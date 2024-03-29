@@ -20,58 +20,112 @@ public class GdkPixbufHandle : GObjectHandle
 	{
 		return GdkPixbufExterns.gdk_pixbuf_new(colorspace, has_alpha, bits_per_sample, width, height);
 	}
+
 	public static GdkPixbufHandle NewFromBytes(GBytesHandle data, GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height, int rowstride)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_new_from_bytes(data, colorspace, has_alpha, bits_per_sample, width, height, rowstride);
 	}
+
 	public static GdkPixbufHandle NewFromData(string data, GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height, int rowstride, GdkPixbufDestroyNotify destroy_fn, IntPtr destroy_fn_data)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_new_from_data(data, colorspace, has_alpha, bits_per_sample, width, height, rowstride, destroy_fn, destroy_fn_data);
 	}
+
 	public static GdkPixbufHandle NewFromFile(string filename, out GErrorHandle error)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_new_from_file(filename, out error);
 	}
+
 	public static GdkPixbufHandle NewFromFileAtScale(string filename, int width, int height, bool preserve_aspect_ratio, out GErrorHandle error)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_new_from_file_at_scale(filename, width, height, preserve_aspect_ratio, out error);
 	}
+
 	public static GdkPixbufHandle NewFromFileAtSize(string filename, int width, int height, out GErrorHandle error)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_new_from_file_at_size(filename, width, height, out error);
 	}
+
 	public static GdkPixbufHandle NewFromInline(int data_length, byte[] data, bool copy_pixels, out GErrorHandle error)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_new_from_inline(data_length, data, copy_pixels, out error);
 	}
+
 	public static GdkPixbufHandle NewFromResource(string resource_path, out GErrorHandle error)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_new_from_resource(resource_path, out error);
 	}
+
 	public static GdkPixbufHandle NewFromResourceAtScale(string resource_path, int width, int height, bool preserve_aspect_ratio, out GErrorHandle error)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_new_from_resource_at_scale(resource_path, width, height, preserve_aspect_ratio, out error);
 	}
+
 	public static GdkPixbufHandle NewFromStream(GInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_new_from_stream(stream, cancellable, out error);
 	}
+
 	public static GdkPixbufHandle NewFromStreamAtScale(GInputStreamHandle stream, int width, int height, bool preserve_aspect_ratio, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_new_from_stream_at_scale(stream, width, height, preserve_aspect_ratio, cancellable, out error);
 	}
+
 	public static GdkPixbufHandle NewFromStreamFinish(GAsyncResultHandle async_result, out GErrorHandle error)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_new_from_stream_finish(async_result, out error);
 	}
+
 	public static GdkPixbufHandle NewFromXpmData(string[] data)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_new_from_xpm_data(data);
 	}
-}
 
-public static class GdkPixbufSignals
-{
+	public static int CalculateRowstride(GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height)
+	{
+		return GdkPixbufExterns.gdk_pixbuf_calculate_rowstride(colorspace, has_alpha, bits_per_sample, width, height);
+	}
+
+	public static GdkPixbufFormatHandle GetFileInfo(string filename, out int width, out int height)
+	{
+		return GdkPixbufExterns.gdk_pixbuf_get_file_info(filename, out width, out height);
+	}
+
+	public static void GetFileInfoAsync(string filename, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	{
+		GdkPixbufExterns.gdk_pixbuf_get_file_info_async(filename, cancellable, callback, user_data);
+	}
+
+	public static GdkPixbufFormatHandle GetFileInfoFinish(GAsyncResultHandle async_result, out int width, out int height, out GErrorHandle error)
+	{
+		return GdkPixbufExterns.gdk_pixbuf_get_file_info_finish(async_result, out width, out height, out error);
+	}
+
+	public static GSListHandle GetFormats()
+	{
+		return GdkPixbufExterns.gdk_pixbuf_get_formats();
+	}
+
+	public static bool InitModules(string path, out GErrorHandle error)
+	{
+		return GdkPixbufExterns.gdk_pixbuf_init_modules(path, out error);
+	}
+
+	public static void NewFromStreamAsync(GInputStreamHandle stream, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	{
+		GdkPixbufExterns.gdk_pixbuf_new_from_stream_async(stream, cancellable, callback, user_data);
+	}
+
+	public static void NewFromStreamAtScaleAsync(GInputStreamHandle stream, int width, int height, bool preserve_aspect_ratio, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	{
+		GdkPixbufExterns.gdk_pixbuf_new_from_stream_at_scale_async(stream, width, height, preserve_aspect_ratio, cancellable, callback, user_data);
+	}
+
+	public static bool SaveToStreamFinish(GAsyncResultHandle async_result, out GErrorHandle error)
+	{
+		return GdkPixbufExterns.gdk_pixbuf_save_to_stream_finish(async_result, out error);
+	}
+
 }
 
 public static class GdkPixbufHandleExtensions
@@ -300,57 +354,36 @@ public static class GdkPixbufHandleExtensions
 		return pixbuf;
 	}
 
-	public static int CalculateRowstride(this GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height)
-	{
-		return GdkPixbufExterns.gdk_pixbuf_calculate_rowstride(colorspace, has_alpha, bits_per_sample, width, height);
-	}
-
-	public static GdkPixbufFormatHandle GetFileInfo(this string filename, out int width, out int height)
-	{
-		return GdkPixbufExterns.gdk_pixbuf_get_file_info(filename, out width, out height);
-	}
-
-	public static void GetFileInfoAsync(this string filename, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
-	{
-		GdkPixbufExterns.gdk_pixbuf_get_file_info_async(filename, cancellable, callback, user_data);
-	}
-
-	public static GdkPixbufFormatHandle GetFileInfoFinish(this GAsyncResultHandle async_result, out int width, out int height, out GErrorHandle error)
-	{
-		return GdkPixbufExterns.gdk_pixbuf_get_file_info_finish(async_result, out width, out height, out error);
-	}
-
-	public static GSListHandle GetFormats()
-	{
-		return GdkPixbufExterns.gdk_pixbuf_get_formats();
-	}
-
-	public static bool InitModules(this string path, out GErrorHandle error)
-	{
-		return GdkPixbufExterns.gdk_pixbuf_init_modules(path, out error);
-	}
-
-	public static GdkPixbufHandle NewFromStreamAsync(this GdkPixbufHandle @handle, GInputStreamHandle stream, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
-	{
-		GdkPixbufExterns.gdk_pixbuf_new_from_stream_async(stream, cancellable, callback, user_data);
-		return @handle;
-	}
-
-	public static GdkPixbufHandle NewFromStreamAtScaleAsync(this GdkPixbufHandle @handle, GInputStreamHandle stream, int width, int height, bool preserve_aspect_ratio, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
-	{
-		GdkPixbufExterns.gdk_pixbuf_new_from_stream_at_scale_async(stream, width, height, preserve_aspect_ratio, cancellable, callback, user_data);
-		return @handle;
-	}
-
-	public static bool SaveToStreamFinish(this GAsyncResultHandle async_result, out GErrorHandle error)
-	{
-		return GdkPixbufExterns.gdk_pixbuf_save_to_stream_finish(async_result, out error);
-	}
-
 }
 
 internal class GdkPixbufExterns
 {
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufHandle gdk_pixbuf_new(GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_bytes(GBytesHandle data, GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height, int rowstride);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_data(string data, GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height, int rowstride, GdkPixbufDestroyNotify destroy_fn, IntPtr destroy_fn_data);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_file(string filename, out GErrorHandle error);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_file_at_scale(string filename, int width, int height, bool preserve_aspect_ratio, out GErrorHandle error);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_file_at_size(string filename, int width, int height, out GErrorHandle error);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_inline(int data_length, byte[] data, bool copy_pixels, out GErrorHandle error);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_resource(string resource_path, out GErrorHandle error);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_resource_at_scale(string resource_path, int width, int height, bool preserve_aspect_ratio, out GErrorHandle error);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_stream(GInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_stream_at_scale(GInputStreamHandle stream, int width, int height, bool preserve_aspect_ratio, GCancellableHandle cancellable, out GErrorHandle error);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_stream_finish(GAsyncResultHandle async_result, out GErrorHandle error);
+	[DllImport(Libraries.GdkPixbuf)]
+	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_xpm_data(string[] data);
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_add_alpha(GdkPixbufHandle pixbuf, bool substitute_color, char r, char g, char b);
 	[DllImport(Libraries.GdkPixbuf)]
@@ -455,30 +488,4 @@ internal class GdkPixbufExterns
 	internal static extern void gdk_pixbuf_new_from_stream_at_scale_async(GInputStreamHandle stream, int width, int height, bool preserve_aspect_ratio, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_save_to_stream_finish(GAsyncResultHandle async_result, out GErrorHandle error);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufHandle gdk_pixbuf_new(GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_bytes(GBytesHandle data, GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height, int rowstride);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_data(string data, GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height, int rowstride, GdkPixbufDestroyNotify destroy_fn, IntPtr destroy_fn_data);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_file(string filename, out GErrorHandle error);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_file_at_scale(string filename, int width, int height, bool preserve_aspect_ratio, out GErrorHandle error);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_file_at_size(string filename, int width, int height, out GErrorHandle error);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_inline(int data_length, byte[] data, bool copy_pixels, out GErrorHandle error);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_resource(string resource_path, out GErrorHandle error);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_resource_at_scale(string resource_path, int width, int height, bool preserve_aspect_ratio, out GErrorHandle error);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_stream(GInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_stream_at_scale(GInputStreamHandle stream, int width, int height, bool preserve_aspect_ratio, GCancellableHandle cancellable, out GErrorHandle error);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_stream_finish(GAsyncResultHandle async_result, out GErrorHandle error);
-	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_xpm_data(string[] data);
 }

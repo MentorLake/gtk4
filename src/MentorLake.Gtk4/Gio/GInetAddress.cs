@@ -20,22 +20,22 @@ public class GInetAddressHandle : GObjectHandle
 	{
 		return GInetAddressExterns.g_inet_address_new_any(family);
 	}
+
 	public static GInetAddressHandle NewFromBytes(byte[] bytes, GSocketFamily family)
 	{
 		return GInetAddressExterns.g_inet_address_new_from_bytes(bytes, family);
 	}
+
 	public static GInetAddressHandle NewFromString(string @string)
 	{
 		return GInetAddressExterns.g_inet_address_new_from_string(@string);
 	}
+
 	public static GInetAddressHandle NewLoopback(GSocketFamily family)
 	{
 		return GInetAddressExterns.g_inet_address_new_loopback(family);
 	}
-}
 
-public static class GInetAddressSignals
-{
 }
 
 public static class GInetAddressHandleExtensions
@@ -120,6 +120,14 @@ public static class GInetAddressHandleExtensions
 internal class GInetAddressExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GInetAddressHandle g_inet_address_new_any(GSocketFamily family);
+	[DllImport(Libraries.Gio)]
+	internal static extern GInetAddressHandle g_inet_address_new_from_bytes(byte[] bytes, GSocketFamily family);
+	[DllImport(Libraries.Gio)]
+	internal static extern GInetAddressHandle g_inet_address_new_from_string(string @string);
+	[DllImport(Libraries.Gio)]
+	internal static extern GInetAddressHandle g_inet_address_new_loopback(GSocketFamily family);
+	[DllImport(Libraries.Gio)]
 	internal static extern bool g_inet_address_equal(GInetAddressHandle address, GInetAddressHandle other_address);
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketFamily g_inet_address_get_family(GInetAddressHandle address);
@@ -149,12 +157,4 @@ internal class GInetAddressExterns
 	internal static extern byte[] g_inet_address_to_bytes(GInetAddressHandle address);
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_inet_address_to_string(GInetAddressHandle address);
-	[DllImport(Libraries.Gio)]
-	internal static extern GInetAddressHandle g_inet_address_new_any(GSocketFamily family);
-	[DllImport(Libraries.Gio)]
-	internal static extern GInetAddressHandle g_inet_address_new_from_bytes(byte[] bytes, GSocketFamily family);
-	[DllImport(Libraries.Gio)]
-	internal static extern GInetAddressHandle g_inet_address_new_from_string(string @string);
-	[DllImport(Libraries.Gio)]
-	internal static extern GInetAddressHandle g_inet_address_new_loopback(GSocketFamily family);
 }

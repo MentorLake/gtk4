@@ -18,10 +18,6 @@ public class GtkMediaStreamHandle : GObjectHandle
 {
 }
 
-public static class GtkMediaStreamSignals
-{
-}
-
 public static class GtkMediaStreamHandleExtensions
 {
 	public static GtkMediaStreamHandle Ended(this GtkMediaStreamHandle self)

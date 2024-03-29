@@ -20,10 +20,7 @@ public class GtkShortcutTriggerHandle : GObjectHandle
 	{
 		return GtkShortcutTriggerExterns.gtk_shortcut_trigger_parse_string(@string);
 	}
-}
 
-public static class GtkShortcutTriggerSignals
-{
 }
 
 public static class GtkShortcutTriggerHandleExtensions
@@ -74,6 +71,8 @@ public static class GtkShortcutTriggerHandleExtensions
 internal class GtkShortcutTriggerExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkShortcutTriggerHandle gtk_shortcut_trigger_parse_string(string @string);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_shortcut_trigger_compare(IntPtr trigger1, IntPtr trigger2);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_shortcut_trigger_equal(IntPtr trigger1, IntPtr trigger2);
@@ -89,6 +88,4 @@ internal class GtkShortcutTriggerExterns
 	internal static extern string gtk_shortcut_trigger_to_string(GtkShortcutTriggerHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkKeyMatch gtk_shortcut_trigger_trigger(GtkShortcutTriggerHandle self, GdkEventHandle @event, bool enable_mnemonics);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkShortcutTriggerHandle gtk_shortcut_trigger_parse_string(string @string);
 }

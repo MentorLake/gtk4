@@ -20,6 +20,7 @@ public class GSocketListenerHandle : GObjectHandle
 	{
 		return GSocketListenerExterns.g_socket_listener_new();
 	}
+
 }
 
 public class GSocketListenerSignal
@@ -109,6 +110,8 @@ public static class GSocketListenerHandleExtensions
 internal class GSocketListenerExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GSocketListenerHandle g_socket_listener_new();
+	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectionHandle g_socket_listener_accept(GSocketListenerHandle listener, out GObjectHandle source_object, GCancellableHandle cancellable, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_listener_accept_async(GSocketListenerHandle listener, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
@@ -132,6 +135,4 @@ internal class GSocketListenerExterns
 	internal static extern void g_socket_listener_close(GSocketListenerHandle listener);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_listener_set_backlog(GSocketListenerHandle listener, int listen_backlog);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSocketListenerHandle g_socket_listener_new();
 }

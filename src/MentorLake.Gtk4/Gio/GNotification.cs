@@ -20,10 +20,7 @@ public class GNotificationHandle : GObjectHandle
 	{
 		return GNotificationExterns.g_notification_new(title);
 	}
-}
 
-public static class GNotificationSignals
-{
 }
 
 public static class GNotificationHandleExtensions
@@ -105,6 +102,8 @@ public static class GNotificationHandleExtensions
 internal class GNotificationExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GNotificationHandle g_notification_new(string title);
+	[DllImport(Libraries.Gio)]
 	internal static extern void g_notification_add_button(GNotificationHandle notification, string label, string detailed_action);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_notification_add_button_with_target(GNotificationHandle notification, string label, string action, string target_format, IntPtr @__arglist);
@@ -128,6 +127,4 @@ internal class GNotificationExterns
 	internal static extern void g_notification_set_title(GNotificationHandle notification, string title);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_notification_set_urgent(GNotificationHandle notification, bool urgent);
-	[DllImport(Libraries.Gio)]
-	internal static extern GNotificationHandle g_notification_new(string title);
 }

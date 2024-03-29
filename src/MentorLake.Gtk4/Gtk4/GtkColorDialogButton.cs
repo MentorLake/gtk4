@@ -20,6 +20,7 @@ public class GtkColorDialogButtonHandle : GtkWidgetHandle
 	{
 		return GtkColorDialogButtonExterns.gtk_color_dialog_button_new(dialog);
 	}
+
 }
 
 public class GtkColorDialogButtonSignal
@@ -67,6 +68,8 @@ public static class GtkColorDialogButtonHandleExtensions
 internal class GtkColorDialogButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkColorDialogButtonHandle gtk_color_dialog_button_new(GtkColorDialogHandle dialog);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkColorDialogHandle gtk_color_dialog_button_get_dialog(GtkColorDialogButtonHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkRGBAHandle gtk_color_dialog_button_get_rgba(GtkColorDialogButtonHandle self);
@@ -74,6 +77,4 @@ internal class GtkColorDialogButtonExterns
 	internal static extern void gtk_color_dialog_button_set_dialog(GtkColorDialogButtonHandle self, GtkColorDialogHandle dialog);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_color_dialog_button_set_rgba(GtkColorDialogButtonHandle self, GdkRGBAHandle color);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkColorDialogButtonHandle gtk_color_dialog_button_new(GtkColorDialogHandle dialog);
 }

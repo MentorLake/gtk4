@@ -18,10 +18,6 @@ public class GtkPrintContextHandle : GObjectHandle
 {
 }
 
-public static class GtkPrintContextSignals
-{
-}
-
 public static class GtkPrintContextHandleExtensions
 {
 	public static PangoContextHandle CreatePangoContext(this GtkPrintContextHandle context)

@@ -20,22 +20,22 @@ public class GtkBuilderHandle : GObjectHandle
 	{
 		return GtkBuilderExterns.gtk_builder_new();
 	}
+
 	public static GtkBuilderHandle NewFromFile(string filename)
 	{
 		return GtkBuilderExterns.gtk_builder_new_from_file(filename);
 	}
+
 	public static GtkBuilderHandle NewFromResource(string resource_path)
 	{
 		return GtkBuilderExterns.gtk_builder_new_from_resource(resource_path);
 	}
+
 	public static GtkBuilderHandle NewFromString(string @string, int length)
 	{
 		return GtkBuilderExterns.gtk_builder_new_from_string(@string, length);
 	}
-}
 
-public static class GtkBuilderSignals
-{
 }
 
 public static class GtkBuilderHandleExtensions
@@ -149,6 +149,14 @@ public static class GtkBuilderHandleExtensions
 internal class GtkBuilderExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkBuilderHandle gtk_builder_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkBuilderHandle gtk_builder_new_from_file(string filename);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkBuilderHandle gtk_builder_new_from_resource(string resource_path);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkBuilderHandle gtk_builder_new_from_string(string @string, int length);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_builder_add_from_file(GtkBuilderHandle builder, string filename, out GErrorHandle error);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_builder_add_from_resource(GtkBuilderHandle builder, string resource_path, out GErrorHandle error);
@@ -188,12 +196,4 @@ internal class GtkBuilderExterns
 	internal static extern bool gtk_builder_value_from_string(GtkBuilderHandle builder, GParamSpecHandle pspec, string @string, out GValue value, out GErrorHandle error);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_builder_value_from_string_type(GtkBuilderHandle builder, GType type, string @string, out GValue value, out GErrorHandle error);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkBuilderHandle gtk_builder_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkBuilderHandle gtk_builder_new_from_file(string filename);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkBuilderHandle gtk_builder_new_from_resource(string resource_path);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkBuilderHandle gtk_builder_new_from_string(string @string, int length);
 }

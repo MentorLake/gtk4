@@ -20,10 +20,7 @@ public class GtkPrintDialogHandle : GObjectHandle
 	{
 		return GtkPrintDialogExterns.gtk_print_dialog_new();
 	}
-}
 
-public static class GtkPrintDialogSignals
-{
 }
 
 public static class GtkPrintDialogHandleExtensions
@@ -121,6 +118,8 @@ public static class GtkPrintDialogHandleExtensions
 internal class GtkPrintDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPrintDialogHandle gtk_print_dialog_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_print_dialog_get_accept_label(GtkPrintDialogHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_dialog_get_modal(GtkPrintDialogHandle self);
@@ -152,6 +151,4 @@ internal class GtkPrintDialogExterns
 	internal static extern void gtk_print_dialog_setup(GtkPrintDialogHandle self, GtkWindowHandle parent, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintSetupHandle gtk_print_dialog_setup_finish(GtkPrintDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPrintDialogHandle gtk_print_dialog_new();
 }

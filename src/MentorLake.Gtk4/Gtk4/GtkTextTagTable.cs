@@ -20,6 +20,7 @@ public class GtkTextTagTableHandle : GObjectHandle
 	{
 		return GtkTextTagTableExterns.gtk_text_tag_table_new();
 	}
+
 }
 
 public class GtkTextTagTableSignal
@@ -74,6 +75,8 @@ public static class GtkTextTagTableHandleExtensions
 internal class GtkTextTagTableExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkTextTagTableHandle gtk_text_tag_table_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_text_tag_table_add(GtkTextTagTableHandle table, GtkTextTagHandle tag);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_tag_table_foreach(GtkTextTagTableHandle table, GtkTextTagTableForeach func, IntPtr data);
@@ -83,6 +86,4 @@ internal class GtkTextTagTableExterns
 	internal static extern GtkTextTagHandle gtk_text_tag_table_lookup(GtkTextTagTableHandle table, string name);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_tag_table_remove(GtkTextTagTableHandle table, GtkTextTagHandle tag);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkTextTagTableHandle gtk_text_tag_table_new();
 }

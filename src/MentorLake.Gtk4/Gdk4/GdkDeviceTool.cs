@@ -18,10 +18,6 @@ public class GdkDeviceToolHandle : GObjectHandle
 {
 }
 
-public static class GdkDeviceToolSignals
-{
-}
-
 public static class GdkDeviceToolHandleExtensions
 {
 	public static GdkAxisFlags GetAxes(this GdkDeviceToolHandle tool)

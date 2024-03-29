@@ -20,14 +20,17 @@ public class GtkIconViewHandle : GtkWidgetHandle
 	{
 		return GtkIconViewExterns.gtk_icon_view_new();
 	}
+
 	public static GtkIconViewHandle NewWithArea(GtkCellAreaHandle area)
 	{
 		return GtkIconViewExterns.gtk_icon_view_new_with_area(area);
 	}
+
 	public static GtkIconViewHandle NewWithModel(GtkTreeModelHandle model)
 	{
 		return GtkIconViewExterns.gtk_icon_view_new_with_model(model);
 	}
+
 }
 
 public class GtkIconViewSignal
@@ -392,6 +395,12 @@ public static class GtkIconViewHandleExtensions
 internal class GtkIconViewExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkIconViewHandle gtk_icon_view_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkIconViewHandle gtk_icon_view_new_with_area(GtkCellAreaHandle area);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkIconViewHandle gtk_icon_view_new_with_model(GtkTreeModelHandle model);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkPaintableHandle gtk_icon_view_create_drag_icon(GtkIconViewHandle icon_view, GtkTreePathHandle path);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_enable_model_drag_dest(GtkIconViewHandle icon_view, GdkContentFormatsHandle formats, GdkDragAction actions);
@@ -511,10 +520,4 @@ internal class GtkIconViewExterns
 	internal static extern void gtk_icon_view_unset_model_drag_dest(GtkIconViewHandle icon_view);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_unset_model_drag_source(GtkIconViewHandle icon_view);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkIconViewHandle gtk_icon_view_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkIconViewHandle gtk_icon_view_new_with_area(GtkCellAreaHandle area);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkIconViewHandle gtk_icon_view_new_with_model(GtkTreeModelHandle model);
 }

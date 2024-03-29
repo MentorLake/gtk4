@@ -20,14 +20,12 @@ public class GtkAppChooserDialogHandle : GtkDialogHandle
 	{
 		return GtkAppChooserDialogExterns.gtk_app_chooser_dialog_new(parent, flags, file);
 	}
+
 	public static GtkAppChooserDialogHandle NewForContentType(GtkWindowHandle parent, GtkDialogFlags flags, string content_type)
 	{
 		return GtkAppChooserDialogExterns.gtk_app_chooser_dialog_new_for_content_type(parent, flags, content_type);
 	}
-}
 
-public static class GtkAppChooserDialogSignals
-{
 }
 
 public static class GtkAppChooserDialogHandleExtensions
@@ -53,13 +51,13 @@ public static class GtkAppChooserDialogHandleExtensions
 internal class GtkAppChooserDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkAppChooserDialogHandle gtk_app_chooser_dialog_new(GtkWindowHandle parent, GtkDialogFlags flags, GFileHandle file);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkAppChooserDialogHandle gtk_app_chooser_dialog_new_for_content_type(GtkWindowHandle parent, GtkDialogFlags flags, string content_type);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_app_chooser_dialog_get_heading(GtkAppChooserDialogHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_app_chooser_dialog_get_widget(GtkAppChooserDialogHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_app_chooser_dialog_set_heading(GtkAppChooserDialogHandle self, string heading);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkAppChooserDialogHandle gtk_app_chooser_dialog_new(GtkWindowHandle parent, GtkDialogFlags flags, GFileHandle file);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkAppChooserDialogHandle gtk_app_chooser_dialog_new_for_content_type(GtkWindowHandle parent, GtkDialogFlags flags, string content_type);
 }

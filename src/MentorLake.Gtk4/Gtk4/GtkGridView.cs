@@ -20,6 +20,7 @@ public class GtkGridViewHandle : GtkListBaseHandle
 	{
 		return GtkGridViewExterns.gtk_grid_view_new(model, factory);
 	}
+
 }
 
 public class GtkGridViewSignal
@@ -128,6 +129,8 @@ public static class GtkGridViewHandleExtensions
 internal class GtkGridViewExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkGridViewHandle gtk_grid_view_new(GtkSelectionModelHandle model, GtkListItemFactoryHandle factory);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_grid_view_get_enable_rubberband(GtkGridViewHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListItemFactoryHandle gtk_grid_view_get_factory(GtkGridViewHandle self);
@@ -157,6 +160,4 @@ internal class GtkGridViewExterns
 	internal static extern void gtk_grid_view_set_single_click_activate(GtkGridViewHandle self, bool single_click_activate);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_grid_view_set_tab_behavior(GtkGridViewHandle self, GtkListTabBehavior tab_behavior);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkGridViewHandle gtk_grid_view_new(GtkSelectionModelHandle model, GtkListItemFactoryHandle factory);
 }

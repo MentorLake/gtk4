@@ -18,10 +18,6 @@ public class PangoFontFamilyHandle : GObjectHandle
 {
 }
 
-public static class PangoFontFamilySignals
-{
-}
-
 public static class PangoFontFamilyHandleExtensions
 {
 	public static PangoFontFaceHandle GetFace(this PangoFontFamilyHandle family, string name)

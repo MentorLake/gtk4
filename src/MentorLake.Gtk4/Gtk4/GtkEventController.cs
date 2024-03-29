@@ -18,10 +18,6 @@ public class GtkEventControllerHandle : GObjectHandle
 {
 }
 
-public static class GtkEventControllerSignals
-{
-}
-
 public static class GtkEventControllerHandleExtensions
 {
 	public static GdkEventHandle GetCurrentEvent(this GtkEventControllerHandle controller)

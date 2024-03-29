@@ -20,14 +20,12 @@ public class GtkListStoreHandle : GObjectHandle
 	{
 		return GtkListStoreExterns.gtk_list_store_new(n_columns, @__arglist);
 	}
+
 	public static GtkListStoreHandle Newv(int n_columns, GType[] types)
 	{
 		return GtkListStoreExterns.gtk_list_store_newv(n_columns, types);
 	}
-}
 
-public static class GtkListStoreSignals
-{
 }
 
 public static class GtkListStoreHandleExtensions
@@ -149,6 +147,10 @@ public static class GtkListStoreHandleExtensions
 internal class GtkListStoreExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkListStoreHandle gtk_list_store_new(int n_columns, IntPtr @__arglist);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkListStoreHandle gtk_list_store_newv(int n_columns, GType[] types);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_append(GtkListStoreHandle list_store, out GtkTreeIter iter);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_clear(GtkListStoreHandle list_store);
@@ -186,8 +188,4 @@ internal class GtkListStoreExterns
 	internal static extern void gtk_list_store_set_valuesv(GtkListStoreHandle list_store, GtkTreeIterHandle iter, int[] columns, GValue[] values, int n_values);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_swap(GtkListStoreHandle store, GtkTreeIterHandle a, GtkTreeIterHandle b);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkListStoreHandle gtk_list_store_new(int n_columns, IntPtr @__arglist);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkListStoreHandle gtk_list_store_newv(int n_columns, GType[] types);
 }

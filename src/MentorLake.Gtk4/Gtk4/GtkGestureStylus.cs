@@ -20,6 +20,7 @@ public class GtkGestureStylusHandle : GtkGestureSingleHandle
 	{
 		return GtkGestureStylusExterns.gtk_gesture_stylus_new();
 	}
+
 }
 
 public class GtkGestureStylusSignal
@@ -79,6 +80,8 @@ public static class GtkGestureStylusHandleExtensions
 internal class GtkGestureStylusExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkGestureStylusHandle gtk_gesture_stylus_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gesture_stylus_get_axes(GtkGestureStylusHandle gesture, GdkAxisUse[] axes, out double[] values);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gesture_stylus_get_axis(GtkGestureStylusHandle gesture, GdkAxisUse axis, out double value);
@@ -90,6 +93,4 @@ internal class GtkGestureStylusExterns
 	internal static extern bool gtk_gesture_stylus_get_stylus_only(GtkGestureStylusHandle gesture);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gesture_stylus_set_stylus_only(GtkGestureStylusHandle gesture, bool stylus_only);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkGestureStylusHandle gtk_gesture_stylus_new();
 }

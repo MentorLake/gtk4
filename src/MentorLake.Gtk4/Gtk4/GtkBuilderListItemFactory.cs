@@ -20,14 +20,12 @@ public class GtkBuilderListItemFactoryHandle : GtkListItemFactoryHandle
 	{
 		return GtkBuilderListItemFactoryExterns.gtk_builder_list_item_factory_new_from_bytes(scope, bytes);
 	}
+
 	public static GtkBuilderListItemFactoryHandle NewFromResource(GtkBuilderScopeHandle scope, string resource_path)
 	{
 		return GtkBuilderListItemFactoryExterns.gtk_builder_list_item_factory_new_from_resource(scope, resource_path);
 	}
-}
 
-public static class GtkBuilderListItemFactorySignals
-{
 }
 
 public static class GtkBuilderListItemFactoryHandleExtensions
@@ -52,13 +50,13 @@ public static class GtkBuilderListItemFactoryHandleExtensions
 internal class GtkBuilderListItemFactoryExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkBuilderListItemFactoryHandle gtk_builder_list_item_factory_new_from_bytes(GtkBuilderScopeHandle scope, GBytesHandle bytes);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkBuilderListItemFactoryHandle gtk_builder_list_item_factory_new_from_resource(GtkBuilderScopeHandle scope, string resource_path);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GBytesHandle gtk_builder_list_item_factory_get_bytes(GtkBuilderListItemFactoryHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_builder_list_item_factory_get_resource(GtkBuilderListItemFactoryHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBuilderScopeHandle gtk_builder_list_item_factory_get_scope(GtkBuilderListItemFactoryHandle self);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkBuilderListItemFactoryHandle gtk_builder_list_item_factory_new_from_bytes(GtkBuilderScopeHandle scope, GBytesHandle bytes);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkBuilderListItemFactoryHandle gtk_builder_list_item_factory_new_from_resource(GtkBuilderScopeHandle scope, string resource_path);
 }

@@ -16,10 +16,16 @@ namespace MentorLake.Gtk4.Gio;
 
 public class GSettingsBackendHandle : GObjectHandle
 {
-}
+	public static void FlattenTree(GTreeHandle tree, out string path, out string[] keys, out GVariantHandle[] values)
+	{
+		GSettingsBackendExterns.g_settings_backend_flatten_tree(tree, out path, out keys, out values);
+	}
 
-public static class GSettingsBackendSignals
-{
+	public static GSettingsBackendHandle GetDefault()
+	{
+		return GSettingsBackendExterns.g_settings_backend_get_default();
+	}
+
 }
 
 public static class GSettingsBackendHandleExtensions
@@ -58,17 +64,6 @@ public static class GSettingsBackendHandleExtensions
 	{
 		GSettingsBackendExterns.g_settings_backend_writable_changed(backend, key);
 		return backend;
-	}
-
-	public static GSettingsBackendHandle FlattenTree(this GSettingsBackendHandle @handle, GTreeHandle tree, out string path, out string[] keys, out GVariantHandle[] values)
-	{
-		GSettingsBackendExterns.g_settings_backend_flatten_tree(tree, out path, out keys, out values);
-		return @handle;
-	}
-
-	public static GSettingsBackendHandle GetDefault()
-	{
-		return GSettingsBackendExterns.g_settings_backend_get_default();
 	}
 
 }

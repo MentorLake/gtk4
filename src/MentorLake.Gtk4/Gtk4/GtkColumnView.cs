@@ -20,6 +20,7 @@ public class GtkColumnViewHandle : GtkWidgetHandle
 	{
 		return GtkColumnViewExterns.gtk_column_view_new(model);
 	}
+
 }
 
 public class GtkColumnViewSignal
@@ -184,6 +185,8 @@ public static class GtkColumnViewHandleExtensions
 internal class GtkColumnViewExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkColumnViewHandle gtk_column_view_new(GtkSelectionModelHandle model);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_append_column(GtkColumnViewHandle self, GtkColumnViewColumnHandle column);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_column_view_get_columns(GtkColumnViewHandle self);
@@ -233,6 +236,4 @@ internal class GtkColumnViewExterns
 	internal static extern void gtk_column_view_set_tab_behavior(GtkColumnViewHandle self, GtkListTabBehavior tab_behavior);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_sort_by_column(GtkColumnViewHandle self, GtkColumnViewColumnHandle column, GtkSortType direction);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkColumnViewHandle gtk_column_view_new(GtkSelectionModelHandle model);
 }

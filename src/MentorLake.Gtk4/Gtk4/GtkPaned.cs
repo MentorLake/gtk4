@@ -20,6 +20,7 @@ public class GtkPanedHandle : GtkWidgetHandle
 	{
 		return GtkPanedExterns.gtk_paned_new(orientation);
 	}
+
 }
 
 public class GtkPanedSignal
@@ -138,6 +139,8 @@ public static class GtkPanedHandleExtensions
 internal class GtkPanedExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkPanedHandle gtk_paned_new(GtkOrientation orientation);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_paned_get_end_child(GtkPanedHandle paned);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_paned_get_position(GtkPanedHandle paned);
@@ -169,6 +172,4 @@ internal class GtkPanedExterns
 	internal static extern void gtk_paned_set_start_child(GtkPanedHandle paned, GtkWidgetHandle child);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_paned_set_wide_handle(GtkPanedHandle paned, bool wide);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPanedHandle gtk_paned_new(GtkOrientation orientation);
 }

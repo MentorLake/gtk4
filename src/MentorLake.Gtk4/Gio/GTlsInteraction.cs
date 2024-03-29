@@ -18,10 +18,6 @@ public class GTlsInteractionHandle : GObjectHandle
 {
 }
 
-public static class GTlsInteractionSignals
-{
-}
-
 public static class GTlsInteractionHandleExtensions
 {
 	public static GTlsInteractionResult AskPassword(this GTlsInteractionHandle interaction, GTlsPasswordHandle password, GCancellableHandle cancellable, out GErrorHandle error)

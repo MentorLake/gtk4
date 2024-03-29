@@ -18,13 +18,9 @@ public class GdkTouchEventHandle : GdkEventHandle
 {
 }
 
-public static class GdkTouchEventSignals
-{
-}
-
 public static class GdkTouchEventHandleExtensions
 {
-	public static bool GetEmulatingPointer(this GdkEventHandle @event)
+	public static bool GetEmulatingPointer(this GdkTouchEventHandle @event)
 	{
 		return GdkTouchEventExterns.gdk_touch_event_get_emulating_pointer(@event);
 	}

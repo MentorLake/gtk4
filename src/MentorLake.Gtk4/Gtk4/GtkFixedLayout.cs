@@ -20,10 +20,7 @@ public class GtkFixedLayoutHandle : GtkLayoutManagerHandle
 	{
 		return GtkFixedLayoutExterns.gtk_fixed_layout_new();
 	}
-}
 
-public static class GtkFixedLayoutSignals
-{
 }
 
 public static class GtkFixedLayoutHandleExtensions

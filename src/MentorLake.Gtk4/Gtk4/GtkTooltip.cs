@@ -18,10 +18,6 @@ public class GtkTooltipHandle : GObjectHandle
 {
 }
 
-public static class GtkTooltipSignals
-{
-}
-
 public static class GtkTooltipHandleExtensions
 {
 	public static GtkTooltipHandle SetCustom(this GtkTooltipHandle tooltip, GtkWidgetHandle custom_widget)

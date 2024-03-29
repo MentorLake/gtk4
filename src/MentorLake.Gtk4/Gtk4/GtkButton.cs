@@ -20,18 +20,22 @@ public class GtkButtonHandle : GtkWidgetHandle
 	{
 		return GtkButtonExterns.gtk_button_new();
 	}
+
 	public static GtkButtonHandle NewFromIconName(string icon_name)
 	{
 		return GtkButtonExterns.gtk_button_new_from_icon_name(icon_name);
 	}
+
 	public static GtkButtonHandle NewWithLabel(string label)
 	{
 		return GtkButtonExterns.gtk_button_new_with_label(label);
 	}
+
 	public static GtkButtonHandle NewWithMnemonic(string label)
 	{
 		return GtkButtonExterns.gtk_button_new_with_mnemonic(label);
 	}
+
 }
 
 public class GtkButtonSignal
@@ -124,6 +128,14 @@ public static class GtkButtonHandleExtensions
 internal class GtkButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkButtonHandle gtk_button_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkButtonHandle gtk_button_new_from_icon_name(string icon_name);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkButtonHandle gtk_button_new_with_label(string label);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkButtonHandle gtk_button_new_with_mnemonic(string label);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_button_get_can_shrink(GtkButtonHandle button);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_button_get_child(GtkButtonHandle button);
@@ -147,12 +159,4 @@ internal class GtkButtonExterns
 	internal static extern void gtk_button_set_label(GtkButtonHandle button, string label);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_button_set_use_underline(GtkButtonHandle button, bool use_underline);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkButtonHandle gtk_button_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkButtonHandle gtk_button_new_from_icon_name(string icon_name);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkButtonHandle gtk_button_new_with_label(string label);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkButtonHandle gtk_button_new_with_mnemonic(string label);
 }

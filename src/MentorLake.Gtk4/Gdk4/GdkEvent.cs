@@ -18,10 +18,6 @@ public class GdkEventHandle : GTypeInstanceHandle
 {
 }
 
-public static class GdkEventSignals
-{
-}
-
 public static class GdkEventHandleExtensions
 {
 	public static bool sGetAngle(this GdkEventHandle event1, GdkEventHandle event2, out double angle)

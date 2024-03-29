@@ -20,14 +20,22 @@ public class GNetworkAddressHandle : GObjectHandle
 	{
 		return GNetworkAddressExterns.g_network_address_new(hostname, port);
 	}
+
 	public static GNetworkAddressHandle NewLoopback(ushort port)
 	{
 		return GNetworkAddressExterns.g_network_address_new_loopback(port);
 	}
-}
 
-public static class GNetworkAddressSignals
-{
+	public static GSocketConnectableHandle Parse(string host_and_port, ushort default_port, out GErrorHandle error)
+	{
+		return GNetworkAddressExterns.g_network_address_parse(host_and_port, default_port, out error);
+	}
+
+	public static GSocketConnectableHandle ParseUri(string uri, ushort default_port, out GErrorHandle error)
+	{
+		return GNetworkAddressExterns.g_network_address_parse_uri(uri, default_port, out error);
+	}
+
 }
 
 public static class GNetworkAddressHandleExtensions
@@ -47,20 +55,14 @@ public static class GNetworkAddressHandleExtensions
 		return GNetworkAddressExterns.g_network_address_get_scheme(addr);
 	}
 
-	public static GSocketConnectableHandle Parse(this string host_and_port, ushort default_port, out GErrorHandle error)
-	{
-		return GNetworkAddressExterns.g_network_address_parse(host_and_port, default_port, out error);
-	}
-
-	public static GSocketConnectableHandle ParseUri(this string uri, ushort default_port, out GErrorHandle error)
-	{
-		return GNetworkAddressExterns.g_network_address_parse_uri(uri, default_port, out error);
-	}
-
 }
 
 internal class GNetworkAddressExterns
 {
+	[DllImport(Libraries.Gio)]
+	internal static extern GNetworkAddressHandle g_network_address_new(string hostname, ushort port);
+	[DllImport(Libraries.Gio)]
+	internal static extern GNetworkAddressHandle g_network_address_new_loopback(ushort port);
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_network_address_get_hostname(GNetworkAddressHandle addr);
 	[DllImport(Libraries.Gio)]
@@ -71,8 +73,4 @@ internal class GNetworkAddressExterns
 	internal static extern GSocketConnectableHandle g_network_address_parse(string host_and_port, ushort default_port, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectableHandle g_network_address_parse_uri(string uri, ushort default_port, out GErrorHandle error);
-	[DllImport(Libraries.Gio)]
-	internal static extern GNetworkAddressHandle g_network_address_new(string hostname, ushort port);
-	[DllImport(Libraries.Gio)]
-	internal static extern GNetworkAddressHandle g_network_address_new_loopback(ushort port);
 }

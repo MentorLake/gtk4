@@ -20,10 +20,7 @@ public class GtkFileDialogHandle : GObjectHandle
 	{
 		return GtkFileDialogExterns.gtk_file_dialog_new();
 	}
-}
 
-public static class GtkFileDialogSignals
-{
 }
 
 public static class GtkFileDialogHandleExtensions
@@ -176,6 +173,8 @@ public static class GtkFileDialogHandleExtensions
 internal class GtkFileDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkFileDialogHandle gtk_file_dialog_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_file_dialog_get_accept_label(GtkFileDialogHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFileFilterHandle gtk_file_dialog_get_default_filter(GtkFileDialogHandle self);
@@ -227,6 +226,4 @@ internal class GtkFileDialogExterns
 	internal static extern void gtk_file_dialog_set_modal(GtkFileDialogHandle self, bool modal);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_dialog_set_title(GtkFileDialogHandle self, string title);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkFileDialogHandle gtk_file_dialog_new();
 }

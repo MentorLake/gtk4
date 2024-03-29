@@ -18,10 +18,6 @@ public class GNativeVolumeMonitorHandle : GVolumeMonitorHandle
 {
 }
 
-public static class GNativeVolumeMonitorSignals
-{
-}
-
 public static class GNativeVolumeMonitorHandleExtensions
 {
 }

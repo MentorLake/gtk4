@@ -20,10 +20,7 @@ public class GtkPasswordEntryBufferHandle : GtkEntryBufferHandle
 	{
 		return GtkPasswordEntryBufferExterns.gtk_password_entry_buffer_new();
 	}
-}
 
-public static class GtkPasswordEntryBufferSignals
-{
 }
 
 public static class GtkPasswordEntryBufferHandleExtensions

@@ -16,10 +16,16 @@ namespace MentorLake.Gtk4.GObject;
 
 public class GParamSpecHandle : GTypeInstanceHandle
 {
-}
+	public static GParamSpecHandle Internal(GType param_type, string name, string nick, string blurb, GParamFlags flags)
+	{
+		return GParamSpecExterns.g_param_spec_internal(param_type, name, nick, blurb, flags);
+	}
 
-public static class GParamSpecSignals
-{
+	public static bool IsValidName(string name)
+	{
+		return GParamSpecExterns.g_param_spec_is_valid_name(name);
+	}
+
 }
 
 public static class GParamSpecHandleExtensions
@@ -98,16 +104,6 @@ public static class GParamSpecHandleExtensions
 		return pspec;
 	}
 
-	public static GParamSpecHandle Internal(this GType param_type, string name, string nick, string blurb, GParamFlags flags)
-	{
-		return GParamSpecExterns.g_param_spec_internal(param_type, name, nick, blurb, flags);
-	}
-
-	public static bool IsValidName(this string name)
-	{
-		return GParamSpecExterns.g_param_spec_is_valid_name(name);
-	}
-
 	public static bool GParamValueConvert(this GParamSpecHandle pspec, GValueHandle src_value, GValueHandle dest_value, bool strict_validation)
 	{
 		return GParamSpecExterns.g_param_value_convert(pspec, src_value, dest_value, strict_validation);
@@ -172,10 +168,6 @@ internal class GParamSpecExterns
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_param_spec_unref(GParamSpecHandle pspec);
 	[DllImport(Libraries.GObject)]
-	internal static extern GParamSpecHandle g_param_spec_internal(GType param_type, string name, string nick, string blurb, GParamFlags flags);
-	[DllImport(Libraries.GObject)]
-	internal static extern bool g_param_spec_is_valid_name(string name);
-	[DllImport(Libraries.GObject)]
 	internal static extern bool g_param_value_convert(GParamSpecHandle pspec, GValueHandle src_value, GValueHandle dest_value, bool strict_validation);
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_param_value_set_default(GParamSpecHandle pspec, GValueHandle value);
@@ -187,4 +179,8 @@ internal class GParamSpecExterns
 	internal static extern bool g_param_value_defaults(GParamSpecHandle pspec, GValueHandle value);
 	[DllImport(Libraries.GObject)]
 	internal static extern int g_param_values_cmp(GParamSpecHandle pspec, GValueHandle value1, GValueHandle value2);
+	[DllImport(Libraries.GObject)]
+	internal static extern GParamSpecHandle g_param_spec_internal(GType param_type, string name, string nick, string blurb, GParamFlags flags);
+	[DllImport(Libraries.GObject)]
+	internal static extern bool g_param_spec_is_valid_name(string name);
 }

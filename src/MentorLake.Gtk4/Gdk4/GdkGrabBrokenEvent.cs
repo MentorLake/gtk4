@@ -18,18 +18,14 @@ public class GdkGrabBrokenEventHandle : GdkEventHandle
 {
 }
 
-public static class GdkGrabBrokenEventSignals
-{
-}
-
 public static class GdkGrabBrokenEventHandleExtensions
 {
-	public static GdkSurfaceHandle GetGrabSurface(this GdkEventHandle @event)
+	public static GdkSurfaceHandle GetGrabSurface(this GdkGrabBrokenEventHandle @event)
 	{
 		return GdkGrabBrokenEventExterns.gdk_grab_broken_event_get_grab_surface(@event);
 	}
 
-	public static bool GetImplicit(this GdkEventHandle @event)
+	public static bool GetImplicit(this GdkGrabBrokenEventHandle @event)
 	{
 		return GdkGrabBrokenEventExterns.gdk_grab_broken_event_get_implicit(@event);
 	}

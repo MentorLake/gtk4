@@ -20,10 +20,12 @@ public class GtkEntryHandle : GtkWidgetHandle
 	{
 		return GtkEntryExterns.gtk_entry_new();
 	}
+
 	public static GtkEntryHandle NewWithBuffer(GtkEntryBufferHandle buffer)
 	{
 		return GtkEntryExterns.gtk_entry_new_with_buffer(buffer);
 	}
+
 }
 
 public class GtkEntrySignal
@@ -370,6 +372,10 @@ public static class GtkEntryHandleExtensions
 internal class GtkEntryExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkEntryHandle gtk_entry_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkEntryHandle gtk_entry_new_with_buffer(GtkEntryBufferHandle buffer);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_entry_get_activates_default(GtkEntryHandle entry);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern float gtk_entry_get_alignment(GtkEntryHandle entry);
@@ -485,8 +491,4 @@ internal class GtkEntryExterns
 	internal static extern void gtk_entry_set_visibility(GtkEntryHandle entry, bool visible);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_unset_invisible_char(GtkEntryHandle entry);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkEntryHandle gtk_entry_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkEntryHandle gtk_entry_new_with_buffer(GtkEntryBufferHandle buffer);
 }

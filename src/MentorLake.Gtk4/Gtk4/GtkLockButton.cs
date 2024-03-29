@@ -20,10 +20,7 @@ public class GtkLockButtonHandle : GtkButtonHandle
 	{
 		return GtkLockButtonExterns.gtk_lock_button_new(permission);
 	}
-}
 
-public static class GtkLockButtonSignals
-{
 }
 
 public static class GtkLockButtonHandleExtensions
@@ -44,9 +41,9 @@ public static class GtkLockButtonHandleExtensions
 internal class GtkLockButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkLockButtonHandle gtk_lock_button_new(GPermissionHandle permission);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GPermissionHandle gtk_lock_button_get_permission(GtkLockButtonHandle button);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_lock_button_set_permission(GtkLockButtonHandle button, GPermissionHandle permission);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkLockButtonHandle gtk_lock_button_new(GPermissionHandle permission);
 }

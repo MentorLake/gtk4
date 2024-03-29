@@ -20,10 +20,12 @@ public class GtkLabelHandle : GtkWidgetHandle
 	{
 		return GtkLabelExterns.gtk_label_new(str);
 	}
+
 	public static GtkLabelHandle NewWithMnemonic(string str)
 	{
 		return GtkLabelExterns.gtk_label_new_with_mnemonic(str);
 	}
+
 }
 
 public class GtkLabelSignal
@@ -322,6 +324,10 @@ public static class GtkLabelHandleExtensions
 internal class GtkLabelExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkLabelHandle gtk_label_new(string str);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkLabelHandle gtk_label_new_with_mnemonic(string str);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoAttrListHandle gtk_label_get_attributes(GtkLabelHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_label_get_current_uri(GtkLabelHandle self);
@@ -419,8 +425,4 @@ internal class GtkLabelExterns
 	internal static extern void gtk_label_set_xalign(GtkLabelHandle self, float xalign);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_yalign(GtkLabelHandle self, float yalign);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkLabelHandle gtk_label_new(string str);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkLabelHandle gtk_label_new_with_mnemonic(string str);
 }

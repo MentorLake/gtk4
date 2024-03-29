@@ -20,6 +20,7 @@ public class GtkListBoxRowHandle : GtkWidgetHandle
 	{
 		return GtkListBoxRowExterns.gtk_list_box_row_new();
 	}
+
 }
 
 public class GtkListBoxRowSignal
@@ -105,6 +106,8 @@ public static class GtkListBoxRowHandleExtensions
 internal class GtkListBoxRowExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkListBoxRowHandle gtk_list_box_row_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_row_changed(GtkListBoxRowHandle row);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_list_box_row_get_activatable(GtkListBoxRowHandle row);
@@ -126,6 +129,4 @@ internal class GtkListBoxRowExterns
 	internal static extern void gtk_list_box_row_set_header(GtkListBoxRowHandle row, GtkWidgetHandle header);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_row_set_selectable(GtkListBoxRowHandle row, bool selectable);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkListBoxRowHandle gtk_list_box_row_new();
 }

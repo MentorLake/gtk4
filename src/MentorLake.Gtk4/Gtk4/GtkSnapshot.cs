@@ -20,10 +20,7 @@ public class GtkSnapshotHandle : GdkSnapshotHandle
 	{
 		return GtkSnapshotExterns.gtk_snapshot_new();
 	}
-}
 
-public static class GtkSnapshotSignals
-{
 }
 
 public static class GtkSnapshotHandleExtensions
@@ -340,6 +337,8 @@ public static class GtkSnapshotHandleExtensions
 internal class GtkSnapshotExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkSnapshotHandle gtk_snapshot_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_border(GtkSnapshotHandle snapshot, GskRoundedRectHandle outline, float[] border_width, GdkRGBA[] border_color);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern cairo_tHandle gtk_snapshot_append_cairo(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds);
@@ -443,6 +442,4 @@ internal class GtkSnapshotExterns
 	internal static extern void gtk_snapshot_translate(GtkSnapshotHandle snapshot, graphene_point_tHandle point);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_translate_3d(GtkSnapshotHandle snapshot, graphene_point3d_tHandle point);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkSnapshotHandle gtk_snapshot_new();
 }

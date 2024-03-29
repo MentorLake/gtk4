@@ -20,10 +20,7 @@ public class GtkFixedHandle : GtkWidgetHandle
 	{
 		return GtkFixedExterns.gtk_fixed_new();
 	}
-}
 
-public static class GtkFixedSignals
-{
 }
 
 public static class GtkFixedHandleExtensions
@@ -68,6 +65,8 @@ public static class GtkFixedHandleExtensions
 internal class GtkFixedExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkFixedHandle gtk_fixed_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_fixed_get_child_position(GtkFixedHandle @fixed, GtkWidgetHandle widget, out double x, out double y);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GskTransformHandle gtk_fixed_get_child_transform(GtkFixedHandle @fixed, GtkWidgetHandle widget);
@@ -79,6 +78,4 @@ internal class GtkFixedExterns
 	internal static extern void gtk_fixed_remove(GtkFixedHandle @fixed, GtkWidgetHandle widget);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_fixed_set_child_transform(GtkFixedHandle @fixed, GtkWidgetHandle widget, GskTransformHandle transform);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkFixedHandle gtk_fixed_new();
 }

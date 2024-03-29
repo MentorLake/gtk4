@@ -20,10 +20,7 @@ public class GdkGLTextureBuilderHandle : GObjectHandle
 	{
 		return GdkGLTextureBuilderExterns.gdk_gl_texture_builder_new();
 	}
-}
 
-public static class GdkGLTextureBuilderSignals
-{
 }
 
 public static class GdkGLTextureBuilderHandleExtensions
@@ -137,6 +134,8 @@ public static class GdkGLTextureBuilderHandleExtensions
 internal class GdkGLTextureBuilderExterns
 {
 	[DllImport(Libraries.Gdk4)]
+	internal static extern GdkGLTextureBuilderHandle gdk_gl_texture_builder_new();
+	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkTextureHandle gdk_gl_texture_builder_build(GdkGLTextureBuilderHandle self, GDestroyNotify destroy, IntPtr data);
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkGLContextHandle gdk_gl_texture_builder_get_context(GdkGLTextureBuilderHandle self);
@@ -174,6 +173,4 @@ internal class GdkGLTextureBuilderExterns
 	internal static extern void gdk_gl_texture_builder_set_update_texture(GdkGLTextureBuilderHandle self, GdkTextureHandle texture);
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_texture_builder_set_width(GdkGLTextureBuilderHandle self, int width);
-	[DllImport(Libraries.Gdk4)]
-	internal static extern GdkGLTextureBuilderHandle gdk_gl_texture_builder_new();
 }

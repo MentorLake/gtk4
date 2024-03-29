@@ -20,10 +20,7 @@ public class GTcpWrapperConnectionHandle : GTcpConnectionHandle
 	{
 		return GTcpWrapperConnectionExterns.g_tcp_wrapper_connection_new(base_io_stream, socket);
 	}
-}
 
-public static class GTcpWrapperConnectionSignals
-{
 }
 
 public static class GTcpWrapperConnectionHandleExtensions
@@ -38,7 +35,7 @@ public static class GTcpWrapperConnectionHandleExtensions
 internal class GTcpWrapperConnectionExterns
 {
 	[DllImport(Libraries.Gio)]
-	internal static extern GIOStreamHandle g_tcp_wrapper_connection_get_base_io_stream(GTcpWrapperConnectionHandle conn);
-	[DllImport(Libraries.Gio)]
 	internal static extern GTcpWrapperConnectionHandle g_tcp_wrapper_connection_new(GIOStreamHandle base_io_stream, GSocketHandle socket);
+	[DllImport(Libraries.Gio)]
+	internal static extern GIOStreamHandle g_tcp_wrapper_connection_get_base_io_stream(GTcpWrapperConnectionHandle conn);
 }

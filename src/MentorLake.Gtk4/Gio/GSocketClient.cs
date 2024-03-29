@@ -20,6 +20,7 @@ public class GSocketClientHandle : GObjectHandle
 	{
 		return GSocketClientExterns.g_socket_client_new();
 	}
+
 }
 
 public class GSocketClientSignal
@@ -214,6 +215,8 @@ public static class GSocketClientHandleExtensions
 internal class GSocketClientExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GSocketClientHandle g_socket_client_new();
+	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_client_add_application_proxy(GSocketClientHandle client, string protocol);
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectionHandle g_socket_client_connect(GSocketClientHandle client, GSocketConnectableHandle connectable, GCancellableHandle cancellable, out GErrorHandle error);
@@ -275,6 +278,4 @@ internal class GSocketClientExterns
 	internal static extern void g_socket_client_set_tls(GSocketClientHandle client, bool tls);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_client_set_tls_validation_flags(GSocketClientHandle client, GTlsCertificateFlags flags);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSocketClientHandle g_socket_client_new();
 }

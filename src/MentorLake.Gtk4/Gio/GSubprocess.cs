@@ -20,14 +20,12 @@ public class GSubprocessHandle : GObjectHandle
 	{
 		return GSubprocessExterns.g_subprocess_new(flags, out error, argv0, @__arglist);
 	}
+
 	public static GSubprocessHandle Newv(string argv, GSubprocessFlags flags, out GErrorHandle error)
 	{
 		return GSubprocessExterns.g_subprocess_newv(argv, flags, out error);
 	}
-}
 
-public static class GSubprocessSignals
-{
 }
 
 public static class GSubprocessHandleExtensions
@@ -163,6 +161,10 @@ public static class GSubprocessHandleExtensions
 internal class GSubprocessExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GSubprocessHandle g_subprocess_new(GSubprocessFlags flags, out GErrorHandle error, string argv0, IntPtr @__arglist);
+	[DllImport(Libraries.Gio)]
+	internal static extern GSubprocessHandle g_subprocess_newv(string argv, GSubprocessFlags flags, out GErrorHandle error);
+	[DllImport(Libraries.Gio)]
 	internal static extern bool g_subprocess_communicate(GSubprocessHandle subprocess, GBytesHandle stdin_buf, GCancellableHandle cancellable, out GBytesHandle stdout_buf, out GBytesHandle stderr_buf, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_communicate_async(GSubprocessHandle subprocess, GBytesHandle stdin_buf, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
@@ -210,8 +212,4 @@ internal class GSubprocessExterns
 	internal static extern bool g_subprocess_wait_check_finish(GSubprocessHandle subprocess, GAsyncResultHandle result, out GErrorHandle error);
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_subprocess_wait_finish(GSubprocessHandle subprocess, GAsyncResultHandle result, out GErrorHandle error);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSubprocessHandle g_subprocess_new(GSubprocessFlags flags, out GErrorHandle error, string argv0, IntPtr @__arglist);
-	[DllImport(Libraries.Gio)]
-	internal static extern GSubprocessHandle g_subprocess_newv(string argv, GSubprocessFlags flags, out GErrorHandle error);
 }

@@ -18,10 +18,6 @@ public class GtkStackPageHandle : GObjectHandle
 {
 }
 
-public static class GtkStackPageSignals
-{
-}
-
 public static class GtkStackPageHandleExtensions
 {
 	public static GtkWidgetHandle GetChild(this GtkStackPageHandle self)

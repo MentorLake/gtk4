@@ -20,6 +20,7 @@ public class GDBusObjectSkeletonHandle : GObjectHandle
 	{
 		return GDBusObjectSkeletonExterns.g_dbus_object_skeleton_new(object_path);
 	}
+
 }
 
 public class GDBusObjectSkeletonSignal
@@ -75,6 +76,8 @@ public static class GDBusObjectSkeletonHandleExtensions
 internal class GDBusObjectSkeletonExterns
 {
 	[DllImport(Libraries.Gio)]
+	internal static extern GDBusObjectSkeletonHandle g_dbus_object_skeleton_new(string object_path);
+	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_object_skeleton_add_interface(GDBusObjectSkeletonHandle @object, GDBusInterfaceSkeletonHandle interface_);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_object_skeleton_flush(GDBusObjectSkeletonHandle @object);
@@ -84,6 +87,4 @@ internal class GDBusObjectSkeletonExterns
 	internal static extern void g_dbus_object_skeleton_remove_interface_by_name(GDBusObjectSkeletonHandle @object, string interface_name);
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_object_skeleton_set_object_path(GDBusObjectSkeletonHandle @object, string object_path);
-	[DllImport(Libraries.Gio)]
-	internal static extern GDBusObjectSkeletonHandle g_dbus_object_skeleton_new(string object_path);
 }

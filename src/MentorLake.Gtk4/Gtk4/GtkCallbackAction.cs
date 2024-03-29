@@ -20,10 +20,7 @@ public class GtkCallbackActionHandle : GtkShortcutActionHandle
 	{
 		return GtkCallbackActionExterns.gtk_callback_action_new(callback, data, destroy);
 	}
-}
 
-public static class GtkCallbackActionSignals
-{
 }
 
 public static class GtkCallbackActionHandleExtensions

@@ -20,10 +20,7 @@ public class GtkAspectFrameHandle : GtkWidgetHandle
 	{
 		return GtkAspectFrameExterns.gtk_aspect_frame_new(xalign, yalign, ratio, obey_child);
 	}
-}
 
-public static class GtkAspectFrameSignals
-{
 }
 
 public static class GtkAspectFrameHandleExtensions
@@ -88,6 +85,8 @@ public static class GtkAspectFrameHandleExtensions
 internal class GtkAspectFrameExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkAspectFrameHandle gtk_aspect_frame_new(float xalign, float yalign, float ratio, bool obey_child);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_aspect_frame_get_child(GtkAspectFrameHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_aspect_frame_get_obey_child(GtkAspectFrameHandle self);
@@ -107,6 +106,4 @@ internal class GtkAspectFrameExterns
 	internal static extern void gtk_aspect_frame_set_xalign(GtkAspectFrameHandle self, float xalign);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_aspect_frame_set_yalign(GtkAspectFrameHandle self, float yalign);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkAspectFrameHandle gtk_aspect_frame_new(float xalign, float yalign, float ratio, bool obey_child);
 }

@@ -20,10 +20,7 @@ public class GtkCellRendererPixbufHandle : GtkCellRendererHandle
 	{
 		return GtkCellRendererPixbufExterns.gtk_cell_renderer_pixbuf_new();
 	}
-}
 
-public static class GtkCellRendererPixbufSignals
-{
 }
 
 public static class GtkCellRendererPixbufHandleExtensions

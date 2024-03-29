@@ -20,6 +20,7 @@ public class GtkFileChooserWidgetHandle : GtkWidgetHandle
 	{
 		return GtkFileChooserWidgetExterns.gtk_file_chooser_widget_new(action);
 	}
+
 }
 
 public class GtkFileChooserWidgetSignal

@@ -20,6 +20,7 @@ public class GtkScrolledWindowHandle : GtkWidgetHandle
 	{
 		return GtkScrolledWindowExterns.gtk_scrolled_window_new();
 	}
+
 }
 
 public class GtkScrolledWindowSignal
@@ -219,6 +220,8 @@ public static class GtkScrolledWindowHandleExtensions
 internal class GtkScrolledWindowExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkScrolledWindowHandle gtk_scrolled_window_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_scrolled_window_get_child(GtkScrolledWindowHandle scrolled_window);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAdjustmentHandle gtk_scrolled_window_get_hadjustment(GtkScrolledWindowHandle scrolled_window);
@@ -280,6 +283,4 @@ internal class GtkScrolledWindowExterns
 	internal static extern void gtk_scrolled_window_set_vadjustment(GtkScrolledWindowHandle scrolled_window, GtkAdjustmentHandle vadjustment);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_unset_placement(GtkScrolledWindowHandle scrolled_window);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkScrolledWindowHandle gtk_scrolled_window_new();
 }

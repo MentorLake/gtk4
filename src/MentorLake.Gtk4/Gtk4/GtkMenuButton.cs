@@ -20,6 +20,7 @@ public class GtkMenuButtonHandle : GtkWidgetHandle
 	{
 		return GtkMenuButtonExterns.gtk_menu_button_new();
 	}
+
 }
 
 public class GtkMenuButtonSignal
@@ -195,6 +196,8 @@ public static class GtkMenuButtonHandleExtensions
 internal class GtkMenuButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkMenuButtonHandle gtk_menu_button_new();
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_menu_button_get_active(GtkMenuButtonHandle menu_button);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_menu_button_get_always_show_arrow(GtkMenuButtonHandle menu_button);
@@ -248,6 +251,4 @@ internal class GtkMenuButtonExterns
 	internal static extern void gtk_menu_button_set_primary(GtkMenuButtonHandle menu_button, bool primary);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_menu_button_set_use_underline(GtkMenuButtonHandle menu_button, bool use_underline);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkMenuButtonHandle gtk_menu_button_new();
 }

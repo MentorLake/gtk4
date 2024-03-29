@@ -20,10 +20,12 @@ public class GtkDialogHandle : GtkWindowHandle
 	{
 		return GtkDialogExterns.gtk_dialog_new();
 	}
+
 	public static GtkDialogHandle NewWithButtons(string title, GtkWindowHandle parent, GtkDialogFlags flags, string first_button_text, IntPtr @__arglist)
 	{
 		return GtkDialogExterns.gtk_dialog_new_with_buttons(title, parent, flags, first_button_text, @__arglist);
 	}
+
 }
 
 public class GtkDialogSignal
@@ -105,6 +107,10 @@ public static class GtkDialogHandleExtensions
 internal class GtkDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkDialogHandle gtk_dialog_new();
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkDialogHandle gtk_dialog_new_with_buttons(string title, GtkWindowHandle parent, GtkDialogFlags flags, string first_button_text, IntPtr @__arglist);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_dialog_add_action_widget(GtkDialogHandle dialog, GtkWidgetHandle child, int response_id);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_dialog_add_button(GtkDialogHandle dialog, string button_text, int response_id);
@@ -124,8 +130,4 @@ internal class GtkDialogExterns
 	internal static extern void gtk_dialog_set_default_response(GtkDialogHandle dialog, int response_id);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_dialog_set_response_sensitive(GtkDialogHandle dialog, int response_id, bool setting);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkDialogHandle gtk_dialog_new();
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkDialogHandle gtk_dialog_new_with_buttons(string title, GtkWindowHandle parent, GtkDialogFlags flags, string first_button_text, IntPtr @__arglist);
 }

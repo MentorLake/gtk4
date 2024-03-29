@@ -20,15 +20,12 @@ public class GtkObjectExpressionHandle : GtkExpressionHandle
 	{
 		return GtkObjectExpressionExterns.gtk_object_expression_new(@object);
 	}
-}
 
-public static class GtkObjectExpressionSignals
-{
 }
 
 public static class GtkObjectExpressionHandleExtensions
 {
-	public static GObjectHandle GetObject(this GtkExpressionHandle expression)
+	public static GObjectHandle GetObject(this GtkObjectExpressionHandle expression)
 	{
 		return GtkObjectExpressionExterns.gtk_object_expression_get_object(expression);
 	}
@@ -38,7 +35,7 @@ public static class GtkObjectExpressionHandleExtensions
 internal class GtkObjectExpressionExterns
 {
 	[DllImport(Libraries.Gtk4)]
-	internal static extern GObjectHandle gtk_object_expression_get_object(GtkExpressionHandle expression);
-	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkObjectExpressionHandle gtk_object_expression_new(GObjectHandle @object);
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GObjectHandle gtk_object_expression_get_object(GtkExpressionHandle expression);
 }

@@ -18,10 +18,6 @@ public class GtkConstraintLayoutChildHandle : GtkLayoutChildHandle
 {
 }
 
-public static class GtkConstraintLayoutChildSignals
-{
-}
-
 public static class GtkConstraintLayoutChildHandleExtensions
 {
 }

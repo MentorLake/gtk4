@@ -16,10 +16,16 @@ namespace MentorLake.Gtk4.Gio;
 
 public class GVfsHandle : GObjectHandle
 {
-}
+	public static GVfsHandle GetDefault()
+	{
+		return GVfsExterns.g_vfs_get_default();
+	}
 
-public static class GVfsSignals
-{
+	public static GVfsHandle GetLocal()
+	{
+		return GVfsExterns.g_vfs_get_local();
+	}
+
 }
 
 public static class GVfsHandleExtensions
@@ -57,16 +63,6 @@ public static class GVfsHandleExtensions
 	public static bool UnregisterUriScheme(this GVfsHandle vfs, string scheme)
 	{
 		return GVfsExterns.g_vfs_unregister_uri_scheme(vfs, scheme);
-	}
-
-	public static GVfsHandle GetDefault()
-	{
-		return GVfsExterns.g_vfs_get_default();
-	}
-
-	public static GVfsHandle GetLocal()
-	{
-		return GVfsExterns.g_vfs_get_local();
 	}
 
 }

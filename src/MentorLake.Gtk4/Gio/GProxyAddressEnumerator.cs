@@ -18,10 +18,6 @@ public class GProxyAddressEnumeratorHandle : GSocketAddressEnumeratorHandle
 {
 }
 
-public static class GProxyAddressEnumeratorSignals
-{
-}
-
 public static class GProxyAddressEnumeratorHandleExtensions
 {
 }

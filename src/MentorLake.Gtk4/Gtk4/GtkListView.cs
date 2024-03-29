@@ -20,6 +20,7 @@ public class GtkListViewHandle : GtkListBaseHandle
 	{
 		return GtkListViewExterns.gtk_list_view_new(model, factory);
 	}
+
 }
 
 public class GtkListViewSignal
@@ -128,6 +129,8 @@ public static class GtkListViewHandleExtensions
 internal class GtkListViewExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	internal static extern GtkListViewHandle gtk_list_view_new(GtkSelectionModelHandle model, GtkListItemFactoryHandle factory);
+	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_list_view_get_enable_rubberband(GtkListViewHandle self);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListItemFactoryHandle gtk_list_view_get_factory(GtkListViewHandle self);
@@ -157,6 +160,4 @@ internal class GtkListViewExterns
 	internal static extern void gtk_list_view_set_single_click_activate(GtkListViewHandle self, bool single_click_activate);
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_view_set_tab_behavior(GtkListViewHandle self, GtkListTabBehavior tab_behavior);
-	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkListViewHandle gtk_list_view_new(GtkSelectionModelHandle model, GtkListItemFactoryHandle factory);
 }

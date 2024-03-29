@@ -20,10 +20,7 @@ public class GtkClosureExpressionHandle : GtkExpressionHandle
 	{
 		return GtkClosureExpressionExterns.gtk_closure_expression_new(value_type, closure, n_params, @params);
 	}
-}
 
-public static class GtkClosureExpressionSignals
-{
 }
 
 public static class GtkClosureExpressionHandleExtensions
