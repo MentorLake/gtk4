@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkShortcutLabelHandle : GtkWidgetHandle
+public class GtkShortcutLabelHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle
 {
 	public static GtkShortcutLabelHandle New(string accelerator)
 	{

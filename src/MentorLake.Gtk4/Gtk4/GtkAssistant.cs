@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkAssistantHandle : GtkWindowHandle
+public class GtkAssistantHandle : GtkWindowHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkNativeHandle, GtkRootHandle, GtkShortcutManagerHandle
 {
 	public static GtkAssistantHandle New()
 	{

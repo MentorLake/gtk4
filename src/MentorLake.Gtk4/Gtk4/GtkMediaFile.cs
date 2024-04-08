@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkMediaFileHandle : GtkMediaStreamHandle
+public class GtkMediaFileHandle : GtkMediaStreamHandle, GdkPaintableHandle
 {
 	public static GtkMediaFileHandle New()
 	{

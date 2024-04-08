@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkConstraintLayoutHandle : GtkLayoutManagerHandle
+public class GtkConstraintLayoutHandle : GtkLayoutManagerHandle, GtkBuildableHandle
 {
 	public static GtkConstraintLayoutHandle New()
 	{

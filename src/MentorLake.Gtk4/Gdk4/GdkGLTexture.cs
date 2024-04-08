@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gdk4;
 
-public class GdkGLTextureHandle : GdkTextureHandle
+public class GdkGLTextureHandle : GdkTextureHandle, GdkPaintableHandle, GIconHandle, GLoadableIconHandle
 {
 	public static GdkGLTextureHandle GdkGlTextureNew(GdkGLContextHandle context, uint id, int width, int height, GDestroyNotify destroy, IntPtr data)
 	{

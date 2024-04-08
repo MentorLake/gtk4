@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkFilterListModelHandle : GObjectHandle
+public class GtkFilterListModelHandle : GObjectHandle, GListModelHandle, GtkSectionModelHandle
 {
 	public static GtkFilterListModelHandle New(GListModelHandle model, GtkFilterHandle filter)
 	{

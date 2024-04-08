@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkSortListModelHandle : GObjectHandle
+public class GtkSortListModelHandle : GObjectHandle, GListModelHandle, GtkSectionModelHandle
 {
 	public static GtkSortListModelHandle New(GListModelHandle model, GtkSorterHandle sorter)
 	{

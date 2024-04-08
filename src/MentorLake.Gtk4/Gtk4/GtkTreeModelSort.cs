@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkTreeModelSortHandle : GObjectHandle
+public class GtkTreeModelSortHandle : GObjectHandle, GtkTreeDragSourceHandle, GtkTreeModelHandle, GtkTreeSortableHandle
 {
 	public static GtkTreeModelSortHandle NewWithModel(GtkTreeModelHandle child_model)
 	{

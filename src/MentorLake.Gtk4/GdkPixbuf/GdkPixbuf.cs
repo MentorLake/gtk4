@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.GdkPixbuf;
 
-public class GdkPixbufHandle : GObjectHandle
+public class GdkPixbufHandle : GObjectHandle, GIconHandle, GLoadableIconHandle
 {
 	public static GdkPixbufHandle New(GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height)
 	{

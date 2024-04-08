@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkEditableLabelHandle : GtkWidgetHandle
+public class GtkEditableLabelHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkEditableHandle
 {
 	public static GtkEditableLabelHandle New(string str)
 	{

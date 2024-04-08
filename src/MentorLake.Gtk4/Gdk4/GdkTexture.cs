@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gdk4;
 
-public class GdkTextureHandle : GObjectHandle
+public class GdkTextureHandle : GObjectHandle, GdkPaintableHandle, GIconHandle, GLoadableIconHandle
 {
 	public static GdkTextureHandle NewForPixbuf(GdkPixbufHandle pixbuf)
 	{

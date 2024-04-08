@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkBoxHandle : GtkWidgetHandle
+public class GtkBoxHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkOrientableHandle
 {
 	public static GtkBoxHandle New(GtkOrientation orientation, int spacing)
 	{

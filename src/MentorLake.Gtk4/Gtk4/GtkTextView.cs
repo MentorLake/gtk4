@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkTextViewHandle : GtkWidgetHandle
+public class GtkTextViewHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAccessibleTextHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkScrollableHandle
 {
 	public static GtkTextViewHandle New()
 	{

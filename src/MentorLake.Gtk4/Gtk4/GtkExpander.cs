@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkExpanderHandle : GtkWidgetHandle
+public class GtkExpanderHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle
 {
 	public static GtkExpanderHandle New(string label)
 	{

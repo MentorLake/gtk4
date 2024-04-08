@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkEveryFilterHandle : GtkMultiFilterHandle
+public class GtkEveryFilterHandle : GtkMultiFilterHandle, GListModelHandle, GtkBuildableHandle
 {
 	public static GtkEveryFilterHandle New()
 	{

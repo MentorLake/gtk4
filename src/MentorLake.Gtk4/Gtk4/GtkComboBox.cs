@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkComboBoxHandle : GtkWidgetHandle
+public class GtkComboBoxHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkCellEditableHandle, GtkCellLayoutHandle, GtkConstraintTargetHandle
 {
 	public static GtkComboBoxHandle New()
 	{

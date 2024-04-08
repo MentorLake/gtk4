@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkFlowBoxChildHandle : GtkWidgetHandle
+public class GtkFlowBoxChildHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle
 {
 	public static GtkFlowBoxChildHandle New()
 	{

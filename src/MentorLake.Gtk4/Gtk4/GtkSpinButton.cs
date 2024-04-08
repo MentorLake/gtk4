@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkSpinButtonHandle : GtkWidgetHandle
+public class GtkSpinButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAccessibleRangeHandle, GtkBuildableHandle, GtkCellEditableHandle, GtkConstraintTargetHandle, GtkEditableHandle, GtkOrientableHandle
 {
 	public static GtkSpinButtonHandle New(GtkAdjustmentHandle adjustment, double climb_rate, uint digits)
 	{

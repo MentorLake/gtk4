@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkMapListModelHandle : GObjectHandle
+public class GtkMapListModelHandle : GObjectHandle, GListModelHandle, GtkSectionModelHandle
 {
 	public static GtkMapListModelHandle New(GListModelHandle model, GtkMapListModelMapFunc map_func, IntPtr user_data, GDestroyNotify user_destroy)
 	{

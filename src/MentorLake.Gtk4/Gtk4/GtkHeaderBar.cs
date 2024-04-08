@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkHeaderBarHandle : GtkWidgetHandle
+public class GtkHeaderBarHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle
 {
 	public static GtkHeaderBarHandle New()
 	{

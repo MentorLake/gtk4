@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkFontChooserDialogHandle : GtkDialogHandle
+public class GtkFontChooserDialogHandle : GtkDialogHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkFontChooserHandle, GtkNativeHandle, GtkRootHandle, GtkShortcutManagerHandle
 {
 	public static GtkFontChooserDialogHandle New(string title, GtkWindowHandle parent)
 	{

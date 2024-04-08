@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkStackPageHandle : GObjectHandle
+public class GtkStackPageHandle : GObjectHandle, GtkAccessibleHandle
 {
 }
 

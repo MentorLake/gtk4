@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkTreeListModelHandle : GObjectHandle
+public class GtkTreeListModelHandle : GObjectHandle, GListModelHandle
 {
 	public static GtkTreeListModelHandle New(GListModelHandle root, bool passthrough, bool autoexpand, GtkTreeListModelCreateModelFunc create_func, IntPtr user_data, GDestroyNotify user_destroy)
 	{

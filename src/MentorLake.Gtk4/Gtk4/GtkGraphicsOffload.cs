@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkGraphicsOffloadHandle : GtkWidgetHandle
+public class GtkGraphicsOffloadHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle
 {
 	public static GtkGraphicsOffloadHandle New(GtkWidgetHandle child)
 	{

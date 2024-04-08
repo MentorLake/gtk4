@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkStringListHandle : GObjectHandle
+public class GtkStringListHandle : GObjectHandle, GListModelHandle, GtkBuildableHandle
 {
 	public static GtkStringListHandle New(string strings)
 	{

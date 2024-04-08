@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkPrintUnixDialogHandle : GtkDialogHandle
+public class GtkPrintUnixDialogHandle : GtkDialogHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkNativeHandle, GtkRootHandle, GtkShortcutManagerHandle
 {
 	public static GtkPrintUnixDialogHandle New(string title, GtkWindowHandle parent)
 	{

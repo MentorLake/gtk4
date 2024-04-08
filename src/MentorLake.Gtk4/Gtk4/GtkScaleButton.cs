@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkScaleButtonHandle : GtkWidgetHandle
+public class GtkScaleButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAccessibleRangeHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkOrientableHandle
 {
 	public static GtkScaleButtonHandle New(double min, double max, double step, string[] icons)
 	{

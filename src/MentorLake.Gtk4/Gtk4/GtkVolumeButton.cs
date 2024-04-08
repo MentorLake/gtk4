@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkVolumeButtonHandle : GtkScaleButtonHandle
+public class GtkVolumeButtonHandle : GtkScaleButtonHandle, GtkAccessibleHandle, GtkAccessibleRangeHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkOrientableHandle
 {
 	public static GtkVolumeButtonHandle New()
 	{

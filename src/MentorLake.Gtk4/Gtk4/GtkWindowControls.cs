@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkWindowControlsHandle : GtkWidgetHandle
+public class GtkWindowControlsHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle
 {
 	public static GtkWindowControlsHandle New(GtkPackType side)
 	{

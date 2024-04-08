@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkFontChooserWidgetHandle : GtkWidgetHandle
+public class GtkFontChooserWidgetHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkFontChooserHandle
 {
 	public static GtkFontChooserWidgetHandle New()
 	{

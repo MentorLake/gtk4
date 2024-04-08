@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkFileChooserWidgetHandle : GtkWidgetHandle
+public class GtkFileChooserWidgetHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkFileChooserHandle
 {
 	public static GtkFileChooserWidgetHandle New(GtkFileChooserAction action)
 	{

@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkConstraintGuideHandle : GObjectHandle
+public class GtkConstraintGuideHandle : GObjectHandle, GtkConstraintTargetHandle
 {
 	public static GtkConstraintGuideHandle New()
 	{

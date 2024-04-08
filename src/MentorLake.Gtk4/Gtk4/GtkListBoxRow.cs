@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkListBoxRowHandle : GtkWidgetHandle
+public class GtkListBoxRowHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkActionableHandle, GtkBuildableHandle, GtkConstraintTargetHandle
 {
 	public static GtkListBoxRowHandle New()
 	{

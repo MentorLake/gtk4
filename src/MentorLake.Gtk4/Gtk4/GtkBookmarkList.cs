@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkBookmarkListHandle : GObjectHandle
+public class GtkBookmarkListHandle : GObjectHandle, GListModelHandle
 {
 	public static GtkBookmarkListHandle New(string filename, string attributes)
 	{

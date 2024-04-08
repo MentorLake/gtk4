@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkCellRendererProgressHandle : GtkCellRendererHandle
+public class GtkCellRendererProgressHandle : GtkCellRendererHandle, GtkOrientableHandle
 {
 	public static GtkCellRendererProgressHandle New()
 	{

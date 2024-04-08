@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkColorChooserWidgetHandle : GtkWidgetHandle
+public class GtkColorChooserWidgetHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkColorChooserHandle, GtkConstraintTargetHandle
 {
 	public static GtkColorChooserWidgetHandle New()
 	{

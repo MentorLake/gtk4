@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkScaleHandle : GtkRangeHandle
+public class GtkScaleHandle : GtkRangeHandle, GtkAccessibleHandle, GtkAccessibleRangeHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkOrientableHandle
 {
 	public static GtkScaleHandle New(GtkOrientation orientation, GtkAdjustmentHandle adjustment)
 	{

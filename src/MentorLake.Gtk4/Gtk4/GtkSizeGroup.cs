@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkSizeGroupHandle : GObjectHandle
+public class GtkSizeGroupHandle : GObjectHandle, GtkBuildableHandle
 {
 	public static GtkSizeGroupHandle New(GtkSizeGroupMode mode)
 	{

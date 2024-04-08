@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GDBusObjectHandle  : GObjectHandle
+public interface GDBusObjectHandle
 {
 }
 

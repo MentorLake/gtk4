@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkPopoverMenuBarHandle : GtkWidgetHandle
+public class GtkPopoverMenuBarHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle
 {
 	public static GtkPopoverMenuBarHandle NewFromModel(GMenuModelHandle model)
 	{

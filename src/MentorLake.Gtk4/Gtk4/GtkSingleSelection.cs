@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkSingleSelectionHandle : GObjectHandle
+public class GtkSingleSelectionHandle : GObjectHandle, GListModelHandle, GtkSectionModelHandle, GtkSelectionModelHandle
 {
 	public static GtkSingleSelectionHandle New(GListModelHandle model)
 	{

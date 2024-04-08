@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gdk4;
 
-public class GdkVulkanContextHandle : GdkDrawContextHandle
+public class GdkVulkanContextHandle : GdkDrawContextHandle, GInitableHandle
 {
 }
 

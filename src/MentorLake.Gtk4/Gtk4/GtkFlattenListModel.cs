@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkFlattenListModelHandle : GObjectHandle
+public class GtkFlattenListModelHandle : GObjectHandle, GListModelHandle, GtkSectionModelHandle
 {
 	public static GtkFlattenListModelHandle New(GListModelHandle model)
 	{

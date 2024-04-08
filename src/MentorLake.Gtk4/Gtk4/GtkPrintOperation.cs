@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkPrintOperationHandle : GObjectHandle
+public class GtkPrintOperationHandle : GObjectHandle, GtkPrintOperationPreviewHandle
 {
 	public static GtkPrintOperationHandle New()
 	{

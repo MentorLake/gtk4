@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkWidgetHandle : GInitiallyUnownedHandle
+public class GtkWidgetHandle : GInitiallyUnownedHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle
 {
 	public static GtkTextDirection GetDefaultDirection()
 	{

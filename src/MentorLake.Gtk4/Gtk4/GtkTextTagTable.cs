@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkTextTagTableHandle : GObjectHandle
+public class GtkTextTagTableHandle : GObjectHandle, GtkBuildableHandle
 {
 	public static GtkTextTagTableHandle New()
 	{

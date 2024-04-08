@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkGridViewHandle : GtkListBaseHandle
+public class GtkGridViewHandle : GtkListBaseHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkOrientableHandle, GtkScrollableHandle
 {
 	public static GtkGridViewHandle New(GtkSelectionModelHandle model, GtkListItemFactoryHandle factory)
 	{

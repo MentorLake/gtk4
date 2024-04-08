@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkCheckButtonHandle : GtkWidgetHandle
+public class GtkCheckButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkActionableHandle, GtkBuildableHandle, GtkConstraintTargetHandle
 {
 	public static GtkCheckButtonHandle New()
 	{

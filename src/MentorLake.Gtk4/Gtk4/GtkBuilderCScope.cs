@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkBuilderCScopeHandle : GObjectHandle
+public class GtkBuilderCScopeHandle : GObjectHandle, GtkBuilderScopeHandle
 {
 	public static GtkBuilderCScopeHandle GtkBuilderCscopeNew()
 	{

@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkTreeViewHandle : GtkWidgetHandle
+public class GtkTreeViewHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkScrollableHandle
 {
 	public static GtkTreeViewHandle New()
 	{

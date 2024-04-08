@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkIconViewHandle : GtkWidgetHandle
+public class GtkIconViewHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkCellLayoutHandle, GtkConstraintTargetHandle, GtkScrollableHandle
 {
 	public static GtkIconViewHandle New()
 	{

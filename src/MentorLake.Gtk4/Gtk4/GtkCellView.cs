@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkCellViewHandle : GtkWidgetHandle
+public class GtkCellViewHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkCellLayoutHandle, GtkConstraintTargetHandle, GtkOrientableHandle
 {
 	public static GtkCellViewHandle New()
 	{

@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkWidgetPaintableHandle : GObjectHandle
+public class GtkWidgetPaintableHandle : GObjectHandle, GdkPaintableHandle
 {
 	public static GtkWidgetPaintableHandle New(GtkWidgetHandle widget)
 	{

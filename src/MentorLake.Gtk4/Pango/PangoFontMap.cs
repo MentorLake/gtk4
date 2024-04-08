@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Pango;
 
-public class PangoFontMapHandle : GObjectHandle
+public class PangoFontMapHandle : GObjectHandle, GListModelHandle
 {
 }
 

@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkIconPaintableHandle : GObjectHandle
+public class GtkIconPaintableHandle : GObjectHandle, GdkPaintableHandle, GtkSymbolicPaintableHandle
 {
 	public static GtkIconPaintableHandle NewForFile(GFileHandle file, int size, int scale)
 	{

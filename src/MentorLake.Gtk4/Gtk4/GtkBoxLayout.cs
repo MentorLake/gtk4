@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkBoxLayoutHandle : GtkLayoutManagerHandle
+public class GtkBoxLayoutHandle : GtkLayoutManagerHandle, GtkOrientableHandle
 {
 	public static GtkBoxLayoutHandle New(GtkOrientation orientation)
 	{

@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkMultiSorterHandle : GtkSorterHandle
+public class GtkMultiSorterHandle : GtkSorterHandle, GListModelHandle, GtkBuildableHandle
 {
 	public static GtkMultiSorterHandle New()
 	{

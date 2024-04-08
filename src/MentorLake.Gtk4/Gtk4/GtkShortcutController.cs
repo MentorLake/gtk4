@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkShortcutControllerHandle : GtkEventControllerHandle
+public class GtkShortcutControllerHandle : GtkEventControllerHandle, GListModelHandle, GtkBuildableHandle
 {
 	public static GtkShortcutControllerHandle New()
 	{

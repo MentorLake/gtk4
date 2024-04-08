@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkApplicationWindowHandle : GtkWindowHandle
+public class GtkApplicationWindowHandle : GtkWindowHandle, GActionGroupHandle, GActionMapHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkNativeHandle, GtkRootHandle, GtkShortcutManagerHandle
 {
 	public static GtkApplicationWindowHandle New(GtkApplicationHandle application)
 	{

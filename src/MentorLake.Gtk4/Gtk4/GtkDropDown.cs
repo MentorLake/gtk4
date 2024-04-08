@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkDropDownHandle : GtkWidgetHandle
+public class GtkDropDownHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle
 {
 	public static GtkDropDownHandle New(GListModelHandle model, GtkExpressionHandle expression)
 	{

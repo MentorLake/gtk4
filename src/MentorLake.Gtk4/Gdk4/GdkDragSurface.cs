@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gdk4;
 
-public class GdkDragSurfaceHandle  : GdkSurfaceHandle
+public interface GdkDragSurfaceHandle
 {
 }
 

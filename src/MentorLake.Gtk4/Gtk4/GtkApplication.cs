@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkApplicationHandle : GApplicationHandle
+public class GtkApplicationHandle : GApplicationHandle, GActionGroupHandle, GActionMapHandle
 {
 	public static GtkApplicationHandle New(string application_id, GApplicationFlags flags)
 	{

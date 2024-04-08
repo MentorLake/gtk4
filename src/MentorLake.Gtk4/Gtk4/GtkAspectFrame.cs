@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkAspectFrameHandle : GtkWidgetHandle
+public class GtkAspectFrameHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle
 {
 	public static GtkAspectFrameHandle New(float xalign, float yalign, float ratio, bool obey_child)
 	{

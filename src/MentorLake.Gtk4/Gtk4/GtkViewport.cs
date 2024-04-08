@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkViewportHandle : GtkWidgetHandle
+public class GtkViewportHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkScrollableHandle
 {
 	public static GtkViewportHandle New(GtkAdjustmentHandle hadjustment, GtkAdjustmentHandle vadjustment)
 	{

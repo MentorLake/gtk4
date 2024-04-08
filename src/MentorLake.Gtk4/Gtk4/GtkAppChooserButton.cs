@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkAppChooserButtonHandle : GtkWidgetHandle
+public class GtkAppChooserButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAppChooserHandle, GtkBuildableHandle, GtkConstraintTargetHandle
 {
 	public static GtkAppChooserButtonHandle New(string content_type)
 	{

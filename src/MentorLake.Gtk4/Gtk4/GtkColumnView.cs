@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkColumnViewHandle : GtkWidgetHandle
+public class GtkColumnViewHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkScrollableHandle
 {
 	public static GtkColumnViewHandle New(GtkSelectionModelHandle model)
 	{

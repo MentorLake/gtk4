@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkDragIconHandle : GtkWidgetHandle
+public class GtkDragIconHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkNativeHandle, GtkRootHandle
 {
 	public static GtkWidgetHandle CreateWidgetForValue(GValueHandle value)
 	{

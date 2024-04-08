@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkScrollbarHandle : GtkWidgetHandle
+public class GtkScrollbarHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkOrientableHandle
 {
 	public static GtkScrollbarHandle New(GtkOrientation orientation, GtkAdjustmentHandle adjustment)
 	{

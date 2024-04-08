@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkFileChooserHandle  : GObjectHandle
+public interface GtkFileChooserHandle
 {
 }
 

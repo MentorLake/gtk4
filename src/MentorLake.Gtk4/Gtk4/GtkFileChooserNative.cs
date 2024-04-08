@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkFileChooserNativeHandle : GtkNativeDialogHandle
+public class GtkFileChooserNativeHandle : GtkNativeDialogHandle, GtkFileChooserHandle
 {
 	public static GtkFileChooserNativeHandle New(string title, GtkWindowHandle parent, GtkFileChooserAction action, string accept_label, string cancel_label)
 	{

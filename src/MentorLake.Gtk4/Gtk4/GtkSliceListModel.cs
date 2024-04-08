@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkSliceListModelHandle : GObjectHandle
+public class GtkSliceListModelHandle : GObjectHandle, GListModelHandle, GtkSectionModelHandle
 {
 	public static GtkSliceListModelHandle New(GListModelHandle model, uint offset, uint size)
 	{

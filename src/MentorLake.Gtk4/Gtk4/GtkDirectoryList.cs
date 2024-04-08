@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkDirectoryListHandle : GObjectHandle
+public class GtkDirectoryListHandle : GObjectHandle, GListModelHandle
 {
 	public static GtkDirectoryListHandle New(string attributes, GFileHandle file)
 	{

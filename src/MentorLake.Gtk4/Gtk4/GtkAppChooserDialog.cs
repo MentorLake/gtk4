@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkAppChooserDialogHandle : GtkDialogHandle
+public class GtkAppChooserDialogHandle : GtkDialogHandle, GtkAccessibleHandle, GtkAppChooserHandle, GtkBuildableHandle, GtkConstraintTargetHandle, GtkNativeHandle, GtkRootHandle, GtkShortcutManagerHandle
 {
 	public static GtkAppChooserDialogHandle New(GtkWindowHandle parent, GtkDialogFlags flags, GFileHandle file)
 	{

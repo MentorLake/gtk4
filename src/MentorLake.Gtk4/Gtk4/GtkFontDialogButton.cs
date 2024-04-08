@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkFontDialogButtonHandle : GtkWidgetHandle
+public class GtkFontDialogButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildableHandle, GtkConstraintTargetHandle
 {
 	public static GtkFontDialogButtonHandle New(GtkFontDialogHandle dialog)
 	{

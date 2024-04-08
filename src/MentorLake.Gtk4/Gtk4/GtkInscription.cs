@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gtk4;
 
-public class GtkInscriptionHandle : GtkWidgetHandle
+public class GtkInscriptionHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAccessibleTextHandle, GtkBuildableHandle, GtkConstraintTargetHandle
 {
 	public static GtkInscriptionHandle New(string text)
 	{
