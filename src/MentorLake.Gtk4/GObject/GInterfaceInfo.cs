@@ -18,6 +18,10 @@ public class GInterfaceInfoHandle : BaseSafeHandle
 {
 }
 
+internal class GInterfaceInfoExterns
+{
+}
+
 public struct GInterfaceInfo
 {
 	public GInterfaceInitFunc interface_init;

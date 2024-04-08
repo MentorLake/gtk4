@@ -18,6 +18,10 @@ public class GTestSuiteHandle : BaseSafeHandle
 {
 }
 
+internal class GTestSuiteExterns
+{
+}
+
 public struct GTestSuite
 {
 }

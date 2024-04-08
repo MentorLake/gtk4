@@ -18,6 +18,10 @@ public class GDBusInterfaceInfoHandle : BaseSafeHandle
 {
 }
 
+internal class GDBusInterfaceInfoExterns
+{
+}
+
 public struct GDBusInterfaceInfo
 {
 	public int ref_count;

@@ -18,6 +18,10 @@ public class GLogFieldHandle : BaseSafeHandle
 {
 }
 
+internal class GLogFieldExterns
+{
+}
+
 public struct GLogField
 {
 	public string key;

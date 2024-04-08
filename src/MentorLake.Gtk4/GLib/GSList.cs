@@ -18,6 +18,10 @@ public class GSListHandle : BaseSafeHandle
 {
 }
 
+internal class GSListExterns
+{
+}
+
 public struct GSList
 {
 	public IntPtr data;

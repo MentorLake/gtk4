@@ -18,6 +18,10 @@ public class GMemChunkHandle : BaseSafeHandle
 {
 }
 
+internal class GMemChunkExterns
+{
+}
+
 public struct GMemChunk
 {
 }

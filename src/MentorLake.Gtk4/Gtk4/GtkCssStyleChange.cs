@@ -18,6 +18,10 @@ public class GtkCssStyleChangeHandle : BaseSafeHandle
 {
 }
 
+internal class GtkCssStyleChangeExterns
+{
+}
+
 public struct GtkCssStyleChange
 {
 }

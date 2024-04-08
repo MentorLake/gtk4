@@ -18,6 +18,10 @@ public class PangoAttrFloatHandle : BaseSafeHandle
 {
 }
 
+internal class PangoAttrFloatExterns
+{
+}
+
 public struct PangoAttrFloat
 {
 	public PangoAttribute attr;

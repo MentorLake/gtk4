@@ -18,6 +18,10 @@ public class PangoGlyphVisAttrHandle : BaseSafeHandle
 {
 }
 
+internal class PangoGlyphVisAttrExterns
+{
+}
+
 public struct PangoGlyphVisAttr
 {
 	public uint is_cluster_start;

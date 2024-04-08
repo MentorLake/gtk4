@@ -18,6 +18,10 @@ public class GInputMessageHandle : BaseSafeHandle
 {
 }
 
+internal class GInputMessageExterns
+{
+}
+
 public struct GInputMessage
 {
 	public IntPtr address;

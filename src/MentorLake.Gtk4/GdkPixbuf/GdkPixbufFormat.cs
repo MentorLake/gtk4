@@ -18,6 +18,10 @@ public class GdkPixbufFormatHandle : BaseSafeHandle
 {
 }
 
+internal class GdkPixbufFormatExterns
+{
+}
+
 public struct GdkPixbufFormat
 {
 	public string name;

@@ -18,6 +18,10 @@ public class GArrayHandle : BaseSafeHandle
 {
 }
 
+internal class GArrayExterns
+{
+}
+
 public struct GArray
 {
 	public string data;

@@ -18,6 +18,10 @@ public class GskShadowHandle : BaseSafeHandle
 {
 }
 
+internal class GskShadowExterns
+{
+}
+
 public struct GskShadow
 {
 	public GdkRGBA color;

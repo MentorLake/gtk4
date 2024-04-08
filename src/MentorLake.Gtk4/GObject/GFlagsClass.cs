@@ -18,6 +18,10 @@ public class GFlagsClassHandle : BaseSafeHandle
 {
 }
 
+internal class GFlagsClassExterns
+{
+}
+
 public struct GFlagsClass
 {
 	public GTypeClass g_type_class;

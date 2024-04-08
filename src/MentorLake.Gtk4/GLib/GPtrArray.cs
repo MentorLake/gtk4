@@ -18,6 +18,10 @@ public class GPtrArrayHandle : BaseSafeHandle
 {
 }
 
+internal class GPtrArrayExterns
+{
+}
+
 public struct GPtrArray
 {
 	public IntPtr[] pdata;

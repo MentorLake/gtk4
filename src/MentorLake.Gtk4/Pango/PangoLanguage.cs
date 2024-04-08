@@ -18,6 +18,10 @@ public class PangoLanguageHandle : BaseSafeHandle
 {
 }
 
+internal class PangoLanguageExterns
+{
+}
+
 public struct PangoLanguage
 {
 }

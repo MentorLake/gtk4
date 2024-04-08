@@ -18,6 +18,10 @@ public class GDBusInterfaceVTableHandle : BaseSafeHandle
 {
 }
 
+internal class GDBusInterfaceVTableExterns
+{
+}
+
 public struct GDBusInterfaceVTable
 {
 	public GDBusInterfaceMethodCallFunc method_call;

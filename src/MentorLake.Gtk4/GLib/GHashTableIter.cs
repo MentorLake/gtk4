@@ -18,6 +18,10 @@ public class GHashTableIterHandle : BaseSafeHandle
 {
 }
 
+internal class GHashTableIterExterns
+{
+}
+
 public struct GHashTableIter
 {
 }

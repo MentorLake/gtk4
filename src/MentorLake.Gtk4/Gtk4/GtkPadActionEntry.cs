@@ -18,6 +18,10 @@ public class GtkPadActionEntryHandle : BaseSafeHandle
 {
 }
 
+internal class GtkPadActionEntryExterns
+{
+}
+
 public struct GtkPadActionEntry
 {
 	public GtkPadActionType type;

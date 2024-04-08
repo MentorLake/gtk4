@@ -18,6 +18,10 @@ public class GskParseLocationHandle : BaseSafeHandle
 {
 }
 
+internal class GskParseLocationExterns
+{
+}
+
 public struct GskParseLocation
 {
 	public int bytes;

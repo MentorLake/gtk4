@@ -18,6 +18,10 @@ public class GIOSchedulerJobHandle : BaseSafeHandle
 {
 }
 
+internal class GIOSchedulerJobExterns
+{
+}
+
 public struct GIOSchedulerJob
 {
 }

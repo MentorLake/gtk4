@@ -18,6 +18,10 @@ public class GMutexHandle : BaseSafeHandle
 {
 }
 
+internal class GMutexExterns
+{
+}
+
 public struct GMutex
 {
 }

@@ -18,6 +18,10 @@ public class GHashTableHandle : BaseSafeHandle
 {
 }
 
+internal class GHashTableExterns
+{
+}
+
 public struct GHashTable
 {
 }

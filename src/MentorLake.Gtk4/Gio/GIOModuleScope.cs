@@ -18,6 +18,10 @@ public class GIOModuleScopeHandle : BaseSafeHandle
 {
 }
 
+internal class GIOModuleScopeExterns
+{
+}
+
 public struct GIOModuleScope
 {
 }

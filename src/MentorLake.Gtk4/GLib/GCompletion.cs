@@ -18,6 +18,10 @@ public class GCompletionHandle : BaseSafeHandle
 {
 }
 
+internal class GCompletionExterns
+{
+}
+
 public struct GCompletion
 {
 	public GListHandle items;

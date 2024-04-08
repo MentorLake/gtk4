@@ -18,6 +18,10 @@ public class GtkPrintBackendHandle : BaseSafeHandle
 {
 }
 
+internal class GtkPrintBackendExterns
+{
+}
+
 public struct GtkPrintBackend
 {
 }

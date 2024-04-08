@@ -18,6 +18,10 @@ public class GdkToplevelSizeHandle : BaseSafeHandle
 {
 }
 
+internal class GdkToplevelSizeExterns
+{
+}
+
 public struct GdkToplevelSize
 {
 }

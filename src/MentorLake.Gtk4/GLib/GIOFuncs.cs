@@ -18,6 +18,10 @@ public class GIOFuncsHandle : BaseSafeHandle
 {
 }
 
+internal class GIOFuncsExterns
+{
+}
+
 public struct GIOFuncs
 {
 	public IntPtr io_read;

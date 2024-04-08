@@ -18,6 +18,10 @@ public class GStaticPrivateHandle : BaseSafeHandle
 {
 }
 
+internal class GStaticPrivateExterns
+{
+}
+
 public struct GStaticPrivate
 {
 }

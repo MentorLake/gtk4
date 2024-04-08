@@ -18,6 +18,10 @@ public class GtkTextIterHandle : BaseSafeHandle
 {
 }
 
+internal class GtkTextIterExterns
+{
+}
+
 public struct GtkTextIter
 {
 }

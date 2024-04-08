@@ -18,6 +18,10 @@ public class GtkTreeIterHandle : BaseSafeHandle
 {
 }
 
+internal class GtkTreeIterExterns
+{
+}
+
 public struct GtkTreeIter
 {
 	public int stamp;

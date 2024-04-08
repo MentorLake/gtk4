@@ -18,6 +18,10 @@ public class GStaticRWLockHandle : BaseSafeHandle
 {
 }
 
+internal class GStaticRWLockExterns
+{
+}
+
 public struct GStaticRWLock
 {
 }

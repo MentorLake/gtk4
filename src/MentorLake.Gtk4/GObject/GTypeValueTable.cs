@@ -18,6 +18,10 @@ public class GTypeValueTableHandle : BaseSafeHandle
 {
 }
 
+internal class GTypeValueTableExterns
+{
+}
+
 public struct GTypeValueTable
 {
 	public GTypeValueInitFunc value_init;

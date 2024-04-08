@@ -18,6 +18,10 @@ public class GActionEntryHandle : BaseSafeHandle
 {
 }
 
+internal class GActionEntryExterns
+{
+}
+
 public struct GActionEntry
 {
 	public string name;

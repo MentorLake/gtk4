@@ -18,6 +18,10 @@ public class GIConvHandle : BaseSafeHandle
 {
 }
 
+internal class GIConvExterns
+{
+}
+
 public struct GIConv
 {
 }

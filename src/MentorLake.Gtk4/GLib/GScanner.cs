@@ -18,6 +18,10 @@ public class GScannerHandle : BaseSafeHandle
 {
 }
 
+internal class GScannerExterns
+{
+}
+
 public struct GScanner
 {
 	public IntPtr user_data;

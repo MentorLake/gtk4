@@ -18,6 +18,10 @@ public class GUnixMountEntryHandle : BaseSafeHandle
 {
 }
 
+internal class GUnixMountEntryExterns
+{
+}
+
 public struct GUnixMountEntry
 {
 }

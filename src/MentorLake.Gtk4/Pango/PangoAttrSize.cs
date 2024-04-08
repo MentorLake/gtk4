@@ -18,6 +18,10 @@ public class PangoAttrSizeHandle : BaseSafeHandle
 {
 }
 
+internal class PangoAttrSizeExterns
+{
+}
+
 public struct PangoAttrSize
 {
 	public PangoAttribute attr;

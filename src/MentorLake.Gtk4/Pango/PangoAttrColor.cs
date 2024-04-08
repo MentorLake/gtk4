@@ -18,6 +18,10 @@ public class PangoAttrColorHandle : BaseSafeHandle
 {
 }
 
+internal class PangoAttrColorExterns
+{
+}
+
 public struct PangoAttrColor
 {
 	public PangoAttribute attr;

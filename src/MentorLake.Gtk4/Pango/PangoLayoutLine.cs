@@ -18,6 +18,10 @@ public class PangoLayoutLineHandle : BaseSafeHandle
 {
 }
 
+internal class PangoLayoutLineExterns
+{
+}
+
 public struct PangoLayoutLine
 {
 	public PangoLayoutHandle layout;

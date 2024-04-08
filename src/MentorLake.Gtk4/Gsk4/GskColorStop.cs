@@ -18,6 +18,10 @@ public class GskColorStopHandle : BaseSafeHandle
 {
 }
 
+internal class GskColorStopExterns
+{
+}
+
 public struct GskColorStop
 {
 	public float offset;

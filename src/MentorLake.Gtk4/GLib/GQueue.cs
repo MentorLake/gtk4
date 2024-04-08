@@ -18,6 +18,10 @@ public class GQueueHandle : BaseSafeHandle
 {
 }
 
+internal class GQueueExterns
+{
+}
+
 public struct GQueue
 {
 	public GListHandle head;

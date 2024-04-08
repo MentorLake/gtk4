@@ -18,6 +18,10 @@ public class GtkRequestedSizeHandle : BaseSafeHandle
 {
 }
 
+internal class GtkRequestedSizeExterns
+{
+}
+
 public struct GtkRequestedSize
 {
 	public IntPtr data;

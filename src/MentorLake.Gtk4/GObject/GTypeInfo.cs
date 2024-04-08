@@ -18,6 +18,10 @@ public class GTypeInfoHandle : BaseSafeHandle
 {
 }
 
+internal class GTypeInfoExterns
+{
+}
+
 public struct GTypeInfo
 {
 	public ushort class_size;

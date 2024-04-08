@@ -18,6 +18,10 @@ public class PangoGlyphItemIterHandle : BaseSafeHandle
 {
 }
 
+internal class PangoGlyphItemIterExterns
+{
+}
+
 public struct PangoGlyphItemIter
 {
 	public PangoGlyphItemHandle glyph_item;

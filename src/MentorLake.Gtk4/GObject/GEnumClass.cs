@@ -18,6 +18,10 @@ public class GEnumClassHandle : BaseSafeHandle
 {
 }
 
+internal class GEnumClassExterns
+{
+}
+
 public struct GEnumClass
 {
 	public GTypeClass g_type_class;

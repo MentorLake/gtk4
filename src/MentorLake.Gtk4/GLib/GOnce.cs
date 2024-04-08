@@ -18,6 +18,10 @@ public class GOnceHandle : BaseSafeHandle
 {
 }
 
+internal class GOnceExterns
+{
+}
+
 public struct GOnce
 {
 	public GOnceStatus status;

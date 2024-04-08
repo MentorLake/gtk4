@@ -18,6 +18,10 @@ public class GThreadPoolHandle : BaseSafeHandle
 {
 }
 
+internal class GThreadPoolExterns
+{
+}
+
 public struct GThreadPool
 {
 	public GFunc func;

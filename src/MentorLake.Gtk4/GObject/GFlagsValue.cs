@@ -18,6 +18,10 @@ public class GFlagsValueHandle : BaseSafeHandle
 {
 }
 
+internal class GFlagsValueExterns
+{
+}
+
 public struct GFlagsValue
 {
 	public uint value;

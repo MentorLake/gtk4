@@ -18,6 +18,10 @@ public class GTypeClassHandle : BaseSafeHandle
 {
 }
 
+internal class GTypeClassExterns
+{
+}
+
 public struct GTypeClass
 {
 }

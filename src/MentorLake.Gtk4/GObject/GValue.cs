@@ -18,6 +18,10 @@ public class GValueHandle : BaseSafeHandle
 {
 }
 
+internal class GValueExterns
+{
+}
+
 public struct GValue
 {
 	public None data;

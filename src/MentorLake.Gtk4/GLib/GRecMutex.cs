@@ -18,6 +18,10 @@ public class GRecMutexHandle : BaseSafeHandle
 {
 }
 
+internal class GRecMutexExterns
+{
+}
+
 public struct GRecMutex
 {
 }

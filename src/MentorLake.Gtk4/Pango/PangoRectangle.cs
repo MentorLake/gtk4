@@ -18,6 +18,10 @@ public class PangoRectangleHandle : BaseSafeHandle
 {
 }
 
+internal class PangoRectangleExterns
+{
+}
+
 public struct PangoRectangle
 {
 	public int x;

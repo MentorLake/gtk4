@@ -18,6 +18,10 @@ public class GDebugKeyHandle : BaseSafeHandle
 {
 }
 
+internal class GDebugKeyExterns
+{
+}
+
 public struct GDebugKey
 {
 	public string key;

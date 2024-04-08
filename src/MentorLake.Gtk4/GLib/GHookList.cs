@@ -18,6 +18,10 @@ public class GHookListHandle : BaseSafeHandle
 {
 }
 
+internal class GHookListExterns
+{
+}
+
 public struct GHookList
 {
 	public ulong seq_id;

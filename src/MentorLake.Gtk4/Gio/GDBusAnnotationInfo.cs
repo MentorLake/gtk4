@@ -18,6 +18,10 @@ public class GDBusAnnotationInfoHandle : BaseSafeHandle
 {
 }
 
+internal class GDBusAnnotationInfoExterns
+{
+}
+
 public struct GDBusAnnotationInfo
 {
 	public int ref_count;

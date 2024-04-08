@@ -18,6 +18,10 @@ public class GTreeNodeHandle : BaseSafeHandle
 {
 }
 
+internal class GTreeNodeExterns
+{
+}
+
 public struct GTreeNode
 {
 }

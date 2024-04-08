@@ -18,6 +18,10 @@ public class GVariantIterHandle : BaseSafeHandle
 {
 }
 
+internal class GVariantIterExterns
+{
+}
+
 public struct GVariantIter
 {
 }

@@ -18,6 +18,10 @@ public class GTypeFundamentalInfoHandle : BaseSafeHandle
 {
 }
 
+internal class GTypeFundamentalInfoExterns
+{
+}
+
 public struct GTypeFundamentalInfo
 {
 	public GTypeFundamentalFlags type_flags;

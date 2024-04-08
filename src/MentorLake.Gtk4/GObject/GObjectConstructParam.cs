@@ -18,6 +18,10 @@ public class GObjectConstructParamHandle : BaseSafeHandle
 {
 }
 
+internal class GObjectConstructParamExterns
+{
+}
+
 public struct GObjectConstructParam
 {
 	public GParamSpecHandle pspec;

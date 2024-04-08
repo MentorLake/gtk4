@@ -18,6 +18,10 @@ public class GScannerConfigHandle : BaseSafeHandle
 {
 }
 
+internal class GScannerConfigExterns
+{
+}
+
 public struct GScannerConfig
 {
 	public string cset_skip_characters;

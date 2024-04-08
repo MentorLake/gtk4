@@ -18,6 +18,10 @@ public class GTypePluginClassHandle : BaseSafeHandle
 {
 }
 
+internal class GTypePluginClassExterns
+{
+}
+
 public struct GTypePluginClass
 {
 	public GTypePluginUse use_plugin;

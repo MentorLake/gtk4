@@ -18,6 +18,10 @@ public class PangoMatrixHandle : BaseSafeHandle
 {
 }
 
+internal class PangoMatrixExterns
+{
+}
+
 public struct PangoMatrix
 {
 	public double xx;

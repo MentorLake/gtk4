@@ -18,6 +18,10 @@ public class GParamSpecTypeInfoHandle : BaseSafeHandle
 {
 }
 
+internal class GParamSpecTypeInfoExterns
+{
+}
+
 public struct GParamSpecTypeInfo
 {
 	public ushort instance_size;

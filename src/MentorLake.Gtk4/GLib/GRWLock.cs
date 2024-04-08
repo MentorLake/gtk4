@@ -18,6 +18,10 @@ public class GRWLockHandle : BaseSafeHandle
 {
 }
 
+internal class GRWLockExterns
+{
+}
+
 public struct GRWLock
 {
 }

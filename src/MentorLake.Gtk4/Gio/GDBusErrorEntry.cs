@@ -18,6 +18,10 @@ public class GDBusErrorEntryHandle : BaseSafeHandle
 {
 }
 
+internal class GDBusErrorEntryExterns
+{
+}
+
 public struct GDBusErrorEntry
 {
 	public int error_code;

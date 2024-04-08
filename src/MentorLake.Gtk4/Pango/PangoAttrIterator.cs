@@ -18,6 +18,10 @@ public class PangoAttrIteratorHandle : BaseSafeHandle
 {
 }
 
+internal class PangoAttrIteratorExterns
+{
+}
+
 public struct PangoAttrIterator
 {
 }

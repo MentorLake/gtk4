@@ -18,6 +18,10 @@ public class GModuleHandle : BaseSafeHandle
 {
 }
 
+internal class GModuleExterns
+{
+}
+
 public struct GModule
 {
 }

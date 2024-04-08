@@ -18,6 +18,10 @@ public class GHookHandle : BaseSafeHandle
 {
 }
 
+internal class GHookExterns
+{
+}
+
 public struct GHook
 {
 	public IntPtr data;

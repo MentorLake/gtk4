@@ -18,6 +18,10 @@ public class PangoAnalysisHandle : BaseSafeHandle
 {
 }
 
+internal class PangoAnalysisExterns
+{
+}
+
 public struct PangoAnalysis
 {
 	public IntPtr shape_engine;

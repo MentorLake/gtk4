@@ -18,6 +18,10 @@ public class GCacheHandle : BaseSafeHandle
 {
 }
 
+internal class GCacheExterns
+{
+}
+
 public struct GCache
 {
 }

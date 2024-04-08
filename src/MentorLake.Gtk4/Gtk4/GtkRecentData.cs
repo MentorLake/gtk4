@@ -18,6 +18,10 @@ public class GtkRecentDataHandle : BaseSafeHandle
 {
 }
 
+internal class GtkRecentDataExterns
+{
+}
+
 public struct GtkRecentData
 {
 	public string display_name;

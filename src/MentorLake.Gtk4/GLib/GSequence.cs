@@ -18,6 +18,10 @@ public class GSequenceHandle : BaseSafeHandle
 {
 }
 
+internal class GSequenceExterns
+{
+}
+
 public struct GSequence
 {
 }

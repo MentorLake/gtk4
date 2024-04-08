@@ -18,6 +18,10 @@ public class PangoFontMetricsHandle : BaseSafeHandle
 {
 }
 
+internal class PangoFontMetricsExterns
+{
+}
+
 public struct PangoFontMetrics
 {
 }

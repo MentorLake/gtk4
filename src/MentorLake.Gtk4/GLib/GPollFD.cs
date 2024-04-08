@@ -18,6 +18,10 @@ public class GPollFDHandle : BaseSafeHandle
 {
 }
 
+internal class GPollFDExterns
+{
+}
+
 public struct GPollFD
 {
 	public int fd;

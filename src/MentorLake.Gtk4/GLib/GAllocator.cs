@@ -18,6 +18,10 @@ public class GAllocatorHandle : BaseSafeHandle
 {
 }
 
+internal class GAllocatorExterns
+{
+}
+
 public struct GAllocator
 {
 }

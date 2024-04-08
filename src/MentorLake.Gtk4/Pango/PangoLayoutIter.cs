@@ -18,6 +18,10 @@ public class PangoLayoutIterHandle : BaseSafeHandle
 {
 }
 
+internal class PangoLayoutIterExterns
+{
+}
+
 public struct PangoLayoutIter
 {
 }

@@ -18,6 +18,10 @@ public class GtkAccessibleTextRangeHandle : BaseSafeHandle
 {
 }
 
+internal class GtkAccessibleTextRangeExterns
+{
+}
+
 public struct GtkAccessibleTextRange
 {
 	public int start;

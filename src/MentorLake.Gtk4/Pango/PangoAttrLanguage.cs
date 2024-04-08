@@ -18,6 +18,10 @@ public class PangoAttrLanguageHandle : BaseSafeHandle
 {
 }
 
+internal class PangoAttrLanguageExterns
+{
+}
+
 public struct PangoAttrLanguage
 {
 	public PangoAttribute attr;

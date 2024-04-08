@@ -18,6 +18,10 @@ public class GOutputMessageHandle : BaseSafeHandle
 {
 }
 
+internal class GOutputMessageExterns
+{
+}
+
 public struct GOutputMessage
 {
 	public GSocketAddressHandle address;

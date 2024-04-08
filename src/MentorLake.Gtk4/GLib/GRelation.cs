@@ -18,6 +18,10 @@ public class GRelationHandle : BaseSafeHandle
 {
 }
 
+internal class GRelationExterns
+{
+}
+
 public struct GRelation
 {
 }

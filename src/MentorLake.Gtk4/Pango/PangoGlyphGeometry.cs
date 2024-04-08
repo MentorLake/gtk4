@@ -18,6 +18,10 @@ public class PangoGlyphGeometryHandle : BaseSafeHandle
 {
 }
 
+internal class PangoGlyphGeometryExterns
+{
+}
+
 public struct PangoGlyphGeometry
 {
 	public PangoGlyphUnit width;

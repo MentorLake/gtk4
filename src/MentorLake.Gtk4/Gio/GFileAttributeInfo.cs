@@ -18,6 +18,10 @@ public class GFileAttributeInfoHandle : BaseSafeHandle
 {
 }
 
+internal class GFileAttributeInfoExterns
+{
+}
+
 public struct GFileAttributeInfo
 {
 	public string name;

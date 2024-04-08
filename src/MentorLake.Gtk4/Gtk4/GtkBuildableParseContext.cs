@@ -18,6 +18,10 @@ public class GtkBuildableParseContextHandle : BaseSafeHandle
 {
 }
 
+internal class GtkBuildableParseContextExterns
+{
+}
+
 public struct GtkBuildableParseContext
 {
 }

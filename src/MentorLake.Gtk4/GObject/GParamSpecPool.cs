@@ -18,6 +18,10 @@ public class GParamSpecPoolHandle : BaseSafeHandle
 {
 }
 
+internal class GParamSpecPoolExterns
+{
+}
+
 public struct GParamSpecPool
 {
 }

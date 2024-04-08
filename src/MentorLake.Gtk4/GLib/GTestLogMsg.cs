@@ -18,6 +18,10 @@ public class GTestLogMsgHandle : BaseSafeHandle
 {
 }
 
+internal class GTestLogMsgExterns
+{
+}
+
 public struct GTestLogMsg
 {
 	public GTestLogType log_type;

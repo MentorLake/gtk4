@@ -18,6 +18,10 @@ public class PangoAttrFontDescHandle : BaseSafeHandle
 {
 }
 
+internal class PangoAttrFontDescExterns
+{
+}
+
 public struct PangoAttrFontDesc
 {
 	public PangoAttribute attr;

@@ -18,6 +18,10 @@ public class GTestCaseHandle : BaseSafeHandle
 {
 }
 
+internal class GTestCaseExterns
+{
+}
+
 public struct GTestCase
 {
 }

@@ -18,6 +18,10 @@ public class GDBusSubtreeVTableHandle : BaseSafeHandle
 {
 }
 
+internal class GDBusSubtreeVTableExterns
+{
+}
+
 public struct GDBusSubtreeVTable
 {
 	public GDBusSubtreeEnumerateFunc enumerate;

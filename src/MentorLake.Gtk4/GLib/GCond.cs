@@ -18,6 +18,10 @@ public class GCondHandle : BaseSafeHandle
 {
 }
 
+internal class GCondExterns
+{
+}
+
 public struct GCond
 {
 }

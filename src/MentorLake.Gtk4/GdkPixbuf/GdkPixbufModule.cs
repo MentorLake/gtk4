@@ -18,6 +18,10 @@ public class GdkPixbufModuleHandle : BaseSafeHandle
 {
 }
 
+internal class GdkPixbufModuleExterns
+{
+}
+
 public struct GdkPixbufModule
 {
 	public string module_name;

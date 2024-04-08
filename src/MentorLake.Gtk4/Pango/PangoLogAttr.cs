@@ -18,6 +18,10 @@ public class PangoLogAttrHandle : BaseSafeHandle
 {
 }
 
+internal class PangoLogAttrExterns
+{
+}
+
 public struct PangoLogAttr
 {
 	public uint is_line_break;

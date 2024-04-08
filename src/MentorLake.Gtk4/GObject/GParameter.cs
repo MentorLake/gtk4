@@ -18,6 +18,10 @@ public class GParameterHandle : BaseSafeHandle
 {
 }
 
+internal class GParameterExterns
+{
+}
+
 public struct GParameter
 {
 	public string name;

@@ -18,6 +18,10 @@ public class GdkKeymapKeyHandle : BaseSafeHandle
 {
 }
 
+internal class GdkKeymapKeyExterns
+{
+}
+
 public struct GdkKeymapKey
 {
 	public uint keycode;

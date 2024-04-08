@@ -18,6 +18,10 @@ public class GdkRectangleHandle : BaseSafeHandle
 {
 }
 
+internal class GdkRectangleExterns
+{
+}
+
 public struct GdkRectangle
 {
 	public int x;

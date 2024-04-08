@@ -18,6 +18,10 @@ public class GAsyncQueueHandle : BaseSafeHandle
 {
 }
 
+internal class GAsyncQueueExterns
+{
+}
+
 public struct GAsyncQueue
 {
 }

@@ -18,6 +18,10 @@ public class GMatchInfoHandle : BaseSafeHandle
 {
 }
 
+internal class GMatchInfoExterns
+{
+}
+
 public struct GMatchInfo
 {
 }

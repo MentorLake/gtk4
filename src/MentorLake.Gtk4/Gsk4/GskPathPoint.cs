@@ -18,6 +18,10 @@ public class GskPathPointHandle : BaseSafeHandle
 {
 }
 
+internal class GskPathPointExterns
+{
+}
+
 public struct GskPathPoint
 {
 }

@@ -18,6 +18,10 @@ public class GDBusSignalInfoHandle : BaseSafeHandle
 {
 }
 
+internal class GDBusSignalInfoExterns
+{
+}
+
 public struct GDBusSignalInfo
 {
 	public int ref_count;

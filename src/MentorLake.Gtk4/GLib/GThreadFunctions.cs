@@ -18,6 +18,10 @@ public class GThreadFunctionsHandle : BaseSafeHandle
 {
 }
 
+internal class GThreadFunctionsExterns
+{
+}
+
 public struct GThreadFunctions
 {
 	public IntPtr mutex_new;

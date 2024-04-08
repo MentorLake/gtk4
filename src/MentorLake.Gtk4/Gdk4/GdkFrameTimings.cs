@@ -18,6 +18,10 @@ public class GdkFrameTimingsHandle : BaseSafeHandle
 {
 }
 
+internal class GdkFrameTimingsExterns
+{
+}
+
 public struct GdkFrameTimings
 {
 }

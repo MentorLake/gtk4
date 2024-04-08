@@ -18,6 +18,10 @@ public class PangoColorHandle : BaseSafeHandle
 {
 }
 
+internal class PangoColorExterns
+{
+}
+
 public struct PangoColor
 {
 	public ushort red;

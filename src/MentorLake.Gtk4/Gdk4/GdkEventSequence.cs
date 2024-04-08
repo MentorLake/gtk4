@@ -18,6 +18,10 @@ public class GdkEventSequenceHandle : BaseSafeHandle
 {
 }
 
+internal class GdkEventSequenceExterns
+{
+}
+
 public struct GdkEventSequence
 {
 }

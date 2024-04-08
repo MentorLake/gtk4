@@ -18,6 +18,10 @@ public class GSignalQueryHandle : BaseSafeHandle
 {
 }
 
+internal class GSignalQueryExterns
+{
+}
+
 public struct GSignalQuery
 {
 	public uint signal_id;

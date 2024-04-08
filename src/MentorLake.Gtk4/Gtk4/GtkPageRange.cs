@@ -18,6 +18,10 @@ public class GtkPageRangeHandle : BaseSafeHandle
 {
 }
 
+internal class GtkPageRangeExterns
+{
+}
+
 public struct GtkPageRange
 {
 	public int start;

@@ -18,6 +18,10 @@ public class GNodeHandle : BaseSafeHandle
 {
 }
 
+internal class GNodeExterns
+{
+}
+
 public struct GNode
 {
 	public IntPtr data;

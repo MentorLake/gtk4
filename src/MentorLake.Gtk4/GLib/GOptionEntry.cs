@@ -18,6 +18,10 @@ public class GOptionEntryHandle : BaseSafeHandle
 {
 }
 
+internal class GOptionEntryExterns
+{
+}
+
 public struct GOptionEntry
 {
 	public string long_name;

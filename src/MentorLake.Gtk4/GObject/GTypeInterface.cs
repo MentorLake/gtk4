@@ -18,6 +18,10 @@ public class GTypeInterfaceHandle : BaseSafeHandle
 {
 }
 
+internal class GTypeInterfaceExterns
+{
+}
+
 public struct GTypeInterface
 {
 }

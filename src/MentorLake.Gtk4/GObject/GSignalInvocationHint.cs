@@ -18,6 +18,10 @@ public class GSignalInvocationHintHandle : BaseSafeHandle
 {
 }
 
+internal class GSignalInvocationHintExterns
+{
+}
+
 public struct GSignalInvocationHint
 {
 	public uint signal_id;

@@ -18,6 +18,10 @@ public class GIOExtensionPointHandle : BaseSafeHandle
 {
 }
 
+internal class GIOExtensionPointExterns
+{
+}
+
 public struct GIOExtensionPoint
 {
 }

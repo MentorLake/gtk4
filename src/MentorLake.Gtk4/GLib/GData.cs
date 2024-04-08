@@ -18,6 +18,10 @@ public class GDataHandle : BaseSafeHandle
 {
 }
 
+internal class GDataExterns
+{
+}
+
 public struct GData
 {
 }

@@ -18,6 +18,10 @@ public class GdkDragSurfaceSizeHandle : BaseSafeHandle
 {
 }
 
+internal class GdkDragSurfaceSizeExterns
+{
+}
+
 public struct GdkDragSurfaceSize
 {
 }

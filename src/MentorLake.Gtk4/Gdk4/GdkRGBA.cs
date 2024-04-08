@@ -18,6 +18,10 @@ public class GdkRGBAHandle : BaseSafeHandle
 {
 }
 
+internal class GdkRGBAExterns
+{
+}
+
 public struct GdkRGBA
 {
 	public float red;

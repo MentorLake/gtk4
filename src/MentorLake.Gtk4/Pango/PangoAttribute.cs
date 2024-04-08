@@ -18,6 +18,10 @@ public class PangoAttributeHandle : BaseSafeHandle
 {
 }
 
+internal class PangoAttributeExterns
+{
+}
+
 public struct PangoAttribute
 {
 	public PangoAttrClass[] klass;

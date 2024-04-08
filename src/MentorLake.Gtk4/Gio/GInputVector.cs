@@ -18,6 +18,10 @@ public class GInputVectorHandle : BaseSafeHandle
 {
 }
 
+internal class GInputVectorExterns
+{
+}
+
 public struct GInputVector
 {
 	public IntPtr buffer;

@@ -18,6 +18,10 @@ public class GTypeCValueHandle : BaseSafeHandle
 {
 }
 
+internal class GTypeCValueExterns
+{
+}
+
 public struct GTypeCValue
 {
 	public int v_int;

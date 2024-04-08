@@ -18,6 +18,10 @@ public class GdkDmabufFormatsHandle : BaseSafeHandle
 {
 }
 
+internal class GdkDmabufFormatsExterns
+{
+}
+
 public struct GdkDmabufFormats
 {
 }

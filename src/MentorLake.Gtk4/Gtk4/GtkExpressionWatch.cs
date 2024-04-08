@@ -18,6 +18,10 @@ public class GtkExpressionWatchHandle : BaseSafeHandle
 {
 }
 
+internal class GtkExpressionWatchExterns
+{
+}
+
 public struct GtkExpressionWatch
 {
 }

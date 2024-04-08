@@ -18,6 +18,10 @@ public class GByteArrayHandle : BaseSafeHandle
 {
 }
 
+internal class GByteArrayExterns
+{
+}
+
 public struct GByteArray
 {
 	public byte[] data;

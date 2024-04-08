@@ -18,6 +18,10 @@ public class GSourceFuncsHandle : BaseSafeHandle
 {
 }
 
+internal class GSourceFuncsExterns
+{
+}
+
 public struct GSourceFuncs
 {
 	public IntPtr prepare;

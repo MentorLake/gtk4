@@ -18,6 +18,10 @@ public class GStaticRecMutexHandle : BaseSafeHandle
 {
 }
 
+internal class GStaticRecMutexExterns
+{
+}
+
 public struct GStaticRecMutex
 {
 }

@@ -18,6 +18,10 @@ public class GClosureNotifyDataHandle : BaseSafeHandle
 {
 }
 
+internal class GClosureNotifyDataExterns
+{
+}
+
 public struct GClosureNotifyData
 {
 	public IntPtr data;

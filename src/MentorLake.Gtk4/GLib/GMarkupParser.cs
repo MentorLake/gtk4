@@ -18,6 +18,10 @@ public class GMarkupParserHandle : BaseSafeHandle
 {
 }
 
+internal class GMarkupParserExterns
+{
+}
+
 public struct GMarkupParser
 {
 	public IntPtr start_element;

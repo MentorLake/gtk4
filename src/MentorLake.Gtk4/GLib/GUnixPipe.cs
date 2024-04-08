@@ -18,6 +18,10 @@ public class GUnixPipeHandle : BaseSafeHandle
 {
 }
 
+internal class GUnixPipeExterns
+{
+}
+
 public struct GUnixPipe
 {
 	public None fds;

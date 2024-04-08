@@ -18,6 +18,10 @@ public class GtkBuildableParserHandle : BaseSafeHandle
 {
 }
 
+internal class GtkBuildableParserExterns
+{
+}
+
 public struct GtkBuildableParser
 {
 	public IntPtr start_element;

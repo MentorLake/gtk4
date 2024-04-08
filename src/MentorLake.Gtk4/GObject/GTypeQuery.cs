@@ -18,6 +18,10 @@ public class GTypeQueryHandle : BaseSafeHandle
 {
 }
 
+internal class GTypeQueryExterns
+{
+}
+
 public struct GTypeQuery
 {
 	public GType type;

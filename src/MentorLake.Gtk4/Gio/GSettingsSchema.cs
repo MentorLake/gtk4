@@ -18,6 +18,10 @@ public class GSettingsSchemaHandle : BaseSafeHandle
 {
 }
 
+internal class GSettingsSchemaExterns
+{
+}
+
 public struct GSettingsSchema
 {
 }

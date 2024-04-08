@@ -18,6 +18,10 @@ public class GtkRecentInfoHandle : BaseSafeHandle
 {
 }
 
+internal class GtkRecentInfoExterns
+{
+}
+
 public struct GtkRecentInfo
 {
 }

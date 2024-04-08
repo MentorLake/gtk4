@@ -18,6 +18,10 @@ public class GSourceCallbackFuncsHandle : BaseSafeHandle
 {
 }
 
+internal class GSourceCallbackFuncsExterns
+{
+}
+
 public struct GSourceCallbackFuncs
 {
 	public IntPtr @ref;

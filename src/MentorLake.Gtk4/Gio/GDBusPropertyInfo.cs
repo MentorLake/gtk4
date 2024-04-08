@@ -18,6 +18,10 @@ public class GDBusPropertyInfoHandle : BaseSafeHandle
 {
 }
 
+internal class GDBusPropertyInfoExterns
+{
+}
+
 public struct GDBusPropertyInfo
 {
 	public int ref_count;

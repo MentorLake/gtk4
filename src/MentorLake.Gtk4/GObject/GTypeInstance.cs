@@ -18,6 +18,10 @@ public class GTypeInstanceHandle : BaseSafeHandle
 {
 }
 
+internal class GTypeInstanceExterns
+{
+}
+
 public struct GTypeInstance
 {
 }

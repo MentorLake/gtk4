@@ -18,6 +18,10 @@ public class GPathBufHandle : BaseSafeHandle
 {
 }
 
+internal class GPathBufExterns
+{
+}
+
 public struct GPathBuf
 {
 }

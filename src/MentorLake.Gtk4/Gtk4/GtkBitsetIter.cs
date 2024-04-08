@@ -18,6 +18,10 @@ public class GtkBitsetIterHandle : BaseSafeHandle
 {
 }
 
+internal class GtkBitsetIterExterns
+{
+}
+
 public struct GtkBitsetIter
 {
 }

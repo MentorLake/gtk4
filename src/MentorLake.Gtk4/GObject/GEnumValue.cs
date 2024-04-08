@@ -18,6 +18,10 @@ public class GEnumValueHandle : BaseSafeHandle
 {
 }
 
+internal class GEnumValueExterns
+{
+}
+
 public struct GEnumValue
 {
 	public int value;

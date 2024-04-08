@@ -18,6 +18,10 @@ public class GdkTimeCoordHandle : BaseSafeHandle
 {
 }
 
+internal class GdkTimeCoordExterns
+{
+}
+
 public struct GdkTimeCoord
 {
 	public uint time;

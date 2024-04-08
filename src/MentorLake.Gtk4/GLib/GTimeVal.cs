@@ -18,6 +18,10 @@ public class GTimeValHandle : BaseSafeHandle
 {
 }
 
+internal class GTimeValExterns
+{
+}
+
 public struct GTimeVal
 {
 	public long tv_sec;

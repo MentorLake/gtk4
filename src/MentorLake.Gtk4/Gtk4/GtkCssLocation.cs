@@ -18,6 +18,10 @@ public class GtkCssLocationHandle : BaseSafeHandle
 {
 }
 
+internal class GtkCssLocationExterns
+{
+}
+
 public struct GtkCssLocation
 {
 	public int bytes;

@@ -18,6 +18,10 @@ public class GUriParamsIterHandle : BaseSafeHandle
 {
 }
 
+internal class GUriParamsIterExterns
+{
+}
+
 public struct GUriParamsIter
 {
 }

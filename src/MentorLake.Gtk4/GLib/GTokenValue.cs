@@ -18,6 +18,10 @@ public class GTokenValueHandle : BaseSafeHandle
 {
 }
 
+internal class GTokenValueExterns
+{
+}
+
 public struct GTokenValue
 {
 	public IntPtr v_symbol;

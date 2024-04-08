@@ -18,6 +18,10 @@ public class GMemVTableHandle : BaseSafeHandle
 {
 }
 
+internal class GMemVTableExterns
+{
+}
+
 public struct GMemVTable
 {
 	public IntPtr malloc;

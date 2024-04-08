@@ -18,6 +18,10 @@ public class GTestConfigHandle : BaseSafeHandle
 {
 }
 
+internal class GTestConfigExterns
+{
+}
+
 public struct GTestConfig
 {
 	public bool test_initialized;

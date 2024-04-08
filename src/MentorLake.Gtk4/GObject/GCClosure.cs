@@ -18,6 +18,10 @@ public class GCClosureHandle : BaseSafeHandle
 {
 }
 
+internal class GCClosureExterns
+{
+}
+
 public struct GCClosure
 {
 	public GClosure closure;

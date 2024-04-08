@@ -18,6 +18,10 @@ public class GStatBufHandle : BaseSafeHandle
 {
 }
 
+internal class GStatBufExterns
+{
+}
+
 public struct GStatBuf
 {
 }
