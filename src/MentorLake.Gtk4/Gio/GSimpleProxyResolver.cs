@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GSimpleProxyResolverHandle : GObjectHandle
+public class GSimpleProxyResolverHandle : GObjectHandle, GProxyResolverHandle
 {
 	public static GProxyResolverHandle New(string default_proxy, string[] ignore_hosts)
 	{

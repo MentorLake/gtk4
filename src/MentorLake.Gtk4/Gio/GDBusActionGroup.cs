@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GDBusActionGroupHandle : GObjectHandle
+public class GDBusActionGroupHandle : GObjectHandle, GActionGroupHandle, GRemoteActionGroupHandle
 {
 	public static GDBusActionGroupHandle GDbusActionGroupGet(GDBusConnectionHandle connection, string bus_name, string object_path)
 	{

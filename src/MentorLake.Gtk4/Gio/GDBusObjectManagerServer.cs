@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GDBusObjectManagerServerHandle : GObjectHandle
+public class GDBusObjectManagerServerHandle : GObjectHandle, GDBusObjectManagerHandle
 {
 	public static GDBusObjectManagerServerHandle GDbusObjectManagerServerNew(string object_path)
 	{

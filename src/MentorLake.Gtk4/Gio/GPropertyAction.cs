@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GPropertyActionHandle : GObjectHandle
+public class GPropertyActionHandle : GObjectHandle, GActionHandle
 {
 	public static GPropertyActionHandle New(string name, GObjectHandle @object, string property_name)
 	{

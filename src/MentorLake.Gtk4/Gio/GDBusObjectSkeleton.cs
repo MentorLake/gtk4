@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GDBusObjectSkeletonHandle : GObjectHandle
+public class GDBusObjectSkeletonHandle : GObjectHandle, GDBusObjectHandle
 {
 	public static GDBusObjectSkeletonHandle GDbusObjectSkeletonNew(string object_path)
 	{

@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GCharsetConverterHandle : GObjectHandle
+public class GCharsetConverterHandle : GObjectHandle, GConverterHandle, GInitableHandle
 {
 	public static GCharsetConverterHandle New(string to_charset, string from_charset, out GErrorHandle error)
 	{

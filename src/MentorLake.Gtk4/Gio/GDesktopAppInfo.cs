@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GDesktopAppInfoHandle : GObjectHandle
+public class GDesktopAppInfoHandle : GObjectHandle, GAppInfoHandle
 {
 	public static GDesktopAppInfoHandle New(string desktop_id)
 	{

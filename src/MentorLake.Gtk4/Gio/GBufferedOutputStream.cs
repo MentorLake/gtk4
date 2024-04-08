@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GBufferedOutputStreamHandle : GFilterOutputStreamHandle
+public class GBufferedOutputStreamHandle : GFilterOutputStreamHandle, GSeekableHandle
 {
 	public static GBufferedOutputStreamHandle New(GOutputStreamHandle base_stream)
 	{

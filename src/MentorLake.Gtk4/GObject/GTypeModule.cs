@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.GObject;
 
-public class GTypeModuleHandle : GObjectHandle
+public class GTypeModuleHandle : GObjectHandle, GTypePluginHandle
 {
 }
 

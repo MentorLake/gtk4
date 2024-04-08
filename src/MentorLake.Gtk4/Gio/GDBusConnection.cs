@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GDBusConnectionHandle : GObjectHandle
+public class GDBusConnectionHandle : GObjectHandle, GAsyncInitableHandle, GInitableHandle
 {
 	public static GDBusConnectionHandle GDbusConnectionNewFinish(GAsyncResultHandle res, out GErrorHandle error)
 	{

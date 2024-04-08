@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GListStoreHandle : GObjectHandle
+public class GListStoreHandle : GObjectHandle, GListModelHandle
 {
 	public static GListStoreHandle New(GType item_type)
 	{

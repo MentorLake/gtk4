@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GInetAddressMaskHandle : GObjectHandle
+public class GInetAddressMaskHandle : GObjectHandle, GInitableHandle
 {
 	public static GInetAddressMaskHandle New(GInetAddressHandle addr, uint length, out GErrorHandle error)
 	{

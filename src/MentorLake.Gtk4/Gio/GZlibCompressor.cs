@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GZlibCompressorHandle : GObjectHandle
+public class GZlibCompressorHandle : GObjectHandle, GConverterHandle
 {
 	public static GZlibCompressorHandle New(GZlibCompressorFormat format, int level)
 	{

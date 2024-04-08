@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GSimpleActionHandle : GObjectHandle
+public class GSimpleActionHandle : GObjectHandle, GActionHandle
 {
 	public static GSimpleActionHandle New(string name, GVariantTypeHandle parameter_type)
 	{

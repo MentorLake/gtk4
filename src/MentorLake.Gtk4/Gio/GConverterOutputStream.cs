@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GConverterOutputStreamHandle : GFilterOutputStreamHandle
+public class GConverterOutputStreamHandle : GFilterOutputStreamHandle, GPollableOutputStreamHandle
 {
 	public static GConverterOutputStreamHandle New(GOutputStreamHandle base_stream, GConverterHandle converter)
 	{

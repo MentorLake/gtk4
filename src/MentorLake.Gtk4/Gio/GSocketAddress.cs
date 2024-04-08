@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GSocketAddressHandle : GObjectHandle
+public class GSocketAddressHandle : GObjectHandle, GSocketConnectableHandle
 {
 	public static GSocketAddressHandle NewFromNative(IntPtr native, int len)
 	{

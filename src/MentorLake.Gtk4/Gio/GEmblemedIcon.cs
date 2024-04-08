@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GEmblemedIconHandle : GObjectHandle
+public class GEmblemedIconHandle : GObjectHandle, GIconHandle
 {
 	public static GEmblemedIconHandle New(GIconHandle icon, GEmblemHandle emblem)
 	{

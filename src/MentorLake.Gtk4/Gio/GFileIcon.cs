@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GFileIconHandle : GObjectHandle
+public class GFileIconHandle : GObjectHandle, GIconHandle, GLoadableIconHandle
 {
 	public static GFileIconHandle New(GFileHandle file)
 	{

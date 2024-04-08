@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GUnixInputStreamHandle : GInputStreamHandle
+public class GUnixInputStreamHandle : GInputStreamHandle, GFileDescriptorBasedHandle, GPollableInputStreamHandle
 {
 	public static GUnixInputStreamHandle New(int fd, bool close_fd)
 	{

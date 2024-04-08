@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GProxyAddressHandle : GInetSocketAddressHandle
+public class GProxyAddressHandle : GInetSocketAddressHandle, GSocketConnectableHandle
 {
 	public static GProxyAddressHandle New(GInetAddressHandle inetaddr, ushort port, string protocol, string dest_hostname, ushort dest_port, string username, string password)
 	{

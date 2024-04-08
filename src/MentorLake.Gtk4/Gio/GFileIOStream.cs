@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GFileIOStreamHandle : GIOStreamHandle
+public class GFileIOStreamHandle : GIOStreamHandle, GSeekableHandle
 {
 }
 

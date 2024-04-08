@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GDebugControllerDBusHandle : GObjectHandle
+public class GDebugControllerDBusHandle : GObjectHandle, GDebugControllerHandle, GInitableHandle
 {
 	public static GDebugControllerDBusHandle GDebugControllerDbusNew(GDBusConnectionHandle connection, GCancellableHandle cancellable, out GErrorHandle error)
 	{

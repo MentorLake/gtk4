@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GDataInputStreamHandle : GBufferedInputStreamHandle
+public class GDataInputStreamHandle : GBufferedInputStreamHandle, GSeekableHandle
 {
 	public static GDataInputStreamHandle New(GInputStreamHandle base_stream)
 	{

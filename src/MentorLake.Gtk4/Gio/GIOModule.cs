@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GIOModuleHandle : GTypeModuleHandle
+public class GIOModuleHandle : GTypeModuleHandle, GTypePluginHandle
 {
 	public static GIOModuleHandle GIoModuleNew(string filename)
 	{

@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GNetworkAddressHandle : GObjectHandle
+public class GNetworkAddressHandle : GObjectHandle, GSocketConnectableHandle
 {
 	public static GNetworkAddressHandle New(string hostname, ushort port)
 	{

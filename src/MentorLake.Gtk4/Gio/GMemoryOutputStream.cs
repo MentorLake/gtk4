@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GMemoryOutputStreamHandle : GOutputStreamHandle
+public class GMemoryOutputStreamHandle : GOutputStreamHandle, GPollableOutputStreamHandle, GSeekableHandle
 {
 	public static GMemoryOutputStreamHandle New(IntPtr data, int size, GReallocFunc realloc_function, GDestroyNotify destroy_function)
 	{

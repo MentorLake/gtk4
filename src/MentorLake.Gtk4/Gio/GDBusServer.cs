@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GDBusServerHandle : GObjectHandle
+public class GDBusServerHandle : GObjectHandle, GInitableHandle
 {
 	public static GDBusServerHandle GDbusServerNewSync(string address, GDBusServerFlags flags, string guid, GDBusAuthObserverHandle observer, GCancellableHandle cancellable, out GErrorHandle error)
 	{

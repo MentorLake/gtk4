@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GSubprocessHandle : GObjectHandle
+public class GSubprocessHandle : GObjectHandle, GInitableHandle
 {
 	public static GSubprocessHandle New(GSubprocessFlags flags, out GErrorHandle error, string argv0, IntPtr @__arglist)
 	{

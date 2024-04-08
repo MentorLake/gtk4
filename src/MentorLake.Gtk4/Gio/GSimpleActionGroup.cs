@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GSimpleActionGroupHandle : GObjectHandle
+public class GSimpleActionGroupHandle : GObjectHandle, GActionGroupHandle, GActionMapHandle
 {
 	public static GSimpleActionGroupHandle New()
 	{

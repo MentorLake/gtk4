@@ -14,7 +14,7 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Gio;
 
-public class GSimpleAsyncResultHandle : GObjectHandle
+public class GSimpleAsyncResultHandle : GObjectHandle, GAsyncResultHandle
 {
 	public static GSimpleAsyncResultHandle New(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, IntPtr source_tag)
 	{
