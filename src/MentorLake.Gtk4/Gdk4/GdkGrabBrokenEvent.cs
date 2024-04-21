@@ -36,6 +36,8 @@ internal class GdkGrabBrokenEventExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkSurfaceHandle gdk_grab_broken_event_get_grab_surface(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_grab_broken_event_get_implicit(GdkEventHandle @event);
+
 }

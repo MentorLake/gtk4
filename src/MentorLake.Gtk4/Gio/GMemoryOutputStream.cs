@@ -61,16 +61,23 @@ internal class GMemoryOutputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GMemoryOutputStreamHandle g_memory_output_stream_new(IntPtr data, int size, GReallocFunc realloc_function, GDestroyNotify destroy_function);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GMemoryOutputStreamHandle g_memory_output_stream_new_resizable();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern IntPtr g_memory_output_stream_get_data(GMemoryOutputStreamHandle ostream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_memory_output_stream_get_data_size(GMemoryOutputStreamHandle ostream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_memory_output_stream_get_size(GMemoryOutputStreamHandle ostream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GBytesHandle g_memory_output_stream_steal_as_bytes(GMemoryOutputStreamHandle ostream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern IntPtr g_memory_output_stream_steal_data(GMemoryOutputStreamHandle ostream);
+
 }

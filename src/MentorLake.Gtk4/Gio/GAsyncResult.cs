@@ -46,10 +46,14 @@ internal class GAsyncResultExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GObjectHandle g_async_result_get_source_object(GAsyncResultHandle res);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern IntPtr g_async_result_get_user_data(GAsyncResultHandle res);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_async_result_is_tagged(GAsyncResultHandle res, IntPtr source_tag);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_async_result_legacy_propagate_error(GAsyncResultHandle res, out GErrorHandle error);
+
 }

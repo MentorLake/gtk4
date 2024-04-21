@@ -85,22 +85,32 @@ internal class GtkCellAreaContextExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_context_allocate(GtkCellAreaContextHandle context, int width, int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_context_get_allocation(GtkCellAreaContextHandle context, out int width, out int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellAreaHandle gtk_cell_area_context_get_area(GtkCellAreaContextHandle context);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_context_get_preferred_height(GtkCellAreaContextHandle context, out int minimum_height, out int natural_height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_context_get_preferred_height_for_width(GtkCellAreaContextHandle context, int width, out int minimum_height, out int natural_height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_context_get_preferred_width(GtkCellAreaContextHandle context, out int minimum_width, out int natural_width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_context_get_preferred_width_for_height(GtkCellAreaContextHandle context, int height, out int minimum_width, out int natural_width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_context_push_preferred_height(GtkCellAreaContextHandle context, int minimum_height, int natural_height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_context_push_preferred_width(GtkCellAreaContextHandle context, int minimum_width, int natural_width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_context_reset(GtkCellAreaContextHandle context);
+
 }

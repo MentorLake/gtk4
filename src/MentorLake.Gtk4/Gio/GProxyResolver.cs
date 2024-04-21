@@ -47,10 +47,14 @@ internal class GProxyResolverExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_proxy_resolver_is_supported(GProxyResolverHandle resolver);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_proxy_resolver_lookup(GProxyResolverHandle resolver, string uri, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_proxy_resolver_lookup_async(GProxyResolverHandle resolver, string uri, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_proxy_resolver_lookup_finish(GProxyResolverHandle resolver, GAsyncResultHandle result, out GErrorHandle error);
+
 }

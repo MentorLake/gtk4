@@ -30,5 +30,7 @@ public static class GtkBuildableHandleExtensions
 internal class GtkBuildableExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_buildable_get_buildable_id(GtkBuildableHandle buildable);
+
 }

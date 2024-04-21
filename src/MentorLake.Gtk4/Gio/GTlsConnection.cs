@@ -26,7 +26,7 @@ public class GTlsConnectionSignal
 
 public static class GTlsConnectionSignals
 {
-	public static GTlsConnectionSignal AcceptCertificate = new("accept-certificate");
+	public static GTlsConnectionSignal AcceptCertificate = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GTlsConnectionHandleExtensions
@@ -154,59 +154,89 @@ public static class GTlsConnectionHandleExtensions
 		return conn;
 	}
 
-	public static GTlsConnectionHandle Connect(this GTlsConnectionHandle instance, GTlsConnectionSignal signal, GCallback c_handler)
+	public static GTlsConnectionHandle Signal_AcceptCertificate(this GTlsConnectionHandle instance, GTlsConnectionDelegates.AcceptCertificate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "accept_certificate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GTlsConnectionDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool AcceptCertificate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GTlsConnectionHandle>))] GTlsConnectionHandle self, GTlsCertificateHandle peer_cert, GTlsCertificateFlags errors, IntPtr user_data);
 }
 
 internal class GTlsConnectionExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_tls_connection_emit_accept_certificate(GTlsConnectionHandle conn, GTlsCertificateHandle peer_cert, GTlsCertificateFlags errors);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_tls_connection_get_certificate(GTlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_tls_connection_get_channel_binding_data(GTlsConnectionHandle conn, GTlsChannelBindingType type, out GByteArray data, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_tls_connection_get_ciphersuite_name(GTlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsDatabaseHandle g_tls_connection_get_database(GTlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsInteractionHandle g_tls_connection_get_interaction(GTlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_tls_connection_get_negotiated_protocol(GTlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_tls_connection_get_peer_certificate(GTlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateFlags g_tls_connection_get_peer_certificate_errors(GTlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsProtocolVersion g_tls_connection_get_protocol_version(GTlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsRehandshakeMode g_tls_connection_get_rehandshake_mode(GTlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_tls_connection_get_require_close_notify(GTlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_tls_connection_get_use_system_certdb(GTlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_tls_connection_handshake(GTlsConnectionHandle conn, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_connection_handshake_async(GTlsConnectionHandle conn, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_tls_connection_handshake_finish(GTlsConnectionHandle conn, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_connection_set_advertised_protocols(GTlsConnectionHandle conn, string protocols);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_connection_set_certificate(GTlsConnectionHandle conn, GTlsCertificateHandle certificate);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_connection_set_database(GTlsConnectionHandle conn, GTlsDatabaseHandle database);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_connection_set_interaction(GTlsConnectionHandle conn, GTlsInteractionHandle interaction);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_connection_set_rehandshake_mode(GTlsConnectionHandle conn, GTlsRehandshakeMode mode);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_connection_set_require_close_notify(GTlsConnectionHandle conn, bool require_close_notify);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_connection_set_use_system_certdb(GTlsConnectionHandle conn, bool use_system_certdb);
+
 }

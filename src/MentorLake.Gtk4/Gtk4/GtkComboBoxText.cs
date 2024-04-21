@@ -89,24 +89,35 @@ internal class GtkComboBoxTextExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkComboBoxTextHandle gtk_combo_box_text_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkComboBoxTextHandle gtk_combo_box_text_new_with_entry();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_text_append(GtkComboBoxTextHandle combo_box, string id, string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_text_append_text(GtkComboBoxTextHandle combo_box, string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_combo_box_text_get_active_text(GtkComboBoxTextHandle combo_box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_text_insert(GtkComboBoxTextHandle combo_box, int position, string id, string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_text_insert_text(GtkComboBoxTextHandle combo_box, int position, string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_text_prepend(GtkComboBoxTextHandle combo_box, string id, string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_text_prepend_text(GtkComboBoxTextHandle combo_box, string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_text_remove(GtkComboBoxTextHandle combo_box, int position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_text_remove_all(GtkComboBoxTextHandle combo_box);
+
 }

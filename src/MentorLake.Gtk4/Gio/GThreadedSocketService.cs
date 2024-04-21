@@ -31,20 +31,28 @@ public class GThreadedSocketServiceSignal
 
 public static class GThreadedSocketServiceSignals
 {
-	public static GThreadedSocketServiceSignal Run = new("run");
+	public static GThreadedSocketServiceSignal Run = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GThreadedSocketServiceHandleExtensions
 {
-	public static GThreadedSocketServiceHandle Connect(this GThreadedSocketServiceHandle instance, GThreadedSocketServiceSignal signal, GCallback c_handler)
+	public static GThreadedSocketServiceHandle Signal_Run(this GThreadedSocketServiceHandle instance, GThreadedSocketServiceDelegates.Run handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "run", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GThreadedSocketServiceDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Run([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GThreadedSocketServiceHandle>))] GThreadedSocketServiceHandle self, GSocketConnectionHandle connection, GObjectHandle source_object, IntPtr user_data);
 }
 
 internal class GThreadedSocketServiceExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GThreadedSocketServiceHandle g_threaded_socket_service_new(int max_threads);
+
 }

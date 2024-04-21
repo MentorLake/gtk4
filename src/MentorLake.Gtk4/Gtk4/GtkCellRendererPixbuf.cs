@@ -31,4 +31,5 @@ internal class GtkCellRendererPixbufExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellRendererPixbufHandle gtk_cell_renderer_pixbuf_new();
+
 }

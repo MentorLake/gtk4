@@ -31,4 +31,5 @@ internal class GdkPixbufNonAnimExterns
 {
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufNonAnimHandle gdk_pixbuf_non_anim_new(GdkPixbufHandle pixbuf);
+
 }

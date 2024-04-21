@@ -26,7 +26,7 @@ public class GdkMonitorSignal
 
 public static class GdkMonitorSignals
 {
-	public static GdkMonitorSignal Invalidate = new("invalidate");
+	public static GdkMonitorSignal Invalidate = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GdkMonitorHandleExtensions
@@ -97,39 +97,63 @@ public static class GdkMonitorHandleExtensions
 		return GdkMonitorExterns.gdk_monitor_is_valid(monitor);
 	}
 
-	public static GdkMonitorHandle Connect(this GdkMonitorHandle instance, GdkMonitorSignal signal, GCallback c_handler)
+	public static GdkMonitorHandle Signal_Invalidate(this GdkMonitorHandle instance, GdkMonitorDelegates.Invalidate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "invalidate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GdkMonitorDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Invalidate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkMonitorHandle>))] GdkMonitorHandle self, IntPtr user_data);
 }
 
 internal class GdkMonitorExterns
 {
 	[DllImport(Libraries.Gdk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gdk_monitor_get_connector(GdkMonitorHandle monitor);
+
 	[DllImport(Libraries.Gdk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gdk_monitor_get_description(GdkMonitorHandle monitor);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDisplayHandle gdk_monitor_get_display(GdkMonitorHandle monitor);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_monitor_get_geometry(GdkMonitorHandle monitor, out GdkRectangle geometry);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_monitor_get_height_mm(GdkMonitorHandle monitor);
+
 	[DllImport(Libraries.Gdk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gdk_monitor_get_manufacturer(GdkMonitorHandle monitor);
+
 	[DllImport(Libraries.Gdk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gdk_monitor_get_model(GdkMonitorHandle monitor);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_monitor_get_refresh_rate(GdkMonitorHandle monitor);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern double gdk_monitor_get_scale(GdkMonitorHandle monitor);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_monitor_get_scale_factor(GdkMonitorHandle monitor);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkSubpixelLayout gdk_monitor_get_subpixel_layout(GdkMonitorHandle monitor);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_monitor_get_width_mm(GdkMonitorHandle monitor);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_monitor_is_valid(GdkMonitorHandle monitor);
+
 }

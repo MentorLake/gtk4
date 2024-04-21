@@ -385,134 +385,201 @@ internal class PangoLayoutExterns
 {
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoLayoutHandle pango_layout_new(PangoContextHandle context);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_context_changed(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoLayoutHandle pango_layout_copy(PangoLayoutHandle src);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoAlignment pango_layout_get_alignment(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoAttrListHandle pango_layout_get_attributes(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern bool pango_layout_get_auto_dir(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern int pango_layout_get_baseline(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_get_caret_pos(PangoLayoutHandle layout, int index_, out PangoRectangle strong_pos, out PangoRectangle weak_pos);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern int pango_layout_get_character_count(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoContextHandle pango_layout_get_context(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_get_cursor_pos(PangoLayoutHandle layout, int index_, out PangoRectangle strong_pos, out PangoRectangle weak_pos);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoDirection pango_layout_get_direction(PangoLayoutHandle layout, int index);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoEllipsizeMode pango_layout_get_ellipsize(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_get_extents(PangoLayoutHandle layout, out PangoRectangle ink_rect, out PangoRectangle logical_rect);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontDescriptionHandle pango_layout_get_font_description(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern int pango_layout_get_height(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern int pango_layout_get_indent(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoLayoutIterHandle pango_layout_get_iter(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern bool pango_layout_get_justify(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern bool pango_layout_get_justify_last_line(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoLayoutLineHandle pango_layout_get_line(PangoLayoutHandle layout, int line);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern int pango_layout_get_line_count(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoLayoutLineHandle pango_layout_get_line_readonly(PangoLayoutHandle layout, int line);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern float pango_layout_get_line_spacing(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern GSListHandle pango_layout_get_lines(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern GSListHandle pango_layout_get_lines_readonly(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_get_log_attrs(PangoLayoutHandle layout, out PangoLogAttr[] attrs, out int n_attrs);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoLogAttr[] pango_layout_get_log_attrs_readonly(PangoLayoutHandle layout, out int n_attrs);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_get_pixel_extents(PangoLayoutHandle layout, out PangoRectangle ink_rect, out PangoRectangle logical_rect);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_get_pixel_size(PangoLayoutHandle layout, out int width, out int height);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern uint pango_layout_get_serial(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern bool pango_layout_get_single_paragraph_mode(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_get_size(PangoLayoutHandle layout, out int width, out int height);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern int pango_layout_get_spacing(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoTabArrayHandle pango_layout_get_tabs(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string pango_layout_get_text(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern int pango_layout_get_unknown_glyphs_count(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern int pango_layout_get_width(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoWrapMode pango_layout_get_wrap(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_index_to_line_x(PangoLayoutHandle layout, int index_, bool trailing, out int line, out int x_pos);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_index_to_pos(PangoLayoutHandle layout, int index_, out PangoRectangle pos);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern bool pango_layout_is_ellipsized(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern bool pango_layout_is_wrapped(PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_move_cursor_visually(PangoLayoutHandle layout, bool strong, int old_index, int old_trailing, int direction, out int new_index, out int new_trailing);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern GBytesHandle pango_layout_serialize(PangoLayoutHandle layout, PangoLayoutSerializeFlags flags);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_alignment(PangoLayoutHandle layout, PangoAlignment alignment);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_attributes(PangoLayoutHandle layout, PangoAttrListHandle attrs);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_auto_dir(PangoLayoutHandle layout, bool auto_dir);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_ellipsize(PangoLayoutHandle layout, PangoEllipsizeMode ellipsize);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_font_description(PangoLayoutHandle layout, PangoFontDescriptionHandle desc);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_height(PangoLayoutHandle layout, int height);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_indent(PangoLayoutHandle layout, int indent);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_justify(PangoLayoutHandle layout, bool justify);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_justify_last_line(PangoLayoutHandle layout, bool justify);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_line_spacing(PangoLayoutHandle layout, float factor);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_markup(PangoLayoutHandle layout, string markup, int length);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_markup_with_accel(PangoLayoutHandle layout, string markup, int length, char accel_marker, out string accel_char);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_single_paragraph_mode(PangoLayoutHandle layout, bool setting);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_spacing(PangoLayoutHandle layout, int spacing);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_tabs(PangoLayoutHandle layout, PangoTabArrayHandle tabs);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_text(PangoLayoutHandle layout, string text, int length);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_width(PangoLayoutHandle layout, int width);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_set_wrap(PangoLayoutHandle layout, PangoWrapMode wrap);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern bool pango_layout_write_to_file(PangoLayoutHandle layout, PangoLayoutSerializeFlags flags, string filename, out GErrorHandle error);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern bool pango_layout_xy_to_index(PangoLayoutHandle layout, int x, int y, out int index_, out int trailing);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoLayoutHandle pango_layout_deserialize(PangoContextHandle context, GBytesHandle bytes, PangoLayoutDeserializeFlags flags, out GErrorHandle error);
+
 }

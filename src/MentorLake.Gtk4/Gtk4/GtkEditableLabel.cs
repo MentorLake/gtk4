@@ -48,10 +48,14 @@ internal class GtkEditableLabelExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEditableLabelHandle gtk_editable_label_new(string str);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_editable_label_get_editing(GtkEditableLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_label_start_editing(GtkEditableLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_label_stop_editing(GtkEditableLabelHandle self, bool commit);
+
 }

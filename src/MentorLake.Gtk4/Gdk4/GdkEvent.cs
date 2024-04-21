@@ -127,42 +127,62 @@ internal class GdkEventExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_events_get_angle(GdkEventHandle event1, GdkEventHandle event2, out double angle);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_events_get_center(GdkEventHandle event1, GdkEventHandle event2, out double x, out double y);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_events_get_distance(GdkEventHandle event1, GdkEventHandle event2, out double distance);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_event_get_axes(GdkEventHandle @event, out double[] axes, out uint n_axes);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_event_get_axis(GdkEventHandle @event, GdkAxisUse axis_use, out double value);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDeviceHandle gdk_event_get_device(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDeviceToolHandle gdk_event_get_device_tool(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDisplayHandle gdk_event_get_display(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkEventSequenceHandle gdk_event_get_event_sequence(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkEventType gdk_event_get_event_type(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkTimeCoord[] gdk_event_get_history(GdkEventHandle @event, out uint out_n_coords);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkModifierType gdk_event_get_modifier_state(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_event_get_pointer_emulated(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_event_get_position(GdkEventHandle @event, out double x, out double y);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkSeatHandle gdk_event_get_seat(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkSurfaceHandle gdk_event_get_surface(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern uint gdk_event_get_time(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkEventHandle gdk_event_ref(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_event_triggers_context_menu(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_event_unref(GdkEventHandle @event);
+
 }

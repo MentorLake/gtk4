@@ -57,14 +57,20 @@ internal class GNetworkServiceExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GNetworkServiceHandle g_network_service_new(string service, string protocol, string domain);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_network_service_get_domain(GNetworkServiceHandle srv);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_network_service_get_protocol(GNetworkServiceHandle srv);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_network_service_get_scheme(GNetworkServiceHandle srv);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_network_service_get_service(GNetworkServiceHandle srv);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_network_service_set_scheme(GNetworkServiceHandle srv, string scheme);
+
 }

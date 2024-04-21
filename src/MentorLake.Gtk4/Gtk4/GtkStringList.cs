@@ -60,14 +60,21 @@ internal class GtkStringListExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStringListHandle gtk_string_list_new(string strings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_string_list_append(GtkStringListHandle self, string @string);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_string_list_get_string(GtkStringListHandle self, uint position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_string_list_remove(GtkStringListHandle self, uint position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_string_list_splice(GtkStringListHandle self, uint position, uint n_removals, string additions);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_string_list_take(GtkStringListHandle self, string @string);
+
 }

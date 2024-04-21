@@ -68,16 +68,23 @@ internal class GtkTooltipExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tooltip_set_custom(GtkTooltipHandle tooltip, GtkWidgetHandle custom_widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tooltip_set_icon(GtkTooltipHandle tooltip, GdkPaintableHandle paintable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tooltip_set_icon_from_gicon(GtkTooltipHandle tooltip, GIconHandle gicon);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tooltip_set_icon_from_icon_name(GtkTooltipHandle tooltip, string icon_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tooltip_set_markup(GtkTooltipHandle tooltip, string markup);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tooltip_set_text(GtkTooltipHandle tooltip, string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tooltip_set_tip_area(GtkTooltipHandle tooltip, GdkRectangleHandle rect);
+
 }

@@ -51,12 +51,17 @@ internal class GSeekableExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_seekable_can_seek(GSeekableHandle seekable);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_seekable_can_truncate(GSeekableHandle seekable);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_seekable_seek(GSeekableHandle seekable, int offset, GSeekType type, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_seekable_tell(GSeekableHandle seekable);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_seekable_truncate(GSeekableHandle seekable, int offset, GCancellableHandle cancellable, out GErrorHandle error);
+
 }

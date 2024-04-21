@@ -52,12 +52,18 @@ internal class PangoFontFamilyExterns
 {
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontFaceHandle pango_font_family_get_face(PangoFontFamilyHandle family, string name);
+
 	[DllImport(Libraries.Pango)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string pango_font_family_get_name(PangoFontFamilyHandle family);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern bool pango_font_family_is_monospace(PangoFontFamilyHandle family);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern bool pango_font_family_is_variable(PangoFontFamilyHandle family);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_font_family_list_faces(PangoFontFamilyHandle family, out PangoFontFaceHandle[] faces, out int n_faces);
+
 }

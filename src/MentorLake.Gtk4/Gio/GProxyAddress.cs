@@ -66,18 +66,26 @@ internal class GProxyAddressExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GProxyAddressHandle g_proxy_address_new(GInetAddressHandle inetaddr, ushort port, string protocol, string dest_hostname, ushort dest_port, string username, string password);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_proxy_address_get_destination_hostname(GProxyAddressHandle proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern ushort g_proxy_address_get_destination_port(GProxyAddressHandle proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_proxy_address_get_destination_protocol(GProxyAddressHandle proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_proxy_address_get_password(GProxyAddressHandle proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_proxy_address_get_protocol(GProxyAddressHandle proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_proxy_address_get_uri(GProxyAddressHandle proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_proxy_address_get_username(GProxyAddressHandle proxy);
+
 }

@@ -46,10 +46,14 @@ internal class GDBusObjectManagerExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusInterfaceHandle g_dbus_object_manager_get_interface(GDBusObjectManagerHandle manager, string object_path, string interface_name);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusObjectHandle g_dbus_object_manager_get_object(GDBusObjectManagerHandle manager, string object_path);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_object_manager_get_object_path(GDBusObjectManagerHandle manager);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_dbus_object_manager_get_objects(GDBusObjectManagerHandle manager);
+
 }

@@ -31,4 +31,5 @@ internal class GdkButtonEventExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern uint gdk_button_event_get_button(GdkEventHandle @event);
+
 }

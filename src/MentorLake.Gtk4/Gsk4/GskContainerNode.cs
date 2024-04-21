@@ -41,8 +41,11 @@ internal class GskContainerNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskContainerNodeHandle gsk_container_node_new(GskRenderNodeHandle[] children, uint n_children);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_container_node_get_child(GskRenderNodeHandle node, uint idx);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern uint gsk_container_node_get_n_children(GskRenderNodeHandle node);
+
 }

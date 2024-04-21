@@ -87,30 +87,43 @@ internal class GDateTimeExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GDateTimeHandle g_date_time_new(GTimeZoneHandle tz, int year, int month, int day, int hour, int minute, double seconds);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GDateTimeHandle g_date_time_new_from_iso8601(string text, GTimeZoneHandle default_tz);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GDateTimeHandle g_date_time_new_from_timeval_local(GTimeValHandle tv);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GDateTimeHandle g_date_time_new_from_timeval_utc(GTimeValHandle tv);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GDateTimeHandle g_date_time_new_from_unix_local(long t);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GDateTimeHandle g_date_time_new_from_unix_local_usec(long usecs);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GDateTimeHandle g_date_time_new_from_unix_utc(long t);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GDateTimeHandle g_date_time_new_from_unix_utc_usec(long usecs);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GDateTimeHandle g_date_time_new_local(int year, int month, int day, int hour, int minute, double seconds);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GDateTimeHandle g_date_time_new_now(GTimeZoneHandle tz);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GDateTimeHandle g_date_time_new_now_local();
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GDateTimeHandle g_date_time_new_now_utc();
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GDateTimeHandle g_date_time_new_utc(int year, int month, int day, int hour, int minute, double seconds);
+
 }
 
 public struct GDateTime

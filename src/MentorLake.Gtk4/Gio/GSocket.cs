@@ -334,122 +334,182 @@ internal class GSocketExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketHandle g_socket_new(GSocketFamily family, GSocketType type, GSocketProtocol protocol, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketHandle g_socket_new_from_fd(int fd, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketHandle g_socket_accept(GSocketHandle socket, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_bind(GSocketHandle socket, GSocketAddressHandle address, bool allow_reuse, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_check_connect_result(GSocketHandle socket, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_close(GSocketHandle socket, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GIOCondition g_socket_condition_check(GSocketHandle socket, GIOCondition condition);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_condition_timed_wait(GSocketHandle socket, GIOCondition condition, long timeout_us, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_condition_wait(GSocketHandle socket, GIOCondition condition, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_connect(GSocketHandle socket, GSocketAddressHandle address, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectionHandle g_socket_connection_factory_create_connection(GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSourceHandle g_socket_create_source(GSocketHandle socket, GIOCondition condition, GCancellableHandle cancellable);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_get_available_bytes(GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_get_blocking(GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_get_broadcast(GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GCredentialsHandle g_socket_get_credentials(GSocketHandle socket, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketFamily g_socket_get_family(GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_get_fd(GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_get_keepalive(GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_get_listen_backlog(GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketAddressHandle g_socket_get_local_address(GSocketHandle socket, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_get_multicast_loopback(GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_socket_get_multicast_ttl(GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_get_option(GSocketHandle socket, int level, int optname, out int value, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketProtocol g_socket_get_protocol(GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketAddressHandle g_socket_get_remote_address(GSocketHandle socket, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketType g_socket_get_socket_type(GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_socket_get_timeout(GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_socket_get_ttl(GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_is_closed(GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_is_connected(GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_join_multicast_group(GSocketHandle socket, GInetAddressHandle group, bool source_specific, string iface, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_join_multicast_group_ssm(GSocketHandle socket, GInetAddressHandle group, GInetAddressHandle source_specific, string iface, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_leave_multicast_group(GSocketHandle socket, GInetAddressHandle group, bool source_specific, string iface, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_leave_multicast_group_ssm(GSocketHandle socket, GInetAddressHandle group, GInetAddressHandle source_specific, string iface, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_listen(GSocketHandle socket, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_receive(GSocketHandle socket, out string buffer, int size, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GBytesHandle g_socket_receive_bytes(GSocketHandle socket, int size, long timeout_us, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GBytesHandle g_socket_receive_bytes_from(GSocketHandle socket, out GSocketAddressHandle address, int size, long timeout_us, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_receive_from(GSocketHandle socket, out GSocketAddressHandle address, out string buffer, int size, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_receive_message(GSocketHandle socket, out GSocketAddressHandle address, GInputVector[] vectors, int num_vectors, out GSocketControlMessageHandle[] messages, out int num_messages, ref int flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_receive_messages(GSocketHandle socket, GInputMessage[] messages, uint num_messages, int flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_receive_with_blocking(GSocketHandle socket, out string buffer, int size, bool blocking, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_send(GSocketHandle socket, string buffer, int size, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_send_message(GSocketHandle socket, GSocketAddressHandle address, GOutputVector[] vectors, int num_vectors, GSocketControlMessageHandle[] messages, int num_messages, int flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GPollableReturn g_socket_send_message_with_timeout(GSocketHandle socket, GSocketAddressHandle address, GOutputVector[] vectors, int num_vectors, GSocketControlMessageHandle[] messages, int num_messages, int flags, long timeout_us, out int bytes_written, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_send_messages(GSocketHandle socket, GOutputMessage[] messages, uint num_messages, int flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_send_to(GSocketHandle socket, GSocketAddressHandle address, string buffer, int size, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_send_with_blocking(GSocketHandle socket, string buffer, int size, bool blocking, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_set_blocking(GSocketHandle socket, bool blocking);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_set_broadcast(GSocketHandle socket, bool broadcast);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_set_keepalive(GSocketHandle socket, bool keepalive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_set_listen_backlog(GSocketHandle socket, int backlog);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_set_multicast_loopback(GSocketHandle socket, bool loopback);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_set_multicast_ttl(GSocketHandle socket, uint ttl);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_set_option(GSocketHandle socket, int level, int optname, int value, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_set_timeout(GSocketHandle socket, uint timeout);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_set_ttl(GSocketHandle socket, uint ttl);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_shutdown(GSocketHandle socket, bool shutdown_read, bool shutdown_write, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_speaks_ipv4(GSocketHandle socket);
+
 }

@@ -48,10 +48,14 @@ internal class GIOModuleExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GIOModuleHandle g_io_module_new(string filename);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_io_module_load(GIOModuleHandle module);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_io_module_unload(GIOModuleHandle module);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_io_module_query();
+
 }

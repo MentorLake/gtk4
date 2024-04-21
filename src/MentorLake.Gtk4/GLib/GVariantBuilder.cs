@@ -27,6 +27,7 @@ internal class GVariantBuilderExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GVariantBuilderHandle g_variant_builder_new(GVariantTypeHandle type);
+
 }
 
 public struct GVariantBuilder

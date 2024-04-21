@@ -41,8 +41,8 @@ public class GtkCheckButtonSignal
 
 public static class GtkCheckButtonSignals
 {
-	public static GtkCheckButtonSignal Activate = new("activate");
-	public static GtkCheckButtonSignal Toggled = new("toggled");
+	public static GtkCheckButtonSignal Activate = new("BindingTransform.MethodDeclaration");
+	public static GtkCheckButtonSignal Toggled = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkCheckButtonHandleExtensions
@@ -108,41 +108,71 @@ public static class GtkCheckButtonHandleExtensions
 		return self;
 	}
 
-	public static GtkCheckButtonHandle Connect(this GtkCheckButtonHandle instance, GtkCheckButtonSignal signal, GCallback c_handler)
+	public static GtkCheckButtonHandle Signal_Activate(this GtkCheckButtonHandle instance, GtkCheckButtonDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkCheckButtonHandle Signal_Toggled(this GtkCheckButtonHandle instance, GtkCheckButtonDelegates.Toggled handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "toggled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkCheckButtonDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCheckButtonHandle>))] GtkCheckButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Toggled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCheckButtonHandle>))] GtkCheckButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkCheckButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCheckButtonHandle gtk_check_button_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCheckButtonHandle gtk_check_button_new_with_label(string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCheckButtonHandle gtk_check_button_new_with_mnemonic(string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_check_button_get_active(GtkCheckButtonHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_check_button_get_child(GtkCheckButtonHandle button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_check_button_get_inconsistent(GtkCheckButtonHandle check_button);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_check_button_get_label(GtkCheckButtonHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_check_button_get_use_underline(GtkCheckButtonHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_check_button_set_active(GtkCheckButtonHandle self, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_check_button_set_child(GtkCheckButtonHandle button, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_check_button_set_group(GtkCheckButtonHandle self, GtkCheckButtonHandle group);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_check_button_set_inconsistent(GtkCheckButtonHandle check_button, bool inconsistent);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_check_button_set_label(GtkCheckButtonHandle self, string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_check_button_set_use_underline(GtkCheckButtonHandle self, bool setting);
+
 }

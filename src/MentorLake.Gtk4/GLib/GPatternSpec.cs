@@ -27,6 +27,7 @@ internal class GPatternSpecExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GPatternSpecHandle g_pattern_spec_new(string pattern);
+
 }
 
 public struct GPatternSpec

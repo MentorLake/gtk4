@@ -31,10 +31,10 @@ public class GtkDragSourceSignal
 
 public static class GtkDragSourceSignals
 {
-	public static GtkDragSourceSignal DragBegin = new("drag-begin");
-	public static GtkDragSourceSignal DragCancel = new("drag-cancel");
-	public static GtkDragSourceSignal DragEnd = new("drag-end");
-	public static GtkDragSourceSignal Prepare = new("prepare");
+	public static GtkDragSourceSignal DragBegin = new("BindingTransform.MethodDeclaration");
+	public static GtkDragSourceSignal DragCancel = new("BindingTransform.MethodDeclaration");
+	public static GtkDragSourceSignal DragEnd = new("BindingTransform.MethodDeclaration");
+	public static GtkDragSourceSignal Prepare = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkDragSourceHandleExtensions
@@ -78,29 +78,68 @@ public static class GtkDragSourceHandleExtensions
 		return source;
 	}
 
-	public static GtkDragSourceHandle Connect(this GtkDragSourceHandle instance, GtkDragSourceSignal signal, GCallback c_handler)
+	public static GtkDragSourceHandle Signal_DragBegin(this GtkDragSourceHandle instance, GtkDragSourceDelegates.DragBegin handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "drag_begin", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkDragSourceHandle Signal_DragCancel(this GtkDragSourceHandle instance, GtkDragSourceDelegates.DragCancel handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "drag_cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkDragSourceHandle Signal_DragEnd(this GtkDragSourceHandle instance, GtkDragSourceDelegates.DragEnd handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "drag_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkDragSourceHandle Signal_Prepare(this GtkDragSourceHandle instance, GtkDragSourceDelegates.Prepare handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "prepare", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkDragSourceDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DragBegin([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, GdkDragHandle drag, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool DragCancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, GdkDragHandle drag, ref GdkDragCancelReason reason, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DragEnd([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, GdkDragHandle drag, bool delete_data, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate GdkContentProviderHandle Prepare([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, double x, double y, IntPtr user_data);
 }
 
 internal class GtkDragSourceExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkDragSourceHandle gtk_drag_source_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drag_source_drag_cancel(GtkDragSourceHandle source);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDragAction gtk_drag_source_get_actions(GtkDragSourceHandle source);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkContentProviderHandle gtk_drag_source_get_content(GtkDragSourceHandle source);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDragHandle gtk_drag_source_get_drag(GtkDragSourceHandle source);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drag_source_set_actions(GtkDragSourceHandle source, GdkDragAction actions);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drag_source_set_content(GtkDragSourceHandle source, GdkContentProviderHandle content);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drag_source_set_icon(GtkDragSourceHandle source, GdkPaintableHandle paintable, int hot_x, int hot_y);
+
 }

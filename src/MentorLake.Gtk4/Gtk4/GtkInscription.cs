@@ -147,46 +147,69 @@ internal class GtkInscriptionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkInscriptionHandle gtk_inscription_new(string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoAttrListHandle gtk_inscription_get_attributes(GtkInscriptionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_inscription_get_min_chars(GtkInscriptionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_inscription_get_min_lines(GtkInscriptionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_inscription_get_nat_chars(GtkInscriptionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_inscription_get_nat_lines(GtkInscriptionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_inscription_get_text(GtkInscriptionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkInscriptionOverflow gtk_inscription_get_text_overflow(GtkInscriptionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoWrapMode gtk_inscription_get_wrap_mode(GtkInscriptionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern float gtk_inscription_get_xalign(GtkInscriptionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern float gtk_inscription_get_yalign(GtkInscriptionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_inscription_set_attributes(GtkInscriptionHandle self, PangoAttrListHandle attrs);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_inscription_set_markup(GtkInscriptionHandle self, string markup);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_inscription_set_min_chars(GtkInscriptionHandle self, uint min_chars);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_inscription_set_min_lines(GtkInscriptionHandle self, uint min_lines);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_inscription_set_nat_chars(GtkInscriptionHandle self, uint nat_chars);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_inscription_set_nat_lines(GtkInscriptionHandle self, uint nat_lines);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_inscription_set_text(GtkInscriptionHandle self, string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_inscription_set_text_overflow(GtkInscriptionHandle self, GtkInscriptionOverflow overflow);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_inscription_set_wrap_mode(GtkInscriptionHandle self, PangoWrapMode wrap_mode);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_inscription_set_xalign(GtkInscriptionHandle self, float xalign);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_inscription_set_yalign(GtkInscriptionHandle self, float yalign);
+
 }

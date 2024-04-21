@@ -31,7 +31,7 @@ public class GtkAboutDialogSignal
 
 public static class GtkAboutDialogSignals
 {
-	public static GtkAboutDialogSignal ActivateLink = new("activate-link");
+	public static GtkAboutDialogSignal ActivateLink = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkAboutDialogHandleExtensions
@@ -218,81 +218,135 @@ public static class GtkAboutDialogHandleExtensions
 		return about;
 	}
 
-	public static GtkAboutDialogHandle Connect(this GtkAboutDialogHandle instance, GtkAboutDialogSignal signal, GCallback c_handler)
+	public static GtkAboutDialogHandle Signal_ActivateLink(this GtkAboutDialogHandle instance, GtkAboutDialogDelegates.ActivateLink handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkAboutDialogDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ActivateLink([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAboutDialogHandle>))] GtkAboutDialogHandle self, string uri, IntPtr user_data);
 }
 
 internal class GtkAboutDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAboutDialogHandle gtk_about_dialog_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_add_credit_section(GtkAboutDialogHandle about, string section_name, string[] people);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_about_dialog_get_artists(GtkAboutDialogHandle about);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_about_dialog_get_authors(GtkAboutDialogHandle about);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_about_dialog_get_comments(GtkAboutDialogHandle about);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_about_dialog_get_copyright(GtkAboutDialogHandle about);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_about_dialog_get_documenters(GtkAboutDialogHandle about);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_about_dialog_get_license(GtkAboutDialogHandle about);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkLicense gtk_about_dialog_get_license_type(GtkAboutDialogHandle about);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkPaintableHandle gtk_about_dialog_get_logo(GtkAboutDialogHandle about);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_about_dialog_get_logo_icon_name(GtkAboutDialogHandle about);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_about_dialog_get_program_name(GtkAboutDialogHandle about);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_about_dialog_get_system_information(GtkAboutDialogHandle about);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_about_dialog_get_translator_credits(GtkAboutDialogHandle about);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_about_dialog_get_version(GtkAboutDialogHandle about);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_about_dialog_get_website(GtkAboutDialogHandle about);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_about_dialog_get_website_label(GtkAboutDialogHandle about);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_about_dialog_get_wrap_license(GtkAboutDialogHandle about);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_artists(GtkAboutDialogHandle about, string[] artists);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_authors(GtkAboutDialogHandle about, string[] authors);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_comments(GtkAboutDialogHandle about, string comments);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_copyright(GtkAboutDialogHandle about, string copyright);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_documenters(GtkAboutDialogHandle about, string[] documenters);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_license(GtkAboutDialogHandle about, string license);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_license_type(GtkAboutDialogHandle about, GtkLicense license_type);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_logo(GtkAboutDialogHandle about, GdkPaintableHandle logo);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_logo_icon_name(GtkAboutDialogHandle about, string icon_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_program_name(GtkAboutDialogHandle about, string name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_system_information(GtkAboutDialogHandle about, string system_information);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_translator_credits(GtkAboutDialogHandle about, string translator_credits);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_version(GtkAboutDialogHandle about, string version);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_website(GtkAboutDialogHandle about, string website);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_website_label(GtkAboutDialogHandle about, string website_label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_about_dialog_set_wrap_license(GtkAboutDialogHandle about, bool wrap_license);
+
 }

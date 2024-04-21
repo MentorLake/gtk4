@@ -70,18 +70,26 @@ internal class GTlsClientConnectionExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_client_connection_copy_session_state(GTlsClientConnectionHandle conn, GTlsClientConnectionHandle source);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_tls_client_connection_get_accepted_cas(GTlsClientConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectableHandle g_tls_client_connection_get_server_identity(GTlsClientConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_tls_client_connection_get_use_ssl3(GTlsClientConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateFlags g_tls_client_connection_get_validation_flags(GTlsClientConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_client_connection_set_server_identity(GTlsClientConnectionHandle conn, GSocketConnectableHandle identity);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_client_connection_set_use_ssl3(GTlsClientConnectionHandle conn, bool use_ssl3);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_client_connection_set_validation_flags(GTlsClientConnectionHandle conn, GTlsCertificateFlags flags);
+
 }

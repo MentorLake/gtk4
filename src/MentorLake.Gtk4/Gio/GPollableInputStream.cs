@@ -46,10 +46,14 @@ internal class GPollableInputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_pollable_input_stream_can_poll(GPollableInputStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSourceHandle g_pollable_input_stream_create_source(GPollableInputStreamHandle stream, GCancellableHandle cancellable);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_pollable_input_stream_is_readable(GPollableInputStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_pollable_input_stream_read_nonblocking(GPollableInputStreamHandle stream, out IntPtr buffer, int count, GCancellableHandle cancellable, out GErrorHandle error);
+
 }

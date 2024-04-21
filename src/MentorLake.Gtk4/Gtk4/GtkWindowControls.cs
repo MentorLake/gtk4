@@ -58,14 +58,21 @@ internal class GtkWindowControlsExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWindowControlsHandle gtk_window_controls_new(GtkPackType side);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_window_controls_get_decoration_layout(GtkWindowControlsHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_window_controls_get_empty(GtkWindowControlsHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPackType gtk_window_controls_get_side(GtkWindowControlsHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_controls_set_decoration_layout(GtkWindowControlsHandle self, string layout);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_controls_set_side(GtkWindowControlsHandle self, GtkPackType side);
+
 }

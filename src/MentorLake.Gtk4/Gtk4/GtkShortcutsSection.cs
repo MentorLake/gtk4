@@ -26,7 +26,7 @@ public class GtkShortcutsSectionSignal
 
 public static class GtkShortcutsSectionSignals
 {
-	public static GtkShortcutsSectionSignal ChangeCurrentPage = new("change-current-page");
+	public static GtkShortcutsSectionSignal ChangeCurrentPage = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkShortcutsSectionHandleExtensions
@@ -37,15 +37,23 @@ public static class GtkShortcutsSectionHandleExtensions
 		return self;
 	}
 
-	public static GtkShortcutsSectionHandle Connect(this GtkShortcutsSectionHandle instance, GtkShortcutsSectionSignal signal, GCallback c_handler)
+	public static GtkShortcutsSectionHandle Signal_ChangeCurrentPage(this GtkShortcutsSectionHandle instance, GtkShortcutsSectionDelegates.ChangeCurrentPage handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "change_current_page", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkShortcutsSectionDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ChangeCurrentPage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkShortcutsSectionHandle>))] GtkShortcutsSectionHandle self, int @object, IntPtr user_data);
 }
 
 internal class GtkShortcutsSectionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_shortcuts_section_add_group(GtkShortcutsSectionHandle self, GtkShortcutsGroupHandle group);
+
 }

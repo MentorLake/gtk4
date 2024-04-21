@@ -75,20 +75,30 @@ internal class GtkColorDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkColorDialogHandle gtk_color_dialog_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_color_dialog_choose_rgba(GtkColorDialogHandle self, GtkWindowHandle parent, GdkRGBAHandle initial_color, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkRGBAHandle gtk_color_dialog_choose_rgba_finish(GtkColorDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_color_dialog_get_modal(GtkColorDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_color_dialog_get_title(GtkColorDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_color_dialog_get_with_alpha(GtkColorDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_color_dialog_set_modal(GtkColorDialogHandle self, bool modal);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_color_dialog_set_title(GtkColorDialogHandle self, string title);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_color_dialog_set_with_alpha(GtkColorDialogHandle self, bool with_alpha);
+
 }

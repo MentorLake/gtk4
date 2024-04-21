@@ -26,10 +26,10 @@ public class GtkCellAreaSignal
 
 public static class GtkCellAreaSignals
 {
-	public static GtkCellAreaSignal AddEditable = new("add-editable");
-	public static GtkCellAreaSignal ApplyAttributes = new("apply-attributes");
-	public static GtkCellAreaSignal FocusChanged = new("focus-changed");
-	public static GtkCellAreaSignal RemoveEditable = new("remove-editable");
+	public static GtkCellAreaSignal AddEditable = new("BindingTransform.MethodDeclaration");
+	public static GtkCellAreaSignal ApplyAttributes = new("BindingTransform.MethodDeclaration");
+	public static GtkCellAreaSignal FocusChanged = new("BindingTransform.MethodDeclaration");
+	public static GtkCellAreaSignal RemoveEditable = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkCellAreaHandleExtensions
@@ -280,101 +280,177 @@ public static class GtkCellAreaHandleExtensions
 		return area;
 	}
 
-	public static GtkCellAreaHandle Connect(this GtkCellAreaHandle instance, GtkCellAreaSignal signal, GCallback c_handler)
+	public static GtkCellAreaHandle Signal_AddEditable(this GtkCellAreaHandle instance, GtkCellAreaDelegates.AddEditable handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "add_editable", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkCellAreaHandle Signal_ApplyAttributes(this GtkCellAreaHandle instance, GtkCellAreaDelegates.ApplyAttributes handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "apply_attributes", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkCellAreaHandle Signal_FocusChanged(this GtkCellAreaHandle instance, GtkCellAreaDelegates.FocusChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "focus_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkCellAreaHandle Signal_RemoveEditable(this GtkCellAreaHandle instance, GtkCellAreaDelegates.RemoveEditable handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "remove_editable", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkCellAreaDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void AddEditable([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, GtkCellRendererHandle renderer, GtkCellEditableHandle editable, GdkRectangleHandle cell_area, string path, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ApplyAttributes([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, bool is_expander, bool is_expanded, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void FocusChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, GtkCellRendererHandle renderer, string path, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void RemoveEditable([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, GtkCellRendererHandle renderer, GtkCellEditableHandle editable, IntPtr user_data);
 }
 
 internal class GtkCellAreaExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_cell_area_activate(GtkCellAreaHandle area, GtkCellAreaContextHandle context, GtkWidgetHandle widget, GdkRectangleHandle cell_area, GtkCellRendererState flags, bool edit_only);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_cell_area_activate_cell(GtkCellAreaHandle area, GtkWidgetHandle widget, GtkCellRendererHandle renderer, GdkEventHandle @event, GdkRectangleHandle cell_area, GtkCellRendererState flags);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_add(GtkCellAreaHandle area, GtkCellRendererHandle renderer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_add_focus_sibling(GtkCellAreaHandle area, GtkCellRendererHandle renderer, GtkCellRendererHandle sibling);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_add_with_properties(GtkCellAreaHandle area, GtkCellRendererHandle renderer, string first_prop_name, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_apply_attributes(GtkCellAreaHandle area, GtkTreeModelHandle tree_model, GtkTreeIterHandle iter, bool is_expander, bool is_expanded);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_attribute_connect(GtkCellAreaHandle area, GtkCellRendererHandle renderer, string attribute, int column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_attribute_disconnect(GtkCellAreaHandle area, GtkCellRendererHandle renderer, string attribute);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_cell_area_attribute_get_column(GtkCellAreaHandle area, GtkCellRendererHandle renderer, string attribute);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_cell_get(GtkCellAreaHandle area, GtkCellRendererHandle renderer, string first_prop_name, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_cell_get_property(GtkCellAreaHandle area, GtkCellRendererHandle renderer, string property_name, GValueHandle value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_cell_get_valist(GtkCellAreaHandle area, GtkCellRendererHandle renderer, string first_property_name, out IntPtr var_args);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_cell_set(GtkCellAreaHandle area, GtkCellRendererHandle renderer, string first_prop_name, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_cell_set_property(GtkCellAreaHandle area, GtkCellRendererHandle renderer, string property_name, GValueHandle value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_cell_set_valist(GtkCellAreaHandle area, GtkCellRendererHandle renderer, string first_property_name, IntPtr var_args);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellAreaContextHandle gtk_cell_area_copy_context(GtkCellAreaHandle area, GtkCellAreaContextHandle context);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellAreaContextHandle gtk_cell_area_create_context(GtkCellAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_cell_area_event(GtkCellAreaHandle area, GtkCellAreaContextHandle context, GtkWidgetHandle widget, GdkEventHandle @event, GdkRectangleHandle cell_area, GtkCellRendererState flags);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_cell_area_focus(GtkCellAreaHandle area, GtkDirectionType direction);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_foreach(GtkCellAreaHandle area, GtkCellCallback callback, IntPtr callback_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_foreach_alloc(GtkCellAreaHandle area, GtkCellAreaContextHandle context, GtkWidgetHandle widget, GdkRectangleHandle cell_area, GdkRectangleHandle background_area, GtkCellAllocCallback callback, IntPtr callback_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_get_cell_allocation(GtkCellAreaHandle area, GtkCellAreaContextHandle context, GtkWidgetHandle widget, GtkCellRendererHandle renderer, GdkRectangleHandle cell_area, out GdkRectangle allocation);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellRendererHandle gtk_cell_area_get_cell_at_position(GtkCellAreaHandle area, GtkCellAreaContextHandle context, GtkWidgetHandle widget, GdkRectangleHandle cell_area, int x, int y, out GdkRectangle alloc_area);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_cell_area_get_current_path_string(GtkCellAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellEditableHandle gtk_cell_area_get_edit_widget(GtkCellAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellRendererHandle gtk_cell_area_get_edited_cell(GtkCellAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellRendererHandle gtk_cell_area_get_focus_cell(GtkCellAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellRendererHandle gtk_cell_area_get_focus_from_sibling(GtkCellAreaHandle area, GtkCellRendererHandle renderer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListHandle gtk_cell_area_get_focus_siblings(GtkCellAreaHandle area, GtkCellRendererHandle renderer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_get_preferred_height(GtkCellAreaHandle area, GtkCellAreaContextHandle context, GtkWidgetHandle widget, out int minimum_height, out int natural_height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_get_preferred_height_for_width(GtkCellAreaHandle area, GtkCellAreaContextHandle context, GtkWidgetHandle widget, int width, out int minimum_height, out int natural_height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_get_preferred_width(GtkCellAreaHandle area, GtkCellAreaContextHandle context, GtkWidgetHandle widget, out int minimum_width, out int natural_width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_get_preferred_width_for_height(GtkCellAreaHandle area, GtkCellAreaContextHandle context, GtkWidgetHandle widget, int height, out int minimum_width, out int natural_width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSizeRequestMode gtk_cell_area_get_request_mode(GtkCellAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_cell_area_has_renderer(GtkCellAreaHandle area, GtkCellRendererHandle renderer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_inner_cell_area(GtkCellAreaHandle area, GtkWidgetHandle widget, GdkRectangleHandle cell_area, out GdkRectangle inner_area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_cell_area_is_activatable(GtkCellAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_cell_area_is_focus_sibling(GtkCellAreaHandle area, GtkCellRendererHandle renderer, GtkCellRendererHandle sibling);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_remove(GtkCellAreaHandle area, GtkCellRendererHandle renderer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_remove_focus_sibling(GtkCellAreaHandle area, GtkCellRendererHandle renderer, GtkCellRendererHandle sibling);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_request_renderer(GtkCellAreaHandle area, GtkCellRendererHandle renderer, GtkOrientation orientation, GtkWidgetHandle widget, int for_size, out int minimum_size, out int natural_size);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_set_focus_cell(GtkCellAreaHandle area, GtkCellRendererHandle renderer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_snapshot(GtkCellAreaHandle area, GtkCellAreaContextHandle context, GtkWidgetHandle widget, GtkSnapshotHandle snapshot, GdkRectangleHandle background_area, GdkRectangleHandle cell_area, GtkCellRendererState flags, bool paint_focus);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_stop_editing(GtkCellAreaHandle area, bool canceled);
+
 }

@@ -46,10 +46,14 @@ internal class GtkTextChildAnchorExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTextChildAnchorHandle gtk_text_child_anchor_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTextChildAnchorHandle gtk_text_child_anchor_new_with_replacement(string character);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_text_child_anchor_get_deleted(GtkTextChildAnchorHandle anchor);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle[] gtk_text_child_anchor_get_widgets(GtkTextChildAnchorHandle anchor, out uint out_len);
+
 }

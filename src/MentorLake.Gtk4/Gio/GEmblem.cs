@@ -46,10 +46,14 @@ internal class GEmblemExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GEmblemHandle g_emblem_new(GIconHandle icon);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GEmblemHandle g_emblem_new_with_origin(GIconHandle icon, GEmblemOrigin origin);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GIconHandle g_emblem_get_icon(GEmblemHandle emblem);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GEmblemOrigin g_emblem_get_origin(GEmblemHandle emblem);
+
 }

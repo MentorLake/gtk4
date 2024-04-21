@@ -31,4 +31,5 @@ internal class GtkNotebookPageExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_notebook_page_get_child(GtkNotebookPageHandle page);
+
 }

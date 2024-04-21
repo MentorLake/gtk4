@@ -36,7 +36,7 @@ public class GtkLevelBarSignal
 
 public static class GtkLevelBarSignals
 {
-	public static GtkLevelBarSignal OffsetChanged = new("offset-changed");
+	public static GtkLevelBarSignal OffsetChanged = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkLevelBarHandleExtensions
@@ -113,43 +113,65 @@ public static class GtkLevelBarHandleExtensions
 		return self;
 	}
 
-	public static GtkLevelBarHandle Connect(this GtkLevelBarHandle instance, GtkLevelBarSignal signal, GCallback c_handler)
+	public static GtkLevelBarHandle Signal_OffsetChanged(this GtkLevelBarHandle instance, GtkLevelBarDelegates.OffsetChanged handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "offset_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkLevelBarDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void OffsetChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLevelBarHandle>))] GtkLevelBarHandle self, string name, IntPtr user_data);
 }
 
 internal class GtkLevelBarExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkLevelBarHandle gtk_level_bar_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkLevelBarHandle gtk_level_bar_new_for_interval(double min_value, double max_value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_level_bar_add_offset_value(GtkLevelBarHandle self, string name, double value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_level_bar_get_inverted(GtkLevelBarHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_level_bar_get_max_value(GtkLevelBarHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_level_bar_get_min_value(GtkLevelBarHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkLevelBarMode gtk_level_bar_get_mode(GtkLevelBarHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_level_bar_get_offset_value(GtkLevelBarHandle self, string name, out double value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_level_bar_get_value(GtkLevelBarHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_level_bar_remove_offset_value(GtkLevelBarHandle self, string name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_level_bar_set_inverted(GtkLevelBarHandle self, bool inverted);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_level_bar_set_max_value(GtkLevelBarHandle self, double value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_level_bar_set_min_value(GtkLevelBarHandle self, double value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_level_bar_set_mode(GtkLevelBarHandle self, GtkLevelBarMode mode);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_level_bar_set_value(GtkLevelBarHandle self, double value);
+
 }

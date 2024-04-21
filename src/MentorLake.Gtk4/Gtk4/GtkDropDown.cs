@@ -36,7 +36,7 @@ public class GtkDropDownSignal
 
 public static class GtkDropDownSignals
 {
-	public static GtkDropDownSignal Activate = new("activate");
+	public static GtkDropDownSignal Activate = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkDropDownHandleExtensions
@@ -145,55 +145,83 @@ public static class GtkDropDownHandleExtensions
 		return self;
 	}
 
-	public static GtkDropDownHandle Connect(this GtkDropDownHandle instance, GtkDropDownSignal signal, GCallback c_handler)
+	public static GtkDropDownHandle Signal_Activate(this GtkDropDownHandle instance, GtkDropDownDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkDropDownDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropDownHandle>))] GtkDropDownHandle self, IntPtr user_data);
 }
 
 internal class GtkDropDownExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkDropDownHandle gtk_drop_down_new(GListModelHandle model, GtkExpressionHandle expression);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkDropDownHandle gtk_drop_down_new_from_strings(string strings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_drop_down_get_enable_search(GtkDropDownHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkExpressionHandle gtk_drop_down_get_expression(GtkDropDownHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListItemFactoryHandle gtk_drop_down_get_factory(GtkDropDownHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListItemFactoryHandle gtk_drop_down_get_header_factory(GtkDropDownHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListItemFactoryHandle gtk_drop_down_get_list_factory(GtkDropDownHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_drop_down_get_model(GtkDropDownHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStringFilterMatchMode gtk_drop_down_get_search_match_mode(GtkDropDownHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_drop_down_get_selected(GtkDropDownHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GObjectHandle gtk_drop_down_get_selected_item(GtkDropDownHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_drop_down_get_show_arrow(GtkDropDownHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drop_down_set_enable_search(GtkDropDownHandle self, bool enable_search);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drop_down_set_expression(GtkDropDownHandle self, GtkExpressionHandle expression);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drop_down_set_factory(GtkDropDownHandle self, GtkListItemFactoryHandle factory);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drop_down_set_header_factory(GtkDropDownHandle self, GtkListItemFactoryHandle factory);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drop_down_set_list_factory(GtkDropDownHandle self, GtkListItemFactoryHandle factory);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drop_down_set_model(GtkDropDownHandle self, GListModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drop_down_set_search_match_mode(GtkDropDownHandle self, GtkStringFilterMatchMode search_match_mode);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drop_down_set_selected(GtkDropDownHandle self, uint position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drop_down_set_show_arrow(GtkDropDownHandle self, bool show_arrow);
+
 }

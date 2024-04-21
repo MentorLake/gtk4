@@ -27,6 +27,7 @@ internal class GResourceExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GResourceHandle g_resource_new_from_data(GBytesHandle data, out GErrorHandle error);
+
 }
 
 public struct GResource

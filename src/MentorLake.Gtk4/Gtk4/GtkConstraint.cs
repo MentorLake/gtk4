@@ -91,28 +91,41 @@ internal class GtkConstraintExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkConstraintHandle gtk_constraint_new(GtkConstraintTargetHandle target, GtkConstraintAttribute target_attribute, GtkConstraintRelation relation, GtkConstraintTargetHandle source, GtkConstraintAttribute source_attribute, double multiplier, double constant, int strength);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkConstraintHandle gtk_constraint_new_constant(GtkConstraintTargetHandle target, GtkConstraintAttribute target_attribute, GtkConstraintRelation relation, double constant, int strength);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_constraint_get_constant(GtkConstraintHandle constraint);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_constraint_get_multiplier(GtkConstraintHandle constraint);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkConstraintRelation gtk_constraint_get_relation(GtkConstraintHandle constraint);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkConstraintTargetHandle gtk_constraint_get_source(GtkConstraintHandle constraint);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkConstraintAttribute gtk_constraint_get_source_attribute(GtkConstraintHandle constraint);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_constraint_get_strength(GtkConstraintHandle constraint);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkConstraintTargetHandle gtk_constraint_get_target(GtkConstraintHandle constraint);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkConstraintAttribute gtk_constraint_get_target_attribute(GtkConstraintHandle constraint);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_constraint_is_attached(GtkConstraintHandle constraint);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_constraint_is_constant(GtkConstraintHandle constraint);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_constraint_is_required(GtkConstraintHandle constraint);
+
 }

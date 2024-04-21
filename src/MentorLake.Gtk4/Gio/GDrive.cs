@@ -171,58 +171,86 @@ internal class GDriveExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_drive_can_eject(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_drive_can_poll_for_media(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_drive_can_start(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_drive_can_start_degraded(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_drive_can_stop(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_drive_eject(GDriveHandle drive, GMountUnmountFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_drive_eject_finish(GDriveHandle drive, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_drive_eject_with_operation(GDriveHandle drive, GMountUnmountFlags flags, GMountOperationHandle mount_operation, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_drive_eject_with_operation_finish(GDriveHandle drive, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_drive_enumerate_identifiers(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GIconHandle g_drive_get_icon(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_drive_get_identifier(GDriveHandle drive, string kind);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_drive_get_name(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_drive_get_sort_key(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDriveStartStopType g_drive_get_start_stop_type(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GIconHandle g_drive_get_symbolic_icon(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_drive_get_volumes(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_drive_has_media(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_drive_has_volumes(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_drive_is_media_check_automatic(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_drive_is_media_removable(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_drive_is_removable(GDriveHandle drive);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_drive_poll_for_media(GDriveHandle drive, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_drive_poll_for_media_finish(GDriveHandle drive, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_drive_start(GDriveHandle drive, GDriveStartFlags flags, GMountOperationHandle mount_operation, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_drive_start_finish(GDriveHandle drive, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_drive_stop(GDriveHandle drive, GMountUnmountFlags flags, GMountOperationHandle mount_operation, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_drive_stop_finish(GDriveHandle drive, GAsyncResultHandle result, out GErrorHandle error);
+
 }

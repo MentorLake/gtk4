@@ -52,12 +52,17 @@ internal class GtkDragIconExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_drag_icon_get_child(GtkDragIconHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drag_icon_set_child(GtkDragIconHandle self, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_drag_icon_create_widget_for_value(GValueHandle value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_drag_icon_get_for_drag(GdkDragHandle drag);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drag_icon_set_from_paintable(GdkDragHandle drag, GdkPaintableHandle paintable, int hot_x, int hot_y);
+
 }

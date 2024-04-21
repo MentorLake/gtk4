@@ -54,12 +54,17 @@ internal class GtkNativeExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GskRendererHandle gtk_native_get_renderer(GtkNativeHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkSurfaceHandle gtk_native_get_surface(GtkNativeHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_native_get_surface_transform(GtkNativeHandle self, out double x, out double y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_native_realize(GtkNativeHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_native_unrealize(GtkNativeHandle self);
+
 }

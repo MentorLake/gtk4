@@ -67,18 +67,26 @@ internal class GCredentialsExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GCredentialsHandle g_credentials_new();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern IntPtr g_credentials_get_native(GCredentialsHandle credentials, GCredentialsType native_type);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_credentials_get_unix_pid(GCredentialsHandle credentials, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_credentials_get_unix_user(GCredentialsHandle credentials, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_credentials_is_same_user(GCredentialsHandle credentials, GCredentialsHandle other_credentials, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_credentials_set_native(GCredentialsHandle credentials, GCredentialsType native_type, IntPtr native);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_credentials_set_unix_user(GCredentialsHandle credentials, int uid, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_credentials_to_string(GCredentialsHandle credentials);
+
 }

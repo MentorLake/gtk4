@@ -36,6 +36,9 @@ internal class GtkStringObjectExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStringObjectHandle gtk_string_object_new(string @string);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_string_object_get_string(GtkStringObjectHandle self);
+
 }

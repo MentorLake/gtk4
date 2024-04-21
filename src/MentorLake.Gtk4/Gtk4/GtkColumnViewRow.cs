@@ -95,29 +95,44 @@ public static class GtkColumnViewRowHandleExtensions
 internal class GtkColumnViewRowExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_column_view_row_get_accessible_description(GtkColumnViewRowHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_column_view_row_get_accessible_label(GtkColumnViewRowHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_column_view_row_get_activatable(GtkColumnViewRowHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_column_view_row_get_focusable(GtkColumnViewRowHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GObjectHandle gtk_column_view_row_get_item(GtkColumnViewRowHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_column_view_row_get_position(GtkColumnViewRowHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_column_view_row_get_selectable(GtkColumnViewRowHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_column_view_row_get_selected(GtkColumnViewRowHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_row_set_accessible_description(GtkColumnViewRowHandle self, string description);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_row_set_accessible_label(GtkColumnViewRowHandle self, string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_row_set_activatable(GtkColumnViewRowHandle self, bool activatable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_row_set_focusable(GtkColumnViewRowHandle self, bool focusable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_row_set_selectable(GtkColumnViewRowHandle self, bool selectable);
+
 }

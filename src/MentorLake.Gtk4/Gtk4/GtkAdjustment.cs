@@ -31,8 +31,8 @@ public class GtkAdjustmentSignal
 
 public static class GtkAdjustmentSignals
 {
-	public static GtkAdjustmentSignal Changed = new("changed");
-	public static GtkAdjustmentSignal ValueChanged = new("value-changed");
+	public static GtkAdjustmentSignal Changed = new("BindingTransform.MethodDeclaration");
+	public static GtkAdjustmentSignal ValueChanged = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkAdjustmentHandleExtensions
@@ -120,45 +120,76 @@ public static class GtkAdjustmentHandleExtensions
 		return adjustment;
 	}
 
-	public static GtkAdjustmentHandle Connect(this GtkAdjustmentHandle instance, GtkAdjustmentSignal signal, GCallback c_handler)
+	public static GtkAdjustmentHandle Signal_Changed(this GtkAdjustmentHandle instance, GtkAdjustmentDelegates.Changed handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkAdjustmentHandle Signal_ValueChanged(this GtkAdjustmentHandle instance, GtkAdjustmentDelegates.ValueChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkAdjustmentDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAdjustmentHandle>))] GtkAdjustmentHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ValueChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAdjustmentHandle>))] GtkAdjustmentHandle self, IntPtr user_data);
 }
 
 internal class GtkAdjustmentExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAdjustmentHandle gtk_adjustment_new(double value, double lower, double upper, double step_increment, double page_increment, double page_size);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_adjustment_clamp_page(GtkAdjustmentHandle adjustment, double lower, double upper);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_adjustment_configure(GtkAdjustmentHandle adjustment, double value, double lower, double upper, double step_increment, double page_increment, double page_size);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_adjustment_get_lower(GtkAdjustmentHandle adjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_adjustment_get_minimum_increment(GtkAdjustmentHandle adjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_adjustment_get_page_increment(GtkAdjustmentHandle adjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_adjustment_get_page_size(GtkAdjustmentHandle adjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_adjustment_get_step_increment(GtkAdjustmentHandle adjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_adjustment_get_upper(GtkAdjustmentHandle adjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_adjustment_get_value(GtkAdjustmentHandle adjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_adjustment_set_lower(GtkAdjustmentHandle adjustment, double lower);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_adjustment_set_page_increment(GtkAdjustmentHandle adjustment, double page_increment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_adjustment_set_page_size(GtkAdjustmentHandle adjustment, double page_size);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_adjustment_set_step_increment(GtkAdjustmentHandle adjustment, double step_increment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_adjustment_set_upper(GtkAdjustmentHandle adjustment, double upper);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_adjustment_set_value(GtkAdjustmentHandle adjustment, double value);
+
 }

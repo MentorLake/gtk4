@@ -31,4 +31,5 @@ internal class GDBusMenuModelExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMenuModelHandle g_dbus_menu_model_get(GDBusConnectionHandle connection, string bus_name, string object_path);
+
 }

@@ -41,8 +41,11 @@ internal class GSocketConnectableExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketAddressEnumeratorHandle g_socket_connectable_enumerate(GSocketConnectableHandle connectable);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketAddressEnumeratorHandle g_socket_connectable_proxy_enumerate(GSocketConnectableHandle connectable);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_socket_connectable_to_string(GSocketConnectableHandle connectable);
+
 }

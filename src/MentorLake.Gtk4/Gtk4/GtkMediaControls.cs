@@ -42,8 +42,11 @@ internal class GtkMediaControlsExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMediaControlsHandle gtk_media_controls_new(GtkMediaStreamHandle stream);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMediaStreamHandle gtk_media_controls_get_media_stream(GtkMediaControlsHandle controls);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_controls_set_media_stream(GtkMediaControlsHandle controls, GtkMediaStreamHandle stream);
+
 }

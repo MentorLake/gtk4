@@ -46,10 +46,14 @@ internal class GMenuAttributeIterExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_menu_attribute_iter_get_name(GMenuAttributeIterHandle iter);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_menu_attribute_iter_get_next(GMenuAttributeIterHandle iter, out string out_name, out GVariantHandle value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_menu_attribute_iter_get_value(GMenuAttributeIterHandle iter);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_menu_attribute_iter_next(GMenuAttributeIterHandle iter);
+
 }

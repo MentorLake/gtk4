@@ -31,7 +31,7 @@ public class GDBusServerSignal
 
 public static class GDBusServerSignals
 {
-	public static GDBusServerSignal NewConnection = new("new-connection");
+	public static GDBusServerSignal NewConnection = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GDBusServerHandleExtensions
@@ -68,27 +68,41 @@ public static class GDBusServerHandleExtensions
 		return server;
 	}
 
-	public static GDBusServerHandle Connect(this GDBusServerHandle instance, GDBusServerSignal signal, GCallback c_handler)
+	public static GDBusServerHandle Signal_NewConnection(this GDBusServerHandle instance, GDBusServerDelegates.NewConnection handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "new_connection", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GDBusServerDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool NewConnection([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusServerHandle>))] GDBusServerHandle self, GDBusConnectionHandle connection, IntPtr user_data);
 }
 
 internal class GDBusServerExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusServerHandle g_dbus_server_new_sync(string address, GDBusServerFlags flags, string guid, GDBusAuthObserverHandle observer, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_server_get_client_address(GDBusServerHandle server);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusServerFlags g_dbus_server_get_flags(GDBusServerHandle server);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_server_get_guid(GDBusServerHandle server);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dbus_server_is_active(GDBusServerHandle server);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_server_start(GDBusServerHandle server);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_server_stop(GDBusServerHandle server);
+
 }

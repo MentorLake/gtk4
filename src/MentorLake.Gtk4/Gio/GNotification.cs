@@ -103,28 +103,41 @@ internal class GNotificationExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GNotificationHandle g_notification_new(string title);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_notification_add_button(GNotificationHandle notification, string label, string detailed_action);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_notification_add_button_with_target(GNotificationHandle notification, string label, string action, string target_format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_notification_add_button_with_target_value(GNotificationHandle notification, string label, string action, GVariantHandle target);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_notification_set_body(GNotificationHandle notification, string body);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_notification_set_category(GNotificationHandle notification, string category);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_notification_set_default_action(GNotificationHandle notification, string detailed_action);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_notification_set_default_action_and_target(GNotificationHandle notification, string action, string target_format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_notification_set_default_action_and_target_value(GNotificationHandle notification, string action, GVariantHandle target);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_notification_set_icon(GNotificationHandle notification, GIconHandle icon);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_notification_set_priority(GNotificationHandle notification, GNotificationPriority priority);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_notification_set_title(GNotificationHandle notification, string title);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_notification_set_urgent(GNotificationHandle notification, bool urgent);
+
 }

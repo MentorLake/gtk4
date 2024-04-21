@@ -31,7 +31,7 @@ public class GtkColumnViewSignal
 
 public static class GtkColumnViewSignals
 {
-	public static GtkColumnViewSignal Activate = new("activate");
+	public static GtkColumnViewSignal Activate = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkColumnViewHandleExtensions
@@ -175,65 +175,98 @@ public static class GtkColumnViewHandleExtensions
 		return self;
 	}
 
-	public static GtkColumnViewHandle Connect(this GtkColumnViewHandle instance, GtkColumnViewSignal signal, GCallback c_handler)
+	public static GtkColumnViewHandle Signal_Activate(this GtkColumnViewHandle instance, GtkColumnViewDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkColumnViewDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColumnViewHandle>))] GtkColumnViewHandle self, uint position, IntPtr user_data);
 }
 
 internal class GtkColumnViewExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkColumnViewHandle gtk_column_view_new(GtkSelectionModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_append_column(GtkColumnViewHandle self, GtkColumnViewColumnHandle column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_column_view_get_columns(GtkColumnViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_column_view_get_enable_rubberband(GtkColumnViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListItemFactoryHandle gtk_column_view_get_header_factory(GtkColumnViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSelectionModelHandle gtk_column_view_get_model(GtkColumnViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_column_view_get_reorderable(GtkColumnViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListItemFactoryHandle gtk_column_view_get_row_factory(GtkColumnViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_column_view_get_show_column_separators(GtkColumnViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_column_view_get_show_row_separators(GtkColumnViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_column_view_get_single_click_activate(GtkColumnViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSorterHandle gtk_column_view_get_sorter(GtkColumnViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListTabBehavior gtk_column_view_get_tab_behavior(GtkColumnViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_insert_column(GtkColumnViewHandle self, uint position, GtkColumnViewColumnHandle column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_remove_column(GtkColumnViewHandle self, GtkColumnViewColumnHandle column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_scroll_to(GtkColumnViewHandle self, uint pos, GtkColumnViewColumnHandle column, GtkListScrollFlags flags, GtkScrollInfoHandle scroll);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_set_enable_rubberband(GtkColumnViewHandle self, bool enable_rubberband);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_set_header_factory(GtkColumnViewHandle self, GtkListItemFactoryHandle factory);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_set_model(GtkColumnViewHandle self, GtkSelectionModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_set_reorderable(GtkColumnViewHandle self, bool reorderable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_set_row_factory(GtkColumnViewHandle self, GtkListItemFactoryHandle factory);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_set_show_column_separators(GtkColumnViewHandle self, bool show_column_separators);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_set_show_row_separators(GtkColumnViewHandle self, bool show_row_separators);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_set_single_click_activate(GtkColumnViewHandle self, bool single_click_activate);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_set_tab_behavior(GtkColumnViewHandle self, GtkListTabBehavior tab_behavior);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_sort_by_column(GtkColumnViewHandle self, GtkColumnViewColumnHandle column, GtkSortType direction);
+
 }

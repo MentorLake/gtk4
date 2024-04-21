@@ -80,22 +80,32 @@ internal class GtkRevealerExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkRevealerHandle gtk_revealer_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_revealer_get_child(GtkRevealerHandle revealer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_revealer_get_child_revealed(GtkRevealerHandle revealer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_revealer_get_reveal_child(GtkRevealerHandle revealer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_revealer_get_transition_duration(GtkRevealerHandle revealer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkRevealerTransitionType gtk_revealer_get_transition_type(GtkRevealerHandle revealer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_revealer_set_child(GtkRevealerHandle revealer, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_revealer_set_reveal_child(GtkRevealerHandle revealer, bool reveal_child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_revealer_set_transition_duration(GtkRevealerHandle revealer, uint duration);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_revealer_set_transition_type(GtkRevealerHandle revealer, GtkRevealerTransitionType transition);
+
 }

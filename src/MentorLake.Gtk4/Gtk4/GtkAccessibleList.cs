@@ -32,8 +32,10 @@ internal class GtkAccessibleListExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAccessibleListHandle gtk_accessible_list_new_from_array(GtkAccessibleHandle[] accessibles, int n_accessibles);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAccessibleListHandle gtk_accessible_list_new_from_list(GListHandle list);
+
 }
 
 public struct GtkAccessibleList

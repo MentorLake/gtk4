@@ -55,12 +55,17 @@ internal class GtkColorChooserExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_color_chooser_add_palette(GtkColorChooserHandle chooser, GtkOrientation orientation, int colors_per_line, int n_colors, GdkRGBA[] colors);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_color_chooser_get_rgba(GtkColorChooserHandle chooser, out GdkRGBA color);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_color_chooser_get_use_alpha(GtkColorChooserHandle chooser);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_color_chooser_set_rgba(GtkColorChooserHandle chooser, GdkRGBAHandle color);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_color_chooser_set_use_alpha(GtkColorChooserHandle chooser, bool use_alpha);
+
 }

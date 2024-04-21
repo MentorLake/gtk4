@@ -51,12 +51,17 @@ internal class GPollableOutputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_pollable_output_stream_can_poll(GPollableOutputStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSourceHandle g_pollable_output_stream_create_source(GPollableOutputStreamHandle stream, GCancellableHandle cancellable);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_pollable_output_stream_is_writable(GPollableOutputStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_pollable_output_stream_write_nonblocking(GPollableOutputStreamHandle stream, IntPtr buffer, int count, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GPollableReturn g_pollable_output_stream_writev_nonblocking(GPollableOutputStreamHandle stream, GOutputVector[] vectors, int n_vectors, out int bytes_written, GCancellableHandle cancellable, out GErrorHandle error);
+
 }

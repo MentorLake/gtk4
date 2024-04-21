@@ -36,6 +36,8 @@ internal class GFileIconExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileIconHandle g_file_icon_new(GFileHandle file);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_file_icon_get_file(GFileIconHandle icon);
+
 }

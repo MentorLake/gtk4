@@ -81,22 +81,33 @@ internal class GtkFileFilterExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFileFilterHandle gtk_file_filter_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFileFilterHandle gtk_file_filter_new_from_gvariant(GVariantHandle variant);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_filter_add_mime_type(GtkFileFilterHandle filter, string mime_type);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_filter_add_pattern(GtkFileFilterHandle filter, string pattern);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_filter_add_pixbuf_formats(GtkFileFilterHandle filter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_filter_add_suffix(GtkFileFilterHandle filter, string suffix);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string[] gtk_file_filter_get_attributes(GtkFileFilterHandle filter);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_file_filter_get_name(GtkFileFilterHandle filter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_filter_set_name(GtkFileFilterHandle filter, string name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GVariantHandle gtk_file_filter_to_gvariant(GtkFileFilterHandle filter);
+
 }

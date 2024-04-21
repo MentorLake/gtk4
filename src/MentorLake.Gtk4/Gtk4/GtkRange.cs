@@ -26,10 +26,10 @@ public class GtkRangeSignal
 
 public static class GtkRangeSignals
 {
-	public static GtkRangeSignal AdjustBounds = new("adjust-bounds");
-	public static GtkRangeSignal ChangeValue = new("change-value");
-	public static GtkRangeSignal MoveSlider = new("move-slider");
-	public static GtkRangeSignal ValueChanged = new("value-changed");
+	public static GtkRangeSignal AdjustBounds = new("BindingTransform.MethodDeclaration");
+	public static GtkRangeSignal ChangeValue = new("BindingTransform.MethodDeclaration");
+	public static GtkRangeSignal MoveSlider = new("BindingTransform.MethodDeclaration");
+	public static GtkRangeSignal ValueChanged = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkRangeHandleExtensions
@@ -157,57 +157,110 @@ public static class GtkRangeHandleExtensions
 		return range;
 	}
 
-	public static GtkRangeHandle Connect(this GtkRangeHandle instance, GtkRangeSignal signal, GCallback c_handler)
+	public static GtkRangeHandle Signal_AdjustBounds(this GtkRangeHandle instance, GtkRangeDelegates.AdjustBounds handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "adjust_bounds", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkRangeHandle Signal_ChangeValue(this GtkRangeHandle instance, GtkRangeDelegates.ChangeValue handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "change_value", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkRangeHandle Signal_MoveSlider(this GtkRangeHandle instance, GtkRangeDelegates.MoveSlider handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_slider", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkRangeHandle Signal_ValueChanged(this GtkRangeHandle instance, GtkRangeDelegates.ValueChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkRangeDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void AdjustBounds([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, double value, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ChangeValue([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, ref GtkScrollType scroll, double value, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MoveSlider([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, ref GtkScrollType step, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ValueChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, IntPtr user_data);
 }
 
 internal class GtkRangeExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAdjustmentHandle gtk_range_get_adjustment(GtkRangeHandle range);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_range_get_fill_level(GtkRangeHandle range);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_range_get_flippable(GtkRangeHandle range);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_range_get_inverted(GtkRangeHandle range);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_range_get_range_rect(GtkRangeHandle range, out GdkRectangle range_rect);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_range_get_restrict_to_fill_level(GtkRangeHandle range);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_range_get_round_digits(GtkRangeHandle range);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_range_get_show_fill_level(GtkRangeHandle range);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_range_get_slider_range(GtkRangeHandle range, out int slider_start, out int slider_end);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_range_get_slider_size_fixed(GtkRangeHandle range);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_range_get_value(GtkRangeHandle range);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_range_set_adjustment(GtkRangeHandle range, GtkAdjustmentHandle adjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_range_set_fill_level(GtkRangeHandle range, double fill_level);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_range_set_flippable(GtkRangeHandle range, bool flippable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_range_set_increments(GtkRangeHandle range, double step, double page);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_range_set_inverted(GtkRangeHandle range, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_range_set_range(GtkRangeHandle range, double min, double max);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_range_set_restrict_to_fill_level(GtkRangeHandle range, bool restrict_to_fill_level);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_range_set_round_digits(GtkRangeHandle range, int round_digits);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_range_set_show_fill_level(GtkRangeHandle range, bool show_fill_level);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_range_set_slider_size_fixed(GtkRangeHandle range, bool size_fixed);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_range_set_value(GtkRangeHandle range, double value);
+
 }

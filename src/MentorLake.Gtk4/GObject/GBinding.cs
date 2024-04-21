@@ -67,18 +67,26 @@ internal class GBindingExterns
 {
 	[DllImport(Libraries.GObject)]
 	internal static extern GObjectHandle g_binding_dup_source(GBindingHandle binding);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GObjectHandle g_binding_dup_target(GBindingHandle binding);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GBindingFlags g_binding_get_flags(GBindingHandle binding);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GObjectHandle g_binding_get_source(GBindingHandle binding);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern string g_binding_get_source_property(GBindingHandle binding);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GObjectHandle g_binding_get_target(GBindingHandle binding);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern string g_binding_get_target_property(GBindingHandle binding);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_binding_unbind(GBindingHandle binding);
+
 }

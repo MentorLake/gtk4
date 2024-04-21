@@ -36,8 +36,8 @@ public class GUnixMountMonitorSignal
 
 public static class GUnixMountMonitorSignals
 {
-	public static GUnixMountMonitorSignal MountpointsChanged = new("mountpoints-changed");
-	public static GUnixMountMonitorSignal MountsChanged = new("mounts-changed");
+	public static GUnixMountMonitorSignal MountpointsChanged = new("BindingTransform.MethodDeclaration");
+	public static GUnixMountMonitorSignal MountsChanged = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GUnixMountMonitorHandleExtensions
@@ -48,19 +48,37 @@ public static class GUnixMountMonitorHandleExtensions
 		return mount_monitor;
 	}
 
-	public static GUnixMountMonitorHandle Connect(this GUnixMountMonitorHandle instance, GUnixMountMonitorSignal signal, GCallback c_handler)
+	public static GUnixMountMonitorHandle Signal_MountpointsChanged(this GUnixMountMonitorHandle instance, GUnixMountMonitorDelegates.MountpointsChanged handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "mountpoints_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GUnixMountMonitorHandle Signal_MountsChanged(this GUnixMountMonitorHandle instance, GUnixMountMonitorDelegates.MountsChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "mounts_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GUnixMountMonitorDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MountpointsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GUnixMountMonitorHandle>))] GUnixMountMonitorHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MountsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GUnixMountMonitorHandle>))] GUnixMountMonitorHandle self, IntPtr user_data);
 }
 
 internal class GUnixMountMonitorExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GUnixMountMonitorHandle g_unix_mount_monitor_new();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_unix_mount_monitor_set_rate_limit(GUnixMountMonitorHandle mount_monitor, int limit_msec);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GUnixMountMonitorHandle g_unix_mount_monitor_get();
+
 }

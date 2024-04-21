@@ -293,102 +293,152 @@ internal class GDBusMessageExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMessageHandle g_dbus_message_new();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMessageHandle g_dbus_message_new_from_blob(string blob, int blob_len, GDBusCapabilityFlags capabilities, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMessageHandle g_dbus_message_new_method_call(string name, string path, string interface_, string method);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMessageHandle g_dbus_message_new_signal(string path, string interface_, string signal);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMessageHandle g_dbus_message_copy(GDBusMessageHandle message, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_message_get_arg0(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_message_get_arg0_path(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_dbus_message_get_body(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMessageByteOrder g_dbus_message_get_byte_order(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_message_get_destination(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_message_get_error_name(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMessageFlags g_dbus_message_get_flags(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_dbus_message_get_header(GDBusMessageHandle message, GDBusMessageHeaderField header_field);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_message_get_header_fields(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_message_get_interface(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dbus_message_get_locked(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_message_get_member(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMessageType g_dbus_message_get_message_type(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_dbus_message_get_num_unix_fds(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_message_get_path(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_dbus_message_get_reply_serial(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_message_get_sender(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_dbus_message_get_serial(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_message_get_signature(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GUnixFDListHandle g_dbus_message_get_unix_fd_list(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_lock(GDBusMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMessageHandle g_dbus_message_new_method_error(GDBusMessageHandle method_call_message, string error_name, string error_message_format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMessageHandle g_dbus_message_new_method_error_literal(GDBusMessageHandle method_call_message, string error_name, string error_message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMessageHandle g_dbus_message_new_method_error_valist(GDBusMessageHandle method_call_message, string error_name, string error_message_format, IntPtr var_args);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMessageHandle g_dbus_message_new_method_reply(GDBusMessageHandle method_call_message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_message_print(GDBusMessageHandle message, uint indent);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_set_body(GDBusMessageHandle message, GVariantHandle body);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_set_byte_order(GDBusMessageHandle message, GDBusMessageByteOrder byte_order);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_set_destination(GDBusMessageHandle message, string value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_set_error_name(GDBusMessageHandle message, string value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_set_flags(GDBusMessageHandle message, GDBusMessageFlags flags);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_set_header(GDBusMessageHandle message, GDBusMessageHeaderField header_field, GVariantHandle value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_set_interface(GDBusMessageHandle message, string value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_set_member(GDBusMessageHandle message, string value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_set_message_type(GDBusMessageHandle message, GDBusMessageType type);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_set_num_unix_fds(GDBusMessageHandle message, uint value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_set_path(GDBusMessageHandle message, string value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_set_reply_serial(GDBusMessageHandle message, uint value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_set_sender(GDBusMessageHandle message, string value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_set_serial(GDBusMessageHandle message, uint serial);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_set_signature(GDBusMessageHandle message, string value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_message_set_unix_fd_list(GDBusMessageHandle message, GUnixFDListHandle fd_list);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_message_to_blob(GDBusMessageHandle message, out int out_size, GDBusCapabilityFlags capabilities, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dbus_message_to_gerror(GDBusMessageHandle message, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_dbus_message_bytes_needed(string blob, int blob_len, out GErrorHandle error);
+
 }

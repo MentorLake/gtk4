@@ -91,26 +91,38 @@ internal class GtkTreeExpanderExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeExpanderHandle gtk_tree_expander_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_tree_expander_get_child(GtkTreeExpanderHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_expander_get_hide_expander(GtkTreeExpanderHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_expander_get_indent_for_depth(GtkTreeExpanderHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_expander_get_indent_for_icon(GtkTreeExpanderHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GObjectHandle gtk_tree_expander_get_item(GtkTreeExpanderHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeListRowHandle gtk_tree_expander_get_list_row(GtkTreeExpanderHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_expander_set_child(GtkTreeExpanderHandle self, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_expander_set_hide_expander(GtkTreeExpanderHandle self, bool hide_expander);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_expander_set_indent_for_depth(GtkTreeExpanderHandle self, bool indent_for_depth);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_expander_set_indent_for_icon(GtkTreeExpanderHandle self, bool indent_for_icon);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_expander_set_list_row(GtkTreeExpanderHandle self, GtkTreeListRowHandle list_row);
+
 }

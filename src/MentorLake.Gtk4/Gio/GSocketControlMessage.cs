@@ -52,12 +52,17 @@ internal class GSocketControlMessageExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_control_message_get_level(GSocketControlMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_control_message_get_msg_type(GSocketControlMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_control_message_get_size(GSocketControlMessageHandle message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_control_message_serialize(GSocketControlMessageHandle message, IntPtr data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketControlMessageHandle g_socket_control_message_deserialize(int level, int type, int size, IntPtr data);
+
 }

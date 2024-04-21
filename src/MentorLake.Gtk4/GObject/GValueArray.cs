@@ -27,6 +27,7 @@ internal class GValueArrayExterns
 {
 	[DllImport(Libraries.GObject)]
 	internal static extern GValueArrayHandle g_value_array_new(uint n_prealloced);
+
 }
 
 public struct GValueArray

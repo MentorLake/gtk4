@@ -70,18 +70,26 @@ internal class GtkGridLayoutChildExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_grid_layout_child_get_column(GtkGridLayoutChildHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_grid_layout_child_get_column_span(GtkGridLayoutChildHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_grid_layout_child_get_row(GtkGridLayoutChildHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_grid_layout_child_get_row_span(GtkGridLayoutChildHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_grid_layout_child_set_column(GtkGridLayoutChildHandle child, int column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_grid_layout_child_set_column_span(GtkGridLayoutChildHandle child, int span);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_grid_layout_child_set_row(GtkGridLayoutChildHandle child, int row);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_grid_layout_child_set_row_span(GtkGridLayoutChildHandle child, int span);
+
 }

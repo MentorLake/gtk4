@@ -170,56 +170,83 @@ internal class GDtlsConnectionExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dtls_connection_close(GDtlsConnectionHandle conn, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dtls_connection_close_async(GDtlsConnectionHandle conn, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dtls_connection_close_finish(GDtlsConnectionHandle conn, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dtls_connection_emit_accept_certificate(GDtlsConnectionHandle conn, GTlsCertificateHandle peer_cert, GTlsCertificateFlags errors);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_dtls_connection_get_certificate(GDtlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dtls_connection_get_channel_binding_data(GDtlsConnectionHandle conn, GTlsChannelBindingType type, out GByteArray data, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dtls_connection_get_ciphersuite_name(GDtlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsDatabaseHandle g_dtls_connection_get_database(GDtlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsInteractionHandle g_dtls_connection_get_interaction(GDtlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dtls_connection_get_negotiated_protocol(GDtlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_dtls_connection_get_peer_certificate(GDtlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateFlags g_dtls_connection_get_peer_certificate_errors(GDtlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsProtocolVersion g_dtls_connection_get_protocol_version(GDtlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsRehandshakeMode g_dtls_connection_get_rehandshake_mode(GDtlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dtls_connection_get_require_close_notify(GDtlsConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dtls_connection_handshake(GDtlsConnectionHandle conn, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dtls_connection_handshake_async(GDtlsConnectionHandle conn, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dtls_connection_handshake_finish(GDtlsConnectionHandle conn, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dtls_connection_set_advertised_protocols(GDtlsConnectionHandle conn, string protocols);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dtls_connection_set_certificate(GDtlsConnectionHandle conn, GTlsCertificateHandle certificate);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dtls_connection_set_database(GDtlsConnectionHandle conn, GTlsDatabaseHandle database);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dtls_connection_set_interaction(GDtlsConnectionHandle conn, GTlsInteractionHandle interaction);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dtls_connection_set_rehandshake_mode(GDtlsConnectionHandle conn, GTlsRehandshakeMode mode);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dtls_connection_set_require_close_notify(GDtlsConnectionHandle conn, bool require_close_notify);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dtls_connection_shutdown(GDtlsConnectionHandle conn, bool shutdown_read, bool shutdown_write, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dtls_connection_shutdown_async(GDtlsConnectionHandle conn, bool shutdown_read, bool shutdown_write, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dtls_connection_shutdown_finish(GDtlsConnectionHandle conn, GAsyncResultHandle result, out GErrorHandle error);
+
 }

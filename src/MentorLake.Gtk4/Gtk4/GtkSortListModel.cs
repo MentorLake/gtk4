@@ -80,22 +80,32 @@ internal class GtkSortListModelExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSortListModelHandle gtk_sort_list_model_new(GListModelHandle model, GtkSorterHandle sorter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_sort_list_model_get_incremental(GtkSortListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_sort_list_model_get_model(GtkSortListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_sort_list_model_get_pending(GtkSortListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSorterHandle gtk_sort_list_model_get_section_sorter(GtkSortListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSorterHandle gtk_sort_list_model_get_sorter(GtkSortListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_sort_list_model_set_incremental(GtkSortListModelHandle self, bool incremental);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_sort_list_model_set_model(GtkSortListModelHandle self, GListModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_sort_list_model_set_section_sorter(GtkSortListModelHandle self, GtkSorterHandle sorter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_sort_list_model_set_sorter(GtkSortListModelHandle self, GtkSorterHandle sorter);
+
 }

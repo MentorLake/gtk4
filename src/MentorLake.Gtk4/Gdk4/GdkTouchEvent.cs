@@ -31,4 +31,5 @@ internal class GdkTouchEventExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_touch_event_get_emulating_pointer(GdkEventHandle @event);
+
 }

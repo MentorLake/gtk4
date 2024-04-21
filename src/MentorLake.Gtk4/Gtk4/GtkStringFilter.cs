@@ -75,20 +75,30 @@ internal class GtkStringFilterExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStringFilterHandle gtk_string_filter_new(GtkExpressionHandle expression);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkExpressionHandle gtk_string_filter_get_expression(GtkStringFilterHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_string_filter_get_ignore_case(GtkStringFilterHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStringFilterMatchMode gtk_string_filter_get_match_mode(GtkStringFilterHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_string_filter_get_search(GtkStringFilterHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_string_filter_set_expression(GtkStringFilterHandle self, GtkExpressionHandle expression);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_string_filter_set_ignore_case(GtkStringFilterHandle self, bool ignore_case);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_string_filter_set_match_mode(GtkStringFilterHandle self, GtkStringFilterMatchMode mode);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_string_filter_set_search(GtkStringFilterHandle self, string search);
+
 }

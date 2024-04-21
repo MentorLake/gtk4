@@ -69,18 +69,26 @@ internal class GtkGestureSingleExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_gesture_single_get_button(GtkGestureSingleHandle gesture);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_gesture_single_get_current_button(GtkGestureSingleHandle gesture);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkEventSequenceHandle gtk_gesture_single_get_current_sequence(GtkGestureSingleHandle gesture);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gesture_single_get_exclusive(GtkGestureSingleHandle gesture);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gesture_single_get_touch_only(GtkGestureSingleHandle gesture);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gesture_single_set_button(GtkGestureSingleHandle gesture, uint button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gesture_single_set_exclusive(GtkGestureSingleHandle gesture, bool exclusive);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gesture_single_set_touch_only(GtkGestureSingleHandle gesture, bool touch_only);
+
 }

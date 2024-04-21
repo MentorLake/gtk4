@@ -135,42 +135,62 @@ internal class GdkGLTextureBuilderExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkGLTextureBuilderHandle gdk_gl_texture_builder_new();
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkTextureHandle gdk_gl_texture_builder_build(GdkGLTextureBuilderHandle self, GDestroyNotify destroy, IntPtr data);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkGLContextHandle gdk_gl_texture_builder_get_context(GdkGLTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkMemoryFormat gdk_gl_texture_builder_get_format(GdkGLTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_gl_texture_builder_get_has_mipmap(GdkGLTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_gl_texture_builder_get_height(GdkGLTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern uint gdk_gl_texture_builder_get_id(GdkGLTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern IntPtr gdk_gl_texture_builder_get_sync(GdkGLTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern cairo_region_tHandle gdk_gl_texture_builder_get_update_region(GdkGLTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkTextureHandle gdk_gl_texture_builder_get_update_texture(GdkGLTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_gl_texture_builder_get_width(GdkGLTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_texture_builder_set_context(GdkGLTextureBuilderHandle self, GdkGLContextHandle context);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_texture_builder_set_format(GdkGLTextureBuilderHandle self, GdkMemoryFormat format);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_texture_builder_set_has_mipmap(GdkGLTextureBuilderHandle self, bool has_mipmap);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_texture_builder_set_height(GdkGLTextureBuilderHandle self, int height);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_texture_builder_set_id(GdkGLTextureBuilderHandle self, uint id);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_texture_builder_set_sync(GdkGLTextureBuilderHandle self, IntPtr sync);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_texture_builder_set_update_region(GdkGLTextureBuilderHandle self, cairo_region_tHandle region);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_texture_builder_set_update_texture(GdkGLTextureBuilderHandle self, GdkTextureHandle texture);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_texture_builder_set_width(GdkGLTextureBuilderHandle self, int width);
+
 }

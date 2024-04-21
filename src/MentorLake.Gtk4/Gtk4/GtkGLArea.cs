@@ -31,9 +31,9 @@ public class GtkGLAreaSignal
 
 public static class GtkGLAreaSignals
 {
-	public static GtkGLAreaSignal CreateContext = new("create-context");
-	public static GtkGLAreaSignal Render = new("render");
-	public static GtkGLAreaSignal Resize = new("resize");
+	public static GtkGLAreaSignal CreateContext = new("BindingTransform.MethodDeclaration");
+	public static GtkGLAreaSignal Render = new("BindingTransform.MethodDeclaration");
+	public static GtkGLAreaSignal Resize = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkGLAreaHandleExtensions
@@ -144,53 +144,96 @@ public static class GtkGLAreaHandleExtensions
 		return area;
 	}
 
-	public static GtkGLAreaHandle Connect(this GtkGLAreaHandle instance, GtkGLAreaSignal signal, GCallback c_handler)
+	public static GtkGLAreaHandle Signal_CreateContext(this GtkGLAreaHandle instance, GtkGLAreaDelegates.CreateContext handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "create_context", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkGLAreaHandle Signal_Render(this GtkGLAreaHandle instance, GtkGLAreaDelegates.Render handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "render", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkGLAreaHandle Signal_Resize(this GtkGLAreaHandle instance, GtkGLAreaDelegates.Resize handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "resize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkGLAreaDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate GdkGLContextHandle CreateContext([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGLAreaHandle>))] GtkGLAreaHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Render([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGLAreaHandle>))] GtkGLAreaHandle self, GdkGLContextHandle context, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Resize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGLAreaHandle>))] GtkGLAreaHandle self, int width, int height, IntPtr user_data);
 }
 
 internal class GtkGLAreaExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkGLAreaHandle gtk_gl_area_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gl_area_attach_buffers(GtkGLAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkGLAPI gtk_gl_area_get_allowed_apis(GtkGLAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkGLAPI gtk_gl_area_get_api(GtkGLAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gl_area_get_auto_render(GtkGLAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkGLContextHandle gtk_gl_area_get_context(GtkGLAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GErrorHandle gtk_gl_area_get_error(GtkGLAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gl_area_get_has_depth_buffer(GtkGLAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gl_area_get_has_stencil_buffer(GtkGLAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gl_area_get_required_version(GtkGLAreaHandle area, out int major, out int minor);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gl_area_get_use_es(GtkGLAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gl_area_make_current(GtkGLAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gl_area_queue_render(GtkGLAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gl_area_set_allowed_apis(GtkGLAreaHandle area, GdkGLAPI apis);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gl_area_set_auto_render(GtkGLAreaHandle area, bool auto_render);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gl_area_set_error(GtkGLAreaHandle area, GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gl_area_set_has_depth_buffer(GtkGLAreaHandle area, bool has_depth_buffer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gl_area_set_has_stencil_buffer(GtkGLAreaHandle area, bool has_stencil_buffer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gl_area_set_required_version(GtkGLAreaHandle area, int major, int minor);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gl_area_set_use_es(GtkGLAreaHandle area, bool use_es);
+
 }

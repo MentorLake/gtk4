@@ -31,9 +31,9 @@ public class GtkApplicationSignal
 
 public static class GtkApplicationSignals
 {
-	public static GtkApplicationSignal QueryEnd = new("query-end");
-	public static GtkApplicationSignal WindowAdded = new("window-added");
-	public static GtkApplicationSignal WindowRemoved = new("window-removed");
+	public static GtkApplicationSignal QueryEnd = new("BindingTransform.MethodDeclaration");
+	public static GtkApplicationSignal WindowAdded = new("BindingTransform.MethodDeclaration");
+	public static GtkApplicationSignal WindowRemoved = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkApplicationHandleExtensions
@@ -113,43 +113,81 @@ public static class GtkApplicationHandleExtensions
 		return application;
 	}
 
-	public static GtkApplicationHandle Connect(this GtkApplicationHandle instance, GtkApplicationSignal signal, GCallback c_handler)
+	public static GtkApplicationHandle Signal_QueryEnd(this GtkApplicationHandle instance, GtkApplicationDelegates.QueryEnd handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "query_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkApplicationHandle Signal_WindowAdded(this GtkApplicationHandle instance, GtkApplicationDelegates.WindowAdded handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "window_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkApplicationHandle Signal_WindowRemoved(this GtkApplicationHandle instance, GtkApplicationDelegates.WindowRemoved handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "window_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkApplicationDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void QueryEnd([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkApplicationHandle>))] GtkApplicationHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void WindowAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkApplicationHandle>))] GtkApplicationHandle self, GtkWindowHandle window, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void WindowRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkApplicationHandle>))] GtkApplicationHandle self, GtkWindowHandle window, IntPtr user_data);
 }
 
 internal class GtkApplicationExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkApplicationHandle gtk_application_new(string application_id, GApplicationFlags flags);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_application_add_window(GtkApplicationHandle application, GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string[] gtk_application_get_accels_for_action(GtkApplicationHandle application, string detailed_action_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string[] gtk_application_get_actions_for_accel(GtkApplicationHandle application, string accel);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWindowHandle gtk_application_get_active_window(GtkApplicationHandle application);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GMenuHandle gtk_application_get_menu_by_id(GtkApplicationHandle application, string id);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GMenuModelHandle gtk_application_get_menubar(GtkApplicationHandle application);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWindowHandle gtk_application_get_window_by_id(GtkApplicationHandle application, uint id);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListHandle gtk_application_get_windows(GtkApplicationHandle application);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_application_inhibit(GtkApplicationHandle application, GtkWindowHandle window, GtkApplicationInhibitFlags flags, string reason);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string[] gtk_application_list_action_descriptions(GtkApplicationHandle application);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_application_remove_window(GtkApplicationHandle application, GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_application_set_accels_for_action(GtkApplicationHandle application, string detailed_action_name, string accels);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_application_set_menubar(GtkApplicationHandle application, GMenuModelHandle menubar);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_application_uninhibit(GtkApplicationHandle application, uint cookie);
+
 }

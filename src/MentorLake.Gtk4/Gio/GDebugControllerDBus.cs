@@ -31,7 +31,7 @@ public class GDebugControllerDBusSignal
 
 public static class GDebugControllerDBusSignals
 {
-	public static GDebugControllerDBusSignal Authorize = new("authorize");
+	public static GDebugControllerDBusSignal Authorize = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GDebugControllerDBusHandleExtensions
@@ -42,17 +42,26 @@ public static class GDebugControllerDBusHandleExtensions
 		return self;
 	}
 
-	public static GDebugControllerDBusHandle Connect(this GDebugControllerDBusHandle instance, GDebugControllerDBusSignal signal, GCallback c_handler)
+	public static GDebugControllerDBusHandle Signal_Authorize(this GDebugControllerDBusHandle instance, GDebugControllerDBusDelegates.Authorize handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "authorize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GDebugControllerDBusDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Authorize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDebugControllerDBusHandle>))] GDebugControllerDBusHandle self, GDBusMethodInvocationHandle invocation, IntPtr user_data);
 }
 
 internal class GDebugControllerDBusExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GDebugControllerDBusHandle g_debug_controller_dbus_new(GDBusConnectionHandle connection, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_debug_controller_dbus_stop(GDebugControllerDBusHandle self);
+
 }

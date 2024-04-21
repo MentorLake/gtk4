@@ -97,28 +97,41 @@ internal class GtkCenterLayoutExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCenterLayoutHandle gtk_center_layout_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBaselinePosition gtk_center_layout_get_baseline_position(GtkCenterLayoutHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_center_layout_get_center_widget(GtkCenterLayoutHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_center_layout_get_end_widget(GtkCenterLayoutHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkOrientation gtk_center_layout_get_orientation(GtkCenterLayoutHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_center_layout_get_shrink_center_last(GtkCenterLayoutHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_center_layout_get_start_widget(GtkCenterLayoutHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_center_layout_set_baseline_position(GtkCenterLayoutHandle self, GtkBaselinePosition baseline_position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_center_layout_set_center_widget(GtkCenterLayoutHandle self, GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_center_layout_set_end_widget(GtkCenterLayoutHandle self, GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_center_layout_set_orientation(GtkCenterLayoutHandle self, GtkOrientation orientation);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_center_layout_set_shrink_center_last(GtkCenterLayoutHandle self, bool shrink_center_last);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_center_layout_set_start_widget(GtkCenterLayoutHandle self, GtkWidgetHandle widget);
+
 }

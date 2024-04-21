@@ -50,10 +50,14 @@ internal class GTypePluginExterns
 {
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_type_plugin_complete_interface_info(GTypePluginHandle plugin, GType instance_type, GType interface_type, GInterfaceInfoHandle info);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_type_plugin_complete_type_info(GTypePluginHandle plugin, GType g_type, GTypeInfoHandle info, GTypeValueTableHandle value_table);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_type_plugin_unuse(GTypePluginHandle plugin);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_type_plugin_use(GTypePluginHandle plugin);
+
 }

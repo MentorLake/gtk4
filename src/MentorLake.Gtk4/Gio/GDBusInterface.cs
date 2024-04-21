@@ -47,10 +47,14 @@ internal class GDBusInterfaceExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusObjectHandle g_dbus_interface_dup_object(GDBusInterfaceHandle interface_);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusInterfaceInfoHandle g_dbus_interface_get_info(GDBusInterfaceHandle interface_);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusObjectHandle g_dbus_interface_get_object(GDBusInterfaceHandle interface_);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_interface_set_object(GDBusInterfaceHandle interface_, GDBusObjectHandle @object);
+
 }

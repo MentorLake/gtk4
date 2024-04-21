@@ -61,16 +61,23 @@ internal class GNetworkAddressExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GNetworkAddressHandle g_network_address_new(string hostname, ushort port);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GNetworkAddressHandle g_network_address_new_loopback(ushort port);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_network_address_get_hostname(GNetworkAddressHandle addr);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern ushort g_network_address_get_port(GNetworkAddressHandle addr);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_network_address_get_scheme(GNetworkAddressHandle addr);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectableHandle g_network_address_parse(string host_and_port, ushort default_port, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectableHandle g_network_address_parse_uri(string uri, ushort default_port, out GErrorHandle error);
+
 }

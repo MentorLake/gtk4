@@ -41,7 +41,7 @@ public class GtkTreeViewColumnSignal
 
 public static class GtkTreeViewColumnSignals
 {
-	public static GtkTreeViewColumnSignal Clicked = new("clicked");
+	public static GtkTreeViewColumnSignal Clicked = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkTreeViewColumnHandleExtensions
@@ -324,119 +324,180 @@ public static class GtkTreeViewColumnHandleExtensions
 		return tree_column;
 	}
 
-	public static GtkTreeViewColumnHandle Connect(this GtkTreeViewColumnHandle instance, GtkTreeViewColumnSignal signal, GCallback c_handler)
+	public static GtkTreeViewColumnHandle Signal_Clicked(this GtkTreeViewColumnHandle instance, GtkTreeViewColumnDelegates.Clicked handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "clicked", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkTreeViewColumnDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Clicked([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewColumnHandle>))] GtkTreeViewColumnHandle self, IntPtr user_data);
 }
 
 internal class GtkTreeViewColumnExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeViewColumnHandle gtk_tree_view_column_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeViewColumnHandle gtk_tree_view_column_new_with_area(GtkCellAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeViewColumnHandle gtk_tree_view_column_new_with_attributes(string title, GtkCellRendererHandle cell, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_add_attribute(GtkTreeViewColumnHandle tree_column, GtkCellRendererHandle cell_renderer, string attribute, int column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_column_cell_get_position(GtkTreeViewColumnHandle tree_column, GtkCellRendererHandle cell_renderer, out int x_offset, out int width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_cell_get_size(GtkTreeViewColumnHandle tree_column, out int x_offset, out int y_offset, out int width, out int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_column_cell_is_visible(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_cell_set_cell_data(GtkTreeViewColumnHandle tree_column, GtkTreeModelHandle tree_model, GtkTreeIterHandle iter, bool is_expander, bool is_expanded);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_clear(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_clear_attributes(GtkTreeViewColumnHandle tree_column, GtkCellRendererHandle cell_renderer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_clicked(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_focus_cell(GtkTreeViewColumnHandle tree_column, GtkCellRendererHandle cell);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern float gtk_tree_view_column_get_alignment(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_tree_view_column_get_button(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_column_get_clickable(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_column_get_expand(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_view_column_get_fixed_width(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_view_column_get_max_width(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_view_column_get_min_width(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_column_get_reorderable(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_column_get_resizable(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeViewColumnSizing gtk_tree_view_column_get_sizing(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_view_column_get_sort_column_id(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_column_get_sort_indicator(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSortType gtk_tree_view_column_get_sort_order(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_view_column_get_spacing(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_tree_view_column_get_title(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_tree_view_column_get_tree_view(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_column_get_visible(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_tree_view_column_get_widget(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_view_column_get_width(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_view_column_get_x_offset(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_pack_end(GtkTreeViewColumnHandle tree_column, GtkCellRendererHandle cell, bool expand);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_pack_start(GtkTreeViewColumnHandle tree_column, GtkCellRendererHandle cell, bool expand);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_queue_resize(GtkTreeViewColumnHandle tree_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_alignment(GtkTreeViewColumnHandle tree_column, float xalign);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_attributes(GtkTreeViewColumnHandle tree_column, GtkCellRendererHandle cell_renderer, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_cell_data_func(GtkTreeViewColumnHandle tree_column, GtkCellRendererHandle cell_renderer, GtkTreeCellDataFunc func, IntPtr func_data, GDestroyNotify destroy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_clickable(GtkTreeViewColumnHandle tree_column, bool clickable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_expand(GtkTreeViewColumnHandle tree_column, bool expand);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_fixed_width(GtkTreeViewColumnHandle tree_column, int fixed_width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_max_width(GtkTreeViewColumnHandle tree_column, int max_width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_min_width(GtkTreeViewColumnHandle tree_column, int min_width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_reorderable(GtkTreeViewColumnHandle tree_column, bool reorderable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_resizable(GtkTreeViewColumnHandle tree_column, bool resizable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_sizing(GtkTreeViewColumnHandle tree_column, GtkTreeViewColumnSizing type);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_sort_column_id(GtkTreeViewColumnHandle tree_column, int sort_column_id);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_sort_indicator(GtkTreeViewColumnHandle tree_column, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_sort_order(GtkTreeViewColumnHandle tree_column, GtkSortType order);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_spacing(GtkTreeViewColumnHandle tree_column, int spacing);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_title(GtkTreeViewColumnHandle tree_column, string title);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_visible(GtkTreeViewColumnHandle tree_column, bool visible);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_column_set_widget(GtkTreeViewColumnHandle tree_column, GtkWidgetHandle widget);
+
 }

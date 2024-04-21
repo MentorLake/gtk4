@@ -31,20 +31,28 @@ public class GtkCellRendererComboSignal
 
 public static class GtkCellRendererComboSignals
 {
-	public static GtkCellRendererComboSignal Changed = new("changed");
+	public static GtkCellRendererComboSignal Changed = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkCellRendererComboHandleExtensions
 {
-	public static GtkCellRendererComboHandle Connect(this GtkCellRendererComboHandle instance, GtkCellRendererComboSignal signal, GCallback c_handler)
+	public static GtkCellRendererComboHandle Signal_Changed(this GtkCellRendererComboHandle instance, GtkCellRendererComboDelegates.Changed handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkCellRendererComboDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererComboHandle>))] GtkCellRendererComboHandle self, string path_string, GtkTreeIterHandle new_iter, IntPtr user_data);
 }
 
 internal class GtkCellRendererComboExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellRendererComboHandle gtk_cell_renderer_combo_new();
+
 }

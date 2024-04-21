@@ -36,11 +36,11 @@ public class GdkSurfaceSignal
 
 public static class GdkSurfaceSignals
 {
-	public static GdkSurfaceSignal EnterMonitor = new("enter-monitor");
-	public static GdkSurfaceSignal Event = new("event");
-	public static GdkSurfaceSignal Layout = new("layout");
-	public static GdkSurfaceSignal LeaveMonitor = new("leave-monitor");
-	public static GdkSurfaceSignal Render = new("render");
+	public static GdkSurfaceSignal EnterMonitor = new("BindingTransform.MethodDeclaration");
+	public static GdkSurfaceSignal Event = new("BindingTransform.MethodDeclaration");
+	public static GdkSurfaceSignal Layout = new("BindingTransform.MethodDeclaration");
+	public static GdkSurfaceSignal LeaveMonitor = new("BindingTransform.MethodDeclaration");
+	public static GdkSurfaceSignal Render = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GdkSurfaceHandleExtensions
@@ -179,67 +179,133 @@ public static class GdkSurfaceHandleExtensions
 		return GdkSurfaceExterns.gdk_surface_translate_coordinates(from, to, ref x, ref y);
 	}
 
-	public static GdkSurfaceHandle Connect(this GdkSurfaceHandle instance, GdkSurfaceSignal signal, GCallback c_handler)
+	public static GdkSurfaceHandle Signal_EnterMonitor(this GdkSurfaceHandle instance, GdkSurfaceDelegates.EnterMonitor handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "enter_monitor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GdkSurfaceHandle Signal_Event(this GdkSurfaceHandle instance, GdkSurfaceDelegates.Event handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkSurfaceHandle Signal_Layout(this GdkSurfaceHandle instance, GdkSurfaceDelegates.Layout handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "layout", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkSurfaceHandle Signal_LeaveMonitor(this GdkSurfaceHandle instance, GdkSurfaceDelegates.LeaveMonitor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "leave_monitor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkSurfaceHandle Signal_Render(this GdkSurfaceHandle instance, GdkSurfaceDelegates.Render handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "render", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GdkSurfaceDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void EnterMonitor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSurfaceHandle>))] GdkSurfaceHandle self, GdkMonitorHandle monitor, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Event([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSurfaceHandle>))] GdkSurfaceHandle self, GdkEventHandle @event, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Layout([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSurfaceHandle>))] GdkSurfaceHandle self, int width, int height, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void LeaveMonitor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSurfaceHandle>))] GdkSurfaceHandle self, GdkMonitorHandle monitor, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Render([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSurfaceHandle>))] GdkSurfaceHandle self, cairo_region_tHandle region, IntPtr user_data);
 }
 
 internal class GdkSurfaceExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkSurfaceHandle gdk_surface_new_popup(GdkSurfaceHandle parent, bool autohide);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkSurfaceHandle gdk_surface_new_toplevel(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_surface_beep(GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkCairoContextHandle gdk_surface_create_cairo_context(GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkGLContextHandle gdk_surface_create_gl_context(GdkSurfaceHandle surface, out GErrorHandle error);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern cairo_surface_tHandle gdk_surface_create_similar_surface(GdkSurfaceHandle surface, cairo_content_t content, int width, int height);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkVulkanContextHandle gdk_surface_create_vulkan_context(GdkSurfaceHandle surface, out GErrorHandle error);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_surface_destroy(GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkCursorHandle gdk_surface_get_cursor(GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkCursorHandle gdk_surface_get_device_cursor(GdkSurfaceHandle surface, GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_surface_get_device_position(GdkSurfaceHandle surface, GdkDeviceHandle device, out double x, out double y, out GdkModifierType mask);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDisplayHandle gdk_surface_get_display(GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkFrameClockHandle gdk_surface_get_frame_clock(GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_surface_get_height(GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_surface_get_mapped(GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern double gdk_surface_get_scale(GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_surface_get_scale_factor(GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_surface_get_width(GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_surface_hide(GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_surface_is_destroyed(GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_surface_queue_render(GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_surface_request_layout(GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_surface_set_cursor(GdkSurfaceHandle surface, GdkCursorHandle cursor);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_surface_set_device_cursor(GdkSurfaceHandle surface, GdkDeviceHandle device, GdkCursorHandle cursor);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_surface_set_input_region(GdkSurfaceHandle surface, cairo_region_tHandle region);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_surface_set_opaque_region(GdkSurfaceHandle surface, cairo_region_tHandle region);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_surface_translate_coordinates(GdkSurfaceHandle from, GdkSurfaceHandle to, ref double x, ref double y);
+
 }

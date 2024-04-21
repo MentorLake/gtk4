@@ -37,6 +37,8 @@ internal class GtkOrientableExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkOrientation gtk_orientable_get_orientation(GtkOrientableHandle orientable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_orientable_set_orientation(GtkOrientableHandle orientable, GtkOrientation orientation);
+
 }

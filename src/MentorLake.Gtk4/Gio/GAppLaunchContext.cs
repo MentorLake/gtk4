@@ -31,9 +31,9 @@ public class GAppLaunchContextSignal
 
 public static class GAppLaunchContextSignals
 {
-	public static GAppLaunchContextSignal LaunchFailed = new("launch-failed");
-	public static GAppLaunchContextSignal LaunchStarted = new("launch-started");
-	public static GAppLaunchContextSignal Launched = new("launched");
+	public static GAppLaunchContextSignal LaunchFailed = new("BindingTransform.MethodDeclaration");
+	public static GAppLaunchContextSignal LaunchStarted = new("BindingTransform.MethodDeclaration");
+	public static GAppLaunchContextSignal Launched = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GAppLaunchContextHandleExtensions
@@ -71,27 +71,57 @@ public static class GAppLaunchContextHandleExtensions
 		return context;
 	}
 
-	public static GAppLaunchContextHandle Connect(this GAppLaunchContextHandle instance, GAppLaunchContextSignal signal, GCallback c_handler)
+	public static GAppLaunchContextHandle Signal_LaunchFailed(this GAppLaunchContextHandle instance, GAppLaunchContextDelegates.LaunchFailed handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "launch_failed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GAppLaunchContextHandle Signal_LaunchStarted(this GAppLaunchContextHandle instance, GAppLaunchContextDelegates.LaunchStarted handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "launch_started", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GAppLaunchContextHandle Signal_Launched(this GAppLaunchContextHandle instance, GAppLaunchContextDelegates.Launched handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "launched", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GAppLaunchContextDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void LaunchFailed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GAppLaunchContextHandle>))] GAppLaunchContextHandle self, string startup_notify_id, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void LaunchStarted([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GAppLaunchContextHandle>))] GAppLaunchContextHandle self, GAppInfoHandle info, GVariantHandle platform_data, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Launched([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GAppLaunchContextHandle>))] GAppLaunchContextHandle self, GAppInfoHandle info, GVariantHandle platform_data, IntPtr user_data);
 }
 
 internal class GAppLaunchContextExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GAppLaunchContextHandle g_app_launch_context_new();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_app_launch_context_get_display(GAppLaunchContextHandle context, GAppInfoHandle info, GListHandle files);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_app_launch_context_get_environment(GAppLaunchContextHandle context);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_app_launch_context_get_startup_notify_id(GAppLaunchContextHandle context, GAppInfoHandle info, GListHandle files);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_app_launch_context_launch_failed(GAppLaunchContextHandle context, string startup_notify_id);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_app_launch_context_setenv(GAppLaunchContextHandle context, string variable, string value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_app_launch_context_unsetenv(GAppLaunchContextHandle context, string variable);
+
 }

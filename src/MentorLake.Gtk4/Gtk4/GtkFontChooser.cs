@@ -129,40 +129,59 @@ internal class GtkFontChooserExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_font_chooser_get_font(GtkFontChooserHandle fontchooser);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoFontDescriptionHandle gtk_font_chooser_get_font_desc(GtkFontChooserHandle fontchooser);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoFontFaceHandle gtk_font_chooser_get_font_face(GtkFontChooserHandle fontchooser);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoFontFamilyHandle gtk_font_chooser_get_font_family(GtkFontChooserHandle fontchooser);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_font_chooser_get_font_features(GtkFontChooserHandle fontchooser);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoFontMapHandle gtk_font_chooser_get_font_map(GtkFontChooserHandle fontchooser);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_font_chooser_get_font_size(GtkFontChooserHandle fontchooser);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_font_chooser_get_language(GtkFontChooserHandle fontchooser);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFontChooserLevel gtk_font_chooser_get_level(GtkFontChooserHandle fontchooser);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_font_chooser_get_preview_text(GtkFontChooserHandle fontchooser);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_font_chooser_get_show_preview_entry(GtkFontChooserHandle fontchooser);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_chooser_set_filter_func(GtkFontChooserHandle fontchooser, GtkFontFilterFunc filter, IntPtr user_data, GDestroyNotify destroy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_chooser_set_font(GtkFontChooserHandle fontchooser, string fontname);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_chooser_set_font_desc(GtkFontChooserHandle fontchooser, PangoFontDescriptionHandle font_desc);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_chooser_set_font_map(GtkFontChooserHandle fontchooser, PangoFontMapHandle fontmap);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_chooser_set_language(GtkFontChooserHandle fontchooser, string language);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_chooser_set_level(GtkFontChooserHandle fontchooser, GtkFontChooserLevel level);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_chooser_set_preview_text(GtkFontChooserHandle fontchooser, string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_chooser_set_show_preview_entry(GtkFontChooserHandle fontchooser, bool show_preview_entry);
+
 }

@@ -31,17 +31,17 @@ public class GtkPrintOperationSignal
 
 public static class GtkPrintOperationSignals
 {
-	public static GtkPrintOperationSignal BeginPrint = new("begin-print");
-	public static GtkPrintOperationSignal CreateCustomWidget = new("create-custom-widget");
-	public static GtkPrintOperationSignal CustomWidgetApply = new("custom-widget-apply");
-	public static GtkPrintOperationSignal Done = new("done");
-	public static GtkPrintOperationSignal DrawPage = new("draw-page");
-	public static GtkPrintOperationSignal EndPrint = new("end-print");
-	public static GtkPrintOperationSignal Paginate = new("paginate");
-	public static GtkPrintOperationSignal Preview = new("preview");
-	public static GtkPrintOperationSignal RequestPageSetup = new("request-page-setup");
-	public static GtkPrintOperationSignal StatusChanged = new("status-changed");
-	public static GtkPrintOperationSignal UpdateCustomWidget = new("update-custom-widget");
+	public static GtkPrintOperationSignal BeginPrint = new("BindingTransform.MethodDeclaration");
+	public static GtkPrintOperationSignal CreateCustomWidget = new("BindingTransform.MethodDeclaration");
+	public static GtkPrintOperationSignal CustomWidgetApply = new("BindingTransform.MethodDeclaration");
+	public static GtkPrintOperationSignal Done = new("BindingTransform.MethodDeclaration");
+	public static GtkPrintOperationSignal DrawPage = new("BindingTransform.MethodDeclaration");
+	public static GtkPrintOperationSignal EndPrint = new("BindingTransform.MethodDeclaration");
+	public static GtkPrintOperationSignal Paginate = new("BindingTransform.MethodDeclaration");
+	public static GtkPrintOperationSignal Preview = new("BindingTransform.MethodDeclaration");
+	public static GtkPrintOperationSignal RequestPageSetup = new("BindingTransform.MethodDeclaration");
+	public static GtkPrintOperationSignal StatusChanged = new("BindingTransform.MethodDeclaration");
+	public static GtkPrintOperationSignal UpdateCustomWidget = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkPrintOperationHandleExtensions
@@ -210,73 +210,191 @@ public static class GtkPrintOperationHandleExtensions
 		return op;
 	}
 
-	public static GtkPrintOperationHandle Connect(this GtkPrintOperationHandle instance, GtkPrintOperationSignal signal, GCallback c_handler)
+	public static GtkPrintOperationHandle Signal_BeginPrint(this GtkPrintOperationHandle instance, GtkPrintOperationDelegates.BeginPrint handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "begin_print", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkPrintOperationHandle Signal_CreateCustomWidget(this GtkPrintOperationHandle instance, GtkPrintOperationDelegates.CreateCustomWidget handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "create_custom_widget", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkPrintOperationHandle Signal_CustomWidgetApply(this GtkPrintOperationHandle instance, GtkPrintOperationDelegates.CustomWidgetApply handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "custom_widget_apply", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkPrintOperationHandle Signal_Done(this GtkPrintOperationHandle instance, GtkPrintOperationDelegates.Done handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "done", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkPrintOperationHandle Signal_DrawPage(this GtkPrintOperationHandle instance, GtkPrintOperationDelegates.DrawPage handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "draw_page", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkPrintOperationHandle Signal_EndPrint(this GtkPrintOperationHandle instance, GtkPrintOperationDelegates.EndPrint handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "end_print", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkPrintOperationHandle Signal_Paginate(this GtkPrintOperationHandle instance, GtkPrintOperationDelegates.Paginate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "paginate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkPrintOperationHandle Signal_Preview(this GtkPrintOperationHandle instance, GtkPrintOperationDelegates.Preview handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "preview", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkPrintOperationHandle Signal_RequestPageSetup(this GtkPrintOperationHandle instance, GtkPrintOperationDelegates.RequestPageSetup handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "request_page_setup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkPrintOperationHandle Signal_StatusChanged(this GtkPrintOperationHandle instance, GtkPrintOperationDelegates.StatusChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "status_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkPrintOperationHandle Signal_UpdateCustomWidget(this GtkPrintOperationHandle instance, GtkPrintOperationDelegates.UpdateCustomWidget handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "update_custom_widget", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkPrintOperationDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void BeginPrint([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkPrintContextHandle context, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate GObjectHandle CreateCustomWidget([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void CustomWidgetApply([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkWidgetHandle widget, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Done([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkPrintOperationResult result, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DrawPage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkPrintContextHandle context, int page_nr, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void EndPrint([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkPrintContextHandle context, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Paginate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkPrintContextHandle context, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Preview([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkPrintOperationPreviewHandle preview, GtkPrintContextHandle context, GtkWindowHandle parent, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void RequestPageSetup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkPrintContextHandle context, int page_nr, GtkPageSetupHandle setup, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void StatusChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void UpdateCustomWidget([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkWidgetHandle widget, GtkPageSetupHandle setup, GtkPrintSettingsHandle settings, IntPtr user_data);
 }
 
 internal class GtkPrintOperationExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintOperationHandle gtk_print_operation_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_cancel(GtkPrintOperationHandle op);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_draw_page_finish(GtkPrintOperationHandle op);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageSetupHandle gtk_print_operation_get_default_page_setup(GtkPrintOperationHandle op);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_operation_get_embed_page_setup(GtkPrintOperationHandle op);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_get_error(GtkPrintOperationHandle op, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_operation_get_has_selection(GtkPrintOperationHandle op);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_print_operation_get_n_pages_to_print(GtkPrintOperationHandle op);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintSettingsHandle gtk_print_operation_get_print_settings(GtkPrintOperationHandle op);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintStatus gtk_print_operation_get_status(GtkPrintOperationHandle op);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_print_operation_get_status_string(GtkPrintOperationHandle op);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_operation_get_support_selection(GtkPrintOperationHandle op);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_operation_is_finished(GtkPrintOperationHandle op);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintOperationResult gtk_print_operation_run(GtkPrintOperationHandle op, GtkPrintOperationAction action, GtkWindowHandle parent, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_allow_async(GtkPrintOperationHandle op, bool allow_async);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_current_page(GtkPrintOperationHandle op, int current_page);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_custom_tab_label(GtkPrintOperationHandle op, string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_default_page_setup(GtkPrintOperationHandle op, GtkPageSetupHandle default_page_setup);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_defer_drawing(GtkPrintOperationHandle op);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_embed_page_setup(GtkPrintOperationHandle op, bool embed);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_export_filename(GtkPrintOperationHandle op, string filename);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_has_selection(GtkPrintOperationHandle op, bool has_selection);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_job_name(GtkPrintOperationHandle op, string job_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_n_pages(GtkPrintOperationHandle op, int n_pages);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_print_settings(GtkPrintOperationHandle op, GtkPrintSettingsHandle print_settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_show_progress(GtkPrintOperationHandle op, bool show_progress);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_support_selection(GtkPrintOperationHandle op, bool support_selection);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_track_print_status(GtkPrintOperationHandle op, bool track_status);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_unit(GtkPrintOperationHandle op, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_set_use_full_page(GtkPrintOperationHandle op, bool full_page);
+
 }

@@ -27,6 +27,7 @@ internal class GDirExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GDirHandle g_dir_open(string path, uint flags, out GErrorHandle error);
+
 }
 
 public struct GDir

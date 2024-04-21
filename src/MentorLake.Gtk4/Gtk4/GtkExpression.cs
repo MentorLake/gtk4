@@ -62,16 +62,23 @@ internal class GtkExpressionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkExpressionWatchHandle gtk_expression_bind(GtkExpressionHandle self, GObjectHandle target, string property, GObjectHandle this_);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_expression_evaluate(GtkExpressionHandle self, GObjectHandle this_, GValueHandle value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GType gtk_expression_get_value_type(GtkExpressionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_expression_is_static(GtkExpressionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkExpressionHandle gtk_expression_ref(GtkExpressionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_expression_unref(GtkExpressionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkExpressionWatchHandle gtk_expression_watch(GtkExpressionHandle self, GObjectHandle this_, GtkExpressionNotify notify, IntPtr user_data, GDestroyNotify user_destroy);
+
 }

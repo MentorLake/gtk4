@@ -43,8 +43,11 @@ internal class GdkPadEventExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_pad_event_get_axis_value(GdkEventHandle @event, out uint index, out double value);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern uint gdk_pad_event_get_button(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_pad_event_get_group_mode(GdkEventHandle @event, out uint group, out uint mode);
+
 }

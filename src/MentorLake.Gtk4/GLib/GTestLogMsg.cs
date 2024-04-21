@@ -28,5 +28,5 @@ public struct GTestLogMsg
 	public uint n_strings;
 	public string[] strings;
 	public uint n_nums;
-	public decimal nums;
+	public decimal[] nums;
 }

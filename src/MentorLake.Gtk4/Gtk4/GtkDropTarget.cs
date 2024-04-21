@@ -31,11 +31,11 @@ public class GtkDropTargetSignal
 
 public static class GtkDropTargetSignals
 {
-	public static GtkDropTargetSignal Accept = new("accept");
-	public static GtkDropTargetSignal Drop = new("drop");
-	public static GtkDropTargetSignal Enter = new("enter");
-	public static GtkDropTargetSignal Leave = new("leave");
-	public static GtkDropTargetSignal Motion = new("motion");
+	public static GtkDropTargetSignal Accept = new("BindingTransform.MethodDeclaration");
+	public static GtkDropTargetSignal Drop = new("BindingTransform.MethodDeclaration");
+	public static GtkDropTargetSignal Enter = new("BindingTransform.MethodDeclaration");
+	public static GtkDropTargetSignal Leave = new("BindingTransform.MethodDeclaration");
+	public static GtkDropTargetSignal Motion = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkDropTargetHandleExtensions
@@ -99,37 +99,88 @@ public static class GtkDropTargetHandleExtensions
 		return self;
 	}
 
-	public static GtkDropTargetHandle Connect(this GtkDropTargetHandle instance, GtkDropTargetSignal signal, GCallback c_handler)
+	public static GtkDropTargetHandle Signal_Accept(this GtkDropTargetHandle instance, GtkDropTargetDelegates.Accept handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "accept", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkDropTargetHandle Signal_Drop(this GtkDropTargetHandle instance, GtkDropTargetDelegates.Drop handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "drop", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkDropTargetHandle Signal_Enter(this GtkDropTargetHandle instance, GtkDropTargetDelegates.Enter handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "enter", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkDropTargetHandle Signal_Leave(this GtkDropTargetHandle instance, GtkDropTargetDelegates.Leave handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "leave", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkDropTargetHandle Signal_Motion(this GtkDropTargetHandle instance, GtkDropTargetDelegates.Motion handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "motion", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkDropTargetDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Accept([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropTargetHandle>))] GtkDropTargetHandle self, GdkDropHandle drop, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Drop([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropTargetHandle>))] GtkDropTargetHandle self, GValueHandle value, double x, double y, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate GdkDragAction Enter([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropTargetHandle>))] GtkDropTargetHandle self, double x, double y, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Leave([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropTargetHandle>))] GtkDropTargetHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate GdkDragAction Motion([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropTargetHandle>))] GtkDropTargetHandle self, double x, double y, IntPtr user_data);
 }
 
 internal class GtkDropTargetExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkDropTargetHandle gtk_drop_target_new(GType type, GdkDragAction actions);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDragAction gtk_drop_target_get_actions(GtkDropTargetHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDropHandle gtk_drop_target_get_current_drop(GtkDropTargetHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDropHandle gtk_drop_target_get_drop(GtkDropTargetHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkContentFormatsHandle gtk_drop_target_get_formats(GtkDropTargetHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GType[] gtk_drop_target_get_gtypes(GtkDropTargetHandle self, out int n_types);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_drop_target_get_preload(GtkDropTargetHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GValueHandle gtk_drop_target_get_value(GtkDropTargetHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drop_target_reject(GtkDropTargetHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drop_target_set_actions(GtkDropTargetHandle self, GdkDragAction actions);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drop_target_set_gtypes(GtkDropTargetHandle self, GType[] types, int n_types);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drop_target_set_preload(GtkDropTargetHandle self, bool preload);
+
 }

@@ -133,40 +133,59 @@ internal class GtkAccessibleExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_accessible_announce(GtkAccessibleHandle self, string message, GtkAccessibleAnnouncementPriority priority);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAccessibleHandle gtk_accessible_get_accessible_parent(GtkAccessibleHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAccessibleRole gtk_accessible_get_accessible_role(GtkAccessibleHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkATContextHandle gtk_accessible_get_at_context(GtkAccessibleHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_accessible_get_bounds(GtkAccessibleHandle self, out int x, out int y, out int width, out int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAccessibleHandle gtk_accessible_get_first_accessible_child(GtkAccessibleHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAccessibleHandle gtk_accessible_get_next_accessible_sibling(GtkAccessibleHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_accessible_get_platform_state(GtkAccessibleHandle self, GtkAccessiblePlatformState state);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_accessible_reset_property(GtkAccessibleHandle self, GtkAccessibleProperty property);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_accessible_reset_relation(GtkAccessibleHandle self, GtkAccessibleRelation relation);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_accessible_reset_state(GtkAccessibleHandle self, GtkAccessibleState state);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_accessible_set_accessible_parent(GtkAccessibleHandle self, GtkAccessibleHandle parent, GtkAccessibleHandle next_sibling);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_accessible_update_next_accessible_sibling(GtkAccessibleHandle self, GtkAccessibleHandle new_sibling);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_accessible_update_property(GtkAccessibleHandle self, GtkAccessibleProperty first_property, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_accessible_update_property_value(GtkAccessibleHandle self, int n_properties, GtkAccessibleProperty[] properties, GValue[] values);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_accessible_update_relation(GtkAccessibleHandle self, GtkAccessibleRelation first_relation, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_accessible_update_relation_value(GtkAccessibleHandle self, int n_relations, GtkAccessibleRelation[] relations, GValue[] values);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_accessible_update_state(GtkAccessibleHandle self, GtkAccessibleState first_state, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_accessible_update_state_value(GtkAccessibleHandle self, int n_states, GtkAccessibleState[] states, GValue[] values);
+
 }

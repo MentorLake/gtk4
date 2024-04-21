@@ -41,8 +41,11 @@ internal class GdkCrossingEventExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkNotifyType gdk_crossing_event_get_detail(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_crossing_event_get_focus(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkCrossingMode gdk_crossing_event_get_mode(GdkEventHandle @event);
+
 }

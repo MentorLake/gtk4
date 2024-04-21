@@ -36,7 +36,7 @@ public class GtkExpanderSignal
 
 public static class GtkExpanderSignals
 {
-	public static GtkExpanderSignal Activate = new("activate");
+	public static GtkExpanderSignal Activate = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkExpanderHandleExtensions
@@ -118,45 +118,69 @@ public static class GtkExpanderHandleExtensions
 		return expander;
 	}
 
-	public static GtkExpanderHandle Connect(this GtkExpanderHandle instance, GtkExpanderSignal signal, GCallback c_handler)
+	public static GtkExpanderHandle Signal_Activate(this GtkExpanderHandle instance, GtkExpanderDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkExpanderDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkExpanderHandle>))] GtkExpanderHandle self, IntPtr user_data);
 }
 
 internal class GtkExpanderExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkExpanderHandle gtk_expander_new(string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkExpanderHandle gtk_expander_new_with_mnemonic(string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_expander_get_child(GtkExpanderHandle expander);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_expander_get_expanded(GtkExpanderHandle expander);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_expander_get_label(GtkExpanderHandle expander);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_expander_get_label_widget(GtkExpanderHandle expander);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_expander_get_resize_toplevel(GtkExpanderHandle expander);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_expander_get_use_markup(GtkExpanderHandle expander);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_expander_get_use_underline(GtkExpanderHandle expander);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_expander_set_child(GtkExpanderHandle expander, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_expander_set_expanded(GtkExpanderHandle expander, bool expanded);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_expander_set_label(GtkExpanderHandle expander, string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_expander_set_label_widget(GtkExpanderHandle expander, GtkWidgetHandle label_widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_expander_set_resize_toplevel(GtkExpanderHandle expander, bool resize_toplevel);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_expander_set_use_markup(GtkExpanderHandle expander, bool use_markup);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_expander_set_use_underline(GtkExpanderHandle expander, bool use_underline);
+
 }

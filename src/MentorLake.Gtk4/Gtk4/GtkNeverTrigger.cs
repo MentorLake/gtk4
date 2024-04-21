@@ -31,4 +31,5 @@ internal class GtkNeverTriggerExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkShortcutTriggerHandle gtk_never_trigger_get();
+
 }

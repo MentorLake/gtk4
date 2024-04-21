@@ -42,8 +42,11 @@ internal class PangoFontsetSimpleExterns
 {
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontsetSimpleHandle pango_fontset_simple_new(PangoLanguageHandle language);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_fontset_simple_append(PangoFontsetSimpleHandle fontset, PangoFontHandle font);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern int pango_fontset_simple_size(PangoFontsetSimpleHandle fontset);
+
 }

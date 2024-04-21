@@ -31,9 +31,9 @@ public class GdkDragSignal
 
 public static class GdkDragSignals
 {
-	public static GdkDragSignal Cancel = new("cancel");
-	public static GdkDragSignal DndFinished = new("dnd-finished");
-	public static GdkDragSignal DropPerformed = new("drop-performed");
+	public static GdkDragSignal Cancel = new("BindingTransform.MethodDeclaration");
+	public static GdkDragSignal DndFinished = new("BindingTransform.MethodDeclaration");
+	public static GdkDragSignal DropPerformed = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GdkDragHandleExtensions
@@ -90,35 +90,69 @@ public static class GdkDragHandleExtensions
 		return drag;
 	}
 
-	public static GdkDragHandle Connect(this GdkDragHandle instance, GdkDragSignal signal, GCallback c_handler)
+	public static GdkDragHandle Signal_Cancel(this GdkDragHandle instance, GdkDragDelegates.Cancel handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GdkDragHandle Signal_DndFinished(this GdkDragHandle instance, GdkDragDelegates.DndFinished handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "dnd_finished", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkDragHandle Signal_DropPerformed(this GdkDragHandle instance, GdkDragDelegates.DropPerformed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "drop_performed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GdkDragDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Cancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle self, ref GdkDragCancelReason reason, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DndFinished([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DropPerformed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle self, IntPtr user_data);
 }
 
 internal class GdkDragExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_drag_drop_done(GdkDragHandle drag, bool success);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDragAction gdk_drag_get_actions(GdkDragHandle drag);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkContentProviderHandle gdk_drag_get_content(GdkDragHandle drag);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDeviceHandle gdk_drag_get_device(GdkDragHandle drag);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDisplayHandle gdk_drag_get_display(GdkDragHandle drag);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkSurfaceHandle gdk_drag_get_drag_surface(GdkDragHandle drag);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkContentFormatsHandle gdk_drag_get_formats(GdkDragHandle drag);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDragAction gdk_drag_get_selected_action(GdkDragHandle drag);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkSurfaceHandle gdk_drag_get_surface(GdkDragHandle drag);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_drag_set_hotspot(GdkDragHandle drag, int hot_x, int hot_y);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDragHandle gdk_drag_begin(GdkSurfaceHandle surface, GdkDeviceHandle device, GdkContentProviderHandle content, GdkDragAction actions, double dx, double dy);
+
 }

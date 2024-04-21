@@ -95,28 +95,41 @@ internal class GtkCellViewExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellViewHandle gtk_cell_view_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellViewHandle gtk_cell_view_new_with_context(GtkCellAreaHandle area, GtkCellAreaContextHandle context);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellViewHandle gtk_cell_view_new_with_markup(string markup);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellViewHandle gtk_cell_view_new_with_text(string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellViewHandle gtk_cell_view_new_with_texture(GdkTextureHandle texture);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreePathHandle gtk_cell_view_get_displayed_row(GtkCellViewHandle cell_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_cell_view_get_draw_sensitive(GtkCellViewHandle cell_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_cell_view_get_fit_model(GtkCellViewHandle cell_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeModelHandle gtk_cell_view_get_model(GtkCellViewHandle cell_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_view_set_displayed_row(GtkCellViewHandle cell_view, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_view_set_draw_sensitive(GtkCellViewHandle cell_view, bool draw_sensitive);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_view_set_fit_model(GtkCellViewHandle cell_view, bool fit_model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_view_set_model(GtkCellViewHandle cell_view, GtkTreeModelHandle model);
+
 }

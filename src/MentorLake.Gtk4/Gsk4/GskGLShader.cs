@@ -134,44 +134,67 @@ internal class GskGLShaderExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskGLShaderHandle gsk_gl_shader_new_from_bytes(GBytesHandle sourcecode);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskGLShaderHandle gsk_gl_shader_new_from_resource(string resource_path);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern bool gsk_gl_shader_compile(GskGLShaderHandle shader, GskRendererHandle renderer, out GErrorHandle error);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern int gsk_gl_shader_find_uniform_by_name(GskGLShaderHandle shader, string name);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GBytesHandle gsk_gl_shader_format_args(GskGLShaderHandle shader, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GBytesHandle gsk_gl_shader_format_args_va(GskGLShaderHandle shader, IntPtr uniforms);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern bool gsk_gl_shader_get_arg_bool(GskGLShaderHandle shader, GBytesHandle args, int idx);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_gl_shader_get_arg_float(GskGLShaderHandle shader, GBytesHandle args, int idx);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern int gsk_gl_shader_get_arg_int(GskGLShaderHandle shader, GBytesHandle args, int idx);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern uint gsk_gl_shader_get_arg_uint(GskGLShaderHandle shader, GBytesHandle args, int idx);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern void gsk_gl_shader_get_arg_vec2(GskGLShaderHandle shader, GBytesHandle args, int idx, graphene_vec2_tHandle out_value);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern void gsk_gl_shader_get_arg_vec3(GskGLShaderHandle shader, GBytesHandle args, int idx, graphene_vec3_tHandle out_value);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern void gsk_gl_shader_get_arg_vec4(GskGLShaderHandle shader, GBytesHandle args, int idx, graphene_vec4_tHandle out_value);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern int gsk_gl_shader_get_args_size(GskGLShaderHandle shader);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern int gsk_gl_shader_get_n_textures(GskGLShaderHandle shader);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern int gsk_gl_shader_get_n_uniforms(GskGLShaderHandle shader);
+
 	[DllImport(Libraries.Gsk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gsk_gl_shader_get_resource(GskGLShaderHandle shader);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GBytesHandle gsk_gl_shader_get_source(GskGLShaderHandle shader);
+
 	[DllImport(Libraries.Gsk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gsk_gl_shader_get_uniform_name(GskGLShaderHandle shader, int idx);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern int gsk_gl_shader_get_uniform_offset(GskGLShaderHandle shader, int idx);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskGLUniformType gsk_gl_shader_get_uniform_type(GskGLShaderHandle shader, int idx);
+
 }

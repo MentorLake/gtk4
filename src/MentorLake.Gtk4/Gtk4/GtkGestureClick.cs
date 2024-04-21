@@ -31,23 +31,55 @@ public class GtkGestureClickSignal
 
 public static class GtkGestureClickSignals
 {
-	public static GtkGestureClickSignal Pressed = new("pressed");
-	public static GtkGestureClickSignal Released = new("released");
-	public static GtkGestureClickSignal Stopped = new("stopped");
-	public static GtkGestureClickSignal UnpairedRelease = new("unpaired-release");
+	public static GtkGestureClickSignal Pressed = new("BindingTransform.MethodDeclaration");
+	public static GtkGestureClickSignal Released = new("BindingTransform.MethodDeclaration");
+	public static GtkGestureClickSignal Stopped = new("BindingTransform.MethodDeclaration");
+	public static GtkGestureClickSignal UnpairedRelease = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkGestureClickHandleExtensions
 {
-	public static GtkGestureClickHandle Connect(this GtkGestureClickHandle instance, GtkGestureClickSignal signal, GCallback c_handler)
+	public static GtkGestureClickHandle Signal_Pressed(this GtkGestureClickHandle instance, GtkGestureClickDelegates.Pressed handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "pressed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkGestureClickHandle Signal_Released(this GtkGestureClickHandle instance, GtkGestureClickDelegates.Released handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "released", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkGestureClickHandle Signal_Stopped(this GtkGestureClickHandle instance, GtkGestureClickDelegates.Stopped handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "stopped", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkGestureClickHandle Signal_UnpairedRelease(this GtkGestureClickHandle instance, GtkGestureClickDelegates.UnpairedRelease handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "unpaired_release", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkGestureClickDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Pressed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureClickHandle>))] GtkGestureClickHandle self, int n_press, double x, double y, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Released([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureClickHandle>))] GtkGestureClickHandle self, int n_press, double x, double y, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Stopped([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureClickHandle>))] GtkGestureClickHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void UnpairedRelease([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureClickHandle>))] GtkGestureClickHandle self, double x, double y, uint button, GdkEventSequenceHandle sequence, IntPtr user_data);
 }
 
 internal class GtkGestureClickExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkGestureClickHandle gtk_gesture_click_new();
+
 }

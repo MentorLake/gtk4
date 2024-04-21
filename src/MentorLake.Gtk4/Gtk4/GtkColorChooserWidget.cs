@@ -31,4 +31,5 @@ internal class GtkColorChooserWidgetExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkColorChooserWidgetHandle gtk_color_chooser_widget_new();
+
 }

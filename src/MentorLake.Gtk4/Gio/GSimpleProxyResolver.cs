@@ -49,10 +49,14 @@ internal class GSimpleProxyResolverExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_proxy_resolver_set_default_proxy(GSimpleProxyResolverHandle resolver, string default_proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_proxy_resolver_set_ignore_hosts(GSimpleProxyResolverHandle resolver, string[] ignore_hosts);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_proxy_resolver_set_uri_proxy(GSimpleProxyResolverHandle resolver, string uri_scheme, string proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GProxyResolverHandle g_simple_proxy_resolver_new(string default_proxy, string[] ignore_hosts);
+
 }

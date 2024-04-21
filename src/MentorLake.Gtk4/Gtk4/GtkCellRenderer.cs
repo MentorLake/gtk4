@@ -26,8 +26,8 @@ public class GtkCellRendererSignal
 
 public static class GtkCellRendererSignals
 {
-	public static GtkCellRendererSignal EditingCanceled = new("editing-canceled");
-	public static GtkCellRendererSignal EditingStarted = new("editing-started");
+	public static GtkCellRendererSignal EditingCanceled = new("BindingTransform.MethodDeclaration");
+	public static GtkCellRendererSignal EditingStarted = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkCellRendererHandleExtensions
@@ -185,67 +185,109 @@ public static class GtkCellRendererHandleExtensions
 		return cell;
 	}
 
-	public static GtkCellRendererHandle Connect(this GtkCellRendererHandle instance, GtkCellRendererSignal signal, GCallback c_handler)
+	public static GtkCellRendererHandle Signal_EditingCanceled(this GtkCellRendererHandle instance, GtkCellRendererDelegates.EditingCanceled handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "editing_canceled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkCellRendererHandle Signal_EditingStarted(this GtkCellRendererHandle instance, GtkCellRendererDelegates.EditingStarted handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "editing_started", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkCellRendererDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void EditingCanceled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererHandle>))] GtkCellRendererHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void EditingStarted([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererHandle>))] GtkCellRendererHandle self, GtkCellEditableHandle editable, string path, IntPtr user_data);
 }
 
 internal class GtkCellRendererExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_cell_renderer_activate(GtkCellRendererHandle cell, GdkEventHandle @event, GtkWidgetHandle widget, string path, GdkRectangleHandle background_area, GdkRectangleHandle cell_area, GtkCellRendererState flags);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_get_aligned_area(GtkCellRendererHandle cell, GtkWidgetHandle widget, GtkCellRendererState flags, GdkRectangleHandle cell_area, out GdkRectangle aligned_area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_get_alignment(GtkCellRendererHandle cell, out float xalign, out float yalign);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_get_fixed_size(GtkCellRendererHandle cell, out int width, out int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_cell_renderer_get_is_expanded(GtkCellRendererHandle cell);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_cell_renderer_get_is_expander(GtkCellRendererHandle cell);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_get_padding(GtkCellRendererHandle cell, out int xpad, out int ypad);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_get_preferred_height(GtkCellRendererHandle cell, GtkWidgetHandle widget, out int minimum_size, out int natural_size);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_get_preferred_height_for_width(GtkCellRendererHandle cell, GtkWidgetHandle widget, int width, out int minimum_height, out int natural_height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_get_preferred_size(GtkCellRendererHandle cell, GtkWidgetHandle widget, out GtkRequisition minimum_size, out GtkRequisition natural_size);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_get_preferred_width(GtkCellRendererHandle cell, GtkWidgetHandle widget, out int minimum_size, out int natural_size);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_get_preferred_width_for_height(GtkCellRendererHandle cell, GtkWidgetHandle widget, int height, out int minimum_width, out int natural_width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSizeRequestMode gtk_cell_renderer_get_request_mode(GtkCellRendererHandle cell);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_cell_renderer_get_sensitive(GtkCellRendererHandle cell);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStateFlags gtk_cell_renderer_get_state(GtkCellRendererHandle cell, GtkWidgetHandle widget, GtkCellRendererState cell_state);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_cell_renderer_get_visible(GtkCellRendererHandle cell);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_cell_renderer_is_activatable(GtkCellRendererHandle cell);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_set_alignment(GtkCellRendererHandle cell, float xalign, float yalign);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_set_fixed_size(GtkCellRendererHandle cell, int width, int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_set_is_expanded(GtkCellRendererHandle cell, bool is_expanded);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_set_is_expander(GtkCellRendererHandle cell, bool is_expander);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_set_padding(GtkCellRendererHandle cell, int xpad, int ypad);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_set_sensitive(GtkCellRendererHandle cell, bool sensitive);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_set_visible(GtkCellRendererHandle cell, bool visible);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_snapshot(GtkCellRendererHandle cell, GtkSnapshotHandle snapshot, GtkWidgetHandle widget, GdkRectangleHandle background_area, GdkRectangleHandle cell_area, GtkCellRendererState flags);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellEditableHandle gtk_cell_renderer_start_editing(GtkCellRendererHandle cell, GdkEventHandle @event, GtkWidgetHandle widget, string path, GdkRectangleHandle background_area, GdkRectangleHandle cell_area, GtkCellRendererState flags);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_stop_editing(GtkCellRendererHandle cell, bool canceled);
+
 }

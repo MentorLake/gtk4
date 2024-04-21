@@ -27,6 +27,7 @@ internal class GdkToplevelLayoutExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkToplevelLayoutHandle gdk_toplevel_layout_new();
+
 }
 
 public struct GdkToplevelLayout

@@ -31,7 +31,7 @@ public class GtkATContextSignal
 
 public static class GtkATContextSignals
 {
-	public static GtkATContextSignal StateChange = new("state-change");
+	public static GtkATContextSignal StateChange = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkATContextHandleExtensions
@@ -46,19 +46,29 @@ public static class GtkATContextHandleExtensions
 		return GtkATContextExterns.gtk_at_context_get_accessible_role(self);
 	}
 
-	public static GtkATContextHandle Connect(this GtkATContextHandle instance, GtkATContextSignal signal, GCallback c_handler)
+	public static GtkATContextHandle Signal_StateChange(this GtkATContextHandle instance, GtkATContextDelegates.StateChange handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "state_change", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkATContextDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void StateChange([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkATContextHandle>))] GtkATContextHandle self, IntPtr user_data);
 }
 
 internal class GtkATContextExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkATContextHandle gtk_at_context_create(GtkAccessibleRole accessible_role, GtkAccessibleHandle accessible, GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAccessibleHandle gtk_at_context_get_accessible(GtkATContextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAccessibleRole gtk_at_context_get_accessible_role(GtkATContextHandle self);
+
 }

@@ -31,4 +31,5 @@ internal class GtkNothingActionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkShortcutActionHandle gtk_nothing_action_get();
+
 }

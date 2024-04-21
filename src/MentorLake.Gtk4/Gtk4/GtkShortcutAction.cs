@@ -47,10 +47,14 @@ internal class GtkShortcutActionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkShortcutActionHandle gtk_shortcut_action_parse_string(string @string);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_shortcut_action_activate(GtkShortcutActionHandle self, GtkShortcutActionFlags flags, GtkWidgetHandle widget, GVariantHandle args);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_shortcut_action_print(GtkShortcutActionHandle self, GStringHandle @string);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_shortcut_action_to_string(GtkShortcutActionHandle self);
+
 }

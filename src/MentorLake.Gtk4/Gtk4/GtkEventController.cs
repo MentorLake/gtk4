@@ -96,28 +96,42 @@ internal class GtkEventControllerExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkEventHandle gtk_event_controller_get_current_event(GtkEventControllerHandle controller);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDeviceHandle gtk_event_controller_get_current_event_device(GtkEventControllerHandle controller);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkModifierType gtk_event_controller_get_current_event_state(GtkEventControllerHandle controller);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_event_controller_get_current_event_time(GtkEventControllerHandle controller);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_event_controller_get_name(GtkEventControllerHandle controller);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPropagationLimit gtk_event_controller_get_propagation_limit(GtkEventControllerHandle controller);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPropagationPhase gtk_event_controller_get_propagation_phase(GtkEventControllerHandle controller);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_event_controller_get_widget(GtkEventControllerHandle controller);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_event_controller_reset(GtkEventControllerHandle controller);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_event_controller_set_name(GtkEventControllerHandle controller, string name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_event_controller_set_propagation_limit(GtkEventControllerHandle controller, GtkPropagationLimit limit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_event_controller_set_propagation_phase(GtkEventControllerHandle controller, GtkPropagationPhase phase);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_event_controller_set_static_name(GtkEventControllerHandle controller, string name);
+
 }

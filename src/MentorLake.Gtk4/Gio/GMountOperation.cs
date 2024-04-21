@@ -31,12 +31,12 @@ public class GMountOperationSignal
 
 public static class GMountOperationSignals
 {
-	public static GMountOperationSignal Aborted = new("aborted");
-	public static GMountOperationSignal AskPassword = new("ask-password");
-	public static GMountOperationSignal AskQuestion = new("ask-question");
-	public static GMountOperationSignal Reply = new("reply");
-	public static GMountOperationSignal ShowProcesses = new("show-processes");
-	public static GMountOperationSignal ShowUnmountProgress = new("show-unmount-progress");
+	public static GMountOperationSignal Aborted = new("BindingTransform.MethodDeclaration");
+	public static GMountOperationSignal AskPassword = new("BindingTransform.MethodDeclaration");
+	public static GMountOperationSignal AskQuestion = new("BindingTransform.MethodDeclaration");
+	public static GMountOperationSignal Reply = new("BindingTransform.MethodDeclaration");
+	public static GMountOperationSignal ShowProcesses = new("BindingTransform.MethodDeclaration");
+	public static GMountOperationSignal ShowUnmountProgress = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GMountOperationHandleExtensions
@@ -146,53 +146,120 @@ public static class GMountOperationHandleExtensions
 		return op;
 	}
 
-	public static GMountOperationHandle Connect(this GMountOperationHandle instance, GMountOperationSignal signal, GCallback c_handler)
+	public static GMountOperationHandle Signal_Aborted(this GMountOperationHandle instance, GMountOperationDelegates.Aborted handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "aborted", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GMountOperationHandle Signal_AskPassword(this GMountOperationHandle instance, GMountOperationDelegates.AskPassword handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "ask_password", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GMountOperationHandle Signal_AskQuestion(this GMountOperationHandle instance, GMountOperationDelegates.AskQuestion handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "ask_question", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GMountOperationHandle Signal_Reply(this GMountOperationHandle instance, GMountOperationDelegates.Reply handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "reply", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GMountOperationHandle Signal_ShowProcesses(this GMountOperationHandle instance, GMountOperationDelegates.ShowProcesses handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "show_processes", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GMountOperationHandle Signal_ShowUnmountProgress(this GMountOperationHandle instance, GMountOperationDelegates.ShowUnmountProgress handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "show_unmount_progress", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GMountOperationDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Aborted([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void AskPassword([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, string message, string default_user, string default_domain, GAskPasswordFlags flags, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void AskQuestion([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, string message, string[] choices, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Reply([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, GMountOperationResult result, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ShowProcesses([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, string message, GPid[] processes, string[] choices, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ShowUnmountProgress([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, string message, long time_left, long bytes_left, IntPtr user_data);
 }
 
 internal class GMountOperationExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GMountOperationHandle g_mount_operation_new();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_mount_operation_get_anonymous(GMountOperationHandle op);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_mount_operation_get_choice(GMountOperationHandle op);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_mount_operation_get_domain(GMountOperationHandle op);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_mount_operation_get_is_tcrypt_hidden_volume(GMountOperationHandle op);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_mount_operation_get_is_tcrypt_system_volume(GMountOperationHandle op);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_mount_operation_get_password(GMountOperationHandle op);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GPasswordSave g_mount_operation_get_password_save(GMountOperationHandle op);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_mount_operation_get_pim(GMountOperationHandle op);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_mount_operation_get_username(GMountOperationHandle op);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_operation_reply(GMountOperationHandle op, GMountOperationResult result);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_operation_set_anonymous(GMountOperationHandle op, bool anonymous);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_operation_set_choice(GMountOperationHandle op, int choice);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_operation_set_domain(GMountOperationHandle op, string domain);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_operation_set_is_tcrypt_hidden_volume(GMountOperationHandle op, bool hidden_volume);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_operation_set_is_tcrypt_system_volume(GMountOperationHandle op, bool system_volume);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_operation_set_password(GMountOperationHandle op, string password);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_operation_set_password_save(GMountOperationHandle op, GPasswordSave save);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_operation_set_pim(GMountOperationHandle op, uint pim);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_operation_set_username(GMountOperationHandle op, string username);
+
 }

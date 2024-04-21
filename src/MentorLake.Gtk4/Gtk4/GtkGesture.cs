@@ -26,11 +26,11 @@ public class GtkGestureSignal
 
 public static class GtkGestureSignals
 {
-	public static GtkGestureSignal Begin = new("begin");
-	public static GtkGestureSignal Cancel = new("cancel");
-	public static GtkGestureSignal End = new("end");
-	public static GtkGestureSignal SequenceStateChanged = new("sequence-state-changed");
-	public static GtkGestureSignal Update = new("update");
+	public static GtkGestureSignal Begin = new("BindingTransform.MethodDeclaration");
+	public static GtkGestureSignal Cancel = new("BindingTransform.MethodDeclaration");
+	public static GtkGestureSignal End = new("BindingTransform.MethodDeclaration");
+	public static GtkGestureSignal SequenceStateChanged = new("BindingTransform.MethodDeclaration");
+	public static GtkGestureSignal Update = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkGestureHandleExtensions
@@ -122,47 +122,103 @@ public static class GtkGestureHandleExtensions
 		return gesture;
 	}
 
-	public static GtkGestureHandle Connect(this GtkGestureHandle instance, GtkGestureSignal signal, GCallback c_handler)
+	public static GtkGestureHandle Signal_Begin(this GtkGestureHandle instance, GtkGestureDelegates.Begin handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "begin", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkGestureHandle Signal_Cancel(this GtkGestureHandle instance, GtkGestureDelegates.Cancel handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkGestureHandle Signal_End(this GtkGestureHandle instance, GtkGestureDelegates.End handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkGestureHandle Signal_SequenceStateChanged(this GtkGestureHandle instance, GtkGestureDelegates.SequenceStateChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "sequence_state_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkGestureHandle Signal_Update(this GtkGestureHandle instance, GtkGestureDelegates.Update handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "update", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkGestureDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Begin([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureHandle>))] GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Cancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureHandle>))] GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void End([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureHandle>))] GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SequenceStateChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureHandle>))] GtkGestureHandle self, GdkEventSequenceHandle sequence, GtkEventSequenceState state, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Update([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureHandle>))] GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data);
 }
 
 internal class GtkGestureExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gesture_get_bounding_box(GtkGestureHandle gesture, out GdkRectangle rect);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gesture_get_bounding_box_center(GtkGestureHandle gesture, out double x, out double y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDeviceHandle gtk_gesture_get_device(GtkGestureHandle gesture);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListHandle gtk_gesture_get_group(GtkGestureHandle gesture);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkEventHandle gtk_gesture_get_last_event(GtkGestureHandle gesture, GdkEventSequenceHandle sequence);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkEventSequenceHandle gtk_gesture_get_last_updated_sequence(GtkGestureHandle gesture);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gesture_get_point(GtkGestureHandle gesture, GdkEventSequenceHandle sequence, out double x, out double y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEventSequenceState gtk_gesture_get_sequence_state(GtkGestureHandle gesture, GdkEventSequenceHandle sequence);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListHandle gtk_gesture_get_sequences(GtkGestureHandle gesture);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gesture_group(GtkGestureHandle group_gesture, GtkGestureHandle gesture);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gesture_handles_sequence(GtkGestureHandle gesture, GdkEventSequenceHandle sequence);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gesture_is_active(GtkGestureHandle gesture);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gesture_is_grouped_with(GtkGestureHandle gesture, GtkGestureHandle other);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gesture_is_recognized(GtkGestureHandle gesture);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gesture_set_sequence_state(GtkGestureHandle gesture, GdkEventSequenceHandle sequence, GtkEventSequenceState state);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gesture_set_state(GtkGestureHandle gesture, GtkEventSequenceState state);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gesture_ungroup(GtkGestureHandle gesture);
+
 }

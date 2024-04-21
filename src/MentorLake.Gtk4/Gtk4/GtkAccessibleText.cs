@@ -44,8 +44,11 @@ internal class GtkAccessibleTextExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_accessible_text_update_caret_position(GtkAccessibleTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_accessible_text_update_contents(GtkAccessibleTextHandle self, GtkAccessibleTextContentChange change, int start, int end);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_accessible_text_update_selection_bound(GtkAccessibleTextHandle self);
+
 }

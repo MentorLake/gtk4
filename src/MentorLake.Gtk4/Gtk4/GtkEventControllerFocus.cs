@@ -31,8 +31,8 @@ public class GtkEventControllerFocusSignal
 
 public static class GtkEventControllerFocusSignals
 {
-	public static GtkEventControllerFocusSignal Enter = new("enter");
-	public static GtkEventControllerFocusSignal Leave = new("leave");
+	public static GtkEventControllerFocusSignal Enter = new("BindingTransform.MethodDeclaration");
+	public static GtkEventControllerFocusSignal Leave = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkEventControllerFocusHandleExtensions
@@ -47,19 +47,37 @@ public static class GtkEventControllerFocusHandleExtensions
 		return GtkEventControllerFocusExterns.gtk_event_controller_focus_is_focus(self);
 	}
 
-	public static GtkEventControllerFocusHandle Connect(this GtkEventControllerFocusHandle instance, GtkEventControllerFocusSignal signal, GCallback c_handler)
+	public static GtkEventControllerFocusHandle Signal_Enter(this GtkEventControllerFocusHandle instance, GtkEventControllerFocusDelegates.Enter handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "enter", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkEventControllerFocusHandle Signal_Leave(this GtkEventControllerFocusHandle instance, GtkEventControllerFocusDelegates.Leave handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "leave", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkEventControllerFocusDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Enter([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerFocusHandle>))] GtkEventControllerFocusHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Leave([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerFocusHandle>))] GtkEventControllerFocusHandle self, IntPtr user_data);
 }
 
 internal class GtkEventControllerFocusExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEventControllerFocusHandle gtk_event_controller_focus_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_event_controller_focus_contains_focus(GtkEventControllerFocusHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_event_controller_focus_is_focus(GtkEventControllerFocusHandle self);
+
 }

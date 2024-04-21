@@ -27,6 +27,7 @@ internal class GSourceExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GSourceHandle g_source_new(GSourceFuncsHandle source_funcs, uint struct_size);
+
 }
 
 public struct GSource

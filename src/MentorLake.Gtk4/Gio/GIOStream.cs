@@ -84,24 +84,35 @@ internal class GIOStreamExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_io_stream_clear_pending(GIOStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_io_stream_close(GIOStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_io_stream_close_async(GIOStreamHandle stream, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_io_stream_close_finish(GIOStreamHandle stream, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GInputStreamHandle g_io_stream_get_input_stream(GIOStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GOutputStreamHandle g_io_stream_get_output_stream(GIOStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_io_stream_has_pending(GIOStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_io_stream_is_closed(GIOStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_io_stream_set_pending(GIOStreamHandle stream, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_io_stream_splice_async(GIOStreamHandle stream1, GIOStreamHandle stream2, GIOStreamSpliceFlags flags, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_io_stream_splice_finish(GAsyncResultHandle result, out GErrorHandle error);
+
 }

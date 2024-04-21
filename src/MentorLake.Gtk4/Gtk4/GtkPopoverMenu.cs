@@ -68,18 +68,26 @@ internal class GtkPopoverMenuExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPopoverMenuHandle gtk_popover_menu_new_from_model(GMenuModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPopoverMenuHandle gtk_popover_menu_new_from_model_full(GMenuModelHandle model, GtkPopoverMenuFlags flags);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_popover_menu_add_child(GtkPopoverMenuHandle popover, GtkWidgetHandle child, string id);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPopoverMenuFlags gtk_popover_menu_get_flags(GtkPopoverMenuHandle popover);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GMenuModelHandle gtk_popover_menu_get_menu_model(GtkPopoverMenuHandle popover);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_popover_menu_remove_child(GtkPopoverMenuHandle popover, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_menu_set_flags(GtkPopoverMenuHandle popover, GtkPopoverMenuFlags flags);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_menu_set_menu_model(GtkPopoverMenuHandle popover, GMenuModelHandle model);
+
 }

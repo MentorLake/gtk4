@@ -36,6 +36,8 @@ internal class GtkObjectExpressionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkObjectExpressionHandle gtk_object_expression_new(GObjectHandle @object);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GObjectHandle gtk_object_expression_get_object(GtkExpressionHandle expression);
+
 }

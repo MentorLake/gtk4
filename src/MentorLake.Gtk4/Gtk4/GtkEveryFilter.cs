@@ -31,4 +31,5 @@ internal class GtkEveryFilterExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEveryFilterHandle gtk_every_filter_new();
+
 }

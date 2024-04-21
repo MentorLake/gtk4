@@ -32,8 +32,10 @@ internal class GtkTreeRowReferenceExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeRowReferenceHandle gtk_tree_row_reference_new(GtkTreeModelHandle model, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeRowReferenceHandle gtk_tree_row_reference_new_proxy(GObjectHandle proxy, GtkTreeModelHandle model, GtkTreePathHandle path);
+
 }
 
 public struct GtkTreeRowReference

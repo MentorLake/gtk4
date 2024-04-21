@@ -71,20 +71,29 @@ internal class GVfsExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_vfs_get_file_for_path(GVfsHandle vfs, string path);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_vfs_get_file_for_uri(GVfsHandle vfs, string uri);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_vfs_get_supported_uri_schemes(GVfsHandle vfs);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_vfs_is_active(GVfsHandle vfs);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_vfs_parse_name(GVfsHandle vfs, string parse_name);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_vfs_register_uri_scheme(GVfsHandle vfs, string scheme, GVfsFileLookupFunc uri_func, IntPtr uri_data, GDestroyNotify uri_destroy, GVfsFileLookupFunc parse_name_func, IntPtr parse_name_data, GDestroyNotify parse_name_destroy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_vfs_unregister_uri_scheme(GVfsHandle vfs, string scheme);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVfsHandle g_vfs_get_default();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVfsHandle g_vfs_get_local();
+
 }

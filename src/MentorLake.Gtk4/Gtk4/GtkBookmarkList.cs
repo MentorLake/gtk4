@@ -63,16 +63,25 @@ internal class GtkBookmarkListExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBookmarkListHandle gtk_bookmark_list_new(string filename, string attributes);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_bookmark_list_get_attributes(GtkBookmarkListHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_bookmark_list_get_filename(GtkBookmarkListHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_bookmark_list_get_io_priority(GtkBookmarkListHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_bookmark_list_is_loading(GtkBookmarkListHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_bookmark_list_set_attributes(GtkBookmarkListHandle self, string attributes);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_bookmark_list_set_io_priority(GtkBookmarkListHandle self, int io_priority);
+
 }

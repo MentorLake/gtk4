@@ -37,10 +37,13 @@ internal class GRandExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GRandHandle g_rand_new();
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GRandHandle g_rand_new_with_seed(uint seed);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GRandHandle g_rand_new_with_seed_array(uint[] seed, uint seed_length);
+
 }
 
 public struct GRand

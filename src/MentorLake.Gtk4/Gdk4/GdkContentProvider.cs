@@ -46,7 +46,7 @@ public class GdkContentProviderSignal
 
 public static class GdkContentProviderSignals
 {
-	public static GdkContentProviderSignal ContentChanged = new("content-changed");
+	public static GdkContentProviderSignal ContentChanged = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GdkContentProviderHandleExtensions
@@ -83,33 +83,50 @@ public static class GdkContentProviderHandleExtensions
 		return GdkContentProviderExterns.gdk_content_provider_write_mime_type_finish(provider, result, out error);
 	}
 
-	public static GdkContentProviderHandle Connect(this GdkContentProviderHandle instance, GdkContentProviderSignal signal, GCallback c_handler)
+	public static GdkContentProviderHandle Signal_ContentChanged(this GdkContentProviderHandle instance, GdkContentProviderDelegates.ContentChanged handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "content_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GdkContentProviderDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ContentChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkContentProviderHandle>))] GdkContentProviderHandle self, IntPtr user_data);
 }
 
 internal class GdkContentProviderExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkContentProviderHandle gdk_content_provider_new_for_bytes(string mime_type, GBytesHandle bytes);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkContentProviderHandle gdk_content_provider_new_for_value(GValueHandle value);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkContentProviderHandle gdk_content_provider_new_typed(GType type, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkContentProviderHandle gdk_content_provider_new_union(GdkContentProviderHandle[] providers, int n_providers);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_content_provider_content_changed(GdkContentProviderHandle provider);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_content_provider_get_value(GdkContentProviderHandle provider, out GValue value, out GErrorHandle error);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkContentFormatsHandle gdk_content_provider_ref_formats(GdkContentProviderHandle provider);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkContentFormatsHandle gdk_content_provider_ref_storable_formats(GdkContentProviderHandle provider);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_content_provider_write_mime_type_async(GdkContentProviderHandle provider, string mime_type, GOutputStreamHandle stream, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_content_provider_write_mime_type_finish(GdkContentProviderHandle provider, GAsyncResultHandle result, out GErrorHandle error);
+
 }

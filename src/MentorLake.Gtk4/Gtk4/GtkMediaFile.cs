@@ -91,26 +91,38 @@ internal class GtkMediaFileExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMediaFileHandle gtk_media_file_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMediaFileHandle gtk_media_file_new_for_file(GFileHandle file);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMediaFileHandle gtk_media_file_new_for_filename(string filename);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMediaFileHandle gtk_media_file_new_for_input_stream(GInputStreamHandle stream);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMediaFileHandle gtk_media_file_new_for_resource(string resource_path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_file_clear(GtkMediaFileHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GFileHandle gtk_media_file_get_file(GtkMediaFileHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GInputStreamHandle gtk_media_file_get_input_stream(GtkMediaFileHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_file_set_file(GtkMediaFileHandle self, GFileHandle file);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_file_set_filename(GtkMediaFileHandle self, string filename);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_file_set_input_stream(GtkMediaFileHandle self, GInputStreamHandle stream);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_file_set_resource(GtkMediaFileHandle self, string resource_path);
+
 }

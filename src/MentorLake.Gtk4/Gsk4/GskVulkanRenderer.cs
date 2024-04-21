@@ -31,4 +31,5 @@ internal class GskVulkanRendererExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskVulkanRendererHandle gsk_vulkan_renderer_new();
+
 }

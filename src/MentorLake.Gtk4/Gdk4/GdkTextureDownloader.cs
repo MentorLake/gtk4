@@ -27,6 +27,7 @@ internal class GdkTextureDownloaderExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkTextureDownloaderHandle gdk_texture_downloader_new(GdkTextureHandle texture);
+
 }
 
 public struct GdkTextureDownloader

@@ -31,8 +31,8 @@ public class GtkSwitchSignal
 
 public static class GtkSwitchSignals
 {
-	public static GtkSwitchSignal Activate = new("activate");
-	public static GtkSwitchSignal StateSet = new("state-set");
+	public static GtkSwitchSignal Activate = new("BindingTransform.MethodDeclaration");
+	public static GtkSwitchSignal StateSet = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkSwitchHandleExtensions
@@ -59,23 +59,43 @@ public static class GtkSwitchHandleExtensions
 		return self;
 	}
 
-	public static GtkSwitchHandle Connect(this GtkSwitchHandle instance, GtkSwitchSignal signal, GCallback c_handler)
+	public static GtkSwitchHandle Signal_Activate(this GtkSwitchHandle instance, GtkSwitchDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkSwitchHandle Signal_StateSet(this GtkSwitchHandle instance, GtkSwitchDelegates.StateSet handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "state_set", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkSwitchDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSwitchHandle>))] GtkSwitchHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool StateSet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSwitchHandle>))] GtkSwitchHandle self, bool state, IntPtr user_data);
 }
 
 internal class GtkSwitchExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSwitchHandle gtk_switch_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_switch_get_active(GtkSwitchHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_switch_get_state(GtkSwitchHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_switch_set_active(GtkSwitchHandle self, bool is_active);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_switch_set_state(GtkSwitchHandle self, bool state);
+
 }

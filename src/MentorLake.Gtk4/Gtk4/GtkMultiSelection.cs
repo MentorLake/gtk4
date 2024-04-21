@@ -42,8 +42,11 @@ internal class GtkMultiSelectionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMultiSelectionHandle gtk_multi_selection_new(GListModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_multi_selection_get_model(GtkMultiSelectionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_multi_selection_set_model(GtkMultiSelectionHandle self, GListModelHandle model);
+
 }

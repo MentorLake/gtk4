@@ -58,14 +58,20 @@ internal class GtkMountOperationExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMountOperationHandle gtk_mount_operation_new(GtkWindowHandle parent);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDisplayHandle gtk_mount_operation_get_display(GtkMountOperationHandle op);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWindowHandle gtk_mount_operation_get_parent(GtkMountOperationHandle op);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_mount_operation_is_showing(GtkMountOperationHandle op);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_mount_operation_set_display(GtkMountOperationHandle op, GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_mount_operation_set_parent(GtkMountOperationHandle op, GtkWindowHandle parent);
+
 }

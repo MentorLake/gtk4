@@ -41,7 +41,7 @@ public class GResolverSignal
 
 public static class GResolverSignals
 {
-	public static GResolverSignal Reload = new("reload");
+	public static GResolverSignal Reload = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GResolverHandleExtensions
@@ -143,55 +143,83 @@ public static class GResolverHandleExtensions
 		return resolver;
 	}
 
-	public static GResolverHandle Connect(this GResolverHandle instance, GResolverSignal signal, GCallback c_handler)
+	public static GResolverHandle Signal_Reload(this GResolverHandle instance, GResolverDelegates.Reload handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "reload", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GResolverDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Reload([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GResolverHandle>))] GResolverHandle self, IntPtr user_data);
 }
 
 internal class GResolverExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_resolver_get_timeout(GResolverHandle resolver);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_resolver_lookup_by_address(GResolverHandle resolver, GInetAddressHandle address, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_resolver_lookup_by_address_async(GResolverHandle resolver, GInetAddressHandle address, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_resolver_lookup_by_address_finish(GResolverHandle resolver, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_resolver_lookup_by_name(GResolverHandle resolver, string hostname, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_resolver_lookup_by_name_async(GResolverHandle resolver, string hostname, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_resolver_lookup_by_name_finish(GResolverHandle resolver, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_resolver_lookup_by_name_with_flags(GResolverHandle resolver, string hostname, GResolverNameLookupFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_resolver_lookup_by_name_with_flags_async(GResolverHandle resolver, string hostname, GResolverNameLookupFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_resolver_lookup_by_name_with_flags_finish(GResolverHandle resolver, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_resolver_lookup_records(GResolverHandle resolver, string rrname, GResolverRecordType record_type, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_resolver_lookup_records_async(GResolverHandle resolver, string rrname, GResolverRecordType record_type, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_resolver_lookup_records_finish(GResolverHandle resolver, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_resolver_lookup_service(GResolverHandle resolver, string service, string protocol, string domain, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_resolver_lookup_service_async(GResolverHandle resolver, string service, string protocol, string domain, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_resolver_lookup_service_finish(GResolverHandle resolver, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_resolver_set_default(GResolverHandle resolver);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_resolver_set_timeout(GResolverHandle resolver, int timeout_ms);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_resolver_free_addresses(GListHandle addresses);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_resolver_free_targets(GListHandle targets);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GResolverHandle g_resolver_get_default();
+
 }

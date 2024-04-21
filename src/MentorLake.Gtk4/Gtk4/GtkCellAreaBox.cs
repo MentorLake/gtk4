@@ -54,12 +54,17 @@ internal class GtkCellAreaBoxExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellAreaBoxHandle gtk_cell_area_box_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_cell_area_box_get_spacing(GtkCellAreaBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_box_pack_end(GtkCellAreaBoxHandle box, GtkCellRendererHandle renderer, bool expand, bool align, bool @fixed);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_box_pack_start(GtkCellAreaBoxHandle box, GtkCellRendererHandle renderer, bool expand, bool align, bool @fixed);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_area_box_set_spacing(GtkCellAreaBoxHandle box, int spacing);
+
 }

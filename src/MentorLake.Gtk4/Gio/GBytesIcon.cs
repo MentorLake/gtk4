@@ -36,6 +36,8 @@ internal class GBytesIconExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GBytesIconHandle g_bytes_icon_new(GBytesHandle bytes);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GBytesHandle g_bytes_icon_get_bytes(GBytesIconHandle icon);
+
 }

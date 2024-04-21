@@ -31,8 +31,8 @@ public class GtkStatusbarSignal
 
 public static class GtkStatusbarSignals
 {
-	public static GtkStatusbarSignal TextPopped = new("text-popped");
-	public static GtkStatusbarSignal TextPushed = new("text-pushed");
+	public static GtkStatusbarSignal TextPopped = new("BindingTransform.MethodDeclaration");
+	public static GtkStatusbarSignal TextPushed = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkStatusbarHandleExtensions
@@ -65,25 +65,46 @@ public static class GtkStatusbarHandleExtensions
 		return statusbar;
 	}
 
-	public static GtkStatusbarHandle Connect(this GtkStatusbarHandle instance, GtkStatusbarSignal signal, GCallback c_handler)
+	public static GtkStatusbarHandle Signal_TextPopped(this GtkStatusbarHandle instance, GtkStatusbarDelegates.TextPopped handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "text_popped", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkStatusbarHandle Signal_TextPushed(this GtkStatusbarHandle instance, GtkStatusbarDelegates.TextPushed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "text_pushed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkStatusbarDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void TextPopped([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkStatusbarHandle>))] GtkStatusbarHandle self, uint context_id, string text, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void TextPushed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkStatusbarHandle>))] GtkStatusbarHandle self, uint context_id, string text, IntPtr user_data);
 }
 
 internal class GtkStatusbarExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStatusbarHandle gtk_statusbar_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_statusbar_get_context_id(GtkStatusbarHandle statusbar, string context_description);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_statusbar_pop(GtkStatusbarHandle statusbar, uint context_id);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_statusbar_push(GtkStatusbarHandle statusbar, uint context_id, string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_statusbar_remove(GtkStatusbarHandle statusbar, uint context_id, uint message_id);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_statusbar_remove_all(GtkStatusbarHandle statusbar, uint context_id);
+
 }

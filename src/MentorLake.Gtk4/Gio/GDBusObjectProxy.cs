@@ -36,6 +36,8 @@ internal class GDBusObjectProxyExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusObjectProxyHandle g_dbus_object_proxy_new(GDBusConnectionHandle connection, string object_path);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusConnectionHandle g_dbus_object_proxy_get_connection(GDBusObjectProxyHandle proxy);
+
 }

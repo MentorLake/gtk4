@@ -46,10 +46,14 @@ internal class GskBorderNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskBorderNodeHandle gsk_border_node_new(GskRoundedRectHandle outline, float[] border_width, GdkRGBA[] border_color);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GdkRGBA[] gsk_border_node_get_colors(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRoundedRectHandle gsk_border_node_get_outline(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float[] gsk_border_node_get_widths(GskRenderNodeHandle node);
+
 }

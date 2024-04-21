@@ -58,14 +58,20 @@ internal class GdkDrawContextExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_draw_context_begin_frame(GdkDrawContextHandle context, cairo_region_tHandle region);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_draw_context_end_frame(GdkDrawContextHandle context);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDisplayHandle gdk_draw_context_get_display(GdkDrawContextHandle context);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern cairo_region_tHandle gdk_draw_context_get_frame_region(GdkDrawContextHandle context);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkSurfaceHandle gdk_draw_context_get_surface(GdkDrawContextHandle context);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_draw_context_is_in_frame(GdkDrawContextHandle context);
+
 }

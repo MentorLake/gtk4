@@ -36,17 +36,17 @@ public class GtkTextSignal
 
 public static class GtkTextSignals
 {
-	public static GtkTextSignal Activate = new("activate");
-	public static GtkTextSignal Backspace = new("backspace");
-	public static GtkTextSignal CopyClipboard = new("copy-clipboard");
-	public static GtkTextSignal CutClipboard = new("cut-clipboard");
-	public static GtkTextSignal DeleteFromCursor = new("delete-from-cursor");
-	public static GtkTextSignal InsertAtCursor = new("insert-at-cursor");
-	public static GtkTextSignal InsertEmoji = new("insert-emoji");
-	public static GtkTextSignal MoveCursor = new("move-cursor");
-	public static GtkTextSignal PasteClipboard = new("paste-clipboard");
-	public static GtkTextSignal PreeditChanged = new("preedit-changed");
-	public static GtkTextSignal ToggleOverwrite = new("toggle-overwrite");
+	public static GtkTextSignal Activate = new("BindingTransform.MethodDeclaration");
+	public static GtkTextSignal Backspace = new("BindingTransform.MethodDeclaration");
+	public static GtkTextSignal CopyClipboard = new("BindingTransform.MethodDeclaration");
+	public static GtkTextSignal CutClipboard = new("BindingTransform.MethodDeclaration");
+	public static GtkTextSignal DeleteFromCursor = new("BindingTransform.MethodDeclaration");
+	public static GtkTextSignal InsertAtCursor = new("BindingTransform.MethodDeclaration");
+	public static GtkTextSignal InsertEmoji = new("BindingTransform.MethodDeclaration");
+	public static GtkTextSignal MoveCursor = new("BindingTransform.MethodDeclaration");
+	public static GtkTextSignal PasteClipboard = new("BindingTransform.MethodDeclaration");
+	public static GtkTextSignal PreeditChanged = new("BindingTransform.MethodDeclaration");
+	public static GtkTextSignal ToggleOverwrite = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkTextHandleExtensions
@@ -238,85 +238,209 @@ public static class GtkTextHandleExtensions
 		return self;
 	}
 
-	public static GtkTextHandle Connect(this GtkTextHandle instance, GtkTextSignal signal, GCallback c_handler)
+	public static GtkTextHandle Signal_Activate(this GtkTextHandle instance, GtkTextDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkTextHandle Signal_Backspace(this GtkTextHandle instance, GtkTextDelegates.Backspace handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "backspace", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_CopyClipboard(this GtkTextHandle instance, GtkTextDelegates.CopyClipboard handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "copy_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_CutClipboard(this GtkTextHandle instance, GtkTextDelegates.CutClipboard handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "cut_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_DeleteFromCursor(this GtkTextHandle instance, GtkTextDelegates.DeleteFromCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "delete_from_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_InsertAtCursor(this GtkTextHandle instance, GtkTextDelegates.InsertAtCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "insert_at_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_InsertEmoji(this GtkTextHandle instance, GtkTextDelegates.InsertEmoji handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "insert_emoji", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_MoveCursor(this GtkTextHandle instance, GtkTextDelegates.MoveCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_PasteClipboard(this GtkTextHandle instance, GtkTextDelegates.PasteClipboard handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "paste_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_PreeditChanged(this GtkTextHandle instance, GtkTextDelegates.PreeditChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "preedit_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_ToggleOverwrite(this GtkTextHandle instance, GtkTextDelegates.ToggleOverwrite handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "toggle_overwrite", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkTextDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Backspace([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void CopyClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void CutClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DeleteFromCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, ref GtkDeleteType type, int count, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void InsertAtCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, string @string, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void InsertEmoji([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, ref GtkMovementStep step, int count, bool extend, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void PasteClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void PreeditChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, string preedit, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ToggleOverwrite([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
 }
 
 internal class GtkTextExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTextHandle gtk_text_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTextHandle gtk_text_new_with_buffer(GtkEntryBufferHandle buffer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_compute_cursor_extents(GtkTextHandle self, int position, out graphene_rect_t strong, out graphene_rect_t weak);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_text_get_activates_default(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoAttrListHandle gtk_text_get_attributes(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEntryBufferHandle gtk_text_get_buffer(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_text_get_enable_emoji_completion(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GMenuModelHandle gtk_text_get_extra_menu(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkInputHints gtk_text_get_input_hints(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkInputPurpose gtk_text_get_input_purpose(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern char gtk_text_get_invisible_char(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_text_get_max_length(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_text_get_overwrite_mode(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_text_get_placeholder_text(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_text_get_propagate_text_width(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoTabArrayHandle gtk_text_get_tabs(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern ushort gtk_text_get_text_length(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_text_get_truncate_multiline(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_text_get_visibility(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_text_grab_focus_without_selecting(GtkTextHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_set_activates_default(GtkTextHandle self, bool activates);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_set_attributes(GtkTextHandle self, PangoAttrListHandle attrs);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_set_buffer(GtkTextHandle self, GtkEntryBufferHandle buffer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_set_enable_emoji_completion(GtkTextHandle self, bool enable_emoji_completion);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_set_extra_menu(GtkTextHandle self, GMenuModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_set_input_hints(GtkTextHandle self, GtkInputHints hints);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_set_input_purpose(GtkTextHandle self, GtkInputPurpose purpose);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_set_invisible_char(GtkTextHandle self, char ch);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_set_max_length(GtkTextHandle self, int length);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_set_overwrite_mode(GtkTextHandle self, bool overwrite);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_set_placeholder_text(GtkTextHandle self, string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_set_propagate_text_width(GtkTextHandle self, bool propagate_text_width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_set_tabs(GtkTextHandle self, PangoTabArrayHandle tabs);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_set_truncate_multiline(GtkTextHandle self, bool truncate_multiline);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_set_visibility(GtkTextHandle self, bool visible);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_unset_invisible_char(GtkTextHandle self);
+
 }

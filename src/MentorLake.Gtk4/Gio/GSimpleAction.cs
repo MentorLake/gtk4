@@ -36,8 +36,8 @@ public class GSimpleActionSignal
 
 public static class GSimpleActionSignals
 {
-	public static GSimpleActionSignal Activate = new("activate");
-	public static GSimpleActionSignal ChangeState = new("change-state");
+	public static GSimpleActionSignal Activate = new("BindingTransform.MethodDeclaration");
+	public static GSimpleActionSignal ChangeState = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GSimpleActionHandleExtensions
@@ -60,23 +60,43 @@ public static class GSimpleActionHandleExtensions
 		return simple;
 	}
 
-	public static GSimpleActionHandle Connect(this GSimpleActionHandle instance, GSimpleActionSignal signal, GCallback c_handler)
+	public static GSimpleActionHandle Signal_Activate(this GSimpleActionHandle instance, GSimpleActionDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GSimpleActionHandle Signal_ChangeState(this GSimpleActionHandle instance, GSimpleActionDelegates.ChangeState handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "change_state", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GSimpleActionDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSimpleActionHandle>))] GSimpleActionHandle self, GVariantHandle parameter, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ChangeState([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSimpleActionHandle>))] GSimpleActionHandle self, GVariantHandle value, IntPtr user_data);
 }
 
 internal class GSimpleActionExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GSimpleActionHandle g_simple_action_new(string name, GVariantTypeHandle parameter_type);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSimpleActionHandle g_simple_action_new_stateful(string name, GVariantTypeHandle parameter_type, GVariantHandle state);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_action_set_enabled(GSimpleActionHandle simple, bool enabled);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_action_set_state(GSimpleActionHandle simple, GVariantHandle value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_action_set_state_hint(GSimpleActionHandle simple, GVariantHandle state_hint);
+
 }

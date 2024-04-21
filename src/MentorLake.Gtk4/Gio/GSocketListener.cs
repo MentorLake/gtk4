@@ -31,7 +31,7 @@ public class GSocketListenerSignal
 
 public static class GSocketListenerSignals
 {
-	public static GSocketListenerSignal Event = new("event");
+	public static GSocketListenerSignal Event = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GSocketListenerHandleExtensions
@@ -100,39 +100,59 @@ public static class GSocketListenerHandleExtensions
 		return listener;
 	}
 
-	public static GSocketListenerHandle Connect(this GSocketListenerHandle instance, GSocketListenerSignal signal, GCallback c_handler)
+	public static GSocketListenerHandle Signal_Event(this GSocketListenerHandle instance, GSocketListenerDelegates.Event handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GSocketListenerDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Event([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSocketListenerHandle>))] GSocketListenerHandle self, GSocketListenerEvent @event, GSocketHandle socket, IntPtr user_data);
 }
 
 internal class GSocketListenerExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketListenerHandle g_socket_listener_new();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectionHandle g_socket_listener_accept(GSocketListenerHandle listener, out GObjectHandle source_object, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_listener_accept_async(GSocketListenerHandle listener, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectionHandle g_socket_listener_accept_finish(GSocketListenerHandle listener, GAsyncResultHandle result, out GObjectHandle source_object, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketHandle g_socket_listener_accept_socket(GSocketListenerHandle listener, out GObjectHandle source_object, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_listener_accept_socket_async(GSocketListenerHandle listener, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketHandle g_socket_listener_accept_socket_finish(GSocketListenerHandle listener, GAsyncResultHandle result, out GObjectHandle source_object, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_listener_add_address(GSocketListenerHandle listener, GSocketAddressHandle address, GSocketType type, GSocketProtocol protocol, GObjectHandle source_object, out GSocketAddressHandle effective_address, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern ushort g_socket_listener_add_any_inet_port(GSocketListenerHandle listener, GObjectHandle source_object, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_listener_add_inet_port(GSocketListenerHandle listener, ushort port, GObjectHandle source_object, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_listener_add_socket(GSocketListenerHandle listener, GSocketHandle socket, GObjectHandle source_object, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_listener_close(GSocketListenerHandle listener);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_listener_set_backlog(GSocketListenerHandle listener, int listen_backlog);
+
 }

@@ -31,20 +31,28 @@ public class GAppInfoMonitorSignal
 
 public static class GAppInfoMonitorSignals
 {
-	public static GAppInfoMonitorSignal Changed = new("changed");
+	public static GAppInfoMonitorSignal Changed = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GAppInfoMonitorHandleExtensions
 {
-	public static GAppInfoMonitorHandle Connect(this GAppInfoMonitorHandle instance, GAppInfoMonitorSignal signal, GCallback c_handler)
+	public static GAppInfoMonitorHandle Signal_Changed(this GAppInfoMonitorHandle instance, GAppInfoMonitorDelegates.Changed handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GAppInfoMonitorDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GAppInfoMonitorHandle>))] GAppInfoMonitorHandle self, IntPtr user_data);
 }
 
 internal class GAppInfoMonitorExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GAppInfoMonitorHandle g_app_info_monitor_get();
+
 }

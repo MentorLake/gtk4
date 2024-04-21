@@ -26,7 +26,7 @@ public class GDBusInterfaceSkeletonSignal
 
 public static class GDBusInterfaceSkeletonSignals
 {
-	public static GDBusInterfaceSkeletonSignal GAuthorizeMethod = new("g-authorize-method");
+	public static GDBusInterfaceSkeletonSignal GAuthorizeMethod = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GDBusInterfaceSkeletonHandleExtensions
@@ -100,39 +100,59 @@ public static class GDBusInterfaceSkeletonHandleExtensions
 		return interface_;
 	}
 
-	public static GDBusInterfaceSkeletonHandle Connect(this GDBusInterfaceSkeletonHandle instance, GDBusInterfaceSkeletonSignal signal, GCallback c_handler)
+	public static GDBusInterfaceSkeletonHandle Signal_GAuthorizeMethod(this GDBusInterfaceSkeletonHandle instance, GDBusInterfaceSkeletonDelegates.GAuthorizeMethod handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "g_authorize_method", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GDBusInterfaceSkeletonDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool GAuthorizeMethod([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusInterfaceSkeletonHandle>))] GDBusInterfaceSkeletonHandle self, GDBusMethodInvocationHandle invocation, IntPtr user_data);
 }
 
 internal class GDBusInterfaceSkeletonExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dbus_interface_skeleton_export(GDBusInterfaceSkeletonHandle interface_, GDBusConnectionHandle connection, string object_path, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_interface_skeleton_flush(GDBusInterfaceSkeletonHandle interface_);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusConnectionHandle g_dbus_interface_skeleton_get_connection(GDBusInterfaceSkeletonHandle interface_);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_dbus_interface_skeleton_get_connections(GDBusInterfaceSkeletonHandle interface_);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusInterfaceSkeletonFlags g_dbus_interface_skeleton_get_flags(GDBusInterfaceSkeletonHandle interface_);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusInterfaceInfoHandle g_dbus_interface_skeleton_get_info(GDBusInterfaceSkeletonHandle interface_);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_interface_skeleton_get_object_path(GDBusInterfaceSkeletonHandle interface_);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_dbus_interface_skeleton_get_properties(GDBusInterfaceSkeletonHandle interface_);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusInterfaceVTableHandle g_dbus_interface_skeleton_get_vtable(GDBusInterfaceSkeletonHandle interface_);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dbus_interface_skeleton_has_connection(GDBusInterfaceSkeletonHandle interface_, GDBusConnectionHandle connection);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_interface_skeleton_set_flags(GDBusInterfaceSkeletonHandle interface_, GDBusInterfaceSkeletonFlags flags);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_interface_skeleton_unexport(GDBusInterfaceSkeletonHandle interface_);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_interface_skeleton_unexport_from_connection(GDBusInterfaceSkeletonHandle interface_, GDBusConnectionHandle connection);
+
 }

@@ -36,9 +36,9 @@ public class GtkEntrySignal
 
 public static class GtkEntrySignals
 {
-	public static GtkEntrySignal Activate = new("activate");
-	public static GtkEntrySignal IconPress = new("icon-press");
-	public static GtkEntrySignal IconRelease = new("icon-release");
+	public static GtkEntrySignal Activate = new("BindingTransform.MethodDeclaration");
+	public static GtkEntrySignal IconPress = new("BindingTransform.MethodDeclaration");
+	public static GtkEntrySignal IconRelease = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkEntryHandleExtensions
@@ -362,133 +362,218 @@ public static class GtkEntryHandleExtensions
 		return entry;
 	}
 
-	public static GtkEntryHandle Connect(this GtkEntryHandle instance, GtkEntrySignal signal, GCallback c_handler)
+	public static GtkEntryHandle Signal_Activate(this GtkEntryHandle instance, GtkEntryDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkEntryHandle Signal_IconPress(this GtkEntryHandle instance, GtkEntryDelegates.IconPress handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "icon_press", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkEntryHandle Signal_IconRelease(this GtkEntryHandle instance, GtkEntryDelegates.IconRelease handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "icon_release", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkEntryDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryHandle>))] GtkEntryHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void IconPress([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryHandle>))] GtkEntryHandle self, GtkEntryIconPosition icon_pos, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void IconRelease([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryHandle>))] GtkEntryHandle self, GtkEntryIconPosition icon_pos, IntPtr user_data);
 }
 
 internal class GtkEntryExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEntryHandle gtk_entry_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEntryHandle gtk_entry_new_with_buffer(GtkEntryBufferHandle buffer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_entry_get_activates_default(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern float gtk_entry_get_alignment(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoAttrListHandle gtk_entry_get_attributes(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEntryBufferHandle gtk_entry_get_buffer(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEntryCompletionHandle gtk_entry_get_completion(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_entry_get_current_icon_drag_source(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GMenuModelHandle gtk_entry_get_extra_menu(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_entry_get_has_frame(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_entry_get_icon_activatable(GtkEntryHandle entry, GtkEntryIconPosition icon_pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_get_icon_area(GtkEntryHandle entry, GtkEntryIconPosition icon_pos, out GdkRectangle icon_area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_entry_get_icon_at_pos(GtkEntryHandle entry, int x, int y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GIconHandle gtk_entry_get_icon_gicon(GtkEntryHandle entry, GtkEntryIconPosition icon_pos);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_entry_get_icon_name(GtkEntryHandle entry, GtkEntryIconPosition icon_pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkPaintableHandle gtk_entry_get_icon_paintable(GtkEntryHandle entry, GtkEntryIconPosition icon_pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_entry_get_icon_sensitive(GtkEntryHandle entry, GtkEntryIconPosition icon_pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkImageType gtk_entry_get_icon_storage_type(GtkEntryHandle entry, GtkEntryIconPosition icon_pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_entry_get_icon_tooltip_markup(GtkEntryHandle entry, GtkEntryIconPosition icon_pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_entry_get_icon_tooltip_text(GtkEntryHandle entry, GtkEntryIconPosition icon_pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkInputHints gtk_entry_get_input_hints(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkInputPurpose gtk_entry_get_input_purpose(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern char gtk_entry_get_invisible_char(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_entry_get_max_length(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_entry_get_overwrite_mode(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_entry_get_placeholder_text(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_entry_get_progress_fraction(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_entry_get_progress_pulse_step(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoTabArrayHandle gtk_entry_get_tabs(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern ushort gtk_entry_get_text_length(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_entry_get_visibility(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_entry_grab_focus_without_selecting(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_progress_pulse(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_reset_im_context(GtkEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_activates_default(GtkEntryHandle entry, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_alignment(GtkEntryHandle entry, float xalign);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_attributes(GtkEntryHandle entry, PangoAttrListHandle attrs);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_buffer(GtkEntryHandle entry, GtkEntryBufferHandle buffer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_completion(GtkEntryHandle entry, GtkEntryCompletionHandle completion);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_extra_menu(GtkEntryHandle entry, GMenuModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_has_frame(GtkEntryHandle entry, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_icon_activatable(GtkEntryHandle entry, GtkEntryIconPosition icon_pos, bool activatable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_icon_drag_source(GtkEntryHandle entry, GtkEntryIconPosition icon_pos, GdkContentProviderHandle provider, GdkDragAction actions);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_icon_from_gicon(GtkEntryHandle entry, GtkEntryIconPosition icon_pos, GIconHandle icon);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_icon_from_icon_name(GtkEntryHandle entry, GtkEntryIconPosition icon_pos, string icon_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_icon_from_paintable(GtkEntryHandle entry, GtkEntryIconPosition icon_pos, GdkPaintableHandle paintable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_icon_sensitive(GtkEntryHandle entry, GtkEntryIconPosition icon_pos, bool sensitive);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_icon_tooltip_markup(GtkEntryHandle entry, GtkEntryIconPosition icon_pos, string tooltip);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_icon_tooltip_text(GtkEntryHandle entry, GtkEntryIconPosition icon_pos, string tooltip);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_input_hints(GtkEntryHandle entry, GtkInputHints hints);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_input_purpose(GtkEntryHandle entry, GtkInputPurpose purpose);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_invisible_char(GtkEntryHandle entry, char ch);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_max_length(GtkEntryHandle entry, int max);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_overwrite_mode(GtkEntryHandle entry, bool overwrite);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_placeholder_text(GtkEntryHandle entry, string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_progress_fraction(GtkEntryHandle entry, double fraction);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_progress_pulse_step(GtkEntryHandle entry, double fraction);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_tabs(GtkEntryHandle entry, PangoTabArrayHandle tabs);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_set_visibility(GtkEntryHandle entry, bool visible);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_unset_invisible_char(GtkEntryHandle entry);
+
 }

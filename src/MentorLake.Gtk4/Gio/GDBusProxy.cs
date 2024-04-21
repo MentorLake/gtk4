@@ -56,8 +56,8 @@ public class GDBusProxySignal
 
 public static class GDBusProxySignals
 {
-	public static GDBusProxySignal GPropertiesChanged = new("g-properties-changed");
-	public static GDBusProxySignal GSignal = new("g-signal");
+	public static GDBusProxySignal GPropertiesChanged = new("BindingTransform.MethodDeclaration");
+	public static GDBusProxySignal GSignal = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GDBusProxyHandleExtensions
@@ -162,63 +162,103 @@ public static class GDBusProxyHandleExtensions
 		return proxy;
 	}
 
-	public static GDBusProxyHandle Connect(this GDBusProxyHandle instance, GDBusProxySignal signal, GCallback c_handler)
+	public static GDBusProxyHandle Signal_GPropertiesChanged(this GDBusProxyHandle instance, GDBusProxyDelegates.GPropertiesChanged handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "g_properties_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GDBusProxyHandle Signal_GSignal(this GDBusProxyHandle instance, GDBusProxyDelegates.GSignal handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "g_signal", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GDBusProxyDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void GPropertiesChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusProxyHandle>))] GDBusProxyHandle self, GVariantHandle changed_properties, string[] invalidated_properties, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void GSignal([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusProxyHandle>))] GDBusProxyHandle self, string sender_name, string signal_name, GVariantHandle parameters, IntPtr user_data);
 }
 
 internal class GDBusProxyExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusProxyHandle g_dbus_proxy_new_finish(GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusProxyHandle g_dbus_proxy_new_for_bus_finish(GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusProxyHandle g_dbus_proxy_new_for_bus_sync(GBusType bus_type, GDBusProxyFlags flags, GDBusInterfaceInfoHandle info, string name, string object_path, string interface_name, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusProxyHandle g_dbus_proxy_new_sync(GDBusConnectionHandle connection, GDBusProxyFlags flags, GDBusInterfaceInfoHandle info, string name, string object_path, string interface_name, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_proxy_call(GDBusProxyHandle proxy, string method_name, GVariantHandle parameters, GDBusCallFlags flags, int timeout_msec, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_dbus_proxy_call_finish(GDBusProxyHandle proxy, GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_dbus_proxy_call_sync(GDBusProxyHandle proxy, string method_name, GVariantHandle parameters, GDBusCallFlags flags, int timeout_msec, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_proxy_call_with_unix_fd_list(GDBusProxyHandle proxy, string method_name, GVariantHandle parameters, GDBusCallFlags flags, int timeout_msec, GUnixFDListHandle fd_list, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_dbus_proxy_call_with_unix_fd_list_finish(GDBusProxyHandle proxy, out GUnixFDListHandle out_fd_list, GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_dbus_proxy_call_with_unix_fd_list_sync(GDBusProxyHandle proxy, string method_name, GVariantHandle parameters, GDBusCallFlags flags, int timeout_msec, GUnixFDListHandle fd_list, out GUnixFDListHandle out_fd_list, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_dbus_proxy_get_cached_property(GDBusProxyHandle proxy, string property_name);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_dbus_proxy_get_cached_property_names(GDBusProxyHandle proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusConnectionHandle g_dbus_proxy_get_connection(GDBusProxyHandle proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_dbus_proxy_get_default_timeout(GDBusProxyHandle proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusProxyFlags g_dbus_proxy_get_flags(GDBusProxyHandle proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusInterfaceInfoHandle g_dbus_proxy_get_interface_info(GDBusProxyHandle proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_proxy_get_interface_name(GDBusProxyHandle proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_proxy_get_name(GDBusProxyHandle proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_proxy_get_name_owner(GDBusProxyHandle proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_proxy_get_object_path(GDBusProxyHandle proxy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_proxy_set_cached_property(GDBusProxyHandle proxy, string property_name, GVariantHandle value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_proxy_set_default_timeout(GDBusProxyHandle proxy, int timeout_msec);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_proxy_set_interface_info(GDBusProxyHandle proxy, GDBusInterfaceInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_proxy_new(GDBusConnectionHandle connection, GDBusProxyFlags flags, GDBusInterfaceInfoHandle info, string name, string object_path, string interface_name, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_proxy_new_for_bus(GBusType bus_type, GDBusProxyFlags flags, GDBusInterfaceInfoHandle info, string name, string object_path, string interface_name, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 }

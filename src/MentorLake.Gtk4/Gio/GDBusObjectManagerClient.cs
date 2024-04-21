@@ -56,8 +56,8 @@ public class GDBusObjectManagerClientSignal
 
 public static class GDBusObjectManagerClientSignals
 {
-	public static GDBusObjectManagerClientSignal InterfaceProxyPropertiesChanged = new("interface-proxy-properties-changed");
-	public static GDBusObjectManagerClientSignal InterfaceProxySignal = new("interface-proxy-signal");
+	public static GDBusObjectManagerClientSignal InterfaceProxyPropertiesChanged = new("BindingTransform.MethodDeclaration");
+	public static GDBusObjectManagerClientSignal InterfaceProxySignal = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GDBusObjectManagerClientHandleExtensions
@@ -82,33 +82,58 @@ public static class GDBusObjectManagerClientHandleExtensions
 		return GDBusObjectManagerClientExterns.g_dbus_object_manager_client_get_name_owner(manager);
 	}
 
-	public static GDBusObjectManagerClientHandle Connect(this GDBusObjectManagerClientHandle instance, GDBusObjectManagerClientSignal signal, GCallback c_handler)
+	public static GDBusObjectManagerClientHandle Signal_InterfaceProxyPropertiesChanged(this GDBusObjectManagerClientHandle instance, GDBusObjectManagerClientDelegates.InterfaceProxyPropertiesChanged handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "interface_proxy_properties_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GDBusObjectManagerClientHandle Signal_InterfaceProxySignal(this GDBusObjectManagerClientHandle instance, GDBusObjectManagerClientDelegates.InterfaceProxySignal handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "interface_proxy_signal", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GDBusObjectManagerClientDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void InterfaceProxyPropertiesChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusObjectManagerClientHandle>))] GDBusObjectManagerClientHandle self, GDBusObjectProxyHandle object_proxy, GDBusProxyHandle interface_proxy, GVariantHandle changed_properties, string[] invalidated_properties, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void InterfaceProxySignal([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusObjectManagerClientHandle>))] GDBusObjectManagerClientHandle self, GDBusObjectProxyHandle object_proxy, GDBusProxyHandle interface_proxy, string sender_name, string signal_name, GVariantHandle parameters, IntPtr user_data);
 }
 
 internal class GDBusObjectManagerClientExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusObjectManagerClientHandle g_dbus_object_manager_client_new_finish(GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusObjectManagerClientHandle g_dbus_object_manager_client_new_for_bus_finish(GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusObjectManagerClientHandle g_dbus_object_manager_client_new_for_bus_sync(GBusType bus_type, GDBusObjectManagerClientFlags flags, string name, string object_path, GDBusProxyTypeFunc get_proxy_type_func, IntPtr get_proxy_type_user_data, GDestroyNotify get_proxy_type_destroy_notify, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusObjectManagerClientHandle g_dbus_object_manager_client_new_sync(GDBusConnectionHandle connection, GDBusObjectManagerClientFlags flags, string name, string object_path, GDBusProxyTypeFunc get_proxy_type_func, IntPtr get_proxy_type_user_data, GDestroyNotify get_proxy_type_destroy_notify, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusConnectionHandle g_dbus_object_manager_client_get_connection(GDBusObjectManagerClientHandle manager);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusObjectManagerClientFlags g_dbus_object_manager_client_get_flags(GDBusObjectManagerClientHandle manager);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_object_manager_client_get_name(GDBusObjectManagerClientHandle manager);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_object_manager_client_get_name_owner(GDBusObjectManagerClientHandle manager);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_object_manager_client_new(GDBusConnectionHandle connection, GDBusObjectManagerClientFlags flags, string name, string object_path, GDBusProxyTypeFunc get_proxy_type_func, IntPtr get_proxy_type_user_data, GDestroyNotify get_proxy_type_destroy_notify, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_object_manager_client_new_for_bus(GBusType bus_type, GDBusObjectManagerClientFlags flags, string name, string object_path, GDBusProxyTypeFunc get_proxy_type_func, IntPtr get_proxy_type_user_data, GDestroyNotify get_proxy_type_destroy_notify, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 }

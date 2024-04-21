@@ -36,6 +36,8 @@ internal class GZlibDecompressorExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GZlibDecompressorHandle g_zlib_decompressor_new(GZlibCompressorFormat format);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileInfoHandle g_zlib_decompressor_get_file_info(GZlibDecompressorHandle decompressor);
+
 }

@@ -141,46 +141,68 @@ internal class GParamSpecExterns
 {
 	[DllImport(Libraries.GObject)]
 	internal static extern string g_param_spec_get_blurb(GParamSpecHandle pspec);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GValueHandle g_param_spec_get_default_value(GParamSpecHandle pspec);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern string g_param_spec_get_name(GParamSpecHandle pspec);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GQuark g_param_spec_get_name_quark(GParamSpecHandle pspec);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern string g_param_spec_get_nick(GParamSpecHandle pspec);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern IntPtr g_param_spec_get_qdata(GParamSpecHandle pspec, GQuark quark);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GParamSpecHandle g_param_spec_get_redirect_target(GParamSpecHandle pspec);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GParamSpecHandle g_param_spec_ref(GParamSpecHandle pspec);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GParamSpecHandle g_param_spec_ref_sink(GParamSpecHandle pspec);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_param_spec_set_qdata(GParamSpecHandle pspec, GQuark quark, IntPtr data);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_param_spec_set_qdata_full(GParamSpecHandle pspec, GQuark quark, IntPtr data, GDestroyNotify destroy);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_param_spec_sink(GParamSpecHandle pspec);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern IntPtr g_param_spec_steal_qdata(GParamSpecHandle pspec, GQuark quark);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_param_spec_unref(GParamSpecHandle pspec);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern bool g_param_value_convert(GParamSpecHandle pspec, GValueHandle src_value, GValueHandle dest_value, bool strict_validation);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_param_value_set_default(GParamSpecHandle pspec, GValueHandle value);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern bool g_param_value_is_valid(GParamSpecHandle pspec, GValueHandle value);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern bool g_param_value_validate(GParamSpecHandle pspec, GValueHandle value);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern bool g_param_value_defaults(GParamSpecHandle pspec, GValueHandle value);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern int g_param_values_cmp(GParamSpecHandle pspec, GValueHandle value1, GValueHandle value2);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GParamSpecHandle g_param_spec_internal(GType param_type, string name, string nick, string blurb, GParamFlags flags);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern bool g_param_spec_is_valid_name(string name);
+
 }

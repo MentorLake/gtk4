@@ -68,18 +68,26 @@ internal class GActionExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_action_activate(GActionHandle action, GVariantHandle parameter);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_action_change_state(GActionHandle action, GVariantHandle value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_action_get_enabled(GActionHandle action);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_action_get_name(GActionHandle action);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantTypeHandle g_action_get_parameter_type(GActionHandle action);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_action_get_state(GActionHandle action);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_action_get_state_hint(GActionHandle action);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantTypeHandle g_action_get_state_type(GActionHandle action);
+
 }

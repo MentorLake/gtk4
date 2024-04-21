@@ -72,20 +72,29 @@ internal class GtkTreeListRowExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeListRowHandle gtk_tree_list_row_get_child_row(GtkTreeListRowHandle self, uint position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_tree_list_row_get_children(GtkTreeListRowHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_tree_list_row_get_depth(GtkTreeListRowHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_list_row_get_expanded(GtkTreeListRowHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GObjectHandle gtk_tree_list_row_get_item(GtkTreeListRowHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeListRowHandle gtk_tree_list_row_get_parent(GtkTreeListRowHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_tree_list_row_get_position(GtkTreeListRowHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_list_row_is_expandable(GtkTreeListRowHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_list_row_set_expanded(GtkTreeListRowHandle self, bool expanded);
+
 }

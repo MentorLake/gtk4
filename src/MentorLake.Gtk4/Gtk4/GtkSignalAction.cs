@@ -36,6 +36,9 @@ internal class GtkSignalActionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSignalActionHandle gtk_signal_action_new(string signal_name);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_signal_action_get_signal_name(GtkSignalActionHandle self);
+
 }

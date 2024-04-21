@@ -52,12 +52,17 @@ internal class GListModelExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern IntPtr g_list_model_get_item(GListModelHandle list, uint position);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GType g_list_model_get_item_type(GListModelHandle list);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_list_model_get_n_items(GListModelHandle list);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GObjectHandle g_list_model_get_object(GListModelHandle list, uint position);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_list_model_items_changed(GListModelHandle list, uint position, uint removed, uint added);
+
 }

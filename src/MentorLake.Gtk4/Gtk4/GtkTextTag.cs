@@ -48,10 +48,14 @@ internal class GtkTextTagExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTextTagHandle gtk_text_tag_new(string name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_tag_changed(GtkTextTagHandle tag, bool size_changed);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_text_tag_get_priority(GtkTextTagHandle tag);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_tag_set_priority(GtkTextTagHandle tag, int priority);
+
 }

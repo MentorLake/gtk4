@@ -439,154 +439,237 @@ internal class GtkPrintSettingsExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintSettingsHandle gtk_print_settings_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintSettingsHandle gtk_print_settings_new_from_file(string file_name, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintSettingsHandle gtk_print_settings_new_from_gvariant(GVariantHandle variant);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintSettingsHandle gtk_print_settings_new_from_key_file(GKeyFileHandle key_file, string group_name, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintSettingsHandle gtk_print_settings_copy(GtkPrintSettingsHandle other);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_foreach(GtkPrintSettingsHandle settings, GtkPrintSettingsFunc func, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_print_settings_get(GtkPrintSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_settings_get_bool(GtkPrintSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_settings_get_collate(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_print_settings_get_default_source(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_print_settings_get_dither(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_print_settings_get_double(GtkPrintSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_print_settings_get_double_with_default(GtkPrintSettingsHandle settings, string key, double def);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintDuplex gtk_print_settings_get_duplex(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_print_settings_get_finishings(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_print_settings_get_int(GtkPrintSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_print_settings_get_int_with_default(GtkPrintSettingsHandle settings, string key, int def);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_print_settings_get_length(GtkPrintSettingsHandle settings, string key, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_print_settings_get_media_type(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_print_settings_get_n_copies(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_print_settings_get_number_up(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkNumberUpLayout gtk_print_settings_get_number_up_layout(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageOrientation gtk_print_settings_get_orientation(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_print_settings_get_output_bin(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageRange[] gtk_print_settings_get_page_ranges(GtkPrintSettingsHandle settings, out int num_ranges);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageSet gtk_print_settings_get_page_set(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_print_settings_get_paper_height(GtkPrintSettingsHandle settings, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPaperSizeHandle gtk_print_settings_get_paper_size(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_print_settings_get_paper_width(GtkPrintSettingsHandle settings, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintPages gtk_print_settings_get_print_pages(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_print_settings_get_printer(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_print_settings_get_printer_lpi(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintQuality gtk_print_settings_get_quality(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_print_settings_get_resolution(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_print_settings_get_resolution_x(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_print_settings_get_resolution_y(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_settings_get_reverse(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_print_settings_get_scale(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_settings_get_use_color(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_settings_has_key(GtkPrintSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_settings_load_file(GtkPrintSettingsHandle settings, string file_name, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_settings_load_key_file(GtkPrintSettingsHandle settings, GKeyFileHandle key_file, string group_name, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set(GtkPrintSettingsHandle settings, string key, string value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_bool(GtkPrintSettingsHandle settings, string key, bool value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_collate(GtkPrintSettingsHandle settings, bool collate);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_default_source(GtkPrintSettingsHandle settings, string default_source);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_dither(GtkPrintSettingsHandle settings, string dither);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_double(GtkPrintSettingsHandle settings, string key, double value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_duplex(GtkPrintSettingsHandle settings, GtkPrintDuplex duplex);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_finishings(GtkPrintSettingsHandle settings, string finishings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_int(GtkPrintSettingsHandle settings, string key, int value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_length(GtkPrintSettingsHandle settings, string key, double value, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_media_type(GtkPrintSettingsHandle settings, string media_type);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_n_copies(GtkPrintSettingsHandle settings, int num_copies);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_number_up(GtkPrintSettingsHandle settings, int number_up);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_number_up_layout(GtkPrintSettingsHandle settings, GtkNumberUpLayout number_up_layout);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_orientation(GtkPrintSettingsHandle settings, GtkPageOrientation orientation);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_output_bin(GtkPrintSettingsHandle settings, string output_bin);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_page_ranges(GtkPrintSettingsHandle settings, GtkPageRange[] page_ranges, int num_ranges);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_page_set(GtkPrintSettingsHandle settings, GtkPageSet page_set);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_paper_height(GtkPrintSettingsHandle settings, double height, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_paper_size(GtkPrintSettingsHandle settings, GtkPaperSizeHandle paper_size);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_paper_width(GtkPrintSettingsHandle settings, double width, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_print_pages(GtkPrintSettingsHandle settings, GtkPrintPages pages);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_printer(GtkPrintSettingsHandle settings, string printer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_printer_lpi(GtkPrintSettingsHandle settings, double lpi);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_quality(GtkPrintSettingsHandle settings, GtkPrintQuality quality);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_resolution(GtkPrintSettingsHandle settings, int resolution);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_resolution_xy(GtkPrintSettingsHandle settings, int resolution_x, int resolution_y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_reverse(GtkPrintSettingsHandle settings, bool reverse);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_scale(GtkPrintSettingsHandle settings, double scale);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_set_use_color(GtkPrintSettingsHandle settings, bool use_color);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_settings_to_file(GtkPrintSettingsHandle settings, string file_name, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GVariantHandle gtk_print_settings_to_gvariant(GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_to_key_file(GtkPrintSettingsHandle settings, GKeyFileHandle key_file, string group_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_settings_unset(GtkPrintSettingsHandle settings, string key);
+
 }

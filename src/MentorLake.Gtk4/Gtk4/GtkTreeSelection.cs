@@ -26,7 +26,7 @@ public class GtkTreeSelectionSignal
 
 public static class GtkTreeSelectionSignals
 {
-	public static GtkTreeSelectionSignal Changed = new("changed");
+	public static GtkTreeSelectionSignal Changed = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkTreeSelectionHandleExtensions
@@ -142,53 +142,80 @@ public static class GtkTreeSelectionHandleExtensions
 		return selection;
 	}
 
-	public static GtkTreeSelectionHandle Connect(this GtkTreeSelectionHandle instance, GtkTreeSelectionSignal signal, GCallback c_handler)
+	public static GtkTreeSelectionHandle Signal_Changed(this GtkTreeSelectionHandle instance, GtkTreeSelectionDelegates.Changed handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkTreeSelectionDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeSelectionHandle>))] GtkTreeSelectionHandle self, IntPtr user_data);
 }
 
 internal class GtkTreeSelectionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_selection_count_selected_rows(GtkTreeSelectionHandle selection);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSelectionMode gtk_tree_selection_get_mode(GtkTreeSelectionHandle selection);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeSelectionFunc gtk_tree_selection_get_select_function(GtkTreeSelectionHandle selection);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_selection_get_selected(GtkTreeSelectionHandle selection, out GtkTreeModelHandle model, out GtkTreeIter iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListHandle gtk_tree_selection_get_selected_rows(GtkTreeSelectionHandle selection, out GtkTreeModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeViewHandle gtk_tree_selection_get_tree_view(GtkTreeSelectionHandle selection);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern IntPtr gtk_tree_selection_get_user_data(GtkTreeSelectionHandle selection);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_selection_iter_is_selected(GtkTreeSelectionHandle selection, GtkTreeIterHandle iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_selection_path_is_selected(GtkTreeSelectionHandle selection, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_selection_select_all(GtkTreeSelectionHandle selection);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_selection_select_iter(GtkTreeSelectionHandle selection, GtkTreeIterHandle iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_selection_select_path(GtkTreeSelectionHandle selection, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_selection_select_range(GtkTreeSelectionHandle selection, GtkTreePathHandle start_path, GtkTreePathHandle end_path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_selection_selected_foreach(GtkTreeSelectionHandle selection, GtkTreeSelectionForeachFunc func, IntPtr data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_selection_set_mode(GtkTreeSelectionHandle selection, GtkSelectionMode type);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_selection_set_select_function(GtkTreeSelectionHandle selection, GtkTreeSelectionFunc func, IntPtr data, GDestroyNotify destroy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_selection_unselect_all(GtkTreeSelectionHandle selection);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_selection_unselect_iter(GtkTreeSelectionHandle selection, GtkTreeIterHandle iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_selection_unselect_path(GtkTreeSelectionHandle selection, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_selection_unselect_range(GtkTreeSelectionHandle selection, GtkTreePathHandle start_path, GtkTreePathHandle end_path);
+
 }

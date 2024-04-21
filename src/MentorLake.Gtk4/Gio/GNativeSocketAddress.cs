@@ -31,4 +31,5 @@ internal class GNativeSocketAddressExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GNativeSocketAddressHandle g_native_socket_address_new(IntPtr native, int len);
+
 }

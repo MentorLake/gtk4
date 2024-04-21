@@ -31,4 +31,5 @@ internal class GtkClosureExpressionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkClosureExpressionHandle gtk_closure_expression_new(GType value_type, GClosureHandle closure, uint n_params, GtkExpressionHandle[] @params);
+
 }

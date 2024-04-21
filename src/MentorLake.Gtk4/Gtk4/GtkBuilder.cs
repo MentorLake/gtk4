@@ -150,50 +150,75 @@ internal class GtkBuilderExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBuilderHandle gtk_builder_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBuilderHandle gtk_builder_new_from_file(string filename);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBuilderHandle gtk_builder_new_from_resource(string resource_path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBuilderHandle gtk_builder_new_from_string(string @string, int length);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_builder_add_from_file(GtkBuilderHandle builder, string filename, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_builder_add_from_resource(GtkBuilderHandle builder, string resource_path, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_builder_add_from_string(GtkBuilderHandle builder, string buffer, int length, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_builder_add_objects_from_file(GtkBuilderHandle builder, string filename, string[] object_ids, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_builder_add_objects_from_resource(GtkBuilderHandle builder, string resource_path, string[] object_ids, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_builder_add_objects_from_string(GtkBuilderHandle builder, string buffer, int length, string[] object_ids, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GClosureHandle gtk_builder_create_closure(GtkBuilderHandle builder, string function_name, GtkBuilderClosureFlags flags, GObjectHandle @object, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_builder_expose_object(GtkBuilderHandle builder, string name, GObjectHandle @object);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_builder_extend_with_template(GtkBuilderHandle builder, GObjectHandle @object, GType template_type, string buffer, int length, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GObjectHandle gtk_builder_get_current_object(GtkBuilderHandle builder);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GObjectHandle gtk_builder_get_object(GtkBuilderHandle builder, string name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GSListHandle gtk_builder_get_objects(GtkBuilderHandle builder);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBuilderScopeHandle gtk_builder_get_scope(GtkBuilderHandle builder);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_builder_get_translation_domain(GtkBuilderHandle builder);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GType gtk_builder_get_type_from_name(GtkBuilderHandle builder, string type_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_builder_set_current_object(GtkBuilderHandle builder, GObjectHandle current_object);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_builder_set_scope(GtkBuilderHandle builder, GtkBuilderScopeHandle scope);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_builder_set_translation_domain(GtkBuilderHandle builder, string domain);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_builder_value_from_string(GtkBuilderHandle builder, GParamSpecHandle pspec, string @string, out GValue value, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_builder_value_from_string_type(GtkBuilderHandle builder, GType type, string @string, out GValue value, out GErrorHandle error);
+
 }

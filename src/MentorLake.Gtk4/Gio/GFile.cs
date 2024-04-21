@@ -706,260 +706,389 @@ internal class GFileExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileOutputStreamHandle g_file_append_to(GFileHandle file, GFileCreateFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_append_to_async(GFileHandle file, GFileCreateFlags flags, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileOutputStreamHandle g_file_append_to_finish(GFileHandle file, GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_build_attribute_list_for_copy(GFileHandle file, GFileCopyFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_copy(GFileHandle source, GFileHandle destination, GFileCopyFlags flags, GCancellableHandle cancellable, GFileProgressCallback progress_callback, IntPtr progress_callback_data, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_copy_async(GFileHandle source, GFileHandle destination, GFileCopyFlags flags, int io_priority, GCancellableHandle cancellable, GFileProgressCallback progress_callback, IntPtr progress_callback_data, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_copy_attributes(GFileHandle source, GFileHandle destination, GFileCopyFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_copy_finish(GFileHandle file, GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileOutputStreamHandle g_file_create(GFileHandle file, GFileCreateFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_create_async(GFileHandle file, GFileCreateFlags flags, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileOutputStreamHandle g_file_create_finish(GFileHandle file, GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileIOStreamHandle g_file_create_readwrite(GFileHandle file, GFileCreateFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_create_readwrite_async(GFileHandle file, GFileCreateFlags flags, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileIOStreamHandle g_file_create_readwrite_finish(GFileHandle file, GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_delete(GFileHandle file, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_delete_async(GFileHandle file, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_delete_finish(GFileHandle file, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_file_dup(GFileHandle file);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_eject_mountable(GFileHandle file, GMountUnmountFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_eject_mountable_finish(GFileHandle file, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_eject_mountable_with_operation(GFileHandle file, GMountUnmountFlags flags, GMountOperationHandle mount_operation, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_eject_mountable_with_operation_finish(GFileHandle file, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileEnumeratorHandle g_file_enumerate_children(GFileHandle file, string attributes, GFileQueryInfoFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_enumerate_children_async(GFileHandle file, string attributes, GFileQueryInfoFlags flags, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileEnumeratorHandle g_file_enumerate_children_finish(GFileHandle file, GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_equal(GFileHandle file1, GFileHandle file2);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GMountHandle g_file_find_enclosing_mount(GFileHandle file, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_find_enclosing_mount_async(GFileHandle file, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GMountHandle g_file_find_enclosing_mount_finish(GFileHandle file, GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_get_basename(GFileHandle file);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_file_get_child(GFileHandle file, string name);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_file_get_child_for_display_name(GFileHandle file, string display_name, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_file_get_parent(GFileHandle file);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_get_parse_name(GFileHandle file);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_get_path(GFileHandle file);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_get_relative_path(GFileHandle parent, GFileHandle descendant);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_get_uri(GFileHandle file);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_get_uri_scheme(GFileHandle file);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_has_parent(GFileHandle file, GFileHandle parent);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_has_prefix(GFileHandle file, GFileHandle prefix);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_has_uri_scheme(GFileHandle file, string uri_scheme);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_file_hash(IntPtr file);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_is_native(GFileHandle file);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GBytesHandle g_file_load_bytes(GFileHandle file, GCancellableHandle cancellable, out string etag_out, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_load_bytes_async(GFileHandle file, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GBytesHandle g_file_load_bytes_finish(GFileHandle file, GAsyncResultHandle result, out string etag_out, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_load_contents(GFileHandle file, GCancellableHandle cancellable, out string contents, out int length, out string etag_out, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_load_contents_async(GFileHandle file, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_load_contents_finish(GFileHandle file, GAsyncResultHandle res, out string contents, out int length, out string etag_out, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_load_partial_contents_async(GFileHandle file, GCancellableHandle cancellable, GFileReadMoreCallback read_more_callback, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_load_partial_contents_finish(GFileHandle file, GAsyncResultHandle res, out string contents, out int length, out string etag_out, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_make_directory(GFileHandle file, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_make_directory_async(GFileHandle file, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_make_directory_finish(GFileHandle file, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_make_directory_with_parents(GFileHandle file, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_make_symbolic_link(GFileHandle file, string symlink_value, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_make_symbolic_link_async(GFileHandle file, string symlink_value, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_make_symbolic_link_finish(GFileHandle file, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_measure_disk_usage(GFileHandle file, GFileMeasureFlags flags, GCancellableHandle cancellable, GFileMeasureProgressCallback progress_callback, IntPtr progress_data, out ulong disk_usage, out ulong num_dirs, out ulong num_files, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_measure_disk_usage_async(GFileHandle file, GFileMeasureFlags flags, int io_priority, GCancellableHandle cancellable, GFileMeasureProgressCallback progress_callback, IntPtr progress_data, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_measure_disk_usage_finish(GFileHandle file, GAsyncResultHandle result, out ulong disk_usage, out ulong num_dirs, out ulong num_files, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileMonitorHandle g_file_monitor(GFileHandle file, GFileMonitorFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileMonitorHandle g_file_monitor_directory(GFileHandle file, GFileMonitorFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileMonitorHandle g_file_monitor_file(GFileHandle file, GFileMonitorFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_mount_enclosing_volume(GFileHandle location, GMountMountFlags flags, GMountOperationHandle mount_operation, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_mount_enclosing_volume_finish(GFileHandle location, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_mount_mountable(GFileHandle file, GMountMountFlags flags, GMountOperationHandle mount_operation, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_file_mount_mountable_finish(GFileHandle file, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_move(GFileHandle source, GFileHandle destination, GFileCopyFlags flags, GCancellableHandle cancellable, GFileProgressCallback progress_callback, IntPtr progress_callback_data, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_move_async(GFileHandle source, GFileHandle destination, GFileCopyFlags flags, int io_priority, GCancellableHandle cancellable, GFileProgressCallback progress_callback, IntPtr progress_callback_data, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_move_finish(GFileHandle file, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileIOStreamHandle g_file_open_readwrite(GFileHandle file, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_open_readwrite_async(GFileHandle file, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileIOStreamHandle g_file_open_readwrite_finish(GFileHandle file, GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_peek_path(GFileHandle file);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_poll_mountable(GFileHandle file, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_poll_mountable_finish(GFileHandle file, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GAppInfoHandle g_file_query_default_handler(GFileHandle file, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_query_default_handler_async(GFileHandle file, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GAppInfoHandle g_file_query_default_handler_finish(GFileHandle file, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_query_exists(GFileHandle file, GCancellableHandle cancellable);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileType g_file_query_file_type(GFileHandle file, GFileQueryInfoFlags flags, GCancellableHandle cancellable);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileInfoHandle g_file_query_filesystem_info(GFileHandle file, string attributes, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_query_filesystem_info_async(GFileHandle file, string attributes, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileInfoHandle g_file_query_filesystem_info_finish(GFileHandle file, GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileInfoHandle g_file_query_info(GFileHandle file, string attributes, GFileQueryInfoFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_query_info_async(GFileHandle file, string attributes, GFileQueryInfoFlags flags, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileInfoHandle g_file_query_info_finish(GFileHandle file, GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileAttributeInfoListHandle g_file_query_settable_attributes(GFileHandle file, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileAttributeInfoListHandle g_file_query_writable_namespaces(GFileHandle file, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileInputStreamHandle g_file_read(GFileHandle file, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_read_async(GFileHandle file, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileInputStreamHandle g_file_read_finish(GFileHandle file, GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileOutputStreamHandle g_file_replace(GFileHandle file, string etag, bool make_backup, GFileCreateFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_replace_async(GFileHandle file, string etag, bool make_backup, GFileCreateFlags flags, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_replace_contents(GFileHandle file, string contents, int length, string etag, bool make_backup, GFileCreateFlags flags, out string new_etag, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_replace_contents_async(GFileHandle file, string contents, int length, string etag, bool make_backup, GFileCreateFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_replace_contents_bytes_async(GFileHandle file, GBytesHandle contents, string etag, bool make_backup, GFileCreateFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_replace_contents_finish(GFileHandle file, GAsyncResultHandle res, out string new_etag, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileOutputStreamHandle g_file_replace_finish(GFileHandle file, GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileIOStreamHandle g_file_replace_readwrite(GFileHandle file, string etag, bool make_backup, GFileCreateFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_replace_readwrite_async(GFileHandle file, string etag, bool make_backup, GFileCreateFlags flags, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileIOStreamHandle g_file_replace_readwrite_finish(GFileHandle file, GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_file_resolve_relative_path(GFileHandle file, string relative_path);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_set_attribute(GFileHandle file, string attribute, GFileAttributeType type, IntPtr value_p, GFileQueryInfoFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_set_attribute_byte_string(GFileHandle file, string attribute, string value, GFileQueryInfoFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_set_attribute_int32(GFileHandle file, string attribute, int value, GFileQueryInfoFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_set_attribute_int64(GFileHandle file, string attribute, long value, GFileQueryInfoFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_set_attribute_string(GFileHandle file, string attribute, string value, GFileQueryInfoFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_set_attribute_uint32(GFileHandle file, string attribute, uint value, GFileQueryInfoFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_set_attribute_uint64(GFileHandle file, string attribute, ulong value, GFileQueryInfoFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_set_attributes_async(GFileHandle file, GFileInfoHandle info, GFileQueryInfoFlags flags, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_set_attributes_finish(GFileHandle file, GAsyncResultHandle result, out GFileInfoHandle info, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_set_attributes_from_info(GFileHandle file, GFileInfoHandle info, GFileQueryInfoFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_file_set_display_name(GFileHandle file, string display_name, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_set_display_name_async(GFileHandle file, string display_name, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_file_set_display_name_finish(GFileHandle file, GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_start_mountable(GFileHandle file, GDriveStartFlags flags, GMountOperationHandle start_operation, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_start_mountable_finish(GFileHandle file, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_stop_mountable(GFileHandle file, GMountUnmountFlags flags, GMountOperationHandle mount_operation, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_stop_mountable_finish(GFileHandle file, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_supports_thread_contexts(GFileHandle file);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_trash(GFileHandle file, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_trash_async(GFileHandle file, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_trash_finish(GFileHandle file, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_unmount_mountable(GFileHandle file, GMountUnmountFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_unmount_mountable_finish(GFileHandle file, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_unmount_mountable_with_operation(GFileHandle file, GMountUnmountFlags flags, GMountOperationHandle mount_operation, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_unmount_mountable_with_operation_finish(GFileHandle file, GAsyncResultHandle result, out GErrorHandle error);
+
 }

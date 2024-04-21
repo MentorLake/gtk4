@@ -36,6 +36,8 @@ internal class GConverterOutputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GConverterOutputStreamHandle g_converter_output_stream_new(GOutputStreamHandle base_stream, GConverterHandle converter);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GConverterHandle g_converter_output_stream_get_converter(GConverterOutputStreamHandle converter_stream);
+
 }

@@ -124,38 +124,56 @@ internal class GDBusMethodInvocationExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusConnectionHandle g_dbus_method_invocation_get_connection(GDBusMethodInvocationHandle invocation);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_method_invocation_get_interface_name(GDBusMethodInvocationHandle invocation);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMessageHandle g_dbus_method_invocation_get_message(GDBusMethodInvocationHandle invocation);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusMethodInfoHandle g_dbus_method_invocation_get_method_info(GDBusMethodInvocationHandle invocation);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_method_invocation_get_method_name(GDBusMethodInvocationHandle invocation);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_method_invocation_get_object_path(GDBusMethodInvocationHandle invocation);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_dbus_method_invocation_get_parameters(GDBusMethodInvocationHandle invocation);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusPropertyInfoHandle g_dbus_method_invocation_get_property_info(GDBusMethodInvocationHandle invocation);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_method_invocation_get_sender(GDBusMethodInvocationHandle invocation);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern IntPtr g_dbus_method_invocation_get_user_data(GDBusMethodInvocationHandle invocation);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_method_invocation_return_dbus_error(GDBusMethodInvocationHandle invocation, string error_name, string error_message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_method_invocation_return_error(GDBusMethodInvocationHandle invocation, GQuark domain, int code, string format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_method_invocation_return_error_literal(GDBusMethodInvocationHandle invocation, GQuark domain, int code, string message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_method_invocation_return_error_valist(GDBusMethodInvocationHandle invocation, GQuark domain, int code, string format, IntPtr var_args);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_method_invocation_return_gerror(GDBusMethodInvocationHandle invocation, GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_method_invocation_return_value(GDBusMethodInvocationHandle invocation, GVariantHandle parameters);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_method_invocation_return_value_with_unix_fd_list(GDBusMethodInvocationHandle invocation, GVariantHandle parameters, GUnixFDListHandle fd_list);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_method_invocation_take_error(GDBusMethodInvocationHandle invocation, GErrorHandle error);
+
 }

@@ -31,14 +31,14 @@ public class GtkListBoxSignal
 
 public static class GtkListBoxSignals
 {
-	public static GtkListBoxSignal ActivateCursorRow = new("activate-cursor-row");
-	public static GtkListBoxSignal MoveCursor = new("move-cursor");
-	public static GtkListBoxSignal RowActivated = new("row-activated");
-	public static GtkListBoxSignal RowSelected = new("row-selected");
-	public static GtkListBoxSignal SelectAll = new("select-all");
-	public static GtkListBoxSignal SelectedRowsChanged = new("selected-rows-changed");
-	public static GtkListBoxSignal ToggleCursorRow = new("toggle-cursor-row");
-	public static GtkListBoxSignal UnselectAll = new("unselect-all");
+	public static GtkListBoxSignal ActivateCursorRow = new("BindingTransform.MethodDeclaration");
+	public static GtkListBoxSignal MoveCursor = new("BindingTransform.MethodDeclaration");
+	public static GtkListBoxSignal RowActivated = new("BindingTransform.MethodDeclaration");
+	public static GtkListBoxSignal RowSelected = new("BindingTransform.MethodDeclaration");
+	public static GtkListBoxSignal SelectAll = new("BindingTransform.MethodDeclaration");
+	public static GtkListBoxSignal SelectedRowsChanged = new("BindingTransform.MethodDeclaration");
+	public static GtkListBoxSignal ToggleCursorRow = new("BindingTransform.MethodDeclaration");
+	public static GtkListBoxSignal UnselectAll = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkListBoxHandleExtensions
@@ -227,79 +227,175 @@ public static class GtkListBoxHandleExtensions
 		return box;
 	}
 
-	public static GtkListBoxHandle Connect(this GtkListBoxHandle instance, GtkListBoxSignal signal, GCallback c_handler)
+	public static GtkListBoxHandle Signal_ActivateCursorRow(this GtkListBoxHandle instance, GtkListBoxDelegates.ActivateCursorRow handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkListBoxHandle Signal_MoveCursor(this GtkListBoxHandle instance, GtkListBoxDelegates.MoveCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkListBoxHandle Signal_RowActivated(this GtkListBoxHandle instance, GtkListBoxDelegates.RowActivated handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "row_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkListBoxHandle Signal_RowSelected(this GtkListBoxHandle instance, GtkListBoxDelegates.RowSelected handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "row_selected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkListBoxHandle Signal_SelectAll(this GtkListBoxHandle instance, GtkListBoxDelegates.SelectAll handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkListBoxHandle Signal_SelectedRowsChanged(this GtkListBoxHandle instance, GtkListBoxDelegates.SelectedRowsChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "selected_rows_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkListBoxHandle Signal_ToggleCursorRow(this GtkListBoxHandle instance, GtkListBoxDelegates.ToggleCursorRow handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkListBoxHandle Signal_UnselectAll(this GtkListBoxHandle instance, GtkListBoxDelegates.UnselectAll handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkListBoxDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ActivateCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, ref GtkMovementStep @object, int p0, bool p1, bool p2, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void RowActivated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, GtkListBoxRowHandle row, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void RowSelected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, GtkListBoxRowHandle row, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SelectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SelectedRowsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ToggleCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void UnselectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
 }
 
 internal class GtkListBoxExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListBoxHandle gtk_list_box_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_append(GtkListBoxHandle box, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_bind_model(GtkListBoxHandle box, GListModelHandle model, GtkListBoxCreateWidgetFunc create_widget_func, IntPtr user_data, GDestroyNotify user_data_free_func);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_drag_highlight_row(GtkListBoxHandle box, GtkListBoxRowHandle row);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_drag_unhighlight_row(GtkListBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_list_box_get_activate_on_single_click(GtkListBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAdjustmentHandle gtk_list_box_get_adjustment(GtkListBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListBoxRowHandle gtk_list_box_get_row_at_index(GtkListBoxHandle box, int index_);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListBoxRowHandle gtk_list_box_get_row_at_y(GtkListBoxHandle box, int y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListBoxRowHandle gtk_list_box_get_selected_row(GtkListBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListHandle gtk_list_box_get_selected_rows(GtkListBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSelectionMode gtk_list_box_get_selection_mode(GtkListBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_list_box_get_show_separators(GtkListBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_insert(GtkListBoxHandle box, GtkWidgetHandle child, int position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_invalidate_filter(GtkListBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_invalidate_headers(GtkListBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_invalidate_sort(GtkListBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_prepend(GtkListBoxHandle box, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_remove(GtkListBoxHandle box, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_remove_all(GtkListBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_select_all(GtkListBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_select_row(GtkListBoxHandle box, GtkListBoxRowHandle row);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_selected_foreach(GtkListBoxHandle box, GtkListBoxForeachFunc func, IntPtr data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_set_activate_on_single_click(GtkListBoxHandle box, bool single);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_set_adjustment(GtkListBoxHandle box, GtkAdjustmentHandle adjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_set_filter_func(GtkListBoxHandle box, GtkListBoxFilterFunc filter_func, IntPtr user_data, GDestroyNotify destroy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_set_header_func(GtkListBoxHandle box, GtkListBoxUpdateHeaderFunc update_header, IntPtr user_data, GDestroyNotify destroy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_set_placeholder(GtkListBoxHandle box, GtkWidgetHandle placeholder);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_set_selection_mode(GtkListBoxHandle box, GtkSelectionMode mode);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_set_show_separators(GtkListBoxHandle box, bool show_separators);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_set_sort_func(GtkListBoxHandle box, GtkListBoxSortFunc sort_func, IntPtr user_data, GDestroyNotify destroy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_unselect_all(GtkListBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_unselect_row(GtkListBoxHandle box, GtkListBoxRowHandle row);
+
 }

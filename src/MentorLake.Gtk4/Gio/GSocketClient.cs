@@ -31,7 +31,7 @@ public class GSocketClientSignal
 
 public static class GSocketClientSignals
 {
-	public static GSocketClientSignal Event = new("event");
+	public static GSocketClientSignal Event = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GSocketClientHandleExtensions
@@ -205,77 +205,116 @@ public static class GSocketClientHandleExtensions
 		return client;
 	}
 
-	public static GSocketClientHandle Connect(this GSocketClientHandle instance, GSocketClientSignal signal, GCallback c_handler)
+	public static GSocketClientHandle Signal_Event(this GSocketClientHandle instance, GSocketClientDelegates.Event handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GSocketClientDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Event([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSocketClientHandle>))] GSocketClientHandle self, GSocketClientEvent @event, GSocketConnectableHandle connectable, GIOStreamHandle connection, IntPtr user_data);
 }
 
 internal class GSocketClientExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketClientHandle g_socket_client_new();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_client_add_application_proxy(GSocketClientHandle client, string protocol);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectionHandle g_socket_client_connect(GSocketClientHandle client, GSocketConnectableHandle connectable, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_client_connect_async(GSocketClientHandle client, GSocketConnectableHandle connectable, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectionHandle g_socket_client_connect_finish(GSocketClientHandle client, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectionHandle g_socket_client_connect_to_host(GSocketClientHandle client, string host_and_port, ushort default_port, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_client_connect_to_host_async(GSocketClientHandle client, string host_and_port, ushort default_port, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectionHandle g_socket_client_connect_to_host_finish(GSocketClientHandle client, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectionHandle g_socket_client_connect_to_service(GSocketClientHandle client, string domain, string service, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_client_connect_to_service_async(GSocketClientHandle client, string domain, string service, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectionHandle g_socket_client_connect_to_service_finish(GSocketClientHandle client, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectionHandle g_socket_client_connect_to_uri(GSocketClientHandle client, string uri, ushort default_port, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_client_connect_to_uri_async(GSocketClientHandle client, string uri, ushort default_port, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectionHandle g_socket_client_connect_to_uri_finish(GSocketClientHandle client, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_client_get_enable_proxy(GSocketClientHandle client);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketFamily g_socket_client_get_family(GSocketClientHandle client);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketAddressHandle g_socket_client_get_local_address(GSocketClientHandle client);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketProtocol g_socket_client_get_protocol(GSocketClientHandle client);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GProxyResolverHandle g_socket_client_get_proxy_resolver(GSocketClientHandle client);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketType g_socket_client_get_socket_type(GSocketClientHandle client);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_socket_client_get_timeout(GSocketClientHandle client);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_client_get_tls(GSocketClientHandle client);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateFlags g_socket_client_get_tls_validation_flags(GSocketClientHandle client);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_client_set_enable_proxy(GSocketClientHandle client, bool enable);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_client_set_family(GSocketClientHandle client, GSocketFamily family);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_client_set_local_address(GSocketClientHandle client, GSocketAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_client_set_protocol(GSocketClientHandle client, GSocketProtocol protocol);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_client_set_proxy_resolver(GSocketClientHandle client, GProxyResolverHandle proxy_resolver);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_client_set_socket_type(GSocketClientHandle client, GSocketType type);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_client_set_timeout(GSocketClientHandle client, uint timeout);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_client_set_tls(GSocketClientHandle client, bool tls);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_client_set_tls_validation_flags(GSocketClientHandle client, GTlsCertificateFlags flags);
+
 }

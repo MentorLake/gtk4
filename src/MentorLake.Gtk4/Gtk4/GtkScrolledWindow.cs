@@ -31,10 +31,10 @@ public class GtkScrolledWindowSignal
 
 public static class GtkScrolledWindowSignals
 {
-	public static GtkScrolledWindowSignal EdgeOvershot = new("edge-overshot");
-	public static GtkScrolledWindowSignal EdgeReached = new("edge-reached");
-	public static GtkScrolledWindowSignal MoveFocusOut = new("move-focus-out");
-	public static GtkScrolledWindowSignal ScrollChild = new("scroll-child");
+	public static GtkScrolledWindowSignal EdgeOvershot = new("BindingTransform.MethodDeclaration");
+	public static GtkScrolledWindowSignal EdgeReached = new("BindingTransform.MethodDeclaration");
+	public static GtkScrolledWindowSignal MoveFocusOut = new("BindingTransform.MethodDeclaration");
+	public static GtkScrolledWindowSignal ScrollChild = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkScrolledWindowHandleExtensions
@@ -210,77 +210,140 @@ public static class GtkScrolledWindowHandleExtensions
 		return scrolled_window;
 	}
 
-	public static GtkScrolledWindowHandle Connect(this GtkScrolledWindowHandle instance, GtkScrolledWindowSignal signal, GCallback c_handler)
+	public static GtkScrolledWindowHandle Signal_EdgeOvershot(this GtkScrolledWindowHandle instance, GtkScrolledWindowDelegates.EdgeOvershot handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "edge_overshot", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkScrolledWindowHandle Signal_EdgeReached(this GtkScrolledWindowHandle instance, GtkScrolledWindowDelegates.EdgeReached handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "edge_reached", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkScrolledWindowHandle Signal_MoveFocusOut(this GtkScrolledWindowHandle instance, GtkScrolledWindowDelegates.MoveFocusOut handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_focus_out", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkScrolledWindowHandle Signal_ScrollChild(this GtkScrolledWindowHandle instance, GtkScrolledWindowDelegates.ScrollChild handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "scroll_child", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkScrolledWindowDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void EdgeOvershot([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, GtkPositionType pos, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void EdgeReached([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, GtkPositionType pos, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MoveFocusOut([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, GtkDirectionType direction_type, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ScrollChild([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, ref GtkScrollType scroll, bool horizontal, IntPtr user_data);
 }
 
 internal class GtkScrolledWindowExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkScrolledWindowHandle gtk_scrolled_window_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_scrolled_window_get_child(GtkScrolledWindowHandle scrolled_window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAdjustmentHandle gtk_scrolled_window_get_hadjustment(GtkScrolledWindowHandle scrolled_window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_scrolled_window_get_has_frame(GtkScrolledWindowHandle scrolled_window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_scrolled_window_get_hscrollbar(GtkScrolledWindowHandle scrolled_window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_scrolled_window_get_kinetic_scrolling(GtkScrolledWindowHandle scrolled_window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_scrolled_window_get_max_content_height(GtkScrolledWindowHandle scrolled_window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_scrolled_window_get_max_content_width(GtkScrolledWindowHandle scrolled_window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_scrolled_window_get_min_content_height(GtkScrolledWindowHandle scrolled_window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_scrolled_window_get_min_content_width(GtkScrolledWindowHandle scrolled_window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_scrolled_window_get_overlay_scrolling(GtkScrolledWindowHandle scrolled_window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCornerType gtk_scrolled_window_get_placement(GtkScrolledWindowHandle scrolled_window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_get_policy(GtkScrolledWindowHandle scrolled_window, out GtkPolicyType hscrollbar_policy, out GtkPolicyType vscrollbar_policy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_scrolled_window_get_propagate_natural_height(GtkScrolledWindowHandle scrolled_window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_scrolled_window_get_propagate_natural_width(GtkScrolledWindowHandle scrolled_window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAdjustmentHandle gtk_scrolled_window_get_vadjustment(GtkScrolledWindowHandle scrolled_window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_scrolled_window_get_vscrollbar(GtkScrolledWindowHandle scrolled_window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_set_child(GtkScrolledWindowHandle scrolled_window, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_set_hadjustment(GtkScrolledWindowHandle scrolled_window, GtkAdjustmentHandle hadjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_set_has_frame(GtkScrolledWindowHandle scrolled_window, bool has_frame);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_set_kinetic_scrolling(GtkScrolledWindowHandle scrolled_window, bool kinetic_scrolling);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_set_max_content_height(GtkScrolledWindowHandle scrolled_window, int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_set_max_content_width(GtkScrolledWindowHandle scrolled_window, int width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_set_min_content_height(GtkScrolledWindowHandle scrolled_window, int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_set_min_content_width(GtkScrolledWindowHandle scrolled_window, int width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_set_overlay_scrolling(GtkScrolledWindowHandle scrolled_window, bool overlay_scrolling);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_set_placement(GtkScrolledWindowHandle scrolled_window, GtkCornerType window_placement);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_set_policy(GtkScrolledWindowHandle scrolled_window, GtkPolicyType hscrollbar_policy, GtkPolicyType vscrollbar_policy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_set_propagate_natural_height(GtkScrolledWindowHandle scrolled_window, bool propagate);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_set_propagate_natural_width(GtkScrolledWindowHandle scrolled_window, bool propagate);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_set_vadjustment(GtkScrolledWindowHandle scrolled_window, GtkAdjustmentHandle vadjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrolled_window_unset_placement(GtkScrolledWindowHandle scrolled_window);
+
 }

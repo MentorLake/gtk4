@@ -27,6 +27,7 @@ internal class GChecksumExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GChecksumHandle g_checksum_new(GChecksumType checksum_type);
+
 }
 
 public struct GChecksum

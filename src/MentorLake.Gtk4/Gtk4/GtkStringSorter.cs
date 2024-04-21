@@ -64,16 +64,23 @@ internal class GtkStringSorterExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStringSorterHandle gtk_string_sorter_new(GtkExpressionHandle expression);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCollation gtk_string_sorter_get_collation(GtkStringSorterHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkExpressionHandle gtk_string_sorter_get_expression(GtkStringSorterHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_string_sorter_get_ignore_case(GtkStringSorterHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_string_sorter_set_collation(GtkStringSorterHandle self, GtkCollation collation);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_string_sorter_set_expression(GtkStringSorterHandle self, GtkExpressionHandle expression);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_string_sorter_set_ignore_case(GtkStringSorterHandle self, bool ignore_case);
+
 }

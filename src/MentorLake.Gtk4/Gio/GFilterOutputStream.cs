@@ -42,8 +42,11 @@ internal class GFilterOutputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GOutputStreamHandle g_filter_output_stream_get_base_stream(GFilterOutputStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_filter_output_stream_get_close_base_stream(GFilterOutputStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_filter_output_stream_set_close_base_stream(GFilterOutputStreamHandle stream, bool close_base);
+
 }

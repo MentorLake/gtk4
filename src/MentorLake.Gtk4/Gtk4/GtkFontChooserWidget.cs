@@ -31,4 +31,5 @@ internal class GtkFontChooserWidgetExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFontChooserWidgetHandle gtk_font_chooser_widget_new();
+
 }

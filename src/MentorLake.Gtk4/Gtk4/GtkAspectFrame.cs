@@ -86,24 +86,35 @@ internal class GtkAspectFrameExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAspectFrameHandle gtk_aspect_frame_new(float xalign, float yalign, float ratio, bool obey_child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_aspect_frame_get_child(GtkAspectFrameHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_aspect_frame_get_obey_child(GtkAspectFrameHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern float gtk_aspect_frame_get_ratio(GtkAspectFrameHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern float gtk_aspect_frame_get_xalign(GtkAspectFrameHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern float gtk_aspect_frame_get_yalign(GtkAspectFrameHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_aspect_frame_set_child(GtkAspectFrameHandle self, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_aspect_frame_set_obey_child(GtkAspectFrameHandle self, bool obey_child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_aspect_frame_set_ratio(GtkAspectFrameHandle self, float ratio);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_aspect_frame_set_xalign(GtkAspectFrameHandle self, float xalign);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_aspect_frame_set_yalign(GtkAspectFrameHandle self, float yalign);
+
 }

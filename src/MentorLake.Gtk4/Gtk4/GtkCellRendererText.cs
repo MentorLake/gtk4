@@ -31,7 +31,7 @@ public class GtkCellRendererTextSignal
 
 public static class GtkCellRendererTextSignals
 {
-	public static GtkCellRendererTextSignal Edited = new("edited");
+	public static GtkCellRendererTextSignal Edited = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkCellRendererTextHandleExtensions
@@ -42,17 +42,26 @@ public static class GtkCellRendererTextHandleExtensions
 		return renderer;
 	}
 
-	public static GtkCellRendererTextHandle Connect(this GtkCellRendererTextHandle instance, GtkCellRendererTextSignal signal, GCallback c_handler)
+	public static GtkCellRendererTextHandle Signal_Edited(this GtkCellRendererTextHandle instance, GtkCellRendererTextDelegates.Edited handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "edited", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkCellRendererTextDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Edited([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererTextHandle>))] GtkCellRendererTextHandle self, string path, string new_text, IntPtr user_data);
 }
 
 internal class GtkCellRendererTextExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellRendererTextHandle gtk_cell_renderer_text_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_renderer_text_set_fixed_height_from_font(GtkCellRendererTextHandle renderer, int number_of_rows);
+
 }

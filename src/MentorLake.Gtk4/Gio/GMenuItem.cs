@@ -121,36 +121,53 @@ internal class GMenuItemExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GMenuItemHandle g_menu_item_new(string label, string detailed_action);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GMenuItemHandle g_menu_item_new_from_model(GMenuModelHandle model, int item_index);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GMenuItemHandle g_menu_item_new_section(string label, GMenuModelHandle section);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GMenuItemHandle g_menu_item_new_submenu(string label, GMenuModelHandle submenu);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_menu_item_get_attribute(GMenuItemHandle menu_item, string attribute, string format_string, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_menu_item_get_attribute_value(GMenuItemHandle menu_item, string attribute, GVariantTypeHandle expected_type);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GMenuModelHandle g_menu_item_get_link(GMenuItemHandle menu_item, string link);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_item_set_action_and_target(GMenuItemHandle menu_item, string action, string format_string, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_item_set_action_and_target_value(GMenuItemHandle menu_item, string action, GVariantHandle target_value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_item_set_attribute(GMenuItemHandle menu_item, string attribute, string format_string, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_item_set_attribute_value(GMenuItemHandle menu_item, string attribute, GVariantHandle value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_item_set_detailed_action(GMenuItemHandle menu_item, string detailed_action);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_item_set_icon(GMenuItemHandle menu_item, GIconHandle icon);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_item_set_label(GMenuItemHandle menu_item, string label);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_item_set_link(GMenuItemHandle menu_item, string link, GMenuModelHandle model);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_item_set_section(GMenuItemHandle menu_item, GMenuModelHandle section);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_item_set_submenu(GMenuItemHandle menu_item, GMenuModelHandle submenu);
+
 }

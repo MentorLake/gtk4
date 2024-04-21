@@ -31,4 +31,5 @@ internal class GInitableExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_initable_init(GInitableHandle initable, GCancellableHandle cancellable, out GErrorHandle error);
+
 }

@@ -37,6 +37,8 @@ internal class GDebugControllerExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_debug_controller_get_debug_enabled(GDebugControllerHandle self);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_debug_controller_set_debug_enabled(GDebugControllerHandle self, bool debug_enabled);
+
 }

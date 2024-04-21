@@ -61,16 +61,23 @@ internal class GskOutsetShadowNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskOutsetShadowNodeHandle gsk_outset_shadow_node_new(GskRoundedRectHandle outline, GdkRGBAHandle color, float dx, float dy, float spread, float blur_radius);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_outset_shadow_node_get_blur_radius(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GdkRGBAHandle gsk_outset_shadow_node_get_color(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_outset_shadow_node_get_dx(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_outset_shadow_node_get_dy(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRoundedRectHandle gsk_outset_shadow_node_get_outline(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_outset_shadow_node_get_spread(GskRenderNodeHandle node);
+
 }

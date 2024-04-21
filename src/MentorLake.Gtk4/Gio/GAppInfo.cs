@@ -152,52 +152,77 @@ internal class GAppInfoExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_app_info_add_supports_type(GAppInfoHandle appinfo, string content_type, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_app_info_can_delete(GAppInfoHandle appinfo);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_app_info_can_remove_supports_type(GAppInfoHandle appinfo);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_app_info_delete(GAppInfoHandle appinfo);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GAppInfoHandle g_app_info_dup(GAppInfoHandle appinfo);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_app_info_equal(GAppInfoHandle appinfo1, GAppInfoHandle appinfo2);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_app_info_get_commandline(GAppInfoHandle appinfo);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_app_info_get_description(GAppInfoHandle appinfo);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_app_info_get_display_name(GAppInfoHandle appinfo);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_app_info_get_executable(GAppInfoHandle appinfo);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GIconHandle g_app_info_get_icon(GAppInfoHandle appinfo);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_app_info_get_id(GAppInfoHandle appinfo);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_app_info_get_name(GAppInfoHandle appinfo);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_app_info_get_supported_types(GAppInfoHandle appinfo);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_app_info_launch(GAppInfoHandle appinfo, GListHandle files, GAppLaunchContextHandle context, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_app_info_launch_uris(GAppInfoHandle appinfo, GListHandle uris, GAppLaunchContextHandle context, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_app_info_launch_uris_async(GAppInfoHandle appinfo, GListHandle uris, GAppLaunchContextHandle context, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_app_info_launch_uris_finish(GAppInfoHandle appinfo, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_app_info_remove_supports_type(GAppInfoHandle appinfo, string content_type, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_app_info_set_as_default_for_extension(GAppInfoHandle appinfo, string extension, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_app_info_set_as_default_for_type(GAppInfoHandle appinfo, string content_type, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_app_info_set_as_last_used_for_type(GAppInfoHandle appinfo, string content_type, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_app_info_should_show(GAppInfoHandle appinfo);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_app_info_supports_files(GAppInfoHandle appinfo);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_app_info_supports_uris(GAppInfoHandle appinfo);
+
 }

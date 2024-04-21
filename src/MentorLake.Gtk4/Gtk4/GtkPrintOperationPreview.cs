@@ -43,8 +43,11 @@ internal class GtkPrintOperationPreviewExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_preview_end_preview(GtkPrintOperationPreviewHandle preview);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_operation_preview_is_selected(GtkPrintOperationPreviewHandle preview, int page_nr);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_operation_preview_render_page(GtkPrintOperationPreviewHandle preview, int page_nr);
+
 }

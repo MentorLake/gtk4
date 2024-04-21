@@ -47,10 +47,14 @@ internal class GFileOutputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_output_stream_get_etag(GFileOutputStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileInfoHandle g_file_output_stream_query_info(GFileOutputStreamHandle stream, string attributes, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_output_stream_query_info_async(GFileOutputStreamHandle stream, string attributes, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileInfoHandle g_file_output_stream_query_info_finish(GFileOutputStreamHandle stream, GAsyncResultHandle result, out GErrorHandle error);
+
 }

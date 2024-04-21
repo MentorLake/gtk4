@@ -31,7 +31,7 @@ public class GtkColorDialogButtonSignal
 
 public static class GtkColorDialogButtonSignals
 {
-	public static GtkColorDialogButtonSignal Activate = new("activate");
+	public static GtkColorDialogButtonSignal Activate = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkColorDialogButtonHandleExtensions
@@ -58,23 +58,35 @@ public static class GtkColorDialogButtonHandleExtensions
 		return self;
 	}
 
-	public static GtkColorDialogButtonHandle Connect(this GtkColorDialogButtonHandle instance, GtkColorDialogButtonSignal signal, GCallback c_handler)
+	public static GtkColorDialogButtonHandle Signal_Activate(this GtkColorDialogButtonHandle instance, GtkColorDialogButtonDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkColorDialogButtonDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColorDialogButtonHandle>))] GtkColorDialogButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkColorDialogButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkColorDialogButtonHandle gtk_color_dialog_button_new(GtkColorDialogHandle dialog);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkColorDialogHandle gtk_color_dialog_button_get_dialog(GtkColorDialogButtonHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkRGBAHandle gtk_color_dialog_button_get_rgba(GtkColorDialogButtonHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_color_dialog_button_set_dialog(GtkColorDialogButtonHandle self, GtkColorDialogHandle dialog);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_color_dialog_button_set_rgba(GtkColorDialogButtonHandle self, GdkRGBAHandle color);
+
 }

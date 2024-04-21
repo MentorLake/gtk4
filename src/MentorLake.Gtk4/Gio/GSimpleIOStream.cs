@@ -31,4 +31,5 @@ internal class GSimpleIOStreamExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GSimpleIOStreamHandle g_simple_io_stream_new(GInputStreamHandle input_stream, GOutputStreamHandle output_stream);
+
 }

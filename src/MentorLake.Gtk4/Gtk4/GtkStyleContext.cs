@@ -216,68 +216,101 @@ internal class GtkStyleContextExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_style_context_add_class(GtkStyleContextHandle context, string class_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_style_context_add_provider(GtkStyleContextHandle context, GtkStyleProviderHandle provider, uint priority);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_style_context_get_border(GtkStyleContextHandle context, out GtkBorder border);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_style_context_get_color(GtkStyleContextHandle context, out GdkRGBA color);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDisplayHandle gtk_style_context_get_display(GtkStyleContextHandle context);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_style_context_get_margin(GtkStyleContextHandle context, out GtkBorder margin);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_style_context_get_padding(GtkStyleContextHandle context, out GtkBorder padding);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_style_context_get_scale(GtkStyleContextHandle context);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStateFlags gtk_style_context_get_state(GtkStyleContextHandle context);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_style_context_has_class(GtkStyleContextHandle context, string class_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_style_context_lookup_color(GtkStyleContextHandle context, string color_name, out GdkRGBA color);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_style_context_remove_class(GtkStyleContextHandle context, string class_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_style_context_remove_provider(GtkStyleContextHandle context, GtkStyleProviderHandle provider);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_style_context_restore(GtkStyleContextHandle context);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_style_context_save(GtkStyleContextHandle context);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_style_context_set_display(GtkStyleContextHandle context, GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_style_context_set_scale(GtkStyleContextHandle context, int scale);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_style_context_set_state(GtkStyleContextHandle context, GtkStateFlags flags);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_style_context_to_string(GtkStyleContextHandle context, GtkStyleContextPrintFlags flags);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_render_frame(GtkStyleContextHandle context, cairo_tHandle cr, double x, double y, double width, double height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_render_expander(GtkStyleContextHandle context, cairo_tHandle cr, double x, double y, double width, double height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_render_icon(GtkStyleContextHandle context, cairo_tHandle cr, GdkTextureHandle texture, double x, double y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_render_line(GtkStyleContextHandle context, cairo_tHandle cr, double x0, double y0, double x1, double y1);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_render_background(GtkStyleContextHandle context, cairo_tHandle cr, double x, double y, double width, double height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_render_layout(GtkStyleContextHandle context, cairo_tHandle cr, double x, double y, PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_render_arrow(GtkStyleContextHandle context, cairo_tHandle cr, double angle, double x, double y, double size);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_render_activity(GtkStyleContextHandle context, cairo_tHandle cr, double x, double y, double width, double height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_render_handle(GtkStyleContextHandle context, cairo_tHandle cr, double x, double y, double width, double height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_render_focus(GtkStyleContextHandle context, cairo_tHandle cr, double x, double y, double width, double height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_render_check(GtkStyleContextHandle context, cairo_tHandle cr, double x, double y, double width, double height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_render_option(GtkStyleContextHandle context, cairo_tHandle cr, double x, double y, double width, double height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_style_context_add_provider_for_display(GdkDisplayHandle display, GtkStyleProviderHandle provider, uint priority);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_style_context_remove_provider_for_display(GdkDisplayHandle display, GtkStyleProviderHandle provider);
+
 }

@@ -71,10 +71,10 @@ public class GSettingsSignal
 
 public static class GSettingsSignals
 {
-	public static GSettingsSignal ChangeEvent = new("change-event");
-	public static GSettingsSignal Changed = new("changed");
-	public static GSettingsSignal WritableChangeEvent = new("writable-change-event");
-	public static GSettingsSignal WritableChanged = new("writable-changed");
+	public static GSettingsSignal ChangeEvent = new("BindingTransform.MethodDeclaration");
+	public static GSettingsSignal Changed = new("BindingTransform.MethodDeclaration");
+	public static GSettingsSignal WritableChangeEvent = new("BindingTransform.MethodDeclaration");
+	public static GSettingsSignal WritableChanged = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GSettingsHandleExtensions
@@ -297,115 +297,197 @@ public static class GSettingsHandleExtensions
 		return GSettingsExterns.g_settings_set_value(settings, key, value);
 	}
 
-	public static GSettingsHandle Connect(this GSettingsHandle instance, GSettingsSignal signal, GCallback c_handler)
+	public static GSettingsHandle Signal_ChangeEvent(this GSettingsHandle instance, GSettingsDelegates.ChangeEvent handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "change_event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GSettingsHandle Signal_Changed(this GSettingsHandle instance, GSettingsDelegates.Changed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GSettingsHandle Signal_WritableChangeEvent(this GSettingsHandle instance, GSettingsDelegates.WritableChangeEvent handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "writable_change_event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GSettingsHandle Signal_WritableChanged(this GSettingsHandle instance, GSettingsDelegates.WritableChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "writable_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GSettingsDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ChangeEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, IntPtr keys, int n_keys, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, string key, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool WritableChangeEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, uint key, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void WritableChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, string key, IntPtr user_data);
 }
 
 internal class GSettingsExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GSettingsHandle g_settings_new(string schema_id);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSettingsHandle g_settings_new_full(GSettingsSchemaHandle schema, GSettingsBackendHandle backend, string path);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSettingsHandle g_settings_new_with_backend(string schema_id, GSettingsBackendHandle backend);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSettingsHandle g_settings_new_with_backend_and_path(string schema_id, GSettingsBackendHandle backend, string path);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSettingsHandle g_settings_new_with_path(string schema_id, string path);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_apply(GSettingsHandle settings);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_bind(GSettingsHandle settings, string key, GObjectHandle @object, string property, GSettingsBindFlags flags);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_bind_with_mapping(GSettingsHandle settings, string key, GObjectHandle @object, string property, GSettingsBindFlags flags, GSettingsBindGetMapping get_mapping, GSettingsBindSetMapping set_mapping, IntPtr user_data, GDestroyNotify destroy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_bind_writable(GSettingsHandle settings, string key, GObjectHandle @object, string property, bool inverted);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GActionHandle g_settings_create_action(GSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_delay(GSettingsHandle settings);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_get(GSettingsHandle settings, string key, string format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_get_boolean(GSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSettingsHandle g_settings_get_child(GSettingsHandle settings, string name);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_settings_get_default_value(GSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern double g_settings_get_double(GSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_settings_get_enum(GSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_settings_get_flags(GSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_get_has_unapplied(GSettingsHandle settings);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_settings_get_int(GSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern long g_settings_get_int64(GSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern IntPtr g_settings_get_mapped(GSettingsHandle settings, string key, GSettingsGetMapping mapping, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_settings_get_range(GSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_settings_get_string(GSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_settings_get_strv(GSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_settings_get_uint(GSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern ulong g_settings_get_uint64(GSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_settings_get_user_value(GSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_settings_get_value(GSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_is_writable(GSettingsHandle settings, string name);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_settings_list_children(GSettingsHandle settings);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_settings_list_keys(GSettingsHandle settings);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_range_check(GSettingsHandle settings, string key, GVariantHandle value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_reset(GSettingsHandle settings, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_revert(GSettingsHandle settings);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_set(GSettingsHandle settings, string key, string format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_set_boolean(GSettingsHandle settings, string key, bool value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_set_double(GSettingsHandle settings, string key, double value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_set_enum(GSettingsHandle settings, string key, int value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_set_flags(GSettingsHandle settings, string key, uint value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_set_int(GSettingsHandle settings, string key, int value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_set_int64(GSettingsHandle settings, string key, long value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_set_string(GSettingsHandle settings, string key, string value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_set_strv(GSettingsHandle settings, string key, string value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_set_uint(GSettingsHandle settings, string key, uint value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_set_uint64(GSettingsHandle settings, string key, ulong value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_set_value(GSettingsHandle settings, string key, GVariantHandle value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_settings_list_relocatable_schemas();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_settings_list_schemas();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_sync();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_unbind(GObjectHandle @object, string property);
+
 }

@@ -31,11 +31,11 @@ public class GtkCalendarSignal
 
 public static class GtkCalendarSignals
 {
-	public static GtkCalendarSignal DaySelected = new("day-selected");
-	public static GtkCalendarSignal NextMonth = new("next-month");
-	public static GtkCalendarSignal NextYear = new("next-year");
-	public static GtkCalendarSignal PrevMonth = new("prev-month");
-	public static GtkCalendarSignal PrevYear = new("prev-year");
+	public static GtkCalendarSignal DaySelected = new("BindingTransform.MethodDeclaration");
+	public static GtkCalendarSignal NextMonth = new("BindingTransform.MethodDeclaration");
+	public static GtkCalendarSignal NextYear = new("BindingTransform.MethodDeclaration");
+	public static GtkCalendarSignal PrevMonth = new("BindingTransform.MethodDeclaration");
+	public static GtkCalendarSignal PrevYear = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkCalendarHandleExtensions
@@ -140,51 +140,109 @@ public static class GtkCalendarHandleExtensions
 		return calendar;
 	}
 
-	public static GtkCalendarHandle Connect(this GtkCalendarHandle instance, GtkCalendarSignal signal, GCallback c_handler)
+	public static GtkCalendarHandle Signal_DaySelected(this GtkCalendarHandle instance, GtkCalendarDelegates.DaySelected handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "day_selected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkCalendarHandle Signal_NextMonth(this GtkCalendarHandle instance, GtkCalendarDelegates.NextMonth handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "next_month", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkCalendarHandle Signal_NextYear(this GtkCalendarHandle instance, GtkCalendarDelegates.NextYear handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "next_year", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkCalendarHandle Signal_PrevMonth(this GtkCalendarHandle instance, GtkCalendarDelegates.PrevMonth handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "prev_month", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkCalendarHandle Signal_PrevYear(this GtkCalendarHandle instance, GtkCalendarDelegates.PrevYear handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "prev_year", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkCalendarDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DaySelected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCalendarHandle>))] GtkCalendarHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void NextMonth([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCalendarHandle>))] GtkCalendarHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void NextYear([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCalendarHandle>))] GtkCalendarHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void PrevMonth([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCalendarHandle>))] GtkCalendarHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void PrevYear([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCalendarHandle>))] GtkCalendarHandle self, IntPtr user_data);
 }
 
 internal class GtkCalendarExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCalendarHandle gtk_calendar_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_calendar_clear_marks(GtkCalendarHandle calendar);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GDateTimeHandle gtk_calendar_get_date(GtkCalendarHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_calendar_get_day(GtkCalendarHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_calendar_get_day_is_marked(GtkCalendarHandle calendar, uint day);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_calendar_get_month(GtkCalendarHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_calendar_get_show_day_names(GtkCalendarHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_calendar_get_show_heading(GtkCalendarHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_calendar_get_show_week_numbers(GtkCalendarHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_calendar_get_year(GtkCalendarHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_calendar_mark_day(GtkCalendarHandle calendar, uint day);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_calendar_select_day(GtkCalendarHandle self, GDateTimeHandle date);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_calendar_set_day(GtkCalendarHandle self, int day);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_calendar_set_month(GtkCalendarHandle self, int month);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_calendar_set_show_day_names(GtkCalendarHandle self, bool value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_calendar_set_show_heading(GtkCalendarHandle self, bool value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_calendar_set_show_week_numbers(GtkCalendarHandle self, bool value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_calendar_set_year(GtkCalendarHandle self, int year);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_calendar_unmark_day(GtkCalendarHandle calendar, uint day);
+
 }

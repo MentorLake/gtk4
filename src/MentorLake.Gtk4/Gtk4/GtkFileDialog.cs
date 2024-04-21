@@ -174,56 +174,86 @@ internal class GtkFileDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFileDialogHandle gtk_file_dialog_new();
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_file_dialog_get_accept_label(GtkFileDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFileFilterHandle gtk_file_dialog_get_default_filter(GtkFileDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_file_dialog_get_filters(GtkFileDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GFileHandle gtk_file_dialog_get_initial_file(GtkFileDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GFileHandle gtk_file_dialog_get_initial_folder(GtkFileDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_file_dialog_get_initial_name(GtkFileDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_file_dialog_get_modal(GtkFileDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_file_dialog_get_title(GtkFileDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_dialog_open(GtkFileDialogHandle self, GtkWindowHandle parent, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GFileHandle gtk_file_dialog_open_finish(GtkFileDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_dialog_open_multiple(GtkFileDialogHandle self, GtkWindowHandle parent, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_file_dialog_open_multiple_finish(GtkFileDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_dialog_save(GtkFileDialogHandle self, GtkWindowHandle parent, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GFileHandle gtk_file_dialog_save_finish(GtkFileDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_dialog_select_folder(GtkFileDialogHandle self, GtkWindowHandle parent, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GFileHandle gtk_file_dialog_select_folder_finish(GtkFileDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_dialog_select_multiple_folders(GtkFileDialogHandle self, GtkWindowHandle parent, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_file_dialog_select_multiple_folders_finish(GtkFileDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_dialog_set_accept_label(GtkFileDialogHandle self, string accept_label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_dialog_set_default_filter(GtkFileDialogHandle self, GtkFileFilterHandle filter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_dialog_set_filters(GtkFileDialogHandle self, GListModelHandle filters);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_dialog_set_initial_file(GtkFileDialogHandle self, GFileHandle file);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_dialog_set_initial_folder(GtkFileDialogHandle self, GFileHandle folder);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_dialog_set_initial_name(GtkFileDialogHandle self, string name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_dialog_set_modal(GtkFileDialogHandle self, bool modal);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_dialog_set_title(GtkFileDialogHandle self, string title);
+
 }

@@ -42,8 +42,11 @@ internal class GSocketAddressEnumeratorExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketAddressHandle g_socket_address_enumerator_next(GSocketAddressEnumeratorHandle enumerator, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_address_enumerator_next_async(GSocketAddressEnumeratorHandle enumerator, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketAddressHandle g_socket_address_enumerator_next_finish(GSocketAddressEnumeratorHandle enumerator, GAsyncResultHandle result, out GErrorHandle error);
+
 }

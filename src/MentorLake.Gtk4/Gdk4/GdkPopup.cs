@@ -61,16 +61,23 @@ internal class GdkPopupExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_popup_get_autohide(GdkPopupHandle popup);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkSurfaceHandle gdk_popup_get_parent(GdkPopupHandle popup);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_popup_get_position_x(GdkPopupHandle popup);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_popup_get_position_y(GdkPopupHandle popup);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkGravity gdk_popup_get_rect_anchor(GdkPopupHandle popup);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkGravity gdk_popup_get_surface_anchor(GdkPopupHandle popup);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_popup_present(GdkPopupHandle popup, int width, int height, GdkPopupLayoutHandle layout);
+
 }

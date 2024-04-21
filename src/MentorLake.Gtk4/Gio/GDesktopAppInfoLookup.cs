@@ -31,4 +31,5 @@ internal class GDesktopAppInfoLookupExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GAppInfoHandle g_desktop_app_info_lookup_get_default_for_uri_scheme(GDesktopAppInfoLookupHandle lookup, string uri_scheme);
+
 }

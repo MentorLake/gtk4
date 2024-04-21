@@ -32,8 +32,10 @@ internal class PangoTabArrayExterns
 {
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoTabArrayHandle pango_tab_array_new(int initial_size, bool positions_in_pixels);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoTabArrayHandle pango_tab_array_new_with_positions(int size, bool positions_in_pixels, PangoTabAlign first_alignment, int first_position, IntPtr @__arglist);
+
 }
 
 public struct PangoTabArray

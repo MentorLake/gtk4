@@ -112,34 +112,50 @@ internal class GApplicationCommandLineExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_application_command_line_create_file_for_arg(GApplicationCommandLineHandle cmdline, string arg);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_command_line_done(GApplicationCommandLineHandle cmdline);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_application_command_line_get_arguments(GApplicationCommandLineHandle cmdline, out int argc);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_application_command_line_get_cwd(GApplicationCommandLineHandle cmdline);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_application_command_line_get_environ(GApplicationCommandLineHandle cmdline);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_application_command_line_get_exit_status(GApplicationCommandLineHandle cmdline);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_application_command_line_get_is_remote(GApplicationCommandLineHandle cmdline);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantDictHandle g_application_command_line_get_options_dict(GApplicationCommandLineHandle cmdline);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_application_command_line_get_platform_data(GApplicationCommandLineHandle cmdline);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GInputStreamHandle g_application_command_line_get_stdin(GApplicationCommandLineHandle cmdline);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_application_command_line_getenv(GApplicationCommandLineHandle cmdline, string name);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_command_line_print(GApplicationCommandLineHandle cmdline, string format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_command_line_print_literal(GApplicationCommandLineHandle cmdline, string message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_command_line_printerr(GApplicationCommandLineHandle cmdline, string format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_command_line_printerr_literal(GApplicationCommandLineHandle cmdline, string message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_command_line_set_exit_status(GApplicationCommandLineHandle cmdline, int exit_status);
+
 }

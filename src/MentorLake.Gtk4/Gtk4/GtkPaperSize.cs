@@ -52,16 +52,22 @@ internal class GtkPaperSizeExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPaperSizeHandle gtk_paper_size_new(string name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPaperSizeHandle gtk_paper_size_new_custom(string name, string display_name, double width, double height, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPaperSizeHandle gtk_paper_size_new_from_gvariant(GVariantHandle variant);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPaperSizeHandle gtk_paper_size_new_from_ipp(string ipp_name, double width, double height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPaperSizeHandle gtk_paper_size_new_from_key_file(GKeyFileHandle key_file, string group_name, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPaperSizeHandle gtk_paper_size_new_from_ppd(string ppd_name, string ppd_display_name, double width, double height);
+
 }
 
 public struct GtkPaperSize

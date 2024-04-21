@@ -42,8 +42,11 @@ internal class GLoadableIconExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GInputStreamHandle g_loadable_icon_load(GLoadableIconHandle icon, int size, out string type, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_loadable_icon_load_async(GLoadableIconHandle icon, int size, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GInputStreamHandle g_loadable_icon_load_finish(GLoadableIconHandle icon, GAsyncResultHandle res, out string type, out GErrorHandle error);
+
 }

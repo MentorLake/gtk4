@@ -46,10 +46,14 @@ internal class GskColorMatrixNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskColorMatrixNodeHandle gsk_color_matrix_node_new(GskRenderNodeHandle child, graphene_matrix_tHandle color_matrix, graphene_vec4_tHandle color_offset);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_color_matrix_node_get_child(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern graphene_matrix_tHandle gsk_color_matrix_node_get_color_matrix(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern graphene_vec4_tHandle gsk_color_matrix_node_get_color_offset(GskRenderNodeHandle node);
+
 }

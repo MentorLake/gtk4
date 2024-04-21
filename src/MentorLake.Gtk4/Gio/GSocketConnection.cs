@@ -72,20 +72,29 @@ internal class GSocketConnectionExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_connection_connect(GSocketConnectionHandle connection, GSocketAddressHandle address, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_connection_connect_async(GSocketConnectionHandle connection, GSocketAddressHandle address, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_connection_connect_finish(GSocketConnectionHandle connection, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketAddressHandle g_socket_connection_get_local_address(GSocketConnectionHandle connection, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketAddressHandle g_socket_connection_get_remote_address(GSocketConnectionHandle connection, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketHandle g_socket_connection_get_socket(GSocketConnectionHandle connection);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_connection_is_connected(GSocketConnectionHandle connection);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GType g_socket_connection_factory_lookup_type(GSocketFamily family, GSocketType type, int protocol_id);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_connection_factory_register_type(GType g_type, GSocketFamily family, GSocketType type, int protocol);
+
 }

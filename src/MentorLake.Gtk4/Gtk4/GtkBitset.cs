@@ -32,8 +32,10 @@ internal class GtkBitsetExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBitsetHandle gtk_bitset_new_empty();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBitsetHandle gtk_bitset_new_range(uint start, uint n_items);
+
 }
 
 public struct GtkBitset

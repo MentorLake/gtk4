@@ -27,6 +27,7 @@ internal class GFileAttributeInfoListExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileAttributeInfoListHandle g_file_attribute_info_list_new();
+
 }
 
 public struct GFileAttributeInfoList

@@ -233,78 +233,116 @@ internal class GTaskExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GTaskHandle g_task_new(GObjectHandle source_object, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr callback_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_attach_source(GTaskHandle task, GSourceHandle source, GSourceFunc callback);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GCancellableHandle g_task_get_cancellable(GTaskHandle task);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_task_get_check_cancellable(GTaskHandle task);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_task_get_completed(GTaskHandle task);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GMainContextHandle g_task_get_context(GTaskHandle task);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_task_get_name(GTaskHandle task);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_task_get_priority(GTaskHandle task);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_task_get_return_on_cancel(GTaskHandle task);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GObjectHandle g_task_get_source_object(GTaskHandle task);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern IntPtr g_task_get_source_tag(GTaskHandle task);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern IntPtr g_task_get_task_data(GTaskHandle task);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_task_had_error(GTaskHandle task);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_task_propagate_boolean(GTaskHandle task, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_task_propagate_int(GTaskHandle task, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern IntPtr g_task_propagate_pointer(GTaskHandle task, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_task_propagate_value(GTaskHandle task, out GValue value, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_return_boolean(GTaskHandle task, bool result);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_return_error(GTaskHandle task, GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_task_return_error_if_cancelled(GTaskHandle task);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_return_int(GTaskHandle task, int result);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_return_new_error(GTaskHandle task, GQuark domain, int code, string format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_return_new_error_literal(GTaskHandle task, GQuark domain, int code, string message);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_return_pointer(GTaskHandle task, IntPtr result, GDestroyNotify result_destroy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_return_prefixed_error(GTaskHandle task, GErrorHandle error, string format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_return_value(GTaskHandle task, GValueHandle result);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_run_in_thread(GTaskHandle task, GTaskThreadFunc task_func);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_run_in_thread_sync(GTaskHandle task, GTaskThreadFunc task_func);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_set_check_cancellable(GTaskHandle task, bool check_cancellable);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_set_name(GTaskHandle task, string name);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_set_priority(GTaskHandle task, int priority);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_task_set_return_on_cancel(GTaskHandle task, bool return_on_cancel);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_set_source_tag(GTaskHandle task, IntPtr source_tag);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_set_static_name(GTaskHandle task, string name);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_set_task_data(GTaskHandle task, IntPtr task_data, GDestroyNotify task_data_destroy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_task_is_valid(GAsyncResultHandle result, GObjectHandle source_object);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_report_error(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr callback_data, IntPtr source_tag, GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_report_new_error(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr callback_data, IntPtr source_tag, GQuark domain, int code, string format, IntPtr @__arglist);
+
 }

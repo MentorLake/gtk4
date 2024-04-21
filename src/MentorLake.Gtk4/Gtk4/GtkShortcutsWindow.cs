@@ -26,8 +26,8 @@ public class GtkShortcutsWindowSignal
 
 public static class GtkShortcutsWindowSignals
 {
-	public static GtkShortcutsWindowSignal Close = new("close");
-	public static GtkShortcutsWindowSignal Search = new("search");
+	public static GtkShortcutsWindowSignal Close = new("BindingTransform.MethodDeclaration");
+	public static GtkShortcutsWindowSignal Search = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkShortcutsWindowHandleExtensions
@@ -38,15 +38,31 @@ public static class GtkShortcutsWindowHandleExtensions
 		return self;
 	}
 
-	public static GtkShortcutsWindowHandle Connect(this GtkShortcutsWindowHandle instance, GtkShortcutsWindowSignal signal, GCallback c_handler)
+	public static GtkShortcutsWindowHandle Signal_Close(this GtkShortcutsWindowHandle instance, GtkShortcutsWindowDelegates.Close handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "close", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkShortcutsWindowHandle Signal_Search(this GtkShortcutsWindowHandle instance, GtkShortcutsWindowDelegates.Search handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "search", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkShortcutsWindowDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Close([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkShortcutsWindowHandle>))] GtkShortcutsWindowHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Search([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkShortcutsWindowHandle>))] GtkShortcutsWindowHandle self, IntPtr user_data);
 }
 
 internal class GtkShortcutsWindowExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_shortcuts_window_add_section(GtkShortcutsWindowHandle self, GtkShortcutsSectionHandle section);
+
 }

@@ -36,10 +36,10 @@ public class GtkEntryCompletionSignal
 
 public static class GtkEntryCompletionSignals
 {
-	public static GtkEntryCompletionSignal CursorOnMatch = new("cursor-on-match");
-	public static GtkEntryCompletionSignal InsertPrefix = new("insert-prefix");
-	public static GtkEntryCompletionSignal MatchSelected = new("match-selected");
-	public static GtkEntryCompletionSignal NoMatches = new("no-matches");
+	public static GtkEntryCompletionSignal CursorOnMatch = new("BindingTransform.MethodDeclaration");
+	public static GtkEntryCompletionSignal InsertPrefix = new("BindingTransform.MethodDeclaration");
+	public static GtkEntryCompletionSignal MatchSelected = new("BindingTransform.MethodDeclaration");
+	public static GtkEntryCompletionSignal NoMatches = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkEntryCompletionHandleExtensions
@@ -165,61 +165,117 @@ public static class GtkEntryCompletionHandleExtensions
 		return completion;
 	}
 
-	public static GtkEntryCompletionHandle Connect(this GtkEntryCompletionHandle instance, GtkEntryCompletionSignal signal, GCallback c_handler)
+	public static GtkEntryCompletionHandle Signal_CursorOnMatch(this GtkEntryCompletionHandle instance, GtkEntryCompletionDelegates.CursorOnMatch handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "cursor_on_match", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkEntryCompletionHandle Signal_InsertPrefix(this GtkEntryCompletionHandle instance, GtkEntryCompletionDelegates.InsertPrefix handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "insert_prefix", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkEntryCompletionHandle Signal_MatchSelected(this GtkEntryCompletionHandle instance, GtkEntryCompletionDelegates.MatchSelected handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "match_selected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkEntryCompletionHandle Signal_NoMatches(this GtkEntryCompletionHandle instance, GtkEntryCompletionDelegates.NoMatches handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "no_matches", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkEntryCompletionDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool CursorOnMatch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryCompletionHandle>))] GtkEntryCompletionHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool InsertPrefix([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryCompletionHandle>))] GtkEntryCompletionHandle self, string prefix, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool MatchSelected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryCompletionHandle>))] GtkEntryCompletionHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void NoMatches([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryCompletionHandle>))] GtkEntryCompletionHandle self, IntPtr user_data);
 }
 
 internal class GtkEntryCompletionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEntryCompletionHandle gtk_entry_completion_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEntryCompletionHandle gtk_entry_completion_new_with_area(GtkCellAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_completion_complete(GtkEntryCompletionHandle completion);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_entry_completion_compute_prefix(GtkEntryCompletionHandle completion, string key);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_entry_completion_get_completion_prefix(GtkEntryCompletionHandle completion);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_entry_completion_get_entry(GtkEntryCompletionHandle completion);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_entry_completion_get_inline_completion(GtkEntryCompletionHandle completion);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_entry_completion_get_inline_selection(GtkEntryCompletionHandle completion);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_entry_completion_get_minimum_key_length(GtkEntryCompletionHandle completion);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeModelHandle gtk_entry_completion_get_model(GtkEntryCompletionHandle completion);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_entry_completion_get_popup_completion(GtkEntryCompletionHandle completion);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_entry_completion_get_popup_set_width(GtkEntryCompletionHandle completion);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_entry_completion_get_popup_single_match(GtkEntryCompletionHandle completion);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_entry_completion_get_text_column(GtkEntryCompletionHandle completion);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_completion_insert_prefix(GtkEntryCompletionHandle completion);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_completion_set_inline_completion(GtkEntryCompletionHandle completion, bool inline_completion);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_completion_set_inline_selection(GtkEntryCompletionHandle completion, bool inline_selection);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_completion_set_match_func(GtkEntryCompletionHandle completion, GtkEntryCompletionMatchFunc func, IntPtr func_data, GDestroyNotify func_notify);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_completion_set_minimum_key_length(GtkEntryCompletionHandle completion, int length);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_completion_set_model(GtkEntryCompletionHandle completion, GtkTreeModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_completion_set_popup_completion(GtkEntryCompletionHandle completion, bool popup_completion);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_completion_set_popup_set_width(GtkEntryCompletionHandle completion, bool popup_set_width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_completion_set_popup_single_match(GtkEntryCompletionHandle completion, bool popup_single_match);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_completion_set_text_column(GtkEntryCompletionHandle completion, int column);
+
 }

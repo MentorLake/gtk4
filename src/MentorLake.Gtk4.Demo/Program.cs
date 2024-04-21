@@ -11,20 +11,28 @@ public static class Program
 
 		var appHandle = GtkApplicationHandle.New("my.app", GApplicationFlags.G_APPLICATION_FLAGS_NONE);
 
-		appHandle.Connect(GApplicationSignals.Activate, async () =>
+		appHandle.Signal_Activate(async (self, data) =>
 		{
+			//Console.WriteLine(self.GetResourceBasePath());
 			var window = GtkWindowHandle.New()
 				.SetChild(GtkBoxHandle.New(GtkOrientation.GTK_ORIENTATION_HORIZONTAL, 0)
 					.Append(GtkButtonHandle.New()
 						.SetLabel("TEST")
-						.Connect(GtkButtonSignals.Clicked, () => Console.WriteLine("CLICK")))
+						.Signal_Clicked((button, _) =>
+						{
+							Console.WriteLine(button.GetLabel());
+							Console.WriteLine(button.GetLabel());
+							Console.WriteLine(button.GetLabel());
+							Console.WriteLine(button.GetHeight());
+							Console.WriteLine(button.GetHeight());
+						}))
 					.Append(GtkImageHandle.NewFromIconName("face-smile")
 						.SetIconSize(GtkIconSize.GTK_ICON_SIZE_LARGE)
 						.SetSizeRequest(64, 64)));
 
 			window.Show();
 			appHandle.AddWindow(window);
-			await Task.Delay(2000);
+			await Task.Delay(5000);
 			window.Destroy();
 		});
 

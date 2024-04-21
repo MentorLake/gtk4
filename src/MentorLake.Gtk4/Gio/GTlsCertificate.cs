@@ -106,34 +106,50 @@ internal class GTlsCertificateExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_file(string file, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_file_with_password(string file, string password, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_files(string cert_file, string key_file, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_pem(string data, int length, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_pkcs11_uris(string pkcs11_uri, string private_key_pkcs11_uri, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_pkcs12(byte[] data, int length, string password, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GPtrArray[] g_tls_certificate_get_dns_names(GTlsCertificateHandle cert);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GPtrArray[] g_tls_certificate_get_ip_addresses(GTlsCertificateHandle cert);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_tls_certificate_get_issuer(GTlsCertificateHandle cert);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_tls_certificate_get_issuer_name(GTlsCertificateHandle cert);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDateTimeHandle g_tls_certificate_get_not_valid_after(GTlsCertificateHandle cert);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDateTimeHandle g_tls_certificate_get_not_valid_before(GTlsCertificateHandle cert);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_tls_certificate_get_subject_name(GTlsCertificateHandle cert);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_tls_certificate_is_same(GTlsCertificateHandle cert_one, GTlsCertificateHandle cert_two);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateFlags g_tls_certificate_verify(GTlsCertificateHandle cert, GSocketConnectableHandle identity, GTlsCertificateHandle trusted_ca);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_tls_certificate_list_new_from_file(string file, out GErrorHandle error);
+
 }

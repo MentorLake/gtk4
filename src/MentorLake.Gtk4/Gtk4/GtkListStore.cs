@@ -148,44 +148,65 @@ internal class GtkListStoreExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListStoreHandle gtk_list_store_new(int n_columns, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListStoreHandle gtk_list_store_newv(int n_columns, GType[] types);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_append(GtkListStoreHandle list_store, out GtkTreeIter iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_clear(GtkListStoreHandle list_store);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_insert(GtkListStoreHandle list_store, out GtkTreeIter iter, int position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_insert_after(GtkListStoreHandle list_store, out GtkTreeIter iter, GtkTreeIterHandle sibling);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_insert_before(GtkListStoreHandle list_store, out GtkTreeIter iter, GtkTreeIterHandle sibling);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_insert_with_values(GtkListStoreHandle list_store, out GtkTreeIter iter, int position, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_insert_with_valuesv(GtkListStoreHandle list_store, out GtkTreeIter iter, int position, int[] columns, GValue[] values, int n_values);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_list_store_iter_is_valid(GtkListStoreHandle list_store, GtkTreeIterHandle iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_move_after(GtkListStoreHandle store, GtkTreeIterHandle iter, GtkTreeIterHandle position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_move_before(GtkListStoreHandle store, GtkTreeIterHandle iter, GtkTreeIterHandle position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_prepend(GtkListStoreHandle list_store, out GtkTreeIter iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_list_store_remove(GtkListStoreHandle list_store, GtkTreeIterHandle iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_reorder(GtkListStoreHandle store, int[] new_order);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_set(GtkListStoreHandle list_store, GtkTreeIterHandle iter, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_set_column_types(GtkListStoreHandle list_store, int n_columns, GType[] types);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_set_valist(GtkListStoreHandle list_store, GtkTreeIterHandle iter, IntPtr var_args);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_set_value(GtkListStoreHandle list_store, GtkTreeIterHandle iter, int column, GValueHandle value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_set_valuesv(GtkListStoreHandle list_store, GtkTreeIterHandle iter, int[] columns, GValue[] values, int n_values);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_store_swap(GtkListStoreHandle store, GtkTreeIterHandle a, GtkTreeIterHandle b);
+
 }

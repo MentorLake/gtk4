@@ -64,16 +64,23 @@ internal class GtkSliceListModelExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSliceListModelHandle gtk_slice_list_model_new(GListModelHandle model, uint offset, uint size);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_slice_list_model_get_model(GtkSliceListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_slice_list_model_get_offset(GtkSliceListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_slice_list_model_get_size(GtkSliceListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_slice_list_model_set_model(GtkSliceListModelHandle self, GListModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_slice_list_model_set_offset(GtkSliceListModelHandle self, uint offset);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_slice_list_model_set_size(GtkSliceListModelHandle self, uint size);
+
 }

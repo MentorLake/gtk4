@@ -38,6 +38,8 @@ internal class GtkMultiFilterExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_multi_filter_append(GtkMultiFilterHandle self, GtkFilterHandle filter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_multi_filter_remove(GtkMultiFilterHandle self, uint position);
+
 }

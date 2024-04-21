@@ -53,12 +53,17 @@ internal class GtkNumericSorterExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkNumericSorterHandle gtk_numeric_sorter_new(GtkExpressionHandle expression);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkExpressionHandle gtk_numeric_sorter_get_expression(GtkNumericSorterHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSortType gtk_numeric_sorter_get_sort_order(GtkNumericSorterHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_numeric_sorter_set_expression(GtkNumericSorterHandle self, GtkExpressionHandle expression);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_numeric_sorter_set_sort_order(GtkNumericSorterHandle self, GtkSortType sort_order);
+
 }

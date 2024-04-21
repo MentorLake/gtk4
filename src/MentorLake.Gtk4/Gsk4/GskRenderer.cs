@@ -68,18 +68,26 @@ internal class GskRendererExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRendererHandle gsk_renderer_new_for_surface(GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GdkSurfaceHandle gsk_renderer_get_surface(GskRendererHandle renderer);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern bool gsk_renderer_is_realized(GskRendererHandle renderer);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern bool gsk_renderer_realize(GskRendererHandle renderer, GdkSurfaceHandle surface, out GErrorHandle error);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern bool gsk_renderer_realize_for_display(GskRendererHandle renderer, GdkDisplayHandle display, out GErrorHandle error);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern void gsk_renderer_render(GskRendererHandle renderer, GskRenderNodeHandle root, cairo_region_tHandle region);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GdkTextureHandle gsk_renderer_render_texture(GskRendererHandle renderer, GskRenderNodeHandle root, graphene_rect_tHandle viewport);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern void gsk_renderer_unrealize(GskRendererHandle renderer);
+
 }

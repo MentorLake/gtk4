@@ -46,8 +46,8 @@ public class GtkButtonSignal
 
 public static class GtkButtonSignals
 {
-	public static GtkButtonSignal Activate = new("activate");
-	public static GtkButtonSignal Clicked = new("clicked");
+	public static GtkButtonSignal Activate = new("BindingTransform.MethodDeclaration");
+	public static GtkButtonSignal Clicked = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkButtonHandleExtensions
@@ -118,45 +118,78 @@ public static class GtkButtonHandleExtensions
 		return button;
 	}
 
-	public static GtkButtonHandle Connect(this GtkButtonHandle instance, GtkButtonSignal signal, GCallback c_handler)
+	public static GtkButtonHandle Signal_Activate(this GtkButtonHandle instance, GtkButtonDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkButtonHandle Signal_Clicked(this GtkButtonHandle instance, GtkButtonDelegates.Clicked handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "clicked", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkButtonDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkButtonHandle>))] GtkButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Clicked([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkButtonHandle>))] GtkButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkButtonHandle gtk_button_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkButtonHandle gtk_button_new_from_icon_name(string icon_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkButtonHandle gtk_button_new_with_label(string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkButtonHandle gtk_button_new_with_mnemonic(string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_button_get_can_shrink(GtkButtonHandle button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_button_get_child(GtkButtonHandle button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_button_get_has_frame(GtkButtonHandle button);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_button_get_icon_name(GtkButtonHandle button);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_button_get_label(GtkButtonHandle button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_button_get_use_underline(GtkButtonHandle button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_button_set_can_shrink(GtkButtonHandle button, bool can_shrink);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_button_set_child(GtkButtonHandle button, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_button_set_has_frame(GtkButtonHandle button, bool has_frame);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_button_set_icon_name(GtkButtonHandle button, string icon_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_button_set_label(GtkButtonHandle button, string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_button_set_use_underline(GtkButtonHandle button, bool use_underline);
+
 }

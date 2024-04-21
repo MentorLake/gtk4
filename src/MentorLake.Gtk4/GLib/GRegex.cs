@@ -27,6 +27,7 @@ internal class GRegexExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GRegexHandle g_regex_new(string pattern, GRegexCompileFlags compile_options, GRegexMatchFlags match_options, out GErrorHandle error);
+
 }
 
 public struct GRegex

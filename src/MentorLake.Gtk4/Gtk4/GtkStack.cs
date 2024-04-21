@@ -155,50 +155,75 @@ internal class GtkStackExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStackHandle gtk_stack_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStackPageHandle gtk_stack_add_child(GtkStackHandle stack, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStackPageHandle gtk_stack_add_named(GtkStackHandle stack, GtkWidgetHandle child, string name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStackPageHandle gtk_stack_add_titled(GtkStackHandle stack, GtkWidgetHandle child, string name, string title);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_stack_get_child_by_name(GtkStackHandle stack, string name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_stack_get_hhomogeneous(GtkStackHandle stack);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_stack_get_interpolate_size(GtkStackHandle stack);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStackPageHandle gtk_stack_get_page(GtkStackHandle stack, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSelectionModelHandle gtk_stack_get_pages(GtkStackHandle stack);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_stack_get_transition_duration(GtkStackHandle stack);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_stack_get_transition_running(GtkStackHandle stack);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStackTransitionType gtk_stack_get_transition_type(GtkStackHandle stack);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_stack_get_vhomogeneous(GtkStackHandle stack);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_stack_get_visible_child(GtkStackHandle stack);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_stack_get_visible_child_name(GtkStackHandle stack);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_remove(GtkStackHandle stack, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_set_hhomogeneous(GtkStackHandle stack, bool hhomogeneous);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_set_interpolate_size(GtkStackHandle stack, bool interpolate_size);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_set_transition_duration(GtkStackHandle stack, uint duration);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_set_transition_type(GtkStackHandle stack, GtkStackTransitionType transition);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_set_vhomogeneous(GtkStackHandle stack, bool vhomogeneous);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_set_visible_child(GtkStackHandle stack, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_set_visible_child_full(GtkStackHandle stack, string name, GtkStackTransitionType transition);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_set_visible_child_name(GtkStackHandle stack, string name);
+
 }

@@ -47,10 +47,14 @@ internal class GdkScrollEventExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_scroll_event_get_deltas(GdkEventHandle @event, out double delta_x, out double delta_y);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkScrollDirection gdk_scroll_event_get_direction(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkScrollUnit gdk_scroll_event_get_unit(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_scroll_event_is_stop(GdkEventHandle @event);
+
 }

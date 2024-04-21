@@ -77,22 +77,32 @@ internal class GTlsBackendExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GType g_tls_backend_get_certificate_type(GTlsBackendHandle backend);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GType g_tls_backend_get_client_connection_type(GTlsBackendHandle backend);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsDatabaseHandle g_tls_backend_get_default_database(GTlsBackendHandle backend);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GType g_tls_backend_get_dtls_client_connection_type(GTlsBackendHandle backend);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GType g_tls_backend_get_dtls_server_connection_type(GTlsBackendHandle backend);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GType g_tls_backend_get_file_database_type(GTlsBackendHandle backend);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GType g_tls_backend_get_server_connection_type(GTlsBackendHandle backend);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_backend_set_default_database(GTlsBackendHandle backend, GTlsDatabaseHandle database);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_tls_backend_supports_dtls(GTlsBackendHandle backend);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_tls_backend_supports_tls(GTlsBackendHandle backend);
+
 }

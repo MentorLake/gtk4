@@ -130,38 +130,56 @@ internal class GSubprocessLauncherExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GSubprocessLauncherHandle g_subprocess_launcher_new(GSubprocessFlags flags);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_launcher_close(GSubprocessLauncherHandle self);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_subprocess_launcher_getenv(GSubprocessLauncherHandle self, string variable);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_launcher_set_child_setup(GSubprocessLauncherHandle self, GSpawnChildSetupFunc child_setup, IntPtr user_data, GDestroyNotify destroy_notify);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_launcher_set_cwd(GSubprocessLauncherHandle self, string cwd);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_launcher_set_environ(GSubprocessLauncherHandle self, string[] env);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_launcher_set_flags(GSubprocessLauncherHandle self, GSubprocessFlags flags);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_launcher_set_stderr_file_path(GSubprocessLauncherHandle self, string path);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_launcher_set_stdin_file_path(GSubprocessLauncherHandle self, string path);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_launcher_set_stdout_file_path(GSubprocessLauncherHandle self, string path);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_launcher_setenv(GSubprocessLauncherHandle self, string variable, string value, bool overwrite);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSubprocessHandle g_subprocess_launcher_spawn(GSubprocessLauncherHandle self, out GErrorHandle error, string argv0, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSubprocessHandle g_subprocess_launcher_spawnv(GSubprocessLauncherHandle self, string argv, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_launcher_take_fd(GSubprocessLauncherHandle self, int source_fd, int target_fd);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_launcher_take_stderr_fd(GSubprocessLauncherHandle self, int fd);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_launcher_take_stdin_fd(GSubprocessLauncherHandle self, int fd);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_launcher_take_stdout_fd(GSubprocessLauncherHandle self, int fd);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_launcher_unsetenv(GSubprocessLauncherHandle self, string variable);
+
 }

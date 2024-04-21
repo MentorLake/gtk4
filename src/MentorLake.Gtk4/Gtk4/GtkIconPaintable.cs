@@ -46,10 +46,15 @@ internal class GtkIconPaintableExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkIconPaintableHandle gtk_icon_paintable_new_for_file(GFileHandle file, int size, int scale);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GFileHandle gtk_icon_paintable_get_file(GtkIconPaintableHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_icon_paintable_get_icon_name(GtkIconPaintableHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_icon_paintable_is_symbolic(GtkIconPaintableHandle self);
+
 }

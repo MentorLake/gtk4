@@ -46,10 +46,14 @@ internal class GdkPixbufAnimationIterExterns
 {
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_animation_iter_advance(GdkPixbufAnimationIterHandle iter, GTimeValHandle current_time);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern int gdk_pixbuf_animation_iter_get_delay_time(GdkPixbufAnimationIterHandle iter);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_animation_iter_get_pixbuf(GdkPixbufAnimationIterHandle iter);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_animation_iter_on_currently_loading_frame(GdkPixbufAnimationIterHandle iter);
+
 }

@@ -31,7 +31,7 @@ public class GtkPrintJobSignal
 
 public static class GtkPrintJobSignals
 {
-	public static GtkPrintJobSignal StatusChanged = new("status-changed");
+	public static GtkPrintJobSignal StatusChanged = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkPrintJobHandleExtensions
@@ -198,75 +198,114 @@ public static class GtkPrintJobHandleExtensions
 		return job;
 	}
 
-	public static GtkPrintJobHandle Connect(this GtkPrintJobHandle instance, GtkPrintJobSignal signal, GCallback c_handler)
+	public static GtkPrintJobHandle Signal_StatusChanged(this GtkPrintJobHandle instance, GtkPrintJobDelegates.StatusChanged handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "status_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkPrintJobDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void StatusChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintJobHandle>))] GtkPrintJobHandle self, IntPtr user_data);
 }
 
 internal class GtkPrintJobExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintJobHandle gtk_print_job_new(string title, GtkPrinterHandle printer, GtkPrintSettingsHandle settings, GtkPageSetupHandle page_setup);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_job_get_collate(GtkPrintJobHandle job);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_print_job_get_n_up(GtkPrintJobHandle job);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkNumberUpLayout gtk_print_job_get_n_up_layout(GtkPrintJobHandle job);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_print_job_get_num_copies(GtkPrintJobHandle job);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageRange[] gtk_print_job_get_page_ranges(GtkPrintJobHandle job, out int n_ranges);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageSet gtk_print_job_get_page_set(GtkPrintJobHandle job);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintPages gtk_print_job_get_pages(GtkPrintJobHandle job);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrinterHandle gtk_print_job_get_printer(GtkPrintJobHandle job);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_job_get_reverse(GtkPrintJobHandle job);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_job_get_rotate(GtkPrintJobHandle job);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_print_job_get_scale(GtkPrintJobHandle job);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintSettingsHandle gtk_print_job_get_settings(GtkPrintJobHandle job);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintStatus gtk_print_job_get_status(GtkPrintJobHandle job);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern cairo_surface_tHandle gtk_print_job_get_surface(GtkPrintJobHandle job, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_print_job_get_title(GtkPrintJobHandle job);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_job_get_track_print_status(GtkPrintJobHandle job);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_job_send(GtkPrintJobHandle job, GtkPrintJobCompleteFunc callback, IntPtr user_data, GDestroyNotify dnotify);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_job_set_collate(GtkPrintJobHandle job, bool collate);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_job_set_n_up(GtkPrintJobHandle job, uint n_up);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_job_set_n_up_layout(GtkPrintJobHandle job, GtkNumberUpLayout layout);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_job_set_num_copies(GtkPrintJobHandle job, int num_copies);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_job_set_page_ranges(GtkPrintJobHandle job, GtkPageRange[] ranges, int n_ranges);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_job_set_page_set(GtkPrintJobHandle job, GtkPageSet page_set);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_job_set_pages(GtkPrintJobHandle job, GtkPrintPages pages);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_job_set_reverse(GtkPrintJobHandle job, bool reverse);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_job_set_rotate(GtkPrintJobHandle job, bool rotate);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_job_set_scale(GtkPrintJobHandle job, double scale);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_job_set_source_fd(GtkPrintJobHandle job, int fd, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_job_set_source_file(GtkPrintJobHandle job, string filename, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_job_set_track_print_status(GtkPrintJobHandle job, bool track_status);
+
 }

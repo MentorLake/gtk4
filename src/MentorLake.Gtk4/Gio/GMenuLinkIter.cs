@@ -46,10 +46,14 @@ internal class GMenuLinkIterExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_menu_link_iter_get_name(GMenuLinkIterHandle iter);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_menu_link_iter_get_next(GMenuLinkIterHandle iter, out string out_link, out GMenuModelHandle value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GMenuModelHandle g_menu_link_iter_get_value(GMenuLinkIterHandle iter);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_menu_link_iter_next(GMenuLinkIterHandle iter);
+
 }

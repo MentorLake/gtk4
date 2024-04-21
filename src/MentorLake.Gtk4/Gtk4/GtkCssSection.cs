@@ -27,6 +27,7 @@ internal class GtkCssSectionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCssSectionHandle gtk_css_section_new(GFileHandle file, GtkCssLocationHandle start, GtkCssLocationHandle end);
+
 }
 
 public struct GtkCssSection

@@ -31,7 +31,7 @@ public class GSocketServiceSignal
 
 public static class GSocketServiceSignals
 {
-	public static GSocketServiceSignal Incoming = new("incoming");
+	public static GSocketServiceSignal Incoming = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GSocketServiceHandleExtensions
@@ -53,21 +53,32 @@ public static class GSocketServiceHandleExtensions
 		return service;
 	}
 
-	public static GSocketServiceHandle Connect(this GSocketServiceHandle instance, GSocketServiceSignal signal, GCallback c_handler)
+	public static GSocketServiceHandle Signal_Incoming(this GSocketServiceHandle instance, GSocketServiceDelegates.Incoming handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "incoming", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GSocketServiceDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Incoming([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSocketServiceHandle>))] GSocketServiceHandle self, GSocketConnectionHandle connection, GObjectHandle source_object, IntPtr user_data);
 }
 
 internal class GSocketServiceExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketServiceHandle g_socket_service_new();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_service_is_active(GSocketServiceHandle service);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_service_start(GSocketServiceHandle service);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_service_stop(GSocketServiceHandle service);
+
 }

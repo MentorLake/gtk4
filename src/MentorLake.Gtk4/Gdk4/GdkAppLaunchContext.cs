@@ -55,12 +55,17 @@ internal class GdkAppLaunchContextExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDisplayHandle gdk_app_launch_context_get_display(GdkAppLaunchContextHandle context);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_app_launch_context_set_desktop(GdkAppLaunchContextHandle context, int desktop);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_app_launch_context_set_icon(GdkAppLaunchContextHandle context, GIconHandle icon);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_app_launch_context_set_icon_name(GdkAppLaunchContextHandle context, string icon_name);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_app_launch_context_set_timestamp(GdkAppLaunchContextHandle context, uint timestamp);
+
 }

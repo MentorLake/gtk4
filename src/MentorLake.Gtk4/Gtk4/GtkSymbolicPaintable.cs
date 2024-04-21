@@ -32,4 +32,5 @@ internal class GtkSymbolicPaintableExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_symbolic_paintable_snapshot_symbolic(GtkSymbolicPaintableHandle paintable, GdkSnapshotHandle snapshot, double width, double height, GdkRGBA[] colors, int n_colors);
+
 }

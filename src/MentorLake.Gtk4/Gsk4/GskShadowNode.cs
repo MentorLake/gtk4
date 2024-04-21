@@ -46,10 +46,14 @@ internal class GskShadowNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskShadowNodeHandle gsk_shadow_node_new(GskRenderNodeHandle child, GskShadow[] shadows, int n_shadows);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_shadow_node_get_child(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern int gsk_shadow_node_get_n_shadows(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskShadowHandle gsk_shadow_node_get_shadow(GskRenderNodeHandle node, int i);
+
 }

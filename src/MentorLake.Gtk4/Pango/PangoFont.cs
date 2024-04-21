@@ -98,30 +98,44 @@ internal class PangoFontExterns
 {
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontDescriptionHandle pango_font_describe(PangoFontHandle font);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontDescriptionHandle pango_font_describe_with_absolute_size(PangoFontHandle font);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoCoverageHandle pango_font_get_coverage(PangoFontHandle font, PangoLanguageHandle language);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontFaceHandle pango_font_get_face(PangoFontHandle font);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_font_get_features(PangoFontHandle font, out hb_feature_t features, uint len, ref uint num_features);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontMapHandle pango_font_get_font_map(PangoFontHandle font);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_font_get_glyph_extents(PangoFontHandle font, PangoGlyph glyph, out PangoRectangle ink_rect, out PangoRectangle logical_rect);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern hb_font_tHandle pango_font_get_hb_font(PangoFontHandle font);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoLanguageHandle[] pango_font_get_languages(PangoFontHandle font);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontMetricsHandle pango_font_get_metrics(PangoFontHandle font, PangoLanguageHandle language);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern bool pango_font_has_char(PangoFontHandle font, char wc);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern GBytesHandle pango_font_serialize(PangoFontHandle font);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_font_descriptions_free(PangoFontDescriptionHandle[] descs, int n_descs);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontHandle pango_font_deserialize(PangoContextHandle context, GBytesHandle bytes, out GErrorHandle error);
+
 }

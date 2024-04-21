@@ -72,20 +72,29 @@ internal class GtkShortcutTriggerExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkShortcutTriggerHandle gtk_shortcut_trigger_parse_string(string @string);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_shortcut_trigger_compare(IntPtr trigger1, IntPtr trigger2);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_shortcut_trigger_equal(IntPtr trigger1, IntPtr trigger2);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_shortcut_trigger_hash(IntPtr trigger);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_shortcut_trigger_print(GtkShortcutTriggerHandle self, GStringHandle @string);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_shortcut_trigger_print_label(GtkShortcutTriggerHandle self, GdkDisplayHandle display, GStringHandle @string);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_shortcut_trigger_to_label(GtkShortcutTriggerHandle self, GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_shortcut_trigger_to_string(GtkShortcutTriggerHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkKeyMatch gtk_shortcut_trigger_trigger(GtkShortcutTriggerHandle self, GdkEventHandle @event, bool enable_mnemonics);
+
 }

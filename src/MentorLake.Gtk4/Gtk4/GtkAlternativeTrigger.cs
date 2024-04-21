@@ -41,8 +41,11 @@ internal class GtkAlternativeTriggerExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAlternativeTriggerHandle gtk_alternative_trigger_new(GtkShortcutTriggerHandle first, GtkShortcutTriggerHandle second);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkShortcutTriggerHandle gtk_alternative_trigger_get_first(GtkAlternativeTriggerHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkShortcutTriggerHandle gtk_alternative_trigger_get_second(GtkAlternativeTriggerHandle self);
+
 }

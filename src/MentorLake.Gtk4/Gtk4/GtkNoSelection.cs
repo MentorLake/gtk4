@@ -42,8 +42,11 @@ internal class GtkNoSelectionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkNoSelectionHandle gtk_no_selection_new(GListModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_no_selection_get_model(GtkNoSelectionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_no_selection_set_model(GtkNoSelectionHandle self, GListModelHandle model);
+
 }

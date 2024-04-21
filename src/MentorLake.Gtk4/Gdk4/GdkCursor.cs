@@ -61,16 +61,24 @@ internal class GdkCursorExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkCursorHandle gdk_cursor_new_from_name(string name, GdkCursorHandle fallback);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkCursorHandle gdk_cursor_new_from_texture(GdkTextureHandle texture, int hotspot_x, int hotspot_y, GdkCursorHandle fallback);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkCursorHandle gdk_cursor_get_fallback(GdkCursorHandle cursor);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_cursor_get_hotspot_x(GdkCursorHandle cursor);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_cursor_get_hotspot_y(GdkCursorHandle cursor);
+
 	[DllImport(Libraries.Gdk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gdk_cursor_get_name(GdkCursorHandle cursor);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkTextureHandle gdk_cursor_get_texture(GdkCursorHandle cursor);
+
 }

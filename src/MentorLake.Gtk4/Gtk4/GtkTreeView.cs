@@ -36,21 +36,21 @@ public class GtkTreeViewSignal
 
 public static class GtkTreeViewSignals
 {
-	public static GtkTreeViewSignal ColumnsChanged = new("columns-changed");
-	public static GtkTreeViewSignal CursorChanged = new("cursor-changed");
-	public static GtkTreeViewSignal ExpandCollapseCursorRow = new("expand-collapse-cursor-row");
-	public static GtkTreeViewSignal MoveCursor = new("move-cursor");
-	public static GtkTreeViewSignal RowActivated = new("row-activated");
-	public static GtkTreeViewSignal RowCollapsed = new("row-collapsed");
-	public static GtkTreeViewSignal RowExpanded = new("row-expanded");
-	public static GtkTreeViewSignal SelectAll = new("select-all");
-	public static GtkTreeViewSignal SelectCursorParent = new("select-cursor-parent");
-	public static GtkTreeViewSignal SelectCursorRow = new("select-cursor-row");
-	public static GtkTreeViewSignal StartInteractiveSearch = new("start-interactive-search");
-	public static GtkTreeViewSignal TestCollapseRow = new("test-collapse-row");
-	public static GtkTreeViewSignal TestExpandRow = new("test-expand-row");
-	public static GtkTreeViewSignal ToggleCursorRow = new("toggle-cursor-row");
-	public static GtkTreeViewSignal UnselectAll = new("unselect-all");
+	public static GtkTreeViewSignal ColumnsChanged = new("BindingTransform.MethodDeclaration");
+	public static GtkTreeViewSignal CursorChanged = new("BindingTransform.MethodDeclaration");
+	public static GtkTreeViewSignal ExpandCollapseCursorRow = new("BindingTransform.MethodDeclaration");
+	public static GtkTreeViewSignal MoveCursor = new("BindingTransform.MethodDeclaration");
+	public static GtkTreeViewSignal RowActivated = new("BindingTransform.MethodDeclaration");
+	public static GtkTreeViewSignal RowCollapsed = new("BindingTransform.MethodDeclaration");
+	public static GtkTreeViewSignal RowExpanded = new("BindingTransform.MethodDeclaration");
+	public static GtkTreeViewSignal SelectAll = new("BindingTransform.MethodDeclaration");
+	public static GtkTreeViewSignal SelectCursorParent = new("BindingTransform.MethodDeclaration");
+	public static GtkTreeViewSignal SelectCursorRow = new("BindingTransform.MethodDeclaration");
+	public static GtkTreeViewSignal StartInteractiveSearch = new("BindingTransform.MethodDeclaration");
+	public static GtkTreeViewSignal TestCollapseRow = new("BindingTransform.MethodDeclaration");
+	public static GtkTreeViewSignal TestExpandRow = new("BindingTransform.MethodDeclaration");
+	public static GtkTreeViewSignal ToggleCursorRow = new("BindingTransform.MethodDeclaration");
+	public static GtkTreeViewSignal UnselectAll = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkTreeViewHandleExtensions
@@ -550,195 +550,405 @@ public static class GtkTreeViewHandleExtensions
 		return tree_view;
 	}
 
-	public static GtkTreeViewHandle Connect(this GtkTreeViewHandle instance, GtkTreeViewSignal signal, GCallback c_handler)
+	public static GtkTreeViewHandle Signal_ColumnsChanged(this GtkTreeViewHandle instance, GtkTreeViewDelegates.ColumnsChanged handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "columns_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkTreeViewHandle Signal_CursorChanged(this GtkTreeViewHandle instance, GtkTreeViewDelegates.CursorChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "cursor_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_ExpandCollapseCursorRow(this GtkTreeViewHandle instance, GtkTreeViewDelegates.ExpandCollapseCursorRow handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "expand_collapse_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_MoveCursor(this GtkTreeViewHandle instance, GtkTreeViewDelegates.MoveCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_RowActivated(this GtkTreeViewHandle instance, GtkTreeViewDelegates.RowActivated handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "row_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_RowCollapsed(this GtkTreeViewHandle instance, GtkTreeViewDelegates.RowCollapsed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "row_collapsed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_RowExpanded(this GtkTreeViewHandle instance, GtkTreeViewDelegates.RowExpanded handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "row_expanded", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_SelectAll(this GtkTreeViewHandle instance, GtkTreeViewDelegates.SelectAll handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_SelectCursorParent(this GtkTreeViewHandle instance, GtkTreeViewDelegates.SelectCursorParent handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "select_cursor_parent", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_SelectCursorRow(this GtkTreeViewHandle instance, GtkTreeViewDelegates.SelectCursorRow handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "select_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_StartInteractiveSearch(this GtkTreeViewHandle instance, GtkTreeViewDelegates.StartInteractiveSearch handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "start_interactive_search", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_TestCollapseRow(this GtkTreeViewHandle instance, GtkTreeViewDelegates.TestCollapseRow handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "test_collapse_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_TestExpandRow(this GtkTreeViewHandle instance, GtkTreeViewDelegates.TestExpandRow handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "test_expand_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_ToggleCursorRow(this GtkTreeViewHandle instance, GtkTreeViewDelegates.ToggleCursorRow handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_UnselectAll(this GtkTreeViewHandle instance, GtkTreeViewDelegates.UnselectAll handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkTreeViewDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ColumnsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void CursorChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ExpandCollapseCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, bool @object, bool p0, bool p1, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, ref GtkMovementStep step, int direction, bool extend, bool modify, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void RowActivated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, GtkTreePathHandle path, GtkTreeViewColumnHandle column, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void RowCollapsed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, GtkTreeIterHandle iter, GtkTreePathHandle path, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void RowExpanded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, GtkTreeIterHandle iter, GtkTreePathHandle path, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool SelectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool SelectCursorParent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool SelectCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, bool @object, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool StartInteractiveSearch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool TestCollapseRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, GtkTreeIterHandle iter, GtkTreePathHandle path, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool TestExpandRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, GtkTreeIterHandle iter, GtkTreePathHandle path, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ToggleCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool UnselectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
 }
 
 internal class GtkTreeViewExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeViewHandle gtk_tree_view_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeViewHandle gtk_tree_view_new_with_model(GtkTreeModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_view_append_column(GtkTreeViewHandle tree_view, GtkTreeViewColumnHandle column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_collapse_all(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_collapse_row(GtkTreeViewHandle tree_view, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_columns_autosize(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_convert_bin_window_to_tree_coords(GtkTreeViewHandle tree_view, int bx, int by, out int tx, out int ty);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_convert_bin_window_to_widget_coords(GtkTreeViewHandle tree_view, int bx, int by, out int wx, out int wy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_convert_tree_to_bin_window_coords(GtkTreeViewHandle tree_view, int tx, int ty, out int bx, out int by);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_convert_tree_to_widget_coords(GtkTreeViewHandle tree_view, int tx, int ty, out int wx, out int wy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_convert_widget_to_bin_window_coords(GtkTreeViewHandle tree_view, int wx, int wy, out int bx, out int by);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_convert_widget_to_tree_coords(GtkTreeViewHandle tree_view, int wx, int wy, out int tx, out int ty);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkPaintableHandle gtk_tree_view_create_row_drag_icon(GtkTreeViewHandle tree_view, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_enable_model_drag_dest(GtkTreeViewHandle tree_view, GdkContentFormatsHandle formats, GdkDragAction actions);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_enable_model_drag_source(GtkTreeViewHandle tree_view, GdkModifierType start_button_mask, GdkContentFormatsHandle formats, GdkDragAction actions);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_expand_all(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_expand_row(GtkTreeViewHandle tree_view, GtkTreePathHandle path, bool open_all);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_expand_to_path(GtkTreeViewHandle tree_view, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_get_activate_on_single_click(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_get_background_area(GtkTreeViewHandle tree_view, GtkTreePathHandle path, GtkTreeViewColumnHandle column, out GdkRectangle rect);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_get_cell_area(GtkTreeViewHandle tree_view, GtkTreePathHandle path, GtkTreeViewColumnHandle column, out GdkRectangle rect);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeViewColumnHandle gtk_tree_view_get_column(GtkTreeViewHandle tree_view, int n);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListHandle gtk_tree_view_get_columns(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_get_cursor(GtkTreeViewHandle tree_view, out GtkTreePathHandle path, out GtkTreeViewColumnHandle focus_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_get_dest_row_at_pos(GtkTreeViewHandle tree_view, int drag_x, int drag_y, out GtkTreePathHandle path, out GtkTreeViewDropPosition pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_get_drag_dest_row(GtkTreeViewHandle tree_view, out GtkTreePathHandle path, out GtkTreeViewDropPosition pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_get_enable_search(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_get_enable_tree_lines(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeViewColumnHandle gtk_tree_view_get_expander_column(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_get_fixed_height_mode(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeViewGridLines gtk_tree_view_get_grid_lines(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_get_headers_clickable(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_get_headers_visible(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_get_hover_expand(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_get_hover_selection(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_view_get_level_indentation(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeModelHandle gtk_tree_view_get_model(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_tree_view_get_n_columns(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_get_path_at_pos(GtkTreeViewHandle tree_view, int x, int y, out GtkTreePathHandle path, out GtkTreeViewColumnHandle column, out int cell_x, out int cell_y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_get_reorderable(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeViewRowSeparatorFunc gtk_tree_view_get_row_separator_func(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_get_rubber_banding(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_view_get_search_column(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEditableHandle gtk_tree_view_get_search_entry(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeViewSearchEqualFunc gtk_tree_view_get_search_equal_func(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeSelectionHandle gtk_tree_view_get_selection(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_get_show_expanders(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_view_get_tooltip_column(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_get_tooltip_context(GtkTreeViewHandle tree_view, int x, int y, bool keyboard_tip, out GtkTreeModelHandle model, out GtkTreePathHandle path, out GtkTreeIter iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_get_visible_range(GtkTreeViewHandle tree_view, out GtkTreePathHandle start_path, out GtkTreePathHandle end_path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_get_visible_rect(GtkTreeViewHandle tree_view, out GdkRectangle visible_rect);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_view_insert_column(GtkTreeViewHandle tree_view, GtkTreeViewColumnHandle column, int position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_view_insert_column_with_attributes(GtkTreeViewHandle tree_view, int position, string title, GtkCellRendererHandle cell, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_view_insert_column_with_data_func(GtkTreeViewHandle tree_view, int position, string title, GtkCellRendererHandle cell, GtkTreeCellDataFunc func, IntPtr data, GDestroyNotify dnotify);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_is_blank_at_pos(GtkTreeViewHandle tree_view, int x, int y, out GtkTreePathHandle path, out GtkTreeViewColumnHandle column, out int cell_x, out int cell_y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_is_rubber_banding_active(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_map_expanded_rows(GtkTreeViewHandle tree_view, GtkTreeViewMappingFunc func, IntPtr data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_move_column_after(GtkTreeViewHandle tree_view, GtkTreeViewColumnHandle column, GtkTreeViewColumnHandle base_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_view_remove_column(GtkTreeViewHandle tree_view, GtkTreeViewColumnHandle column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_row_activated(GtkTreeViewHandle tree_view, GtkTreePathHandle path, GtkTreeViewColumnHandle column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_view_row_expanded(GtkTreeViewHandle tree_view, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_scroll_to_cell(GtkTreeViewHandle tree_view, GtkTreePathHandle path, GtkTreeViewColumnHandle column, bool use_align, float row_align, float col_align);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_scroll_to_point(GtkTreeViewHandle tree_view, int tree_x, int tree_y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_activate_on_single_click(GtkTreeViewHandle tree_view, bool single);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_column_drag_function(GtkTreeViewHandle tree_view, GtkTreeViewColumnDropFunc func, IntPtr user_data, GDestroyNotify destroy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_cursor(GtkTreeViewHandle tree_view, GtkTreePathHandle path, GtkTreeViewColumnHandle focus_column, bool start_editing);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_cursor_on_cell(GtkTreeViewHandle tree_view, GtkTreePathHandle path, GtkTreeViewColumnHandle focus_column, GtkCellRendererHandle focus_cell, bool start_editing);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_drag_dest_row(GtkTreeViewHandle tree_view, GtkTreePathHandle path, GtkTreeViewDropPosition pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_enable_search(GtkTreeViewHandle tree_view, bool enable_search);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_enable_tree_lines(GtkTreeViewHandle tree_view, bool enabled);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_expander_column(GtkTreeViewHandle tree_view, GtkTreeViewColumnHandle column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_fixed_height_mode(GtkTreeViewHandle tree_view, bool enable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_grid_lines(GtkTreeViewHandle tree_view, GtkTreeViewGridLines grid_lines);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_headers_clickable(GtkTreeViewHandle tree_view, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_headers_visible(GtkTreeViewHandle tree_view, bool headers_visible);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_hover_expand(GtkTreeViewHandle tree_view, bool expand);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_hover_selection(GtkTreeViewHandle tree_view, bool hover);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_level_indentation(GtkTreeViewHandle tree_view, int indentation);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_model(GtkTreeViewHandle tree_view, GtkTreeModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_reorderable(GtkTreeViewHandle tree_view, bool reorderable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_row_separator_func(GtkTreeViewHandle tree_view, GtkTreeViewRowSeparatorFunc func, IntPtr data, GDestroyNotify destroy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_rubber_banding(GtkTreeViewHandle tree_view, bool enable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_search_column(GtkTreeViewHandle tree_view, int column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_search_entry(GtkTreeViewHandle tree_view, GtkEditableHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_search_equal_func(GtkTreeViewHandle tree_view, GtkTreeViewSearchEqualFunc search_equal_func, IntPtr search_user_data, GDestroyNotify search_destroy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_show_expanders(GtkTreeViewHandle tree_view, bool enabled);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_tooltip_cell(GtkTreeViewHandle tree_view, GtkTooltipHandle tooltip, GtkTreePathHandle path, GtkTreeViewColumnHandle column, GtkCellRendererHandle cell);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_tooltip_column(GtkTreeViewHandle tree_view, int column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_set_tooltip_row(GtkTreeViewHandle tree_view, GtkTooltipHandle tooltip, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_unset_rows_drag_dest(GtkTreeViewHandle tree_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_view_unset_rows_drag_source(GtkTreeViewHandle tree_view);
+
 }

@@ -97,30 +97,44 @@ internal class GdkTextureExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkTextureHandle gdk_texture_new_for_pixbuf(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkTextureHandle gdk_texture_new_from_bytes(GBytesHandle bytes, out GErrorHandle error);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkTextureHandle gdk_texture_new_from_file(GFileHandle file, out GErrorHandle error);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkTextureHandle gdk_texture_new_from_filename(string path, out GErrorHandle error);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkTextureHandle gdk_texture_new_from_resource(string resource_path);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_texture_download(GdkTextureHandle texture, string data, int stride);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkMemoryFormat gdk_texture_get_format(GdkTextureHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_texture_get_height(GdkTextureHandle texture);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_texture_get_width(GdkTextureHandle texture);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_texture_save_to_png(GdkTextureHandle texture, string filename);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GBytesHandle gdk_texture_save_to_png_bytes(GdkTextureHandle texture);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_texture_save_to_tiff(GdkTextureHandle texture, string filename);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GBytesHandle gdk_texture_save_to_tiff_bytes(GdkTextureHandle texture);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_get_from_texture(GdkTextureHandle texture);
+
 }

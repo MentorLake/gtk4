@@ -75,20 +75,29 @@ internal class PangoCoverageExterns
 {
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoCoverageHandle pango_coverage_new();
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoCoverageHandle pango_coverage_copy(PangoCoverageHandle coverage);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoCoverageLevel pango_coverage_get(PangoCoverageHandle coverage, int index_);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_coverage_max(PangoCoverageHandle coverage, PangoCoverageHandle other);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoCoverageHandle pango_coverage_ref(PangoCoverageHandle coverage);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_coverage_set(PangoCoverageHandle coverage, int index_, PangoCoverageLevel level);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_coverage_to_bytes(PangoCoverageHandle coverage, out string bytes, out int n_bytes);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_coverage_unref(PangoCoverageHandle coverage);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoCoverageHandle pango_coverage_from_bytes(string bytes, int n_bytes);
+
 }

@@ -53,12 +53,17 @@ internal class GtkBoolFilterExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBoolFilterHandle gtk_bool_filter_new(GtkExpressionHandle expression);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkExpressionHandle gtk_bool_filter_get_expression(GtkBoolFilterHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_bool_filter_get_invert(GtkBoolFilterHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_bool_filter_set_expression(GtkBoolFilterHandle self, GtkExpressionHandle expression);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_bool_filter_set_invert(GtkBoolFilterHandle self, bool invert);
+
 }

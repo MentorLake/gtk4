@@ -37,6 +37,8 @@ internal class GTcpConnectionExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_tcp_connection_get_graceful_disconnect(GTcpConnectionHandle connection);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tcp_connection_set_graceful_disconnect(GTcpConnectionHandle connection, bool graceful_disconnect);
+
 }

@@ -31,7 +31,7 @@ public class GtkGestureZoomSignal
 
 public static class GtkGestureZoomSignals
 {
-	public static GtkGestureZoomSignal ScaleChanged = new("scale-changed");
+	public static GtkGestureZoomSignal ScaleChanged = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkGestureZoomHandleExtensions
@@ -41,17 +41,26 @@ public static class GtkGestureZoomHandleExtensions
 		return GtkGestureZoomExterns.gtk_gesture_zoom_get_scale_delta(gesture);
 	}
 
-	public static GtkGestureZoomHandle Connect(this GtkGestureZoomHandle instance, GtkGestureZoomSignal signal, GCallback c_handler)
+	public static GtkGestureZoomHandle Signal_ScaleChanged(this GtkGestureZoomHandle instance, GtkGestureZoomDelegates.ScaleChanged handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "scale_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkGestureZoomDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ScaleChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureZoomHandle>))] GtkGestureZoomHandle self, double scale, IntPtr user_data);
 }
 
 internal class GtkGestureZoomExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkGestureZoomHandle gtk_gesture_zoom_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_gesture_zoom_get_scale_delta(GtkGestureZoomHandle gesture);
+
 }

@@ -59,14 +59,20 @@ internal class GtkSizeGroupExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSizeGroupHandle gtk_size_group_new(GtkSizeGroupMode mode);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_size_group_add_widget(GtkSizeGroupHandle size_group, GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSizeGroupMode gtk_size_group_get_mode(GtkSizeGroupHandle size_group);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GSListHandle gtk_size_group_get_widgets(GtkSizeGroupHandle size_group);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_size_group_remove_widget(GtkSizeGroupHandle size_group, GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_size_group_set_mode(GtkSizeGroupHandle size_group, GtkSizeGroupMode mode);
+
 }

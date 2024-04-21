@@ -75,20 +75,30 @@ internal class GtkFrameExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFrameHandle gtk_frame_new(string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_frame_get_child(GtkFrameHandle frame);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_frame_get_label(GtkFrameHandle frame);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern float gtk_frame_get_label_align(GtkFrameHandle frame);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_frame_get_label_widget(GtkFrameHandle frame);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_frame_set_child(GtkFrameHandle frame, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_frame_set_label(GtkFrameHandle frame, string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_frame_set_label_align(GtkFrameHandle frame, float xalign);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_frame_set_label_widget(GtkFrameHandle frame, GtkWidgetHandle label_widget);
+
 }

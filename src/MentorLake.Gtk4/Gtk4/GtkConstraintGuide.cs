@@ -89,24 +89,36 @@ internal class GtkConstraintGuideExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkConstraintGuideHandle gtk_constraint_guide_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_constraint_guide_get_max_size(GtkConstraintGuideHandle guide, out int width, out int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_constraint_guide_get_min_size(GtkConstraintGuideHandle guide, out int width, out int height);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_constraint_guide_get_name(GtkConstraintGuideHandle guide);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_constraint_guide_get_nat_size(GtkConstraintGuideHandle guide, out int width, out int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkConstraintStrength gtk_constraint_guide_get_strength(GtkConstraintGuideHandle guide);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_constraint_guide_set_max_size(GtkConstraintGuideHandle guide, int width, int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_constraint_guide_set_min_size(GtkConstraintGuideHandle guide, int width, int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_constraint_guide_set_name(GtkConstraintGuideHandle guide, string name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_constraint_guide_set_nat_size(GtkConstraintGuideHandle guide, int width, int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_constraint_guide_set_strength(GtkConstraintGuideHandle guide, GtkConstraintStrength strength);
+
 }

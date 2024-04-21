@@ -46,10 +46,14 @@ internal class GIconExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_icon_equal(GIconHandle icon1, GIconHandle icon2);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_icon_hash(IntPtr icon);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_icon_serialize(GIconHandle icon);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_icon_to_string(GIconHandle icon);
+
 }

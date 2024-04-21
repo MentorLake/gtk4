@@ -31,4 +31,5 @@ internal class GdkMemoryTextureExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkMemoryTextureHandle gdk_memory_texture_new(int width, int height, GdkMemoryFormat format, GBytesHandle bytes, int stride);
+
 }

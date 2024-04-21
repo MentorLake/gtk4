@@ -46,10 +46,14 @@ internal class GskCrossFadeNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskCrossFadeNodeHandle gsk_cross_fade_node_new(GskRenderNodeHandle start, GskRenderNodeHandle end, float progress);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_cross_fade_node_get_end_child(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_cross_fade_node_get_progress(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_cross_fade_node_get_start_child(GskRenderNodeHandle node);
+
 }

@@ -41,8 +41,11 @@ internal class GtkTreeDragSourceExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_drag_source_drag_data_delete(GtkTreeDragSourceHandle drag_source, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkContentProviderHandle gtk_tree_drag_source_drag_data_get(GtkTreeDragSourceHandle drag_source, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_drag_source_row_draggable(GtkTreeDragSourceHandle drag_source, GtkTreePathHandle path);
+
 }

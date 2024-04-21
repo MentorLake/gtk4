@@ -64,16 +64,23 @@ internal class GDBusObjectManagerServerExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusObjectManagerServerHandle g_dbus_object_manager_server_new(string object_path);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_object_manager_server_export(GDBusObjectManagerServerHandle manager, GDBusObjectSkeletonHandle @object);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_object_manager_server_export_uniquely(GDBusObjectManagerServerHandle manager, GDBusObjectSkeletonHandle @object);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusConnectionHandle g_dbus_object_manager_server_get_connection(GDBusObjectManagerServerHandle manager);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dbus_object_manager_server_is_exported(GDBusObjectManagerServerHandle manager, GDBusObjectSkeletonHandle @object);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dbus_object_manager_server_set_connection(GDBusObjectManagerServerHandle manager, GDBusConnectionHandle connection);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_dbus_object_manager_server_unexport(GDBusObjectManagerServerHandle manager, string object_path);
+
 }

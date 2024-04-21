@@ -32,8 +32,10 @@ internal class GMainContextExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GMainContextHandle g_main_context_new();
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GMainContextHandle g_main_context_new_with_flags(GMainContextFlags flags);
+
 }
 
 public struct GMainContext

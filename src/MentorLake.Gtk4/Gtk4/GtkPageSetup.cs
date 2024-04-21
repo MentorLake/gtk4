@@ -169,56 +169,83 @@ internal class GtkPageSetupExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageSetupHandle gtk_page_setup_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageSetupHandle gtk_page_setup_new_from_file(string file_name, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageSetupHandle gtk_page_setup_new_from_gvariant(GVariantHandle variant);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageSetupHandle gtk_page_setup_new_from_key_file(GKeyFileHandle key_file, string group_name, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageSetupHandle gtk_page_setup_copy(GtkPageSetupHandle other);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_page_setup_get_bottom_margin(GtkPageSetupHandle setup, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_page_setup_get_left_margin(GtkPageSetupHandle setup, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageOrientation gtk_page_setup_get_orientation(GtkPageSetupHandle setup);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_page_setup_get_page_height(GtkPageSetupHandle setup, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_page_setup_get_page_width(GtkPageSetupHandle setup, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_page_setup_get_paper_height(GtkPageSetupHandle setup, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPaperSizeHandle gtk_page_setup_get_paper_size(GtkPageSetupHandle setup);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_page_setup_get_paper_width(GtkPageSetupHandle setup, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_page_setup_get_right_margin(GtkPageSetupHandle setup, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_page_setup_get_top_margin(GtkPageSetupHandle setup, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_page_setup_load_file(GtkPageSetupHandle setup, string file_name, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_page_setup_load_key_file(GtkPageSetupHandle setup, GKeyFileHandle key_file, string group_name, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_page_setup_set_bottom_margin(GtkPageSetupHandle setup, double margin, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_page_setup_set_left_margin(GtkPageSetupHandle setup, double margin, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_page_setup_set_orientation(GtkPageSetupHandle setup, GtkPageOrientation orientation);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_page_setup_set_paper_size(GtkPageSetupHandle setup, GtkPaperSizeHandle size);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_page_setup_set_paper_size_and_default_margins(GtkPageSetupHandle setup, GtkPaperSizeHandle size);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_page_setup_set_right_margin(GtkPageSetupHandle setup, double margin, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_page_setup_set_top_margin(GtkPageSetupHandle setup, double margin, GtkUnit unit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_page_setup_to_file(GtkPageSetupHandle setup, string file_name, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GVariantHandle gtk_page_setup_to_gvariant(GtkPageSetupHandle setup);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_page_setup_to_key_file(GtkPageSetupHandle setup, GKeyFileHandle key_file, string group_name);
+
 }

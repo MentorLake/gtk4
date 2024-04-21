@@ -139,44 +139,65 @@ internal class GdkGLContextExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkGLAPI gdk_gl_context_get_allowed_apis(GdkGLContextHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkGLAPI gdk_gl_context_get_api(GdkGLContextHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_gl_context_get_debug_enabled(GdkGLContextHandle context);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDisplayHandle gdk_gl_context_get_display(GdkGLContextHandle context);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_gl_context_get_forward_compatible(GdkGLContextHandle context);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_context_get_required_version(GdkGLContextHandle context, out int major, out int minor);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkGLContextHandle gdk_gl_context_get_shared_context(GdkGLContextHandle context);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkSurfaceHandle gdk_gl_context_get_surface(GdkGLContextHandle context);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_gl_context_get_use_es(GdkGLContextHandle context);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_context_get_version(GdkGLContextHandle context, out int major, out int minor);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_gl_context_is_legacy(GdkGLContextHandle context);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_gl_context_is_shared(GdkGLContextHandle self, GdkGLContextHandle other);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_context_make_current(GdkGLContextHandle context);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_gl_context_realize(GdkGLContextHandle context, out GErrorHandle error);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_context_set_allowed_apis(GdkGLContextHandle self, GdkGLAPI apis);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_context_set_debug_enabled(GdkGLContextHandle context, bool enabled);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_context_set_forward_compatible(GdkGLContextHandle context, bool compatible);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_context_set_required_version(GdkGLContextHandle context, int major, int minor);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_context_set_use_es(GdkGLContextHandle context, int use_es);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_gl_context_clear_current();
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkGLContextHandle gdk_gl_context_get_current();
+
 }

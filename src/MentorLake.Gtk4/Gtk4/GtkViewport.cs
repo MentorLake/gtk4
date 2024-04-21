@@ -59,14 +59,20 @@ internal class GtkViewportExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkViewportHandle gtk_viewport_new(GtkAdjustmentHandle hadjustment, GtkAdjustmentHandle vadjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_viewport_get_child(GtkViewportHandle viewport);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_viewport_get_scroll_to_focus(GtkViewportHandle viewport);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_viewport_scroll_to(GtkViewportHandle viewport, GtkWidgetHandle descendant, GtkScrollInfoHandle scroll);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_viewport_set_child(GtkViewportHandle viewport, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_viewport_set_scroll_to_focus(GtkViewportHandle viewport, bool scroll_to_focus);
+
 }

@@ -52,12 +52,17 @@ internal class GdkTouchpadEventExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_touchpad_event_get_deltas(GdkEventHandle @event, out double dx, out double dy);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkTouchpadGesturePhase gdk_touchpad_event_get_gesture_phase(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern uint gdk_touchpad_event_get_n_fingers(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern double gdk_touchpad_event_get_pinch_angle_delta(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern double gdk_touchpad_event_get_pinch_scale(GdkEventHandle @event);
+
 }

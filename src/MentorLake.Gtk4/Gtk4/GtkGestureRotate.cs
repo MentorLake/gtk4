@@ -31,7 +31,7 @@ public class GtkGestureRotateSignal
 
 public static class GtkGestureRotateSignals
 {
-	public static GtkGestureRotateSignal AngleChanged = new("angle-changed");
+	public static GtkGestureRotateSignal AngleChanged = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkGestureRotateHandleExtensions
@@ -41,17 +41,26 @@ public static class GtkGestureRotateHandleExtensions
 		return GtkGestureRotateExterns.gtk_gesture_rotate_get_angle_delta(gesture);
 	}
 
-	public static GtkGestureRotateHandle Connect(this GtkGestureRotateHandle instance, GtkGestureRotateSignal signal, GCallback c_handler)
+	public static GtkGestureRotateHandle Signal_AngleChanged(this GtkGestureRotateHandle instance, GtkGestureRotateDelegates.AngleChanged handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "angle_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkGestureRotateDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void AngleChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureRotateHandle>))] GtkGestureRotateHandle self, double angle, double angle_delta, IntPtr user_data);
 }
 
 internal class GtkGestureRotateExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkGestureRotateHandle gtk_gesture_rotate_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_gesture_rotate_get_angle_delta(GtkGestureRotateHandle gesture);
+
 }

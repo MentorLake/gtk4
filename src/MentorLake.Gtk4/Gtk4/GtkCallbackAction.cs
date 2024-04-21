@@ -31,4 +31,5 @@ internal class GtkCallbackActionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCallbackActionHandle gtk_callback_action_new(GtkShortcutFunc callback, IntPtr data, GDestroyNotify destroy);
+
 }

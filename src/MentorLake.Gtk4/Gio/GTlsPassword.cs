@@ -81,22 +81,32 @@ internal class GTlsPasswordExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsPasswordHandle g_tls_password_new(GTlsPasswordFlags flags, string description);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_tls_password_get_description(GTlsPasswordHandle password);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsPasswordFlags g_tls_password_get_flags(GTlsPasswordHandle password);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_tls_password_get_value(GTlsPasswordHandle password, out int length);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_tls_password_get_warning(GTlsPasswordHandle password);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_password_set_description(GTlsPasswordHandle password, string description);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_password_set_flags(GTlsPasswordHandle password, GTlsPasswordFlags flags);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_password_set_value(GTlsPasswordHandle password, string value, int length);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_password_set_value_full(GTlsPasswordHandle password, string value, int length, GDestroyNotify destroy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_password_set_warning(GTlsPasswordHandle password, string warning);
+
 }

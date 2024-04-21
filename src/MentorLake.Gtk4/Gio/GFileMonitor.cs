@@ -26,7 +26,7 @@ public class GFileMonitorSignal
 
 public static class GFileMonitorSignals
 {
-	public static GFileMonitorSignal Changed = new("changed");
+	public static GFileMonitorSignal Changed = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GFileMonitorHandleExtensions
@@ -53,21 +53,32 @@ public static class GFileMonitorHandleExtensions
 		return monitor;
 	}
 
-	public static GFileMonitorHandle Connect(this GFileMonitorHandle instance, GFileMonitorSignal signal, GCallback c_handler)
+	public static GFileMonitorHandle Signal_Changed(this GFileMonitorHandle instance, GFileMonitorDelegates.Changed handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GFileMonitorDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GFileMonitorHandle>))] GFileMonitorHandle self, GFileHandle file, GFileHandle other_file, GFileMonitorEvent event_type, IntPtr user_data);
 }
 
 internal class GFileMonitorExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_monitor_cancel(GFileMonitorHandle monitor);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_monitor_emit_event(GFileMonitorHandle monitor, GFileHandle child, GFileHandle other_file, GFileMonitorEvent event_type);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_monitor_is_cancelled(GFileMonitorHandle monitor);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_monitor_set_rate_limit(GFileMonitorHandle monitor, int limit_msecs);
+
 }

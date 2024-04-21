@@ -69,18 +69,26 @@ internal class GtkShortcutExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkShortcutHandle gtk_shortcut_new(GtkShortcutTriggerHandle trigger, GtkShortcutActionHandle action);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkShortcutHandle gtk_shortcut_new_with_arguments(GtkShortcutTriggerHandle trigger, GtkShortcutActionHandle action, string format_string, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkShortcutActionHandle gtk_shortcut_get_action(GtkShortcutHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GVariantHandle gtk_shortcut_get_arguments(GtkShortcutHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkShortcutTriggerHandle gtk_shortcut_get_trigger(GtkShortcutHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_shortcut_set_action(GtkShortcutHandle self, GtkShortcutActionHandle action);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_shortcut_set_arguments(GtkShortcutHandle self, GVariantHandle args);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_shortcut_set_trigger(GtkShortcutHandle self, GtkShortcutTriggerHandle trigger);
+
 }

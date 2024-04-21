@@ -47,10 +47,14 @@ internal class GProxyExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GIOStreamHandle g_proxy_connect(GProxyHandle proxy, GIOStreamHandle connection, GProxyAddressHandle proxy_address, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_proxy_connect_async(GProxyHandle proxy, GIOStreamHandle connection, GProxyAddressHandle proxy_address, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GIOStreamHandle g_proxy_connect_finish(GProxyHandle proxy, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_proxy_supports_hostname(GProxyHandle proxy);
+
 }

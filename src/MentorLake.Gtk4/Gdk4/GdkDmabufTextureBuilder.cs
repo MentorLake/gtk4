@@ -168,54 +168,80 @@ internal class GdkDmabufTextureBuilderExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDmabufTextureBuilderHandle gdk_dmabuf_texture_builder_new();
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkTextureHandle gdk_dmabuf_texture_builder_build(GdkDmabufTextureBuilderHandle self, GDestroyNotify destroy, IntPtr data, out GErrorHandle error);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDisplayHandle gdk_dmabuf_texture_builder_get_display(GdkDmabufTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_dmabuf_texture_builder_get_fd(GdkDmabufTextureBuilderHandle self, int plane);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern uint gdk_dmabuf_texture_builder_get_fourcc(GdkDmabufTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_dmabuf_texture_builder_get_height(GdkDmabufTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern ulong gdk_dmabuf_texture_builder_get_modifier(GdkDmabufTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_dmabuf_texture_builder_get_n_planes(GdkDmabufTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_dmabuf_texture_builder_get_offset(GdkDmabufTextureBuilderHandle self, int plane);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_dmabuf_texture_builder_get_premultiplied(GdkDmabufTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_dmabuf_texture_builder_get_stride(GdkDmabufTextureBuilderHandle self, int plane);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern cairo_region_tHandle gdk_dmabuf_texture_builder_get_update_region(GdkDmabufTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkTextureHandle gdk_dmabuf_texture_builder_get_update_texture(GdkDmabufTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_dmabuf_texture_builder_get_width(GdkDmabufTextureBuilderHandle self);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_dmabuf_texture_builder_set_display(GdkDmabufTextureBuilderHandle self, GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_dmabuf_texture_builder_set_fd(GdkDmabufTextureBuilderHandle self, int plane, int fd);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_dmabuf_texture_builder_set_fourcc(GdkDmabufTextureBuilderHandle self, uint fourcc);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_dmabuf_texture_builder_set_height(GdkDmabufTextureBuilderHandle self, int height);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_dmabuf_texture_builder_set_modifier(GdkDmabufTextureBuilderHandle self, ulong modifier);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_dmabuf_texture_builder_set_n_planes(GdkDmabufTextureBuilderHandle self, int n_planes);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_dmabuf_texture_builder_set_offset(GdkDmabufTextureBuilderHandle self, int plane, int offset);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_dmabuf_texture_builder_set_premultiplied(GdkDmabufTextureBuilderHandle self, bool premultiplied);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_dmabuf_texture_builder_set_stride(GdkDmabufTextureBuilderHandle self, int plane, int stride);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_dmabuf_texture_builder_set_update_region(GdkDmabufTextureBuilderHandle self, cairo_region_tHandle region);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_dmabuf_texture_builder_set_update_texture(GdkDmabufTextureBuilderHandle self, GdkTextureHandle texture);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_dmabuf_texture_builder_set_width(GdkDmabufTextureBuilderHandle self, int width);
+
 }

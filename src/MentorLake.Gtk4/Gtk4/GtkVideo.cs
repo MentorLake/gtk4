@@ -118,36 +118,53 @@ internal class GtkVideoExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkVideoHandle gtk_video_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkVideoHandle gtk_video_new_for_file(GFileHandle file);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkVideoHandle gtk_video_new_for_filename(string filename);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkVideoHandle gtk_video_new_for_media_stream(GtkMediaStreamHandle stream);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkVideoHandle gtk_video_new_for_resource(string resource_path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_video_get_autoplay(GtkVideoHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GFileHandle gtk_video_get_file(GtkVideoHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkGraphicsOffloadEnabled gtk_video_get_graphics_offload(GtkVideoHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_video_get_loop(GtkVideoHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMediaStreamHandle gtk_video_get_media_stream(GtkVideoHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_video_set_autoplay(GtkVideoHandle self, bool autoplay);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_video_set_file(GtkVideoHandle self, GFileHandle file);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_video_set_filename(GtkVideoHandle self, string filename);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_video_set_graphics_offload(GtkVideoHandle self, GtkGraphicsOffloadEnabled enabled);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_video_set_loop(GtkVideoHandle self, bool loop);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_video_set_media_stream(GtkVideoHandle self, GtkMediaStreamHandle stream);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_video_set_resource(GtkVideoHandle self, string resource_path);
+
 }

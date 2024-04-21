@@ -53,12 +53,19 @@ internal class GtkFileChooserNativeExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFileChooserNativeHandle gtk_file_chooser_native_new(string title, GtkWindowHandle parent, GtkFileChooserAction action, string accept_label, string cancel_label);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_file_chooser_native_get_accept_label(GtkFileChooserNativeHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_file_chooser_native_get_cancel_label(GtkFileChooserNativeHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_chooser_native_set_accept_label(GtkFileChooserNativeHandle self, string accept_label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_chooser_native_set_cancel_label(GtkFileChooserNativeHandle self, string cancel_label);
+
 }

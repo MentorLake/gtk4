@@ -36,7 +36,7 @@ public class GtkIconThemeSignal
 
 public static class GtkIconThemeSignals
 {
-	public static GtkIconThemeSignal Changed = new("changed");
+	public static GtkIconThemeSignal Changed = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkIconThemeHandleExtensions
@@ -121,47 +121,71 @@ public static class GtkIconThemeHandleExtensions
 		return self;
 	}
 
-	public static GtkIconThemeHandle Connect(this GtkIconThemeHandle instance, GtkIconThemeSignal signal, GCallback c_handler)
+	public static GtkIconThemeHandle Signal_Changed(this GtkIconThemeHandle instance, GtkIconThemeDelegates.Changed handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkIconThemeDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconThemeHandle>))] GtkIconThemeHandle self, IntPtr user_data);
 }
 
 internal class GtkIconThemeExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkIconThemeHandle gtk_icon_theme_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_theme_add_resource_path(GtkIconThemeHandle self, string path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_theme_add_search_path(GtkIconThemeHandle self, string path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDisplayHandle gtk_icon_theme_get_display(GtkIconThemeHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string[] gtk_icon_theme_get_icon_names(GtkIconThemeHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int[] gtk_icon_theme_get_icon_sizes(GtkIconThemeHandle self, string icon_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string[] gtk_icon_theme_get_resource_path(GtkIconThemeHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string[] gtk_icon_theme_get_search_path(GtkIconThemeHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_icon_theme_get_theme_name(GtkIconThemeHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_icon_theme_has_gicon(GtkIconThemeHandle self, GIconHandle gicon);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_icon_theme_has_icon(GtkIconThemeHandle self, string icon_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkIconPaintableHandle gtk_icon_theme_lookup_by_gicon(GtkIconThemeHandle self, GIconHandle icon, int size, int scale, GtkTextDirection direction, GtkIconLookupFlags flags);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkIconPaintableHandle gtk_icon_theme_lookup_icon(GtkIconThemeHandle self, string icon_name, string[] fallbacks, int size, int scale, GtkTextDirection direction, GtkIconLookupFlags flags);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_theme_set_resource_path(GtkIconThemeHandle self, string path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_theme_set_search_path(GtkIconThemeHandle self, string path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_theme_set_theme_name(GtkIconThemeHandle self, string theme_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkIconThemeHandle gtk_icon_theme_get_for_display(GdkDisplayHandle display);
+
 }

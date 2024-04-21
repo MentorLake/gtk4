@@ -147,50 +147,74 @@ internal class GDesktopAppInfoExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GDesktopAppInfoHandle g_desktop_app_info_new(string desktop_id);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDesktopAppInfoHandle g_desktop_app_info_new_from_filename(string filename);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDesktopAppInfoHandle g_desktop_app_info_new_from_keyfile(GKeyFileHandle key_file);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_desktop_app_info_get_action_name(GDesktopAppInfoHandle info, string action_name);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_desktop_app_info_get_boolean(GDesktopAppInfoHandle info, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_desktop_app_info_get_categories(GDesktopAppInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_desktop_app_info_get_filename(GDesktopAppInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_desktop_app_info_get_generic_name(GDesktopAppInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_desktop_app_info_get_is_hidden(GDesktopAppInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_desktop_app_info_get_keywords(GDesktopAppInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_desktop_app_info_get_locale_string(GDesktopAppInfoHandle info, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_desktop_app_info_get_nodisplay(GDesktopAppInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_desktop_app_info_get_show_in(GDesktopAppInfoHandle info, string desktop_env);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_desktop_app_info_get_startup_wm_class(GDesktopAppInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_desktop_app_info_get_string(GDesktopAppInfoHandle info, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_desktop_app_info_get_string_list(GDesktopAppInfoHandle info, string key, out int length);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_desktop_app_info_has_key(GDesktopAppInfoHandle info, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_desktop_app_info_launch_action(GDesktopAppInfoHandle info, string action_name, GAppLaunchContextHandle launch_context);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_desktop_app_info_launch_uris_as_manager(GDesktopAppInfoHandle appinfo, GListHandle uris, GAppLaunchContextHandle launch_context, GSpawnFlags spawn_flags, GSpawnChildSetupFunc user_setup, IntPtr user_setup_data, GDesktopAppLaunchCallback pid_callback, IntPtr pid_callback_data, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_desktop_app_info_launch_uris_as_manager_with_fds(GDesktopAppInfoHandle appinfo, GListHandle uris, GAppLaunchContextHandle launch_context, GSpawnFlags spawn_flags, GSpawnChildSetupFunc user_setup, IntPtr user_setup_data, GDesktopAppLaunchCallback pid_callback, IntPtr pid_callback_data, int stdin_fd, int stdout_fd, int stderr_fd, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_desktop_app_info_list_actions(GDesktopAppInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_desktop_app_info_get_implementations(string @interface);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[][] g_desktop_app_info_search(string search_string);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_desktop_app_info_set_desktop_env(string desktop_env);
+
 }

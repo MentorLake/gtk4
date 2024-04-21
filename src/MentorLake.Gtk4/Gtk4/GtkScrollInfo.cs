@@ -27,6 +27,7 @@ internal class GtkScrollInfoExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkScrollInfoHandle gtk_scroll_info_new();
+
 }
 
 public struct GtkScrollInfo

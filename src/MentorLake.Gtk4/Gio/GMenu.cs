@@ -121,34 +121,50 @@ internal class GMenuExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GMenuHandle g_menu_new();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_append(GMenuHandle menu, string label, string detailed_action);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_append_item(GMenuHandle menu, GMenuItemHandle item);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_append_section(GMenuHandle menu, string label, GMenuModelHandle section);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_append_submenu(GMenuHandle menu, string label, GMenuModelHandle submenu);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_freeze(GMenuHandle menu);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_insert(GMenuHandle menu, int position, string label, string detailed_action);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_insert_item(GMenuHandle menu, int position, GMenuItemHandle item);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_insert_section(GMenuHandle menu, int position, string label, GMenuModelHandle section);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_insert_submenu(GMenuHandle menu, int position, string label, GMenuModelHandle submenu);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_prepend(GMenuHandle menu, string label, string detailed_action);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_prepend_item(GMenuHandle menu, GMenuItemHandle item);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_prepend_section(GMenuHandle menu, string label, GMenuModelHandle section);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_prepend_submenu(GMenuHandle menu, string label, GMenuModelHandle submenu);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_remove(GMenuHandle menu, int position);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_menu_remove_all(GMenuHandle menu);
+
 }

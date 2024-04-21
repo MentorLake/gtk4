@@ -31,4 +31,5 @@ internal class GskNglRendererExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskNglRendererHandle gsk_ngl_renderer_new();
+
 }

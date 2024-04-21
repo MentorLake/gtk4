@@ -27,6 +27,7 @@ internal class GskShaderArgsBuilderExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskShaderArgsBuilderHandle gsk_shader_args_builder_new(GskGLShaderHandle shader, GBytesHandle initial_values);
+
 }
 
 public struct GskShaderArgsBuilder

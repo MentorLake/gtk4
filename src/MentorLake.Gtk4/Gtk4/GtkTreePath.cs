@@ -47,14 +47,19 @@ internal class GtkTreePathExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreePathHandle gtk_tree_path_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreePathHandle gtk_tree_path_new_first();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreePathHandle gtk_tree_path_new_from_indices(int first_index, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreePathHandle gtk_tree_path_new_from_indicesv(int[] indices, int length);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreePathHandle gtk_tree_path_new_from_string(string path);
+
 }
 
 public struct GtkTreePath

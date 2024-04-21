@@ -42,8 +42,11 @@ internal class GtkRootExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDisplayHandle gtk_root_get_display(GtkRootHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_root_get_focus(GtkRootHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_root_set_focus(GtkRootHandle self, GtkWidgetHandle focus);
+
 }

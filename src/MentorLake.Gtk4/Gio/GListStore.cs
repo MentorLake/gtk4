@@ -87,24 +87,35 @@ internal class GListStoreExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GListStoreHandle g_list_store_new(GType item_type);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_list_store_append(GListStoreHandle store, GObjectHandle item);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_list_store_find(GListStoreHandle store, GObjectHandle item, out uint position);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_list_store_find_with_equal_func(GListStoreHandle store, GObjectHandle item, GEqualFunc equal_func, out uint position);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_list_store_find_with_equal_func_full(GListStoreHandle store, GObjectHandle item, GEqualFuncFull equal_func, IntPtr user_data, out uint position);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_list_store_insert(GListStoreHandle store, uint position, GObjectHandle item);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_list_store_insert_sorted(GListStoreHandle store, GObjectHandle item, GCompareDataFunc compare_func, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_list_store_remove(GListStoreHandle store, uint position);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_list_store_remove_all(GListStoreHandle store);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_list_store_sort(GListStoreHandle store, GCompareDataFunc compare_func, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_list_store_splice(GListStoreHandle store, uint position, uint n_removals, IntPtr[] additions, uint n_additions);
+
 }

@@ -57,14 +57,20 @@ internal class GNetworkMonitorExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_network_monitor_can_reach(GNetworkMonitorHandle monitor, GSocketConnectableHandle connectable, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_network_monitor_can_reach_async(GNetworkMonitorHandle monitor, GSocketConnectableHandle connectable, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_network_monitor_can_reach_finish(GNetworkMonitorHandle monitor, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GNetworkConnectivity g_network_monitor_get_connectivity(GNetworkMonitorHandle monitor);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_network_monitor_get_network_available(GNetworkMonitorHandle monitor);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_network_monitor_get_network_metered(GNetworkMonitorHandle monitor);
+
 }

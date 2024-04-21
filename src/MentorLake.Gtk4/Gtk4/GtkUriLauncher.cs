@@ -53,12 +53,18 @@ internal class GtkUriLauncherExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkUriLauncherHandle gtk_uri_launcher_new(string uri);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_uri_launcher_get_uri(GtkUriLauncherHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_uri_launcher_launch(GtkUriLauncherHandle self, GtkWindowHandle parent, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_uri_launcher_launch_finish(GtkUriLauncherHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_uri_launcher_set_uri(GtkUriLauncherHandle self, string uri);
+
 }

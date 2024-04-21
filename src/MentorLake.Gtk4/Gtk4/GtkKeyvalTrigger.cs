@@ -41,8 +41,11 @@ internal class GtkKeyvalTriggerExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkKeyvalTriggerHandle gtk_keyval_trigger_new(uint keyval, GdkModifierType modifiers);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_keyval_trigger_get_keyval(GtkKeyvalTriggerHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkModifierType gtk_keyval_trigger_get_modifiers(GtkKeyvalTriggerHandle self);
+
 }

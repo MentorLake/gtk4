@@ -36,10 +36,10 @@ public class GtkLabelSignal
 
 public static class GtkLabelSignals
 {
-	public static GtkLabelSignal ActivateCurrentLink = new("activate-current-link");
-	public static GtkLabelSignal ActivateLink = new("activate-link");
-	public static GtkLabelSignal CopyClipboard = new("copy-clipboard");
-	public static GtkLabelSignal MoveCursor = new("move-cursor");
+	public static GtkLabelSignal ActivateCurrentLink = new("BindingTransform.MethodDeclaration");
+	public static GtkLabelSignal ActivateLink = new("BindingTransform.MethodDeclaration");
+	public static GtkLabelSignal CopyClipboard = new("BindingTransform.MethodDeclaration");
+	public static GtkLabelSignal MoveCursor = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkLabelHandleExtensions
@@ -314,115 +314,200 @@ public static class GtkLabelHandleExtensions
 		return self;
 	}
 
-	public static GtkLabelHandle Connect(this GtkLabelHandle instance, GtkLabelSignal signal, GCallback c_handler)
+	public static GtkLabelHandle Signal_ActivateCurrentLink(this GtkLabelHandle instance, GtkLabelDelegates.ActivateCurrentLink handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate_current_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkLabelHandle Signal_ActivateLink(this GtkLabelHandle instance, GtkLabelDelegates.ActivateLink handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkLabelHandle Signal_CopyClipboard(this GtkLabelHandle instance, GtkLabelDelegates.CopyClipboard handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "copy_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkLabelHandle Signal_MoveCursor(this GtkLabelHandle instance, GtkLabelDelegates.MoveCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkLabelDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ActivateCurrentLink([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ActivateLink([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, string uri, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void CopyClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, ref GtkMovementStep step, int count, bool extend_selection, IntPtr user_data);
 }
 
 internal class GtkLabelExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkLabelHandle gtk_label_new(string str);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkLabelHandle gtk_label_new_with_mnemonic(string str);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoAttrListHandle gtk_label_get_attributes(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_label_get_current_uri(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoEllipsizeMode gtk_label_get_ellipsize(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GMenuModelHandle gtk_label_get_extra_menu(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkJustification gtk_label_get_justify(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_label_get_label(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoLayoutHandle gtk_label_get_layout(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_get_layout_offsets(GtkLabelHandle self, out int x, out int y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_label_get_lines(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_label_get_max_width_chars(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_label_get_mnemonic_keyval(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_label_get_mnemonic_widget(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkNaturalWrapMode gtk_label_get_natural_wrap_mode(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_label_get_selectable(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_label_get_selection_bounds(GtkLabelHandle self, out int start, out int end);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_label_get_single_line_mode(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoTabArrayHandle gtk_label_get_tabs(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_label_get_text(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_label_get_use_markup(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_label_get_use_underline(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_label_get_width_chars(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_label_get_wrap(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoWrapMode gtk_label_get_wrap_mode(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern float gtk_label_get_xalign(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern float gtk_label_get_yalign(GtkLabelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_select_region(GtkLabelHandle self, int start_offset, int end_offset);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_attributes(GtkLabelHandle self, PangoAttrListHandle attrs);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_ellipsize(GtkLabelHandle self, PangoEllipsizeMode mode);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_extra_menu(GtkLabelHandle self, GMenuModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_justify(GtkLabelHandle self, GtkJustification jtype);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_label(GtkLabelHandle self, string str);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_lines(GtkLabelHandle self, int lines);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_markup(GtkLabelHandle self, string str);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_markup_with_mnemonic(GtkLabelHandle self, string str);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_max_width_chars(GtkLabelHandle self, int n_chars);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_mnemonic_widget(GtkLabelHandle self, GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_natural_wrap_mode(GtkLabelHandle self, GtkNaturalWrapMode wrap_mode);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_selectable(GtkLabelHandle self, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_single_line_mode(GtkLabelHandle self, bool single_line_mode);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_tabs(GtkLabelHandle self, PangoTabArrayHandle tabs);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_text(GtkLabelHandle self, string str);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_text_with_mnemonic(GtkLabelHandle self, string str);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_use_markup(GtkLabelHandle self, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_use_underline(GtkLabelHandle self, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_width_chars(GtkLabelHandle self, int n_chars);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_wrap(GtkLabelHandle self, bool wrap);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_wrap_mode(GtkLabelHandle self, PangoWrapMode wrap_mode);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_xalign(GtkLabelHandle self, float xalign);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_label_set_yalign(GtkLabelHandle self, float yalign);
+
 }

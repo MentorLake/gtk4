@@ -31,7 +31,7 @@ public class GtkGesturePanSignal
 
 public static class GtkGesturePanSignals
 {
-	public static GtkGesturePanSignal Pan = new("pan");
+	public static GtkGesturePanSignal Pan = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkGesturePanHandleExtensions
@@ -47,19 +47,29 @@ public static class GtkGesturePanHandleExtensions
 		return gesture;
 	}
 
-	public static GtkGesturePanHandle Connect(this GtkGesturePanHandle instance, GtkGesturePanSignal signal, GCallback c_handler)
+	public static GtkGesturePanHandle Signal_Pan(this GtkGesturePanHandle instance, GtkGesturePanDelegates.Pan handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "pan", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkGesturePanDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Pan([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGesturePanHandle>))] GtkGesturePanHandle self, ref GtkPanDirection direction, double offset, IntPtr user_data);
 }
 
 internal class GtkGesturePanExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkGesturePanHandle gtk_gesture_pan_new(GtkOrientation orientation);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkOrientation gtk_gesture_pan_get_orientation(GtkGesturePanHandle gesture);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gesture_pan_set_orientation(GtkGesturePanHandle gesture, GtkOrientation orientation);
+
 }

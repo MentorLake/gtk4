@@ -31,7 +31,7 @@ public class GtkGestureSwipeSignal
 
 public static class GtkGestureSwipeSignals
 {
-	public static GtkGestureSwipeSignal Swipe = new("swipe");
+	public static GtkGestureSwipeSignal Swipe = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkGestureSwipeHandleExtensions
@@ -41,17 +41,26 @@ public static class GtkGestureSwipeHandleExtensions
 		return GtkGestureSwipeExterns.gtk_gesture_swipe_get_velocity(gesture, out velocity_x, out velocity_y);
 	}
 
-	public static GtkGestureSwipeHandle Connect(this GtkGestureSwipeHandle instance, GtkGestureSwipeSignal signal, GCallback c_handler)
+	public static GtkGestureSwipeHandle Signal_Swipe(this GtkGestureSwipeHandle instance, GtkGestureSwipeDelegates.Swipe handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "swipe", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkGestureSwipeDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Swipe([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureSwipeHandle>))] GtkGestureSwipeHandle self, double velocity_x, double velocity_y, IntPtr user_data);
 }
 
 internal class GtkGestureSwipeExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkGestureSwipeHandle gtk_gesture_swipe_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_gesture_swipe_get_velocity(GtkGestureSwipeHandle gesture, out double velocity_x, out double velocity_y);
+
 }

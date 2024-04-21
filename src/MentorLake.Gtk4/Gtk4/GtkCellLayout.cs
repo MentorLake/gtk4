@@ -84,22 +84,32 @@ internal class GtkCellLayoutExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_layout_add_attribute(GtkCellLayoutHandle cell_layout, GtkCellRendererHandle cell, string attribute, int column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_layout_clear(GtkCellLayoutHandle cell_layout);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_layout_clear_attributes(GtkCellLayoutHandle cell_layout, GtkCellRendererHandle cell);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellAreaHandle gtk_cell_layout_get_area(GtkCellLayoutHandle cell_layout);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListHandle gtk_cell_layout_get_cells(GtkCellLayoutHandle cell_layout);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_layout_pack_end(GtkCellLayoutHandle cell_layout, GtkCellRendererHandle cell, bool expand);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_layout_pack_start(GtkCellLayoutHandle cell_layout, GtkCellRendererHandle cell, bool expand);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_layout_reorder(GtkCellLayoutHandle cell_layout, GtkCellRendererHandle cell, int position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_layout_set_attributes(GtkCellLayoutHandle cell_layout, GtkCellRendererHandle cell, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_layout_set_cell_data_func(GtkCellLayoutHandle cell_layout, GtkCellRendererHandle cell, GtkCellLayoutDataFunc func, IntPtr func_data, GDestroyNotify destroy);
+
 }

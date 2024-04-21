@@ -66,18 +66,26 @@ internal class GskRadialGradientNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRadialGradientNodeHandle gsk_radial_gradient_node_new(graphene_rect_tHandle bounds, graphene_point_tHandle center, float hradius, float vradius, float start, float end, GskColorStop[] color_stops, int n_color_stops);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern graphene_point_tHandle gsk_radial_gradient_node_get_center(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskColorStop[] gsk_radial_gradient_node_get_color_stops(GskRenderNodeHandle node, out int n_stops);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_radial_gradient_node_get_end(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_radial_gradient_node_get_hradius(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern int gsk_radial_gradient_node_get_n_color_stops(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_radial_gradient_node_get_start(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_radial_gradient_node_get_vradius(GskRenderNodeHandle node);
+
 }

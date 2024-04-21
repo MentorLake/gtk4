@@ -36,8 +36,8 @@ public class GtkInfoBarSignal
 
 public static class GtkInfoBarSignals
 {
-	public static GtkInfoBarSignal Close = new("close");
-	public static GtkInfoBarSignal Response = new("response");
+	public static GtkInfoBarSignal Close = new("BindingTransform.MethodDeclaration");
+	public static GtkInfoBarSignal Response = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkInfoBarHandleExtensions
@@ -128,47 +128,79 @@ public static class GtkInfoBarHandleExtensions
 		return info_bar;
 	}
 
-	public static GtkInfoBarHandle Connect(this GtkInfoBarHandle instance, GtkInfoBarSignal signal, GCallback c_handler)
+	public static GtkInfoBarHandle Signal_Close(this GtkInfoBarHandle instance, GtkInfoBarDelegates.Close handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "close", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkInfoBarHandle Signal_Response(this GtkInfoBarHandle instance, GtkInfoBarDelegates.Response handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "response", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkInfoBarDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Close([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkInfoBarHandle>))] GtkInfoBarHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Response([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkInfoBarHandle>))] GtkInfoBarHandle self, int response_id, IntPtr user_data);
 }
 
 internal class GtkInfoBarExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkInfoBarHandle gtk_info_bar_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkInfoBarHandle gtk_info_bar_new_with_buttons(string first_button_text, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_info_bar_add_action_widget(GtkInfoBarHandle info_bar, GtkWidgetHandle child, int response_id);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_info_bar_add_button(GtkInfoBarHandle info_bar, string button_text, int response_id);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_info_bar_add_buttons(GtkInfoBarHandle info_bar, string first_button_text, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_info_bar_add_child(GtkInfoBarHandle info_bar, GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMessageType gtk_info_bar_get_message_type(GtkInfoBarHandle info_bar);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_info_bar_get_revealed(GtkInfoBarHandle info_bar);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_info_bar_get_show_close_button(GtkInfoBarHandle info_bar);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_info_bar_remove_action_widget(GtkInfoBarHandle info_bar, GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_info_bar_remove_child(GtkInfoBarHandle info_bar, GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_info_bar_response(GtkInfoBarHandle info_bar, int response_id);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_info_bar_set_default_response(GtkInfoBarHandle info_bar, int response_id);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_info_bar_set_message_type(GtkInfoBarHandle info_bar, GtkMessageType message_type);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_info_bar_set_response_sensitive(GtkInfoBarHandle info_bar, int response_id, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_info_bar_set_revealed(GtkInfoBarHandle info_bar, bool revealed);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_info_bar_set_show_close_button(GtkInfoBarHandle info_bar, bool setting);
+
 }

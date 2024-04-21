@@ -32,8 +32,10 @@ internal class GMappedFileExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GMappedFileHandle g_mapped_file_new(string filename, bool writable, out GErrorHandle error);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GMappedFileHandle g_mapped_file_new_from_fd(int fd, bool writable, out GErrorHandle error);
+
 }
 
 public struct GMappedFile

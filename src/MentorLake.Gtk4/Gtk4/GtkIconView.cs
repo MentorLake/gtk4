@@ -41,14 +41,14 @@ public class GtkIconViewSignal
 
 public static class GtkIconViewSignals
 {
-	public static GtkIconViewSignal ActivateCursorItem = new("activate-cursor-item");
-	public static GtkIconViewSignal ItemActivated = new("item-activated");
-	public static GtkIconViewSignal MoveCursor = new("move-cursor");
-	public static GtkIconViewSignal SelectAll = new("select-all");
-	public static GtkIconViewSignal SelectCursorItem = new("select-cursor-item");
-	public static GtkIconViewSignal SelectionChanged = new("selection-changed");
-	public static GtkIconViewSignal ToggleCursorItem = new("toggle-cursor-item");
-	public static GtkIconViewSignal UnselectAll = new("unselect-all");
+	public static GtkIconViewSignal ActivateCursorItem = new("BindingTransform.MethodDeclaration");
+	public static GtkIconViewSignal ItemActivated = new("BindingTransform.MethodDeclaration");
+	public static GtkIconViewSignal MoveCursor = new("BindingTransform.MethodDeclaration");
+	public static GtkIconViewSignal SelectAll = new("BindingTransform.MethodDeclaration");
+	public static GtkIconViewSignal SelectCursorItem = new("BindingTransform.MethodDeclaration");
+	public static GtkIconViewSignal SelectionChanged = new("BindingTransform.MethodDeclaration");
+	public static GtkIconViewSignal ToggleCursorItem = new("BindingTransform.MethodDeclaration");
+	public static GtkIconViewSignal UnselectAll = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkIconViewHandleExtensions
@@ -385,139 +385,265 @@ public static class GtkIconViewHandleExtensions
 		return icon_view;
 	}
 
-	public static GtkIconViewHandle Connect(this GtkIconViewHandle instance, GtkIconViewSignal signal, GCallback c_handler)
+	public static GtkIconViewHandle Signal_ActivateCursorItem(this GtkIconViewHandle instance, GtkIconViewDelegates.ActivateCursorItem handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate_cursor_item", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkIconViewHandle Signal_ItemActivated(this GtkIconViewHandle instance, GtkIconViewDelegates.ItemActivated handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "item_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkIconViewHandle Signal_MoveCursor(this GtkIconViewHandle instance, GtkIconViewDelegates.MoveCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkIconViewHandle Signal_SelectAll(this GtkIconViewHandle instance, GtkIconViewDelegates.SelectAll handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkIconViewHandle Signal_SelectCursorItem(this GtkIconViewHandle instance, GtkIconViewDelegates.SelectCursorItem handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "select_cursor_item", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkIconViewHandle Signal_SelectionChanged(this GtkIconViewHandle instance, GtkIconViewDelegates.SelectionChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "selection_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkIconViewHandle Signal_ToggleCursorItem(this GtkIconViewHandle instance, GtkIconViewDelegates.ToggleCursorItem handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_item", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkIconViewHandle Signal_UnselectAll(this GtkIconViewHandle instance, GtkIconViewDelegates.UnselectAll handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkIconViewDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ActivateCursorItem([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ItemActivated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, GtkTreePathHandle path, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, ref GtkMovementStep step, int count, bool extend, bool modify, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SelectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SelectCursorItem([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SelectionChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ToggleCursorItem([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void UnselectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
 }
 
 internal class GtkIconViewExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkIconViewHandle gtk_icon_view_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkIconViewHandle gtk_icon_view_new_with_area(GtkCellAreaHandle area);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkIconViewHandle gtk_icon_view_new_with_model(GtkTreeModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkPaintableHandle gtk_icon_view_create_drag_icon(GtkIconViewHandle icon_view, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_enable_model_drag_dest(GtkIconViewHandle icon_view, GdkContentFormatsHandle formats, GdkDragAction actions);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_enable_model_drag_source(GtkIconViewHandle icon_view, GdkModifierType start_button_mask, GdkContentFormatsHandle formats, GdkDragAction actions);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_icon_view_get_activate_on_single_click(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_icon_view_get_cell_rect(GtkIconViewHandle icon_view, GtkTreePathHandle path, GtkCellRendererHandle cell, out GdkRectangle rect);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_icon_view_get_column_spacing(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_icon_view_get_columns(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_icon_view_get_cursor(GtkIconViewHandle icon_view, out GtkTreePathHandle path, out GtkCellRendererHandle cell);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_icon_view_get_dest_item_at_pos(GtkIconViewHandle icon_view, int drag_x, int drag_y, out GtkTreePathHandle path, out GtkIconViewDropPosition pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_get_drag_dest_item(GtkIconViewHandle icon_view, out GtkTreePathHandle path, out GtkIconViewDropPosition pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_icon_view_get_item_at_pos(GtkIconViewHandle icon_view, int x, int y, out GtkTreePathHandle path, out GtkCellRendererHandle cell);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_icon_view_get_item_column(GtkIconViewHandle icon_view, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkOrientation gtk_icon_view_get_item_orientation(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_icon_view_get_item_padding(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_icon_view_get_item_row(GtkIconViewHandle icon_view, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_icon_view_get_item_width(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_icon_view_get_margin(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_icon_view_get_markup_column(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeModelHandle gtk_icon_view_get_model(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreePathHandle gtk_icon_view_get_path_at_pos(GtkIconViewHandle icon_view, int x, int y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_icon_view_get_pixbuf_column(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_icon_view_get_reorderable(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_icon_view_get_row_spacing(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListHandle gtk_icon_view_get_selected_items(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSelectionMode gtk_icon_view_get_selection_mode(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_icon_view_get_spacing(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_icon_view_get_text_column(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_icon_view_get_tooltip_column(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_icon_view_get_tooltip_context(GtkIconViewHandle icon_view, int x, int y, bool keyboard_tip, out GtkTreeModelHandle model, out GtkTreePathHandle path, out GtkTreeIter iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_icon_view_get_visible_range(GtkIconViewHandle icon_view, out GtkTreePathHandle start_path, out GtkTreePathHandle end_path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_item_activated(GtkIconViewHandle icon_view, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_icon_view_path_is_selected(GtkIconViewHandle icon_view, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_scroll_to_path(GtkIconViewHandle icon_view, GtkTreePathHandle path, bool use_align, float row_align, float col_align);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_select_all(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_select_path(GtkIconViewHandle icon_view, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_selected_foreach(GtkIconViewHandle icon_view, GtkIconViewForeachFunc func, IntPtr data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_activate_on_single_click(GtkIconViewHandle icon_view, bool single);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_column_spacing(GtkIconViewHandle icon_view, int column_spacing);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_columns(GtkIconViewHandle icon_view, int columns);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_cursor(GtkIconViewHandle icon_view, GtkTreePathHandle path, GtkCellRendererHandle cell, bool start_editing);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_drag_dest_item(GtkIconViewHandle icon_view, GtkTreePathHandle path, GtkIconViewDropPosition pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_item_orientation(GtkIconViewHandle icon_view, GtkOrientation orientation);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_item_padding(GtkIconViewHandle icon_view, int item_padding);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_item_width(GtkIconViewHandle icon_view, int item_width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_margin(GtkIconViewHandle icon_view, int margin);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_markup_column(GtkIconViewHandle icon_view, int column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_model(GtkIconViewHandle icon_view, GtkTreeModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_pixbuf_column(GtkIconViewHandle icon_view, int column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_reorderable(GtkIconViewHandle icon_view, bool reorderable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_row_spacing(GtkIconViewHandle icon_view, int row_spacing);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_selection_mode(GtkIconViewHandle icon_view, GtkSelectionMode mode);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_spacing(GtkIconViewHandle icon_view, int spacing);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_text_column(GtkIconViewHandle icon_view, int column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_tooltip_cell(GtkIconViewHandle icon_view, GtkTooltipHandle tooltip, GtkTreePathHandle path, GtkCellRendererHandle cell);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_tooltip_column(GtkIconViewHandle icon_view, int column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_set_tooltip_item(GtkIconViewHandle icon_view, GtkTooltipHandle tooltip, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_unselect_all(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_unselect_path(GtkIconViewHandle icon_view, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_unset_model_drag_dest(GtkIconViewHandle icon_view);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_icon_view_unset_model_drag_source(GtkIconViewHandle icon_view);
+
 }

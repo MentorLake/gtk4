@@ -338,108 +338,161 @@ internal class GtkSnapshotExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSnapshotHandle gtk_snapshot_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_border(GtkSnapshotHandle snapshot, GskRoundedRectHandle outline, float[] border_width, GdkRGBA[] border_color);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern cairo_tHandle gtk_snapshot_append_cairo(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_color(GtkSnapshotHandle snapshot, GdkRGBAHandle color, graphene_rect_tHandle bounds);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_conic_gradient(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle center, float rotation, GskColorStop[] stops, int n_stops);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_fill(GtkSnapshotHandle snapshot, GskPathHandle path, GskFillRule fill_rule, GdkRGBAHandle color);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_inset_shadow(GtkSnapshotHandle snapshot, GskRoundedRectHandle outline, GdkRGBAHandle color, float dx, float dy, float spread, float blur_radius);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_layout(GtkSnapshotHandle snapshot, PangoLayoutHandle layout, GdkRGBAHandle color);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_linear_gradient(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle start_point, graphene_point_tHandle end_point, GskColorStop[] stops, int n_stops);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_node(GtkSnapshotHandle snapshot, GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_outset_shadow(GtkSnapshotHandle snapshot, GskRoundedRectHandle outline, GdkRGBAHandle color, float dx, float dy, float spread, float blur_radius);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_radial_gradient(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle center, float hradius, float vradius, float start, float end, GskColorStop[] stops, int n_stops);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_repeating_linear_gradient(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle start_point, graphene_point_tHandle end_point, GskColorStop[] stops, int n_stops);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_repeating_radial_gradient(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle center, float hradius, float vradius, float start, float end, GskColorStop[] stops, int n_stops);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_scaled_texture(GtkSnapshotHandle snapshot, GdkTextureHandle texture, GskScalingFilter filter, graphene_rect_tHandle bounds);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_stroke(GtkSnapshotHandle snapshot, GskPathHandle path, GskStrokeHandle stroke, GdkRGBAHandle color);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_texture(GtkSnapshotHandle snapshot, GdkTextureHandle texture, graphene_rect_tHandle bounds);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GskRenderNodeHandle gtk_snapshot_free_to_node(GtkSnapshotHandle snapshot);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkPaintableHandle gtk_snapshot_free_to_paintable(GtkSnapshotHandle snapshot, graphene_size_tHandle size);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_gl_shader_pop_texture(GtkSnapshotHandle snapshot);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_perspective(GtkSnapshotHandle snapshot, float depth);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_pop(GtkSnapshotHandle snapshot);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_push_blend(GtkSnapshotHandle snapshot, GskBlendMode blend_mode);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_push_blur(GtkSnapshotHandle snapshot, double radius);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_push_clip(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_push_color_matrix(GtkSnapshotHandle snapshot, graphene_matrix_tHandle color_matrix, graphene_vec4_tHandle color_offset);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_push_cross_fade(GtkSnapshotHandle snapshot, double progress);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_push_debug(GtkSnapshotHandle snapshot, string message, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_push_fill(GtkSnapshotHandle snapshot, GskPathHandle path, GskFillRule fill_rule);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_push_gl_shader(GtkSnapshotHandle snapshot, GskGLShaderHandle shader, graphene_rect_tHandle bounds, GBytesHandle take_args);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_push_mask(GtkSnapshotHandle snapshot, GskMaskMode mask_mode);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_push_opacity(GtkSnapshotHandle snapshot, double opacity);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_push_repeat(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_rect_tHandle child_bounds);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_push_rounded_clip(GtkSnapshotHandle snapshot, GskRoundedRectHandle bounds);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_push_shadow(GtkSnapshotHandle snapshot, GskShadow[] shadow, int n_shadows);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_push_stroke(GtkSnapshotHandle snapshot, GskPathHandle path, GskStrokeHandle stroke);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_render_background(GtkSnapshotHandle snapshot, GtkStyleContextHandle context, double x, double y, double width, double height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_render_focus(GtkSnapshotHandle snapshot, GtkStyleContextHandle context, double x, double y, double width, double height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_render_frame(GtkSnapshotHandle snapshot, GtkStyleContextHandle context, double x, double y, double width, double height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_render_insertion_cursor(GtkSnapshotHandle snapshot, GtkStyleContextHandle context, double x, double y, PangoLayoutHandle layout, int index, PangoDirection direction);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_render_layout(GtkSnapshotHandle snapshot, GtkStyleContextHandle context, double x, double y, PangoLayoutHandle layout);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_restore(GtkSnapshotHandle snapshot);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_rotate(GtkSnapshotHandle snapshot, float angle);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_rotate_3d(GtkSnapshotHandle snapshot, float angle, graphene_vec3_tHandle axis);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_save(GtkSnapshotHandle snapshot);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_scale(GtkSnapshotHandle snapshot, float factor_x, float factor_y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_scale_3d(GtkSnapshotHandle snapshot, float factor_x, float factor_y, float factor_z);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GskRenderNodeHandle gtk_snapshot_to_node(GtkSnapshotHandle snapshot);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkPaintableHandle gtk_snapshot_to_paintable(GtkSnapshotHandle snapshot, graphene_size_tHandle size);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_transform(GtkSnapshotHandle snapshot, GskTransformHandle transform);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_transform_matrix(GtkSnapshotHandle snapshot, graphene_matrix_tHandle matrix);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_translate(GtkSnapshotHandle snapshot, graphene_point_tHandle point);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_translate_3d(GtkSnapshotHandle snapshot, graphene_point3d_tHandle point);
+
 }

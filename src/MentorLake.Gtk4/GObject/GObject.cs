@@ -66,7 +66,7 @@ public class GObjectSignal
 
 public static class GObjectSignals
 {
-	public static GObjectSignal Notify = new("notify");
+	public static GObjectSignal Notify = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GObjectHandleExtensions
@@ -373,7 +373,7 @@ public static class GObjectHandleExtensions
 		return GObjectExterns.g_signal_handler_is_connected(instance, handler_id);
 	}
 
-	public static ulong GSignalConnectData(this GObjectHandle instance, string detailed_signal, GCallback c_handler, IntPtr data, GClosureNotify destroy_data, GConnectFlags connect_flags)
+	public static ulong GSignalConnectData(this GObjectHandle instance, string detailed_signal, IntPtr c_handler, IntPtr data, GClosureNotify destroy_data, GConnectFlags connect_flags)
 	{
 		return GObjectExterns.g_signal_connect_data(instance, detailed_signal, c_handler, data, destroy_data, connect_flags);
 	}
@@ -411,151 +411,227 @@ public static class GObjectHandleExtensions
 		return instance;
 	}
 
-	public static GObjectHandle Connect(this GObjectHandle instance, GObjectSignal signal, GCallback c_handler)
+	public static GObjectHandle Signal_Notify(this GObjectHandle instance, GObjectDelegates.Notify handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "notify", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GObjectDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Notify([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GObjectHandle>))] GObjectHandle self, GParamSpecHandle pspec, IntPtr user_data);
 }
 
 internal class GObjectExterns
 {
 	[DllImport(Libraries.GObject)]
 	internal static extern GObjectHandle g_object_new(GType object_type, string first_property_name, IntPtr @__arglist);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GObjectHandle g_object_new_valist(GType object_type, string first_property_name, IntPtr var_args);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GObjectHandle g_object_new_with_properties(GType object_type, uint n_properties, string[] names, GValue[] values);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GObjectHandle g_object_newv(GType object_type, uint n_parameters, GParameter[] parameters);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_add_toggle_ref(GObjectHandle @object, GToggleNotify notify, IntPtr data);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_add_weak_pointer(GObjectHandle @object, ref IntPtr weak_pointer_location);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GBindingHandle g_object_bind_property(GObjectHandle source, string source_property, GObjectHandle target, string target_property, GBindingFlags flags);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GBindingHandle g_object_bind_property_full(GObjectHandle source, string source_property, GObjectHandle target, string target_property, GBindingFlags flags, GBindingTransformFunc transform_to, GBindingTransformFunc transform_from, IntPtr user_data, GDestroyNotify notify);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GBindingHandle g_object_bind_property_with_closures(GObjectHandle source, string source_property, GObjectHandle target, string target_property, GBindingFlags flags, GClosureHandle transform_to, GClosureHandle transform_from);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GObjectHandle g_object_connect(GObjectHandle @object, string signal_spec, IntPtr @__arglist);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_disconnect(GObjectHandle @object, string signal_spec, IntPtr @__arglist);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern IntPtr g_object_dup_data(GObjectHandle @object, string key, GDuplicateFunc dup_func, IntPtr user_data);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern IntPtr g_object_dup_qdata(GObjectHandle @object, GQuark quark, GDuplicateFunc dup_func, IntPtr user_data);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_force_floating(GObjectHandle @object);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_freeze_notify(GObjectHandle @object);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_get(GObjectHandle @object, string first_property_name, IntPtr @__arglist);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern IntPtr g_object_get_data(GObjectHandle @object, string key);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_get_property(GObjectHandle @object, string property_name, out GValue value);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern IntPtr g_object_get_qdata(GObjectHandle @object, GQuark quark);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_get_valist(GObjectHandle @object, string first_property_name, out IntPtr var_args);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_getv(GObjectHandle @object, uint n_properties, string[] names, GValue[] values);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern bool g_object_is_floating(GObjectHandle @object);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_notify(GObjectHandle @object, string property_name);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_notify_by_pspec(GObjectHandle @object, GParamSpecHandle pspec);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GObjectHandle g_object_ref(GObjectHandle @object);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GObjectHandle g_object_ref_sink(GObjectHandle @object);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_remove_toggle_ref(GObjectHandle @object, GToggleNotify notify, IntPtr data);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_remove_weak_pointer(GObjectHandle @object, ref IntPtr weak_pointer_location);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern bool g_object_replace_data(GObjectHandle @object, string key, IntPtr oldval, IntPtr newval, GDestroyNotify destroy, out GDestroyNotify old_destroy);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern bool g_object_replace_qdata(GObjectHandle @object, GQuark quark, IntPtr oldval, IntPtr newval, GDestroyNotify destroy, out GDestroyNotify old_destroy);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_run_dispose(GObjectHandle @object);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_set(GObjectHandle @object, string first_property_name, IntPtr @__arglist);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_set_data(GObjectHandle @object, string key, IntPtr data);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_set_data_full(GObjectHandle @object, string key, IntPtr data, GDestroyNotify destroy);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_set_property(GObjectHandle @object, string property_name, GValueHandle value);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_set_qdata(GObjectHandle @object, GQuark quark, IntPtr data);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_set_qdata_full(GObjectHandle @object, GQuark quark, IntPtr data, GDestroyNotify destroy);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_set_valist(GObjectHandle @object, string first_property_name, IntPtr var_args);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_setv(GObjectHandle @object, uint n_properties, string[] names, GValue[] values);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern IntPtr g_object_steal_data(GObjectHandle @object, string key);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern IntPtr g_object_steal_qdata(GObjectHandle @object, GQuark quark);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GObjectHandle g_object_take_ref(GObjectHandle @object);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_thaw_notify(GObjectHandle @object);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_unref(GObjectHandle @object);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_watch_closure(GObjectHandle @object, GClosureHandle closure);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_weak_ref(GObjectHandle @object, GWeakNotify notify, IntPtr data);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_weak_unref(GObjectHandle @object, GWeakNotify notify, IntPtr data);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_signal_stop_emission_by_name(GObjectHandle instance, string detailed_signal);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern ulong g_signal_handler_find(GObjectHandle instance, GSignalMatchType mask, uint signal_id, GQuark detail, GClosureHandle closure, IntPtr func, IntPtr data);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern uint g_signal_handlers_unblock_matched(GObjectHandle instance, GSignalMatchType mask, uint signal_id, GQuark detail, GClosureHandle closure, IntPtr func, IntPtr data);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_signal_emit_by_name(GObjectHandle instance, string detailed_signal, IntPtr @__arglist);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_signal_handlers_destroy(GObjectHandle instance);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern bool g_signal_has_handler_pending(GObjectHandle instance, uint signal_id, GQuark detail, bool may_be_blocked);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern ulong g_signal_connect_closure_by_id(GObjectHandle instance, uint signal_id, GQuark detail, GClosureHandle closure, bool after);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_signal_emit(GObjectHandle instance, uint signal_id, GQuark detail, IntPtr @__arglist);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern uint g_signal_handlers_disconnect_matched(GObjectHandle instance, GSignalMatchType mask, uint signal_id, GQuark detail, GClosureHandle closure, IntPtr func, IntPtr data);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_signal_handler_unblock(GObjectHandle instance, ulong handler_id);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern bool g_signal_handler_is_connected(GObjectHandle instance, ulong handler_id);
+
 	[DllImport(Libraries.GObject)]
-	internal static extern ulong g_signal_connect_data(GObjectHandle instance, string detailed_signal, GCallback c_handler, IntPtr data, GClosureNotify destroy_data, GConnectFlags connect_flags);
+	internal static extern ulong g_signal_connect_data(GObjectHandle instance, string detailed_signal, IntPtr c_handler, IntPtr data, GClosureNotify destroy_data, GConnectFlags connect_flags);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GSignalInvocationHintHandle g_signal_get_invocation_hint(GObjectHandle instance);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_signal_handler_block(GObjectHandle instance, ulong handler_id);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_signal_handler_disconnect(GObjectHandle instance, ulong handler_id);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern uint g_signal_handlers_block_matched(GObjectHandle instance, GSignalMatchType mask, uint signal_id, GQuark detail, GClosureHandle closure, IntPtr func, IntPtr data);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern ulong g_signal_connect_closure(GObjectHandle instance, string detailed_signal, GClosureHandle closure, bool after);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_signal_stop_emission(GObjectHandle instance, uint signal_id, GQuark detail);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern int g_object_compat_control(int what, IntPtr data);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GParamSpecHandle g_object_interface_find_property(GTypeInterfaceHandle g_iface, string property_name);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_object_interface_install_property(GTypeInterfaceHandle g_iface, GParamSpecHandle pspec);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GParamSpecHandle[] g_object_interface_list_properties(GTypeInterfaceHandle g_iface, out uint n_properties_p);
+
 }

@@ -27,6 +27,7 @@ internal class GdkContentFormatsBuilderExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkContentFormatsBuilderHandle gdk_content_formats_builder_new();
+
 }
 
 public struct GdkContentFormatsBuilder

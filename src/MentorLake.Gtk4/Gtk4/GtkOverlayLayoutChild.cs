@@ -48,10 +48,14 @@ internal class GtkOverlayLayoutChildExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_overlay_layout_child_get_clip_overlay(GtkOverlayLayoutChildHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_overlay_layout_child_get_measure(GtkOverlayLayoutChildHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_overlay_layout_child_set_clip_overlay(GtkOverlayLayoutChildHandle child, bool clip_overlay);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_overlay_layout_child_set_measure(GtkOverlayLayoutChildHandle child, bool measure);
+
 }

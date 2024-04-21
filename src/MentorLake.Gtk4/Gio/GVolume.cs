@@ -124,40 +124,59 @@ internal class GVolumeExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_volume_can_eject(GVolumeHandle volume);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_volume_can_mount(GVolumeHandle volume);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_volume_eject(GVolumeHandle volume, GMountUnmountFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_volume_eject_finish(GVolumeHandle volume, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_volume_eject_with_operation(GVolumeHandle volume, GMountUnmountFlags flags, GMountOperationHandle mount_operation, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_volume_eject_with_operation_finish(GVolumeHandle volume, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_volume_enumerate_identifiers(GVolumeHandle volume);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_volume_get_activation_root(GVolumeHandle volume);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDriveHandle g_volume_get_drive(GVolumeHandle volume);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GIconHandle g_volume_get_icon(GVolumeHandle volume);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_volume_get_identifier(GVolumeHandle volume, string kind);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GMountHandle g_volume_get_mount(GVolumeHandle volume);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_volume_get_name(GVolumeHandle volume);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_volume_get_sort_key(GVolumeHandle volume);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GIconHandle g_volume_get_symbolic_icon(GVolumeHandle volume);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_volume_get_uuid(GVolumeHandle volume);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_volume_mount(GVolumeHandle volume, GMountMountFlags flags, GMountOperationHandle mount_operation, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_volume_mount_finish(GVolumeHandle volume, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_volume_should_automount(GVolumeHandle volume);
+
 }

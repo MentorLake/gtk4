@@ -32,8 +32,10 @@ internal class GClosureExterns
 {
 	[DllImport(Libraries.GObject)]
 	internal static extern GClosureHandle g_closure_new_object(uint sizeof_closure, GObjectHandle @object);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GClosureHandle g_closure_new_simple(uint sizeof_closure, IntPtr data);
+
 }
 
 public struct GClosure

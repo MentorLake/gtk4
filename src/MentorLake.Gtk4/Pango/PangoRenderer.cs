@@ -135,40 +135,59 @@ internal class PangoRendererExterns
 {
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_renderer_activate(PangoRendererHandle renderer);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_renderer_deactivate(PangoRendererHandle renderer);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_renderer_draw_error_underline(PangoRendererHandle renderer, int x, int y, int width, int height);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_renderer_draw_glyph(PangoRendererHandle renderer, PangoFontHandle font, PangoGlyph glyph, double x, double y);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_renderer_draw_glyph_item(PangoRendererHandle renderer, string text, PangoGlyphItemHandle glyph_item, int x, int y);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_renderer_draw_glyphs(PangoRendererHandle renderer, PangoFontHandle font, PangoGlyphStringHandle glyphs, int x, int y);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_renderer_draw_layout(PangoRendererHandle renderer, PangoLayoutHandle layout, int x, int y);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_renderer_draw_layout_line(PangoRendererHandle renderer, PangoLayoutLineHandle line, int x, int y);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_renderer_draw_rectangle(PangoRendererHandle renderer, PangoRenderPart part, int x, int y, int width, int height);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_renderer_draw_trapezoid(PangoRendererHandle renderer, PangoRenderPart part, double y1_, double x11, double x21, double y2, double x12, double x22);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern ushort pango_renderer_get_alpha(PangoRendererHandle renderer, PangoRenderPart part);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoColorHandle pango_renderer_get_color(PangoRendererHandle renderer, PangoRenderPart part);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoLayoutHandle pango_renderer_get_layout(PangoRendererHandle renderer);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoLayoutLineHandle pango_renderer_get_layout_line(PangoRendererHandle renderer);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoMatrixHandle pango_renderer_get_matrix(PangoRendererHandle renderer);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_renderer_part_changed(PangoRendererHandle renderer, PangoRenderPart part);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_renderer_set_alpha(PangoRendererHandle renderer, PangoRenderPart part, ushort alpha);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_renderer_set_color(PangoRendererHandle renderer, PangoRenderPart part, PangoColorHandle color);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_renderer_set_matrix(PangoRendererHandle renderer, PangoMatrixHandle matrix);
+
 }

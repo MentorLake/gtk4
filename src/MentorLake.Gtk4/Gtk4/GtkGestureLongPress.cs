@@ -31,8 +31,8 @@ public class GtkGestureLongPressSignal
 
 public static class GtkGestureLongPressSignals
 {
-	public static GtkGestureLongPressSignal Cancelled = new("cancelled");
-	public static GtkGestureLongPressSignal Pressed = new("pressed");
+	public static GtkGestureLongPressSignal Cancelled = new("BindingTransform.MethodDeclaration");
+	public static GtkGestureLongPressSignal Pressed = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkGestureLongPressHandleExtensions
@@ -48,19 +48,37 @@ public static class GtkGestureLongPressHandleExtensions
 		return gesture;
 	}
 
-	public static GtkGestureLongPressHandle Connect(this GtkGestureLongPressHandle instance, GtkGestureLongPressSignal signal, GCallback c_handler)
+	public static GtkGestureLongPressHandle Signal_Cancelled(this GtkGestureLongPressHandle instance, GtkGestureLongPressDelegates.Cancelled handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "cancelled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkGestureLongPressHandle Signal_Pressed(this GtkGestureLongPressHandle instance, GtkGestureLongPressDelegates.Pressed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "pressed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkGestureLongPressDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Cancelled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureLongPressHandle>))] GtkGestureLongPressHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Pressed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureLongPressHandle>))] GtkGestureLongPressHandle self, double x, double y, IntPtr user_data);
 }
 
 internal class GtkGestureLongPressExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkGestureLongPressHandle gtk_gesture_long_press_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_gesture_long_press_get_delay_factor(GtkGestureLongPressHandle gesture);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_gesture_long_press_set_delay_factor(GtkGestureLongPressHandle gesture, double delay_factor);
+
 }

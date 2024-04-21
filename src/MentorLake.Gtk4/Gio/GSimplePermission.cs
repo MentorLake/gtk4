@@ -31,4 +31,5 @@ internal class GSimplePermissionExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GSimplePermissionHandle g_simple_permission_new(bool allowed);
+
 }

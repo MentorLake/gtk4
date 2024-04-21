@@ -26,7 +26,7 @@ public class GtkNativeDialogSignal
 
 public static class GtkNativeDialogSignals
 {
-	public static GtkNativeDialogSignal Response = new("response");
+	public static GtkNativeDialogSignal Response = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkNativeDialogHandleExtensions
@@ -87,33 +87,51 @@ public static class GtkNativeDialogHandleExtensions
 		return self;
 	}
 
-	public static GtkNativeDialogHandle Connect(this GtkNativeDialogHandle instance, GtkNativeDialogSignal signal, GCallback c_handler)
+	public static GtkNativeDialogHandle Signal_Response(this GtkNativeDialogHandle instance, GtkNativeDialogDelegates.Response handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "response", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkNativeDialogDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Response([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNativeDialogHandle>))] GtkNativeDialogHandle self, int response_id, IntPtr user_data);
 }
 
 internal class GtkNativeDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_native_dialog_destroy(GtkNativeDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_native_dialog_get_modal(GtkNativeDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_native_dialog_get_title(GtkNativeDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWindowHandle gtk_native_dialog_get_transient_for(GtkNativeDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_native_dialog_get_visible(GtkNativeDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_native_dialog_hide(GtkNativeDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_native_dialog_set_modal(GtkNativeDialogHandle self, bool modal);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_native_dialog_set_title(GtkNativeDialogHandle self, string title);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_native_dialog_set_transient_for(GtkNativeDialogHandle self, GtkWindowHandle parent);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_native_dialog_show(GtkNativeDialogHandle self);
+
 }

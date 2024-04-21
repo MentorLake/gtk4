@@ -27,6 +27,7 @@ internal class GDBusNodeInfoExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusNodeInfoHandle g_dbus_node_info_new_for_xml(string xml_data, out GErrorHandle error);
+
 }
 
 public struct GDBusNodeInfo

@@ -31,7 +31,7 @@ public class GtkOverlaySignal
 
 public static class GtkOverlaySignals
 {
-	public static GtkOverlaySignal GetChildPosition = new("get-child-position");
+	public static GtkOverlaySignal GetChildPosition = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkOverlayHandleExtensions
@@ -81,31 +81,47 @@ public static class GtkOverlayHandleExtensions
 		return overlay;
 	}
 
-	public static GtkOverlayHandle Connect(this GtkOverlayHandle instance, GtkOverlaySignal signal, GCallback c_handler)
+	public static GtkOverlayHandle Signal_GetChildPosition(this GtkOverlayHandle instance, GtkOverlayDelegates.GetChildPosition handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "get_child_position", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkOverlayDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool GetChildPosition([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkOverlayHandle>))] GtkOverlayHandle self, GtkWidgetHandle widget, out GdkRectangle allocation, IntPtr user_data);
 }
 
 internal class GtkOverlayExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkOverlayHandle gtk_overlay_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_overlay_add_overlay(GtkOverlayHandle overlay, GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_overlay_get_child(GtkOverlayHandle overlay);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_overlay_get_clip_overlay(GtkOverlayHandle overlay, GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_overlay_get_measure_overlay(GtkOverlayHandle overlay, GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_overlay_remove_overlay(GtkOverlayHandle overlay, GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_overlay_set_child(GtkOverlayHandle overlay, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_overlay_set_clip_overlay(GtkOverlayHandle overlay, GtkWidgetHandle widget, bool clip_overlay);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_overlay_set_measure_overlay(GtkOverlayHandle overlay, GtkWidgetHandle widget, bool measure);
+
 }

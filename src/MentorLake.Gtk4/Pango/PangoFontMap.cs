@@ -68,18 +68,26 @@ internal class PangoFontMapExterns
 {
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_font_map_changed(PangoFontMapHandle fontmap);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoContextHandle pango_font_map_create_context(PangoFontMapHandle fontmap);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontFamilyHandle pango_font_map_get_family(PangoFontMapHandle fontmap, string name);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern uint pango_font_map_get_serial(PangoFontMapHandle fontmap);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_font_map_list_families(PangoFontMapHandle fontmap, out PangoFontFamilyHandle[] families, out int n_families);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontHandle pango_font_map_load_font(PangoFontMapHandle fontmap, PangoContextHandle context, PangoFontDescriptionHandle desc);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontsetHandle pango_font_map_load_fontset(PangoFontMapHandle fontmap, PangoContextHandle context, PangoFontDescriptionHandle desc, PangoLanguageHandle language);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontHandle pango_font_map_reload_font(PangoFontMapHandle fontmap, PangoFontHandle font, double scale, PangoContextHandle context, string variations);
+
 }

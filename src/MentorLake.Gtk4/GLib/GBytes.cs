@@ -42,12 +42,16 @@ internal class GBytesExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GBytesHandle g_bytes_new(IntPtr data, int size);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GBytesHandle g_bytes_new_static(IntPtr data, int size);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GBytesHandle g_bytes_new_take(IntPtr data, int size);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GBytesHandle g_bytes_new_with_free_func(IntPtr data, int size, GDestroyNotify free_func, IntPtr user_data);
+
 }
 
 public struct GBytes

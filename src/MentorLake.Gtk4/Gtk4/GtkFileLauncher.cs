@@ -86,24 +86,35 @@ internal class GtkFileLauncherExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFileLauncherHandle gtk_file_launcher_new(GFileHandle file);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_file_launcher_get_always_ask(GtkFileLauncherHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GFileHandle gtk_file_launcher_get_file(GtkFileLauncherHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_file_launcher_get_writable(GtkFileLauncherHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_launcher_launch(GtkFileLauncherHandle self, GtkWindowHandle parent, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_file_launcher_launch_finish(GtkFileLauncherHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_launcher_open_containing_folder(GtkFileLauncherHandle self, GtkWindowHandle parent, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_file_launcher_open_containing_folder_finish(GtkFileLauncherHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_launcher_set_always_ask(GtkFileLauncherHandle self, bool always_ask);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_launcher_set_file(GtkFileLauncherHandle self, GFileHandle file);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_file_launcher_set_writable(GtkFileLauncherHandle self, bool writable);
+
 }

@@ -31,4 +31,5 @@ internal class GtkFixedLayoutExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFixedLayoutHandle gtk_fixed_layout_new();
+
 }

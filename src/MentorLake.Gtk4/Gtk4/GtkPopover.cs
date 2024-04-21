@@ -31,8 +31,8 @@ public class GtkPopoverSignal
 
 public static class GtkPopoverSignals
 {
-	public static GtkPopoverSignal ActivateDefault = new("activate-default");
-	public static GtkPopoverSignal Closed = new("closed");
+	public static GtkPopoverSignal ActivateDefault = new("BindingTransform.MethodDeclaration");
+	public static GtkPopoverSignal Closed = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkPopoverHandleExtensions
@@ -150,55 +150,91 @@ public static class GtkPopoverHandleExtensions
 		return popover;
 	}
 
-	public static GtkPopoverHandle Connect(this GtkPopoverHandle instance, GtkPopoverSignal signal, GCallback c_handler)
+	public static GtkPopoverHandle Signal_ActivateDefault(this GtkPopoverHandle instance, GtkPopoverDelegates.ActivateDefault handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate_default", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkPopoverHandle Signal_Closed(this GtkPopoverHandle instance, GtkPopoverDelegates.Closed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkPopoverDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ActivateDefault([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPopoverHandle>))] GtkPopoverHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPopoverHandle>))] GtkPopoverHandle self, IntPtr user_data);
 }
 
 internal class GtkPopoverExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPopoverHandle gtk_popover_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_popover_get_autohide(GtkPopoverHandle popover);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_popover_get_cascade_popdown(GtkPopoverHandle popover);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_popover_get_child(GtkPopoverHandle popover);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_popover_get_has_arrow(GtkPopoverHandle popover);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_popover_get_mnemonics_visible(GtkPopoverHandle popover);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_get_offset(GtkPopoverHandle popover, out int x_offset, out int y_offset);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_popover_get_pointing_to(GtkPopoverHandle popover, out GdkRectangle rect);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPositionType gtk_popover_get_position(GtkPopoverHandle popover);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_popdown(GtkPopoverHandle popover);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_popup(GtkPopoverHandle popover);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_present(GtkPopoverHandle popover);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_set_autohide(GtkPopoverHandle popover, bool autohide);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_set_cascade_popdown(GtkPopoverHandle popover, bool cascade_popdown);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_set_child(GtkPopoverHandle popover, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_set_default_widget(GtkPopoverHandle popover, GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_set_has_arrow(GtkPopoverHandle popover, bool has_arrow);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_set_mnemonics_visible(GtkPopoverHandle popover, bool mnemonics_visible);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_set_offset(GtkPopoverHandle popover, int x_offset, int y_offset);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_set_pointing_to(GtkPopoverHandle popover, GdkRectangleHandle rect);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_popover_set_position(GtkPopoverHandle popover, GtkPositionType position);
+
 }

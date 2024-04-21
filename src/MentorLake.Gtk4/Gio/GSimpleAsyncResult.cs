@@ -148,46 +148,68 @@ internal class GSimpleAsyncResultExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GSimpleAsyncResultHandle g_simple_async_result_new(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, IntPtr source_tag);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSimpleAsyncResultHandle g_simple_async_result_new_error(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, GQuark domain, int code, string format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSimpleAsyncResultHandle g_simple_async_result_new_from_error(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSimpleAsyncResultHandle g_simple_async_result_new_take_error(GObjectHandle source_object, GAsyncReadyCallback callback, IntPtr user_data, GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_async_result_complete(GSimpleAsyncResultHandle simple);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_async_result_complete_in_idle(GSimpleAsyncResultHandle simple);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_simple_async_result_get_op_res_gboolean(GSimpleAsyncResultHandle simple);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern IntPtr g_simple_async_result_get_op_res_gpointer(GSimpleAsyncResultHandle simple);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_simple_async_result_get_op_res_gssize(GSimpleAsyncResultHandle simple);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern IntPtr g_simple_async_result_get_source_tag(GSimpleAsyncResultHandle simple);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_simple_async_result_propagate_error(GSimpleAsyncResultHandle simple, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_async_result_run_in_thread(GSimpleAsyncResultHandle simple, GSimpleAsyncThreadFunc func, int io_priority, GCancellableHandle cancellable);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_async_result_set_check_cancellable(GSimpleAsyncResultHandle simple, GCancellableHandle check_cancellable);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_async_result_set_error(GSimpleAsyncResultHandle simple, GQuark domain, int code, string format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_async_result_set_error_va(GSimpleAsyncResultHandle simple, GQuark domain, int code, string format, IntPtr args);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_async_result_set_from_error(GSimpleAsyncResultHandle simple, GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_async_result_set_handle_cancellation(GSimpleAsyncResultHandle simple, bool handle_cancellation);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_async_result_set_op_res_gboolean(GSimpleAsyncResultHandle simple, bool op_res);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_async_result_set_op_res_gpointer(GSimpleAsyncResultHandle simple, IntPtr op_res, GDestroyNotify destroy_op_res);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_async_result_set_op_res_gssize(GSimpleAsyncResultHandle simple, int op_res);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_async_result_take_error(GSimpleAsyncResultHandle simple, GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_simple_async_result_is_valid(GAsyncResultHandle result, GObjectHandle source, IntPtr source_tag);
+
 }

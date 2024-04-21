@@ -56,14 +56,20 @@ internal class GInetSocketAddressExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GInetSocketAddressHandle g_inet_socket_address_new(GInetAddressHandle address, ushort port);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GInetSocketAddressHandle g_inet_socket_address_new_from_string(string address, uint port);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GInetAddressHandle g_inet_socket_address_get_address(GInetSocketAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_inet_socket_address_get_flowinfo(GInetSocketAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern ushort g_inet_socket_address_get_port(GInetSocketAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_inet_socket_address_get_scope_id(GInetSocketAddressHandle address);
+
 }

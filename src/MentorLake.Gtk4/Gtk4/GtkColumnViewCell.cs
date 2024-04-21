@@ -63,16 +63,23 @@ internal class GtkColumnViewCellExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_column_view_cell_get_child(GtkColumnViewCellHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_column_view_cell_get_focusable(GtkColumnViewCellHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GObjectHandle gtk_column_view_cell_get_item(GtkColumnViewCellHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_column_view_cell_get_position(GtkColumnViewCellHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_column_view_cell_get_selected(GtkColumnViewCellHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_cell_set_child(GtkColumnViewCellHandle self, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_cell_set_focusable(GtkColumnViewCellHandle self, bool focusable);
+
 }

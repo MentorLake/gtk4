@@ -59,14 +59,20 @@ internal class GtkLayoutManagerExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_layout_manager_allocate(GtkLayoutManagerHandle manager, GtkWidgetHandle widget, int width, int height, int baseline);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkLayoutChildHandle gtk_layout_manager_get_layout_child(GtkLayoutManagerHandle manager, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSizeRequestMode gtk_layout_manager_get_request_mode(GtkLayoutManagerHandle manager);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_layout_manager_get_widget(GtkLayoutManagerHandle manager);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_layout_manager_layout_changed(GtkLayoutManagerHandle manager);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_layout_manager_measure(GtkLayoutManagerHandle manager, GtkWidgetHandle widget, GtkOrientation orientation, int for_size, out int minimum, out int natural, out int minimum_baseline, out int natural_baseline);
+
 }

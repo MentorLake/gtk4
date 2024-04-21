@@ -146,48 +146,71 @@ internal class GDataInputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GDataInputStreamHandle g_data_input_stream_new(GInputStreamHandle base_stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDataStreamByteOrder g_data_input_stream_get_byte_order(GDataInputStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDataStreamNewlineType g_data_input_stream_get_newline_type(GDataInputStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern char g_data_input_stream_read_byte(GDataInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern short g_data_input_stream_read_int16(GDataInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_data_input_stream_read_int32(GDataInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern long g_data_input_stream_read_int64(GDataInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_data_input_stream_read_line(GDataInputStreamHandle stream, out int length, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_data_input_stream_read_line_async(GDataInputStreamHandle stream, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_data_input_stream_read_line_finish(GDataInputStreamHandle stream, GAsyncResultHandle result, out int length, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_data_input_stream_read_line_finish_utf8(GDataInputStreamHandle stream, GAsyncResultHandle result, out int length, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_data_input_stream_read_line_utf8(GDataInputStreamHandle stream, out int length, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern ushort g_data_input_stream_read_uint16(GDataInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_data_input_stream_read_uint32(GDataInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern ulong g_data_input_stream_read_uint64(GDataInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_data_input_stream_read_until(GDataInputStreamHandle stream, string stop_chars, out int length, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_data_input_stream_read_until_async(GDataInputStreamHandle stream, string stop_chars, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_data_input_stream_read_until_finish(GDataInputStreamHandle stream, GAsyncResultHandle result, out int length, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_data_input_stream_read_upto(GDataInputStreamHandle stream, string stop_chars, int stop_chars_len, out int length, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_data_input_stream_read_upto_async(GDataInputStreamHandle stream, string stop_chars, int stop_chars_len, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_data_input_stream_read_upto_finish(GDataInputStreamHandle stream, GAsyncResultHandle result, out int length, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_data_input_stream_set_byte_order(GDataInputStreamHandle stream, GDataStreamByteOrder order);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_data_input_stream_set_newline_type(GDataInputStreamHandle stream, GDataStreamNewlineType type);
+
 }

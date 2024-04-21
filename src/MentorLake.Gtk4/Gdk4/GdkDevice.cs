@@ -26,8 +26,8 @@ public class GdkDeviceSignal
 
 public static class GdkDeviceSignals
 {
-	public static GdkDeviceSignal Changed = new("changed");
-	public static GdkDeviceSignal ToolChanged = new("tool-changed");
+	public static GdkDeviceSignal Changed = new("BindingTransform.MethodDeclaration");
+	public static GdkDeviceSignal ToolChanged = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GdkDeviceHandleExtensions
@@ -117,47 +117,82 @@ public static class GdkDeviceHandleExtensions
 		return GdkDeviceExterns.gdk_device_has_bidi_layouts(device);
 	}
 
-	public static GdkDeviceHandle Connect(this GdkDeviceHandle instance, GdkDeviceSignal signal, GCallback c_handler)
+	public static GdkDeviceHandle Signal_Changed(this GdkDeviceHandle instance, GdkDeviceDelegates.Changed handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GdkDeviceHandle Signal_ToolChanged(this GdkDeviceHandle instance, GdkDeviceDelegates.ToolChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "tool_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GdkDeviceDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDeviceHandle>))] GdkDeviceHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ToolChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDeviceHandle>))] GdkDeviceHandle self, GdkDeviceToolHandle tool, IntPtr user_data);
 }
 
 internal class GdkDeviceExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_device_get_caps_lock_state(GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDeviceToolHandle gdk_device_get_device_tool(GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern PangoDirection gdk_device_get_direction(GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDisplayHandle gdk_device_get_display(GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_device_get_has_cursor(GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkModifierType gdk_device_get_modifier_state(GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gdk_device_get_name(GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_device_get_num_lock_state(GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern uint gdk_device_get_num_touches(GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gdk_device_get_product_id(GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_device_get_scroll_lock_state(GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkSeatHandle gdk_device_get_seat(GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkInputSource gdk_device_get_source(GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkSurfaceHandle gdk_device_get_surface_at_position(GdkDeviceHandle device, out double win_x, out double win_y);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern uint gdk_device_get_timestamp(GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gdk_device_get_vendor_id(GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_device_has_bidi_layouts(GdkDeviceHandle device);
+
 }

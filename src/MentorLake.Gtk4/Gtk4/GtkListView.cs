@@ -31,7 +31,7 @@ public class GtkListViewSignal
 
 public static class GtkListViewSignals
 {
-	public static GtkListViewSignal Activate = new("activate");
+	public static GtkListViewSignal Activate = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkListViewHandleExtensions
@@ -119,45 +119,68 @@ public static class GtkListViewHandleExtensions
 		return self;
 	}
 
-	public static GtkListViewHandle Connect(this GtkListViewHandle instance, GtkListViewSignal signal, GCallback c_handler)
+	public static GtkListViewHandle Signal_Activate(this GtkListViewHandle instance, GtkListViewDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkListViewDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListViewHandle>))] GtkListViewHandle self, uint position, IntPtr user_data);
 }
 
 internal class GtkListViewExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListViewHandle gtk_list_view_new(GtkSelectionModelHandle model, GtkListItemFactoryHandle factory);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_list_view_get_enable_rubberband(GtkListViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListItemFactoryHandle gtk_list_view_get_factory(GtkListViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListItemFactoryHandle gtk_list_view_get_header_factory(GtkListViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSelectionModelHandle gtk_list_view_get_model(GtkListViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_list_view_get_show_separators(GtkListViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_list_view_get_single_click_activate(GtkListViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListTabBehavior gtk_list_view_get_tab_behavior(GtkListViewHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_view_scroll_to(GtkListViewHandle self, uint pos, GtkListScrollFlags flags, GtkScrollInfoHandle scroll);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_view_set_enable_rubberband(GtkListViewHandle self, bool enable_rubberband);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_view_set_factory(GtkListViewHandle self, GtkListItemFactoryHandle factory);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_view_set_header_factory(GtkListViewHandle self, GtkListItemFactoryHandle factory);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_view_set_model(GtkListViewHandle self, GtkSelectionModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_view_set_show_separators(GtkListViewHandle self, bool show_separators);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_view_set_single_click_activate(GtkListViewHandle self, bool single_click_activate);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_view_set_tab_behavior(GtkListViewHandle self, GtkListTabBehavior tab_behavior);
+
 }

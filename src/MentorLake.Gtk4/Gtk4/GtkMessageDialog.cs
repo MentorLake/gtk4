@@ -59,14 +59,20 @@ internal class GtkMessageDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMessageDialogHandle gtk_message_dialog_new(GtkWindowHandle parent, GtkDialogFlags flags, GtkMessageType type, GtkButtonsType buttons, string message_format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMessageDialogHandle gtk_message_dialog_new_with_markup(GtkWindowHandle parent, GtkDialogFlags flags, GtkMessageType type, GtkButtonsType buttons, string message_format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_message_dialog_format_secondary_markup(GtkMessageDialogHandle message_dialog, string message_format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_message_dialog_format_secondary_text(GtkMessageDialogHandle message_dialog, string message_format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_message_dialog_get_message_area(GtkMessageDialogHandle message_dialog);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_message_dialog_set_markup(GtkMessageDialogHandle message_dialog, string str);
+
 }

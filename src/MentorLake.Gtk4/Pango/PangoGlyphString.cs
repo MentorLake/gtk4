@@ -27,6 +27,7 @@ internal class PangoGlyphStringExterns
 {
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoGlyphStringHandle pango_glyph_string_new();
+
 }
 
 public struct PangoGlyphString

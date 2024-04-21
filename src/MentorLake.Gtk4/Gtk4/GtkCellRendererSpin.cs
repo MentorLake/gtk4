@@ -31,4 +31,5 @@ internal class GtkCellRendererSpinExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellRendererSpinHandle gtk_cell_renderer_spin_new();
+
 }

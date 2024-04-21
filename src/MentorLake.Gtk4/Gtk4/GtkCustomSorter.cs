@@ -37,6 +37,8 @@ internal class GtkCustomSorterExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCustomSorterHandle gtk_custom_sorter_new(GCompareDataFunc sort_func, IntPtr user_data, GDestroyNotify user_destroy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_custom_sorter_set_sort_func(GtkCustomSorterHandle self, GCompareDataFunc sort_func, IntPtr user_data, GDestroyNotify user_destroy);
+
 }

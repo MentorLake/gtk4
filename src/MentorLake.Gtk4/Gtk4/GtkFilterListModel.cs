@@ -69,18 +69,26 @@ internal class GtkFilterListModelExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFilterListModelHandle gtk_filter_list_model_new(GListModelHandle model, GtkFilterHandle filter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFilterHandle gtk_filter_list_model_get_filter(GtkFilterListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_filter_list_model_get_incremental(GtkFilterListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_filter_list_model_get_model(GtkFilterListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_filter_list_model_get_pending(GtkFilterListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_filter_list_model_set_filter(GtkFilterListModelHandle self, GtkFilterHandle filter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_filter_list_model_set_incremental(GtkFilterListModelHandle self, bool incremental);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_filter_list_model_set_model(GtkFilterListModelHandle self, GListModelHandle model);
+
 }

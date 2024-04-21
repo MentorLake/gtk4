@@ -31,4 +31,5 @@ internal class GtkSeparatorExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSeparatorHandle gtk_separator_new(GtkOrientation orientation);
+
 }

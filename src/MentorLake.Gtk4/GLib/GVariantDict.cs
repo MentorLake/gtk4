@@ -27,6 +27,7 @@ internal class GVariantDictExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GVariantDictHandle g_variant_dict_new(GVariantHandle from_asv);
+
 }
 
 public struct GVariantDict

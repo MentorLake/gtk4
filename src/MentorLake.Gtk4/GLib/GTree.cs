@@ -37,10 +37,13 @@ internal class GTreeExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GTreeHandle g_tree_new(GCompareFunc key_compare_func);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GTreeHandle g_tree_new_full(GCompareDataFunc key_compare_func, IntPtr key_compare_data, GDestroyNotify key_destroy_func, GDestroyNotify value_destroy_func);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GTreeHandle g_tree_new_with_data(GCompareDataFunc key_compare_func, IntPtr key_compare_data);
+
 }
 
 public struct GTree

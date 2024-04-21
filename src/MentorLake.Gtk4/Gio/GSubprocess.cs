@@ -162,54 +162,80 @@ internal class GSubprocessExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GSubprocessHandle g_subprocess_new(GSubprocessFlags flags, out GErrorHandle error, string argv0, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSubprocessHandle g_subprocess_newv(string argv, GSubprocessFlags flags, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_subprocess_communicate(GSubprocessHandle subprocess, GBytesHandle stdin_buf, GCancellableHandle cancellable, out GBytesHandle stdout_buf, out GBytesHandle stderr_buf, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_communicate_async(GSubprocessHandle subprocess, GBytesHandle stdin_buf, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_subprocess_communicate_finish(GSubprocessHandle subprocess, GAsyncResultHandle result, out GBytesHandle stdout_buf, out GBytesHandle stderr_buf, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_subprocess_communicate_utf8(GSubprocessHandle subprocess, string stdin_buf, GCancellableHandle cancellable, out string stdout_buf, out string stderr_buf, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_communicate_utf8_async(GSubprocessHandle subprocess, string stdin_buf, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_subprocess_communicate_utf8_finish(GSubprocessHandle subprocess, GAsyncResultHandle result, out string stdout_buf, out string stderr_buf, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_force_exit(GSubprocessHandle subprocess);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_subprocess_get_exit_status(GSubprocessHandle subprocess);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_subprocess_get_identifier(GSubprocessHandle subprocess);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_subprocess_get_if_exited(GSubprocessHandle subprocess);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_subprocess_get_if_signaled(GSubprocessHandle subprocess);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_subprocess_get_status(GSubprocessHandle subprocess);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GInputStreamHandle g_subprocess_get_stderr_pipe(GSubprocessHandle subprocess);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GOutputStreamHandle g_subprocess_get_stdin_pipe(GSubprocessHandle subprocess);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GInputStreamHandle g_subprocess_get_stdout_pipe(GSubprocessHandle subprocess);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_subprocess_get_successful(GSubprocessHandle subprocess);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_subprocess_get_term_sig(GSubprocessHandle subprocess);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_send_signal(GSubprocessHandle subprocess, int signal_num);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_subprocess_wait(GSubprocessHandle subprocess, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_wait_async(GSubprocessHandle subprocess, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_subprocess_wait_check(GSubprocessHandle subprocess, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_subprocess_wait_check_async(GSubprocessHandle subprocess, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_subprocess_wait_check_finish(GSubprocessHandle subprocess, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_subprocess_wait_finish(GSubprocessHandle subprocess, GAsyncResultHandle result, out GErrorHandle error);
+
 }

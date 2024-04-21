@@ -31,7 +31,7 @@ public class GtkFontDialogButtonSignal
 
 public static class GtkFontDialogButtonSignals
 {
-	public static GtkFontDialogButtonSignal Activate = new("activate");
+	public static GtkFontDialogButtonSignal Activate = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkFontDialogButtonHandleExtensions
@@ -113,43 +113,66 @@ public static class GtkFontDialogButtonHandleExtensions
 		return self;
 	}
 
-	public static GtkFontDialogButtonHandle Connect(this GtkFontDialogButtonHandle instance, GtkFontDialogButtonSignal signal, GCallback c_handler)
+	public static GtkFontDialogButtonHandle Signal_Activate(this GtkFontDialogButtonHandle instance, GtkFontDialogButtonDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkFontDialogButtonDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFontDialogButtonHandle>))] GtkFontDialogButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkFontDialogButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFontDialogButtonHandle gtk_font_dialog_button_new(GtkFontDialogHandle dialog);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFontDialogHandle gtk_font_dialog_button_get_dialog(GtkFontDialogButtonHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoFontDescriptionHandle gtk_font_dialog_button_get_font_desc(GtkFontDialogButtonHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_font_dialog_button_get_font_features(GtkFontDialogButtonHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoLanguageHandle gtk_font_dialog_button_get_language(GtkFontDialogButtonHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFontLevel gtk_font_dialog_button_get_level(GtkFontDialogButtonHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_font_dialog_button_get_use_font(GtkFontDialogButtonHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_font_dialog_button_get_use_size(GtkFontDialogButtonHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_button_set_dialog(GtkFontDialogButtonHandle self, GtkFontDialogHandle dialog);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_button_set_font_desc(GtkFontDialogButtonHandle self, PangoFontDescriptionHandle font_desc);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_button_set_font_features(GtkFontDialogButtonHandle self, string font_features);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_button_set_language(GtkFontDialogButtonHandle self, PangoLanguageHandle language);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_button_set_level(GtkFontDialogButtonHandle self, GtkFontLevel level);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_button_set_use_font(GtkFontDialogButtonHandle self, bool use_font);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_button_set_use_size(GtkFontDialogButtonHandle self, bool use_size);
+
 }

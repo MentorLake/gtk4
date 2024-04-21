@@ -31,7 +31,7 @@ public class GtkListBoxRowSignal
 
 public static class GtkListBoxRowSignals
 {
-	public static GtkListBoxRowSignal Activate = new("activate");
+	public static GtkListBoxRowSignal Activate = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkListBoxRowHandleExtensions
@@ -96,37 +96,56 @@ public static class GtkListBoxRowHandleExtensions
 		return row;
 	}
 
-	public static GtkListBoxRowHandle Connect(this GtkListBoxRowHandle instance, GtkListBoxRowSignal signal, GCallback c_handler)
+	public static GtkListBoxRowHandle Signal_Activate(this GtkListBoxRowHandle instance, GtkListBoxRowDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkListBoxRowDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxRowHandle>))] GtkListBoxRowHandle self, IntPtr user_data);
 }
 
 internal class GtkListBoxRowExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListBoxRowHandle gtk_list_box_row_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_row_changed(GtkListBoxRowHandle row);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_list_box_row_get_activatable(GtkListBoxRowHandle row);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_list_box_row_get_child(GtkListBoxRowHandle row);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_list_box_row_get_header(GtkListBoxRowHandle row);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_list_box_row_get_index(GtkListBoxRowHandle row);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_list_box_row_get_selectable(GtkListBoxRowHandle row);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_list_box_row_is_selected(GtkListBoxRowHandle row);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_row_set_activatable(GtkListBoxRowHandle row, bool activatable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_row_set_child(GtkListBoxRowHandle row, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_row_set_header(GtkListBoxRowHandle row, GtkWidgetHandle header);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_box_row_set_selectable(GtkListBoxRowHandle row, bool selectable);
+
 }

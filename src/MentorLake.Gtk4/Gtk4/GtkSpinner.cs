@@ -54,12 +54,17 @@ internal class GtkSpinnerExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSpinnerHandle gtk_spinner_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_spinner_get_spinning(GtkSpinnerHandle spinner);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spinner_set_spinning(GtkSpinnerHandle spinner, bool spinning);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spinner_start(GtkSpinnerHandle spinner);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spinner_stop(GtkSpinnerHandle spinner);
+
 }

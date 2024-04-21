@@ -47,10 +47,14 @@ internal class GUnixInputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GUnixInputStreamHandle g_unix_input_stream_new(int fd, bool close_fd);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_unix_input_stream_get_close_fd(GUnixInputStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_unix_input_stream_get_fd(GUnixInputStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_unix_input_stream_set_close_fd(GUnixInputStreamHandle stream, bool close_fd);
+
 }

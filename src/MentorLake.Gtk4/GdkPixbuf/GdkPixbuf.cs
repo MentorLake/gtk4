@@ -360,132 +360,200 @@ internal class GdkPixbufExterns
 {
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_new(GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_bytes(GBytesHandle data, GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height, int rowstride);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_data(string data, GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height, int rowstride, GdkPixbufDestroyNotify destroy_fn, IntPtr destroy_fn_data);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_file(string filename, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_file_at_scale(string filename, int width, int height, bool preserve_aspect_ratio, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_file_at_size(string filename, int width, int height, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_inline(int data_length, byte[] data, bool copy_pixels, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_resource(string resource_path, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_resource_at_scale(string resource_path, int width, int height, bool preserve_aspect_ratio, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_stream(GInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_stream_at_scale(GInputStreamHandle stream, int width, int height, bool preserve_aspect_ratio, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_stream_finish(GAsyncResultHandle async_result, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_new_from_xpm_data(string[] data);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_add_alpha(GdkPixbufHandle pixbuf, bool substitute_color, char r, char g, char b);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_apply_embedded_orientation(GdkPixbufHandle src);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_composite(GdkPixbufHandle src, GdkPixbufHandle dest, int dest_x, int dest_y, int dest_width, int dest_height, double offset_x, double offset_y, double scale_x, double scale_y, GdkInterpType interp_type, int overall_alpha);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_composite_color(GdkPixbufHandle src, GdkPixbufHandle dest, int dest_x, int dest_y, int dest_width, int dest_height, double offset_x, double offset_y, double scale_x, double scale_y, GdkInterpType interp_type, int overall_alpha, int check_x, int check_y, int check_size, uint color1, uint color2);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_composite_color_simple(GdkPixbufHandle src, int dest_width, int dest_height, GdkInterpType interp_type, int overall_alpha, int check_size, uint color1, uint color2);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_copy(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_copy_area(GdkPixbufHandle src_pixbuf, int src_x, int src_y, int width, int height, GdkPixbufHandle dest_pixbuf, int dest_x, int dest_y);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_copy_options(GdkPixbufHandle src_pixbuf, GdkPixbufHandle dest_pixbuf);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_fill(GdkPixbufHandle pixbuf, uint pixel);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_flip(GdkPixbufHandle src, bool horizontal);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern int gdk_pixbuf_get_bits_per_sample(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern int gdk_pixbuf_get_byte_length(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkColorspace gdk_pixbuf_get_colorspace(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_get_has_alpha(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern int gdk_pixbuf_get_height(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern int gdk_pixbuf_get_n_channels(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.GdkPixbuf)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gdk_pixbuf_get_option(GdkPixbufHandle pixbuf, string key);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GHashTableHandle gdk_pixbuf_get_options(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.GdkPixbuf)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gdk_pixbuf_get_pixels(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.GdkPixbuf)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gdk_pixbuf_get_pixels_with_length(GdkPixbufHandle pixbuf, out uint length);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern int gdk_pixbuf_get_rowstride(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern int gdk_pixbuf_get_width(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_new_subpixbuf(GdkPixbufHandle src_pixbuf, int src_x, int src_y, int width, int height);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GBytesHandle gdk_pixbuf_read_pixel_bytes(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern byte[] gdk_pixbuf_read_pixels(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_ref(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_remove_option(GdkPixbufHandle pixbuf, string key);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_rotate_simple(GdkPixbufHandle src, GdkPixbufRotation angle);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_saturate_and_pixelate(GdkPixbufHandle src, GdkPixbufHandle dest, float saturation, bool pixelate);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_save(GdkPixbufHandle pixbuf, string filename, string type, out GErrorHandle error, IntPtr @__arglist);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_save_to_buffer(GdkPixbufHandle pixbuf, out string buffer, out int buffer_size, string type, out GErrorHandle error, IntPtr @__arglist);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_save_to_bufferv(GdkPixbufHandle pixbuf, out string buffer, out int buffer_size, string type, string[] option_keys, string[] option_values, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_save_to_callback(GdkPixbufHandle pixbuf, GdkPixbufSaveFunc save_func, IntPtr user_data, string type, out GErrorHandle error, IntPtr @__arglist);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_save_to_callbackv(GdkPixbufHandle pixbuf, GdkPixbufSaveFunc save_func, IntPtr user_data, string type, string[] option_keys, string[] option_values, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_save_to_stream(GdkPixbufHandle pixbuf, GOutputStreamHandle stream, string type, GCancellableHandle cancellable, out GErrorHandle error, IntPtr @__arglist);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_save_to_stream_async(GdkPixbufHandle pixbuf, GOutputStreamHandle stream, string type, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data, IntPtr @__arglist);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_save_to_streamv(GdkPixbufHandle pixbuf, GOutputStreamHandle stream, string type, string[] option_keys, string[] option_values, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_save_to_streamv_async(GdkPixbufHandle pixbuf, GOutputStreamHandle stream, string type, string[] option_keys, string[] option_values, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_savev(GdkPixbufHandle pixbuf, string filename, string type, string[] option_keys, string[] option_values, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_scale(GdkPixbufHandle src, GdkPixbufHandle dest, int dest_x, int dest_y, int dest_width, int dest_height, double offset_x, double offset_y, double scale_x, double scale_y, GdkInterpType interp_type);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_scale_simple(GdkPixbufHandle src, int dest_width, int dest_height, GdkInterpType interp_type);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_set_option(GdkPixbufHandle pixbuf, string key, string value);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_unref(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern int gdk_pixbuf_calculate_rowstride(GdkColorspace colorspace, bool has_alpha, int bits_per_sample, int width, int height);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufFormatHandle gdk_pixbuf_get_file_info(string filename, out int width, out int height);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_get_file_info_async(string filename, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufFormatHandle gdk_pixbuf_get_file_info_finish(GAsyncResultHandle async_result, out int width, out int height, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GSListHandle gdk_pixbuf_get_formats();
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_init_modules(string path, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_new_from_stream_async(GInputStreamHandle stream, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_new_from_stream_at_scale_async(GInputStreamHandle stream, int width, int height, bool preserve_aspect_ratio, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_save_to_stream_finish(GAsyncResultHandle async_result, out GErrorHandle error);
+
 }

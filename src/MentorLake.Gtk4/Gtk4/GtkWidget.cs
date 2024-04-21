@@ -36,19 +36,19 @@ public class GtkWidgetSignal
 
 public static class GtkWidgetSignals
 {
-	public static GtkWidgetSignal Destroy = new("destroy");
-	public static GtkWidgetSignal DirectionChanged = new("direction-changed");
-	public static GtkWidgetSignal Hide = new("hide");
-	public static GtkWidgetSignal KeynavFailed = new("keynav-failed");
-	public static GtkWidgetSignal Map = new("map");
-	public static GtkWidgetSignal MnemonicActivate = new("mnemonic-activate");
-	public static GtkWidgetSignal MoveFocus = new("move-focus");
-	public static GtkWidgetSignal QueryTooltip = new("query-tooltip");
-	public static GtkWidgetSignal Realize = new("realize");
-	public static GtkWidgetSignal Show = new("show");
-	public static GtkWidgetSignal StateFlagsChanged = new("state-flags-changed");
-	public static GtkWidgetSignal Unmap = new("unmap");
-	public static GtkWidgetSignal Unrealize = new("unrealize");
+	public static GtkWidgetSignal Destroy = new("BindingTransform.MethodDeclaration");
+	public static GtkWidgetSignal DirectionChanged = new("BindingTransform.MethodDeclaration");
+	public static GtkWidgetSignal Hide = new("BindingTransform.MethodDeclaration");
+	public static GtkWidgetSignal KeynavFailed = new("BindingTransform.MethodDeclaration");
+	public static GtkWidgetSignal Map = new("BindingTransform.MethodDeclaration");
+	public static GtkWidgetSignal MnemonicActivate = new("BindingTransform.MethodDeclaration");
+	public static GtkWidgetSignal MoveFocus = new("BindingTransform.MethodDeclaration");
+	public static GtkWidgetSignal QueryTooltip = new("BindingTransform.MethodDeclaration");
+	public static GtkWidgetSignal Realize = new("BindingTransform.MethodDeclaration");
+	public static GtkWidgetSignal Show = new("BindingTransform.MethodDeclaration");
+	public static GtkWidgetSignal StateFlagsChanged = new("BindingTransform.MethodDeclaration");
+	public static GtkWidgetSignal Unmap = new("BindingTransform.MethodDeclaration");
+	public static GtkWidgetSignal Unrealize = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkWidgetHandleExtensions
@@ -939,343 +939,615 @@ public static class GtkWidgetHandleExtensions
 		return widget;
 	}
 
-	public static GtkWidgetHandle Connect(this GtkWidgetHandle instance, GtkWidgetSignal signal, GCallback c_handler)
+	public static GtkWidgetHandle Signal_Destroy(this GtkWidgetHandle instance, GtkWidgetDelegates.Destroy handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "destroy", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkWidgetHandle Signal_DirectionChanged(this GtkWidgetHandle instance, GtkWidgetDelegates.DirectionChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "direction_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkWidgetHandle Signal_Hide(this GtkWidgetHandle instance, GtkWidgetDelegates.Hide handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "hide", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkWidgetHandle Signal_KeynavFailed(this GtkWidgetHandle instance, GtkWidgetDelegates.KeynavFailed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "keynav_failed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkWidgetHandle Signal_Map(this GtkWidgetHandle instance, GtkWidgetDelegates.Map handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "map", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkWidgetHandle Signal_MnemonicActivate(this GtkWidgetHandle instance, GtkWidgetDelegates.MnemonicActivate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "mnemonic_activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkWidgetHandle Signal_MoveFocus(this GtkWidgetHandle instance, GtkWidgetDelegates.MoveFocus handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_focus", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkWidgetHandle Signal_QueryTooltip(this GtkWidgetHandle instance, GtkWidgetDelegates.QueryTooltip handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "query_tooltip", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkWidgetHandle Signal_Realize(this GtkWidgetHandle instance, GtkWidgetDelegates.Realize handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "realize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkWidgetHandle Signal_Show(this GtkWidgetHandle instance, GtkWidgetDelegates.Show handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "show", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkWidgetHandle Signal_StateFlagsChanged(this GtkWidgetHandle instance, GtkWidgetDelegates.StateFlagsChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "state_flags_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkWidgetHandle Signal_Unmap(this GtkWidgetHandle instance, GtkWidgetDelegates.Unmap handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "unmap", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkWidgetHandle Signal_Unrealize(this GtkWidgetHandle instance, GtkWidgetDelegates.Unrealize handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "unrealize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkWidgetDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Destroy([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DirectionChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, GtkTextDirection previous_direction, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Hide([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool KeynavFailed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, GtkDirectionType direction, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Map([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool MnemonicActivate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, bool group_cycling, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MoveFocus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, GtkDirectionType direction, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool QueryTooltip([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, int x, int y, bool keyboard_mode, GtkTooltipHandle tooltip, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Realize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Show([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void StateFlagsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, GtkStateFlags flags, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Unmap([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Unrealize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
 }
 
 internal class GtkWidgetExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_action_set_enabled(GtkWidgetHandle widget, string action_name, bool enabled);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_activate(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_activate_action(GtkWidgetHandle widget, string name, string format_string, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_activate_action_variant(GtkWidgetHandle widget, string name, GVariantHandle args);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_activate_default(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_add_controller(GtkWidgetHandle widget, GtkEventControllerHandle controller);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_add_css_class(GtkWidgetHandle widget, string css_class);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_add_mnemonic_label(GtkWidgetHandle widget, GtkWidgetHandle label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_widget_add_tick_callback(GtkWidgetHandle widget, GtkTickCallback callback, IntPtr user_data, GDestroyNotify notify);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_allocate(GtkWidgetHandle widget, int width, int height, int baseline, GskTransformHandle transform);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_child_focus(GtkWidgetHandle widget, GtkDirectionType direction);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_compute_bounds(GtkWidgetHandle widget, GtkWidgetHandle target, out graphene_rect_t out_bounds);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_compute_expand(GtkWidgetHandle widget, GtkOrientation orientation);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_compute_point(GtkWidgetHandle widget, GtkWidgetHandle target, graphene_point_tHandle point, out graphene_point_t out_point);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_compute_transform(GtkWidgetHandle widget, GtkWidgetHandle target, out graphene_matrix_t out_transform);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_contains(GtkWidgetHandle widget, double x, double y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoContextHandle gtk_widget_create_pango_context(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoLayoutHandle gtk_widget_create_pango_layout(GtkWidgetHandle widget, string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_dispose_template(GtkWidgetHandle widget, GType widget_type);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_drag_check_threshold(GtkWidgetHandle widget, int start_x, int start_y, int current_x, int current_y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_error_bell(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_widget_get_allocated_baseline(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_widget_get_allocated_height(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_widget_get_allocated_width(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_get_allocation(GtkWidgetHandle widget, out GtkAllocation allocation);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_widget_get_ancestor(GtkWidgetHandle widget, GType widget_type);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_widget_get_baseline(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_get_can_focus(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_get_can_target(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_get_child_visible(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkClipboardHandle gtk_widget_get_clipboard(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_get_color(GtkWidgetHandle widget, out GdkRGBA color);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string[] gtk_widget_get_css_classes(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_widget_get_css_name(GtkWidgetHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkCursorHandle gtk_widget_get_cursor(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTextDirection gtk_widget_get_direction(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkDisplayHandle gtk_widget_get_display(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_widget_get_first_child(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_widget_get_focus_child(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_get_focus_on_click(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_get_focusable(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoFontMapHandle gtk_widget_get_font_map(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern cairo_font_options_tHandle gtk_widget_get_font_options(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkFrameClockHandle gtk_widget_get_frame_clock(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAlign gtk_widget_get_halign(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_get_has_tooltip(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_widget_get_height(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_get_hexpand(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_get_hexpand_set(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_widget_get_last_child(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkLayoutManagerHandle gtk_widget_get_layout_manager(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_get_mapped(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_widget_get_margin_bottom(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_widget_get_margin_end(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_widget_get_margin_start(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_widget_get_margin_top(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_widget_get_name(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkNativeHandle gtk_widget_get_native(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_widget_get_next_sibling(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_widget_get_opacity(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkOverflow gtk_widget_get_overflow(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoContextHandle gtk_widget_get_pango_context(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_widget_get_parent(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_get_preferred_size(GtkWidgetHandle widget, out GtkRequisition minimum_size, out GtkRequisition natural_size);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_widget_get_prev_sibling(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkClipboardHandle gtk_widget_get_primary_clipboard(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_get_realized(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_get_receives_default(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSizeRequestMode gtk_widget_get_request_mode(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkRootHandle gtk_widget_get_root(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_widget_get_scale_factor(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_get_sensitive(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSettingsHandle gtk_widget_get_settings(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_widget_get_size(GtkWidgetHandle widget, GtkOrientation orientation);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_get_size_request(GtkWidgetHandle widget, out int width, out int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStateFlags gtk_widget_get_state_flags(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStyleContextHandle gtk_widget_get_style_context(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GObjectHandle gtk_widget_get_template_child(GtkWidgetHandle widget, GType widget_type, string name);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_widget_get_tooltip_markup(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_widget_get_tooltip_text(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAlign gtk_widget_get_valign(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_get_vexpand(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_get_vexpand_set(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_get_visible(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_widget_get_width(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_grab_focus(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_has_css_class(GtkWidgetHandle widget, string css_class);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_has_default(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_has_focus(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_has_visible_focus(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_hide(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_in_destruction(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_init_template(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_insert_action_group(GtkWidgetHandle widget, string name, GActionGroupHandle group);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_insert_after(GtkWidgetHandle widget, GtkWidgetHandle parent, GtkWidgetHandle previous_sibling);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_insert_before(GtkWidgetHandle widget, GtkWidgetHandle parent, GtkWidgetHandle next_sibling);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_is_ancestor(GtkWidgetHandle widget, GtkWidgetHandle ancestor);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_is_drawable(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_is_focus(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_is_sensitive(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_is_visible(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_keynav_failed(GtkWidgetHandle widget, GtkDirectionType direction);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListHandle gtk_widget_list_mnemonic_labels(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_map(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_measure(GtkWidgetHandle widget, GtkOrientation orientation, int for_size, out int minimum, out int natural, out int minimum_baseline, out int natural_baseline);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_mnemonic_activate(GtkWidgetHandle widget, bool group_cycling);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_widget_observe_children(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_widget_observe_controllers(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_widget_pick(GtkWidgetHandle widget, double x, double y, GtkPickFlags flags);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_queue_allocate(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_queue_draw(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_queue_resize(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_realize(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_remove_controller(GtkWidgetHandle widget, GtkEventControllerHandle controller);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_remove_css_class(GtkWidgetHandle widget, string css_class);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_remove_mnemonic_label(GtkWidgetHandle widget, GtkWidgetHandle label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_remove_tick_callback(GtkWidgetHandle widget, uint id);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_can_focus(GtkWidgetHandle widget, bool can_focus);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_can_target(GtkWidgetHandle widget, bool can_target);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_child_visible(GtkWidgetHandle widget, bool child_visible);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_css_classes(GtkWidgetHandle widget, string[] classes);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_cursor(GtkWidgetHandle widget, GdkCursorHandle cursor);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_cursor_from_name(GtkWidgetHandle widget, string name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_direction(GtkWidgetHandle widget, GtkTextDirection dir);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_focus_child(GtkWidgetHandle widget, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_focus_on_click(GtkWidgetHandle widget, bool focus_on_click);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_focusable(GtkWidgetHandle widget, bool focusable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_font_map(GtkWidgetHandle widget, PangoFontMapHandle font_map);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_font_options(GtkWidgetHandle widget, cairo_font_options_tHandle options);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_halign(GtkWidgetHandle widget, GtkAlign align);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_has_tooltip(GtkWidgetHandle widget, bool has_tooltip);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_hexpand(GtkWidgetHandle widget, bool expand);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_hexpand_set(GtkWidgetHandle widget, bool set);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_layout_manager(GtkWidgetHandle widget, GtkLayoutManagerHandle layout_manager);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_margin_bottom(GtkWidgetHandle widget, int margin);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_margin_end(GtkWidgetHandle widget, int margin);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_margin_start(GtkWidgetHandle widget, int margin);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_margin_top(GtkWidgetHandle widget, int margin);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_name(GtkWidgetHandle widget, string name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_opacity(GtkWidgetHandle widget, double opacity);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_overflow(GtkWidgetHandle widget, GtkOverflow overflow);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_parent(GtkWidgetHandle widget, GtkWidgetHandle parent);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_receives_default(GtkWidgetHandle widget, bool receives_default);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_sensitive(GtkWidgetHandle widget, bool sensitive);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_size_request(GtkWidgetHandle widget, int width, int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_state_flags(GtkWidgetHandle widget, GtkStateFlags flags, bool clear);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_tooltip_markup(GtkWidgetHandle widget, string markup);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_tooltip_text(GtkWidgetHandle widget, string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_valign(GtkWidgetHandle widget, GtkAlign align);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_vexpand(GtkWidgetHandle widget, bool expand);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_vexpand_set(GtkWidgetHandle widget, bool set);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_visible(GtkWidgetHandle widget, bool visible);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_should_layout(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_show(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_size_allocate(GtkWidgetHandle widget, GtkAllocation[] allocation, int baseline);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_snapshot_child(GtkWidgetHandle widget, GtkWidgetHandle child, GtkSnapshotHandle snapshot);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_widget_translate_coordinates(GtkWidgetHandle src_widget, GtkWidgetHandle dest_widget, double src_x, double src_y, out double dest_x, out double dest_y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_trigger_tooltip_query(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_unmap(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_unparent(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_unrealize(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_unset_state_flags(GtkWidgetHandle widget, GtkStateFlags flags);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_test_widget_wait_for_draw(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTextDirection gtk_widget_get_default_direction();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_set_default_direction(GtkTextDirection dir);
+
 }

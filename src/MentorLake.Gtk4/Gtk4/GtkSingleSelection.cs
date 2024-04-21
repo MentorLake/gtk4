@@ -80,22 +80,32 @@ internal class GtkSingleSelectionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSingleSelectionHandle gtk_single_selection_new(GListModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_single_selection_get_autoselect(GtkSingleSelectionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_single_selection_get_can_unselect(GtkSingleSelectionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_single_selection_get_model(GtkSingleSelectionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_single_selection_get_selected(GtkSingleSelectionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GObjectHandle gtk_single_selection_get_selected_item(GtkSingleSelectionHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_single_selection_set_autoselect(GtkSingleSelectionHandle self, bool autoselect);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_single_selection_set_can_unselect(GtkSingleSelectionHandle self, bool can_unselect);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_single_selection_set_model(GtkSingleSelectionHandle self, GListModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_single_selection_set_selected(GtkSingleSelectionHandle self, uint position);
+
 }

@@ -87,26 +87,38 @@ internal class GdkPixbufAnimationExterns
 {
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufAnimationHandle gdk_pixbuf_animation_new_from_file(string filename, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufAnimationHandle gdk_pixbuf_animation_new_from_resource(string resource_path, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufAnimationHandle gdk_pixbuf_animation_new_from_stream(GInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufAnimationHandle gdk_pixbuf_animation_new_from_stream_finish(GAsyncResultHandle async_result, out GErrorHandle error);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern int gdk_pixbuf_animation_get_height(GdkPixbufAnimationHandle animation);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufAnimationIterHandle gdk_pixbuf_animation_get_iter(GdkPixbufAnimationHandle animation, GTimeValHandle start_time);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_animation_get_static_image(GdkPixbufAnimationHandle animation);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern int gdk_pixbuf_animation_get_width(GdkPixbufAnimationHandle animation);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_animation_is_static_image(GdkPixbufAnimationHandle animation);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufAnimationHandle gdk_pixbuf_animation_ref(GdkPixbufAnimationHandle animation);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_animation_unref(GdkPixbufAnimationHandle animation);
+
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern void gdk_pixbuf_animation_new_from_stream_async(GInputStreamHandle stream, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 }

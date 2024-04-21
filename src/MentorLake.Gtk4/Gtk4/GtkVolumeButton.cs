@@ -31,4 +31,5 @@ internal class GtkVolumeButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkVolumeButtonHandle gtk_volume_button_new();
+
 }

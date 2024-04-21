@@ -31,20 +31,28 @@ public class GtkEmojiChooserSignal
 
 public static class GtkEmojiChooserSignals
 {
-	public static GtkEmojiChooserSignal EmojiPicked = new("emoji-picked");
+	public static GtkEmojiChooserSignal EmojiPicked = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkEmojiChooserHandleExtensions
 {
-	public static GtkEmojiChooserHandle Connect(this GtkEmojiChooserHandle instance, GtkEmojiChooserSignal signal, GCallback c_handler)
+	public static GtkEmojiChooserHandle Signal_EmojiPicked(this GtkEmojiChooserHandle instance, GtkEmojiChooserDelegates.EmojiPicked handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "emoji_picked", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkEmojiChooserDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void EmojiPicked([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEmojiChooserHandle>))] GtkEmojiChooserHandle self, string text, IntPtr user_data);
 }
 
 internal class GtkEmojiChooserExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEmojiChooserHandle gtk_emoji_chooser_new();
+
 }

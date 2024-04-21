@@ -42,8 +42,11 @@ internal class GtkWidgetPaintableExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetPaintableHandle gtk_widget_paintable_new(GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_widget_paintable_get_widget(GtkWidgetPaintableHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_widget_paintable_set_widget(GtkWidgetPaintableHandle self, GtkWidgetHandle widget);
+
 }

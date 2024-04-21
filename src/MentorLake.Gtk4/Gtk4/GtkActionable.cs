@@ -59,15 +59,22 @@ public static class GtkActionableHandleExtensions
 internal class GtkActionableExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_actionable_get_action_name(GtkActionableHandle actionable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GVariantHandle gtk_actionable_get_action_target_value(GtkActionableHandle actionable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_actionable_set_action_name(GtkActionableHandle actionable, string action_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_actionable_set_action_target(GtkActionableHandle actionable, string format_string, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_actionable_set_action_target_value(GtkActionableHandle actionable, GVariantHandle target_value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_actionable_set_detailed_action_name(GtkActionableHandle actionable, string detailed_action_name);
+
 }

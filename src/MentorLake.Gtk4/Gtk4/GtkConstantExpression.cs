@@ -41,8 +41,11 @@ internal class GtkConstantExpressionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkConstantExpressionHandle gtk_constant_expression_new(GType value_type, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkConstantExpressionHandle gtk_constant_expression_new_for_value(GValueHandle value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GValueHandle gtk_constant_expression_get_value(GtkExpressionHandle expression);
+
 }

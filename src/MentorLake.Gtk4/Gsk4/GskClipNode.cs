@@ -41,8 +41,11 @@ internal class GskClipNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskClipNodeHandle gsk_clip_node_new(GskRenderNodeHandle child, graphene_rect_tHandle clip);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_clip_node_get_child(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern graphene_rect_tHandle gsk_clip_node_get_clip(GskRenderNodeHandle node);
+
 }

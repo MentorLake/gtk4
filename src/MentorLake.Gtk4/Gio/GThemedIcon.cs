@@ -58,14 +58,20 @@ internal class GThemedIconExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GThemedIconHandle g_themed_icon_new(string iconname);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GThemedIconHandle g_themed_icon_new_from_names(string[] iconnames, int len);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GThemedIconHandle g_themed_icon_new_with_default_fallbacks(string iconname);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_themed_icon_append_name(GThemedIconHandle icon, string iconname);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_themed_icon_get_names(GThemedIconHandle icon);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_themed_icon_prepend_name(GThemedIconHandle icon, string iconname);
+
 }

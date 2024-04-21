@@ -95,28 +95,41 @@ internal class GTlsDatabaseExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_tls_database_create_certificate_handle(GTlsDatabaseHandle self, GTlsCertificateHandle certificate);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_tls_database_lookup_certificate_for_handle(GTlsDatabaseHandle self, string handle, GTlsInteractionHandle interaction, GTlsDatabaseLookupFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_database_lookup_certificate_for_handle_async(GTlsDatabaseHandle self, string handle, GTlsInteractionHandle interaction, GTlsDatabaseLookupFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_tls_database_lookup_certificate_for_handle_finish(GTlsDatabaseHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_tls_database_lookup_certificate_issuer(GTlsDatabaseHandle self, GTlsCertificateHandle certificate, GTlsInteractionHandle interaction, GTlsDatabaseLookupFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_database_lookup_certificate_issuer_async(GTlsDatabaseHandle self, GTlsCertificateHandle certificate, GTlsInteractionHandle interaction, GTlsDatabaseLookupFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_tls_database_lookup_certificate_issuer_finish(GTlsDatabaseHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_tls_database_lookup_certificates_issued_by(GTlsDatabaseHandle self, GByteArray[] issuer_raw_dn, GTlsInteractionHandle interaction, GTlsDatabaseLookupFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_database_lookup_certificates_issued_by_async(GTlsDatabaseHandle self, GByteArray[] issuer_raw_dn, GTlsInteractionHandle interaction, GTlsDatabaseLookupFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_tls_database_lookup_certificates_issued_by_finish(GTlsDatabaseHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateFlags g_tls_database_verify_chain(GTlsDatabaseHandle self, GTlsCertificateHandle chain, string purpose, GSocketConnectableHandle identity, GTlsInteractionHandle interaction, GTlsDatabaseVerifyFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_database_verify_chain_async(GTlsDatabaseHandle self, GTlsCertificateHandle chain, string purpose, GSocketConnectableHandle identity, GTlsInteractionHandle interaction, GTlsDatabaseVerifyFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateFlags g_tls_database_verify_chain_finish(GTlsDatabaseHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 }

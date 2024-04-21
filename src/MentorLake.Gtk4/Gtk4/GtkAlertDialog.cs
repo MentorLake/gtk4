@@ -114,34 +114,53 @@ internal class GtkAlertDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAlertDialogHandle gtk_alert_dialog_new(string format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_alert_dialog_choose(GtkAlertDialogHandle self, GtkWindowHandle parent, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_alert_dialog_choose_finish(GtkAlertDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_alert_dialog_get_buttons(GtkAlertDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_alert_dialog_get_cancel_button(GtkAlertDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_alert_dialog_get_default_button(GtkAlertDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_alert_dialog_get_detail(GtkAlertDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_alert_dialog_get_message(GtkAlertDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_alert_dialog_get_modal(GtkAlertDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_alert_dialog_set_buttons(GtkAlertDialogHandle self, string labels);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_alert_dialog_set_cancel_button(GtkAlertDialogHandle self, int button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_alert_dialog_set_default_button(GtkAlertDialogHandle self, int button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_alert_dialog_set_detail(GtkAlertDialogHandle self, string detail);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_alert_dialog_set_message(GtkAlertDialogHandle self, string message);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_alert_dialog_set_modal(GtkAlertDialogHandle self, bool modal);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_alert_dialog_show(GtkAlertDialogHandle self, GtkWindowHandle parent);
+
 }

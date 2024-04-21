@@ -36,12 +36,12 @@ public class GtkSpinButtonSignal
 
 public static class GtkSpinButtonSignals
 {
-	public static GtkSpinButtonSignal Activate = new("activate");
-	public static GtkSpinButtonSignal ChangeValue = new("change-value");
-	public static GtkSpinButtonSignal Input = new("input");
-	public static GtkSpinButtonSignal Output = new("output");
-	public static GtkSpinButtonSignal ValueChanged = new("value-changed");
-	public static GtkSpinButtonSignal Wrapped = new("wrapped");
+	public static GtkSpinButtonSignal Activate = new("BindingTransform.MethodDeclaration");
+	public static GtkSpinButtonSignal ChangeValue = new("BindingTransform.MethodDeclaration");
+	public static GtkSpinButtonSignal Input = new("BindingTransform.MethodDeclaration");
+	public static GtkSpinButtonSignal Output = new("BindingTransform.MethodDeclaration");
+	public static GtkSpinButtonSignal ValueChanged = new("BindingTransform.MethodDeclaration");
+	public static GtkSpinButtonSignal Wrapped = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkSpinButtonHandleExtensions
@@ -192,69 +192,144 @@ public static class GtkSpinButtonHandleExtensions
 		return spin_button;
 	}
 
-	public static GtkSpinButtonHandle Connect(this GtkSpinButtonHandle instance, GtkSpinButtonSignal signal, GCallback c_handler)
+	public static GtkSpinButtonHandle Signal_Activate(this GtkSpinButtonHandle instance, GtkSpinButtonDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkSpinButtonHandle Signal_ChangeValue(this GtkSpinButtonHandle instance, GtkSpinButtonDelegates.ChangeValue handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "change_value", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkSpinButtonHandle Signal_Input(this GtkSpinButtonHandle instance, GtkSpinButtonDelegates.Input handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "input", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkSpinButtonHandle Signal_Output(this GtkSpinButtonHandle instance, GtkSpinButtonDelegates.Output handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "output", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkSpinButtonHandle Signal_ValueChanged(this GtkSpinButtonHandle instance, GtkSpinButtonDelegates.ValueChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkSpinButtonHandle Signal_Wrapped(this GtkSpinButtonHandle instance, GtkSpinButtonDelegates.Wrapped handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "wrapped", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkSpinButtonDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ChangeValue([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, ref GtkScrollType scroll, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate int Input([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, out double new_value, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Output([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ValueChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Wrapped([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkSpinButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSpinButtonHandle gtk_spin_button_new(GtkAdjustmentHandle adjustment, double climb_rate, uint digits);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSpinButtonHandle gtk_spin_button_new_with_range(double min, double max, double step);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_configure(GtkSpinButtonHandle spin_button, GtkAdjustmentHandle adjustment, double climb_rate, uint digits);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_spin_button_get_activates_default(GtkSpinButtonHandle spin_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAdjustmentHandle gtk_spin_button_get_adjustment(GtkSpinButtonHandle spin_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_spin_button_get_climb_rate(GtkSpinButtonHandle spin_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_spin_button_get_digits(GtkSpinButtonHandle spin_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_get_increments(GtkSpinButtonHandle spin_button, out double step, out double page);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_spin_button_get_numeric(GtkSpinButtonHandle spin_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_get_range(GtkSpinButtonHandle spin_button, out double min, out double max);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_spin_button_get_snap_to_ticks(GtkSpinButtonHandle spin_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSpinButtonUpdatePolicy gtk_spin_button_get_update_policy(GtkSpinButtonHandle spin_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_spin_button_get_value(GtkSpinButtonHandle spin_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_spin_button_get_value_as_int(GtkSpinButtonHandle spin_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_spin_button_get_wrap(GtkSpinButtonHandle spin_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_set_activates_default(GtkSpinButtonHandle spin_button, bool activates_default);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_set_adjustment(GtkSpinButtonHandle spin_button, GtkAdjustmentHandle adjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_set_climb_rate(GtkSpinButtonHandle spin_button, double climb_rate);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_set_digits(GtkSpinButtonHandle spin_button, uint digits);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_set_increments(GtkSpinButtonHandle spin_button, double step, double page);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_set_numeric(GtkSpinButtonHandle spin_button, bool numeric);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_set_range(GtkSpinButtonHandle spin_button, double min, double max);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_set_snap_to_ticks(GtkSpinButtonHandle spin_button, bool snap_to_ticks);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_set_update_policy(GtkSpinButtonHandle spin_button, GtkSpinButtonUpdatePolicy policy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_set_value(GtkSpinButtonHandle spin_button, double value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_set_wrap(GtkSpinButtonHandle spin_button, bool wrap);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_spin(GtkSpinButtonHandle spin_button, GtkSpinType direction, double increment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_spin_button_update(GtkSpinButtonHandle spin_button);
+
 }

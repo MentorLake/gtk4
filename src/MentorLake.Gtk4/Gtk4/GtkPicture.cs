@@ -140,44 +140,66 @@ internal class GtkPictureExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPictureHandle gtk_picture_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPictureHandle gtk_picture_new_for_file(GFileHandle file);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPictureHandle gtk_picture_new_for_filename(string filename);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPictureHandle gtk_picture_new_for_paintable(GdkPaintableHandle paintable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPictureHandle gtk_picture_new_for_pixbuf(GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPictureHandle gtk_picture_new_for_resource(string resource_path);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_picture_get_alternative_text(GtkPictureHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_picture_get_can_shrink(GtkPictureHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkContentFit gtk_picture_get_content_fit(GtkPictureHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GFileHandle gtk_picture_get_file(GtkPictureHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_picture_get_keep_aspect_ratio(GtkPictureHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkPaintableHandle gtk_picture_get_paintable(GtkPictureHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_picture_set_alternative_text(GtkPictureHandle self, string alternative_text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_picture_set_can_shrink(GtkPictureHandle self, bool can_shrink);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_picture_set_content_fit(GtkPictureHandle self, GtkContentFit content_fit);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_picture_set_file(GtkPictureHandle self, GFileHandle file);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_picture_set_filename(GtkPictureHandle self, string filename);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_picture_set_keep_aspect_ratio(GtkPictureHandle self, bool keep_aspect_ratio);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_picture_set_paintable(GtkPictureHandle self, GdkPaintableHandle paintable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_picture_set_pixbuf(GtkPictureHandle self, GdkPixbufHandle pixbuf);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_picture_set_resource(GtkPictureHandle self, string resource_path);
+
 }

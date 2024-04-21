@@ -42,12 +42,16 @@ internal class GStringExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GStringHandle g_string_new(string init);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GStringHandle g_string_new_len(string init, int len);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GStringHandle g_string_new_take(string init);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GStringHandle g_string_sized_new(int dfl_size);
+
 }
 
 public struct GString

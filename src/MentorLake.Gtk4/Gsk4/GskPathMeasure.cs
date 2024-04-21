@@ -32,8 +32,10 @@ internal class GskPathMeasureExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskPathMeasureHandle gsk_path_measure_new(GskPathHandle path);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskPathMeasureHandle gsk_path_measure_new_with_tolerance(GskPathHandle path, float tolerance);
+
 }
 
 public struct GskPathMeasure

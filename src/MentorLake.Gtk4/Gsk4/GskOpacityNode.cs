@@ -41,8 +41,11 @@ internal class GskOpacityNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskOpacityNodeHandle gsk_opacity_node_new(GskRenderNodeHandle child, float opacity);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_opacity_node_get_child(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_opacity_node_get_opacity(GskRenderNodeHandle node);
+
 }

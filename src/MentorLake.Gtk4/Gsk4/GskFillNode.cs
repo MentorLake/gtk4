@@ -46,10 +46,14 @@ internal class GskFillNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskFillNodeHandle gsk_fill_node_new(GskRenderNodeHandle child, GskPathHandle path, GskFillRule fill_rule);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_fill_node_get_child(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskFillRule gsk_fill_node_get_fill_rule(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskPathHandle gsk_fill_node_get_path(GskRenderNodeHandle node);
+
 }

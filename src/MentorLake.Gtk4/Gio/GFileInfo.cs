@@ -414,144 +414,215 @@ internal class GFileInfoExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileInfoHandle g_file_info_new();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_clear_status(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_copy_into(GFileInfoHandle src_info, GFileInfoHandle dest_info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileInfoHandle g_file_info_dup(GFileInfoHandle other);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDateTimeHandle g_file_info_get_access_date_time(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_info_get_attribute_as_string(GFileInfoHandle info, string attribute);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_info_get_attribute_boolean(GFileInfoHandle info, string attribute);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_info_get_attribute_byte_string(GFileInfoHandle info, string attribute);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_info_get_attribute_data(GFileInfoHandle info, string attribute, out GFileAttributeType type, out IntPtr value_pp, out GFileAttributeStatus status);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_info_get_attribute_file_path(GFileInfoHandle info, string attribute);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_file_info_get_attribute_int32(GFileInfoHandle info, string attribute);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern long g_file_info_get_attribute_int64(GFileInfoHandle info, string attribute);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GObjectHandle g_file_info_get_attribute_object(GFileInfoHandle info, string attribute);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileAttributeStatus g_file_info_get_attribute_status(GFileInfoHandle info, string attribute);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_info_get_attribute_string(GFileInfoHandle info, string attribute);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_file_info_get_attribute_stringv(GFileInfoHandle info, string attribute);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileAttributeType g_file_info_get_attribute_type(GFileInfoHandle info, string attribute);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_file_info_get_attribute_uint32(GFileInfoHandle info, string attribute);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern ulong g_file_info_get_attribute_uint64(GFileInfoHandle info, string attribute);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_info_get_content_type(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDateTimeHandle g_file_info_get_creation_date_time(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDateTimeHandle g_file_info_get_deletion_date(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_info_get_display_name(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_info_get_edit_name(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_info_get_etag(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileType g_file_info_get_file_type(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GIconHandle g_file_info_get_icon(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_info_get_is_backup(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_info_get_is_hidden(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_info_get_is_symlink(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDateTimeHandle g_file_info_get_modification_date_time(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_get_modification_time(GFileInfoHandle info, out GTimeVal result);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_info_get_name(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_file_info_get_size(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_file_info_get_sort_order(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GIconHandle g_file_info_get_symbolic_icon(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_file_info_get_symlink_target(GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_info_has_attribute(GFileInfoHandle info, string attribute);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_info_has_namespace(GFileInfoHandle info, string name_space);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_file_info_list_attributes(GFileInfoHandle info, string name_space);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_remove_attribute(GFileInfoHandle info, string attribute);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_access_date_time(GFileInfoHandle info, GDateTimeHandle atime);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_attribute(GFileInfoHandle info, string attribute, GFileAttributeType type, IntPtr value_p);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_attribute_boolean(GFileInfoHandle info, string attribute, bool attr_value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_attribute_byte_string(GFileInfoHandle info, string attribute, string attr_value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_attribute_file_path(GFileInfoHandle info, string attribute, string attr_value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_attribute_int32(GFileInfoHandle info, string attribute, int attr_value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_attribute_int64(GFileInfoHandle info, string attribute, long attr_value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_attribute_mask(GFileInfoHandle info, GFileAttributeMatcherHandle mask);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_attribute_object(GFileInfoHandle info, string attribute, GObjectHandle attr_value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_info_set_attribute_status(GFileInfoHandle info, string attribute, GFileAttributeStatus status);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_attribute_string(GFileInfoHandle info, string attribute, string attr_value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_attribute_stringv(GFileInfoHandle info, string attribute, string[] attr_value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_attribute_uint32(GFileInfoHandle info, string attribute, uint attr_value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_attribute_uint64(GFileInfoHandle info, string attribute, ulong attr_value);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_content_type(GFileInfoHandle info, string content_type);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_creation_date_time(GFileInfoHandle info, GDateTimeHandle creation_time);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_display_name(GFileInfoHandle info, string display_name);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_edit_name(GFileInfoHandle info, string edit_name);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_file_type(GFileInfoHandle info, GFileType type);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_icon(GFileInfoHandle info, GIconHandle icon);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_is_hidden(GFileInfoHandle info, bool is_hidden);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_is_symlink(GFileInfoHandle info, bool is_symlink);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_modification_date_time(GFileInfoHandle info, GDateTimeHandle mtime);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_modification_time(GFileInfoHandle info, GTimeValHandle mtime);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_name(GFileInfoHandle info, string name);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_size(GFileInfoHandle info, int size);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_sort_order(GFileInfoHandle info, int sort_order);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_symbolic_icon(GFileInfoHandle info, GIconHandle icon);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_set_symlink_target(GFileInfoHandle info, string symlink_target);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_unset_attribute_mask(GFileInfoHandle info);
+
 }

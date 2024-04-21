@@ -42,8 +42,11 @@ internal class GtkStackSidebarExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStackSidebarHandle gtk_stack_sidebar_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkStackHandle gtk_stack_sidebar_get_stack(GtkStackSidebarHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_sidebar_set_stack(GtkStackSidebarHandle self, GtkStackHandle stack);
+
 }

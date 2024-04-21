@@ -46,10 +46,14 @@ internal class GskMaskNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskMaskNodeHandle gsk_mask_node_new(GskRenderNodeHandle source, GskRenderNodeHandle mask, GskMaskMode mask_mode);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_mask_node_get_mask(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskMaskMode gsk_mask_node_get_mask_mode(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_mask_node_get_source(GskRenderNodeHandle node);
+
 }

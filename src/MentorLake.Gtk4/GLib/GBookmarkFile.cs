@@ -27,6 +27,7 @@ internal class GBookmarkFileExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GBookmarkFileHandle g_bookmark_file_new();
+
 }
 
 public struct GBookmarkFile

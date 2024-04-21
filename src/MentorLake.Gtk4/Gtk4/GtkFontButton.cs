@@ -36,8 +36,8 @@ public class GtkFontButtonSignal
 
 public static class GtkFontButtonSignals
 {
-	public static GtkFontButtonSignal Activate = new("activate");
-	public static GtkFontButtonSignal FontSet = new("font-set");
+	public static GtkFontButtonSignal Activate = new("BindingTransform.MethodDeclaration");
+	public static GtkFontButtonSignal FontSet = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkFontButtonHandleExtensions
@@ -86,33 +86,59 @@ public static class GtkFontButtonHandleExtensions
 		return font_button;
 	}
 
-	public static GtkFontButtonHandle Connect(this GtkFontButtonHandle instance, GtkFontButtonSignal signal, GCallback c_handler)
+	public static GtkFontButtonHandle Signal_Activate(this GtkFontButtonHandle instance, GtkFontButtonDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkFontButtonHandle Signal_FontSet(this GtkFontButtonHandle instance, GtkFontButtonDelegates.FontSet handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "font_set", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkFontButtonDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFontButtonHandle>))] GtkFontButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void FontSet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFontButtonHandle>))] GtkFontButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkFontButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFontButtonHandle gtk_font_button_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFontButtonHandle gtk_font_button_new_with_font(string fontname);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_font_button_get_modal(GtkFontButtonHandle font_button);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_font_button_get_title(GtkFontButtonHandle font_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_font_button_get_use_font(GtkFontButtonHandle font_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_font_button_get_use_size(GtkFontButtonHandle font_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_button_set_modal(GtkFontButtonHandle font_button, bool modal);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_button_set_title(GtkFontButtonHandle font_button, string title);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_button_set_use_font(GtkFontButtonHandle font_button, bool use_font);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_button_set_use_size(GtkFontButtonHandle font_button, bool use_size);
+
 }

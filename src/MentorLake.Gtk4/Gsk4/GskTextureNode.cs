@@ -36,6 +36,8 @@ internal class GskTextureNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskTextureNodeHandle gsk_texture_node_new(GdkTextureHandle texture, graphene_rect_tHandle bounds);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GdkTextureHandle gsk_texture_node_get_texture(GskRenderNodeHandle node);
+
 }

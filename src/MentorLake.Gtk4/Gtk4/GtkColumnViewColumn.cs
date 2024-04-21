@@ -135,42 +135,64 @@ internal class GtkColumnViewColumnExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkColumnViewColumnHandle gtk_column_view_column_new(string title, GtkListItemFactoryHandle factory);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkColumnViewHandle gtk_column_view_column_get_column_view(GtkColumnViewColumnHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_column_view_column_get_expand(GtkColumnViewColumnHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkListItemFactoryHandle gtk_column_view_column_get_factory(GtkColumnViewColumnHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_column_view_column_get_fixed_width(GtkColumnViewColumnHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GMenuModelHandle gtk_column_view_column_get_header_menu(GtkColumnViewColumnHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_column_view_column_get_id(GtkColumnViewColumnHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_column_view_column_get_resizable(GtkColumnViewColumnHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSorterHandle gtk_column_view_column_get_sorter(GtkColumnViewColumnHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_column_view_column_get_title(GtkColumnViewColumnHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_column_view_column_get_visible(GtkColumnViewColumnHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_column_set_expand(GtkColumnViewColumnHandle self, bool expand);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_column_set_factory(GtkColumnViewColumnHandle self, GtkListItemFactoryHandle factory);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_column_set_fixed_width(GtkColumnViewColumnHandle self, int fixed_width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_column_set_header_menu(GtkColumnViewColumnHandle self, GMenuModelHandle menu);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_column_set_id(GtkColumnViewColumnHandle self, string id);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_column_set_resizable(GtkColumnViewColumnHandle self, bool resizable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_column_set_sorter(GtkColumnViewColumnHandle self, GtkSorterHandle sorter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_column_set_title(GtkColumnViewColumnHandle self, string title);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_column_view_column_set_visible(GtkColumnViewColumnHandle self, bool visible);
+
 }

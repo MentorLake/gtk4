@@ -41,8 +41,11 @@ internal class GskTransformNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskTransformNodeHandle gsk_transform_node_new(GskRenderNodeHandle child, GskTransformHandle transform);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_transform_node_get_child(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskTransformHandle gsk_transform_node_get_transform(GskRenderNodeHandle node);
+
 }

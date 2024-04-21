@@ -53,12 +53,17 @@ internal class GtkMapListModelExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMapListModelHandle gtk_map_list_model_new(GListModelHandle model, GtkMapListModelMapFunc map_func, IntPtr user_data, GDestroyNotify user_destroy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_map_list_model_get_model(GtkMapListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_map_list_model_has_map(GtkMapListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_map_list_model_set_map_func(GtkMapListModelHandle self, GtkMapListModelMapFunc map_func, IntPtr user_data, GDestroyNotify user_destroy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_map_list_model_set_model(GtkMapListModelHandle self, GListModelHandle model);
+
 }

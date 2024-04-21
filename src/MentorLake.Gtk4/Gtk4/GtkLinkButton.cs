@@ -36,7 +36,7 @@ public class GtkLinkButtonSignal
 
 public static class GtkLinkButtonSignals
 {
-	public static GtkLinkButtonSignal ActivateLink = new("activate-link");
+	public static GtkLinkButtonSignal ActivateLink = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkLinkButtonHandleExtensions
@@ -63,25 +63,39 @@ public static class GtkLinkButtonHandleExtensions
 		return link_button;
 	}
 
-	public static GtkLinkButtonHandle Connect(this GtkLinkButtonHandle instance, GtkLinkButtonSignal signal, GCallback c_handler)
+	public static GtkLinkButtonHandle Signal_ActivateLink(this GtkLinkButtonHandle instance, GtkLinkButtonDelegates.ActivateLink handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkLinkButtonDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ActivateLink([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLinkButtonHandle>))] GtkLinkButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkLinkButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkLinkButtonHandle gtk_link_button_new(string uri);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkLinkButtonHandle gtk_link_button_new_with_label(string uri, string label);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_link_button_get_uri(GtkLinkButtonHandle link_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_link_button_get_visited(GtkLinkButtonHandle link_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_link_button_set_uri(GtkLinkButtonHandle link_button, string uri);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_link_button_set_visited(GtkLinkButtonHandle link_button, bool visited);
+
 }

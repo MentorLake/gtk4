@@ -70,18 +70,26 @@ internal class GTestDBusExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GTestDBusHandle g_test_dbus_new(GTestDBusFlags flags);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_test_dbus_add_service_dir(GTestDBusHandle self, string path);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_test_dbus_down(GTestDBusHandle self);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_test_dbus_get_bus_address(GTestDBusHandle self);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTestDBusFlags g_test_dbus_get_flags(GTestDBusHandle self);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_test_dbus_stop(GTestDBusHandle self);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_test_dbus_up(GTestDBusHandle self);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_test_dbus_unset();
+
 }

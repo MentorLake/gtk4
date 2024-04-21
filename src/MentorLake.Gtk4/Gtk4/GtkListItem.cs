@@ -106,33 +106,50 @@ public static class GtkListItemHandleExtensions
 internal class GtkListItemExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_list_item_get_accessible_description(GtkListItemHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_list_item_get_accessible_label(GtkListItemHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_list_item_get_activatable(GtkListItemHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_list_item_get_child(GtkListItemHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_list_item_get_focusable(GtkListItemHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GObjectHandle gtk_list_item_get_item(GtkListItemHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_list_item_get_position(GtkListItemHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_list_item_get_selectable(GtkListItemHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_list_item_get_selected(GtkListItemHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_item_set_accessible_description(GtkListItemHandle self, string description);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_item_set_accessible_label(GtkListItemHandle self, string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_item_set_activatable(GtkListItemHandle self, bool activatable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_item_set_child(GtkListItemHandle self, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_item_set_focusable(GtkListItemHandle self, bool focusable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_list_item_set_selectable(GtkListItemHandle self, bool selectable);
+
 }

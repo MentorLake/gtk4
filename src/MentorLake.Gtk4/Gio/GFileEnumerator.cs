@@ -89,26 +89,38 @@ internal class GFileEnumeratorExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_enumerator_close(GFileEnumeratorHandle enumerator, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_enumerator_close_async(GFileEnumeratorHandle enumerator, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_enumerator_close_finish(GFileEnumeratorHandle enumerator, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_file_enumerator_get_child(GFileEnumeratorHandle enumerator, GFileInfoHandle info);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_file_enumerator_get_container(GFileEnumeratorHandle enumerator);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_enumerator_has_pending(GFileEnumeratorHandle enumerator);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_enumerator_is_closed(GFileEnumeratorHandle enumerator);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_enumerator_iterate(GFileEnumeratorHandle direnum, out GFileInfoHandle out_info, out GFileHandle out_child, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileInfoHandle g_file_enumerator_next_file(GFileEnumeratorHandle enumerator, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_enumerator_next_files_async(GFileEnumeratorHandle enumerator, int num_files, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_file_enumerator_next_files_finish(GFileEnumeratorHandle enumerator, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_enumerator_set_pending(GFileEnumeratorHandle enumerator, bool pending);
+
 }

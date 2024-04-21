@@ -42,8 +42,11 @@ internal class GAsyncInitableExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_async_initable_init_async(GAsyncInitableHandle initable, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_async_initable_init_finish(GAsyncInitableHandle initable, GAsyncResultHandle res, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GObjectHandle g_async_initable_new_finish(GAsyncInitableHandle initable, GAsyncResultHandle res, out GErrorHandle error);
+
 }

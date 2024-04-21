@@ -32,8 +32,10 @@ internal class GdkFileListExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkFileListHandle gdk_file_list_new_from_array(GFileHandle[] files, int n_files);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkFileListHandle gdk_file_list_new_from_list(GSListHandle files);
+
 }
 
 public struct GdkFileList

@@ -103,30 +103,45 @@ internal class GtkProgressBarExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkProgressBarHandle gtk_progress_bar_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoEllipsizeMode gtk_progress_bar_get_ellipsize(GtkProgressBarHandle pbar);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_progress_bar_get_fraction(GtkProgressBarHandle pbar);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_progress_bar_get_inverted(GtkProgressBarHandle pbar);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_progress_bar_get_pulse_step(GtkProgressBarHandle pbar);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_progress_bar_get_show_text(GtkProgressBarHandle pbar);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_progress_bar_get_text(GtkProgressBarHandle pbar);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_progress_bar_pulse(GtkProgressBarHandle pbar);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_progress_bar_set_ellipsize(GtkProgressBarHandle pbar, PangoEllipsizeMode mode);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_progress_bar_set_fraction(GtkProgressBarHandle pbar, double fraction);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_progress_bar_set_inverted(GtkProgressBarHandle pbar, bool inverted);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_progress_bar_set_pulse_step(GtkProgressBarHandle pbar, double fraction);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_progress_bar_set_show_text(GtkProgressBarHandle pbar, bool show_text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_progress_bar_set_text(GtkProgressBarHandle pbar, string text);
+
 }

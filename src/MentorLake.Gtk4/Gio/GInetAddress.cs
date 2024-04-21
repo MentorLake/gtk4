@@ -121,40 +121,59 @@ internal class GInetAddressExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GInetAddressHandle g_inet_address_new_any(GSocketFamily family);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GInetAddressHandle g_inet_address_new_from_bytes(byte[] bytes, GSocketFamily family);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GInetAddressHandle g_inet_address_new_from_string(string @string);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GInetAddressHandle g_inet_address_new_loopback(GSocketFamily family);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_inet_address_equal(GInetAddressHandle address, GInetAddressHandle other_address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketFamily g_inet_address_get_family(GInetAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_inet_address_get_is_any(GInetAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_inet_address_get_is_link_local(GInetAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_inet_address_get_is_loopback(GInetAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_inet_address_get_is_mc_global(GInetAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_inet_address_get_is_mc_link_local(GInetAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_inet_address_get_is_mc_node_local(GInetAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_inet_address_get_is_mc_org_local(GInetAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_inet_address_get_is_mc_site_local(GInetAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_inet_address_get_is_multicast(GInetAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_inet_address_get_is_site_local(GInetAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_inet_address_get_native_size(GInetAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern byte[] g_inet_address_to_bytes(GInetAddressHandle address);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_inet_address_to_string(GInetAddressHandle address);
+
 }

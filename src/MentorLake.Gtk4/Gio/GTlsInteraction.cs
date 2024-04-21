@@ -68,18 +68,26 @@ internal class GTlsInteractionExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsInteractionResult g_tls_interaction_ask_password(GTlsInteractionHandle interaction, GTlsPasswordHandle password, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_interaction_ask_password_async(GTlsInteractionHandle interaction, GTlsPasswordHandle password, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsInteractionResult g_tls_interaction_ask_password_finish(GTlsInteractionHandle interaction, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsInteractionResult g_tls_interaction_invoke_ask_password(GTlsInteractionHandle interaction, GTlsPasswordHandle password, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsInteractionResult g_tls_interaction_invoke_request_certificate(GTlsInteractionHandle interaction, GTlsConnectionHandle connection, GTlsCertificateRequestFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsInteractionResult g_tls_interaction_request_certificate(GTlsInteractionHandle interaction, GTlsConnectionHandle connection, GTlsCertificateRequestFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_interaction_request_certificate_async(GTlsInteractionHandle interaction, GTlsConnectionHandle connection, GTlsCertificateRequestFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsInteractionResult g_tls_interaction_request_certificate_finish(GTlsInteractionHandle interaction, GAsyncResultHandle result, out GErrorHandle error);
+
 }

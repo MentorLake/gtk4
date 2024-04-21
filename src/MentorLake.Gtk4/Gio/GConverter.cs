@@ -37,6 +37,8 @@ internal class GConverterExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GConverterResult g_converter_convert(GConverterHandle converter, IntPtr inbuf, int inbuf_size, IntPtr outbuf, int outbuf_size, GConverterFlags flags, out int bytes_read, out int bytes_written, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_converter_reset(GConverterHandle converter);
+
 }

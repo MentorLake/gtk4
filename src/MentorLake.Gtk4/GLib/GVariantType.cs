@@ -47,14 +47,19 @@ internal class GVariantTypeExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GVariantTypeHandle g_variant_type_new(string type_string);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GVariantTypeHandle g_variant_type_new_array(GVariantTypeHandle element);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GVariantTypeHandle g_variant_type_new_dict_entry(GVariantTypeHandle key, GVariantTypeHandle value);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GVariantTypeHandle g_variant_type_new_maybe(GVariantTypeHandle element);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GVariantTypeHandle g_variant_type_new_tuple(GVariantType[] items, int length);
+
 }
 
 public struct GVariantType

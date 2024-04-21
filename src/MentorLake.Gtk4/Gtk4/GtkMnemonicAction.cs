@@ -31,4 +31,5 @@ internal class GtkMnemonicActionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkShortcutActionHandle gtk_mnemonic_action_get();
+
 }

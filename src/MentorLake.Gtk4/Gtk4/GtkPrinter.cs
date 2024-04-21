@@ -31,7 +31,7 @@ public class GtkPrinterSignal
 
 public static class GtkPrinterSignals
 {
-	public static GtkPrinterSignal DetailsAcquired = new("details-acquired");
+	public static GtkPrinterSignal DetailsAcquired = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkPrinterHandleExtensions
@@ -147,59 +147,94 @@ public static class GtkPrinterHandleExtensions
 		return printer;
 	}
 
-	public static GtkPrinterHandle Connect(this GtkPrinterHandle instance, GtkPrinterSignal signal, GCallback c_handler)
+	public static GtkPrinterHandle Signal_DetailsAcquired(this GtkPrinterHandle instance, GtkPrinterDelegates.DetailsAcquired handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "details_acquired", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkPrinterDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DetailsAcquired([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrinterHandle>))] GtkPrinterHandle self, bool success, IntPtr user_data);
 }
 
 internal class GtkPrinterExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrinterHandle gtk_printer_new(string name, GtkPrintBackendHandle backend, bool virtual_);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_printer_accepts_pdf(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_printer_accepts_ps(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_printer_compare(GtkPrinterHandle a, GtkPrinterHandle b);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintBackendHandle gtk_printer_get_backend(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintCapabilities gtk_printer_get_capabilities(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageSetupHandle gtk_printer_get_default_page_size(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_printer_get_description(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_printer_get_hard_margins(GtkPrinterHandle printer, out double top, out double bottom, out double left, out double right);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_printer_get_hard_margins_for_paper_size(GtkPrinterHandle printer, GtkPaperSizeHandle paper_size, out double top, out double bottom, out double left, out double right);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_printer_get_icon_name(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_printer_get_job_count(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_printer_get_location(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_printer_get_name(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_printer_get_state_message(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_printer_has_details(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_printer_is_accepting_jobs(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_printer_is_active(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_printer_is_default(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_printer_is_paused(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_printer_is_virtual(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListHandle gtk_printer_list_papers(GtkPrinterHandle printer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_printer_request_details(GtkPrinterHandle printer);
+
 }

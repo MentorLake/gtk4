@@ -38,6 +38,8 @@ internal class GtkSectionModelExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_section_model_get_section(GtkSectionModelHandle self, uint position, out uint out_start, out uint out_end);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_section_model_sections_changed(GtkSectionModelHandle self, uint position, uint n_items);
+
 }

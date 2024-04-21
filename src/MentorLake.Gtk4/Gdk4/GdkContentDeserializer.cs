@@ -84,24 +84,36 @@ internal class GdkContentDeserializerExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GCancellableHandle gdk_content_deserializer_get_cancellable(GdkContentDeserializerHandle deserializer);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GType gdk_content_deserializer_get_gtype(GdkContentDeserializerHandle deserializer);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GInputStreamHandle gdk_content_deserializer_get_input_stream(GdkContentDeserializerHandle deserializer);
+
 	[DllImport(Libraries.Gdk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gdk_content_deserializer_get_mime_type(GdkContentDeserializerHandle deserializer);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_content_deserializer_get_priority(GdkContentDeserializerHandle deserializer);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern IntPtr gdk_content_deserializer_get_task_data(GdkContentDeserializerHandle deserializer);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern IntPtr gdk_content_deserializer_get_user_data(GdkContentDeserializerHandle deserializer);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GValueHandle gdk_content_deserializer_get_value(GdkContentDeserializerHandle deserializer);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_content_deserializer_return_error(GdkContentDeserializerHandle deserializer, GErrorHandle error);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_content_deserializer_return_success(GdkContentDeserializerHandle deserializer);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_content_deserializer_set_task_data(GdkContentDeserializerHandle deserializer, IntPtr data, GDestroyNotify notify);
+
 }

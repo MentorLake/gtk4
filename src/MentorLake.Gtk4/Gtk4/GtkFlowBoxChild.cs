@@ -31,7 +31,7 @@ public class GtkFlowBoxChildSignal
 
 public static class GtkFlowBoxChildSignals
 {
-	public static GtkFlowBoxChildSignal Activate = new("activate");
+	public static GtkFlowBoxChildSignal Activate = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkFlowBoxChildHandleExtensions
@@ -63,25 +63,38 @@ public static class GtkFlowBoxChildHandleExtensions
 		return self;
 	}
 
-	public static GtkFlowBoxChildHandle Connect(this GtkFlowBoxChildHandle instance, GtkFlowBoxChildSignal signal, GCallback c_handler)
+	public static GtkFlowBoxChildHandle Signal_Activate(this GtkFlowBoxChildHandle instance, GtkFlowBoxChildDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkFlowBoxChildDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxChildHandle>))] GtkFlowBoxChildHandle self, IntPtr user_data);
 }
 
 internal class GtkFlowBoxChildExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFlowBoxChildHandle gtk_flow_box_child_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_flow_box_child_changed(GtkFlowBoxChildHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_flow_box_child_get_child(GtkFlowBoxChildHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_flow_box_child_get_index(GtkFlowBoxChildHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_flow_box_child_is_selected(GtkFlowBoxChildHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_flow_box_child_set_child(GtkFlowBoxChildHandle self, GtkWidgetHandle child);
+
 }

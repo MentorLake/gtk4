@@ -75,20 +75,29 @@ internal class GtkBoxLayoutExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBoxLayoutHandle gtk_box_layout_new(GtkOrientation orientation);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_box_layout_get_baseline_child(GtkBoxLayoutHandle box_layout);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBaselinePosition gtk_box_layout_get_baseline_position(GtkBoxLayoutHandle box_layout);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_box_layout_get_homogeneous(GtkBoxLayoutHandle box_layout);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_box_layout_get_spacing(GtkBoxLayoutHandle box_layout);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_box_layout_set_baseline_child(GtkBoxLayoutHandle box_layout, int child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_box_layout_set_baseline_position(GtkBoxLayoutHandle box_layout, GtkBaselinePosition position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_box_layout_set_homogeneous(GtkBoxLayoutHandle box_layout, bool homogeneous);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_box_layout_set_spacing(GtkBoxLayoutHandle box_layout, uint spacing);
+
 }

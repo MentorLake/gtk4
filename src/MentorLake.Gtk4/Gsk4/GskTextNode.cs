@@ -61,16 +61,23 @@ internal class GskTextNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskTextNodeHandle gsk_text_node_new(PangoFontHandle font, PangoGlyphStringHandle glyphs, GdkRGBAHandle color, graphene_point_tHandle offset);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GdkRGBAHandle gsk_text_node_get_color(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern PangoFontHandle gsk_text_node_get_font(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern PangoGlyphInfo[] gsk_text_node_get_glyphs(GskRenderNodeHandle node, out uint n_glyphs);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern uint gsk_text_node_get_num_glyphs(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern graphene_point_tHandle gsk_text_node_get_offset(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern bool gsk_text_node_has_color_glyphs(GskRenderNodeHandle node);
+
 }

@@ -66,18 +66,26 @@ internal class GdkKeyEventExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkModifierType gdk_key_event_get_consumed_modifiers(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern uint gdk_key_event_get_keycode(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern uint gdk_key_event_get_keyval(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern uint gdk_key_event_get_layout(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern uint gdk_key_event_get_level(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_key_event_get_match(GdkEventHandle @event, out uint keyval, out GdkModifierType modifiers);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_key_event_is_modifier(GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkKeyMatch gdk_key_event_matches(GdkEventHandle @event, uint keyval, GdkModifierType modifiers);
+
 }

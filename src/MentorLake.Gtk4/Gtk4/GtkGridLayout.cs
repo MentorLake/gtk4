@@ -97,28 +97,41 @@ internal class GtkGridLayoutExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkGridLayoutHandle gtk_grid_layout_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_grid_layout_get_baseline_row(GtkGridLayoutHandle grid);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_grid_layout_get_column_homogeneous(GtkGridLayoutHandle grid);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_grid_layout_get_column_spacing(GtkGridLayoutHandle grid);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBaselinePosition gtk_grid_layout_get_row_baseline_position(GtkGridLayoutHandle grid, int row);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_grid_layout_get_row_homogeneous(GtkGridLayoutHandle grid);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_grid_layout_get_row_spacing(GtkGridLayoutHandle grid);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_grid_layout_set_baseline_row(GtkGridLayoutHandle grid, int row);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_grid_layout_set_column_homogeneous(GtkGridLayoutHandle grid, bool homogeneous);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_grid_layout_set_column_spacing(GtkGridLayoutHandle grid, uint spacing);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_grid_layout_set_row_baseline_position(GtkGridLayoutHandle grid, int row, GtkBaselinePosition pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_grid_layout_set_row_homogeneous(GtkGridLayoutHandle grid, bool homogeneous);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_grid_layout_set_row_spacing(GtkGridLayoutHandle grid, uint spacing);
+
 }

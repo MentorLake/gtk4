@@ -159,50 +159,75 @@ internal class GtkEditableExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_editable_delegate_get_accessible_platform_state(GtkEditableHandle editable, GtkAccessiblePlatformState state);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_delete_selection(GtkEditableHandle editable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_delete_text(GtkEditableHandle editable, int start_pos, int end_pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_finish_delegate(GtkEditableHandle editable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern float gtk_editable_get_alignment(GtkEditableHandle editable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_editable_get_chars(GtkEditableHandle editable, int start_pos, int end_pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEditableHandle gtk_editable_get_delegate(GtkEditableHandle editable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_editable_get_editable(GtkEditableHandle editable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_editable_get_enable_undo(GtkEditableHandle editable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_editable_get_max_width_chars(GtkEditableHandle editable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_editable_get_position(GtkEditableHandle editable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_editable_get_selection_bounds(GtkEditableHandle editable, out int start_pos, out int end_pos);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_editable_get_text(GtkEditableHandle editable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_editable_get_width_chars(GtkEditableHandle editable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_init_delegate(GtkEditableHandle editable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_insert_text(GtkEditableHandle editable, string text, int length, ref int position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_select_region(GtkEditableHandle editable, int start_pos, int end_pos);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_set_alignment(GtkEditableHandle editable, float xalign);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_set_editable(GtkEditableHandle editable, bool is_editable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_set_enable_undo(GtkEditableHandle editable, bool enable_undo);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_set_max_width_chars(GtkEditableHandle editable, int n_chars);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_set_position(GtkEditableHandle editable, int position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_set_text(GtkEditableHandle editable, string text);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_editable_set_width_chars(GtkEditableHandle editable, int n_chars);
+
 }

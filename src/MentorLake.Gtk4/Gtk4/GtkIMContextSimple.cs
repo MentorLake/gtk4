@@ -43,8 +43,11 @@ internal class GtkIMContextSimpleExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkIMContextSimpleHandle gtk_im_context_simple_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_im_context_simple_add_compose_file(GtkIMContextSimpleHandle context_simple, string compose_file);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_im_context_simple_add_table(GtkIMContextSimpleHandle context_simple, ushort[] data, int max_seq_len, int n_seqs);
+
 }

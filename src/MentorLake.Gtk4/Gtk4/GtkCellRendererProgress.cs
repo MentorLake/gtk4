@@ -31,4 +31,5 @@ internal class GtkCellRendererProgressExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkCellRendererProgressHandle gtk_cell_renderer_progress_new();
+
 }

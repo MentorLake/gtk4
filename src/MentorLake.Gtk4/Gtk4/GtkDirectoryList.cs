@@ -85,24 +85,36 @@ internal class GtkDirectoryListExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkDirectoryListHandle gtk_directory_list_new(string attributes, GFileHandle file);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_directory_list_get_attributes(GtkDirectoryListHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GErrorHandle gtk_directory_list_get_error(GtkDirectoryListHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GFileHandle gtk_directory_list_get_file(GtkDirectoryListHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_directory_list_get_io_priority(GtkDirectoryListHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_directory_list_get_monitored(GtkDirectoryListHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_directory_list_is_loading(GtkDirectoryListHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_directory_list_set_attributes(GtkDirectoryListHandle self, string attributes);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_directory_list_set_file(GtkDirectoryListHandle self, GFileHandle file);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_directory_list_set_io_priority(GtkDirectoryListHandle self, int io_priority);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_directory_list_set_monitored(GtkDirectoryListHandle self, bool monitored);
+
 }

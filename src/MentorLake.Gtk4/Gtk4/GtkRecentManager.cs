@@ -36,7 +36,7 @@ public class GtkRecentManagerSignal
 
 public static class GtkRecentManagerSignals
 {
-	public static GtkRecentManagerSignal Changed = new("changed");
+	public static GtkRecentManagerSignal Changed = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkRecentManagerHandleExtensions
@@ -81,33 +81,50 @@ public static class GtkRecentManagerHandleExtensions
 		return GtkRecentManagerExterns.gtk_recent_manager_remove_item(manager, uri, out error);
 	}
 
-	public static GtkRecentManagerHandle Connect(this GtkRecentManagerHandle instance, GtkRecentManagerSignal signal, GCallback c_handler)
+	public static GtkRecentManagerHandle Signal_Changed(this GtkRecentManagerHandle instance, GtkRecentManagerDelegates.Changed handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkRecentManagerDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRecentManagerHandle>))] GtkRecentManagerHandle self, IntPtr user_data);
 }
 
 internal class GtkRecentManagerExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkRecentManagerHandle gtk_recent_manager_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_recent_manager_add_full(GtkRecentManagerHandle manager, string uri, GtkRecentDataHandle recent_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_recent_manager_add_item(GtkRecentManagerHandle manager, string uri);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListHandle gtk_recent_manager_get_items(GtkRecentManagerHandle manager);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_recent_manager_has_item(GtkRecentManagerHandle manager, string uri);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkRecentInfoHandle gtk_recent_manager_lookup_item(GtkRecentManagerHandle manager, string uri, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_recent_manager_move_item(GtkRecentManagerHandle manager, string uri, string new_uri, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_recent_manager_purge_items(GtkRecentManagerHandle manager, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_recent_manager_remove_item(GtkRecentManagerHandle manager, string uri, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkRecentManagerHandle gtk_recent_manager_get_default();
+
 }

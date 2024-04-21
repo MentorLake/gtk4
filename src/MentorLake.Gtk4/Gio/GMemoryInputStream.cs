@@ -53,12 +53,17 @@ internal class GMemoryInputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GMemoryInputStreamHandle g_memory_input_stream_new();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GMemoryInputStreamHandle g_memory_input_stream_new_from_bytes(GBytesHandle bytes);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GMemoryInputStreamHandle g_memory_input_stream_new_from_data(IntPtr data, int len, GDestroyNotify destroy);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_memory_input_stream_add_bytes(GMemoryInputStreamHandle stream, GBytesHandle bytes);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_memory_input_stream_add_data(GMemoryInputStreamHandle stream, IntPtr data, int len, GDestroyNotify destroy);
+
 }

@@ -37,10 +37,13 @@ internal class GDateExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GDateHandle g_date_new();
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GDateHandle g_date_new_dmy(GDateDay day, GDateMonth month, GDateYear year);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GDateHandle g_date_new_julian(uint julian_day);
+
 }
 
 public struct GDate

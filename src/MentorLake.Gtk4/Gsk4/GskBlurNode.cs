@@ -41,8 +41,11 @@ internal class GskBlurNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskBlurNodeHandle gsk_blur_node_new(GskRenderNodeHandle child, float radius);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_blur_node_get_child(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_blur_node_get_radius(GskRenderNodeHandle node);
+
 }

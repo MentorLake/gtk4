@@ -42,8 +42,11 @@ internal class PangoFontsetExterns
 {
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_fontset_foreach(PangoFontsetHandle fontset, PangoFontsetForeachFunc func, IntPtr data);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontHandle pango_fontset_get_font(PangoFontsetHandle fontset, uint wc);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontMetricsHandle pango_fontset_get_metrics(PangoFontsetHandle fontset);
+
 }

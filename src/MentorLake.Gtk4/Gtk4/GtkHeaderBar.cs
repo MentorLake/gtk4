@@ -82,22 +82,33 @@ internal class GtkHeaderBarExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkHeaderBarHandle gtk_header_bar_new();
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_header_bar_get_decoration_layout(GtkHeaderBarHandle bar);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_header_bar_get_show_title_buttons(GtkHeaderBarHandle bar);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_header_bar_get_title_widget(GtkHeaderBarHandle bar);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_header_bar_pack_end(GtkHeaderBarHandle bar, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_header_bar_pack_start(GtkHeaderBarHandle bar, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_header_bar_remove(GtkHeaderBarHandle bar, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_header_bar_set_decoration_layout(GtkHeaderBarHandle bar, string layout);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_header_bar_set_show_title_buttons(GtkHeaderBarHandle bar, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_header_bar_set_title_widget(GtkHeaderBarHandle bar, GtkWidgetHandle title_widget);
+
 }

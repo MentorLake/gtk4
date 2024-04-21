@@ -69,18 +69,26 @@ internal class GskRenderNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern void gsk_render_node_draw(GskRenderNodeHandle node, cairo_tHandle cr);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern void gsk_render_node_get_bounds(GskRenderNodeHandle node, out graphene_rect_t bounds);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeType gsk_render_node_get_node_type(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_render_node_ref(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GBytesHandle gsk_render_node_serialize(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern void gsk_render_node_unref(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern bool gsk_render_node_write_to_file(GskRenderNodeHandle node, string filename, out GErrorHandle error);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_render_node_deserialize(GBytesHandle bytes, GskParseErrorFunc error_func, IntPtr user_data);
+
 }

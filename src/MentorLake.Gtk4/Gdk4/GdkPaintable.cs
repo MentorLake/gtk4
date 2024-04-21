@@ -75,20 +75,29 @@ internal class GdkPaintableExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_paintable_compute_concrete_size(GdkPaintableHandle paintable, double specified_width, double specified_height, double default_width, double default_height, out double concrete_width, out double concrete_height);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkPaintableHandle gdk_paintable_get_current_image(GdkPaintableHandle paintable);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkPaintableFlags gdk_paintable_get_flags(GdkPaintableHandle paintable);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern double gdk_paintable_get_intrinsic_aspect_ratio(GdkPaintableHandle paintable);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_paintable_get_intrinsic_height(GdkPaintableHandle paintable);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern int gdk_paintable_get_intrinsic_width(GdkPaintableHandle paintable);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_paintable_invalidate_contents(GdkPaintableHandle paintable);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_paintable_invalidate_size(GdkPaintableHandle paintable);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_paintable_snapshot(GdkPaintableHandle paintable, GdkSnapshotHandle snapshot, double width, double height);
+
 }

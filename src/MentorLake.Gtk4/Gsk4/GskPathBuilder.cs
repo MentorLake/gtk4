@@ -27,6 +27,7 @@ internal class GskPathBuilderExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskPathBuilderHandle gsk_path_builder_new();
+
 }
 
 public struct GskPathBuilder

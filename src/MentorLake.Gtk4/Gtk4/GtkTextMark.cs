@@ -62,16 +62,24 @@ internal class GtkTextMarkExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTextMarkHandle gtk_text_mark_new(string name, bool left_gravity);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTextBufferHandle gtk_text_mark_get_buffer(GtkTextMarkHandle mark);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_text_mark_get_deleted(GtkTextMarkHandle mark);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_text_mark_get_left_gravity(GtkTextMarkHandle mark);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_text_mark_get_name(GtkTextMarkHandle mark);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_text_mark_get_visible(GtkTextMarkHandle mark);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_text_mark_set_visible(GtkTextMarkHandle mark, bool setting);
+
 }

@@ -26,7 +26,7 @@ public class GtkSorterSignal
 
 public static class GtkSorterSignals
 {
-	public static GtkSorterSignal Changed = new("changed");
+	public static GtkSorterSignal Changed = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkSorterHandleExtensions
@@ -47,19 +47,29 @@ public static class GtkSorterHandleExtensions
 		return GtkSorterExterns.gtk_sorter_get_order(self);
 	}
 
-	public static GtkSorterHandle Connect(this GtkSorterHandle instance, GtkSorterSignal signal, GCallback c_handler)
+	public static GtkSorterHandle Signal_Changed(this GtkSorterHandle instance, GtkSorterDelegates.Changed handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkSorterDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSorterHandle>))] GtkSorterHandle self, GtkSorterChange change, IntPtr user_data);
 }
 
 internal class GtkSorterExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_sorter_changed(GtkSorterHandle self, GtkSorterChange change);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkOrdering gtk_sorter_compare(GtkSorterHandle self, GObjectHandle item1, GObjectHandle item2);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSorterOrder gtk_sorter_get_order(GtkSorterHandle self);
+
 }

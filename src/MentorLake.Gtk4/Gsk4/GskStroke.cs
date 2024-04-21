@@ -27,6 +27,7 @@ internal class GskStrokeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskStrokeHandle gsk_stroke_new(float line_width);
+
 }
 
 public struct GskStroke

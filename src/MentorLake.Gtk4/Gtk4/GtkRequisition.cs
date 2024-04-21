@@ -27,6 +27,7 @@ internal class GtkRequisitionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkRequisitionHandle gtk_requisition_new();
+
 }
 
 public struct GtkRequisition

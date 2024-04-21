@@ -31,10 +31,10 @@ public class GtkEventControllerKeySignal
 
 public static class GtkEventControllerKeySignals
 {
-	public static GtkEventControllerKeySignal ImUpdate = new("im-update");
-	public static GtkEventControllerKeySignal KeyPressed = new("key-pressed");
-	public static GtkEventControllerKeySignal KeyReleased = new("key-released");
-	public static GtkEventControllerKeySignal Modifiers = new("modifiers");
+	public static GtkEventControllerKeySignal ImUpdate = new("BindingTransform.MethodDeclaration");
+	public static GtkEventControllerKeySignal KeyPressed = new("BindingTransform.MethodDeclaration");
+	public static GtkEventControllerKeySignal KeyReleased = new("BindingTransform.MethodDeclaration");
+	public static GtkEventControllerKeySignal Modifiers = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkEventControllerKeyHandleExtensions
@@ -60,23 +60,59 @@ public static class GtkEventControllerKeyHandleExtensions
 		return controller;
 	}
 
-	public static GtkEventControllerKeyHandle Connect(this GtkEventControllerKeyHandle instance, GtkEventControllerKeySignal signal, GCallback c_handler)
+	public static GtkEventControllerKeyHandle Signal_ImUpdate(this GtkEventControllerKeyHandle instance, GtkEventControllerKeyDelegates.ImUpdate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "im_update", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkEventControllerKeyHandle Signal_KeyPressed(this GtkEventControllerKeyHandle instance, GtkEventControllerKeyDelegates.KeyPressed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "key_pressed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkEventControllerKeyHandle Signal_KeyReleased(this GtkEventControllerKeyHandle instance, GtkEventControllerKeyDelegates.KeyReleased handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "key_released", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkEventControllerKeyHandle Signal_Modifiers(this GtkEventControllerKeyHandle instance, GtkEventControllerKeyDelegates.Modifiers handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "modifiers", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkEventControllerKeyDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ImUpdate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerKeyHandle>))] GtkEventControllerKeyHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool KeyPressed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerKeyHandle>))] GtkEventControllerKeyHandle self, uint keyval, uint keycode, GdkModifierType state, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void KeyReleased([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerKeyHandle>))] GtkEventControllerKeyHandle self, uint keyval, uint keycode, GdkModifierType state, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Modifiers([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerKeyHandle>))] GtkEventControllerKeyHandle self, GdkModifierType state, IntPtr user_data);
 }
 
 internal class GtkEventControllerKeyExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEventControllerKeyHandle gtk_event_controller_key_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_event_controller_key_forward(GtkEventControllerKeyHandle controller, GtkWidgetHandle widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_event_controller_key_get_group(GtkEventControllerKeyHandle controller);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkIMContextHandle gtk_event_controller_key_get_im_context(GtkEventControllerKeyHandle controller);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_event_controller_key_set_im_context(GtkEventControllerKeyHandle controller, GtkIMContextHandle im_context);
+
 }

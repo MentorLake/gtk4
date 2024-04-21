@@ -27,6 +27,7 @@ internal class GdkPopupLayoutExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkPopupLayoutHandle gdk_popup_layout_new(GdkRectangleHandle anchor_rect, GdkGravity rect_anchor, GdkGravity surface_anchor);
+
 }
 
 public struct GdkPopupLayout

@@ -119,36 +119,55 @@ internal class GtkPrintDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintDialogHandle gtk_print_dialog_new();
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_print_dialog_get_accept_label(GtkPrintDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_dialog_get_modal(GtkPrintDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageSetupHandle gtk_print_dialog_get_page_setup(GtkPrintDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintSettingsHandle gtk_print_dialog_get_print_settings(GtkPrintDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_print_dialog_get_title(GtkPrintDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_dialog_print(GtkPrintDialogHandle self, GtkWindowHandle parent, GtkPrintSetupHandle setup, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_dialog_print_file(GtkPrintDialogHandle self, GtkWindowHandle parent, GtkPrintSetupHandle setup, GFileHandle file, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_dialog_print_file_finish(GtkPrintDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GOutputStreamHandle gtk_print_dialog_print_finish(GtkPrintDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_dialog_set_accept_label(GtkPrintDialogHandle self, string accept_label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_dialog_set_modal(GtkPrintDialogHandle self, bool modal);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_dialog_set_page_setup(GtkPrintDialogHandle self, GtkPageSetupHandle page_setup);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_dialog_set_print_settings(GtkPrintDialogHandle self, GtkPrintSettingsHandle print_settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_dialog_set_title(GtkPrintDialogHandle self, string title);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_dialog_setup(GtkPrintDialogHandle self, GtkWindowHandle parent, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintSetupHandle gtk_print_dialog_setup_finish(GtkPrintDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 }

@@ -27,6 +27,7 @@ internal class GOptionGroupExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GOptionGroupHandle g_option_group_new(string name, string description, string help_description, IntPtr user_data, GDestroyNotify destroy);
+
 }
 
 public struct GOptionGroup

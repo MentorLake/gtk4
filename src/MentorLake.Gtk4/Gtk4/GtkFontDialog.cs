@@ -130,40 +130,60 @@ internal class GtkFontDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFontDialogHandle gtk_font_dialog_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_choose_face(GtkFontDialogHandle self, GtkWindowHandle parent, PangoFontFaceHandle initial_value, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoFontFaceHandle gtk_font_dialog_choose_face_finish(GtkFontDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_choose_family(GtkFontDialogHandle self, GtkWindowHandle parent, PangoFontFamilyHandle initial_value, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoFontFamilyHandle gtk_font_dialog_choose_family_finish(GtkFontDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_choose_font(GtkFontDialogHandle self, GtkWindowHandle parent, PangoFontDescriptionHandle initial_value, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_choose_font_and_features(GtkFontDialogHandle self, GtkWindowHandle parent, PangoFontDescriptionHandle initial_value, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_font_dialog_choose_font_and_features_finish(GtkFontDialogHandle self, GAsyncResultHandle result, out PangoFontDescriptionHandle font_desc, out string font_features, out PangoLanguageHandle language, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoFontDescriptionHandle gtk_font_dialog_choose_font_finish(GtkFontDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFilterHandle gtk_font_dialog_get_filter(GtkFontDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoFontMapHandle gtk_font_dialog_get_font_map(GtkFontDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoLanguageHandle gtk_font_dialog_get_language(GtkFontDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_font_dialog_get_modal(GtkFontDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_font_dialog_get_title(GtkFontDialogHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_set_filter(GtkFontDialogHandle self, GtkFilterHandle filter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_set_font_map(GtkFontDialogHandle self, PangoFontMapHandle fontmap);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_set_language(GtkFontDialogHandle self, PangoLanguageHandle language);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_set_modal(GtkFontDialogHandle self, bool modal);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_font_dialog_set_title(GtkFontDialogHandle self, string title);
+
 }

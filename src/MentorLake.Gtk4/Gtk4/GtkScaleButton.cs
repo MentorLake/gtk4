@@ -31,9 +31,9 @@ public class GtkScaleButtonSignal
 
 public static class GtkScaleButtonSignals
 {
-	public static GtkScaleButtonSignal Popdown = new("popdown");
-	public static GtkScaleButtonSignal Popup = new("popup");
-	public static GtkScaleButtonSignal ValueChanged = new("value-changed");
+	public static GtkScaleButtonSignal Popdown = new("BindingTransform.MethodDeclaration");
+	public static GtkScaleButtonSignal Popup = new("BindingTransform.MethodDeclaration");
+	public static GtkScaleButtonSignal ValueChanged = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkScaleButtonHandleExtensions
@@ -97,37 +97,72 @@ public static class GtkScaleButtonHandleExtensions
 		return button;
 	}
 
-	public static GtkScaleButtonHandle Connect(this GtkScaleButtonHandle instance, GtkScaleButtonSignal signal, GCallback c_handler)
+	public static GtkScaleButtonHandle Signal_Popdown(this GtkScaleButtonHandle instance, GtkScaleButtonDelegates.Popdown handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "popdown", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkScaleButtonHandle Signal_Popup(this GtkScaleButtonHandle instance, GtkScaleButtonDelegates.Popup handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "popup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkScaleButtonHandle Signal_ValueChanged(this GtkScaleButtonHandle instance, GtkScaleButtonDelegates.ValueChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkScaleButtonDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Popdown([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScaleButtonHandle>))] GtkScaleButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Popup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScaleButtonHandle>))] GtkScaleButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ValueChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScaleButtonHandle>))] GtkScaleButtonHandle self, double value, IntPtr user_data);
 }
 
 internal class GtkScaleButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkScaleButtonHandle gtk_scale_button_new(double min, double max, double step, string[] icons);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_scale_button_get_active(GtkScaleButtonHandle button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAdjustmentHandle gtk_scale_button_get_adjustment(GtkScaleButtonHandle button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_scale_button_get_has_frame(GtkScaleButtonHandle button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_scale_button_get_minus_button(GtkScaleButtonHandle button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_scale_button_get_plus_button(GtkScaleButtonHandle button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_scale_button_get_popup(GtkScaleButtonHandle button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_scale_button_get_value(GtkScaleButtonHandle button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scale_button_set_adjustment(GtkScaleButtonHandle button, GtkAdjustmentHandle adjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scale_button_set_has_frame(GtkScaleButtonHandle button, bool has_frame);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scale_button_set_icons(GtkScaleButtonHandle button, string[] icons);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scale_button_set_value(GtkScaleButtonHandle button, double value);
+
 }

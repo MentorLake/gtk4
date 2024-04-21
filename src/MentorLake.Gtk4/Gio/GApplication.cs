@@ -41,13 +41,13 @@ public class GApplicationSignal
 
 public static class GApplicationSignals
 {
-	public static GApplicationSignal Activate = new("activate");
-	public static GApplicationSignal CommandLine = new("command-line");
-	public static GApplicationSignal HandleLocalOptions = new("handle-local-options");
-	public static GApplicationSignal NameLost = new("name-lost");
-	public static GApplicationSignal Open = new("open");
-	public static GApplicationSignal Shutdown = new("shutdown");
-	public static GApplicationSignal Startup = new("startup");
+	public static GApplicationSignal Activate = new("BindingTransform.MethodDeclaration");
+	public static GApplicationSignal CommandLine = new("BindingTransform.MethodDeclaration");
+	public static GApplicationSignal HandleLocalOptions = new("BindingTransform.MethodDeclaration");
+	public static GApplicationSignal NameLost = new("BindingTransform.MethodDeclaration");
+	public static GApplicationSignal Open = new("BindingTransform.MethodDeclaration");
+	public static GApplicationSignal Shutdown = new("BindingTransform.MethodDeclaration");
+	public static GApplicationSignal Startup = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GApplicationHandleExtensions
@@ -256,91 +256,185 @@ public static class GApplicationHandleExtensions
 		return application;
 	}
 
-	public static GApplicationHandle Connect(this GApplicationHandle instance, GApplicationSignal signal, GCallback c_handler)
+	public static GApplicationHandle Signal_Activate(this GApplicationHandle instance, GApplicationDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GApplicationHandle Signal_CommandLine(this GApplicationHandle instance, GApplicationDelegates.CommandLine handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "command_line", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GApplicationHandle Signal_HandleLocalOptions(this GApplicationHandle instance, GApplicationDelegates.HandleLocalOptions handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "handle_local_options", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GApplicationHandle Signal_NameLost(this GApplicationHandle instance, GApplicationDelegates.NameLost handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "name_lost", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GApplicationHandle Signal_Open(this GApplicationHandle instance, GApplicationDelegates.Open handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "open", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GApplicationHandle Signal_Shutdown(this GApplicationHandle instance, GApplicationDelegates.Shutdown handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "shutdown", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GApplicationHandle Signal_Startup(this GApplicationHandle instance, GApplicationDelegates.Startup handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "startup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GApplicationDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate int CommandLine([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, GApplicationCommandLineHandle command_line, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate int HandleLocalOptions([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, GVariantDictHandle options, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool NameLost([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Open([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr files, int n_files, string hint, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Shutdown([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Startup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
 }
 
 internal class GApplicationExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GApplicationHandle g_application_new(string application_id, GApplicationFlags flags);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_activate(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_add_main_option(GApplicationHandle application, string long_name, char short_name, GOptionFlags flags, GOptionArg arg, string description, string arg_description);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_add_main_option_entries(GApplicationHandle application, GOptionEntry[] entries);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_add_option_group(GApplicationHandle application, GOptionGroupHandle group);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_bind_busy_property(GApplicationHandle application, GObjectHandle @object, string property);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_application_get_application_id(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusConnectionHandle g_application_get_dbus_connection(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_application_get_dbus_object_path(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GApplicationFlags g_application_get_flags(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_application_get_inactivity_timeout(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_application_get_is_busy(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_application_get_is_registered(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_application_get_is_remote(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_application_get_resource_base_path(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_application_get_version(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_hold(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_mark_busy(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_open(GApplicationHandle application, GFileHandle[] files, int n_files, string hint);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_quit(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_application_register(GApplicationHandle application, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_release(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_application_run(GApplicationHandle application, int argc, string[] argv);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_send_notification(GApplicationHandle application, string id, GNotificationHandle notification);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_set_action_group(GApplicationHandle application, GActionGroupHandle action_group);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_set_application_id(GApplicationHandle application, string application_id);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_set_default(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_set_flags(GApplicationHandle application, GApplicationFlags flags);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_set_inactivity_timeout(GApplicationHandle application, uint inactivity_timeout);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_set_option_context_description(GApplicationHandle application, string description);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_set_option_context_parameter_string(GApplicationHandle application, string parameter_string);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_set_option_context_summary(GApplicationHandle application, string summary);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_set_resource_base_path(GApplicationHandle application, string resource_path);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_set_version(GApplicationHandle application, string version);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_unbind_busy_property(GApplicationHandle application, GObjectHandle @object, string property);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_unmark_busy(GApplicationHandle application);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_application_withdraw_notification(GApplicationHandle application, string id);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GApplicationHandle g_application_get_default();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_application_id_is_valid(string application_id);
+
 }

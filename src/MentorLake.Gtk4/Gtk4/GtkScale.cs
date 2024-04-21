@@ -109,32 +109,47 @@ internal class GtkScaleExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkScaleHandle gtk_scale_new(GtkOrientation orientation, GtkAdjustmentHandle adjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkScaleHandle gtk_scale_new_with_range(GtkOrientation orientation, double min, double max, double step);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scale_add_mark(GtkScaleHandle scale, double value, GtkPositionType position, string markup);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scale_clear_marks(GtkScaleHandle scale);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_scale_get_digits(GtkScaleHandle scale);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_scale_get_draw_value(GtkScaleHandle scale);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_scale_get_has_origin(GtkScaleHandle scale);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern PangoLayoutHandle gtk_scale_get_layout(GtkScaleHandle scale);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scale_get_layout_offsets(GtkScaleHandle scale, out int x, out int y);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPositionType gtk_scale_get_value_pos(GtkScaleHandle scale);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scale_set_digits(GtkScaleHandle scale, int digits);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scale_set_draw_value(GtkScaleHandle scale, bool draw_value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scale_set_format_value_func(GtkScaleHandle scale, GtkScaleFormatValueFunc func, IntPtr user_data, GDestroyNotify destroy_notify);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scale_set_has_origin(GtkScaleHandle scale, bool has_origin);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scale_set_value_pos(GtkScaleHandle scale, GtkPositionType pos);
+
 }

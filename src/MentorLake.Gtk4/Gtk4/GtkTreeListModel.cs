@@ -62,16 +62,23 @@ internal class GtkTreeListModelExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeListModelHandle gtk_tree_list_model_new(GListModelHandle root, bool passthrough, bool autoexpand, GtkTreeListModelCreateModelFunc create_func, IntPtr user_data, GDestroyNotify user_destroy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_list_model_get_autoexpand(GtkTreeListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeListRowHandle gtk_tree_list_model_get_child_row(GtkTreeListModelHandle self, uint position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_tree_list_model_get_model(GtkTreeListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_list_model_get_passthrough(GtkTreeListModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeListRowHandle gtk_tree_list_model_get_row(GtkTreeListModelHandle self, uint position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_list_model_set_autoexpand(GtkTreeListModelHandle self, bool autoexpand);
+
 }

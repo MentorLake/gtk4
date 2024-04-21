@@ -31,4 +31,5 @@ internal class GtkAssistantPageExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_assistant_page_get_child(GtkAssistantPageHandle page);
+
 }

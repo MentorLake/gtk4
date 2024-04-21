@@ -105,30 +105,44 @@ internal class GtkBoxExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBoxHandle gtk_box_new(GtkOrientation orientation, int spacing);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_box_append(GtkBoxHandle box, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_box_get_baseline_child(GtkBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBaselinePosition gtk_box_get_baseline_position(GtkBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_box_get_homogeneous(GtkBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_box_get_spacing(GtkBoxHandle box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_box_insert_child_after(GtkBoxHandle box, GtkWidgetHandle child, GtkWidgetHandle sibling);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_box_prepend(GtkBoxHandle box, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_box_remove(GtkBoxHandle box, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_box_reorder_child_after(GtkBoxHandle box, GtkWidgetHandle child, GtkWidgetHandle sibling);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_box_set_baseline_child(GtkBoxHandle box, int child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_box_set_baseline_position(GtkBoxHandle box, GtkBaselinePosition position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_box_set_homogeneous(GtkBoxHandle box, bool homogeneous);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_box_set_spacing(GtkBoxHandle box, int spacing);
+
 }

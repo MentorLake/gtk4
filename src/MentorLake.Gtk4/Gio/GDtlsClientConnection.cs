@@ -53,12 +53,17 @@ internal class GDtlsClientConnectionExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_dtls_client_connection_get_accepted_cas(GDtlsClientConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSocketConnectableHandle g_dtls_client_connection_get_server_identity(GDtlsClientConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateFlags g_dtls_client_connection_get_validation_flags(GDtlsClientConnectionHandle conn);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dtls_client_connection_set_server_identity(GDtlsClientConnectionHandle conn, GSocketConnectableHandle identity);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_dtls_client_connection_set_validation_flags(GDtlsClientConnectionHandle conn, GTlsCertificateFlags flags);
+
 }

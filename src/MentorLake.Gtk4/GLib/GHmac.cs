@@ -27,6 +27,7 @@ internal class GHmacExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GHmacHandle g_hmac_new(GChecksumType digest_type, string key, int key_len);
+
 }
 
 public struct GHmac

@@ -37,6 +37,8 @@ internal class GtkFixedLayoutChildExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GskTransformHandle gtk_fixed_layout_child_get_transform(GtkFixedLayoutChildHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_fixed_layout_child_set_transform(GtkFixedLayoutChildHandle child, GskTransformHandle transform);
+
 }

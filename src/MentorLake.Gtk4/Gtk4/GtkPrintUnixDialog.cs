@@ -124,38 +124,56 @@ internal class GtkPrintUnixDialogExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintUnixDialogHandle gtk_print_unix_dialog_new(string title, GtkWindowHandle parent);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_unix_dialog_add_custom_tab(GtkPrintUnixDialogHandle dialog, GtkWidgetHandle child, GtkWidgetHandle tab_label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_print_unix_dialog_get_current_page(GtkPrintUnixDialogHandle dialog);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_unix_dialog_get_embed_page_setup(GtkPrintUnixDialogHandle dialog);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_unix_dialog_get_has_selection(GtkPrintUnixDialogHandle dialog);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintCapabilities gtk_print_unix_dialog_get_manual_capabilities(GtkPrintUnixDialogHandle dialog);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageSetupHandle gtk_print_unix_dialog_get_page_setup(GtkPrintUnixDialogHandle dialog);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_unix_dialog_get_page_setup_set(GtkPrintUnixDialogHandle dialog);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrinterHandle gtk_print_unix_dialog_get_selected_printer(GtkPrintUnixDialogHandle dialog);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPrintSettingsHandle gtk_print_unix_dialog_get_settings(GtkPrintUnixDialogHandle dialog);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_print_unix_dialog_get_support_selection(GtkPrintUnixDialogHandle dialog);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_unix_dialog_set_current_page(GtkPrintUnixDialogHandle dialog, int current_page);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_unix_dialog_set_embed_page_setup(GtkPrintUnixDialogHandle dialog, bool embed);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_unix_dialog_set_has_selection(GtkPrintUnixDialogHandle dialog, bool has_selection);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_unix_dialog_set_manual_capabilities(GtkPrintUnixDialogHandle dialog, GtkPrintCapabilities capabilities);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_unix_dialog_set_page_setup(GtkPrintUnixDialogHandle dialog, GtkPageSetupHandle page_setup);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_unix_dialog_set_settings(GtkPrintUnixDialogHandle dialog, GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_unix_dialog_set_support_selection(GtkPrintUnixDialogHandle dialog, bool support_selection);
+
 }

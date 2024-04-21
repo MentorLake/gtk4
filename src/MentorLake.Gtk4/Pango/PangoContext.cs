@@ -166,54 +166,80 @@ internal class PangoContextExterns
 {
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoContextHandle pango_context_new();
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_context_changed(PangoContextHandle context);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoDirection pango_context_get_base_dir(PangoContextHandle context);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoGravity pango_context_get_base_gravity(PangoContextHandle context);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontDescriptionHandle pango_context_get_font_description(PangoContextHandle context);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontMapHandle pango_context_get_font_map(PangoContextHandle context);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoGravity pango_context_get_gravity(PangoContextHandle context);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoGravityHint pango_context_get_gravity_hint(PangoContextHandle context);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoLanguageHandle pango_context_get_language(PangoContextHandle context);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoMatrixHandle pango_context_get_matrix(PangoContextHandle context);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontMetricsHandle pango_context_get_metrics(PangoContextHandle context, PangoFontDescriptionHandle desc, PangoLanguageHandle language);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern bool pango_context_get_round_glyph_positions(PangoContextHandle context);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern uint pango_context_get_serial(PangoContextHandle context);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_context_list_families(PangoContextHandle context, out PangoFontFamilyHandle[] families, out int n_families);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontHandle pango_context_load_font(PangoContextHandle context, PangoFontDescriptionHandle desc);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontsetHandle pango_context_load_fontset(PangoContextHandle context, PangoFontDescriptionHandle desc, PangoLanguageHandle language);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_context_set_base_dir(PangoContextHandle context, PangoDirection direction);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_context_set_base_gravity(PangoContextHandle context, PangoGravity gravity);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_context_set_font_description(PangoContextHandle context, PangoFontDescriptionHandle desc);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_context_set_font_map(PangoContextHandle context, PangoFontMapHandle font_map);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_context_set_gravity_hint(PangoContextHandle context, PangoGravityHint hint);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_context_set_language(PangoContextHandle context, PangoLanguageHandle language);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_context_set_matrix(PangoContextHandle context, PangoMatrixHandle matrix);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_context_set_round_glyph_positions(PangoContextHandle context, bool round_positions);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern GListHandle pango_itemize(PangoContextHandle context, string text, int start_index, int length, PangoAttrListHandle attrs, PangoAttrIteratorHandle cached_iter);
+
 	[DllImport(Libraries.Pango)]
 	internal static extern GListHandle pango_itemize_with_base_dir(PangoContextHandle context, PangoDirection base_dir, string text, int start_index, int length, PangoAttrListHandle attrs, PangoAttrIteratorHandle cached_iter);
+
 }

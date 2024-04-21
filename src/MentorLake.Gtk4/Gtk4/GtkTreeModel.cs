@@ -178,58 +178,86 @@ internal class GtkTreeModelExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeModelHandle gtk_tree_model_filter_new(GtkTreeModelHandle child_model, GtkTreePathHandle root);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_foreach(GtkTreeModelHandle model, GtkTreeModelForeachFunc func, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_get(GtkTreeModelHandle tree_model, GtkTreeIterHandle iter, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GType gtk_tree_model_get_column_type(GtkTreeModelHandle tree_model, int index_);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeModelFlags gtk_tree_model_get_flags(GtkTreeModelHandle tree_model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_model_get_iter(GtkTreeModelHandle tree_model, out GtkTreeIter iter, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_model_get_iter_first(GtkTreeModelHandle tree_model, out GtkTreeIter iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_model_get_iter_from_string(GtkTreeModelHandle tree_model, out GtkTreeIter iter, string path_string);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_model_get_n_columns(GtkTreeModelHandle tree_model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreePathHandle gtk_tree_model_get_path(GtkTreeModelHandle tree_model, GtkTreeIterHandle iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_tree_model_get_string_from_iter(GtkTreeModelHandle tree_model, GtkTreeIterHandle iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_get_valist(GtkTreeModelHandle tree_model, GtkTreeIterHandle iter, IntPtr var_args);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_get_value(GtkTreeModelHandle tree_model, GtkTreeIterHandle iter, int column, out GValue value);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_model_iter_children(GtkTreeModelHandle tree_model, out GtkTreeIter iter, GtkTreeIterHandle parent);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_model_iter_has_child(GtkTreeModelHandle tree_model, GtkTreeIterHandle iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_tree_model_iter_n_children(GtkTreeModelHandle tree_model, GtkTreeIterHandle iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_model_iter_next(GtkTreeModelHandle tree_model, GtkTreeIterHandle iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_model_iter_nth_child(GtkTreeModelHandle tree_model, out GtkTreeIter iter, GtkTreeIterHandle parent, int n);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_model_iter_parent(GtkTreeModelHandle tree_model, out GtkTreeIter iter, GtkTreeIterHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_model_iter_previous(GtkTreeModelHandle tree_model, GtkTreeIterHandle iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_ref_node(GtkTreeModelHandle tree_model, GtkTreeIterHandle iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_row_changed(GtkTreeModelHandle tree_model, GtkTreePathHandle path, GtkTreeIterHandle iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_row_deleted(GtkTreeModelHandle tree_model, GtkTreePathHandle path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_row_has_child_toggled(GtkTreeModelHandle tree_model, GtkTreePathHandle path, GtkTreeIterHandle iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_row_inserted(GtkTreeModelHandle tree_model, GtkTreePathHandle path, GtkTreeIterHandle iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_rows_reordered(GtkTreeModelHandle tree_model, GtkTreePathHandle path, GtkTreeIterHandle iter, int[] new_order);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_rows_reordered_with_length(GtkTreeModelHandle tree_model, GtkTreePathHandle path, GtkTreeIterHandle iter, int[] new_order, int length);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_unref_node(GtkTreeModelHandle tree_model, GtkTreeIterHandle iter);
+
 }

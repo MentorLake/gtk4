@@ -41,8 +41,11 @@ internal class GskRoundedClipNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRoundedClipNodeHandle gsk_rounded_clip_node_new(GskRenderNodeHandle child, GskRoundedRectHandle clip);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_rounded_clip_node_get_child(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRoundedRectHandle gsk_rounded_clip_node_get_clip(GskRenderNodeHandle node);
+
 }

@@ -46,10 +46,14 @@ internal class GtkColumnViewSorterExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_column_view_sorter_get_n_sort_columns(GtkColumnViewSorterHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkColumnViewColumnHandle gtk_column_view_sorter_get_nth_sort_column(GtkColumnViewSorterHandle self, uint position, out GtkSortType sort_order);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkColumnViewColumnHandle gtk_column_view_sorter_get_primary_sort_column(GtkColumnViewSorterHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSortType gtk_column_view_sorter_get_primary_sort_order(GtkColumnViewSorterHandle self);
+
 }

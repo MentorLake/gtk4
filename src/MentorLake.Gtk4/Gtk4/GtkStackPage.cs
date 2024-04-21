@@ -97,28 +97,44 @@ internal class GtkStackPageExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_stack_page_get_child(GtkStackPageHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_stack_page_get_icon_name(GtkStackPageHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_stack_page_get_name(GtkStackPageHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_stack_page_get_needs_attention(GtkStackPageHandle self);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_stack_page_get_title(GtkStackPageHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_stack_page_get_use_underline(GtkStackPageHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_stack_page_get_visible(GtkStackPageHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_page_set_icon_name(GtkStackPageHandle self, string setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_page_set_name(GtkStackPageHandle self, string setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_page_set_needs_attention(GtkStackPageHandle self, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_page_set_title(GtkStackPageHandle self, string setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_page_set_use_underline(GtkStackPageHandle self, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_stack_page_set_visible(GtkStackPageHandle self, bool visible);
+
 }

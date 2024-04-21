@@ -42,8 +42,11 @@ internal class GtkAppChooserExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GAppInfoHandle gtk_app_chooser_get_app_info(GtkAppChooserHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_app_chooser_get_content_type(GtkAppChooserHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_app_chooser_refresh(GtkAppChooserHandle self);
+
 }

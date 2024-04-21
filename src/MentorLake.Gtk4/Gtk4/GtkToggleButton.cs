@@ -41,7 +41,7 @@ public class GtkToggleButtonSignal
 
 public static class GtkToggleButtonSignals
 {
-	public static GtkToggleButtonSignal Toggled = new("toggled");
+	public static GtkToggleButtonSignal Toggled = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkToggleButtonHandleExtensions
@@ -69,27 +69,41 @@ public static class GtkToggleButtonHandleExtensions
 		return toggle_button;
 	}
 
-	public static GtkToggleButtonHandle Connect(this GtkToggleButtonHandle instance, GtkToggleButtonSignal signal, GCallback c_handler)
+	public static GtkToggleButtonHandle Signal_Toggled(this GtkToggleButtonHandle instance, GtkToggleButtonDelegates.Toggled handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "toggled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkToggleButtonDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Toggled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkToggleButtonHandle>))] GtkToggleButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkToggleButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkToggleButtonHandle gtk_toggle_button_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkToggleButtonHandle gtk_toggle_button_new_with_label(string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkToggleButtonHandle gtk_toggle_button_new_with_mnemonic(string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_toggle_button_get_active(GtkToggleButtonHandle toggle_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_toggle_button_set_active(GtkToggleButtonHandle toggle_button, bool is_active);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_toggle_button_set_group(GtkToggleButtonHandle toggle_button, GtkToggleButtonHandle group);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_toggle_button_toggled(GtkToggleButtonHandle toggle_button);
+
 }

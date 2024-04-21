@@ -31,7 +31,7 @@ public class GFilenameCompleterSignal
 
 public static class GFilenameCompleterSignals
 {
-	public static GFilenameCompleterSignal GotCompletionData = new("got-completion-data");
+	public static GFilenameCompleterSignal GotCompletionData = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GFilenameCompleterHandleExtensions
@@ -52,21 +52,32 @@ public static class GFilenameCompleterHandleExtensions
 		return completer;
 	}
 
-	public static GFilenameCompleterHandle Connect(this GFilenameCompleterHandle instance, GFilenameCompleterSignal signal, GCallback c_handler)
+	public static GFilenameCompleterHandle Signal_GotCompletionData(this GFilenameCompleterHandle instance, GFilenameCompleterDelegates.GotCompletionData handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "got_completion_data", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GFilenameCompleterDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void GotCompletionData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GFilenameCompleterHandle>))] GFilenameCompleterHandle self, IntPtr user_data);
 }
 
 internal class GFilenameCompleterExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GFilenameCompleterHandle g_filename_completer_new();
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_filename_completer_get_completion_suffix(GFilenameCompleterHandle completer, string initial_text);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_filename_completer_get_completions(GFilenameCompleterHandle completer, string initial_text);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_filename_completer_set_dirs_only(GFilenameCompleterHandle completer, bool dirs_only);
+
 }

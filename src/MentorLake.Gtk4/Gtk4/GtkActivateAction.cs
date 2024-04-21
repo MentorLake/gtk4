@@ -31,4 +31,5 @@ internal class GtkActivateActionExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkShortcutActionHandle gtk_activate_action_get();
+
 }

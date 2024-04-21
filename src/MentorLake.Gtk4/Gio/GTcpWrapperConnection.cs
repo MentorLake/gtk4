@@ -36,6 +36,8 @@ internal class GTcpWrapperConnectionExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GTcpWrapperConnectionHandle g_tcp_wrapper_connection_new(GIOStreamHandle base_io_stream, GSocketHandle socket);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GIOStreamHandle g_tcp_wrapper_connection_get_base_io_stream(GTcpWrapperConnectionHandle conn);
+
 }

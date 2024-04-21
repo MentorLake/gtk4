@@ -26,7 +26,7 @@ public class GtkFilterSignal
 
 public static class GtkFilterSignals
 {
-	public static GtkFilterSignal Changed = new("changed");
+	public static GtkFilterSignal Changed = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkFilterHandleExtensions
@@ -47,19 +47,29 @@ public static class GtkFilterHandleExtensions
 		return GtkFilterExterns.gtk_filter_match(self, item);
 	}
 
-	public static GtkFilterHandle Connect(this GtkFilterHandle instance, GtkFilterSignal signal, GCallback c_handler)
+	public static GtkFilterHandle Signal_Changed(this GtkFilterHandle instance, GtkFilterDelegates.Changed handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkFilterDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFilterHandle>))] GtkFilterHandle self, GtkFilterChange change, IntPtr user_data);
 }
 
 internal class GtkFilterExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_filter_changed(GtkFilterHandle self, GtkFilterChange change);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkFilterMatch gtk_filter_get_strictness(GtkFilterHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_filter_match(GtkFilterHandle self, GObjectHandle item);
+
 }

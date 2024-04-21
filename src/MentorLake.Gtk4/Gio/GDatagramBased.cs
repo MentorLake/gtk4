@@ -51,12 +51,17 @@ internal class GDatagramBasedExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GIOCondition g_datagram_based_condition_check(GDatagramBasedHandle datagram_based, GIOCondition condition);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_datagram_based_condition_wait(GDatagramBasedHandle datagram_based, GIOCondition condition, long timeout, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSourceHandle g_datagram_based_create_source(GDatagramBasedHandle datagram_based, GIOCondition condition, GCancellableHandle cancellable);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_datagram_based_receive_messages(GDatagramBasedHandle datagram_based, GInputMessage[] messages, uint num_messages, int flags, long timeout, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_datagram_based_send_messages(GDatagramBasedHandle datagram_based, GOutputMessage[] messages, uint num_messages, int flags, long timeout, GCancellableHandle cancellable, out GErrorHandle error);
+
 }

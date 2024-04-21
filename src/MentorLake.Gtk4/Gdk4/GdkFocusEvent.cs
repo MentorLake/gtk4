@@ -31,4 +31,5 @@ internal class GdkFocusEventExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_focus_event_get_in(GdkEventHandle @event);
+
 }

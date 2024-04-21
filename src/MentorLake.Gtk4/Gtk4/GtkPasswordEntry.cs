@@ -31,7 +31,7 @@ public class GtkPasswordEntrySignal
 
 public static class GtkPasswordEntrySignals
 {
-	public static GtkPasswordEntrySignal Activate = new("activate");
+	public static GtkPasswordEntrySignal Activate = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkPasswordEntryHandleExtensions
@@ -58,23 +58,35 @@ public static class GtkPasswordEntryHandleExtensions
 		return entry;
 	}
 
-	public static GtkPasswordEntryHandle Connect(this GtkPasswordEntryHandle instance, GtkPasswordEntrySignal signal, GCallback c_handler)
+	public static GtkPasswordEntryHandle Signal_Activate(this GtkPasswordEntryHandle instance, GtkPasswordEntryDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkPasswordEntryDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPasswordEntryHandle>))] GtkPasswordEntryHandle self, IntPtr user_data);
 }
 
 internal class GtkPasswordEntryExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPasswordEntryHandle gtk_password_entry_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GMenuModelHandle gtk_password_entry_get_extra_menu(GtkPasswordEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_password_entry_get_show_peek_icon(GtkPasswordEntryHandle entry);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_password_entry_set_extra_menu(GtkPasswordEntryHandle entry, GMenuModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_password_entry_set_show_peek_icon(GtkPasswordEntryHandle entry, bool show_peek_icon);
+
 }

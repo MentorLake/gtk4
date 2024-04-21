@@ -32,4 +32,5 @@ internal class GtkShortcutsGroupExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_shortcuts_group_add_shortcut(GtkShortcutsGroupHandle self, GtkShortcutsShortcutHandle shortcut);
+
 }

@@ -36,11 +36,11 @@ public class GdkDisplaySignal
 
 public static class GdkDisplaySignals
 {
-	public static GdkDisplaySignal Closed = new("closed");
-	public static GdkDisplaySignal Opened = new("opened");
-	public static GdkDisplaySignal SeatAdded = new("seat-added");
-	public static GdkDisplaySignal SeatRemoved = new("seat-removed");
-	public static GdkDisplaySignal SettingChanged = new("setting-changed");
+	public static GdkDisplaySignal Closed = new("BindingTransform.MethodDeclaration");
+	public static GdkDisplaySignal Opened = new("BindingTransform.MethodDeclaration");
+	public static GdkDisplaySignal SeatAdded = new("BindingTransform.MethodDeclaration");
+	public static GdkDisplaySignal SeatRemoved = new("BindingTransform.MethodDeclaration");
+	public static GdkDisplaySignal SettingChanged = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GdkDisplayHandleExtensions
@@ -191,73 +191,144 @@ public static class GdkDisplayHandleExtensions
 		return GdkDisplayExterns.gdk_display_translate_key(display, keycode, state, group, out keyval, out effective_group, out level, out consumed);
 	}
 
-	public static GdkDisplayHandle Connect(this GdkDisplayHandle instance, GdkDisplaySignal signal, GCallback c_handler)
+	public static GdkDisplayHandle Signal_Closed(this GdkDisplayHandle instance, GdkDisplayDelegates.Closed handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GdkDisplayHandle Signal_Opened(this GdkDisplayHandle instance, GdkDisplayDelegates.Opened handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "opened", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkDisplayHandle Signal_SeatAdded(this GdkDisplayHandle instance, GdkDisplayDelegates.SeatAdded handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "seat_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkDisplayHandle Signal_SeatRemoved(this GdkDisplayHandle instance, GdkDisplayDelegates.SeatRemoved handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "seat_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkDisplayHandle Signal_SettingChanged(this GdkDisplayHandle instance, GdkDisplayDelegates.SettingChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "setting_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GdkDisplayDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, bool is_error, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Opened([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SeatAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, GdkSeatHandle seat, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SeatRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, GdkSeatHandle seat, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SettingChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, string setting, IntPtr user_data);
 }
 
 internal class GdkDisplayExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_display_beep(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_display_close(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkGLContextHandle gdk_display_create_gl_context(GdkDisplayHandle self, out GErrorHandle error);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_display_device_is_grabbed(GdkDisplayHandle display, GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_display_flush(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkAppLaunchContextHandle gdk_display_get_app_launch_context(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkClipboardHandle gdk_display_get_clipboard(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkSeatHandle gdk_display_get_default_seat(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDmabufFormatsHandle gdk_display_get_dmabuf_formats(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkMonitorHandle gdk_display_get_monitor_at_surface(GdkDisplayHandle display, GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GListModelHandle gdk_display_get_monitors(GdkDisplayHandle self);
+
 	[DllImport(Libraries.Gdk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gdk_display_get_name(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkClipboardHandle gdk_display_get_primary_clipboard(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_display_get_setting(GdkDisplayHandle display, string name, GValueHandle value);
+
 	[DllImport(Libraries.Gdk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gdk_display_get_startup_notification_id(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_display_is_closed(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_display_is_composited(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_display_is_rgba(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GListHandle gdk_display_list_seats(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_display_map_keycode(GdkDisplayHandle display, uint keycode, out GdkKeymapKey[] keys, out uint[] keyvals, out int n_entries);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_display_map_keyval(GdkDisplayHandle display, uint keyval, out GdkKeymapKey[] keys, out int n_keys);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_display_notify_startup_complete(GdkDisplayHandle display, string startup_id);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_display_prepare_gl(GdkDisplayHandle self, out GErrorHandle error);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_display_put_event(GdkDisplayHandle display, GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_display_supports_input_shapes(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_display_supports_shadow_width(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_display_sync(GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_display_translate_key(GdkDisplayHandle display, uint keycode, GdkModifierType state, int group, out uint keyval, out int effective_group, out int level, out GdkModifierType consumed);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDisplayHandle gdk_display_get_default();
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkDisplayHandle gdk_display_open(string display_name);
+
 }

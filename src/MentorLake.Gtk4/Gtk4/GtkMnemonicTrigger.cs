@@ -36,6 +36,8 @@ internal class GtkMnemonicTriggerExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMnemonicTriggerHandle gtk_mnemonic_trigger_new(uint keyval);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_mnemonic_trigger_get_keyval(GtkMnemonicTriggerHandle self);
+
 }

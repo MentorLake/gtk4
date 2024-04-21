@@ -82,24 +82,35 @@ internal class GtkSelectionModelExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBitsetHandle gtk_selection_model_get_selection(GtkSelectionModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkBitsetHandle gtk_selection_model_get_selection_in_range(GtkSelectionModelHandle model, uint position, uint n_items);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_selection_model_is_selected(GtkSelectionModelHandle model, uint position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_selection_model_select_all(GtkSelectionModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_selection_model_select_item(GtkSelectionModelHandle model, uint position, bool unselect_rest);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_selection_model_select_range(GtkSelectionModelHandle model, uint position, uint n_items, bool unselect_rest);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_selection_model_selection_changed(GtkSelectionModelHandle model, uint position, uint n_items);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_selection_model_set_selection(GtkSelectionModelHandle model, GtkBitsetHandle selected, GtkBitsetHandle mask);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_selection_model_unselect_all(GtkSelectionModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_selection_model_unselect_item(GtkSelectionModelHandle model, uint position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_selection_model_unselect_range(GtkSelectionModelHandle model, uint position, uint n_items);
+
 }

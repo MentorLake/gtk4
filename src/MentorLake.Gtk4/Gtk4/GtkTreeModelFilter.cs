@@ -82,22 +82,32 @@ internal class GtkTreeModelFilterExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_filter_clear_cache(GtkTreeModelFilterHandle filter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_tree_model_filter_convert_child_iter_to_iter(GtkTreeModelFilterHandle filter, out GtkTreeIter filter_iter, GtkTreeIterHandle child_iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreePathHandle gtk_tree_model_filter_convert_child_path_to_path(GtkTreeModelFilterHandle filter, GtkTreePathHandle child_path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_filter_convert_iter_to_child_iter(GtkTreeModelFilterHandle filter, out GtkTreeIter child_iter, GtkTreeIterHandle filter_iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreePathHandle gtk_tree_model_filter_convert_path_to_child_path(GtkTreeModelFilterHandle filter, GtkTreePathHandle filter_path);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeModelHandle gtk_tree_model_filter_get_model(GtkTreeModelFilterHandle filter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_filter_refilter(GtkTreeModelFilterHandle filter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_filter_set_modify_func(GtkTreeModelFilterHandle filter, int n_columns, GType[] types, GtkTreeModelFilterModifyFunc func, IntPtr data, GDestroyNotify destroy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_filter_set_visible_column(GtkTreeModelFilterHandle filter, int column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_tree_model_filter_set_visible_func(GtkTreeModelFilterHandle filter, GtkTreeModelFilterVisibleFunc func, IntPtr data, GDestroyNotify destroy);
+
 }

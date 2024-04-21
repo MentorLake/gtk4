@@ -31,7 +31,7 @@ public class GtkMenuButtonSignal
 
 public static class GtkMenuButtonSignals
 {
-	public static GtkMenuButtonSignal Activate = new("activate");
+	public static GtkMenuButtonSignal Activate = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkMenuButtonHandleExtensions
@@ -186,69 +186,106 @@ public static class GtkMenuButtonHandleExtensions
 		return menu_button;
 	}
 
-	public static GtkMenuButtonHandle Connect(this GtkMenuButtonHandle instance, GtkMenuButtonSignal signal, GCallback c_handler)
+	public static GtkMenuButtonHandle Signal_Activate(this GtkMenuButtonHandle instance, GtkMenuButtonDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkMenuButtonDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkMenuButtonHandle>))] GtkMenuButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkMenuButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkMenuButtonHandle gtk_menu_button_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_menu_button_get_active(GtkMenuButtonHandle menu_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_menu_button_get_always_show_arrow(GtkMenuButtonHandle menu_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_menu_button_get_can_shrink(GtkMenuButtonHandle menu_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_menu_button_get_child(GtkMenuButtonHandle menu_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkArrowType gtk_menu_button_get_direction(GtkMenuButtonHandle menu_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_menu_button_get_has_frame(GtkMenuButtonHandle menu_button);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_menu_button_get_icon_name(GtkMenuButtonHandle menu_button);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_menu_button_get_label(GtkMenuButtonHandle menu_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GMenuModelHandle gtk_menu_button_get_menu_model(GtkMenuButtonHandle menu_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPopoverHandle gtk_menu_button_get_popover(GtkMenuButtonHandle menu_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_menu_button_get_primary(GtkMenuButtonHandle menu_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_menu_button_get_use_underline(GtkMenuButtonHandle menu_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_menu_button_popdown(GtkMenuButtonHandle menu_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_menu_button_popup(GtkMenuButtonHandle menu_button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_menu_button_set_active(GtkMenuButtonHandle menu_button, bool active);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_menu_button_set_always_show_arrow(GtkMenuButtonHandle menu_button, bool always_show_arrow);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_menu_button_set_can_shrink(GtkMenuButtonHandle menu_button, bool can_shrink);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_menu_button_set_child(GtkMenuButtonHandle menu_button, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_menu_button_set_create_popup_func(GtkMenuButtonHandle menu_button, GtkMenuButtonCreatePopupFunc func, IntPtr user_data, GDestroyNotify destroy_notify);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_menu_button_set_direction(GtkMenuButtonHandle menu_button, GtkArrowType direction);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_menu_button_set_has_frame(GtkMenuButtonHandle menu_button, bool has_frame);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_menu_button_set_icon_name(GtkMenuButtonHandle menu_button, string icon_name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_menu_button_set_label(GtkMenuButtonHandle menu_button, string label);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_menu_button_set_menu_model(GtkMenuButtonHandle menu_button, GMenuModelHandle menu_model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_menu_button_set_popover(GtkMenuButtonHandle menu_button, GtkWidgetHandle popover);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_menu_button_set_primary(GtkMenuButtonHandle menu_button, bool primary);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_menu_button_set_use_underline(GtkMenuButtonHandle menu_button, bool use_underline);
+
 }

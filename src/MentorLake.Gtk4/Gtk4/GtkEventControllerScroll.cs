@@ -31,10 +31,10 @@ public class GtkEventControllerScrollSignal
 
 public static class GtkEventControllerScrollSignals
 {
-	public static GtkEventControllerScrollSignal Decelerate = new("decelerate");
-	public static GtkEventControllerScrollSignal Scroll = new("scroll");
-	public static GtkEventControllerScrollSignal ScrollBegin = new("scroll-begin");
-	public static GtkEventControllerScrollSignal ScrollEnd = new("scroll-end");
+	public static GtkEventControllerScrollSignal Decelerate = new("BindingTransform.MethodDeclaration");
+	public static GtkEventControllerScrollSignal Scroll = new("BindingTransform.MethodDeclaration");
+	public static GtkEventControllerScrollSignal ScrollBegin = new("BindingTransform.MethodDeclaration");
+	public static GtkEventControllerScrollSignal ScrollEnd = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkEventControllerScrollHandleExtensions
@@ -55,21 +55,56 @@ public static class GtkEventControllerScrollHandleExtensions
 		return scroll;
 	}
 
-	public static GtkEventControllerScrollHandle Connect(this GtkEventControllerScrollHandle instance, GtkEventControllerScrollSignal signal, GCallback c_handler)
+	public static GtkEventControllerScrollHandle Signal_Decelerate(this GtkEventControllerScrollHandle instance, GtkEventControllerScrollDelegates.Decelerate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "decelerate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkEventControllerScrollHandle Signal_Scroll(this GtkEventControllerScrollHandle instance, GtkEventControllerScrollDelegates.Scroll handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "scroll", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkEventControllerScrollHandle Signal_ScrollBegin(this GtkEventControllerScrollHandle instance, GtkEventControllerScrollDelegates.ScrollBegin handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "scroll_begin", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkEventControllerScrollHandle Signal_ScrollEnd(this GtkEventControllerScrollHandle instance, GtkEventControllerScrollDelegates.ScrollEnd handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "scroll_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkEventControllerScrollDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Decelerate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerScrollHandle>))] GtkEventControllerScrollHandle self, double vel_x, double vel_y, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Scroll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerScrollHandle>))] GtkEventControllerScrollHandle self, double dx, double dy, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ScrollBegin([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerScrollHandle>))] GtkEventControllerScrollHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ScrollEnd([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerScrollHandle>))] GtkEventControllerScrollHandle self, IntPtr user_data);
 }
 
 internal class GtkEventControllerScrollExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEventControllerScrollHandle gtk_event_controller_scroll_new(GtkEventControllerScrollFlags flags);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEventControllerScrollFlags gtk_event_controller_scroll_get_flags(GtkEventControllerScrollHandle scroll);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GdkScrollUnit gtk_event_controller_scroll_get_unit(GtkEventControllerScrollHandle scroll);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_event_controller_scroll_set_flags(GtkEventControllerScrollHandle scroll, GtkEventControllerScrollFlags flags);
+
 }

@@ -134,40 +134,59 @@ internal class GdkToplevelExterns
 {
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_toplevel_begin_move(GdkToplevelHandle toplevel, GdkDeviceHandle device, int button, double x, double y, uint timestamp);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_toplevel_begin_resize(GdkToplevelHandle toplevel, GdkSurfaceEdge edge, GdkDeviceHandle device, int button, double x, double y, uint timestamp);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_toplevel_focus(GdkToplevelHandle toplevel, uint timestamp);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkToplevelState gdk_toplevel_get_state(GdkToplevelHandle toplevel);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_toplevel_inhibit_system_shortcuts(GdkToplevelHandle toplevel, GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_toplevel_lower(GdkToplevelHandle toplevel);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_toplevel_minimize(GdkToplevelHandle toplevel);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_toplevel_present(GdkToplevelHandle toplevel, GdkToplevelLayoutHandle layout);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_toplevel_restore_system_shortcuts(GdkToplevelHandle toplevel);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_toplevel_set_decorated(GdkToplevelHandle toplevel, bool decorated);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_toplevel_set_deletable(GdkToplevelHandle toplevel, bool deletable);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_toplevel_set_icon_list(GdkToplevelHandle toplevel, GListHandle surfaces);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_toplevel_set_modal(GdkToplevelHandle toplevel, bool modal);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_toplevel_set_startup_id(GdkToplevelHandle toplevel, string startup_id);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_toplevel_set_title(GdkToplevelHandle toplevel, string title);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_toplevel_set_transient_for(GdkToplevelHandle toplevel, GdkSurfaceHandle parent);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_toplevel_show_window_menu(GdkToplevelHandle toplevel, GdkEventHandle @event);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_toplevel_supports_edge_constraints(GdkToplevelHandle toplevel);
+
 	[DllImport(Libraries.Gdk4)]
 	internal static extern bool gdk_toplevel_titlebar_gesture(GdkToplevelHandle toplevel, GdkTitlebarGesture gesture);
+
 }

@@ -61,11 +61,11 @@ public class GtkWindowSignal
 
 public static class GtkWindowSignals
 {
-	public static GtkWindowSignal ActivateDefault = new("activate-default");
-	public static GtkWindowSignal ActivateFocus = new("activate-focus");
-	public static GtkWindowSignal CloseRequest = new("close-request");
-	public static GtkWindowSignal EnableDebugging = new("enable-debugging");
-	public static GtkWindowSignal KeysChanged = new("keys-changed");
+	public static GtkWindowSignal ActivateDefault = new("BindingTransform.MethodDeclaration");
+	public static GtkWindowSignal ActivateFocus = new("BindingTransform.MethodDeclaration");
+	public static GtkWindowSignal CloseRequest = new("BindingTransform.MethodDeclaration");
+	public static GtkWindowSignal EnableDebugging = new("BindingTransform.MethodDeclaration");
+	public static GtkWindowSignal KeysChanged = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkWindowHandleExtensions
@@ -411,149 +411,258 @@ public static class GtkWindowHandleExtensions
 		return parent;
 	}
 
-	public static GtkWindowHandle Connect(this GtkWindowHandle instance, GtkWindowSignal signal, GCallback c_handler)
+	public static GtkWindowHandle Signal_ActivateDefault(this GtkWindowHandle instance, GtkWindowDelegates.ActivateDefault handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate_default", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkWindowHandle Signal_ActivateFocus(this GtkWindowHandle instance, GtkWindowDelegates.ActivateFocus handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate_focus", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkWindowHandle Signal_CloseRequest(this GtkWindowHandle instance, GtkWindowDelegates.CloseRequest handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "close_request", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkWindowHandle Signal_EnableDebugging(this GtkWindowHandle instance, GtkWindowDelegates.EnableDebugging handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "enable_debugging", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkWindowHandle Signal_KeysChanged(this GtkWindowHandle instance, GtkWindowDelegates.KeysChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "keys_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkWindowDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ActivateDefault([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ActivateFocus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool CloseRequest([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool EnableDebugging([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle self, bool toggle, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void KeysChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle self, IntPtr user_data);
 }
 
 internal class GtkWindowExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWindowHandle gtk_window_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_close(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_destroy(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_fullscreen(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_fullscreen_on_monitor(GtkWindowHandle window, GdkMonitorHandle monitor);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkApplicationHandle gtk_window_get_application(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_window_get_child(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_window_get_decorated(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_get_default_size(GtkWindowHandle window, out int width, out int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_window_get_default_widget(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_window_get_deletable(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_window_get_destroy_with_parent(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_window_get_focus(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_window_get_focus_visible(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWindowGroupHandle gtk_window_get_group(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_window_get_handle_menubar_accel(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_window_get_hide_on_close(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_window_get_icon_name(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_window_get_mnemonics_visible(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_window_get_modal(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_window_get_resizable(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_window_get_title(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_window_get_titlebar(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWindowHandle gtk_window_get_transient_for(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_window_has_group(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_window_is_active(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_window_is_fullscreen(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_window_is_maximized(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_window_is_suspended(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_maximize(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_minimize(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_present(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_present_with_time(GtkWindowHandle window, uint timestamp);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_application(GtkWindowHandle window, GtkApplicationHandle application);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_child(GtkWindowHandle window, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_decorated(GtkWindowHandle window, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_default_size(GtkWindowHandle window, int width, int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_default_widget(GtkWindowHandle window, GtkWidgetHandle default_widget);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_deletable(GtkWindowHandle window, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_destroy_with_parent(GtkWindowHandle window, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_display(GtkWindowHandle window, GdkDisplayHandle display);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_focus(GtkWindowHandle window, GtkWidgetHandle focus);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_focus_visible(GtkWindowHandle window, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_handle_menubar_accel(GtkWindowHandle window, bool handle_menubar_accel);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_hide_on_close(GtkWindowHandle window, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_icon_name(GtkWindowHandle window, string name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_mnemonics_visible(GtkWindowHandle window, bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_modal(GtkWindowHandle window, bool modal);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_resizable(GtkWindowHandle window, bool resizable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_startup_id(GtkWindowHandle window, string startup_id);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_title(GtkWindowHandle window, string title);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_titlebar(GtkWindowHandle window, GtkWidgetHandle titlebar);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_transient_for(GtkWindowHandle window, GtkWindowHandle parent);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_unfullscreen(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_unmaximize(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_unminimize(GtkWindowHandle window);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_show_uri_full(GtkWindowHandle parent, string uri, uint timestamp, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_print_run_page_setup_dialog_async(GtkWindowHandle parent, GtkPageSetupHandle page_setup, GtkPrintSettingsHandle settings, GtkPageSetupDoneFunc done_cb, IntPtr data);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_show_uri_full_finish(GtkWindowHandle parent, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_show_about_dialog(GtkWindowHandle parent, string first_property_name, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageSetupHandle gtk_print_run_page_setup_dialog(GtkWindowHandle parent, GtkPageSetupHandle page_setup, GtkPrintSettingsHandle settings);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_show_uri(GtkWindowHandle parent, string uri, uint timestamp);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_window_get_default_icon_name();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListModelHandle gtk_window_get_toplevels();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GListHandle gtk_window_list_toplevels();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_auto_startup_notification(bool setting);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_default_icon_name(string name);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_window_set_interactive_debugging(bool enable);
+
 }

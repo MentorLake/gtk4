@@ -46,12 +46,12 @@ public class GtkComboBoxSignal
 
 public static class GtkComboBoxSignals
 {
-	public static GtkComboBoxSignal Activate = new("activate");
-	public static GtkComboBoxSignal Changed = new("changed");
-	public static GtkComboBoxSignal FormatEntryText = new("format-entry-text");
-	public static GtkComboBoxSignal MoveActive = new("move-active");
-	public static GtkComboBoxSignal Popdown = new("popdown");
-	public static GtkComboBoxSignal Popup = new("popup");
+	public static GtkComboBoxSignal Activate = new("BindingTransform.MethodDeclaration");
+	public static GtkComboBoxSignal Changed = new("BindingTransform.MethodDeclaration");
+	public static GtkComboBoxSignal FormatEntryText = new("BindingTransform.MethodDeclaration");
+	public static GtkComboBoxSignal MoveActive = new("BindingTransform.MethodDeclaration");
+	public static GtkComboBoxSignal Popdown = new("BindingTransform.MethodDeclaration");
+	public static GtkComboBoxSignal Popup = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkComboBoxHandleExtensions
@@ -188,69 +188,145 @@ public static class GtkComboBoxHandleExtensions
 		return combo_box;
 	}
 
-	public static GtkComboBoxHandle Connect(this GtkComboBoxHandle instance, GtkComboBoxSignal signal, GCallback c_handler)
+	public static GtkComboBoxHandle Signal_Activate(this GtkComboBoxHandle instance, GtkComboBoxDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkComboBoxHandle Signal_Changed(this GtkComboBoxHandle instance, GtkComboBoxDelegates.Changed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkComboBoxHandle Signal_FormatEntryText(this GtkComboBoxHandle instance, GtkComboBoxDelegates.FormatEntryText handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "format_entry_text", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkComboBoxHandle Signal_MoveActive(this GtkComboBoxHandle instance, GtkComboBoxDelegates.MoveActive handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_active", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkComboBoxHandle Signal_Popdown(this GtkComboBoxHandle instance, GtkComboBoxDelegates.Popdown handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "popdown", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkComboBoxHandle Signal_Popup(this GtkComboBoxHandle instance, GtkComboBoxDelegates.Popup handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "popup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkComboBoxDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate string FormatEntryText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, string path, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MoveActive([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, ref GtkScrollType scroll_type, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Popdown([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Popup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, IntPtr user_data);
 }
 
 internal class GtkComboBoxExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkComboBoxHandle gtk_combo_box_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkComboBoxHandle gtk_combo_box_new_with_entry();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkComboBoxHandle gtk_combo_box_new_with_model(GtkTreeModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkComboBoxHandle gtk_combo_box_new_with_model_and_entry(GtkTreeModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_combo_box_get_active(GtkComboBoxHandle combo_box);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_combo_box_get_active_id(GtkComboBoxHandle combo_box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_combo_box_get_active_iter(GtkComboBoxHandle combo_box, out GtkTreeIter iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSensitivityType gtk_combo_box_get_button_sensitivity(GtkComboBoxHandle combo_box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_combo_box_get_child(GtkComboBoxHandle combo_box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_combo_box_get_entry_text_column(GtkComboBoxHandle combo_box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_combo_box_get_has_entry(GtkComboBoxHandle combo_box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_combo_box_get_id_column(GtkComboBoxHandle combo_box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeModelHandle gtk_combo_box_get_model(GtkComboBoxHandle combo_box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_combo_box_get_popup_fixed_width(GtkComboBoxHandle combo_box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreeViewRowSeparatorFunc gtk_combo_box_get_row_separator_func(GtkComboBoxHandle combo_box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_popdown(GtkComboBoxHandle combo_box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_popup(GtkComboBoxHandle combo_box);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_popup_for_device(GtkComboBoxHandle combo_box, GdkDeviceHandle device);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_set_active(GtkComboBoxHandle combo_box, int index_);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_combo_box_set_active_id(GtkComboBoxHandle combo_box, string active_id);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_set_active_iter(GtkComboBoxHandle combo_box, GtkTreeIterHandle iter);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_set_button_sensitivity(GtkComboBoxHandle combo_box, GtkSensitivityType sensitivity);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_set_child(GtkComboBoxHandle combo_box, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_set_entry_text_column(GtkComboBoxHandle combo_box, int text_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_set_id_column(GtkComboBoxHandle combo_box, int id_column);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_set_model(GtkComboBoxHandle combo_box, GtkTreeModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_set_popup_fixed_width(GtkComboBoxHandle combo_box, bool @fixed);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_combo_box_set_row_separator_func(GtkComboBoxHandle combo_box, GtkTreeViewRowSeparatorFunc func, IntPtr data, GDestroyNotify destroy);
+
 }

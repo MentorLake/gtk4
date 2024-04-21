@@ -72,18 +72,26 @@ internal class GSettingsBackendExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_backend_changed(GSettingsBackendHandle backend, string key, IntPtr origin_tag);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_backend_changed_tree(GSettingsBackendHandle backend, GTreeHandle tree, IntPtr origin_tag);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_backend_keys_changed(GSettingsBackendHandle backend, string path, string items, IntPtr origin_tag);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_backend_path_changed(GSettingsBackendHandle backend, string path, IntPtr origin_tag);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_backend_path_writable_changed(GSettingsBackendHandle backend, string path);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_backend_writable_changed(GSettingsBackendHandle backend, string key);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_backend_flatten_tree(GTreeHandle tree, out string path, out string[] keys, out GVariantHandle[] values);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GSettingsBackendHandle g_settings_backend_get_default();
+
 }

@@ -75,20 +75,29 @@ internal class GtkScrollableExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_scrollable_get_border(GtkScrollableHandle scrollable, out GtkBorder border);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAdjustmentHandle gtk_scrollable_get_hadjustment(GtkScrollableHandle scrollable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkScrollablePolicy gtk_scrollable_get_hscroll_policy(GtkScrollableHandle scrollable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAdjustmentHandle gtk_scrollable_get_vadjustment(GtkScrollableHandle scrollable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkScrollablePolicy gtk_scrollable_get_vscroll_policy(GtkScrollableHandle scrollable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrollable_set_hadjustment(GtkScrollableHandle scrollable, GtkAdjustmentHandle hadjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrollable_set_hscroll_policy(GtkScrollableHandle scrollable, GtkScrollablePolicy policy);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrollable_set_vadjustment(GtkScrollableHandle scrollable, GtkAdjustmentHandle vadjustment);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_scrollable_set_vscroll_policy(GtkScrollableHandle scrollable, GtkScrollablePolicy policy);
+
 }

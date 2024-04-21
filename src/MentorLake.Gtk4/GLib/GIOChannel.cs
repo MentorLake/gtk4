@@ -32,8 +32,10 @@ internal class GIOChannelExterns
 {
 	[DllImport(Libraries.GLib)]
 	internal static extern GIOChannelHandle g_io_channel_new_file(string filename, string mode, out GErrorHandle error);
+
 	[DllImport(Libraries.GLib)]
 	internal static extern GIOChannelHandle g_io_channel_unix_new(int fd);
+
 }
 
 public struct GIOChannel

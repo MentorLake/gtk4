@@ -31,4 +31,5 @@ internal class GskRepeatingLinearGradientNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRepeatingLinearGradientNodeHandle gsk_repeating_linear_gradient_node_new(graphene_rect_tHandle bounds, graphene_point_tHandle start, graphene_point_tHandle end, GskColorStop[] color_stops, int n_color_stops);
+
 }

@@ -44,8 +44,11 @@ internal class GtkCellEditableExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_editable_editing_done(GtkCellEditableHandle cell_editable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_editable_remove_widget(GtkCellEditableHandle cell_editable);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_cell_editable_start_editing(GtkCellEditableHandle cell_editable, GdkEventHandle @event);
+
 }

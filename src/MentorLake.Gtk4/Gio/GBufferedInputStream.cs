@@ -83,24 +83,35 @@ internal class GBufferedInputStreamExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GBufferedInputStreamHandle g_buffered_input_stream_new(GInputStreamHandle base_stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GBufferedInputStreamHandle g_buffered_input_stream_new_sized(GInputStreamHandle base_stream, int size);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_buffered_input_stream_fill(GBufferedInputStreamHandle stream, int count, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_buffered_input_stream_fill_async(GBufferedInputStreamHandle stream, int count, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_buffered_input_stream_fill_finish(GBufferedInputStreamHandle stream, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_buffered_input_stream_get_available(GBufferedInputStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_buffered_input_stream_get_buffer_size(GBufferedInputStreamHandle stream);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_buffered_input_stream_peek(GBufferedInputStreamHandle stream, IntPtr buffer, int offset, int count);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern IntPtr g_buffered_input_stream_peek_buffer(GBufferedInputStreamHandle stream, out int count);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_buffered_input_stream_read_byte(GBufferedInputStreamHandle stream, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_buffered_input_stream_set_buffer_size(GBufferedInputStreamHandle stream, int size);
+
 }

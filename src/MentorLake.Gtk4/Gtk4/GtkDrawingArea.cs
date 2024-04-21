@@ -31,7 +31,7 @@ public class GtkDrawingAreaSignal
 
 public static class GtkDrawingAreaSignals
 {
-	public static GtkDrawingAreaSignal Resize = new("resize");
+	public static GtkDrawingAreaSignal Resize = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkDrawingAreaHandleExtensions
@@ -64,25 +64,38 @@ public static class GtkDrawingAreaHandleExtensions
 		return self;
 	}
 
-	public static GtkDrawingAreaHandle Connect(this GtkDrawingAreaHandle instance, GtkDrawingAreaSignal signal, GCallback c_handler)
+	public static GtkDrawingAreaHandle Signal_Resize(this GtkDrawingAreaHandle instance, GtkDrawingAreaDelegates.Resize handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "resize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+}
+
+public static class GtkDrawingAreaDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Resize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDrawingAreaHandle>))] GtkDrawingAreaHandle self, int width, int height, IntPtr user_data);
 }
 
 internal class GtkDrawingAreaExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkDrawingAreaHandle gtk_drawing_area_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_drawing_area_get_content_height(GtkDrawingAreaHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_drawing_area_get_content_width(GtkDrawingAreaHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drawing_area_set_content_height(GtkDrawingAreaHandle self, int height);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drawing_area_set_content_width(GtkDrawingAreaHandle self, int width);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_drawing_area_set_draw_func(GtkDrawingAreaHandle self, GtkDrawingAreaDrawFunc draw_func, IntPtr user_data, GDestroyNotify destroy);
+
 }

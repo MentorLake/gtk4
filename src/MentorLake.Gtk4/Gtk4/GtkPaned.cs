@@ -31,12 +31,12 @@ public class GtkPanedSignal
 
 public static class GtkPanedSignals
 {
-	public static GtkPanedSignal AcceptPosition = new("accept-position");
-	public static GtkPanedSignal CancelPosition = new("cancel-position");
-	public static GtkPanedSignal CycleChildFocus = new("cycle-child-focus");
-	public static GtkPanedSignal CycleHandleFocus = new("cycle-handle-focus");
-	public static GtkPanedSignal MoveHandle = new("move-handle");
-	public static GtkPanedSignal ToggleHandleFocus = new("toggle-handle-focus");
+	public static GtkPanedSignal AcceptPosition = new("BindingTransform.MethodDeclaration");
+	public static GtkPanedSignal CancelPosition = new("BindingTransform.MethodDeclaration");
+	public static GtkPanedSignal CycleChildFocus = new("BindingTransform.MethodDeclaration");
+	public static GtkPanedSignal CycleHandleFocus = new("BindingTransform.MethodDeclaration");
+	public static GtkPanedSignal MoveHandle = new("BindingTransform.MethodDeclaration");
+	public static GtkPanedSignal ToggleHandleFocus = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkPanedHandleExtensions
@@ -129,47 +129,111 @@ public static class GtkPanedHandleExtensions
 		return paned;
 	}
 
-	public static GtkPanedHandle Connect(this GtkPanedHandle instance, GtkPanedSignal signal, GCallback c_handler)
+	public static GtkPanedHandle Signal_AcceptPosition(this GtkPanedHandle instance, GtkPanedDelegates.AcceptPosition handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "accept_position", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkPanedHandle Signal_CancelPosition(this GtkPanedHandle instance, GtkPanedDelegates.CancelPosition handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "cancel_position", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkPanedHandle Signal_CycleChildFocus(this GtkPanedHandle instance, GtkPanedDelegates.CycleChildFocus handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "cycle_child_focus", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkPanedHandle Signal_CycleHandleFocus(this GtkPanedHandle instance, GtkPanedDelegates.CycleHandleFocus handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "cycle_handle_focus", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkPanedHandle Signal_MoveHandle(this GtkPanedHandle instance, GtkPanedDelegates.MoveHandle handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_handle", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkPanedHandle Signal_ToggleHandleFocus(this GtkPanedHandle instance, GtkPanedDelegates.ToggleHandleFocus handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "toggle_handle_focus", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkPanedDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool AcceptPosition([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool CancelPosition([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool CycleChildFocus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, bool reversed, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool CycleHandleFocus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, bool reversed, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool MoveHandle([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, ref GtkScrollType scroll_type, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ToggleHandleFocus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, IntPtr user_data);
 }
 
 internal class GtkPanedExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPanedHandle gtk_paned_new(GtkOrientation orientation);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_paned_get_end_child(GtkPanedHandle paned);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_paned_get_position(GtkPanedHandle paned);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_paned_get_resize_end_child(GtkPanedHandle paned);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_paned_get_resize_start_child(GtkPanedHandle paned);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_paned_get_shrink_end_child(GtkPanedHandle paned);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_paned_get_shrink_start_child(GtkPanedHandle paned);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWidgetHandle gtk_paned_get_start_child(GtkPanedHandle paned);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_paned_get_wide_handle(GtkPanedHandle paned);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_paned_set_end_child(GtkPanedHandle paned, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_paned_set_position(GtkPanedHandle paned, int position);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_paned_set_resize_end_child(GtkPanedHandle paned, bool resize);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_paned_set_resize_start_child(GtkPanedHandle paned, bool resize);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_paned_set_shrink_end_child(GtkPanedHandle paned, bool resize);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_paned_set_shrink_start_child(GtkPanedHandle paned, bool resize);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_paned_set_start_child(GtkPanedHandle paned, GtkWidgetHandle child);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_paned_set_wide_handle(GtkPanedHandle paned, bool wide);
+
 }

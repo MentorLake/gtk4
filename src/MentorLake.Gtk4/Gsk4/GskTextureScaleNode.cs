@@ -41,8 +41,11 @@ internal class GskTextureScaleNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskTextureScaleNodeHandle gsk_texture_scale_node_new(GdkTextureHandle texture, graphene_rect_tHandle bounds, GskScalingFilter filter);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskScalingFilter gsk_texture_scale_node_get_filter(GskRenderNodeHandle node);
+
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GdkTextureHandle gsk_texture_scale_node_get_texture(GskRenderNodeHandle node);
+
 }

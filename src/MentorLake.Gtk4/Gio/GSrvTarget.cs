@@ -27,6 +27,7 @@ internal class GSrvTargetExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern GSrvTargetHandle g_srv_target_new(string hostname, ushort port, ushort priority, ushort weight);
+
 }
 
 public struct GSrvTarget

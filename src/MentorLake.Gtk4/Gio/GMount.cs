@@ -169,56 +169,83 @@ internal class GMountExterns
 {
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_mount_can_eject(GMountHandle mount);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_mount_can_unmount(GMountHandle mount);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_eject(GMountHandle mount, GMountUnmountFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_mount_eject_finish(GMountHandle mount, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_eject_with_operation(GMountHandle mount, GMountUnmountFlags flags, GMountOperationHandle mount_operation, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_mount_eject_with_operation_finish(GMountHandle mount, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_mount_get_default_location(GMountHandle mount);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GDriveHandle g_mount_get_drive(GMountHandle mount);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GIconHandle g_mount_get_icon(GMountHandle mount);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_mount_get_name(GMountHandle mount);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_mount_get_root(GMountHandle mount);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_mount_get_sort_key(GMountHandle mount);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GIconHandle g_mount_get_symbolic_icon(GMountHandle mount);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_mount_get_uuid(GMountHandle mount);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern GVolumeHandle g_mount_get_volume(GMountHandle mount);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_guess_content_type(GMountHandle mount, bool force_rescan, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_mount_guess_content_type_finish(GMountHandle mount, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern string[] g_mount_guess_content_type_sync(GMountHandle mount, bool force_rescan, GCancellableHandle cancellable, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_mount_is_shadowed(GMountHandle mount);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_remount(GMountHandle mount, GMountMountFlags flags, GMountOperationHandle mount_operation, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_mount_remount_finish(GMountHandle mount, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_shadow(GMountHandle mount);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_unmount(GMountHandle mount, GMountUnmountFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_mount_unmount_finish(GMountHandle mount, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_unmount_with_operation(GMountHandle mount, GMountUnmountFlags flags, GMountOperationHandle mount_operation, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_mount_unmount_with_operation_finish(GMountHandle mount, GAsyncResultHandle result, out GErrorHandle error);
+
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_mount_unshadow(GMountHandle mount);
+
 }

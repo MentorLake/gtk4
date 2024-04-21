@@ -31,8 +31,8 @@ public class GtkEntryBufferSignal
 
 public static class GtkEntryBufferSignals
 {
-	public static GtkEntryBufferSignal DeletedText = new("deleted-text");
-	public static GtkEntryBufferSignal InsertedText = new("inserted-text");
+	public static GtkEntryBufferSignal DeletedText = new("BindingTransform.MethodDeclaration");
+	public static GtkEntryBufferSignal InsertedText = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkEntryBufferHandleExtensions
@@ -91,35 +91,62 @@ public static class GtkEntryBufferHandleExtensions
 		return buffer;
 	}
 
-	public static GtkEntryBufferHandle Connect(this GtkEntryBufferHandle instance, GtkEntryBufferSignal signal, GCallback c_handler)
+	public static GtkEntryBufferHandle Signal_DeletedText(this GtkEntryBufferHandle instance, GtkEntryBufferDelegates.DeletedText handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "deleted_text", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkEntryBufferHandle Signal_InsertedText(this GtkEntryBufferHandle instance, GtkEntryBufferDelegates.InsertedText handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "inserted_text", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkEntryBufferDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DeletedText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryBufferHandle>))] GtkEntryBufferHandle self, uint position, uint n_chars, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void InsertedText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryBufferHandle>))] GtkEntryBufferHandle self, uint position, string chars, uint n_chars, IntPtr user_data);
 }
 
 internal class GtkEntryBufferExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkEntryBufferHandle gtk_entry_buffer_new(string initial_chars, int n_initial_chars);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_entry_buffer_delete_text(GtkEntryBufferHandle buffer, uint position, int n_chars);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_buffer_emit_deleted_text(GtkEntryBufferHandle buffer, uint position, uint n_chars);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_buffer_emit_inserted_text(GtkEntryBufferHandle buffer, uint position, string chars, uint n_chars);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_entry_buffer_get_bytes(GtkEntryBufferHandle buffer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_entry_buffer_get_length(GtkEntryBufferHandle buffer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_entry_buffer_get_max_length(GtkEntryBufferHandle buffer);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_entry_buffer_get_text(GtkEntryBufferHandle buffer);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_entry_buffer_insert_text(GtkEntryBufferHandle buffer, uint position, string chars, int n_chars);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_buffer_set_max_length(GtkEntryBufferHandle buffer, int max_length);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_entry_buffer_set_text(GtkEntryBufferHandle buffer, string chars, int n_chars);
+
 }

@@ -64,16 +64,23 @@ internal class GTypeModuleExterns
 {
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_type_module_add_interface(GTypeModuleHandle module, GType instance_type, GType interface_type, GInterfaceInfoHandle interface_info);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GType g_type_module_register_enum(GTypeModuleHandle module, string name, GEnumValue[] const_static_values);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GType g_type_module_register_flags(GTypeModuleHandle module, string name, GFlagsValue[] const_static_values);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern GType g_type_module_register_type(GTypeModuleHandle module, GType parent_type, string type_name, GTypeInfoHandle type_info, GTypeFlags flags);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_type_module_set_name(GTypeModuleHandle module, string name);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_type_module_unuse(GTypeModuleHandle module);
+
 	[DllImport(Libraries.GObject)]
 	internal static extern bool g_type_module_use(GTypeModuleHandle module);
+
 }

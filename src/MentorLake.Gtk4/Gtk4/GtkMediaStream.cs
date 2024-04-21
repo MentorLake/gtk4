@@ -217,70 +217,104 @@ internal class GtkMediaStreamExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_ended(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_error(GtkMediaStreamHandle self, GQuark domain, int code, string format, IntPtr @__arglist);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_error_valist(GtkMediaStreamHandle self, GQuark domain, int code, string format, IntPtr args);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_gerror(GtkMediaStreamHandle self, GErrorHandle error);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern long gtk_media_stream_get_duration(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_media_stream_get_ended(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GErrorHandle gtk_media_stream_get_error(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_media_stream_get_loop(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_media_stream_get_muted(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_media_stream_get_playing(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern long gtk_media_stream_get_timestamp(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern double gtk_media_stream_get_volume(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_media_stream_has_audio(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_media_stream_has_video(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_media_stream_is_prepared(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_media_stream_is_seekable(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_media_stream_is_seeking(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_pause(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_play(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_prepared(GtkMediaStreamHandle self, bool has_audio, bool has_video, bool seekable, long duration);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_realize(GtkMediaStreamHandle self, GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_seek(GtkMediaStreamHandle self, long timestamp);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_seek_failed(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_seek_success(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_set_loop(GtkMediaStreamHandle self, bool loop);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_set_muted(GtkMediaStreamHandle self, bool muted);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_set_playing(GtkMediaStreamHandle self, bool playing);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_set_volume(GtkMediaStreamHandle self, double volume);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_stream_ended(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_stream_prepared(GtkMediaStreamHandle self, bool has_audio, bool has_video, bool seekable, long duration);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_stream_unprepared(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_unprepared(GtkMediaStreamHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_unrealize(GtkMediaStreamHandle self, GdkSurfaceHandle surface);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_media_stream_update(GtkMediaStreamHandle self, long timestamp);
+
 }

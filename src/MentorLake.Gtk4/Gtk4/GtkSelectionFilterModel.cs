@@ -42,8 +42,11 @@ internal class GtkSelectionFilterModelExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSelectionFilterModelHandle gtk_selection_filter_model_new(GtkSelectionModelHandle model);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkSelectionModelHandle gtk_selection_filter_model_get_model(GtkSelectionFilterModelHandle self);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_selection_filter_model_set_model(GtkSelectionFilterModelHandle self, GtkSelectionModelHandle model);
+
 }

@@ -36,8 +36,8 @@ public class GtkColorButtonSignal
 
 public static class GtkColorButtonSignals
 {
-	public static GtkColorButtonSignal Activate = new("activate");
-	public static GtkColorButtonSignal ColorSet = new("color-set");
+	public static GtkColorButtonSignal Activate = new("BindingTransform.MethodDeclaration");
+	public static GtkColorButtonSignal ColorSet = new("BindingTransform.MethodDeclaration");
 }
 
 public static class GtkColorButtonHandleExtensions
@@ -64,25 +64,47 @@ public static class GtkColorButtonHandleExtensions
 		return button;
 	}
 
-	public static GtkColorButtonHandle Connect(this GtkColorButtonHandle instance, GtkColorButtonSignal signal, GCallback c_handler)
+	public static GtkColorButtonHandle Signal_Activate(this GtkColorButtonHandle instance, GtkColorButtonDelegates.Activate handler)
 	{
-		GObjectExterns.g_signal_connect_data(instance, signal.Value, c_handler, IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
+	public static GtkColorButtonHandle Signal_ColorSet(this GtkColorButtonHandle instance, GtkColorButtonDelegates.ColorSet handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "color_set", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+}
+
+public static class GtkColorButtonDelegates
+{
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColorButtonHandle>))] GtkColorButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ColorSet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColorButtonHandle>))] GtkColorButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkColorButtonExterns
 {
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkColorButtonHandle gtk_color_button_new();
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkColorButtonHandle gtk_color_button_new_with_rgba(GdkRGBAHandle rgba);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_color_button_get_modal(GtkColorButtonHandle button);
+
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_color_button_get_title(GtkColorButtonHandle button);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_color_button_set_modal(GtkColorButtonHandle button, bool modal);
+
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_color_button_set_title(GtkColorButtonHandle button, string title);
+
 }
