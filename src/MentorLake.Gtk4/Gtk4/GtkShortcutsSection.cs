@@ -18,16 +18,22 @@ public class GtkShortcutsSectionHandle : GtkBoxHandle, GtkAccessibleHandle, GtkB
 {
 }
 
-public class GtkShortcutsSectionSignal
+public static class GtkShortcutsSectionSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkShortcutsSectionSignal(string value) => Value = value;
+	public static GtkShortcutsSectionHandle Signal_ChangeCurrentPage(this GtkShortcutsSectionHandle instance, GtkShortcutsSectionSignalDelegates.ChangeCurrentPage handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "change_current_page", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkShortcutsSectionSignals
+public static class GtkShortcutsSectionSignalDelegates
 {
-	public static GtkShortcutsSectionSignal ChangeCurrentPage = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ChangeCurrentPage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkShortcutsSectionHandle>))] GtkShortcutsSectionHandle self, int @object, IntPtr user_data);
 }
+
 
 public static class GtkShortcutsSectionHandleExtensions
 {
@@ -37,18 +43,6 @@ public static class GtkShortcutsSectionHandleExtensions
 		return self;
 	}
 
-	public static GtkShortcutsSectionHandle Signal_ChangeCurrentPage(this GtkShortcutsSectionHandle instance, GtkShortcutsSectionDelegates.ChangeCurrentPage handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "change_current_page", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkShortcutsSectionDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ChangeCurrentPage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkShortcutsSectionHandle>))] GtkShortcutsSectionHandle self, int @object, IntPtr user_data);
 }
 
 internal class GtkShortcutsSectionExterns

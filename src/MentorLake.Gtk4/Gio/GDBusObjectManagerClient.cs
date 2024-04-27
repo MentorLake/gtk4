@@ -48,17 +48,30 @@ public class GDBusObjectManagerClientHandle : GObjectHandle, GAsyncInitableHandl
 
 }
 
-public class GDBusObjectManagerClientSignal
+public static class GDBusObjectManagerClientSignalExtensions
 {
-	public string Value { get; set; }
-	public GDBusObjectManagerClientSignal(string value) => Value = value;
+	public static GDBusObjectManagerClientHandle Signal_InterfaceProxyPropertiesChanged(this GDBusObjectManagerClientHandle instance, GDBusObjectManagerClientSignalDelegates.InterfaceProxyPropertiesChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "interface_proxy_properties_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GDBusObjectManagerClientHandle Signal_InterfaceProxySignal(this GDBusObjectManagerClientHandle instance, GDBusObjectManagerClientSignalDelegates.InterfaceProxySignal handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "interface_proxy_signal", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GDBusObjectManagerClientSignals
+public static class GDBusObjectManagerClientSignalDelegates
 {
-	public static GDBusObjectManagerClientSignal InterfaceProxyPropertiesChanged = new("BindingTransform.MethodDeclaration");
-	public static GDBusObjectManagerClientSignal InterfaceProxySignal = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void InterfaceProxyPropertiesChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusObjectManagerClientHandle>))] GDBusObjectManagerClientHandle self, GDBusObjectProxyHandle object_proxy, GDBusProxyHandle interface_proxy, GVariantHandle changed_properties, string[] invalidated_properties, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void InterfaceProxySignal([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusObjectManagerClientHandle>))] GDBusObjectManagerClientHandle self, GDBusObjectProxyHandle object_proxy, GDBusProxyHandle interface_proxy, string sender_name, string signal_name, GVariantHandle parameters, IntPtr user_data);
 }
+
 
 public static class GDBusObjectManagerClientHandleExtensions
 {
@@ -82,26 +95,6 @@ public static class GDBusObjectManagerClientHandleExtensions
 		return GDBusObjectManagerClientExterns.g_dbus_object_manager_client_get_name_owner(manager);
 	}
 
-	public static GDBusObjectManagerClientHandle Signal_InterfaceProxyPropertiesChanged(this GDBusObjectManagerClientHandle instance, GDBusObjectManagerClientDelegates.InterfaceProxyPropertiesChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "interface_proxy_properties_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GDBusObjectManagerClientHandle Signal_InterfaceProxySignal(this GDBusObjectManagerClientHandle instance, GDBusObjectManagerClientDelegates.InterfaceProxySignal handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "interface_proxy_signal", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GDBusObjectManagerClientDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void InterfaceProxyPropertiesChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusObjectManagerClientHandle>))] GDBusObjectManagerClientHandle self, GDBusObjectProxyHandle object_proxy, GDBusProxyHandle interface_proxy, GVariantHandle changed_properties, string[] invalidated_properties, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void InterfaceProxySignal([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusObjectManagerClientHandle>))] GDBusObjectManagerClientHandle self, GDBusObjectProxyHandle object_proxy, GDBusProxyHandle interface_proxy, string sender_name, string signal_name, GVariantHandle parameters, IntPtr user_data);
 }
 
 internal class GDBusObjectManagerClientExterns

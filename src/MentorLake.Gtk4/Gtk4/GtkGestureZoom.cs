@@ -23,16 +23,22 @@ public class GtkGestureZoomHandle : GtkGestureHandle
 
 }
 
-public class GtkGestureZoomSignal
+public static class GtkGestureZoomSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkGestureZoomSignal(string value) => Value = value;
+	public static GtkGestureZoomHandle Signal_ScaleChanged(this GtkGestureZoomHandle instance, GtkGestureZoomSignalDelegates.ScaleChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "scale_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkGestureZoomSignals
+public static class GtkGestureZoomSignalDelegates
 {
-	public static GtkGestureZoomSignal ScaleChanged = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ScaleChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureZoomHandle>))] GtkGestureZoomHandle self, double scale, IntPtr user_data);
 }
+
 
 public static class GtkGestureZoomHandleExtensions
 {
@@ -41,18 +47,6 @@ public static class GtkGestureZoomHandleExtensions
 		return GtkGestureZoomExterns.gtk_gesture_zoom_get_scale_delta(gesture);
 	}
 
-	public static GtkGestureZoomHandle Signal_ScaleChanged(this GtkGestureZoomHandle instance, GtkGestureZoomDelegates.ScaleChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "scale_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkGestureZoomDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ScaleChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureZoomHandle>))] GtkGestureZoomHandle self, double scale, IntPtr user_data);
 }
 
 internal class GtkGestureZoomExterns

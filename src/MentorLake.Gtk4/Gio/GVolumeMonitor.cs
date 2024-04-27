@@ -28,118 +28,71 @@ public class GVolumeMonitorHandle : GObjectHandle
 
 }
 
-public class GVolumeMonitorSignal
+public static class GVolumeMonitorSignalExtensions
 {
-	public string Value { get; set; }
-	public GVolumeMonitorSignal(string value) => Value = value;
-}
-
-public static class GVolumeMonitorSignals
-{
-	public static GVolumeMonitorSignal DriveChanged = new("BindingTransform.MethodDeclaration");
-	public static GVolumeMonitorSignal DriveConnected = new("BindingTransform.MethodDeclaration");
-	public static GVolumeMonitorSignal DriveDisconnected = new("BindingTransform.MethodDeclaration");
-	public static GVolumeMonitorSignal DriveEjectButton = new("BindingTransform.MethodDeclaration");
-	public static GVolumeMonitorSignal DriveStopButton = new("BindingTransform.MethodDeclaration");
-	public static GVolumeMonitorSignal MountAdded = new("BindingTransform.MethodDeclaration");
-	public static GVolumeMonitorSignal MountChanged = new("BindingTransform.MethodDeclaration");
-	public static GVolumeMonitorSignal MountPreUnmount = new("BindingTransform.MethodDeclaration");
-	public static GVolumeMonitorSignal MountRemoved = new("BindingTransform.MethodDeclaration");
-	public static GVolumeMonitorSignal VolumeAdded = new("BindingTransform.MethodDeclaration");
-	public static GVolumeMonitorSignal VolumeChanged = new("BindingTransform.MethodDeclaration");
-	public static GVolumeMonitorSignal VolumeRemoved = new("BindingTransform.MethodDeclaration");
-}
-
-public static class GVolumeMonitorHandleExtensions
-{
-	public static GListHandle GetConnectedDrives(this GVolumeMonitorHandle volume_monitor)
-	{
-		return GVolumeMonitorExterns.g_volume_monitor_get_connected_drives(volume_monitor);
-	}
-
-	public static GMountHandle GetMountForUuid(this GVolumeMonitorHandle volume_monitor, string uuid)
-	{
-		return GVolumeMonitorExterns.g_volume_monitor_get_mount_for_uuid(volume_monitor, uuid);
-	}
-
-	public static GListHandle GetMounts(this GVolumeMonitorHandle volume_monitor)
-	{
-		return GVolumeMonitorExterns.g_volume_monitor_get_mounts(volume_monitor);
-	}
-
-	public static GVolumeHandle GetVolumeForUuid(this GVolumeMonitorHandle volume_monitor, string uuid)
-	{
-		return GVolumeMonitorExterns.g_volume_monitor_get_volume_for_uuid(volume_monitor, uuid);
-	}
-
-	public static GListHandle GetVolumes(this GVolumeMonitorHandle volume_monitor)
-	{
-		return GVolumeMonitorExterns.g_volume_monitor_get_volumes(volume_monitor);
-	}
-
-	public static GVolumeMonitorHandle Signal_DriveChanged(this GVolumeMonitorHandle instance, GVolumeMonitorDelegates.DriveChanged handler)
+	public static GVolumeMonitorHandle Signal_DriveChanged(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.DriveChanged handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "drive_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
-	public static GVolumeMonitorHandle Signal_DriveConnected(this GVolumeMonitorHandle instance, GVolumeMonitorDelegates.DriveConnected handler)
+	public static GVolumeMonitorHandle Signal_DriveConnected(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.DriveConnected handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "drive_connected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
-	public static GVolumeMonitorHandle Signal_DriveDisconnected(this GVolumeMonitorHandle instance, GVolumeMonitorDelegates.DriveDisconnected handler)
+	public static GVolumeMonitorHandle Signal_DriveDisconnected(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.DriveDisconnected handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "drive_disconnected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
-	public static GVolumeMonitorHandle Signal_DriveEjectButton(this GVolumeMonitorHandle instance, GVolumeMonitorDelegates.DriveEjectButton handler)
+	public static GVolumeMonitorHandle Signal_DriveEjectButton(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.DriveEjectButton handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "drive_eject_button", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
-	public static GVolumeMonitorHandle Signal_DriveStopButton(this GVolumeMonitorHandle instance, GVolumeMonitorDelegates.DriveStopButton handler)
+	public static GVolumeMonitorHandle Signal_DriveStopButton(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.DriveStopButton handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "drive_stop_button", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
-	public static GVolumeMonitorHandle Signal_MountAdded(this GVolumeMonitorHandle instance, GVolumeMonitorDelegates.MountAdded handler)
+	public static GVolumeMonitorHandle Signal_MountAdded(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.MountAdded handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "mount_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
-	public static GVolumeMonitorHandle Signal_MountChanged(this GVolumeMonitorHandle instance, GVolumeMonitorDelegates.MountChanged handler)
+	public static GVolumeMonitorHandle Signal_MountChanged(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.MountChanged handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "mount_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
-	public static GVolumeMonitorHandle Signal_MountPreUnmount(this GVolumeMonitorHandle instance, GVolumeMonitorDelegates.MountPreUnmount handler)
+	public static GVolumeMonitorHandle Signal_MountPreUnmount(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.MountPreUnmount handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "mount_pre_unmount", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
-	public static GVolumeMonitorHandle Signal_MountRemoved(this GVolumeMonitorHandle instance, GVolumeMonitorDelegates.MountRemoved handler)
+	public static GVolumeMonitorHandle Signal_MountRemoved(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.MountRemoved handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "mount_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
-	public static GVolumeMonitorHandle Signal_VolumeAdded(this GVolumeMonitorHandle instance, GVolumeMonitorDelegates.VolumeAdded handler)
+	public static GVolumeMonitorHandle Signal_VolumeAdded(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.VolumeAdded handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "volume_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
-	public static GVolumeMonitorHandle Signal_VolumeChanged(this GVolumeMonitorHandle instance, GVolumeMonitorDelegates.VolumeChanged handler)
+	public static GVolumeMonitorHandle Signal_VolumeChanged(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.VolumeChanged handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "volume_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
-	public static GVolumeMonitorHandle Signal_VolumeRemoved(this GVolumeMonitorHandle instance, GVolumeMonitorDelegates.VolumeRemoved handler)
+	public static GVolumeMonitorHandle Signal_VolumeRemoved(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.VolumeRemoved handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "volume_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
 }
 
-public static class GVolumeMonitorDelegates
+public static class GVolumeMonitorSignalDelegates
 {
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -177,6 +130,36 @@ public static class GVolumeMonitorDelegates
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public delegate void VolumeRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, GVolumeHandle volume, IntPtr user_data);
+}
+
+
+public static class GVolumeMonitorHandleExtensions
+{
+	public static GListHandle GetConnectedDrives(this GVolumeMonitorHandle volume_monitor)
+	{
+		return GVolumeMonitorExterns.g_volume_monitor_get_connected_drives(volume_monitor);
+	}
+
+	public static GMountHandle GetMountForUuid(this GVolumeMonitorHandle volume_monitor, string uuid)
+	{
+		return GVolumeMonitorExterns.g_volume_monitor_get_mount_for_uuid(volume_monitor, uuid);
+	}
+
+	public static GListHandle GetMounts(this GVolumeMonitorHandle volume_monitor)
+	{
+		return GVolumeMonitorExterns.g_volume_monitor_get_mounts(volume_monitor);
+	}
+
+	public static GVolumeHandle GetVolumeForUuid(this GVolumeMonitorHandle volume_monitor, string uuid)
+	{
+		return GVolumeMonitorExterns.g_volume_monitor_get_volume_for_uuid(volume_monitor, uuid);
+	}
+
+	public static GListHandle GetVolumes(this GVolumeMonitorHandle volume_monitor)
+	{
+		return GVolumeMonitorExterns.g_volume_monitor_get_volumes(volume_monitor);
+	}
+
 }
 
 internal class GVolumeMonitorExterns

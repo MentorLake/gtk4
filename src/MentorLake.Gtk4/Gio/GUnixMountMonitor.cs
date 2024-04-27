@@ -28,17 +28,30 @@ public class GUnixMountMonitorHandle : GObjectHandle
 
 }
 
-public class GUnixMountMonitorSignal
+public static class GUnixMountMonitorSignalExtensions
 {
-	public string Value { get; set; }
-	public GUnixMountMonitorSignal(string value) => Value = value;
+	public static GUnixMountMonitorHandle Signal_MountpointsChanged(this GUnixMountMonitorHandle instance, GUnixMountMonitorSignalDelegates.MountpointsChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "mountpoints_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GUnixMountMonitorHandle Signal_MountsChanged(this GUnixMountMonitorHandle instance, GUnixMountMonitorSignalDelegates.MountsChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "mounts_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GUnixMountMonitorSignals
+public static class GUnixMountMonitorSignalDelegates
 {
-	public static GUnixMountMonitorSignal MountpointsChanged = new("BindingTransform.MethodDeclaration");
-	public static GUnixMountMonitorSignal MountsChanged = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MountpointsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GUnixMountMonitorHandle>))] GUnixMountMonitorHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MountsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GUnixMountMonitorHandle>))] GUnixMountMonitorHandle self, IntPtr user_data);
 }
+
 
 public static class GUnixMountMonitorHandleExtensions
 {
@@ -48,26 +61,6 @@ public static class GUnixMountMonitorHandleExtensions
 		return mount_monitor;
 	}
 
-	public static GUnixMountMonitorHandle Signal_MountpointsChanged(this GUnixMountMonitorHandle instance, GUnixMountMonitorDelegates.MountpointsChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "mountpoints_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GUnixMountMonitorHandle Signal_MountsChanged(this GUnixMountMonitorHandle instance, GUnixMountMonitorDelegates.MountsChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "mounts_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GUnixMountMonitorDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MountpointsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GUnixMountMonitorHandle>))] GUnixMountMonitorHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MountsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GUnixMountMonitorHandle>))] GUnixMountMonitorHandle self, IntPtr user_data);
 }
 
 internal class GUnixMountMonitorExterns

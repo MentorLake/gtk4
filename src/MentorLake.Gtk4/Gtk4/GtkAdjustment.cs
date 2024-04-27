@@ -23,17 +23,30 @@ public class GtkAdjustmentHandle : GInitiallyUnownedHandle
 
 }
 
-public class GtkAdjustmentSignal
+public static class GtkAdjustmentSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkAdjustmentSignal(string value) => Value = value;
+	public static GtkAdjustmentHandle Signal_Changed(this GtkAdjustmentHandle instance, GtkAdjustmentSignalDelegates.Changed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkAdjustmentHandle Signal_ValueChanged(this GtkAdjustmentHandle instance, GtkAdjustmentSignalDelegates.ValueChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkAdjustmentSignals
+public static class GtkAdjustmentSignalDelegates
 {
-	public static GtkAdjustmentSignal Changed = new("BindingTransform.MethodDeclaration");
-	public static GtkAdjustmentSignal ValueChanged = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAdjustmentHandle>))] GtkAdjustmentHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ValueChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAdjustmentHandle>))] GtkAdjustmentHandle self, IntPtr user_data);
 }
+
 
 public static class GtkAdjustmentHandleExtensions
 {
@@ -120,26 +133,6 @@ public static class GtkAdjustmentHandleExtensions
 		return adjustment;
 	}
 
-	public static GtkAdjustmentHandle Signal_Changed(this GtkAdjustmentHandle instance, GtkAdjustmentDelegates.Changed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkAdjustmentHandle Signal_ValueChanged(this GtkAdjustmentHandle instance, GtkAdjustmentDelegates.ValueChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkAdjustmentDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAdjustmentHandle>))] GtkAdjustmentHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ValueChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAdjustmentHandle>))] GtkAdjustmentHandle self, IntPtr user_data);
 }
 
 internal class GtkAdjustmentExterns

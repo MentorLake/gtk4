@@ -23,19 +23,46 @@ public class GtkDragSourceHandle : GtkGestureSingleHandle
 
 }
 
-public class GtkDragSourceSignal
+public static class GtkDragSourceSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkDragSourceSignal(string value) => Value = value;
+	public static GtkDragSourceHandle Signal_DragBegin(this GtkDragSourceHandle instance, GtkDragSourceSignalDelegates.DragBegin handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "drag_begin", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkDragSourceHandle Signal_DragCancel(this GtkDragSourceHandle instance, GtkDragSourceSignalDelegates.DragCancel handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "drag_cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkDragSourceHandle Signal_DragEnd(this GtkDragSourceHandle instance, GtkDragSourceSignalDelegates.DragEnd handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "drag_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkDragSourceHandle Signal_Prepare(this GtkDragSourceHandle instance, GtkDragSourceSignalDelegates.Prepare handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "prepare", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkDragSourceSignals
+public static class GtkDragSourceSignalDelegates
 {
-	public static GtkDragSourceSignal DragBegin = new("BindingTransform.MethodDeclaration");
-	public static GtkDragSourceSignal DragCancel = new("BindingTransform.MethodDeclaration");
-	public static GtkDragSourceSignal DragEnd = new("BindingTransform.MethodDeclaration");
-	public static GtkDragSourceSignal Prepare = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DragBegin([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, GdkDragHandle drag, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool DragCancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, GdkDragHandle drag, ref GdkDragCancelReason reason, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DragEnd([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, GdkDragHandle drag, bool delete_data, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate GdkContentProviderHandle Prepare([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, double x, double y, IntPtr user_data);
 }
+
 
 public static class GtkDragSourceHandleExtensions
 {
@@ -78,42 +105,6 @@ public static class GtkDragSourceHandleExtensions
 		return source;
 	}
 
-	public static GtkDragSourceHandle Signal_DragBegin(this GtkDragSourceHandle instance, GtkDragSourceDelegates.DragBegin handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "drag_begin", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkDragSourceHandle Signal_DragCancel(this GtkDragSourceHandle instance, GtkDragSourceDelegates.DragCancel handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "drag_cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkDragSourceHandle Signal_DragEnd(this GtkDragSourceHandle instance, GtkDragSourceDelegates.DragEnd handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "drag_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkDragSourceHandle Signal_Prepare(this GtkDragSourceHandle instance, GtkDragSourceDelegates.Prepare handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "prepare", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkDragSourceDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DragBegin([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, GdkDragHandle drag, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool DragCancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, GdkDragHandle drag, ref GdkDragCancelReason reason, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DragEnd([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, GdkDragHandle drag, bool delete_data, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate GdkContentProviderHandle Prepare([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, double x, double y, IntPtr user_data);
 }
 
 internal class GtkDragSourceExterns

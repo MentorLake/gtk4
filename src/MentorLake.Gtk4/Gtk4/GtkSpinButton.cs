@@ -28,21 +28,62 @@ public class GtkSpinButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAcce
 
 }
 
-public class GtkSpinButtonSignal
+public static class GtkSpinButtonSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkSpinButtonSignal(string value) => Value = value;
+	public static GtkSpinButtonHandle Signal_Activate(this GtkSpinButtonHandle instance, GtkSpinButtonSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkSpinButtonHandle Signal_ChangeValue(this GtkSpinButtonHandle instance, GtkSpinButtonSignalDelegates.ChangeValue handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "change_value", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkSpinButtonHandle Signal_Input(this GtkSpinButtonHandle instance, GtkSpinButtonSignalDelegates.Input handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "input", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkSpinButtonHandle Signal_Output(this GtkSpinButtonHandle instance, GtkSpinButtonSignalDelegates.Output handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "output", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkSpinButtonHandle Signal_ValueChanged(this GtkSpinButtonHandle instance, GtkSpinButtonSignalDelegates.ValueChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkSpinButtonHandle Signal_Wrapped(this GtkSpinButtonHandle instance, GtkSpinButtonSignalDelegates.Wrapped handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "wrapped", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkSpinButtonSignals
+public static class GtkSpinButtonSignalDelegates
 {
-	public static GtkSpinButtonSignal Activate = new("BindingTransform.MethodDeclaration");
-	public static GtkSpinButtonSignal ChangeValue = new("BindingTransform.MethodDeclaration");
-	public static GtkSpinButtonSignal Input = new("BindingTransform.MethodDeclaration");
-	public static GtkSpinButtonSignal Output = new("BindingTransform.MethodDeclaration");
-	public static GtkSpinButtonSignal ValueChanged = new("BindingTransform.MethodDeclaration");
-	public static GtkSpinButtonSignal Wrapped = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ChangeValue([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, ref GtkScrollType scroll, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate int Input([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, out double new_value, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Output([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ValueChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Wrapped([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
 }
+
 
 public static class GtkSpinButtonHandleExtensions
 {
@@ -192,58 +233,6 @@ public static class GtkSpinButtonHandleExtensions
 		return spin_button;
 	}
 
-	public static GtkSpinButtonHandle Signal_Activate(this GtkSpinButtonHandle instance, GtkSpinButtonDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkSpinButtonHandle Signal_ChangeValue(this GtkSpinButtonHandle instance, GtkSpinButtonDelegates.ChangeValue handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "change_value", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkSpinButtonHandle Signal_Input(this GtkSpinButtonHandle instance, GtkSpinButtonDelegates.Input handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "input", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkSpinButtonHandle Signal_Output(this GtkSpinButtonHandle instance, GtkSpinButtonDelegates.Output handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "output", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkSpinButtonHandle Signal_ValueChanged(this GtkSpinButtonHandle instance, GtkSpinButtonDelegates.ValueChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkSpinButtonHandle Signal_Wrapped(this GtkSpinButtonHandle instance, GtkSpinButtonDelegates.Wrapped handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "wrapped", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkSpinButtonDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ChangeValue([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, ref GtkScrollType scroll, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate int Input([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, out double new_value, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool Output([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ValueChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Wrapped([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkSpinButtonExterns

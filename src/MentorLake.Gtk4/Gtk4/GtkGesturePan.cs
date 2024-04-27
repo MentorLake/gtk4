@@ -23,16 +23,22 @@ public class GtkGesturePanHandle : GtkGestureDragHandle
 
 }
 
-public class GtkGesturePanSignal
+public static class GtkGesturePanSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkGesturePanSignal(string value) => Value = value;
+	public static GtkGesturePanHandle Signal_Pan(this GtkGesturePanHandle instance, GtkGesturePanSignalDelegates.Pan handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "pan", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkGesturePanSignals
+public static class GtkGesturePanSignalDelegates
 {
-	public static GtkGesturePanSignal Pan = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Pan([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGesturePanHandle>))] GtkGesturePanHandle self, ref GtkPanDirection direction, double offset, IntPtr user_data);
 }
+
 
 public static class GtkGesturePanHandleExtensions
 {
@@ -47,18 +53,6 @@ public static class GtkGesturePanHandleExtensions
 		return gesture;
 	}
 
-	public static GtkGesturePanHandle Signal_Pan(this GtkGesturePanHandle instance, GtkGesturePanDelegates.Pan handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "pan", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkGesturePanDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Pan([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGesturePanHandle>))] GtkGesturePanHandle self, ref GtkPanDirection direction, double offset, IntPtr user_data);
 }
 
 internal class GtkGesturePanExterns

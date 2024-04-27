@@ -28,16 +28,22 @@ public class GCancellableHandle : GObjectHandle
 
 }
 
-public class GCancellableSignal
+public static class GCancellableSignalExtensions
 {
-	public string Value { get; set; }
-	public GCancellableSignal(string value) => Value = value;
+	public static GCancellableHandle Signal_Cancelled(this GCancellableHandle instance, GCancellableSignalDelegates.Cancelled handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "cancelled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GCancellableSignals
+public static class GCancellableSignalDelegates
 {
-	public static GCancellableSignal Cancelled = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Cancelled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GCancellableHandle>))] GCancellableHandle self, IntPtr user_data);
 }
+
 
 public static class GCancellableHandleExtensions
 {
@@ -107,18 +113,6 @@ public static class GCancellableHandleExtensions
 		return GCancellableExterns.g_cancellable_source_new(cancellable);
 	}
 
-	public static GCancellableHandle Signal_Cancelled(this GCancellableHandle instance, GCancellableDelegates.Cancelled handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "cancelled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GCancellableDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Cancelled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GCancellableHandle>))] GCancellableHandle self, IntPtr user_data);
 }
 
 internal class GCancellableExterns

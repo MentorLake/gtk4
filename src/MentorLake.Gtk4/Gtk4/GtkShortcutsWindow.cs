@@ -18,17 +18,30 @@ public class GtkShortcutsWindowHandle : GtkWindowHandle, GtkAccessibleHandle, Gt
 {
 }
 
-public class GtkShortcutsWindowSignal
+public static class GtkShortcutsWindowSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkShortcutsWindowSignal(string value) => Value = value;
+	public static GtkShortcutsWindowHandle Signal_Close(this GtkShortcutsWindowHandle instance, GtkShortcutsWindowSignalDelegates.Close handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "close", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkShortcutsWindowHandle Signal_Search(this GtkShortcutsWindowHandle instance, GtkShortcutsWindowSignalDelegates.Search handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "search", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkShortcutsWindowSignals
+public static class GtkShortcutsWindowSignalDelegates
 {
-	public static GtkShortcutsWindowSignal Close = new("BindingTransform.MethodDeclaration");
-	public static GtkShortcutsWindowSignal Search = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Close([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkShortcutsWindowHandle>))] GtkShortcutsWindowHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Search([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkShortcutsWindowHandle>))] GtkShortcutsWindowHandle self, IntPtr user_data);
 }
+
 
 public static class GtkShortcutsWindowHandleExtensions
 {
@@ -38,26 +51,6 @@ public static class GtkShortcutsWindowHandleExtensions
 		return self;
 	}
 
-	public static GtkShortcutsWindowHandle Signal_Close(this GtkShortcutsWindowHandle instance, GtkShortcutsWindowDelegates.Close handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "close", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkShortcutsWindowHandle Signal_Search(this GtkShortcutsWindowHandle instance, GtkShortcutsWindowDelegates.Search handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "search", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkShortcutsWindowDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Close([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkShortcutsWindowHandle>))] GtkShortcutsWindowHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Search([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkShortcutsWindowHandle>))] GtkShortcutsWindowHandle self, IntPtr user_data);
 }
 
 internal class GtkShortcutsWindowExterns

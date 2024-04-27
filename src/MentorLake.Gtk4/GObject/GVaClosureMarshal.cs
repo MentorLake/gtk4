@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GObject;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GVaClosureMarshal(GClosureHandle closure, GValueHandle return_value, GTypeInstanceHandle instance, IntPtr args, IntPtr marshal_data, int n_params, GType[] param_types);
-

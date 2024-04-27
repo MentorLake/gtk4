@@ -23,16 +23,22 @@ public class GtkCssProviderHandle : GObjectHandle, GtkStyleProviderHandle
 
 }
 
-public class GtkCssProviderSignal
+public static class GtkCssProviderSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkCssProviderSignal(string value) => Value = value;
+	public static GtkCssProviderHandle Signal_ParsingError(this GtkCssProviderHandle instance, GtkCssProviderSignalDelegates.ParsingError handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "parsing_error", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkCssProviderSignals
+public static class GtkCssProviderSignalDelegates
 {
-	public static GtkCssProviderSignal ParsingError = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ParsingError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCssProviderHandle>))] GtkCssProviderHandle self, GtkCssSectionHandle section, GErrorHandle error, IntPtr user_data);
 }
+
 
 public static class GtkCssProviderHandleExtensions
 {
@@ -83,18 +89,6 @@ public static class GtkCssProviderHandleExtensions
 		return GtkCssProviderExterns.gtk_css_provider_to_string(provider);
 	}
 
-	public static GtkCssProviderHandle Signal_ParsingError(this GtkCssProviderHandle instance, GtkCssProviderDelegates.ParsingError handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "parsing_error", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkCssProviderDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ParsingError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCssProviderHandle>))] GtkCssProviderHandle self, GtkCssSectionHandle section, GErrorHandle error, IntPtr user_data);
 }
 
 internal class GtkCssProviderExterns

@@ -23,18 +23,38 @@ public class GdkDragHandle : GObjectHandle
 
 }
 
-public class GdkDragSignal
+public static class GdkDragSignalExtensions
 {
-	public string Value { get; set; }
-	public GdkDragSignal(string value) => Value = value;
+	public static GdkDragHandle Signal_Cancel(this GdkDragHandle instance, GdkDragSignalDelegates.Cancel handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkDragHandle Signal_DndFinished(this GdkDragHandle instance, GdkDragSignalDelegates.DndFinished handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "dnd_finished", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkDragHandle Signal_DropPerformed(this GdkDragHandle instance, GdkDragSignalDelegates.DropPerformed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "drop_performed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GdkDragSignals
+public static class GdkDragSignalDelegates
 {
-	public static GdkDragSignal Cancel = new("BindingTransform.MethodDeclaration");
-	public static GdkDragSignal DndFinished = new("BindingTransform.MethodDeclaration");
-	public static GdkDragSignal DropPerformed = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Cancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle self, ref GdkDragCancelReason reason, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DndFinished([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DropPerformed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle self, IntPtr user_data);
 }
+
 
 public static class GdkDragHandleExtensions
 {
@@ -90,34 +110,6 @@ public static class GdkDragHandleExtensions
 		return drag;
 	}
 
-	public static GdkDragHandle Signal_Cancel(this GdkDragHandle instance, GdkDragDelegates.Cancel handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkDragHandle Signal_DndFinished(this GdkDragHandle instance, GdkDragDelegates.DndFinished handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "dnd_finished", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkDragHandle Signal_DropPerformed(this GdkDragHandle instance, GdkDragDelegates.DropPerformed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "drop_performed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GdkDragDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Cancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle self, ref GdkDragCancelReason reason, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DndFinished([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DropPerformed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle self, IntPtr user_data);
 }
 
 internal class GdkDragExterns

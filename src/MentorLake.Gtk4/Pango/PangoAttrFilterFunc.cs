@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Pango;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool PangoAttrFilterFunc(PangoAttributeHandle attribute, IntPtr user_data);
-

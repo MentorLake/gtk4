@@ -33,22 +33,70 @@ public class GApplicationHandle : GObjectHandle, GActionGroupHandle, GActionMapH
 
 }
 
-public class GApplicationSignal
+public static class GApplicationSignalExtensions
 {
-	public string Value { get; set; }
-	public GApplicationSignal(string value) => Value = value;
+	public static GApplicationHandle Signal_Activate(this GApplicationHandle instance, GApplicationSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GApplicationHandle Signal_CommandLine(this GApplicationHandle instance, GApplicationSignalDelegates.CommandLine handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "command_line", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GApplicationHandle Signal_HandleLocalOptions(this GApplicationHandle instance, GApplicationSignalDelegates.HandleLocalOptions handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "handle_local_options", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GApplicationHandle Signal_NameLost(this GApplicationHandle instance, GApplicationSignalDelegates.NameLost handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "name_lost", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GApplicationHandle Signal_Open(this GApplicationHandle instance, GApplicationSignalDelegates.Open handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "open", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GApplicationHandle Signal_Shutdown(this GApplicationHandle instance, GApplicationSignalDelegates.Shutdown handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "shutdown", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GApplicationHandle Signal_Startup(this GApplicationHandle instance, GApplicationSignalDelegates.Startup handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "startup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GApplicationSignals
+public static class GApplicationSignalDelegates
 {
-	public static GApplicationSignal Activate = new("BindingTransform.MethodDeclaration");
-	public static GApplicationSignal CommandLine = new("BindingTransform.MethodDeclaration");
-	public static GApplicationSignal HandleLocalOptions = new("BindingTransform.MethodDeclaration");
-	public static GApplicationSignal NameLost = new("BindingTransform.MethodDeclaration");
-	public static GApplicationSignal Open = new("BindingTransform.MethodDeclaration");
-	public static GApplicationSignal Shutdown = new("BindingTransform.MethodDeclaration");
-	public static GApplicationSignal Startup = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate int CommandLine([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, GApplicationCommandLineHandle command_line, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate int HandleLocalOptions([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, GVariantDictHandle options, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool NameLost([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Open([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr files, int n_files, string hint, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Shutdown([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Startup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
 }
+
 
 public static class GApplicationHandleExtensions
 {
@@ -256,66 +304,6 @@ public static class GApplicationHandleExtensions
 		return application;
 	}
 
-	public static GApplicationHandle Signal_Activate(this GApplicationHandle instance, GApplicationDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GApplicationHandle Signal_CommandLine(this GApplicationHandle instance, GApplicationDelegates.CommandLine handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "command_line", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GApplicationHandle Signal_HandleLocalOptions(this GApplicationHandle instance, GApplicationDelegates.HandleLocalOptions handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "handle_local_options", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GApplicationHandle Signal_NameLost(this GApplicationHandle instance, GApplicationDelegates.NameLost handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "name_lost", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GApplicationHandle Signal_Open(this GApplicationHandle instance, GApplicationDelegates.Open handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "open", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GApplicationHandle Signal_Shutdown(this GApplicationHandle instance, GApplicationDelegates.Shutdown handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "shutdown", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GApplicationHandle Signal_Startup(this GApplicationHandle instance, GApplicationDelegates.Startup handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "startup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GApplicationDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate int CommandLine([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, GApplicationCommandLineHandle command_line, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate int HandleLocalOptions([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, GVariantDictHandle options, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool NameLost([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Open([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr files, int n_files, string hint, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Shutdown([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Startup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
 }
 
 internal class GApplicationExterns

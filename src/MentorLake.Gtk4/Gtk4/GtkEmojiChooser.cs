@@ -23,31 +23,25 @@ public class GtkEmojiChooserHandle : GtkPopoverHandle, GtkAccessibleHandle, GtkB
 
 }
 
-public class GtkEmojiChooserSignal
+public static class GtkEmojiChooserSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkEmojiChooserSignal(string value) => Value = value;
-}
-
-public static class GtkEmojiChooserSignals
-{
-	public static GtkEmojiChooserSignal EmojiPicked = new("BindingTransform.MethodDeclaration");
-}
-
-public static class GtkEmojiChooserHandleExtensions
-{
-	public static GtkEmojiChooserHandle Signal_EmojiPicked(this GtkEmojiChooserHandle instance, GtkEmojiChooserDelegates.EmojiPicked handler)
+	public static GtkEmojiChooserHandle Signal_EmojiPicked(this GtkEmojiChooserHandle instance, GtkEmojiChooserSignalDelegates.EmojiPicked handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "emoji_picked", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
 }
 
-public static class GtkEmojiChooserDelegates
+public static class GtkEmojiChooserSignalDelegates
 {
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public delegate void EmojiPicked([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEmojiChooserHandle>))] GtkEmojiChooserHandle self, string text, IntPtr user_data);
+}
+
+
+public static class GtkEmojiChooserHandleExtensions
+{
 }
 
 internal class GtkEmojiChooserExterns

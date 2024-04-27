@@ -23,18 +23,38 @@ public class GtkTextTagTableHandle : GObjectHandle, GtkBuildableHandle
 
 }
 
-public class GtkTextTagTableSignal
+public static class GtkTextTagTableSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkTextTagTableSignal(string value) => Value = value;
+	public static GtkTextTagTableHandle Signal_TagAdded(this GtkTextTagTableHandle instance, GtkTextTagTableSignalDelegates.TagAdded handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "tag_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextTagTableHandle Signal_TagChanged(this GtkTextTagTableHandle instance, GtkTextTagTableSignalDelegates.TagChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "tag_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextTagTableHandle Signal_TagRemoved(this GtkTextTagTableHandle instance, GtkTextTagTableSignalDelegates.TagRemoved handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "tag_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkTextTagTableSignals
+public static class GtkTextTagTableSignalDelegates
 {
-	public static GtkTextTagTableSignal TagAdded = new("BindingTransform.MethodDeclaration");
-	public static GtkTextTagTableSignal TagChanged = new("BindingTransform.MethodDeclaration");
-	public static GtkTextTagTableSignal TagRemoved = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void TagAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagTableHandle>))] GtkTextTagTableHandle self, GtkTextTagHandle tag, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void TagChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagTableHandle>))] GtkTextTagTableHandle self, GtkTextTagHandle tag, bool size_changed, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void TagRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagTableHandle>))] GtkTextTagTableHandle self, GtkTextTagHandle tag, IntPtr user_data);
 }
+
 
 public static class GtkTextTagTableHandleExtensions
 {
@@ -65,34 +85,6 @@ public static class GtkTextTagTableHandleExtensions
 		return table;
 	}
 
-	public static GtkTextTagTableHandle Signal_TagAdded(this GtkTextTagTableHandle instance, GtkTextTagTableDelegates.TagAdded handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "tag_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextTagTableHandle Signal_TagChanged(this GtkTextTagTableHandle instance, GtkTextTagTableDelegates.TagChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "tag_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextTagTableHandle Signal_TagRemoved(this GtkTextTagTableHandle instance, GtkTextTagTableDelegates.TagRemoved handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "tag_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkTextTagTableDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void TagAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagTableHandle>))] GtkTextTagTableHandle self, GtkTextTagHandle tag, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void TagChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagTableHandle>))] GtkTextTagTableHandle self, GtkTextTagHandle tag, bool size_changed, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void TagRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagTableHandle>))] GtkTextTagTableHandle self, GtkTextTagHandle tag, IntPtr user_data);
 }
 
 internal class GtkTextTagTableExterns

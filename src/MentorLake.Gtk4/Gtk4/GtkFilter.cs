@@ -18,16 +18,22 @@ public class GtkFilterHandle : GObjectHandle
 {
 }
 
-public class GtkFilterSignal
+public static class GtkFilterSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkFilterSignal(string value) => Value = value;
+	public static GtkFilterHandle Signal_Changed(this GtkFilterHandle instance, GtkFilterSignalDelegates.Changed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkFilterSignals
+public static class GtkFilterSignalDelegates
 {
-	public static GtkFilterSignal Changed = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFilterHandle>))] GtkFilterHandle self, GtkFilterChange change, IntPtr user_data);
 }
+
 
 public static class GtkFilterHandleExtensions
 {
@@ -47,18 +53,6 @@ public static class GtkFilterHandleExtensions
 		return GtkFilterExterns.gtk_filter_match(self, item);
 	}
 
-	public static GtkFilterHandle Signal_Changed(this GtkFilterHandle instance, GtkFilterDelegates.Changed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkFilterDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFilterHandle>))] GtkFilterHandle self, GtkFilterChange change, IntPtr user_data);
 }
 
 internal class GtkFilterExterns

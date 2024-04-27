@@ -28,30 +28,134 @@ public class GtkTextViewHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAccess
 
 }
 
-public class GtkTextViewSignal
+public static class GtkTextViewSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkTextViewSignal(string value) => Value = value;
+	public static GtkTextViewHandle Signal_Backspace(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.Backspace handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "backspace", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextViewHandle Signal_CopyClipboard(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.CopyClipboard handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "copy_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextViewHandle Signal_CutClipboard(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.CutClipboard handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "cut_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextViewHandle Signal_DeleteFromCursor(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.DeleteFromCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "delete_from_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextViewHandle Signal_ExtendSelection(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.ExtendSelection handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "extend_selection", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextViewHandle Signal_InsertAtCursor(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.InsertAtCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "insert_at_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextViewHandle Signal_InsertEmoji(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.InsertEmoji handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "insert_emoji", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextViewHandle Signal_MoveCursor(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.MoveCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextViewHandle Signal_MoveViewport(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.MoveViewport handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_viewport", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextViewHandle Signal_PasteClipboard(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.PasteClipboard handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "paste_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextViewHandle Signal_PreeditChanged(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.PreeditChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "preedit_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextViewHandle Signal_SelectAll(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.SelectAll handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextViewHandle Signal_SetAnchor(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.SetAnchor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "set_anchor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextViewHandle Signal_ToggleCursorVisible(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.ToggleCursorVisible handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_visible", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextViewHandle Signal_ToggleOverwrite(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.ToggleOverwrite handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "toggle_overwrite", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkTextViewSignals
+public static class GtkTextViewSignalDelegates
 {
-	public static GtkTextViewSignal Backspace = new("BindingTransform.MethodDeclaration");
-	public static GtkTextViewSignal CopyClipboard = new("BindingTransform.MethodDeclaration");
-	public static GtkTextViewSignal CutClipboard = new("BindingTransform.MethodDeclaration");
-	public static GtkTextViewSignal DeleteFromCursor = new("BindingTransform.MethodDeclaration");
-	public static GtkTextViewSignal ExtendSelection = new("BindingTransform.MethodDeclaration");
-	public static GtkTextViewSignal InsertAtCursor = new("BindingTransform.MethodDeclaration");
-	public static GtkTextViewSignal InsertEmoji = new("BindingTransform.MethodDeclaration");
-	public static GtkTextViewSignal MoveCursor = new("BindingTransform.MethodDeclaration");
-	public static GtkTextViewSignal MoveViewport = new("BindingTransform.MethodDeclaration");
-	public static GtkTextViewSignal PasteClipboard = new("BindingTransform.MethodDeclaration");
-	public static GtkTextViewSignal PreeditChanged = new("BindingTransform.MethodDeclaration");
-	public static GtkTextViewSignal SelectAll = new("BindingTransform.MethodDeclaration");
-	public static GtkTextViewSignal SetAnchor = new("BindingTransform.MethodDeclaration");
-	public static GtkTextViewSignal ToggleCursorVisible = new("BindingTransform.MethodDeclaration");
-	public static GtkTextViewSignal ToggleOverwrite = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Backspace([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void CopyClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void CutClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DeleteFromCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, ref GtkDeleteType type, int count, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ExtendSelection([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, GtkTextExtendSelection granularity, GtkTextIterHandle location, GtkTextIterHandle start, GtkTextIterHandle end, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void InsertAtCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, string @string, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void InsertEmoji([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, ref GtkMovementStep step, int count, bool extend_selection, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MoveViewport([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, ref GtkScrollStep step, int count, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void PasteClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void PreeditChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, string preedit, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SelectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, bool select, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SetAnchor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ToggleCursorVisible([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ToggleOverwrite([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, IntPtr user_data);
 }
+
 
 public static class GtkTextViewHandleExtensions
 {
@@ -446,130 +550,6 @@ public static class GtkTextViewHandleExtensions
 		return text_view;
 	}
 
-	public static GtkTextViewHandle Signal_Backspace(this GtkTextViewHandle instance, GtkTextViewDelegates.Backspace handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "backspace", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextViewHandle Signal_CopyClipboard(this GtkTextViewHandle instance, GtkTextViewDelegates.CopyClipboard handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "copy_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextViewHandle Signal_CutClipboard(this GtkTextViewHandle instance, GtkTextViewDelegates.CutClipboard handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "cut_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextViewHandle Signal_DeleteFromCursor(this GtkTextViewHandle instance, GtkTextViewDelegates.DeleteFromCursor handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "delete_from_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextViewHandle Signal_ExtendSelection(this GtkTextViewHandle instance, GtkTextViewDelegates.ExtendSelection handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "extend_selection", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextViewHandle Signal_InsertAtCursor(this GtkTextViewHandle instance, GtkTextViewDelegates.InsertAtCursor handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "insert_at_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextViewHandle Signal_InsertEmoji(this GtkTextViewHandle instance, GtkTextViewDelegates.InsertEmoji handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "insert_emoji", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextViewHandle Signal_MoveCursor(this GtkTextViewHandle instance, GtkTextViewDelegates.MoveCursor handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextViewHandle Signal_MoveViewport(this GtkTextViewHandle instance, GtkTextViewDelegates.MoveViewport handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "move_viewport", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextViewHandle Signal_PasteClipboard(this GtkTextViewHandle instance, GtkTextViewDelegates.PasteClipboard handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "paste_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextViewHandle Signal_PreeditChanged(this GtkTextViewHandle instance, GtkTextViewDelegates.PreeditChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "preedit_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextViewHandle Signal_SelectAll(this GtkTextViewHandle instance, GtkTextViewDelegates.SelectAll handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextViewHandle Signal_SetAnchor(this GtkTextViewHandle instance, GtkTextViewDelegates.SetAnchor handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "set_anchor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextViewHandle Signal_ToggleCursorVisible(this GtkTextViewHandle instance, GtkTextViewDelegates.ToggleCursorVisible handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_visible", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextViewHandle Signal_ToggleOverwrite(this GtkTextViewHandle instance, GtkTextViewDelegates.ToggleOverwrite handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "toggle_overwrite", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkTextViewDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Backspace([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void CopyClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void CutClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DeleteFromCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, ref GtkDeleteType type, int count, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ExtendSelection([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, GtkTextExtendSelection granularity, GtkTextIterHandle location, GtkTextIterHandle start, GtkTextIterHandle end, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void InsertAtCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, string @string, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void InsertEmoji([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, ref GtkMovementStep step, int count, bool extend_selection, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MoveViewport([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, ref GtkScrollStep step, int count, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PasteClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PreeditChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, string preedit, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SelectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, bool select, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SetAnchor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ToggleCursorVisible([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ToggleOverwrite([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextViewHandle>))] GtkTextViewHandle self, IntPtr user_data);
 }
 
 internal class GtkTextViewExterns

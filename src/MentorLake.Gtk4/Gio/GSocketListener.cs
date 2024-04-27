@@ -23,16 +23,22 @@ public class GSocketListenerHandle : GObjectHandle
 
 }
 
-public class GSocketListenerSignal
+public static class GSocketListenerSignalExtensions
 {
-	public string Value { get; set; }
-	public GSocketListenerSignal(string value) => Value = value;
+	public static GSocketListenerHandle Signal_Event(this GSocketListenerHandle instance, GSocketListenerSignalDelegates.Event handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GSocketListenerSignals
+public static class GSocketListenerSignalDelegates
 {
-	public static GSocketListenerSignal Event = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Event([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSocketListenerHandle>))] GSocketListenerHandle self, GSocketListenerEvent @event, GSocketHandle socket, IntPtr user_data);
 }
+
 
 public static class GSocketListenerHandleExtensions
 {
@@ -100,18 +106,6 @@ public static class GSocketListenerHandleExtensions
 		return listener;
 	}
 
-	public static GSocketListenerHandle Signal_Event(this GSocketListenerHandle instance, GSocketListenerDelegates.Event handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GSocketListenerDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Event([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSocketListenerHandle>))] GSocketListenerHandle self, GSocketListenerEvent @event, GSocketHandle socket, IntPtr user_data);
 }
 
 internal class GSocketListenerExterns

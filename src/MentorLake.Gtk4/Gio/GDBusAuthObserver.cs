@@ -23,17 +23,30 @@ public class GDBusAuthObserverHandle : GObjectHandle
 
 }
 
-public class GDBusAuthObserverSignal
+public static class GDBusAuthObserverSignalExtensions
 {
-	public string Value { get; set; }
-	public GDBusAuthObserverSignal(string value) => Value = value;
+	public static GDBusAuthObserverHandle Signal_AllowMechanism(this GDBusAuthObserverHandle instance, GDBusAuthObserverSignalDelegates.AllowMechanism handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "allow_mechanism", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GDBusAuthObserverHandle Signal_AuthorizeAuthenticatedPeer(this GDBusAuthObserverHandle instance, GDBusAuthObserverSignalDelegates.AuthorizeAuthenticatedPeer handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "authorize_authenticated_peer", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GDBusAuthObserverSignals
+public static class GDBusAuthObserverSignalDelegates
 {
-	public static GDBusAuthObserverSignal AllowMechanism = new("BindingTransform.MethodDeclaration");
-	public static GDBusAuthObserverSignal AuthorizeAuthenticatedPeer = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool AllowMechanism([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusAuthObserverHandle>))] GDBusAuthObserverHandle self, string mechanism, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool AuthorizeAuthenticatedPeer([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusAuthObserverHandle>))] GDBusAuthObserverHandle self, GIOStreamHandle stream, GCredentialsHandle credentials, IntPtr user_data);
 }
+
 
 public static class GDBusAuthObserverHandleExtensions
 {
@@ -47,26 +60,6 @@ public static class GDBusAuthObserverHandleExtensions
 		return GDBusAuthObserverExterns.g_dbus_auth_observer_authorize_authenticated_peer(observer, stream, credentials);
 	}
 
-	public static GDBusAuthObserverHandle Signal_AllowMechanism(this GDBusAuthObserverHandle instance, GDBusAuthObserverDelegates.AllowMechanism handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "allow_mechanism", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GDBusAuthObserverHandle Signal_AuthorizeAuthenticatedPeer(this GDBusAuthObserverHandle instance, GDBusAuthObserverDelegates.AuthorizeAuthenticatedPeer handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "authorize_authenticated_peer", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GDBusAuthObserverDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool AllowMechanism([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusAuthObserverHandle>))] GDBusAuthObserverHandle self, string mechanism, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool AuthorizeAuthenticatedPeer([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusAuthObserverHandle>))] GDBusAuthObserverHandle self, GIOStreamHandle stream, GCredentialsHandle credentials, IntPtr user_data);
 }
 
 internal class GDBusAuthObserverExterns

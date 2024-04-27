@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GLib;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool GIOFunc(GIOChannelHandle source, GIOCondition condition, IntPtr data);
-

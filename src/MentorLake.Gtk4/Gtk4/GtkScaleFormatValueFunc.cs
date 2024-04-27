@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate string GtkScaleFormatValueFunc(GtkScaleHandle scale, double value, IntPtr user_data);
-

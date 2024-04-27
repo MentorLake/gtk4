@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GDBusSignalCallback(GDBusConnectionHandle connection, string sender_name, string object_path, string interface_name, string signal_name, GVariantHandle parameters, IntPtr user_data);
-

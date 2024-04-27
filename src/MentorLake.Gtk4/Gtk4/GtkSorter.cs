@@ -18,16 +18,22 @@ public class GtkSorterHandle : GObjectHandle
 {
 }
 
-public class GtkSorterSignal
+public static class GtkSorterSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkSorterSignal(string value) => Value = value;
+	public static GtkSorterHandle Signal_Changed(this GtkSorterHandle instance, GtkSorterSignalDelegates.Changed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkSorterSignals
+public static class GtkSorterSignalDelegates
 {
-	public static GtkSorterSignal Changed = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSorterHandle>))] GtkSorterHandle self, GtkSorterChange change, IntPtr user_data);
 }
+
 
 public static class GtkSorterHandleExtensions
 {
@@ -47,18 +53,6 @@ public static class GtkSorterHandleExtensions
 		return GtkSorterExterns.gtk_sorter_get_order(self);
 	}
 
-	public static GtkSorterHandle Signal_Changed(this GtkSorterHandle instance, GtkSorterDelegates.Changed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkSorterDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSorterHandle>))] GtkSorterHandle self, GtkSorterChange change, IntPtr user_data);
 }
 
 internal class GtkSorterExterns

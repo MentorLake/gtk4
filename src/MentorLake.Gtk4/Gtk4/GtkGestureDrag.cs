@@ -23,18 +23,38 @@ public class GtkGestureDragHandle : GtkGestureSingleHandle
 
 }
 
-public class GtkGestureDragSignal
+public static class GtkGestureDragSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkGestureDragSignal(string value) => Value = value;
+	public static GtkGestureDragHandle Signal_DragBegin(this GtkGestureDragHandle instance, GtkGestureDragSignalDelegates.DragBegin handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "drag_begin", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkGestureDragHandle Signal_DragEnd(this GtkGestureDragHandle instance, GtkGestureDragSignalDelegates.DragEnd handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "drag_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkGestureDragHandle Signal_DragUpdate(this GtkGestureDragHandle instance, GtkGestureDragSignalDelegates.DragUpdate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "drag_update", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkGestureDragSignals
+public static class GtkGestureDragSignalDelegates
 {
-	public static GtkGestureDragSignal DragBegin = new("BindingTransform.MethodDeclaration");
-	public static GtkGestureDragSignal DragEnd = new("BindingTransform.MethodDeclaration");
-	public static GtkGestureDragSignal DragUpdate = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DragBegin([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureDragHandle>))] GtkGestureDragHandle self, double start_x, double start_y, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DragEnd([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureDragHandle>))] GtkGestureDragHandle self, double offset_x, double offset_y, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DragUpdate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureDragHandle>))] GtkGestureDragHandle self, double offset_x, double offset_y, IntPtr user_data);
 }
+
 
 public static class GtkGestureDragHandleExtensions
 {
@@ -48,34 +68,6 @@ public static class GtkGestureDragHandleExtensions
 		return GtkGestureDragExterns.gtk_gesture_drag_get_start_point(gesture, out x, out y);
 	}
 
-	public static GtkGestureDragHandle Signal_DragBegin(this GtkGestureDragHandle instance, GtkGestureDragDelegates.DragBegin handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "drag_begin", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkGestureDragHandle Signal_DragEnd(this GtkGestureDragHandle instance, GtkGestureDragDelegates.DragEnd handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "drag_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkGestureDragHandle Signal_DragUpdate(this GtkGestureDragHandle instance, GtkGestureDragDelegates.DragUpdate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "drag_update", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkGestureDragDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DragBegin([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureDragHandle>))] GtkGestureDragHandle self, double start_x, double start_y, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DragEnd([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureDragHandle>))] GtkGestureDragHandle self, double offset_x, double offset_y, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DragUpdate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureDragHandle>))] GtkGestureDragHandle self, double offset_x, double offset_y, IntPtr user_data);
 }
 
 internal class GtkGestureDragExterns

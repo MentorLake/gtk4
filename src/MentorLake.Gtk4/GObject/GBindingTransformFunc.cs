@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GObject;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool GBindingTransformFunc(GBindingHandle binding, GValueHandle from_value, GValueHandle to_value, IntPtr user_data);
-

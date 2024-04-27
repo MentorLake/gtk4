@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GtkFlowBoxForeachFunc(GtkFlowBoxHandle box, GtkFlowBoxChildHandle child, IntPtr user_data);
-

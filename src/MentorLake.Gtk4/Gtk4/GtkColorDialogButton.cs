@@ -23,16 +23,22 @@ public class GtkColorDialogButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, 
 
 }
 
-public class GtkColorDialogButtonSignal
+public static class GtkColorDialogButtonSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkColorDialogButtonSignal(string value) => Value = value;
+	public static GtkColorDialogButtonHandle Signal_Activate(this GtkColorDialogButtonHandle instance, GtkColorDialogButtonSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkColorDialogButtonSignals
+public static class GtkColorDialogButtonSignalDelegates
 {
-	public static GtkColorDialogButtonSignal Activate = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColorDialogButtonHandle>))] GtkColorDialogButtonHandle self, IntPtr user_data);
 }
+
 
 public static class GtkColorDialogButtonHandleExtensions
 {
@@ -58,18 +64,6 @@ public static class GtkColorDialogButtonHandleExtensions
 		return self;
 	}
 
-	public static GtkColorDialogButtonHandle Signal_Activate(this GtkColorDialogButtonHandle instance, GtkColorDialogButtonDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkColorDialogButtonDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColorDialogButtonHandle>))] GtkColorDialogButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkColorDialogButtonExterns

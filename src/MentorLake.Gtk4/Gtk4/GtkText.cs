@@ -28,26 +28,102 @@ public class GtkTextHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAccessible
 
 }
 
-public class GtkTextSignal
+public static class GtkTextSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkTextSignal(string value) => Value = value;
+	public static GtkTextHandle Signal_Activate(this GtkTextHandle instance, GtkTextSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_Backspace(this GtkTextHandle instance, GtkTextSignalDelegates.Backspace handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "backspace", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_CopyClipboard(this GtkTextHandle instance, GtkTextSignalDelegates.CopyClipboard handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "copy_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_CutClipboard(this GtkTextHandle instance, GtkTextSignalDelegates.CutClipboard handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "cut_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_DeleteFromCursor(this GtkTextHandle instance, GtkTextSignalDelegates.DeleteFromCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "delete_from_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_InsertAtCursor(this GtkTextHandle instance, GtkTextSignalDelegates.InsertAtCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "insert_at_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_InsertEmoji(this GtkTextHandle instance, GtkTextSignalDelegates.InsertEmoji handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "insert_emoji", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_MoveCursor(this GtkTextHandle instance, GtkTextSignalDelegates.MoveCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_PasteClipboard(this GtkTextHandle instance, GtkTextSignalDelegates.PasteClipboard handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "paste_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_PreeditChanged(this GtkTextHandle instance, GtkTextSignalDelegates.PreeditChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "preedit_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTextHandle Signal_ToggleOverwrite(this GtkTextHandle instance, GtkTextSignalDelegates.ToggleOverwrite handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "toggle_overwrite", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkTextSignals
+public static class GtkTextSignalDelegates
 {
-	public static GtkTextSignal Activate = new("BindingTransform.MethodDeclaration");
-	public static GtkTextSignal Backspace = new("BindingTransform.MethodDeclaration");
-	public static GtkTextSignal CopyClipboard = new("BindingTransform.MethodDeclaration");
-	public static GtkTextSignal CutClipboard = new("BindingTransform.MethodDeclaration");
-	public static GtkTextSignal DeleteFromCursor = new("BindingTransform.MethodDeclaration");
-	public static GtkTextSignal InsertAtCursor = new("BindingTransform.MethodDeclaration");
-	public static GtkTextSignal InsertEmoji = new("BindingTransform.MethodDeclaration");
-	public static GtkTextSignal MoveCursor = new("BindingTransform.MethodDeclaration");
-	public static GtkTextSignal PasteClipboard = new("BindingTransform.MethodDeclaration");
-	public static GtkTextSignal PreeditChanged = new("BindingTransform.MethodDeclaration");
-	public static GtkTextSignal ToggleOverwrite = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Backspace([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void CopyClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void CutClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DeleteFromCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, ref GtkDeleteType type, int count, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void InsertAtCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, string @string, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void InsertEmoji([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, ref GtkMovementStep step, int count, bool extend, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void PasteClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void PreeditChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, string preedit, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ToggleOverwrite([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
 }
+
 
 public static class GtkTextHandleExtensions
 {
@@ -238,98 +314,6 @@ public static class GtkTextHandleExtensions
 		return self;
 	}
 
-	public static GtkTextHandle Signal_Activate(this GtkTextHandle instance, GtkTextDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextHandle Signal_Backspace(this GtkTextHandle instance, GtkTextDelegates.Backspace handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "backspace", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextHandle Signal_CopyClipboard(this GtkTextHandle instance, GtkTextDelegates.CopyClipboard handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "copy_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextHandle Signal_CutClipboard(this GtkTextHandle instance, GtkTextDelegates.CutClipboard handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "cut_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextHandle Signal_DeleteFromCursor(this GtkTextHandle instance, GtkTextDelegates.DeleteFromCursor handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "delete_from_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextHandle Signal_InsertAtCursor(this GtkTextHandle instance, GtkTextDelegates.InsertAtCursor handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "insert_at_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextHandle Signal_InsertEmoji(this GtkTextHandle instance, GtkTextDelegates.InsertEmoji handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "insert_emoji", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextHandle Signal_MoveCursor(this GtkTextHandle instance, GtkTextDelegates.MoveCursor handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextHandle Signal_PasteClipboard(this GtkTextHandle instance, GtkTextDelegates.PasteClipboard handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "paste_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextHandle Signal_PreeditChanged(this GtkTextHandle instance, GtkTextDelegates.PreeditChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "preedit_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTextHandle Signal_ToggleOverwrite(this GtkTextHandle instance, GtkTextDelegates.ToggleOverwrite handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "toggle_overwrite", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkTextDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Backspace([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void CopyClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void CutClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DeleteFromCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, ref GtkDeleteType type, int count, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void InsertAtCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, string @string, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void InsertEmoji([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, ref GtkMovementStep step, int count, bool extend, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PasteClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PreeditChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, string preedit, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ToggleOverwrite([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
 }
 
 internal class GtkTextExterns

@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool GtkEntryCompletionMatchFunc(GtkEntryCompletionHandle completion, string key, GtkTreeIterHandle iter, IntPtr user_data);
-

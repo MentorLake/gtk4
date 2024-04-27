@@ -23,22 +23,70 @@ public class GtkFlowBoxHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildab
 
 }
 
-public class GtkFlowBoxSignal
+public static class GtkFlowBoxSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkFlowBoxSignal(string value) => Value = value;
+	public static GtkFlowBoxHandle Signal_ActivateCursorChild(this GtkFlowBoxHandle instance, GtkFlowBoxSignalDelegates.ActivateCursorChild handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate_cursor_child", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkFlowBoxHandle Signal_ChildActivated(this GtkFlowBoxHandle instance, GtkFlowBoxSignalDelegates.ChildActivated handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "child_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkFlowBoxHandle Signal_MoveCursor(this GtkFlowBoxHandle instance, GtkFlowBoxSignalDelegates.MoveCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkFlowBoxHandle Signal_SelectAll(this GtkFlowBoxHandle instance, GtkFlowBoxSignalDelegates.SelectAll handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkFlowBoxHandle Signal_SelectedChildrenChanged(this GtkFlowBoxHandle instance, GtkFlowBoxSignalDelegates.SelectedChildrenChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "selected_children_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkFlowBoxHandle Signal_ToggleCursorChild(this GtkFlowBoxHandle instance, GtkFlowBoxSignalDelegates.ToggleCursorChild handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_child", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkFlowBoxHandle Signal_UnselectAll(this GtkFlowBoxHandle instance, GtkFlowBoxSignalDelegates.UnselectAll handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkFlowBoxSignals
+public static class GtkFlowBoxSignalDelegates
 {
-	public static GtkFlowBoxSignal ActivateCursorChild = new("BindingTransform.MethodDeclaration");
-	public static GtkFlowBoxSignal ChildActivated = new("BindingTransform.MethodDeclaration");
-	public static GtkFlowBoxSignal MoveCursor = new("BindingTransform.MethodDeclaration");
-	public static GtkFlowBoxSignal SelectAll = new("BindingTransform.MethodDeclaration");
-	public static GtkFlowBoxSignal SelectedChildrenChanged = new("BindingTransform.MethodDeclaration");
-	public static GtkFlowBoxSignal ToggleCursorChild = new("BindingTransform.MethodDeclaration");
-	public static GtkFlowBoxSignal UnselectAll = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ActivateCursorChild([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxHandle>))] GtkFlowBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ChildActivated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxHandle>))] GtkFlowBoxHandle self, GtkFlowBoxChildHandle child, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxHandle>))] GtkFlowBoxHandle self, ref GtkMovementStep step, int count, bool extend, bool modify, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SelectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxHandle>))] GtkFlowBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SelectedChildrenChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxHandle>))] GtkFlowBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ToggleCursorChild([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxHandle>))] GtkFlowBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void UnselectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxHandle>))] GtkFlowBoxHandle self, IntPtr user_data);
 }
+
 
 public static class GtkFlowBoxHandleExtensions
 {
@@ -236,66 +284,6 @@ public static class GtkFlowBoxHandleExtensions
 		return box;
 	}
 
-	public static GtkFlowBoxHandle Signal_ActivateCursorChild(this GtkFlowBoxHandle instance, GtkFlowBoxDelegates.ActivateCursorChild handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_cursor_child", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkFlowBoxHandle Signal_ChildActivated(this GtkFlowBoxHandle instance, GtkFlowBoxDelegates.ChildActivated handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "child_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkFlowBoxHandle Signal_MoveCursor(this GtkFlowBoxHandle instance, GtkFlowBoxDelegates.MoveCursor handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkFlowBoxHandle Signal_SelectAll(this GtkFlowBoxHandle instance, GtkFlowBoxDelegates.SelectAll handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkFlowBoxHandle Signal_SelectedChildrenChanged(this GtkFlowBoxHandle instance, GtkFlowBoxDelegates.SelectedChildrenChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "selected_children_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkFlowBoxHandle Signal_ToggleCursorChild(this GtkFlowBoxHandle instance, GtkFlowBoxDelegates.ToggleCursorChild handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_child", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkFlowBoxHandle Signal_UnselectAll(this GtkFlowBoxHandle instance, GtkFlowBoxDelegates.UnselectAll handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkFlowBoxDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ActivateCursorChild([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxHandle>))] GtkFlowBoxHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ChildActivated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxHandle>))] GtkFlowBoxHandle self, GtkFlowBoxChildHandle child, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxHandle>))] GtkFlowBoxHandle self, ref GtkMovementStep step, int count, bool extend, bool modify, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SelectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxHandle>))] GtkFlowBoxHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SelectedChildrenChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxHandle>))] GtkFlowBoxHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ToggleCursorChild([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxHandle>))] GtkFlowBoxHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void UnselectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxHandle>))] GtkFlowBoxHandle self, IntPtr user_data);
 }
 
 internal class GtkFlowBoxExterns

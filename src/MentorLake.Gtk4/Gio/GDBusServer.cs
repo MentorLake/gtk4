@@ -23,16 +23,22 @@ public class GDBusServerHandle : GObjectHandle, GInitableHandle
 
 }
 
-public class GDBusServerSignal
+public static class GDBusServerSignalExtensions
 {
-	public string Value { get; set; }
-	public GDBusServerSignal(string value) => Value = value;
+	public static GDBusServerHandle Signal_NewConnection(this GDBusServerHandle instance, GDBusServerSignalDelegates.NewConnection handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "new_connection", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GDBusServerSignals
+public static class GDBusServerSignalDelegates
 {
-	public static GDBusServerSignal NewConnection = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool NewConnection([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusServerHandle>))] GDBusServerHandle self, GDBusConnectionHandle connection, IntPtr user_data);
 }
+
 
 public static class GDBusServerHandleExtensions
 {
@@ -68,18 +74,6 @@ public static class GDBusServerHandleExtensions
 		return server;
 	}
 
-	public static GDBusServerHandle Signal_NewConnection(this GDBusServerHandle instance, GDBusServerDelegates.NewConnection handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "new_connection", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GDBusServerDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool NewConnection([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusServerHandle>))] GDBusServerHandle self, GDBusConnectionHandle connection, IntPtr user_data);
 }
 
 internal class GDBusServerExterns

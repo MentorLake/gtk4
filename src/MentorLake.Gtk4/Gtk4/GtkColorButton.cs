@@ -28,17 +28,30 @@ public class GtkColorButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBui
 
 }
 
-public class GtkColorButtonSignal
+public static class GtkColorButtonSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkColorButtonSignal(string value) => Value = value;
+	public static GtkColorButtonHandle Signal_Activate(this GtkColorButtonHandle instance, GtkColorButtonSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkColorButtonHandle Signal_ColorSet(this GtkColorButtonHandle instance, GtkColorButtonSignalDelegates.ColorSet handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "color_set", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkColorButtonSignals
+public static class GtkColorButtonSignalDelegates
 {
-	public static GtkColorButtonSignal Activate = new("BindingTransform.MethodDeclaration");
-	public static GtkColorButtonSignal ColorSet = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColorButtonHandle>))] GtkColorButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ColorSet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColorButtonHandle>))] GtkColorButtonHandle self, IntPtr user_data);
 }
+
 
 public static class GtkColorButtonHandleExtensions
 {
@@ -64,26 +77,6 @@ public static class GtkColorButtonHandleExtensions
 		return button;
 	}
 
-	public static GtkColorButtonHandle Signal_Activate(this GtkColorButtonHandle instance, GtkColorButtonDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkColorButtonHandle Signal_ColorSet(this GtkColorButtonHandle instance, GtkColorButtonDelegates.ColorSet handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "color_set", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkColorButtonDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColorButtonHandle>))] GtkColorButtonHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ColorSet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColorButtonHandle>))] GtkColorButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkColorButtonExterns

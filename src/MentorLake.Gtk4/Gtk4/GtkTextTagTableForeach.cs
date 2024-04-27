@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GtkTextTagTableForeach(GtkTextTagHandle tag, IntPtr data);
-

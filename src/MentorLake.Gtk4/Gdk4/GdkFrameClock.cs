@@ -18,22 +18,70 @@ public class GdkFrameClockHandle : GObjectHandle
 {
 }
 
-public class GdkFrameClockSignal
+public static class GdkFrameClockSignalExtensions
 {
-	public string Value { get; set; }
-	public GdkFrameClockSignal(string value) => Value = value;
+	public static GdkFrameClockHandle Signal_AfterPaint(this GdkFrameClockHandle instance, GdkFrameClockSignalDelegates.AfterPaint handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "after_paint", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkFrameClockHandle Signal_BeforePaint(this GdkFrameClockHandle instance, GdkFrameClockSignalDelegates.BeforePaint handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "before_paint", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkFrameClockHandle Signal_FlushEvents(this GdkFrameClockHandle instance, GdkFrameClockSignalDelegates.FlushEvents handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "flush_events", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkFrameClockHandle Signal_Layout(this GdkFrameClockHandle instance, GdkFrameClockSignalDelegates.Layout handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "layout", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkFrameClockHandle Signal_Paint(this GdkFrameClockHandle instance, GdkFrameClockSignalDelegates.Paint handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "paint", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkFrameClockHandle Signal_ResumeEvents(this GdkFrameClockHandle instance, GdkFrameClockSignalDelegates.ResumeEvents handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "resume_events", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkFrameClockHandle Signal_Update(this GdkFrameClockHandle instance, GdkFrameClockSignalDelegates.Update handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "update", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GdkFrameClockSignals
+public static class GdkFrameClockSignalDelegates
 {
-	public static GdkFrameClockSignal AfterPaint = new("BindingTransform.MethodDeclaration");
-	public static GdkFrameClockSignal BeforePaint = new("BindingTransform.MethodDeclaration");
-	public static GdkFrameClockSignal FlushEvents = new("BindingTransform.MethodDeclaration");
-	public static GdkFrameClockSignal Layout = new("BindingTransform.MethodDeclaration");
-	public static GdkFrameClockSignal Paint = new("BindingTransform.MethodDeclaration");
-	public static GdkFrameClockSignal ResumeEvents = new("BindingTransform.MethodDeclaration");
-	public static GdkFrameClockSignal Update = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void AfterPaint([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void BeforePaint([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void FlushEvents([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Layout([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Paint([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ResumeEvents([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Update([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
 }
+
 
 public static class GdkFrameClockHandleExtensions
 {
@@ -91,66 +139,6 @@ public static class GdkFrameClockHandleExtensions
 		return frame_clock;
 	}
 
-	public static GdkFrameClockHandle Signal_AfterPaint(this GdkFrameClockHandle instance, GdkFrameClockDelegates.AfterPaint handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "after_paint", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkFrameClockHandle Signal_BeforePaint(this GdkFrameClockHandle instance, GdkFrameClockDelegates.BeforePaint handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "before_paint", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkFrameClockHandle Signal_FlushEvents(this GdkFrameClockHandle instance, GdkFrameClockDelegates.FlushEvents handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "flush_events", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkFrameClockHandle Signal_Layout(this GdkFrameClockHandle instance, GdkFrameClockDelegates.Layout handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "layout", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkFrameClockHandle Signal_Paint(this GdkFrameClockHandle instance, GdkFrameClockDelegates.Paint handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "paint", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkFrameClockHandle Signal_ResumeEvents(this GdkFrameClockHandle instance, GdkFrameClockDelegates.ResumeEvents handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "resume_events", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkFrameClockHandle Signal_Update(this GdkFrameClockHandle instance, GdkFrameClockDelegates.Update handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "update", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GdkFrameClockDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void AfterPaint([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void BeforePaint([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void FlushEvents([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Layout([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Paint([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ResumeEvents([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Update([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
 }
 
 internal class GdkFrameClockExterns

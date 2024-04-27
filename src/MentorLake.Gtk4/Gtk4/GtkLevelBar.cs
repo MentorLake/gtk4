@@ -28,16 +28,22 @@ public class GtkLevelBarHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAccess
 
 }
 
-public class GtkLevelBarSignal
+public static class GtkLevelBarSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkLevelBarSignal(string value) => Value = value;
+	public static GtkLevelBarHandle Signal_OffsetChanged(this GtkLevelBarHandle instance, GtkLevelBarSignalDelegates.OffsetChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "offset_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkLevelBarSignals
+public static class GtkLevelBarSignalDelegates
 {
-	public static GtkLevelBarSignal OffsetChanged = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void OffsetChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLevelBarHandle>))] GtkLevelBarHandle self, string name, IntPtr user_data);
 }
+
 
 public static class GtkLevelBarHandleExtensions
 {
@@ -113,18 +119,6 @@ public static class GtkLevelBarHandleExtensions
 		return self;
 	}
 
-	public static GtkLevelBarHandle Signal_OffsetChanged(this GtkLevelBarHandle instance, GtkLevelBarDelegates.OffsetChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "offset_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkLevelBarDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void OffsetChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLevelBarHandle>))] GtkLevelBarHandle self, string name, IntPtr user_data);
 }
 
 internal class GtkLevelBarExterns

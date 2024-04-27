@@ -23,16 +23,22 @@ public class GtkCellRendererTextHandle : GtkCellRendererHandle
 
 }
 
-public class GtkCellRendererTextSignal
+public static class GtkCellRendererTextSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkCellRendererTextSignal(string value) => Value = value;
+	public static GtkCellRendererTextHandle Signal_Edited(this GtkCellRendererTextHandle instance, GtkCellRendererTextSignalDelegates.Edited handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "edited", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkCellRendererTextSignals
+public static class GtkCellRendererTextSignalDelegates
 {
-	public static GtkCellRendererTextSignal Edited = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Edited([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererTextHandle>))] GtkCellRendererTextHandle self, string path, string new_text, IntPtr user_data);
 }
+
 
 public static class GtkCellRendererTextHandleExtensions
 {
@@ -42,18 +48,6 @@ public static class GtkCellRendererTextHandleExtensions
 		return renderer;
 	}
 
-	public static GtkCellRendererTextHandle Signal_Edited(this GtkCellRendererTextHandle instance, GtkCellRendererTextDelegates.Edited handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "edited", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkCellRendererTextDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Edited([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererTextHandle>))] GtkCellRendererTextHandle self, string path, string new_text, IntPtr user_data);
 }
 
 internal class GtkCellRendererTextExterns

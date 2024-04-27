@@ -23,16 +23,22 @@ public class GdkDisplayManagerHandle : GObjectHandle
 
 }
 
-public class GdkDisplayManagerSignal
+public static class GdkDisplayManagerSignalExtensions
 {
-	public string Value { get; set; }
-	public GdkDisplayManagerSignal(string value) => Value = value;
+	public static GdkDisplayManagerHandle Signal_DisplayOpened(this GdkDisplayManagerHandle instance, GdkDisplayManagerSignalDelegates.DisplayOpened handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "display_opened", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GdkDisplayManagerSignals
+public static class GdkDisplayManagerSignalDelegates
 {
-	public static GdkDisplayManagerSignal DisplayOpened = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DisplayOpened([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayManagerHandle>))] GdkDisplayManagerHandle self, GdkDisplayHandle display, IntPtr user_data);
 }
+
 
 public static class GdkDisplayManagerHandleExtensions
 {
@@ -57,18 +63,6 @@ public static class GdkDisplayManagerHandleExtensions
 		return manager;
 	}
 
-	public static GdkDisplayManagerHandle Signal_DisplayOpened(this GdkDisplayManagerHandle instance, GdkDisplayManagerDelegates.DisplayOpened handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "display_opened", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GdkDisplayManagerDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DisplayOpened([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayManagerHandle>))] GdkDisplayManagerHandle self, GdkDisplayHandle display, IntPtr user_data);
 }
 
 internal class GdkDisplayManagerExterns

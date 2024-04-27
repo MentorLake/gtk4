@@ -23,16 +23,22 @@ public class GtkAboutDialogHandle : GtkWindowHandle, GtkAccessibleHandle, GtkBui
 
 }
 
-public class GtkAboutDialogSignal
+public static class GtkAboutDialogSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkAboutDialogSignal(string value) => Value = value;
+	public static GtkAboutDialogHandle Signal_ActivateLink(this GtkAboutDialogHandle instance, GtkAboutDialogSignalDelegates.ActivateLink handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkAboutDialogSignals
+public static class GtkAboutDialogSignalDelegates
 {
-	public static GtkAboutDialogSignal ActivateLink = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ActivateLink([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAboutDialogHandle>))] GtkAboutDialogHandle self, string uri, IntPtr user_data);
 }
+
 
 public static class GtkAboutDialogHandleExtensions
 {
@@ -218,18 +224,6 @@ public static class GtkAboutDialogHandleExtensions
 		return about;
 	}
 
-	public static GtkAboutDialogHandle Signal_ActivateLink(this GtkAboutDialogHandle instance, GtkAboutDialogDelegates.ActivateLink handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkAboutDialogDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ActivateLink([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAboutDialogHandle>))] GtkAboutDialogHandle self, string uri, IntPtr user_data);
 }
 
 internal class GtkAboutDialogExterns

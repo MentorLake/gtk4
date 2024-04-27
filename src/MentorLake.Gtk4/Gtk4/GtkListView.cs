@@ -23,16 +23,22 @@ public class GtkListViewHandle : GtkListBaseHandle, GtkAccessibleHandle, GtkBuil
 
 }
 
-public class GtkListViewSignal
+public static class GtkListViewSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkListViewSignal(string value) => Value = value;
+	public static GtkListViewHandle Signal_Activate(this GtkListViewHandle instance, GtkListViewSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkListViewSignals
+public static class GtkListViewSignalDelegates
 {
-	public static GtkListViewSignal Activate = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListViewHandle>))] GtkListViewHandle self, uint position, IntPtr user_data);
 }
+
 
 public static class GtkListViewHandleExtensions
 {
@@ -119,18 +125,6 @@ public static class GtkListViewHandleExtensions
 		return self;
 	}
 
-	public static GtkListViewHandle Signal_Activate(this GtkListViewHandle instance, GtkListViewDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkListViewDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListViewHandle>))] GtkListViewHandle self, uint position, IntPtr user_data);
 }
 
 internal class GtkListViewExterns

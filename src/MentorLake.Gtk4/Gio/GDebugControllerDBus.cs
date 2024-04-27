@@ -23,16 +23,22 @@ public class GDebugControllerDBusHandle : GObjectHandle, GDebugControllerHandle,
 
 }
 
-public class GDebugControllerDBusSignal
+public static class GDebugControllerDBusSignalExtensions
 {
-	public string Value { get; set; }
-	public GDebugControllerDBusSignal(string value) => Value = value;
+	public static GDebugControllerDBusHandle Signal_Authorize(this GDebugControllerDBusHandle instance, GDebugControllerDBusSignalDelegates.Authorize handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "authorize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GDebugControllerDBusSignals
+public static class GDebugControllerDBusSignalDelegates
 {
-	public static GDebugControllerDBusSignal Authorize = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Authorize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDebugControllerDBusHandle>))] GDebugControllerDBusHandle self, GDBusMethodInvocationHandle invocation, IntPtr user_data);
 }
+
 
 public static class GDebugControllerDBusHandleExtensions
 {
@@ -42,18 +48,6 @@ public static class GDebugControllerDBusHandleExtensions
 		return self;
 	}
 
-	public static GDebugControllerDBusHandle Signal_Authorize(this GDebugControllerDBusHandle instance, GDebugControllerDBusDelegates.Authorize handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "authorize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GDebugControllerDBusDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool Authorize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDebugControllerDBusHandle>))] GDebugControllerDBusHandle self, GDBusMethodInvocationHandle invocation, IntPtr user_data);
 }
 
 internal class GDebugControllerDBusExterns

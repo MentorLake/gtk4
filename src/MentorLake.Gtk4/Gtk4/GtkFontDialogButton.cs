@@ -23,16 +23,22 @@ public class GtkFontDialogButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, G
 
 }
 
-public class GtkFontDialogButtonSignal
+public static class GtkFontDialogButtonSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkFontDialogButtonSignal(string value) => Value = value;
+	public static GtkFontDialogButtonHandle Signal_Activate(this GtkFontDialogButtonHandle instance, GtkFontDialogButtonSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkFontDialogButtonSignals
+public static class GtkFontDialogButtonSignalDelegates
 {
-	public static GtkFontDialogButtonSignal Activate = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFontDialogButtonHandle>))] GtkFontDialogButtonHandle self, IntPtr user_data);
 }
+
 
 public static class GtkFontDialogButtonHandleExtensions
 {
@@ -113,18 +119,6 @@ public static class GtkFontDialogButtonHandleExtensions
 		return self;
 	}
 
-	public static GtkFontDialogButtonHandle Signal_Activate(this GtkFontDialogButtonHandle instance, GtkFontDialogButtonDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkFontDialogButtonDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFontDialogButtonHandle>))] GtkFontDialogButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkFontDialogButtonExterns

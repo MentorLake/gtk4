@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool GtkFontFilterFunc(PangoFontFamilyHandle family, PangoFontFaceHandle face, IntPtr data);
-

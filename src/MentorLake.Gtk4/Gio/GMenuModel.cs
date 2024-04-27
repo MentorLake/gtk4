@@ -18,16 +18,22 @@ public class GMenuModelHandle : GObjectHandle
 {
 }
 
-public class GMenuModelSignal
+public static class GMenuModelSignalExtensions
 {
-	public string Value { get; set; }
-	public GMenuModelSignal(string value) => Value = value;
+	public static GMenuModelHandle Signal_ItemsChanged(this GMenuModelHandle instance, GMenuModelSignalDelegates.ItemsChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "items_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GMenuModelSignals
+public static class GMenuModelSignalDelegates
 {
-	public static GMenuModelSignal ItemsChanged = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ItemsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMenuModelHandle>))] GMenuModelHandle self, int position, int removed, int added, IntPtr user_data);
 }
+
 
 public static class GMenuModelHandleExtensions
 {
@@ -72,18 +78,6 @@ public static class GMenuModelHandleExtensions
 		return GMenuModelExterns.g_menu_model_iterate_item_links(model, item_index);
 	}
 
-	public static GMenuModelHandle Signal_ItemsChanged(this GMenuModelHandle instance, GMenuModelDelegates.ItemsChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "items_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GMenuModelDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ItemsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMenuModelHandle>))] GMenuModelHandle self, int position, int removed, int added, IntPtr user_data);
 }
 
 internal class GMenuModelExterns

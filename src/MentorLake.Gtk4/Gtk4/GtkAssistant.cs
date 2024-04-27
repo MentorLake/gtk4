@@ -23,20 +23,54 @@ public class GtkAssistantHandle : GtkWindowHandle, GtkAccessibleHandle, GtkBuild
 
 }
 
-public class GtkAssistantSignal
+public static class GtkAssistantSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkAssistantSignal(string value) => Value = value;
+	public static GtkAssistantHandle Signal_Apply(this GtkAssistantHandle instance, GtkAssistantSignalDelegates.Apply handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "apply", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkAssistantHandle Signal_Cancel(this GtkAssistantHandle instance, GtkAssistantSignalDelegates.Cancel handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkAssistantHandle Signal_Close(this GtkAssistantHandle instance, GtkAssistantSignalDelegates.Close handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "close", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkAssistantHandle Signal_Escape(this GtkAssistantHandle instance, GtkAssistantSignalDelegates.Escape handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "escape", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkAssistantHandle Signal_Prepare(this GtkAssistantHandle instance, GtkAssistantSignalDelegates.Prepare handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "prepare", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkAssistantSignals
+public static class GtkAssistantSignalDelegates
 {
-	public static GtkAssistantSignal Apply = new("BindingTransform.MethodDeclaration");
-	public static GtkAssistantSignal Cancel = new("BindingTransform.MethodDeclaration");
-	public static GtkAssistantSignal Close = new("BindingTransform.MethodDeclaration");
-	public static GtkAssistantSignal Escape = new("BindingTransform.MethodDeclaration");
-	public static GtkAssistantSignal Prepare = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Apply([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Cancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Close([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Escape([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Prepare([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, GtkWidgetHandle page, IntPtr user_data);
 }
+
 
 public static class GtkAssistantHandleExtensions
 {
@@ -167,50 +201,6 @@ public static class GtkAssistantHandleExtensions
 		return assistant;
 	}
 
-	public static GtkAssistantHandle Signal_Apply(this GtkAssistantHandle instance, GtkAssistantDelegates.Apply handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "apply", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkAssistantHandle Signal_Cancel(this GtkAssistantHandle instance, GtkAssistantDelegates.Cancel handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkAssistantHandle Signal_Close(this GtkAssistantHandle instance, GtkAssistantDelegates.Close handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "close", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkAssistantHandle Signal_Escape(this GtkAssistantHandle instance, GtkAssistantDelegates.Escape handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "escape", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkAssistantHandle Signal_Prepare(this GtkAssistantHandle instance, GtkAssistantDelegates.Prepare handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "prepare", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkAssistantDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Apply([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Cancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Close([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Escape([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Prepare([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, GtkWidgetHandle page, IntPtr user_data);
 }
 
 internal class GtkAssistantExterns

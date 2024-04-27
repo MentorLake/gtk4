@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool GIOSchedulerJobFunc(GIOSchedulerJobHandle job, GCancellableHandle cancellable, IntPtr data);
-

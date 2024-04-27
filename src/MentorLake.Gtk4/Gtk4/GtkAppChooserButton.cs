@@ -23,18 +23,38 @@ public class GtkAppChooserButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, G
 
 }
 
-public class GtkAppChooserButtonSignal
+public static class GtkAppChooserButtonSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkAppChooserButtonSignal(string value) => Value = value;
+	public static GtkAppChooserButtonHandle Signal_Activate(this GtkAppChooserButtonHandle instance, GtkAppChooserButtonSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkAppChooserButtonHandle Signal_Changed(this GtkAppChooserButtonHandle instance, GtkAppChooserButtonSignalDelegates.Changed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkAppChooserButtonHandle Signal_CustomItemActivated(this GtkAppChooserButtonHandle instance, GtkAppChooserButtonSignalDelegates.CustomItemActivated handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "custom_item_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkAppChooserButtonSignals
+public static class GtkAppChooserButtonSignalDelegates
 {
-	public static GtkAppChooserButtonSignal Activate = new("BindingTransform.MethodDeclaration");
-	public static GtkAppChooserButtonSignal Changed = new("BindingTransform.MethodDeclaration");
-	public static GtkAppChooserButtonSignal CustomItemActivated = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAppChooserButtonHandle>))] GtkAppChooserButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAppChooserButtonHandle>))] GtkAppChooserButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void CustomItemActivated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAppChooserButtonHandle>))] GtkAppChooserButtonHandle self, string item_name, IntPtr user_data);
 }
+
 
 public static class GtkAppChooserButtonHandleExtensions
 {
@@ -100,34 +120,6 @@ public static class GtkAppChooserButtonHandleExtensions
 		return self;
 	}
 
-	public static GtkAppChooserButtonHandle Signal_Activate(this GtkAppChooserButtonHandle instance, GtkAppChooserButtonDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkAppChooserButtonHandle Signal_Changed(this GtkAppChooserButtonHandle instance, GtkAppChooserButtonDelegates.Changed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkAppChooserButtonHandle Signal_CustomItemActivated(this GtkAppChooserButtonHandle instance, GtkAppChooserButtonDelegates.CustomItemActivated handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "custom_item_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkAppChooserButtonDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAppChooserButtonHandle>))] GtkAppChooserButtonHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAppChooserButtonHandle>))] GtkAppChooserButtonHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void CustomItemActivated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAppChooserButtonHandle>))] GtkAppChooserButtonHandle self, string item_name, IntPtr user_data);
 }
 
 internal class GtkAppChooserButtonExterns

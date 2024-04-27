@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GtkCellLayoutDataFunc(GtkCellLayoutHandle cell_layout, GtkCellRendererHandle cell, GtkTreeModelHandle tree_model, GtkTreeIterHandle iter, IntPtr data);
-

@@ -23,16 +23,22 @@ public class GtkCellRendererToggleHandle : GtkCellRendererHandle
 
 }
 
-public class GtkCellRendererToggleSignal
+public static class GtkCellRendererToggleSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkCellRendererToggleSignal(string value) => Value = value;
+	public static GtkCellRendererToggleHandle Signal_Toggled(this GtkCellRendererToggleHandle instance, GtkCellRendererToggleSignalDelegates.Toggled handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "toggled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkCellRendererToggleSignals
+public static class GtkCellRendererToggleSignalDelegates
 {
-	public static GtkCellRendererToggleSignal Toggled = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Toggled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererToggleHandle>))] GtkCellRendererToggleHandle self, string path, IntPtr user_data);
 }
+
 
 public static class GtkCellRendererToggleHandleExtensions
 {
@@ -69,18 +75,6 @@ public static class GtkCellRendererToggleHandleExtensions
 		return toggle;
 	}
 
-	public static GtkCellRendererToggleHandle Signal_Toggled(this GtkCellRendererToggleHandle instance, GtkCellRendererToggleDelegates.Toggled handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "toggled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkCellRendererToggleDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Toggled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererToggleHandle>))] GtkCellRendererToggleHandle self, string path, IntPtr user_data);
 }
 
 internal class GtkCellRendererToggleExterns

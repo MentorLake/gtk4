@@ -63,19 +63,46 @@ public class GSettingsHandle : GObjectHandle
 
 }
 
-public class GSettingsSignal
+public static class GSettingsSignalExtensions
 {
-	public string Value { get; set; }
-	public GSettingsSignal(string value) => Value = value;
+	public static GSettingsHandle Signal_ChangeEvent(this GSettingsHandle instance, GSettingsSignalDelegates.ChangeEvent handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "change_event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GSettingsHandle Signal_Changed(this GSettingsHandle instance, GSettingsSignalDelegates.Changed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GSettingsHandle Signal_WritableChangeEvent(this GSettingsHandle instance, GSettingsSignalDelegates.WritableChangeEvent handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "writable_change_event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GSettingsHandle Signal_WritableChanged(this GSettingsHandle instance, GSettingsSignalDelegates.WritableChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "writable_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GSettingsSignals
+public static class GSettingsSignalDelegates
 {
-	public static GSettingsSignal ChangeEvent = new("BindingTransform.MethodDeclaration");
-	public static GSettingsSignal Changed = new("BindingTransform.MethodDeclaration");
-	public static GSettingsSignal WritableChangeEvent = new("BindingTransform.MethodDeclaration");
-	public static GSettingsSignal WritableChanged = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ChangeEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, IntPtr keys, int n_keys, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, string key, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool WritableChangeEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, uint key, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void WritableChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, string key, IntPtr user_data);
 }
+
 
 public static class GSettingsHandleExtensions
 {
@@ -297,42 +324,6 @@ public static class GSettingsHandleExtensions
 		return GSettingsExterns.g_settings_set_value(settings, key, value);
 	}
 
-	public static GSettingsHandle Signal_ChangeEvent(this GSettingsHandle instance, GSettingsDelegates.ChangeEvent handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "change_event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GSettingsHandle Signal_Changed(this GSettingsHandle instance, GSettingsDelegates.Changed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GSettingsHandle Signal_WritableChangeEvent(this GSettingsHandle instance, GSettingsDelegates.WritableChangeEvent handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "writable_change_event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GSettingsHandle Signal_WritableChanged(this GSettingsHandle instance, GSettingsDelegates.WritableChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "writable_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GSettingsDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ChangeEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, IntPtr keys, int n_keys, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, string key, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool WritableChangeEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, uint key, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void WritableChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, string key, IntPtr user_data);
 }
 
 internal class GSettingsExterns

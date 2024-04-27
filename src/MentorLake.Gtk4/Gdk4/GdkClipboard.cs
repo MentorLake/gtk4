@@ -18,16 +18,22 @@ public class GdkClipboardHandle : GObjectHandle
 {
 }
 
-public class GdkClipboardSignal
+public static class GdkClipboardSignalExtensions
 {
-	public string Value { get; set; }
-	public GdkClipboardSignal(string value) => Value = value;
+	public static GdkClipboardHandle Signal_Changed(this GdkClipboardHandle instance, GdkClipboardSignalDelegates.Changed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GdkClipboardSignals
+public static class GdkClipboardSignalDelegates
 {
-	public static GdkClipboardSignal Changed = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkClipboardHandle>))] GdkClipboardHandle self, IntPtr user_data);
 }
+
 
 public static class GdkClipboardHandleExtensions
 {
@@ -141,18 +147,6 @@ public static class GdkClipboardHandleExtensions
 		return GdkClipboardExterns.gdk_clipboard_store_finish(clipboard, result, out error);
 	}
 
-	public static GdkClipboardHandle Signal_Changed(this GdkClipboardHandle instance, GdkClipboardDelegates.Changed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GdkClipboardDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkClipboardHandle>))] GdkClipboardHandle self, IntPtr user_data);
 }
 
 internal class GdkClipboardExterns

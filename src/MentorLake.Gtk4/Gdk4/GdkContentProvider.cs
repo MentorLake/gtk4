@@ -38,16 +38,22 @@ public class GdkContentProviderHandle : GObjectHandle
 
 }
 
-public class GdkContentProviderSignal
+public static class GdkContentProviderSignalExtensions
 {
-	public string Value { get; set; }
-	public GdkContentProviderSignal(string value) => Value = value;
+	public static GdkContentProviderHandle Signal_ContentChanged(this GdkContentProviderHandle instance, GdkContentProviderSignalDelegates.ContentChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "content_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GdkContentProviderSignals
+public static class GdkContentProviderSignalDelegates
 {
-	public static GdkContentProviderSignal ContentChanged = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ContentChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkContentProviderHandle>))] GdkContentProviderHandle self, IntPtr user_data);
 }
+
 
 public static class GdkContentProviderHandleExtensions
 {
@@ -83,18 +89,6 @@ public static class GdkContentProviderHandleExtensions
 		return GdkContentProviderExterns.gdk_content_provider_write_mime_type_finish(provider, result, out error);
 	}
 
-	public static GdkContentProviderHandle Signal_ContentChanged(this GdkContentProviderHandle instance, GdkContentProviderDelegates.ContentChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "content_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GdkContentProviderDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ContentChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkContentProviderHandle>))] GdkContentProviderHandle self, IntPtr user_data);
 }
 
 internal class GdkContentProviderExterns

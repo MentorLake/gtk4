@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GObject;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GTypePluginCompleteInterfaceInfo(GTypePluginHandle plugin, GType instance_type, GType interface_type, GInterfaceInfoHandle info);
-

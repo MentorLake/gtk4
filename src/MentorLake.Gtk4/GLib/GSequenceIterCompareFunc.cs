@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GLib;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate int GSequenceIterCompareFunc(GSequenceIterHandle a, GSequenceIterHandle b, IntPtr data);
-

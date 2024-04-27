@@ -23,17 +23,30 @@ public class GtkAppChooserWidgetHandle : GtkWidgetHandle, GtkAccessibleHandle, G
 
 }
 
-public class GtkAppChooserWidgetSignal
+public static class GtkAppChooserWidgetSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkAppChooserWidgetSignal(string value) => Value = value;
+	public static GtkAppChooserWidgetHandle Signal_ApplicationActivated(this GtkAppChooserWidgetHandle instance, GtkAppChooserWidgetSignalDelegates.ApplicationActivated handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "application_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkAppChooserWidgetHandle Signal_ApplicationSelected(this GtkAppChooserWidgetHandle instance, GtkAppChooserWidgetSignalDelegates.ApplicationSelected handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "application_selected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkAppChooserWidgetSignals
+public static class GtkAppChooserWidgetSignalDelegates
 {
-	public static GtkAppChooserWidgetSignal ApplicationActivated = new("BindingTransform.MethodDeclaration");
-	public static GtkAppChooserWidgetSignal ApplicationSelected = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ApplicationActivated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAppChooserWidgetHandle>))] GtkAppChooserWidgetHandle self, GAppInfoHandle application, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ApplicationSelected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAppChooserWidgetHandle>))] GtkAppChooserWidgetHandle self, GAppInfoHandle application, IntPtr user_data);
 }
+
 
 public static class GtkAppChooserWidgetHandleExtensions
 {
@@ -103,26 +116,6 @@ public static class GtkAppChooserWidgetHandleExtensions
 		return self;
 	}
 
-	public static GtkAppChooserWidgetHandle Signal_ApplicationActivated(this GtkAppChooserWidgetHandle instance, GtkAppChooserWidgetDelegates.ApplicationActivated handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "application_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkAppChooserWidgetHandle Signal_ApplicationSelected(this GtkAppChooserWidgetHandle instance, GtkAppChooserWidgetDelegates.ApplicationSelected handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "application_selected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkAppChooserWidgetDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ApplicationActivated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAppChooserWidgetHandle>))] GtkAppChooserWidgetHandle self, GAppInfoHandle application, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ApplicationSelected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAppChooserWidgetHandle>))] GtkAppChooserWidgetHandle self, GAppInfoHandle application, IntPtr user_data);
 }
 
 internal class GtkAppChooserWidgetExterns

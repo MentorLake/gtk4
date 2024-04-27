@@ -23,16 +23,22 @@ public class GtkGestureRotateHandle : GtkGestureHandle
 
 }
 
-public class GtkGestureRotateSignal
+public static class GtkGestureRotateSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkGestureRotateSignal(string value) => Value = value;
+	public static GtkGestureRotateHandle Signal_AngleChanged(this GtkGestureRotateHandle instance, GtkGestureRotateSignalDelegates.AngleChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "angle_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkGestureRotateSignals
+public static class GtkGestureRotateSignalDelegates
 {
-	public static GtkGestureRotateSignal AngleChanged = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void AngleChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureRotateHandle>))] GtkGestureRotateHandle self, double angle, double angle_delta, IntPtr user_data);
 }
+
 
 public static class GtkGestureRotateHandleExtensions
 {
@@ -41,18 +47,6 @@ public static class GtkGestureRotateHandleExtensions
 		return GtkGestureRotateExterns.gtk_gesture_rotate_get_angle_delta(gesture);
 	}
 
-	public static GtkGestureRotateHandle Signal_AngleChanged(this GtkGestureRotateHandle instance, GtkGestureRotateDelegates.AngleChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "angle_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkGestureRotateDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void AngleChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureRotateHandle>))] GtkGestureRotateHandle self, double angle, double angle_delta, IntPtr user_data);
 }
 
 internal class GtkGestureRotateExterns

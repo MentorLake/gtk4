@@ -23,16 +23,22 @@ public class GtkListBoxRowHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkActi
 
 }
 
-public class GtkListBoxRowSignal
+public static class GtkListBoxRowSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkListBoxRowSignal(string value) => Value = value;
+	public static GtkListBoxRowHandle Signal_Activate(this GtkListBoxRowHandle instance, GtkListBoxRowSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkListBoxRowSignals
+public static class GtkListBoxRowSignalDelegates
 {
-	public static GtkListBoxRowSignal Activate = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxRowHandle>))] GtkListBoxRowHandle self, IntPtr user_data);
 }
+
 
 public static class GtkListBoxRowHandleExtensions
 {
@@ -96,18 +102,6 @@ public static class GtkListBoxRowHandleExtensions
 		return row;
 	}
 
-	public static GtkListBoxRowHandle Signal_Activate(this GtkListBoxRowHandle instance, GtkListBoxRowDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkListBoxRowDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxRowHandle>))] GtkListBoxRowHandle self, IntPtr user_data);
 }
 
 internal class GtkListBoxRowExterns

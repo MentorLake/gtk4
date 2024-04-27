@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gsk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GskParseErrorFunc(GskParseLocationHandle start, GskParseLocationHandle end, GErrorHandle error, IntPtr user_data);
-

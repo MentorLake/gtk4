@@ -23,21 +23,62 @@ public class GtkSearchEntryHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBui
 
 }
 
-public class GtkSearchEntrySignal
+public static class GtkSearchEntrySignalExtensions
 {
-	public string Value { get; set; }
-	public GtkSearchEntrySignal(string value) => Value = value;
+	public static GtkSearchEntryHandle Signal_Activate(this GtkSearchEntryHandle instance, GtkSearchEntrySignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkSearchEntryHandle Signal_NextMatch(this GtkSearchEntryHandle instance, GtkSearchEntrySignalDelegates.NextMatch handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "next_match", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkSearchEntryHandle Signal_PreviousMatch(this GtkSearchEntryHandle instance, GtkSearchEntrySignalDelegates.PreviousMatch handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "previous_match", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkSearchEntryHandle Signal_SearchChanged(this GtkSearchEntryHandle instance, GtkSearchEntrySignalDelegates.SearchChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "search_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkSearchEntryHandle Signal_SearchStarted(this GtkSearchEntryHandle instance, GtkSearchEntrySignalDelegates.SearchStarted handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "search_started", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkSearchEntryHandle Signal_StopSearch(this GtkSearchEntryHandle instance, GtkSearchEntrySignalDelegates.StopSearch handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "stop_search", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkSearchEntrySignals
+public static class GtkSearchEntrySignalDelegates
 {
-	public static GtkSearchEntrySignal Activate = new("BindingTransform.MethodDeclaration");
-	public static GtkSearchEntrySignal NextMatch = new("BindingTransform.MethodDeclaration");
-	public static GtkSearchEntrySignal PreviousMatch = new("BindingTransform.MethodDeclaration");
-	public static GtkSearchEntrySignal SearchChanged = new("BindingTransform.MethodDeclaration");
-	public static GtkSearchEntrySignal SearchStarted = new("BindingTransform.MethodDeclaration");
-	public static GtkSearchEntrySignal StopSearch = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void NextMatch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void PreviousMatch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SearchChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SearchStarted([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void StopSearch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
 }
+
 
 public static class GtkSearchEntryHandleExtensions
 {
@@ -96,58 +137,6 @@ public static class GtkSearchEntryHandleExtensions
 		return entry;
 	}
 
-	public static GtkSearchEntryHandle Signal_Activate(this GtkSearchEntryHandle instance, GtkSearchEntryDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkSearchEntryHandle Signal_NextMatch(this GtkSearchEntryHandle instance, GtkSearchEntryDelegates.NextMatch handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "next_match", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkSearchEntryHandle Signal_PreviousMatch(this GtkSearchEntryHandle instance, GtkSearchEntryDelegates.PreviousMatch handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "previous_match", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkSearchEntryHandle Signal_SearchChanged(this GtkSearchEntryHandle instance, GtkSearchEntryDelegates.SearchChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "search_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkSearchEntryHandle Signal_SearchStarted(this GtkSearchEntryHandle instance, GtkSearchEntryDelegates.SearchStarted handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "search_started", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkSearchEntryHandle Signal_StopSearch(this GtkSearchEntryHandle instance, GtkSearchEntryDelegates.StopSearch handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "stop_search", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkSearchEntryDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void NextMatch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PreviousMatch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SearchChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SearchStarted([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void StopSearch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
 }
 
 internal class GtkSearchEntryExterns

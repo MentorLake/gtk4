@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GSimpleAsyncThreadFunc(GSimpleAsyncResultHandle res, GObjectHandle @object, GCancellableHandle cancellable);
-

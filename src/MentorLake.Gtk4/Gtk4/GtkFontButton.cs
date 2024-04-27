@@ -28,17 +28,30 @@ public class GtkFontButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuil
 
 }
 
-public class GtkFontButtonSignal
+public static class GtkFontButtonSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkFontButtonSignal(string value) => Value = value;
+	public static GtkFontButtonHandle Signal_Activate(this GtkFontButtonHandle instance, GtkFontButtonSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkFontButtonHandle Signal_FontSet(this GtkFontButtonHandle instance, GtkFontButtonSignalDelegates.FontSet handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "font_set", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkFontButtonSignals
+public static class GtkFontButtonSignalDelegates
 {
-	public static GtkFontButtonSignal Activate = new("BindingTransform.MethodDeclaration");
-	public static GtkFontButtonSignal FontSet = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFontButtonHandle>))] GtkFontButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void FontSet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFontButtonHandle>))] GtkFontButtonHandle self, IntPtr user_data);
 }
+
 
 public static class GtkFontButtonHandleExtensions
 {
@@ -86,26 +99,6 @@ public static class GtkFontButtonHandleExtensions
 		return font_button;
 	}
 
-	public static GtkFontButtonHandle Signal_Activate(this GtkFontButtonHandle instance, GtkFontButtonDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkFontButtonHandle Signal_FontSet(this GtkFontButtonHandle instance, GtkFontButtonDelegates.FontSet handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "font_set", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkFontButtonDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFontButtonHandle>))] GtkFontButtonHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void FontSet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFontButtonHandle>))] GtkFontButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkFontButtonExterns

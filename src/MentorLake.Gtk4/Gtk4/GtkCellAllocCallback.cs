@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool GtkCellAllocCallback(GtkCellRendererHandle renderer, GdkRectangleHandle cell_area, GdkRectangleHandle cell_background, IntPtr data);
-

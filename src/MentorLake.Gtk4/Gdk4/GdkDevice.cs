@@ -18,17 +18,30 @@ public class GdkDeviceHandle : GObjectHandle
 {
 }
 
-public class GdkDeviceSignal
+public static class GdkDeviceSignalExtensions
 {
-	public string Value { get; set; }
-	public GdkDeviceSignal(string value) => Value = value;
+	public static GdkDeviceHandle Signal_Changed(this GdkDeviceHandle instance, GdkDeviceSignalDelegates.Changed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkDeviceHandle Signal_ToolChanged(this GdkDeviceHandle instance, GdkDeviceSignalDelegates.ToolChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "tool_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GdkDeviceSignals
+public static class GdkDeviceSignalDelegates
 {
-	public static GdkDeviceSignal Changed = new("BindingTransform.MethodDeclaration");
-	public static GdkDeviceSignal ToolChanged = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDeviceHandle>))] GdkDeviceHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ToolChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDeviceHandle>))] GdkDeviceHandle self, GdkDeviceToolHandle tool, IntPtr user_data);
 }
+
 
 public static class GdkDeviceHandleExtensions
 {
@@ -117,26 +130,6 @@ public static class GdkDeviceHandleExtensions
 		return GdkDeviceExterns.gdk_device_has_bidi_layouts(device);
 	}
 
-	public static GdkDeviceHandle Signal_Changed(this GdkDeviceHandle instance, GdkDeviceDelegates.Changed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkDeviceHandle Signal_ToolChanged(this GdkDeviceHandle instance, GdkDeviceDelegates.ToolChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "tool_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GdkDeviceDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDeviceHandle>))] GdkDeviceHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ToolChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDeviceHandle>))] GdkDeviceHandle self, GdkDeviceToolHandle tool, IntPtr user_data);
 }
 
 internal class GdkDeviceExterns

@@ -33,16 +33,22 @@ public class GtkTreeViewColumnHandle : GInitiallyUnownedHandle, GtkBuildableHand
 
 }
 
-public class GtkTreeViewColumnSignal
+public static class GtkTreeViewColumnSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkTreeViewColumnSignal(string value) => Value = value;
+	public static GtkTreeViewColumnHandle Signal_Clicked(this GtkTreeViewColumnHandle instance, GtkTreeViewColumnSignalDelegates.Clicked handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "clicked", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkTreeViewColumnSignals
+public static class GtkTreeViewColumnSignalDelegates
 {
-	public static GtkTreeViewColumnSignal Clicked = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Clicked([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewColumnHandle>))] GtkTreeViewColumnHandle self, IntPtr user_data);
 }
+
 
 public static class GtkTreeViewColumnHandleExtensions
 {
@@ -324,18 +330,6 @@ public static class GtkTreeViewColumnHandleExtensions
 		return tree_column;
 	}
 
-	public static GtkTreeViewColumnHandle Signal_Clicked(this GtkTreeViewColumnHandle instance, GtkTreeViewColumnDelegates.Clicked handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "clicked", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkTreeViewColumnDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Clicked([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewColumnHandle>))] GtkTreeViewColumnHandle self, IntPtr user_data);
 }
 
 internal class GtkTreeViewColumnExterns

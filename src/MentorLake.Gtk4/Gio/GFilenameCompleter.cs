@@ -23,16 +23,22 @@ public class GFilenameCompleterHandle : GObjectHandle
 
 }
 
-public class GFilenameCompleterSignal
+public static class GFilenameCompleterSignalExtensions
 {
-	public string Value { get; set; }
-	public GFilenameCompleterSignal(string value) => Value = value;
+	public static GFilenameCompleterHandle Signal_GotCompletionData(this GFilenameCompleterHandle instance, GFilenameCompleterSignalDelegates.GotCompletionData handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "got_completion_data", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GFilenameCompleterSignals
+public static class GFilenameCompleterSignalDelegates
 {
-	public static GFilenameCompleterSignal GotCompletionData = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void GotCompletionData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GFilenameCompleterHandle>))] GFilenameCompleterHandle self, IntPtr user_data);
 }
+
 
 public static class GFilenameCompleterHandleExtensions
 {
@@ -52,18 +58,6 @@ public static class GFilenameCompleterHandleExtensions
 		return completer;
 	}
 
-	public static GFilenameCompleterHandle Signal_GotCompletionData(this GFilenameCompleterHandle instance, GFilenameCompleterDelegates.GotCompletionData handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "got_completion_data", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GFilenameCompleterDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void GotCompletionData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GFilenameCompleterHandle>))] GFilenameCompleterHandle self, IntPtr user_data);
 }
 
 internal class GFilenameCompleterExterns

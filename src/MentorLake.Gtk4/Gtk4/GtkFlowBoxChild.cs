@@ -23,16 +23,22 @@ public class GtkFlowBoxChildHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBu
 
 }
 
-public class GtkFlowBoxChildSignal
+public static class GtkFlowBoxChildSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkFlowBoxChildSignal(string value) => Value = value;
+	public static GtkFlowBoxChildHandle Signal_Activate(this GtkFlowBoxChildHandle instance, GtkFlowBoxChildSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkFlowBoxChildSignals
+public static class GtkFlowBoxChildSignalDelegates
 {
-	public static GtkFlowBoxChildSignal Activate = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxChildHandle>))] GtkFlowBoxChildHandle self, IntPtr user_data);
 }
+
 
 public static class GtkFlowBoxChildHandleExtensions
 {
@@ -63,18 +69,6 @@ public static class GtkFlowBoxChildHandleExtensions
 		return self;
 	}
 
-	public static GtkFlowBoxChildHandle Signal_Activate(this GtkFlowBoxChildHandle instance, GtkFlowBoxChildDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkFlowBoxChildDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxChildHandle>))] GtkFlowBoxChildHandle self, IntPtr user_data);
 }
 
 internal class GtkFlowBoxChildExterns

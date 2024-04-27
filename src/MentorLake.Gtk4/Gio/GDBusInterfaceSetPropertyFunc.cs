@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool GDBusInterfaceSetPropertyFunc(GDBusConnectionHandle connection, string sender, string object_path, string interface_name, string property_name, GVariantHandle value, out GErrorHandle error, IntPtr user_data);
-

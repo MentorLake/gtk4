@@ -48,17 +48,30 @@ public class GDBusProxyHandle : GObjectHandle, GAsyncInitableHandle, GDBusInterf
 
 }
 
-public class GDBusProxySignal
+public static class GDBusProxySignalExtensions
 {
-	public string Value { get; set; }
-	public GDBusProxySignal(string value) => Value = value;
+	public static GDBusProxyHandle Signal_GPropertiesChanged(this GDBusProxyHandle instance, GDBusProxySignalDelegates.GPropertiesChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "g_properties_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GDBusProxyHandle Signal_GSignal(this GDBusProxyHandle instance, GDBusProxySignalDelegates.GSignal handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "g_signal", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GDBusProxySignals
+public static class GDBusProxySignalDelegates
 {
-	public static GDBusProxySignal GPropertiesChanged = new("BindingTransform.MethodDeclaration");
-	public static GDBusProxySignal GSignal = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void GPropertiesChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusProxyHandle>))] GDBusProxyHandle self, GVariantHandle changed_properties, string[] invalidated_properties, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void GSignal([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusProxyHandle>))] GDBusProxyHandle self, string sender_name, string signal_name, GVariantHandle parameters, IntPtr user_data);
 }
+
 
 public static class GDBusProxyHandleExtensions
 {
@@ -162,26 +175,6 @@ public static class GDBusProxyHandleExtensions
 		return proxy;
 	}
 
-	public static GDBusProxyHandle Signal_GPropertiesChanged(this GDBusProxyHandle instance, GDBusProxyDelegates.GPropertiesChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "g_properties_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GDBusProxyHandle Signal_GSignal(this GDBusProxyHandle instance, GDBusProxyDelegates.GSignal handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "g_signal", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GDBusProxyDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void GPropertiesChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusProxyHandle>))] GDBusProxyHandle self, GVariantHandle changed_properties, string[] invalidated_properties, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void GSignal([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusProxyHandle>))] GDBusProxyHandle self, string sender_name, string signal_name, GVariantHandle parameters, IntPtr user_data);
 }
 
 internal class GDBusProxyExterns

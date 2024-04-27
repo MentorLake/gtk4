@@ -23,31 +23,25 @@ public class GThreadedSocketServiceHandle : GSocketServiceHandle
 
 }
 
-public class GThreadedSocketServiceSignal
+public static class GThreadedSocketServiceSignalExtensions
 {
-	public string Value { get; set; }
-	public GThreadedSocketServiceSignal(string value) => Value = value;
-}
-
-public static class GThreadedSocketServiceSignals
-{
-	public static GThreadedSocketServiceSignal Run = new("BindingTransform.MethodDeclaration");
-}
-
-public static class GThreadedSocketServiceHandleExtensions
-{
-	public static GThreadedSocketServiceHandle Signal_Run(this GThreadedSocketServiceHandle instance, GThreadedSocketServiceDelegates.Run handler)
+	public static GThreadedSocketServiceHandle Signal_Run(this GThreadedSocketServiceHandle instance, GThreadedSocketServiceSignalDelegates.Run handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "run", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
 }
 
-public static class GThreadedSocketServiceDelegates
+public static class GThreadedSocketServiceSignalDelegates
 {
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public delegate bool Run([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GThreadedSocketServiceHandle>))] GThreadedSocketServiceHandle self, GSocketConnectionHandle connection, GObjectHandle source_object, IntPtr user_data);
+}
+
+
+public static class GThreadedSocketServiceHandleExtensions
+{
 }
 
 internal class GThreadedSocketServiceExterns

@@ -23,31 +23,25 @@ public class GAppInfoMonitorHandle : GObjectHandle
 
 }
 
-public class GAppInfoMonitorSignal
+public static class GAppInfoMonitorSignalExtensions
 {
-	public string Value { get; set; }
-	public GAppInfoMonitorSignal(string value) => Value = value;
-}
-
-public static class GAppInfoMonitorSignals
-{
-	public static GAppInfoMonitorSignal Changed = new("BindingTransform.MethodDeclaration");
-}
-
-public static class GAppInfoMonitorHandleExtensions
-{
-	public static GAppInfoMonitorHandle Signal_Changed(this GAppInfoMonitorHandle instance, GAppInfoMonitorDelegates.Changed handler)
+	public static GAppInfoMonitorHandle Signal_Changed(this GAppInfoMonitorHandle instance, GAppInfoMonitorSignalDelegates.Changed handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
 }
 
-public static class GAppInfoMonitorDelegates
+public static class GAppInfoMonitorSignalDelegates
 {
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GAppInfoMonitorHandle>))] GAppInfoMonitorHandle self, IntPtr user_data);
+}
+
+
+public static class GAppInfoMonitorHandleExtensions
+{
 }
 
 internal class GAppInfoMonitorExterns

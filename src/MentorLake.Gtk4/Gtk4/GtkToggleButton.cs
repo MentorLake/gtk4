@@ -33,16 +33,22 @@ public class GtkToggleButtonHandle : GtkButtonHandle, GtkAccessibleHandle, GtkAc
 
 }
 
-public class GtkToggleButtonSignal
+public static class GtkToggleButtonSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkToggleButtonSignal(string value) => Value = value;
+	public static GtkToggleButtonHandle Signal_Toggled(this GtkToggleButtonHandle instance, GtkToggleButtonSignalDelegates.Toggled handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "toggled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkToggleButtonSignals
+public static class GtkToggleButtonSignalDelegates
 {
-	public static GtkToggleButtonSignal Toggled = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Toggled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkToggleButtonHandle>))] GtkToggleButtonHandle self, IntPtr user_data);
 }
+
 
 public static class GtkToggleButtonHandleExtensions
 {
@@ -69,18 +75,6 @@ public static class GtkToggleButtonHandleExtensions
 		return toggle_button;
 	}
 
-	public static GtkToggleButtonHandle Signal_Toggled(this GtkToggleButtonHandle instance, GtkToggleButtonDelegates.Toggled handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "toggled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkToggleButtonDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Toggled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkToggleButtonHandle>))] GtkToggleButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkToggleButtonExterns

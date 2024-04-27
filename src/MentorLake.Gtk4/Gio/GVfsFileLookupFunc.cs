@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate GFileHandle GVfsFileLookupFunc(GVfsHandle vfs, string identifier, IntPtr user_data);
-

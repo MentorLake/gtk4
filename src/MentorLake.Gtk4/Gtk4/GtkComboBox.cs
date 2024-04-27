@@ -38,21 +38,62 @@ public class GtkComboBoxHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuilda
 
 }
 
-public class GtkComboBoxSignal
+public static class GtkComboBoxSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkComboBoxSignal(string value) => Value = value;
+	public static GtkComboBoxHandle Signal_Activate(this GtkComboBoxHandle instance, GtkComboBoxSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkComboBoxHandle Signal_Changed(this GtkComboBoxHandle instance, GtkComboBoxSignalDelegates.Changed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkComboBoxHandle Signal_FormatEntryText(this GtkComboBoxHandle instance, GtkComboBoxSignalDelegates.FormatEntryText handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "format_entry_text", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkComboBoxHandle Signal_MoveActive(this GtkComboBoxHandle instance, GtkComboBoxSignalDelegates.MoveActive handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_active", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkComboBoxHandle Signal_Popdown(this GtkComboBoxHandle instance, GtkComboBoxSignalDelegates.Popdown handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "popdown", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkComboBoxHandle Signal_Popup(this GtkComboBoxHandle instance, GtkComboBoxSignalDelegates.Popup handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "popup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkComboBoxSignals
+public static class GtkComboBoxSignalDelegates
 {
-	public static GtkComboBoxSignal Activate = new("BindingTransform.MethodDeclaration");
-	public static GtkComboBoxSignal Changed = new("BindingTransform.MethodDeclaration");
-	public static GtkComboBoxSignal FormatEntryText = new("BindingTransform.MethodDeclaration");
-	public static GtkComboBoxSignal MoveActive = new("BindingTransform.MethodDeclaration");
-	public static GtkComboBoxSignal Popdown = new("BindingTransform.MethodDeclaration");
-	public static GtkComboBoxSignal Popup = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate string FormatEntryText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, string path, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MoveActive([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, ref GtkScrollType scroll_type, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Popdown([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Popup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, IntPtr user_data);
 }
+
 
 public static class GtkComboBoxHandleExtensions
 {
@@ -188,58 +229,6 @@ public static class GtkComboBoxHandleExtensions
 		return combo_box;
 	}
 
-	public static GtkComboBoxHandle Signal_Activate(this GtkComboBoxHandle instance, GtkComboBoxDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkComboBoxHandle Signal_Changed(this GtkComboBoxHandle instance, GtkComboBoxDelegates.Changed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkComboBoxHandle Signal_FormatEntryText(this GtkComboBoxHandle instance, GtkComboBoxDelegates.FormatEntryText handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "format_entry_text", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkComboBoxHandle Signal_MoveActive(this GtkComboBoxHandle instance, GtkComboBoxDelegates.MoveActive handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "move_active", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkComboBoxHandle Signal_Popdown(this GtkComboBoxHandle instance, GtkComboBoxDelegates.Popdown handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "popdown", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkComboBoxHandle Signal_Popup(this GtkComboBoxHandle instance, GtkComboBoxDelegates.Popup handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "popup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkComboBoxDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate string FormatEntryText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, string path, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MoveActive([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, ref GtkScrollType scroll_type, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool Popdown([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Popup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkComboBoxHandle>))] GtkComboBoxHandle self, IntPtr user_data);
 }
 
 internal class GtkComboBoxExterns

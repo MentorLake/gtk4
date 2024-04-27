@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GObject;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GObjectSetPropertyFunc(GObjectHandle @object, uint property_id, GValueHandle value, GParamSpecHandle pspec);
-

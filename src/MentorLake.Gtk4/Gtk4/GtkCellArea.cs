@@ -18,19 +18,46 @@ public class GtkCellAreaHandle : GInitiallyUnownedHandle, GtkBuildableHandle, Gt
 {
 }
 
-public class GtkCellAreaSignal
+public static class GtkCellAreaSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkCellAreaSignal(string value) => Value = value;
+	public static GtkCellAreaHandle Signal_AddEditable(this GtkCellAreaHandle instance, GtkCellAreaSignalDelegates.AddEditable handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "add_editable", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkCellAreaHandle Signal_ApplyAttributes(this GtkCellAreaHandle instance, GtkCellAreaSignalDelegates.ApplyAttributes handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "apply_attributes", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkCellAreaHandle Signal_FocusChanged(this GtkCellAreaHandle instance, GtkCellAreaSignalDelegates.FocusChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "focus_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkCellAreaHandle Signal_RemoveEditable(this GtkCellAreaHandle instance, GtkCellAreaSignalDelegates.RemoveEditable handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "remove_editable", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkCellAreaSignals
+public static class GtkCellAreaSignalDelegates
 {
-	public static GtkCellAreaSignal AddEditable = new("BindingTransform.MethodDeclaration");
-	public static GtkCellAreaSignal ApplyAttributes = new("BindingTransform.MethodDeclaration");
-	public static GtkCellAreaSignal FocusChanged = new("BindingTransform.MethodDeclaration");
-	public static GtkCellAreaSignal RemoveEditable = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void AddEditable([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, GtkCellRendererHandle renderer, GtkCellEditableHandle editable, GdkRectangleHandle cell_area, string path, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ApplyAttributes([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, bool is_expander, bool is_expanded, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void FocusChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, GtkCellRendererHandle renderer, string path, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void RemoveEditable([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, GtkCellRendererHandle renderer, GtkCellEditableHandle editable, IntPtr user_data);
 }
+
 
 public static class GtkCellAreaHandleExtensions
 {
@@ -280,42 +307,6 @@ public static class GtkCellAreaHandleExtensions
 		return area;
 	}
 
-	public static GtkCellAreaHandle Signal_AddEditable(this GtkCellAreaHandle instance, GtkCellAreaDelegates.AddEditable handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "add_editable", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkCellAreaHandle Signal_ApplyAttributes(this GtkCellAreaHandle instance, GtkCellAreaDelegates.ApplyAttributes handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "apply_attributes", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkCellAreaHandle Signal_FocusChanged(this GtkCellAreaHandle instance, GtkCellAreaDelegates.FocusChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "focus_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkCellAreaHandle Signal_RemoveEditable(this GtkCellAreaHandle instance, GtkCellAreaDelegates.RemoveEditable handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "remove_editable", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkCellAreaDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void AddEditable([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, GtkCellRendererHandle renderer, GtkCellEditableHandle editable, GdkRectangleHandle cell_area, string path, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ApplyAttributes([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, bool is_expander, bool is_expanded, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void FocusChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, GtkCellRendererHandle renderer, string path, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void RemoveEditable([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, GtkCellRendererHandle renderer, GtkCellEditableHandle editable, IntPtr user_data);
 }
 
 internal class GtkCellAreaExterns

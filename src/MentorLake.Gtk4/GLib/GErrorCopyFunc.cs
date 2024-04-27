@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GLib;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GErrorCopyFunc(GErrorHandle src_error, GErrorHandle dest_error);
-

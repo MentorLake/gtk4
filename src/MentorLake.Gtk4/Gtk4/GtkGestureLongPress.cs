@@ -23,17 +23,30 @@ public class GtkGestureLongPressHandle : GtkGestureSingleHandle
 
 }
 
-public class GtkGestureLongPressSignal
+public static class GtkGestureLongPressSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkGestureLongPressSignal(string value) => Value = value;
+	public static GtkGestureLongPressHandle Signal_Cancelled(this GtkGestureLongPressHandle instance, GtkGestureLongPressSignalDelegates.Cancelled handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "cancelled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkGestureLongPressHandle Signal_Pressed(this GtkGestureLongPressHandle instance, GtkGestureLongPressSignalDelegates.Pressed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "pressed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkGestureLongPressSignals
+public static class GtkGestureLongPressSignalDelegates
 {
-	public static GtkGestureLongPressSignal Cancelled = new("BindingTransform.MethodDeclaration");
-	public static GtkGestureLongPressSignal Pressed = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Cancelled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureLongPressHandle>))] GtkGestureLongPressHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Pressed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureLongPressHandle>))] GtkGestureLongPressHandle self, double x, double y, IntPtr user_data);
 }
+
 
 public static class GtkGestureLongPressHandleExtensions
 {
@@ -48,26 +61,6 @@ public static class GtkGestureLongPressHandleExtensions
 		return gesture;
 	}
 
-	public static GtkGestureLongPressHandle Signal_Cancelled(this GtkGestureLongPressHandle instance, GtkGestureLongPressDelegates.Cancelled handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "cancelled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkGestureLongPressHandle Signal_Pressed(this GtkGestureLongPressHandle instance, GtkGestureLongPressDelegates.Pressed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "pressed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkGestureLongPressDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Cancelled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureLongPressHandle>))] GtkGestureLongPressHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Pressed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureLongPressHandle>))] GtkGestureLongPressHandle self, double x, double y, IntPtr user_data);
 }
 
 internal class GtkGestureLongPressExterns

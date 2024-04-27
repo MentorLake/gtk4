@@ -23,18 +23,38 @@ public class GAppLaunchContextHandle : GObjectHandle
 
 }
 
-public class GAppLaunchContextSignal
+public static class GAppLaunchContextSignalExtensions
 {
-	public string Value { get; set; }
-	public GAppLaunchContextSignal(string value) => Value = value;
+	public static GAppLaunchContextHandle Signal_LaunchFailed(this GAppLaunchContextHandle instance, GAppLaunchContextSignalDelegates.LaunchFailed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "launch_failed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GAppLaunchContextHandle Signal_LaunchStarted(this GAppLaunchContextHandle instance, GAppLaunchContextSignalDelegates.LaunchStarted handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "launch_started", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GAppLaunchContextHandle Signal_Launched(this GAppLaunchContextHandle instance, GAppLaunchContextSignalDelegates.Launched handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "launched", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GAppLaunchContextSignals
+public static class GAppLaunchContextSignalDelegates
 {
-	public static GAppLaunchContextSignal LaunchFailed = new("BindingTransform.MethodDeclaration");
-	public static GAppLaunchContextSignal LaunchStarted = new("BindingTransform.MethodDeclaration");
-	public static GAppLaunchContextSignal Launched = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void LaunchFailed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GAppLaunchContextHandle>))] GAppLaunchContextHandle self, string startup_notify_id, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void LaunchStarted([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GAppLaunchContextHandle>))] GAppLaunchContextHandle self, GAppInfoHandle info, GVariantHandle platform_data, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Launched([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GAppLaunchContextHandle>))] GAppLaunchContextHandle self, GAppInfoHandle info, GVariantHandle platform_data, IntPtr user_data);
 }
+
 
 public static class GAppLaunchContextHandleExtensions
 {
@@ -71,34 +91,6 @@ public static class GAppLaunchContextHandleExtensions
 		return context;
 	}
 
-	public static GAppLaunchContextHandle Signal_LaunchFailed(this GAppLaunchContextHandle instance, GAppLaunchContextDelegates.LaunchFailed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "launch_failed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GAppLaunchContextHandle Signal_LaunchStarted(this GAppLaunchContextHandle instance, GAppLaunchContextDelegates.LaunchStarted handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "launch_started", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GAppLaunchContextHandle Signal_Launched(this GAppLaunchContextHandle instance, GAppLaunchContextDelegates.Launched handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "launched", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GAppLaunchContextDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void LaunchFailed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GAppLaunchContextHandle>))] GAppLaunchContextHandle self, string startup_notify_id, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void LaunchStarted([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GAppLaunchContextHandle>))] GAppLaunchContextHandle self, GAppInfoHandle info, GVariantHandle platform_data, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Launched([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GAppLaunchContextHandle>))] GAppLaunchContextHandle self, GAppInfoHandle info, GVariantHandle platform_data, IntPtr user_data);
 }
 
 internal class GAppLaunchContextExterns

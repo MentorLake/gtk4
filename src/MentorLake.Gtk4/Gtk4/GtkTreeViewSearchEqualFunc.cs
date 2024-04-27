@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool GtkTreeViewSearchEqualFunc(GtkTreeModelHandle model, int column, string key, GtkTreeIterHandle iter, IntPtr search_data);
-

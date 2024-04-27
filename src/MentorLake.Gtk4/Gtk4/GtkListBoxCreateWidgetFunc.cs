@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate GtkWidgetHandle GtkListBoxCreateWidgetFunc(GObjectHandle item, IntPtr user_data);
-

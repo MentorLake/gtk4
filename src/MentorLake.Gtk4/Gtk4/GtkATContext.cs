@@ -23,16 +23,22 @@ public class GtkATContextHandle : GObjectHandle
 
 }
 
-public class GtkATContextSignal
+public static class GtkATContextSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkATContextSignal(string value) => Value = value;
+	public static GtkATContextHandle Signal_StateChange(this GtkATContextHandle instance, GtkATContextSignalDelegates.StateChange handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "state_change", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkATContextSignals
+public static class GtkATContextSignalDelegates
 {
-	public static GtkATContextSignal StateChange = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void StateChange([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkATContextHandle>))] GtkATContextHandle self, IntPtr user_data);
 }
+
 
 public static class GtkATContextHandleExtensions
 {
@@ -46,18 +52,6 @@ public static class GtkATContextHandleExtensions
 		return GtkATContextExterns.gtk_at_context_get_accessible_role(self);
 	}
 
-	public static GtkATContextHandle Signal_StateChange(this GtkATContextHandle instance, GtkATContextDelegates.StateChange handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "state_change", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkATContextDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void StateChange([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkATContextHandle>))] GtkATContextHandle self, IntPtr user_data);
 }
 
 internal class GtkATContextExterns

@@ -18,16 +18,22 @@ public class GtkNativeDialogHandle : GObjectHandle
 {
 }
 
-public class GtkNativeDialogSignal
+public static class GtkNativeDialogSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkNativeDialogSignal(string value) => Value = value;
+	public static GtkNativeDialogHandle Signal_Response(this GtkNativeDialogHandle instance, GtkNativeDialogSignalDelegates.Response handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "response", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkNativeDialogSignals
+public static class GtkNativeDialogSignalDelegates
 {
-	public static GtkNativeDialogSignal Response = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Response([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNativeDialogHandle>))] GtkNativeDialogHandle self, int response_id, IntPtr user_data);
 }
+
 
 public static class GtkNativeDialogHandleExtensions
 {
@@ -87,18 +93,6 @@ public static class GtkNativeDialogHandleExtensions
 		return self;
 	}
 
-	public static GtkNativeDialogHandle Signal_Response(this GtkNativeDialogHandle instance, GtkNativeDialogDelegates.Response handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "response", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkNativeDialogDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Response([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNativeDialogHandle>))] GtkNativeDialogHandle self, int response_id, IntPtr user_data);
 }
 
 internal class GtkNativeDialogExterns

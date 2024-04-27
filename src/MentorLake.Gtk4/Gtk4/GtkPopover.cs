@@ -23,17 +23,30 @@ public class GtkPopoverHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildab
 
 }
 
-public class GtkPopoverSignal
+public static class GtkPopoverSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkPopoverSignal(string value) => Value = value;
+	public static GtkPopoverHandle Signal_ActivateDefault(this GtkPopoverHandle instance, GtkPopoverSignalDelegates.ActivateDefault handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate_default", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkPopoverHandle Signal_Closed(this GtkPopoverHandle instance, GtkPopoverSignalDelegates.Closed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkPopoverSignals
+public static class GtkPopoverSignalDelegates
 {
-	public static GtkPopoverSignal ActivateDefault = new("BindingTransform.MethodDeclaration");
-	public static GtkPopoverSignal Closed = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ActivateDefault([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPopoverHandle>))] GtkPopoverHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPopoverHandle>))] GtkPopoverHandle self, IntPtr user_data);
 }
+
 
 public static class GtkPopoverHandleExtensions
 {
@@ -150,26 +163,6 @@ public static class GtkPopoverHandleExtensions
 		return popover;
 	}
 
-	public static GtkPopoverHandle Signal_ActivateDefault(this GtkPopoverHandle instance, GtkPopoverDelegates.ActivateDefault handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_default", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkPopoverHandle Signal_Closed(this GtkPopoverHandle instance, GtkPopoverDelegates.Closed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkPopoverDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ActivateDefault([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPopoverHandle>))] GtkPopoverHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPopoverHandle>))] GtkPopoverHandle self, IntPtr user_data);
 }
 
 internal class GtkPopoverExterns

@@ -18,19 +18,46 @@ public class GtkRangeHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAccessibl
 {
 }
 
-public class GtkRangeSignal
+public static class GtkRangeSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkRangeSignal(string value) => Value = value;
+	public static GtkRangeHandle Signal_AdjustBounds(this GtkRangeHandle instance, GtkRangeSignalDelegates.AdjustBounds handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "adjust_bounds", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkRangeHandle Signal_ChangeValue(this GtkRangeHandle instance, GtkRangeSignalDelegates.ChangeValue handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "change_value", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkRangeHandle Signal_MoveSlider(this GtkRangeHandle instance, GtkRangeSignalDelegates.MoveSlider handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_slider", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkRangeHandle Signal_ValueChanged(this GtkRangeHandle instance, GtkRangeSignalDelegates.ValueChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkRangeSignals
+public static class GtkRangeSignalDelegates
 {
-	public static GtkRangeSignal AdjustBounds = new("BindingTransform.MethodDeclaration");
-	public static GtkRangeSignal ChangeValue = new("BindingTransform.MethodDeclaration");
-	public static GtkRangeSignal MoveSlider = new("BindingTransform.MethodDeclaration");
-	public static GtkRangeSignal ValueChanged = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void AdjustBounds([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, double value, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ChangeValue([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, ref GtkScrollType scroll, double value, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MoveSlider([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, ref GtkScrollType step, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ValueChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, IntPtr user_data);
 }
+
 
 public static class GtkRangeHandleExtensions
 {
@@ -157,42 +184,6 @@ public static class GtkRangeHandleExtensions
 		return range;
 	}
 
-	public static GtkRangeHandle Signal_AdjustBounds(this GtkRangeHandle instance, GtkRangeDelegates.AdjustBounds handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "adjust_bounds", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkRangeHandle Signal_ChangeValue(this GtkRangeHandle instance, GtkRangeDelegates.ChangeValue handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "change_value", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkRangeHandle Signal_MoveSlider(this GtkRangeHandle instance, GtkRangeDelegates.MoveSlider handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "move_slider", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkRangeHandle Signal_ValueChanged(this GtkRangeHandle instance, GtkRangeDelegates.ValueChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkRangeDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void AdjustBounds([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, double value, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ChangeValue([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, ref GtkScrollType scroll, double value, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MoveSlider([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, ref GtkScrollType step, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ValueChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, IntPtr user_data);
 }
 
 internal class GtkRangeExterns

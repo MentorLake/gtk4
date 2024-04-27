@@ -18,16 +18,22 @@ public class GTlsConnectionHandle : GIOStreamHandle
 {
 }
 
-public class GTlsConnectionSignal
+public static class GTlsConnectionSignalExtensions
 {
-	public string Value { get; set; }
-	public GTlsConnectionSignal(string value) => Value = value;
+	public static GTlsConnectionHandle Signal_AcceptCertificate(this GTlsConnectionHandle instance, GTlsConnectionSignalDelegates.AcceptCertificate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "accept_certificate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GTlsConnectionSignals
+public static class GTlsConnectionSignalDelegates
 {
-	public static GTlsConnectionSignal AcceptCertificate = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool AcceptCertificate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GTlsConnectionHandle>))] GTlsConnectionHandle self, GTlsCertificateHandle peer_cert, GTlsCertificateFlags errors, IntPtr user_data);
 }
+
 
 public static class GTlsConnectionHandleExtensions
 {
@@ -154,18 +160,6 @@ public static class GTlsConnectionHandleExtensions
 		return conn;
 	}
 
-	public static GTlsConnectionHandle Signal_AcceptCertificate(this GTlsConnectionHandle instance, GTlsConnectionDelegates.AcceptCertificate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "accept_certificate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GTlsConnectionDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool AcceptCertificate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GTlsConnectionHandle>))] GTlsConnectionHandle self, GTlsCertificateHandle peer_cert, GTlsCertificateFlags errors, IntPtr user_data);
 }
 
 internal class GTlsConnectionExterns

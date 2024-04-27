@@ -23,16 +23,22 @@ public class GtkPrintJobHandle : GObjectHandle
 
 }
 
-public class GtkPrintJobSignal
+public static class GtkPrintJobSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkPrintJobSignal(string value) => Value = value;
+	public static GtkPrintJobHandle Signal_StatusChanged(this GtkPrintJobHandle instance, GtkPrintJobSignalDelegates.StatusChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "status_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkPrintJobSignals
+public static class GtkPrintJobSignalDelegates
 {
-	public static GtkPrintJobSignal StatusChanged = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void StatusChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintJobHandle>))] GtkPrintJobHandle self, IntPtr user_data);
 }
+
 
 public static class GtkPrintJobHandleExtensions
 {
@@ -198,18 +204,6 @@ public static class GtkPrintJobHandleExtensions
 		return job;
 	}
 
-	public static GtkPrintJobHandle Signal_StatusChanged(this GtkPrintJobHandle instance, GtkPrintJobDelegates.StatusChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "status_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkPrintJobDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void StatusChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintJobHandle>))] GtkPrintJobHandle self, IntPtr user_data);
 }
 
 internal class GtkPrintJobExterns

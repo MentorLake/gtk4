@@ -23,19 +23,46 @@ public class GtkGestureStylusHandle : GtkGestureSingleHandle
 
 }
 
-public class GtkGestureStylusSignal
+public static class GtkGestureStylusSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkGestureStylusSignal(string value) => Value = value;
+	public static GtkGestureStylusHandle Signal_Down(this GtkGestureStylusHandle instance, GtkGestureStylusSignalDelegates.Down handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "down", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkGestureStylusHandle Signal_Motion(this GtkGestureStylusHandle instance, GtkGestureStylusSignalDelegates.Motion handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "motion", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkGestureStylusHandle Signal_Proximity(this GtkGestureStylusHandle instance, GtkGestureStylusSignalDelegates.Proximity handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "proximity", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkGestureStylusHandle Signal_Up(this GtkGestureStylusHandle instance, GtkGestureStylusSignalDelegates.Up handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "up", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkGestureStylusSignals
+public static class GtkGestureStylusSignalDelegates
 {
-	public static GtkGestureStylusSignal Down = new("BindingTransform.MethodDeclaration");
-	public static GtkGestureStylusSignal Motion = new("BindingTransform.MethodDeclaration");
-	public static GtkGestureStylusSignal Proximity = new("BindingTransform.MethodDeclaration");
-	public static GtkGestureStylusSignal Up = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Down([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureStylusHandle>))] GtkGestureStylusHandle self, double x, double y, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Motion([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureStylusHandle>))] GtkGestureStylusHandle self, double x, double y, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Proximity([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureStylusHandle>))] GtkGestureStylusHandle self, double x, double y, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Up([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureStylusHandle>))] GtkGestureStylusHandle self, double x, double y, IntPtr user_data);
 }
+
 
 public static class GtkGestureStylusHandleExtensions
 {
@@ -70,42 +97,6 @@ public static class GtkGestureStylusHandleExtensions
 		return gesture;
 	}
 
-	public static GtkGestureStylusHandle Signal_Down(this GtkGestureStylusHandle instance, GtkGestureStylusDelegates.Down handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "down", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkGestureStylusHandle Signal_Motion(this GtkGestureStylusHandle instance, GtkGestureStylusDelegates.Motion handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "motion", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkGestureStylusHandle Signal_Proximity(this GtkGestureStylusHandle instance, GtkGestureStylusDelegates.Proximity handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "proximity", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkGestureStylusHandle Signal_Up(this GtkGestureStylusHandle instance, GtkGestureStylusDelegates.Up handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "up", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkGestureStylusDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Down([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureStylusHandle>))] GtkGestureStylusHandle self, double x, double y, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Motion([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureStylusHandle>))] GtkGestureStylusHandle self, double x, double y, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Proximity([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureStylusHandle>))] GtkGestureStylusHandle self, double x, double y, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Up([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureStylusHandle>))] GtkGestureStylusHandle self, double x, double y, IntPtr user_data);
 }
 
 internal class GtkGestureStylusExterns

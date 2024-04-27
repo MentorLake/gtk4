@@ -28,19 +28,46 @@ public class GtkLabelHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAccessibl
 
 }
 
-public class GtkLabelSignal
+public static class GtkLabelSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkLabelSignal(string value) => Value = value;
+	public static GtkLabelHandle Signal_ActivateCurrentLink(this GtkLabelHandle instance, GtkLabelSignalDelegates.ActivateCurrentLink handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate_current_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkLabelHandle Signal_ActivateLink(this GtkLabelHandle instance, GtkLabelSignalDelegates.ActivateLink handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkLabelHandle Signal_CopyClipboard(this GtkLabelHandle instance, GtkLabelSignalDelegates.CopyClipboard handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "copy_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkLabelHandle Signal_MoveCursor(this GtkLabelHandle instance, GtkLabelSignalDelegates.MoveCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkLabelSignals
+public static class GtkLabelSignalDelegates
 {
-	public static GtkLabelSignal ActivateCurrentLink = new("BindingTransform.MethodDeclaration");
-	public static GtkLabelSignal ActivateLink = new("BindingTransform.MethodDeclaration");
-	public static GtkLabelSignal CopyClipboard = new("BindingTransform.MethodDeclaration");
-	public static GtkLabelSignal MoveCursor = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ActivateCurrentLink([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ActivateLink([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, string uri, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void CopyClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, ref GtkMovementStep step, int count, bool extend_selection, IntPtr user_data);
 }
+
 
 public static class GtkLabelHandleExtensions
 {
@@ -314,42 +341,6 @@ public static class GtkLabelHandleExtensions
 		return self;
 	}
 
-	public static GtkLabelHandle Signal_ActivateCurrentLink(this GtkLabelHandle instance, GtkLabelDelegates.ActivateCurrentLink handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_current_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkLabelHandle Signal_ActivateLink(this GtkLabelHandle instance, GtkLabelDelegates.ActivateLink handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkLabelHandle Signal_CopyClipboard(this GtkLabelHandle instance, GtkLabelDelegates.CopyClipboard handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "copy_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkLabelHandle Signal_MoveCursor(this GtkLabelHandle instance, GtkLabelDelegates.MoveCursor handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkLabelDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ActivateCurrentLink([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ActivateLink([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, string uri, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void CopyClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, ref GtkMovementStep step, int count, bool extend_selection, IntPtr user_data);
 }
 
 internal class GtkLabelExterns

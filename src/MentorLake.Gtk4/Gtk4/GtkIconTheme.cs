@@ -28,16 +28,22 @@ public class GtkIconThemeHandle : GObjectHandle
 
 }
 
-public class GtkIconThemeSignal
+public static class GtkIconThemeSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkIconThemeSignal(string value) => Value = value;
+	public static GtkIconThemeHandle Signal_Changed(this GtkIconThemeHandle instance, GtkIconThemeSignalDelegates.Changed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkIconThemeSignals
+public static class GtkIconThemeSignalDelegates
 {
-	public static GtkIconThemeSignal Changed = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconThemeHandle>))] GtkIconThemeHandle self, IntPtr user_data);
 }
+
 
 public static class GtkIconThemeHandleExtensions
 {
@@ -121,18 +127,6 @@ public static class GtkIconThemeHandleExtensions
 		return self;
 	}
 
-	public static GtkIconThemeHandle Signal_Changed(this GtkIconThemeHandle instance, GtkIconThemeDelegates.Changed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkIconThemeDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconThemeHandle>))] GtkIconThemeHandle self, IntPtr user_data);
 }
 
 internal class GtkIconThemeExterns

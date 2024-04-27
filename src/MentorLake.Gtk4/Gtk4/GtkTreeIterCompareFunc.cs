@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate int GtkTreeIterCompareFunc(GtkTreeModelHandle model, GtkTreeIterHandle a, GtkTreeIterHandle b, IntPtr user_data);
-

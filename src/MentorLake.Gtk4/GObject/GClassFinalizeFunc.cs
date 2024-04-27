@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GObject;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GClassFinalizeFunc(GTypeClassHandle g_class, IntPtr class_data);
-

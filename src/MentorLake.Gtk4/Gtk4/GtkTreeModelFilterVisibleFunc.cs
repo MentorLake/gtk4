@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool GtkTreeModelFilterVisibleFunc(GtkTreeModelHandle model, GtkTreeIterHandle iter, IntPtr data);
-

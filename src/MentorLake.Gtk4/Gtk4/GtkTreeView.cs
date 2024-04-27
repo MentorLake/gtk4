@@ -28,30 +28,134 @@ public class GtkTreeViewHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuilda
 
 }
 
-public class GtkTreeViewSignal
+public static class GtkTreeViewSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkTreeViewSignal(string value) => Value = value;
+	public static GtkTreeViewHandle Signal_ColumnsChanged(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.ColumnsChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "columns_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_CursorChanged(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.CursorChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "cursor_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_ExpandCollapseCursorRow(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.ExpandCollapseCursorRow handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "expand_collapse_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_MoveCursor(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.MoveCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_RowActivated(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.RowActivated handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "row_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_RowCollapsed(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.RowCollapsed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "row_collapsed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_RowExpanded(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.RowExpanded handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "row_expanded", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_SelectAll(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.SelectAll handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_SelectCursorParent(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.SelectCursorParent handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "select_cursor_parent", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_SelectCursorRow(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.SelectCursorRow handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "select_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_StartInteractiveSearch(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.StartInteractiveSearch handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "start_interactive_search", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_TestCollapseRow(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.TestCollapseRow handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "test_collapse_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_TestExpandRow(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.TestExpandRow handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "test_expand_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_ToggleCursorRow(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.ToggleCursorRow handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkTreeViewHandle Signal_UnselectAll(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.UnselectAll handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkTreeViewSignals
+public static class GtkTreeViewSignalDelegates
 {
-	public static GtkTreeViewSignal ColumnsChanged = new("BindingTransform.MethodDeclaration");
-	public static GtkTreeViewSignal CursorChanged = new("BindingTransform.MethodDeclaration");
-	public static GtkTreeViewSignal ExpandCollapseCursorRow = new("BindingTransform.MethodDeclaration");
-	public static GtkTreeViewSignal MoveCursor = new("BindingTransform.MethodDeclaration");
-	public static GtkTreeViewSignal RowActivated = new("BindingTransform.MethodDeclaration");
-	public static GtkTreeViewSignal RowCollapsed = new("BindingTransform.MethodDeclaration");
-	public static GtkTreeViewSignal RowExpanded = new("BindingTransform.MethodDeclaration");
-	public static GtkTreeViewSignal SelectAll = new("BindingTransform.MethodDeclaration");
-	public static GtkTreeViewSignal SelectCursorParent = new("BindingTransform.MethodDeclaration");
-	public static GtkTreeViewSignal SelectCursorRow = new("BindingTransform.MethodDeclaration");
-	public static GtkTreeViewSignal StartInteractiveSearch = new("BindingTransform.MethodDeclaration");
-	public static GtkTreeViewSignal TestCollapseRow = new("BindingTransform.MethodDeclaration");
-	public static GtkTreeViewSignal TestExpandRow = new("BindingTransform.MethodDeclaration");
-	public static GtkTreeViewSignal ToggleCursorRow = new("BindingTransform.MethodDeclaration");
-	public static GtkTreeViewSignal UnselectAll = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ColumnsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void CursorChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ExpandCollapseCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, bool @object, bool p0, bool p1, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, ref GtkMovementStep step, int direction, bool extend, bool modify, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void RowActivated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, GtkTreePathHandle path, GtkTreeViewColumnHandle column, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void RowCollapsed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, GtkTreeIterHandle iter, GtkTreePathHandle path, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void RowExpanded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, GtkTreeIterHandle iter, GtkTreePathHandle path, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool SelectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool SelectCursorParent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool SelectCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, bool @object, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool StartInteractiveSearch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool TestCollapseRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, GtkTreeIterHandle iter, GtkTreePathHandle path, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool TestExpandRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, GtkTreeIterHandle iter, GtkTreePathHandle path, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ToggleCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool UnselectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
 }
+
 
 public static class GtkTreeViewHandleExtensions
 {
@@ -550,130 +654,6 @@ public static class GtkTreeViewHandleExtensions
 		return tree_view;
 	}
 
-	public static GtkTreeViewHandle Signal_ColumnsChanged(this GtkTreeViewHandle instance, GtkTreeViewDelegates.ColumnsChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "columns_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTreeViewHandle Signal_CursorChanged(this GtkTreeViewHandle instance, GtkTreeViewDelegates.CursorChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "cursor_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTreeViewHandle Signal_ExpandCollapseCursorRow(this GtkTreeViewHandle instance, GtkTreeViewDelegates.ExpandCollapseCursorRow handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "expand_collapse_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTreeViewHandle Signal_MoveCursor(this GtkTreeViewHandle instance, GtkTreeViewDelegates.MoveCursor handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTreeViewHandle Signal_RowActivated(this GtkTreeViewHandle instance, GtkTreeViewDelegates.RowActivated handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "row_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTreeViewHandle Signal_RowCollapsed(this GtkTreeViewHandle instance, GtkTreeViewDelegates.RowCollapsed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "row_collapsed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTreeViewHandle Signal_RowExpanded(this GtkTreeViewHandle instance, GtkTreeViewDelegates.RowExpanded handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "row_expanded", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTreeViewHandle Signal_SelectAll(this GtkTreeViewHandle instance, GtkTreeViewDelegates.SelectAll handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTreeViewHandle Signal_SelectCursorParent(this GtkTreeViewHandle instance, GtkTreeViewDelegates.SelectCursorParent handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "select_cursor_parent", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTreeViewHandle Signal_SelectCursorRow(this GtkTreeViewHandle instance, GtkTreeViewDelegates.SelectCursorRow handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "select_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTreeViewHandle Signal_StartInteractiveSearch(this GtkTreeViewHandle instance, GtkTreeViewDelegates.StartInteractiveSearch handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "start_interactive_search", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTreeViewHandle Signal_TestCollapseRow(this GtkTreeViewHandle instance, GtkTreeViewDelegates.TestCollapseRow handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "test_collapse_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTreeViewHandle Signal_TestExpandRow(this GtkTreeViewHandle instance, GtkTreeViewDelegates.TestExpandRow handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "test_expand_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTreeViewHandle Signal_ToggleCursorRow(this GtkTreeViewHandle instance, GtkTreeViewDelegates.ToggleCursorRow handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkTreeViewHandle Signal_UnselectAll(this GtkTreeViewHandle instance, GtkTreeViewDelegates.UnselectAll handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkTreeViewDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ColumnsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void CursorChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ExpandCollapseCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, bool @object, bool p0, bool p1, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, ref GtkMovementStep step, int direction, bool extend, bool modify, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void RowActivated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, GtkTreePathHandle path, GtkTreeViewColumnHandle column, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void RowCollapsed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, GtkTreeIterHandle iter, GtkTreePathHandle path, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void RowExpanded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, GtkTreeIterHandle iter, GtkTreePathHandle path, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool SelectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool SelectCursorParent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool SelectCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, bool @object, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool StartInteractiveSearch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool TestCollapseRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, GtkTreeIterHandle iter, GtkTreePathHandle path, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool TestExpandRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, GtkTreeIterHandle iter, GtkTreePathHandle path, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ToggleCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool UnselectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewHandle>))] GtkTreeViewHandle self, IntPtr user_data);
 }
 
 internal class GtkTreeViewExterns

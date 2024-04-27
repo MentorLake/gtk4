@@ -58,16 +58,22 @@ public class GObjectHandle : GTypeInstanceHandle
 
 }
 
-public class GObjectSignal
+public static class GObjectSignalExtensions
 {
-	public string Value { get; set; }
-	public GObjectSignal(string value) => Value = value;
+	public static GObjectHandle Signal_Notify(this GObjectHandle instance, GObjectSignalDelegates.Notify handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "notify", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GObjectSignals
+public static class GObjectSignalDelegates
 {
-	public static GObjectSignal Notify = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Notify([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GObjectHandle>))] GObjectHandle self, GParamSpecHandle pspec, IntPtr user_data);
 }
+
 
 public static class GObjectHandleExtensions
 {
@@ -411,18 +417,6 @@ public static class GObjectHandleExtensions
 		return instance;
 	}
 
-	public static GObjectHandle Signal_Notify(this GObjectHandle instance, GObjectDelegates.Notify handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "notify", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GObjectDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Notify([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GObjectHandle>))] GObjectHandle self, GParamSpecHandle pspec, IntPtr user_data);
 }
 
 internal class GObjectExterns

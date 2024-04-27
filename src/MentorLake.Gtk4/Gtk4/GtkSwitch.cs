@@ -23,17 +23,30 @@ public class GtkSwitchHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkActionab
 
 }
 
-public class GtkSwitchSignal
+public static class GtkSwitchSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkSwitchSignal(string value) => Value = value;
+	public static GtkSwitchHandle Signal_Activate(this GtkSwitchHandle instance, GtkSwitchSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkSwitchHandle Signal_StateSet(this GtkSwitchHandle instance, GtkSwitchSignalDelegates.StateSet handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "state_set", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkSwitchSignals
+public static class GtkSwitchSignalDelegates
 {
-	public static GtkSwitchSignal Activate = new("BindingTransform.MethodDeclaration");
-	public static GtkSwitchSignal StateSet = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSwitchHandle>))] GtkSwitchHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool StateSet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSwitchHandle>))] GtkSwitchHandle self, bool state, IntPtr user_data);
 }
+
 
 public static class GtkSwitchHandleExtensions
 {
@@ -59,26 +72,6 @@ public static class GtkSwitchHandleExtensions
 		return self;
 	}
 
-	public static GtkSwitchHandle Signal_Activate(this GtkSwitchHandle instance, GtkSwitchDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkSwitchHandle Signal_StateSet(this GtkSwitchHandle instance, GtkSwitchDelegates.StateSet handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "state_set", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkSwitchDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSwitchHandle>))] GtkSwitchHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool StateSet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSwitchHandle>))] GtkSwitchHandle self, bool state, IntPtr user_data);
 }
 
 internal class GtkSwitchExterns

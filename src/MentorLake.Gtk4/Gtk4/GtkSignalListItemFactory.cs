@@ -23,45 +23,31 @@ public class GtkSignalListItemFactoryHandle : GtkListItemFactoryHandle
 
 }
 
-public class GtkSignalListItemFactorySignal
+public static class GtkSignalListItemFactorySignalExtensions
 {
-	public string Value { get; set; }
-	public GtkSignalListItemFactorySignal(string value) => Value = value;
-}
-
-public static class GtkSignalListItemFactorySignals
-{
-	public static GtkSignalListItemFactorySignal Bind = new("BindingTransform.MethodDeclaration");
-	public static GtkSignalListItemFactorySignal Setup = new("BindingTransform.MethodDeclaration");
-	public static GtkSignalListItemFactorySignal Teardown = new("BindingTransform.MethodDeclaration");
-	public static GtkSignalListItemFactorySignal Unbind = new("BindingTransform.MethodDeclaration");
-}
-
-public static class GtkSignalListItemFactoryHandleExtensions
-{
-	public static GtkSignalListItemFactoryHandle Signal_Bind(this GtkSignalListItemFactoryHandle instance, GtkSignalListItemFactoryDelegates.Bind handler)
+	public static GtkSignalListItemFactoryHandle Signal_Bind(this GtkSignalListItemFactoryHandle instance, GtkSignalListItemFactorySignalDelegates.Bind handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "bind", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
-	public static GtkSignalListItemFactoryHandle Signal_Setup(this GtkSignalListItemFactoryHandle instance, GtkSignalListItemFactoryDelegates.Setup handler)
+	public static GtkSignalListItemFactoryHandle Signal_Setup(this GtkSignalListItemFactoryHandle instance, GtkSignalListItemFactorySignalDelegates.Setup handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "setup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
-	public static GtkSignalListItemFactoryHandle Signal_Teardown(this GtkSignalListItemFactoryHandle instance, GtkSignalListItemFactoryDelegates.Teardown handler)
+	public static GtkSignalListItemFactoryHandle Signal_Teardown(this GtkSignalListItemFactoryHandle instance, GtkSignalListItemFactorySignalDelegates.Teardown handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "teardown", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
-	public static GtkSignalListItemFactoryHandle Signal_Unbind(this GtkSignalListItemFactoryHandle instance, GtkSignalListItemFactoryDelegates.Unbind handler)
+	public static GtkSignalListItemFactoryHandle Signal_Unbind(this GtkSignalListItemFactoryHandle instance, GtkSignalListItemFactorySignalDelegates.Unbind handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "unbind", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
 }
 
-public static class GtkSignalListItemFactoryDelegates
+public static class GtkSignalListItemFactorySignalDelegates
 {
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -75,6 +61,11 @@ public static class GtkSignalListItemFactoryDelegates
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public delegate void Unbind([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSignalListItemFactoryHandle>))] GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data);
+}
+
+
+public static class GtkSignalListItemFactoryHandleExtensions
+{
 }
 
 internal class GtkSignalListItemFactoryExterns

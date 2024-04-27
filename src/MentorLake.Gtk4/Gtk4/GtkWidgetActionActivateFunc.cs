@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GtkWidgetActionActivateFunc(GtkWidgetHandle widget, string action_name, GVariantHandle parameter);
-

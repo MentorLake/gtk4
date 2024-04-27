@@ -18,31 +18,25 @@ public class GdkVulkanContextHandle : GdkDrawContextHandle, GInitableHandle
 {
 }
 
-public class GdkVulkanContextSignal
+public static class GdkVulkanContextSignalExtensions
 {
-	public string Value { get; set; }
-	public GdkVulkanContextSignal(string value) => Value = value;
-}
-
-public static class GdkVulkanContextSignals
-{
-	public static GdkVulkanContextSignal ImagesUpdated = new("BindingTransform.MethodDeclaration");
-}
-
-public static class GdkVulkanContextHandleExtensions
-{
-	public static GdkVulkanContextHandle Signal_ImagesUpdated(this GdkVulkanContextHandle instance, GdkVulkanContextDelegates.ImagesUpdated handler)
+	public static GdkVulkanContextHandle Signal_ImagesUpdated(this GdkVulkanContextHandle instance, GdkVulkanContextSignalDelegates.ImagesUpdated handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "images_updated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
 }
 
-public static class GdkVulkanContextDelegates
+public static class GdkVulkanContextSignalDelegates
 {
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public delegate void ImagesUpdated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkVulkanContextHandle>))] GdkVulkanContextHandle self, IntPtr user_data);
+}
+
+
+public static class GdkVulkanContextHandleExtensions
+{
 }
 
 internal class GdkVulkanContextExterns

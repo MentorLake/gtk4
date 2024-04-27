@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GtkTreeSelectionForeachFunc(GtkTreeModelHandle model, GtkTreePathHandle path, GtkTreeIterHandle iter, IntPtr data);
-

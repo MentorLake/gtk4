@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate string[] GDBusSubtreeEnumerateFunc(GDBusConnectionHandle connection, string sender, string object_path, IntPtr user_data);
-

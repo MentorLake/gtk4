@@ -28,20 +28,54 @@ public class GdkDisplayHandle : GObjectHandle
 
 }
 
-public class GdkDisplaySignal
+public static class GdkDisplaySignalExtensions
 {
-	public string Value { get; set; }
-	public GdkDisplaySignal(string value) => Value = value;
+	public static GdkDisplayHandle Signal_Closed(this GdkDisplayHandle instance, GdkDisplaySignalDelegates.Closed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkDisplayHandle Signal_Opened(this GdkDisplayHandle instance, GdkDisplaySignalDelegates.Opened handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "opened", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkDisplayHandle Signal_SeatAdded(this GdkDisplayHandle instance, GdkDisplaySignalDelegates.SeatAdded handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "seat_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkDisplayHandle Signal_SeatRemoved(this GdkDisplayHandle instance, GdkDisplaySignalDelegates.SeatRemoved handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "seat_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkDisplayHandle Signal_SettingChanged(this GdkDisplayHandle instance, GdkDisplaySignalDelegates.SettingChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "setting_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GdkDisplaySignals
+public static class GdkDisplaySignalDelegates
 {
-	public static GdkDisplaySignal Closed = new("BindingTransform.MethodDeclaration");
-	public static GdkDisplaySignal Opened = new("BindingTransform.MethodDeclaration");
-	public static GdkDisplaySignal SeatAdded = new("BindingTransform.MethodDeclaration");
-	public static GdkDisplaySignal SeatRemoved = new("BindingTransform.MethodDeclaration");
-	public static GdkDisplaySignal SettingChanged = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, bool is_error, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Opened([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SeatAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, GdkSeatHandle seat, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SeatRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, GdkSeatHandle seat, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SettingChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, string setting, IntPtr user_data);
 }
+
 
 public static class GdkDisplayHandleExtensions
 {
@@ -191,50 +225,6 @@ public static class GdkDisplayHandleExtensions
 		return GdkDisplayExterns.gdk_display_translate_key(display, keycode, state, group, out keyval, out effective_group, out level, out consumed);
 	}
 
-	public static GdkDisplayHandle Signal_Closed(this GdkDisplayHandle instance, GdkDisplayDelegates.Closed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkDisplayHandle Signal_Opened(this GdkDisplayHandle instance, GdkDisplayDelegates.Opened handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "opened", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkDisplayHandle Signal_SeatAdded(this GdkDisplayHandle instance, GdkDisplayDelegates.SeatAdded handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "seat_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkDisplayHandle Signal_SeatRemoved(this GdkDisplayHandle instance, GdkDisplayDelegates.SeatRemoved handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "seat_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkDisplayHandle Signal_SettingChanged(this GdkDisplayHandle instance, GdkDisplayDelegates.SettingChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "setting_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GdkDisplayDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, bool is_error, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Opened([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SeatAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, GdkSeatHandle seat, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SeatRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, GdkSeatHandle seat, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SettingChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, string setting, IntPtr user_data);
 }
 
 internal class GdkDisplayExterns

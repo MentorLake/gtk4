@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GModule;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate string GModuleCheckInit(GModuleHandle module);
-

@@ -18,19 +18,46 @@ public class GdkSeatHandle : GObjectHandle
 {
 }
 
-public class GdkSeatSignal
+public static class GdkSeatSignalExtensions
 {
-	public string Value { get; set; }
-	public GdkSeatSignal(string value) => Value = value;
+	public static GdkSeatHandle Signal_DeviceAdded(this GdkSeatHandle instance, GdkSeatSignalDelegates.DeviceAdded handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "device_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkSeatHandle Signal_DeviceRemoved(this GdkSeatHandle instance, GdkSeatSignalDelegates.DeviceRemoved handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "device_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkSeatHandle Signal_ToolAdded(this GdkSeatHandle instance, GdkSeatSignalDelegates.ToolAdded handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "tool_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkSeatHandle Signal_ToolRemoved(this GdkSeatHandle instance, GdkSeatSignalDelegates.ToolRemoved handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "tool_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GdkSeatSignals
+public static class GdkSeatSignalDelegates
 {
-	public static GdkSeatSignal DeviceAdded = new("BindingTransform.MethodDeclaration");
-	public static GdkSeatSignal DeviceRemoved = new("BindingTransform.MethodDeclaration");
-	public static GdkSeatSignal ToolAdded = new("BindingTransform.MethodDeclaration");
-	public static GdkSeatSignal ToolRemoved = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DeviceAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle self, GdkDeviceHandle device, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DeviceRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle self, GdkDeviceHandle device, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ToolAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle self, GdkDeviceToolHandle tool, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ToolRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle self, GdkDeviceToolHandle tool, IntPtr user_data);
 }
+
 
 public static class GdkSeatHandleExtensions
 {
@@ -64,42 +91,6 @@ public static class GdkSeatHandleExtensions
 		return GdkSeatExterns.gdk_seat_get_tools(seat);
 	}
 
-	public static GdkSeatHandle Signal_DeviceAdded(this GdkSeatHandle instance, GdkSeatDelegates.DeviceAdded handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "device_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkSeatHandle Signal_DeviceRemoved(this GdkSeatHandle instance, GdkSeatDelegates.DeviceRemoved handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "device_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkSeatHandle Signal_ToolAdded(this GdkSeatHandle instance, GdkSeatDelegates.ToolAdded handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "tool_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkSeatHandle Signal_ToolRemoved(this GdkSeatHandle instance, GdkSeatDelegates.ToolRemoved handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "tool_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GdkSeatDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DeviceAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle self, GdkDeviceHandle device, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DeviceRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle self, GdkDeviceHandle device, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ToolAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle self, GdkDeviceToolHandle tool, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ToolRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle self, GdkDeviceToolHandle tool, IntPtr user_data);
 }
 
 internal class GdkSeatExterns

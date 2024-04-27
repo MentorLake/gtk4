@@ -23,19 +23,46 @@ public class GtkScrolledWindowHandle : GtkWidgetHandle, GtkAccessibleHandle, Gtk
 
 }
 
-public class GtkScrolledWindowSignal
+public static class GtkScrolledWindowSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkScrolledWindowSignal(string value) => Value = value;
+	public static GtkScrolledWindowHandle Signal_EdgeOvershot(this GtkScrolledWindowHandle instance, GtkScrolledWindowSignalDelegates.EdgeOvershot handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "edge_overshot", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkScrolledWindowHandle Signal_EdgeReached(this GtkScrolledWindowHandle instance, GtkScrolledWindowSignalDelegates.EdgeReached handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "edge_reached", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkScrolledWindowHandle Signal_MoveFocusOut(this GtkScrolledWindowHandle instance, GtkScrolledWindowSignalDelegates.MoveFocusOut handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_focus_out", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkScrolledWindowHandle Signal_ScrollChild(this GtkScrolledWindowHandle instance, GtkScrolledWindowSignalDelegates.ScrollChild handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "scroll_child", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkScrolledWindowSignals
+public static class GtkScrolledWindowSignalDelegates
 {
-	public static GtkScrolledWindowSignal EdgeOvershot = new("BindingTransform.MethodDeclaration");
-	public static GtkScrolledWindowSignal EdgeReached = new("BindingTransform.MethodDeclaration");
-	public static GtkScrolledWindowSignal MoveFocusOut = new("BindingTransform.MethodDeclaration");
-	public static GtkScrolledWindowSignal ScrollChild = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void EdgeOvershot([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, GtkPositionType pos, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void EdgeReached([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, GtkPositionType pos, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MoveFocusOut([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, GtkDirectionType direction_type, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ScrollChild([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, ref GtkScrollType scroll, bool horizontal, IntPtr user_data);
 }
+
 
 public static class GtkScrolledWindowHandleExtensions
 {
@@ -210,42 +237,6 @@ public static class GtkScrolledWindowHandleExtensions
 		return scrolled_window;
 	}
 
-	public static GtkScrolledWindowHandle Signal_EdgeOvershot(this GtkScrolledWindowHandle instance, GtkScrolledWindowDelegates.EdgeOvershot handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "edge_overshot", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkScrolledWindowHandle Signal_EdgeReached(this GtkScrolledWindowHandle instance, GtkScrolledWindowDelegates.EdgeReached handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "edge_reached", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkScrolledWindowHandle Signal_MoveFocusOut(this GtkScrolledWindowHandle instance, GtkScrolledWindowDelegates.MoveFocusOut handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "move_focus_out", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkScrolledWindowHandle Signal_ScrollChild(this GtkScrolledWindowHandle instance, GtkScrolledWindowDelegates.ScrollChild handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "scroll_child", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkScrolledWindowDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void EdgeOvershot([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, GtkPositionType pos, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void EdgeReached([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, GtkPositionType pos, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MoveFocusOut([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, GtkDirectionType direction_type, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ScrollChild([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, ref GtkScrollType scroll, bool horizontal, IntPtr user_data);
 }
 
 internal class GtkScrolledWindowExterns

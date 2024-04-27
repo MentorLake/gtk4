@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate GVariantHandle GSettingsBindSetMapping(GValueHandle value, GVariantTypeHandle expected_type, IntPtr user_data);
-

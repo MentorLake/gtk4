@@ -28,17 +28,30 @@ public class GtkDialogHandle : GtkWindowHandle, GtkAccessibleHandle, GtkBuildabl
 
 }
 
-public class GtkDialogSignal
+public static class GtkDialogSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkDialogSignal(string value) => Value = value;
+	public static GtkDialogHandle Signal_Close(this GtkDialogHandle instance, GtkDialogSignalDelegates.Close handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "close", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkDialogHandle Signal_Response(this GtkDialogHandle instance, GtkDialogSignalDelegates.Response handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "response", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkDialogSignals
+public static class GtkDialogSignalDelegates
 {
-	public static GtkDialogSignal Close = new("BindingTransform.MethodDeclaration");
-	public static GtkDialogSignal Response = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Close([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDialogHandle>))] GtkDialogHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Response([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDialogHandle>))] GtkDialogHandle self, int response_id, IntPtr user_data);
 }
+
 
 public static class GtkDialogHandleExtensions
 {
@@ -97,26 +110,6 @@ public static class GtkDialogHandleExtensions
 		return dialog;
 	}
 
-	public static GtkDialogHandle Signal_Close(this GtkDialogHandle instance, GtkDialogDelegates.Close handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "close", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkDialogHandle Signal_Response(this GtkDialogHandle instance, GtkDialogDelegates.Response handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "response", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkDialogDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Close([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDialogHandle>))] GtkDialogHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Response([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDialogHandle>))] GtkDialogHandle self, int response_id, IntPtr user_data);
 }
 
 internal class GtkDialogExterns

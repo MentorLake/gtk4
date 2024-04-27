@@ -23,16 +23,22 @@ public class GtkGridViewHandle : GtkListBaseHandle, GtkAccessibleHandle, GtkBuil
 
 }
 
-public class GtkGridViewSignal
+public static class GtkGridViewSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkGridViewSignal(string value) => Value = value;
+	public static GtkGridViewHandle Signal_Activate(this GtkGridViewHandle instance, GtkGridViewSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkGridViewSignals
+public static class GtkGridViewSignalDelegates
 {
-	public static GtkGridViewSignal Activate = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGridViewHandle>))] GtkGridViewHandle self, uint position, IntPtr user_data);
 }
+
 
 public static class GtkGridViewHandleExtensions
 {
@@ -119,18 +125,6 @@ public static class GtkGridViewHandleExtensions
 		return self;
 	}
 
-	public static GtkGridViewHandle Signal_Activate(this GtkGridViewHandle instance, GtkGridViewDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkGridViewDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGridViewHandle>))] GtkGridViewHandle self, uint position, IntPtr user_data);
 }
 
 internal class GtkGridViewExterns

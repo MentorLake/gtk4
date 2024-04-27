@@ -38,17 +38,30 @@ public class GtkButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkActionab
 
 }
 
-public class GtkButtonSignal
+public static class GtkButtonSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkButtonSignal(string value) => Value = value;
+	public static GtkButtonHandle Signal_Activate(this GtkButtonHandle instance, GtkButtonSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkButtonHandle Signal_Clicked(this GtkButtonHandle instance, GtkButtonSignalDelegates.Clicked handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "clicked", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkButtonSignals
+public static class GtkButtonSignalDelegates
 {
-	public static GtkButtonSignal Activate = new("BindingTransform.MethodDeclaration");
-	public static GtkButtonSignal Clicked = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkButtonHandle>))] GtkButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Clicked([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkButtonHandle>))] GtkButtonHandle self, IntPtr user_data);
 }
+
 
 public static class GtkButtonHandleExtensions
 {
@@ -118,26 +131,6 @@ public static class GtkButtonHandleExtensions
 		return button;
 	}
 
-	public static GtkButtonHandle Signal_Activate(this GtkButtonHandle instance, GtkButtonDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkButtonHandle Signal_Clicked(this GtkButtonHandle instance, GtkButtonDelegates.Clicked handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "clicked", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkButtonDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkButtonHandle>))] GtkButtonHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Clicked([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkButtonHandle>))] GtkButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkButtonExterns

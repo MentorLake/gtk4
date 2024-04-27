@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GDBusInterfaceMethodCallFunc(GDBusConnectionHandle connection, string sender, string object_path, string interface_name, string method_name, GVariantHandle parameters, GDBusMethodInvocationHandle invocation, IntPtr user_data);
-

@@ -48,16 +48,22 @@ public class GDBusConnectionHandle : GObjectHandle, GAsyncInitableHandle, GInita
 
 }
 
-public class GDBusConnectionSignal
+public static class GDBusConnectionSignalExtensions
 {
-	public string Value { get; set; }
-	public GDBusConnectionSignal(string value) => Value = value;
+	public static GDBusConnectionHandle Signal_Closed(this GDBusConnectionHandle instance, GDBusConnectionSignalDelegates.Closed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GDBusConnectionSignals
+public static class GDBusConnectionSignalDelegates
 {
-	public static GDBusConnectionSignal Closed = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusConnectionHandle>))] GDBusConnectionHandle self, bool remote_peer_vanished, GErrorHandle error, IntPtr user_data);
 }
+
 
 public static class GDBusConnectionHandleExtensions
 {
@@ -297,18 +303,6 @@ public static class GDBusConnectionHandleExtensions
 		return GDBusConnectionExterns.g_bus_watch_name_on_connection_with_closures(connection, name, flags, name_appeared_closure, name_vanished_closure);
 	}
 
-	public static GDBusConnectionHandle Signal_Closed(this GDBusConnectionHandle instance, GDBusConnectionDelegates.Closed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GDBusConnectionDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusConnectionHandle>))] GDBusConnectionHandle self, bool remote_peer_vanished, GErrorHandle error, IntPtr user_data);
 }
 
 internal class GDBusConnectionExterns

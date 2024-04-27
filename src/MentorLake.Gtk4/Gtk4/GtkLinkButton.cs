@@ -28,16 +28,22 @@ public class GtkLinkButtonHandle : GtkButtonHandle, GtkAccessibleHandle, GtkActi
 
 }
 
-public class GtkLinkButtonSignal
+public static class GtkLinkButtonSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkLinkButtonSignal(string value) => Value = value;
+	public static GtkLinkButtonHandle Signal_ActivateLink(this GtkLinkButtonHandle instance, GtkLinkButtonSignalDelegates.ActivateLink handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkLinkButtonSignals
+public static class GtkLinkButtonSignalDelegates
 {
-	public static GtkLinkButtonSignal ActivateLink = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool ActivateLink([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLinkButtonHandle>))] GtkLinkButtonHandle self, IntPtr user_data);
 }
+
 
 public static class GtkLinkButtonHandleExtensions
 {
@@ -63,18 +69,6 @@ public static class GtkLinkButtonHandleExtensions
 		return link_button;
 	}
 
-	public static GtkLinkButtonHandle Signal_ActivateLink(this GtkLinkButtonHandle instance, GtkLinkButtonDelegates.ActivateLink handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkLinkButtonDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ActivateLink([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLinkButtonHandle>))] GtkLinkButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkLinkButtonExterns

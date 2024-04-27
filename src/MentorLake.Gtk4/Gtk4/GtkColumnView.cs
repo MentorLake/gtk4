@@ -23,16 +23,22 @@ public class GtkColumnViewHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuil
 
 }
 
-public class GtkColumnViewSignal
+public static class GtkColumnViewSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkColumnViewSignal(string value) => Value = value;
+	public static GtkColumnViewHandle Signal_Activate(this GtkColumnViewHandle instance, GtkColumnViewSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkColumnViewSignals
+public static class GtkColumnViewSignalDelegates
 {
-	public static GtkColumnViewSignal Activate = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColumnViewHandle>))] GtkColumnViewHandle self, uint position, IntPtr user_data);
 }
+
 
 public static class GtkColumnViewHandleExtensions
 {
@@ -175,18 +181,6 @@ public static class GtkColumnViewHandleExtensions
 		return self;
 	}
 
-	public static GtkColumnViewHandle Signal_Activate(this GtkColumnViewHandle instance, GtkColumnViewDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkColumnViewDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColumnViewHandle>))] GtkColumnViewHandle self, uint position, IntPtr user_data);
 }
 
 internal class GtkColumnViewExterns

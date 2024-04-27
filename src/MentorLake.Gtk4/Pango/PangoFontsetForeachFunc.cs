@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Pango;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool PangoFontsetForeachFunc(PangoFontsetHandle fontset, PangoFontHandle font, IntPtr user_data);
-

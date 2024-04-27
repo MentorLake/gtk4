@@ -23,16 +23,22 @@ public class GtkDrawingAreaHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBui
 
 }
 
-public class GtkDrawingAreaSignal
+public static class GtkDrawingAreaSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkDrawingAreaSignal(string value) => Value = value;
+	public static GtkDrawingAreaHandle Signal_Resize(this GtkDrawingAreaHandle instance, GtkDrawingAreaSignalDelegates.Resize handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "resize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkDrawingAreaSignals
+public static class GtkDrawingAreaSignalDelegates
 {
-	public static GtkDrawingAreaSignal Resize = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Resize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDrawingAreaHandle>))] GtkDrawingAreaHandle self, int width, int height, IntPtr user_data);
 }
+
 
 public static class GtkDrawingAreaHandleExtensions
 {
@@ -64,18 +70,6 @@ public static class GtkDrawingAreaHandleExtensions
 		return self;
 	}
 
-	public static GtkDrawingAreaHandle Signal_Resize(this GtkDrawingAreaHandle instance, GtkDrawingAreaDelegates.Resize handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "resize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkDrawingAreaDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Resize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDrawingAreaHandle>))] GtkDrawingAreaHandle self, int width, int height, IntPtr user_data);
 }
 
 internal class GtkDrawingAreaExterns

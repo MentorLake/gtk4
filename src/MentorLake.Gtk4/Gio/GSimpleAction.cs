@@ -28,17 +28,30 @@ public class GSimpleActionHandle : GObjectHandle, GActionHandle
 
 }
 
-public class GSimpleActionSignal
+public static class GSimpleActionSignalExtensions
 {
-	public string Value { get; set; }
-	public GSimpleActionSignal(string value) => Value = value;
+	public static GSimpleActionHandle Signal_Activate(this GSimpleActionHandle instance, GSimpleActionSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GSimpleActionHandle Signal_ChangeState(this GSimpleActionHandle instance, GSimpleActionSignalDelegates.ChangeState handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "change_state", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GSimpleActionSignals
+public static class GSimpleActionSignalDelegates
 {
-	public static GSimpleActionSignal Activate = new("BindingTransform.MethodDeclaration");
-	public static GSimpleActionSignal ChangeState = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSimpleActionHandle>))] GSimpleActionHandle self, GVariantHandle parameter, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ChangeState([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSimpleActionHandle>))] GSimpleActionHandle self, GVariantHandle value, IntPtr user_data);
 }
+
 
 public static class GSimpleActionHandleExtensions
 {
@@ -60,26 +73,6 @@ public static class GSimpleActionHandleExtensions
 		return simple;
 	}
 
-	public static GSimpleActionHandle Signal_Activate(this GSimpleActionHandle instance, GSimpleActionDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GSimpleActionHandle Signal_ChangeState(this GSimpleActionHandle instance, GSimpleActionDelegates.ChangeState handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "change_state", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GSimpleActionDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSimpleActionHandle>))] GSimpleActionHandle self, GVariantHandle parameter, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ChangeState([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSimpleActionHandle>))] GSimpleActionHandle self, GVariantHandle value, IntPtr user_data);
 }
 
 internal class GSimpleActionExterns

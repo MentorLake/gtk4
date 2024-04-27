@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GObject;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool GSignalAccumulator(GSignalInvocationHintHandle ihint, GValueHandle return_accu, GValueHandle handler_return, IntPtr data);
-

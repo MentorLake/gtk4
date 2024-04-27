@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GLib;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GOptionErrorFunc(GOptionContextHandle context, GOptionGroupHandle group, IntPtr data, out GErrorHandle error);
-

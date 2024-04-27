@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GObject;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GTypeInterfaceCheckFunc(IntPtr check_data, GTypeInterfaceHandle g_iface);
-

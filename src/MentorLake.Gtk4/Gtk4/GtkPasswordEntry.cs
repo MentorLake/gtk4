@@ -23,16 +23,22 @@ public class GtkPasswordEntryHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkB
 
 }
 
-public class GtkPasswordEntrySignal
+public static class GtkPasswordEntrySignalExtensions
 {
-	public string Value { get; set; }
-	public GtkPasswordEntrySignal(string value) => Value = value;
+	public static GtkPasswordEntryHandle Signal_Activate(this GtkPasswordEntryHandle instance, GtkPasswordEntrySignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkPasswordEntrySignals
+public static class GtkPasswordEntrySignalDelegates
 {
-	public static GtkPasswordEntrySignal Activate = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPasswordEntryHandle>))] GtkPasswordEntryHandle self, IntPtr user_data);
 }
+
 
 public static class GtkPasswordEntryHandleExtensions
 {
@@ -58,18 +64,6 @@ public static class GtkPasswordEntryHandleExtensions
 		return entry;
 	}
 
-	public static GtkPasswordEntryHandle Signal_Activate(this GtkPasswordEntryHandle instance, GtkPasswordEntryDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkPasswordEntryDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPasswordEntryHandle>))] GtkPasswordEntryHandle self, IntPtr user_data);
 }
 
 internal class GtkPasswordEntryExterns

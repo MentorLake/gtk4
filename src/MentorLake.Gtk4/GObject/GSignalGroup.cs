@@ -23,17 +23,30 @@ public class GSignalGroupHandle : GObjectHandle
 
 }
 
-public class GSignalGroupSignal
+public static class GSignalGroupSignalExtensions
 {
-	public string Value { get; set; }
-	public GSignalGroupSignal(string value) => Value = value;
+	public static GSignalGroupHandle Signal_Bind(this GSignalGroupHandle instance, GSignalGroupSignalDelegates.Bind handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "bind", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GSignalGroupHandle Signal_Unbind(this GSignalGroupHandle instance, GSignalGroupSignalDelegates.Unbind handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "unbind", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GSignalGroupSignals
+public static class GSignalGroupSignalDelegates
 {
-	public static GSignalGroupSignal Bind = new("BindingTransform.MethodDeclaration");
-	public static GSignalGroupSignal Unbind = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Bind([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSignalGroupHandle>))] GSignalGroupHandle self, GObjectHandle instance, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Unbind([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSignalGroupHandle>))] GSignalGroupHandle self, IntPtr user_data);
 }
+
 
 public static class GSignalGroupHandleExtensions
 {
@@ -96,26 +109,6 @@ public static class GSignalGroupHandleExtensions
 		return self;
 	}
 
-	public static GSignalGroupHandle Signal_Bind(this GSignalGroupHandle instance, GSignalGroupDelegates.Bind handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "bind", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GSignalGroupHandle Signal_Unbind(this GSignalGroupHandle instance, GSignalGroupDelegates.Unbind handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "unbind", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GSignalGroupDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Bind([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSignalGroupHandle>))] GSignalGroupHandle self, GObjectHandle instance, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Unbind([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSignalGroupHandle>))] GSignalGroupHandle self, IntPtr user_data);
 }
 
 internal class GSignalGroupExterns

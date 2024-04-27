@@ -23,16 +23,22 @@ public class GtkMenuButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuil
 
 }
 
-public class GtkMenuButtonSignal
+public static class GtkMenuButtonSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkMenuButtonSignal(string value) => Value = value;
+	public static GtkMenuButtonHandle Signal_Activate(this GtkMenuButtonHandle instance, GtkMenuButtonSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkMenuButtonSignals
+public static class GtkMenuButtonSignalDelegates
 {
-	public static GtkMenuButtonSignal Activate = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkMenuButtonHandle>))] GtkMenuButtonHandle self, IntPtr user_data);
 }
+
 
 public static class GtkMenuButtonHandleExtensions
 {
@@ -186,18 +192,6 @@ public static class GtkMenuButtonHandleExtensions
 		return menu_button;
 	}
 
-	public static GtkMenuButtonHandle Signal_Activate(this GtkMenuButtonHandle instance, GtkMenuButtonDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkMenuButtonDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkMenuButtonHandle>))] GtkMenuButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkMenuButtonExterns

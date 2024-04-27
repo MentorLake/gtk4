@@ -33,16 +33,22 @@ public class GResolverHandle : GObjectHandle
 
 }
 
-public class GResolverSignal
+public static class GResolverSignalExtensions
 {
-	public string Value { get; set; }
-	public GResolverSignal(string value) => Value = value;
+	public static GResolverHandle Signal_Reload(this GResolverHandle instance, GResolverSignalDelegates.Reload handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "reload", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GResolverSignals
+public static class GResolverSignalDelegates
 {
-	public static GResolverSignal Reload = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Reload([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GResolverHandle>))] GResolverHandle self, IntPtr user_data);
 }
+
 
 public static class GResolverHandleExtensions
 {
@@ -143,18 +149,6 @@ public static class GResolverHandleExtensions
 		return resolver;
 	}
 
-	public static GResolverHandle Signal_Reload(this GResolverHandle instance, GResolverDelegates.Reload handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "reload", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GResolverDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Reload([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GResolverHandle>))] GResolverHandle self, IntPtr user_data);
 }
 
 internal class GResolverExterns

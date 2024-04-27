@@ -18,21 +18,62 @@ public class GtkIMContextHandle : GObjectHandle
 {
 }
 
-public class GtkIMContextSignal
+public static class GtkIMContextSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkIMContextSignal(string value) => Value = value;
+	public static GtkIMContextHandle Signal_Commit(this GtkIMContextHandle instance, GtkIMContextSignalDelegates.Commit handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "commit", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkIMContextHandle Signal_DeleteSurrounding(this GtkIMContextHandle instance, GtkIMContextSignalDelegates.DeleteSurrounding handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "delete_surrounding", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkIMContextHandle Signal_PreeditChanged(this GtkIMContextHandle instance, GtkIMContextSignalDelegates.PreeditChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "preedit_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkIMContextHandle Signal_PreeditEnd(this GtkIMContextHandle instance, GtkIMContextSignalDelegates.PreeditEnd handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "preedit_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkIMContextHandle Signal_PreeditStart(this GtkIMContextHandle instance, GtkIMContextSignalDelegates.PreeditStart handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "preedit_start", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkIMContextHandle Signal_RetrieveSurrounding(this GtkIMContextHandle instance, GtkIMContextSignalDelegates.RetrieveSurrounding handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "retrieve_surrounding", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkIMContextSignals
+public static class GtkIMContextSignalDelegates
 {
-	public static GtkIMContextSignal Commit = new("BindingTransform.MethodDeclaration");
-	public static GtkIMContextSignal DeleteSurrounding = new("BindingTransform.MethodDeclaration");
-	public static GtkIMContextSignal PreeditChanged = new("BindingTransform.MethodDeclaration");
-	public static GtkIMContextSignal PreeditEnd = new("BindingTransform.MethodDeclaration");
-	public static GtkIMContextSignal PreeditStart = new("BindingTransform.MethodDeclaration");
-	public static GtkIMContextSignal RetrieveSurrounding = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Commit([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, string str, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool DeleteSurrounding([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, int offset, int n_chars, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void PreeditChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void PreeditEnd([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void PreeditStart([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool RetrieveSurrounding([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, IntPtr user_data);
 }
+
 
 public static class GtkIMContextHandleExtensions
 {
@@ -120,58 +161,6 @@ public static class GtkIMContextHandleExtensions
 		return context;
 	}
 
-	public static GtkIMContextHandle Signal_Commit(this GtkIMContextHandle instance, GtkIMContextDelegates.Commit handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "commit", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkIMContextHandle Signal_DeleteSurrounding(this GtkIMContextHandle instance, GtkIMContextDelegates.DeleteSurrounding handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "delete_surrounding", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkIMContextHandle Signal_PreeditChanged(this GtkIMContextHandle instance, GtkIMContextDelegates.PreeditChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "preedit_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkIMContextHandle Signal_PreeditEnd(this GtkIMContextHandle instance, GtkIMContextDelegates.PreeditEnd handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "preedit_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkIMContextHandle Signal_PreeditStart(this GtkIMContextHandle instance, GtkIMContextDelegates.PreeditStart handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "preedit_start", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkIMContextHandle Signal_RetrieveSurrounding(this GtkIMContextHandle instance, GtkIMContextDelegates.RetrieveSurrounding handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "retrieve_surrounding", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkIMContextDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Commit([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, string str, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool DeleteSurrounding([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, int offset, int n_chars, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PreeditChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PreeditEnd([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PreeditStart([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool RetrieveSurrounding([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, IntPtr user_data);
 }
 
 internal class GtkIMContextExterns

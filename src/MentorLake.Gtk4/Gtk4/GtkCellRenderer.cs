@@ -18,17 +18,30 @@ public class GtkCellRendererHandle : GInitiallyUnownedHandle
 {
 }
 
-public class GtkCellRendererSignal
+public static class GtkCellRendererSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkCellRendererSignal(string value) => Value = value;
+	public static GtkCellRendererHandle Signal_EditingCanceled(this GtkCellRendererHandle instance, GtkCellRendererSignalDelegates.EditingCanceled handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "editing_canceled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkCellRendererHandle Signal_EditingStarted(this GtkCellRendererHandle instance, GtkCellRendererSignalDelegates.EditingStarted handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "editing_started", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkCellRendererSignals
+public static class GtkCellRendererSignalDelegates
 {
-	public static GtkCellRendererSignal EditingCanceled = new("BindingTransform.MethodDeclaration");
-	public static GtkCellRendererSignal EditingStarted = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void EditingCanceled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererHandle>))] GtkCellRendererHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void EditingStarted([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererHandle>))] GtkCellRendererHandle self, GtkCellEditableHandle editable, string path, IntPtr user_data);
 }
+
 
 public static class GtkCellRendererHandleExtensions
 {
@@ -185,26 +198,6 @@ public static class GtkCellRendererHandleExtensions
 		return cell;
 	}
 
-	public static GtkCellRendererHandle Signal_EditingCanceled(this GtkCellRendererHandle instance, GtkCellRendererDelegates.EditingCanceled handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "editing_canceled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkCellRendererHandle Signal_EditingStarted(this GtkCellRendererHandle instance, GtkCellRendererDelegates.EditingStarted handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "editing_started", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkCellRendererDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void EditingCanceled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererHandle>))] GtkCellRendererHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void EditingStarted([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererHandle>))] GtkCellRendererHandle self, GtkCellEditableHandle editable, string path, IntPtr user_data);
 }
 
 internal class GtkCellRendererExterns

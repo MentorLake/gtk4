@@ -28,16 +28,22 @@ public class GtkDropDownHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuilda
 
 }
 
-public class GtkDropDownSignal
+public static class GtkDropDownSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkDropDownSignal(string value) => Value = value;
+	public static GtkDropDownHandle Signal_Activate(this GtkDropDownHandle instance, GtkDropDownSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkDropDownSignals
+public static class GtkDropDownSignalDelegates
 {
-	public static GtkDropDownSignal Activate = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropDownHandle>))] GtkDropDownHandle self, IntPtr user_data);
 }
+
 
 public static class GtkDropDownHandleExtensions
 {
@@ -145,18 +151,6 @@ public static class GtkDropDownHandleExtensions
 		return self;
 	}
 
-	public static GtkDropDownHandle Signal_Activate(this GtkDropDownHandle instance, GtkDropDownDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkDropDownDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropDownHandle>))] GtkDropDownHandle self, IntPtr user_data);
 }
 
 internal class GtkDropDownExterns

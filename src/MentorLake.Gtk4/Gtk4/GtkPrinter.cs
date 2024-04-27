@@ -23,16 +23,22 @@ public class GtkPrinterHandle : GObjectHandle
 
 }
 
-public class GtkPrinterSignal
+public static class GtkPrinterSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkPrinterSignal(string value) => Value = value;
+	public static GtkPrinterHandle Signal_DetailsAcquired(this GtkPrinterHandle instance, GtkPrinterSignalDelegates.DetailsAcquired handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "details_acquired", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkPrinterSignals
+public static class GtkPrinterSignalDelegates
 {
-	public static GtkPrinterSignal DetailsAcquired = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DetailsAcquired([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrinterHandle>))] GtkPrinterHandle self, bool success, IntPtr user_data);
 }
+
 
 public static class GtkPrinterHandleExtensions
 {
@@ -147,18 +153,6 @@ public static class GtkPrinterHandleExtensions
 		return printer;
 	}
 
-	public static GtkPrinterHandle Signal_DetailsAcquired(this GtkPrinterHandle instance, GtkPrinterDelegates.DetailsAcquired handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "details_acquired", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkPrinterDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DetailsAcquired([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrinterHandle>))] GtkPrinterHandle self, bool success, IntPtr user_data);
 }
 
 internal class GtkPrinterExterns

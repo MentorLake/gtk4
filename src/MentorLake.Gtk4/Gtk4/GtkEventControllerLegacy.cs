@@ -23,31 +23,25 @@ public class GtkEventControllerLegacyHandle : GtkEventControllerHandle
 
 }
 
-public class GtkEventControllerLegacySignal
+public static class GtkEventControllerLegacySignalExtensions
 {
-	public string Value { get; set; }
-	public GtkEventControllerLegacySignal(string value) => Value = value;
-}
-
-public static class GtkEventControllerLegacySignals
-{
-	public static GtkEventControllerLegacySignal Event = new("BindingTransform.MethodDeclaration");
-}
-
-public static class GtkEventControllerLegacyHandleExtensions
-{
-	public static GtkEventControllerLegacyHandle Signal_Event(this GtkEventControllerLegacyHandle instance, GtkEventControllerLegacyDelegates.Event handler)
+	public static GtkEventControllerLegacyHandle Signal_Event(this GtkEventControllerLegacyHandle instance, GtkEventControllerLegacySignalDelegates.Event handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
 }
 
-public static class GtkEventControllerLegacyDelegates
+public static class GtkEventControllerLegacySignalDelegates
 {
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public delegate bool Event([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerLegacyHandle>))] GtkEventControllerLegacyHandle self, GdkEventHandle @event, IntPtr user_data);
+}
+
+
+public static class GtkEventControllerLegacyHandleExtensions
+{
 }
 
 internal class GtkEventControllerLegacyExterns

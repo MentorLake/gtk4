@@ -23,20 +23,54 @@ public class GtkDropTargetAsyncHandle : GtkEventControllerHandle
 
 }
 
-public class GtkDropTargetAsyncSignal
+public static class GtkDropTargetAsyncSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkDropTargetAsyncSignal(string value) => Value = value;
+	public static GtkDropTargetAsyncHandle Signal_Accept(this GtkDropTargetAsyncHandle instance, GtkDropTargetAsyncSignalDelegates.Accept handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "accept", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkDropTargetAsyncHandle Signal_DragEnter(this GtkDropTargetAsyncHandle instance, GtkDropTargetAsyncSignalDelegates.DragEnter handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "drag_enter", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkDropTargetAsyncHandle Signal_DragLeave(this GtkDropTargetAsyncHandle instance, GtkDropTargetAsyncSignalDelegates.DragLeave handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "drag_leave", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkDropTargetAsyncHandle Signal_DragMotion(this GtkDropTargetAsyncHandle instance, GtkDropTargetAsyncSignalDelegates.DragMotion handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "drag_motion", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkDropTargetAsyncHandle Signal_Drop(this GtkDropTargetAsyncHandle instance, GtkDropTargetAsyncSignalDelegates.Drop handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "drop", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkDropTargetAsyncSignals
+public static class GtkDropTargetAsyncSignalDelegates
 {
-	public static GtkDropTargetAsyncSignal Accept = new("BindingTransform.MethodDeclaration");
-	public static GtkDropTargetAsyncSignal DragEnter = new("BindingTransform.MethodDeclaration");
-	public static GtkDropTargetAsyncSignal DragLeave = new("BindingTransform.MethodDeclaration");
-	public static GtkDropTargetAsyncSignal DragMotion = new("BindingTransform.MethodDeclaration");
-	public static GtkDropTargetAsyncSignal Drop = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Accept([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropTargetAsyncHandle>))] GtkDropTargetAsyncHandle self, GdkDropHandle drop, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate GdkDragAction DragEnter([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropTargetAsyncHandle>))] GtkDropTargetAsyncHandle self, GdkDropHandle drop, double x, double y, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DragLeave([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropTargetAsyncHandle>))] GtkDropTargetAsyncHandle self, GdkDropHandle drop, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate GdkDragAction DragMotion([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropTargetAsyncHandle>))] GtkDropTargetAsyncHandle self, GdkDropHandle drop, double x, double y, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool Drop([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropTargetAsyncHandle>))] GtkDropTargetAsyncHandle self, GdkDropHandle drop, double x, double y, IntPtr user_data);
 }
+
 
 public static class GtkDropTargetAsyncHandleExtensions
 {
@@ -68,50 +102,6 @@ public static class GtkDropTargetAsyncHandleExtensions
 		return self;
 	}
 
-	public static GtkDropTargetAsyncHandle Signal_Accept(this GtkDropTargetAsyncHandle instance, GtkDropTargetAsyncDelegates.Accept handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "accept", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkDropTargetAsyncHandle Signal_DragEnter(this GtkDropTargetAsyncHandle instance, GtkDropTargetAsyncDelegates.DragEnter handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "drag_enter", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkDropTargetAsyncHandle Signal_DragLeave(this GtkDropTargetAsyncHandle instance, GtkDropTargetAsyncDelegates.DragLeave handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "drag_leave", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkDropTargetAsyncHandle Signal_DragMotion(this GtkDropTargetAsyncHandle instance, GtkDropTargetAsyncDelegates.DragMotion handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "drag_motion", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkDropTargetAsyncHandle Signal_Drop(this GtkDropTargetAsyncHandle instance, GtkDropTargetAsyncDelegates.Drop handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "drop", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkDropTargetAsyncDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool Accept([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropTargetAsyncHandle>))] GtkDropTargetAsyncHandle self, GdkDropHandle drop, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate GdkDragAction DragEnter([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropTargetAsyncHandle>))] GtkDropTargetAsyncHandle self, GdkDropHandle drop, double x, double y, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DragLeave([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropTargetAsyncHandle>))] GtkDropTargetAsyncHandle self, GdkDropHandle drop, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate GdkDragAction DragMotion([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropTargetAsyncHandle>))] GtkDropTargetAsyncHandle self, GdkDropHandle drop, double x, double y, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool Drop([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropTargetAsyncHandle>))] GtkDropTargetAsyncHandle self, GdkDropHandle drop, double x, double y, IntPtr user_data);
 }
 
 internal class GtkDropTargetAsyncExterns

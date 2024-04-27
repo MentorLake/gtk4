@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GLib;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GHookMarshaller(GHookHandle hook, IntPtr marshal_data);
-

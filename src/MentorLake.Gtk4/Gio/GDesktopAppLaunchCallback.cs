@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GDesktopAppLaunchCallback(GDesktopAppInfoHandle appinfo, GPid pid, IntPtr user_data);
-

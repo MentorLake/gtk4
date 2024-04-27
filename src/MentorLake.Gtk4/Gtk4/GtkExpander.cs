@@ -28,16 +28,22 @@ public class GtkExpanderHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuilda
 
 }
 
-public class GtkExpanderSignal
+public static class GtkExpanderSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkExpanderSignal(string value) => Value = value;
+	public static GtkExpanderHandle Signal_Activate(this GtkExpanderHandle instance, GtkExpanderSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkExpanderSignals
+public static class GtkExpanderSignalDelegates
 {
-	public static GtkExpanderSignal Activate = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkExpanderHandle>))] GtkExpanderHandle self, IntPtr user_data);
 }
+
 
 public static class GtkExpanderHandleExtensions
 {
@@ -118,18 +124,6 @@ public static class GtkExpanderHandleExtensions
 		return expander;
 	}
 
-	public static GtkExpanderHandle Signal_Activate(this GtkExpanderHandle instance, GtkExpanderDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkExpanderDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkExpanderHandle>))] GtkExpanderHandle self, IntPtr user_data);
 }
 
 internal class GtkExpanderExterns

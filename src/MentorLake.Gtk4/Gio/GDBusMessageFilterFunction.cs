@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate GDBusMessageHandle GDBusMessageFilterFunction(GDBusConnectionHandle connection, GDBusMessageHandle message, bool incoming, IntPtr user_data);
-

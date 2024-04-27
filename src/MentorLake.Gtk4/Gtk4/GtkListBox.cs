@@ -23,23 +23,78 @@ public class GtkListBoxHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildab
 
 }
 
-public class GtkListBoxSignal
+public static class GtkListBoxSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkListBoxSignal(string value) => Value = value;
+	public static GtkListBoxHandle Signal_ActivateCursorRow(this GtkListBoxHandle instance, GtkListBoxSignalDelegates.ActivateCursorRow handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkListBoxHandle Signal_MoveCursor(this GtkListBoxHandle instance, GtkListBoxSignalDelegates.MoveCursor handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkListBoxHandle Signal_RowActivated(this GtkListBoxHandle instance, GtkListBoxSignalDelegates.RowActivated handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "row_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkListBoxHandle Signal_RowSelected(this GtkListBoxHandle instance, GtkListBoxSignalDelegates.RowSelected handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "row_selected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkListBoxHandle Signal_SelectAll(this GtkListBoxHandle instance, GtkListBoxSignalDelegates.SelectAll handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkListBoxHandle Signal_SelectedRowsChanged(this GtkListBoxHandle instance, GtkListBoxSignalDelegates.SelectedRowsChanged handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "selected_rows_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkListBoxHandle Signal_ToggleCursorRow(this GtkListBoxHandle instance, GtkListBoxSignalDelegates.ToggleCursorRow handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkListBoxHandle Signal_UnselectAll(this GtkListBoxHandle instance, GtkListBoxSignalDelegates.UnselectAll handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkListBoxSignals
+public static class GtkListBoxSignalDelegates
 {
-	public static GtkListBoxSignal ActivateCursorRow = new("BindingTransform.MethodDeclaration");
-	public static GtkListBoxSignal MoveCursor = new("BindingTransform.MethodDeclaration");
-	public static GtkListBoxSignal RowActivated = new("BindingTransform.MethodDeclaration");
-	public static GtkListBoxSignal RowSelected = new("BindingTransform.MethodDeclaration");
-	public static GtkListBoxSignal SelectAll = new("BindingTransform.MethodDeclaration");
-	public static GtkListBoxSignal SelectedRowsChanged = new("BindingTransform.MethodDeclaration");
-	public static GtkListBoxSignal ToggleCursorRow = new("BindingTransform.MethodDeclaration");
-	public static GtkListBoxSignal UnselectAll = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ActivateCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, ref GtkMovementStep @object, int p0, bool p1, bool p2, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void RowActivated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, GtkListBoxRowHandle row, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void RowSelected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, GtkListBoxRowHandle row, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SelectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SelectedRowsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void ToggleCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void UnselectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
 }
+
 
 public static class GtkListBoxHandleExtensions
 {
@@ -227,74 +282,6 @@ public static class GtkListBoxHandleExtensions
 		return box;
 	}
 
-	public static GtkListBoxHandle Signal_ActivateCursorRow(this GtkListBoxHandle instance, GtkListBoxDelegates.ActivateCursorRow handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkListBoxHandle Signal_MoveCursor(this GtkListBoxHandle instance, GtkListBoxDelegates.MoveCursor handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkListBoxHandle Signal_RowActivated(this GtkListBoxHandle instance, GtkListBoxDelegates.RowActivated handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "row_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkListBoxHandle Signal_RowSelected(this GtkListBoxHandle instance, GtkListBoxDelegates.RowSelected handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "row_selected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkListBoxHandle Signal_SelectAll(this GtkListBoxHandle instance, GtkListBoxDelegates.SelectAll handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkListBoxHandle Signal_SelectedRowsChanged(this GtkListBoxHandle instance, GtkListBoxDelegates.SelectedRowsChanged handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "selected_rows_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkListBoxHandle Signal_ToggleCursorRow(this GtkListBoxHandle instance, GtkListBoxDelegates.ToggleCursorRow handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkListBoxHandle Signal_UnselectAll(this GtkListBoxHandle instance, GtkListBoxDelegates.UnselectAll handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkListBoxDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ActivateCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, ref GtkMovementStep @object, int p0, bool p1, bool p2, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void RowActivated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, GtkListBoxRowHandle row, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void RowSelected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, GtkListBoxRowHandle row, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SelectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SelectedRowsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ToggleCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void UnselectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
 }
 
 internal class GtkListBoxExterns

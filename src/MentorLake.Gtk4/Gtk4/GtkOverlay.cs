@@ -23,16 +23,22 @@ public class GtkOverlayHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildab
 
 }
 
-public class GtkOverlaySignal
+public static class GtkOverlaySignalExtensions
 {
-	public string Value { get; set; }
-	public GtkOverlaySignal(string value) => Value = value;
+	public static GtkOverlayHandle Signal_GetChildPosition(this GtkOverlayHandle instance, GtkOverlaySignalDelegates.GetChildPosition handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "get_child_position", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkOverlaySignals
+public static class GtkOverlaySignalDelegates
 {
-	public static GtkOverlaySignal GetChildPosition = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool GetChildPosition([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkOverlayHandle>))] GtkOverlayHandle self, GtkWidgetHandle widget, out GdkRectangle allocation, IntPtr user_data);
 }
+
 
 public static class GtkOverlayHandleExtensions
 {
@@ -81,18 +87,6 @@ public static class GtkOverlayHandleExtensions
 		return overlay;
 	}
 
-	public static GtkOverlayHandle Signal_GetChildPosition(this GtkOverlayHandle instance, GtkOverlayDelegates.GetChildPosition handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "get_child_position", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkOverlayDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool GetChildPosition([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkOverlayHandle>))] GtkOverlayHandle self, GtkWidgetHandle widget, out GdkRectangle allocation, IntPtr user_data);
 }
 
 internal class GtkOverlayExterns

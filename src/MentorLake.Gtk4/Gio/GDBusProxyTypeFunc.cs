@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate GType GDBusProxyTypeFunc(GDBusObjectManagerClientHandle manager, string object_path, string interface_name, IntPtr data);
-

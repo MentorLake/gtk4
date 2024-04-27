@@ -23,33 +23,21 @@ public class GtkCellRendererAccelHandle : GtkCellRendererTextHandle
 
 }
 
-public class GtkCellRendererAccelSignal
+public static class GtkCellRendererAccelSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkCellRendererAccelSignal(string value) => Value = value;
-}
-
-public static class GtkCellRendererAccelSignals
-{
-	public static GtkCellRendererAccelSignal AccelCleared = new("BindingTransform.MethodDeclaration");
-	public static GtkCellRendererAccelSignal AccelEdited = new("BindingTransform.MethodDeclaration");
-}
-
-public static class GtkCellRendererAccelHandleExtensions
-{
-	public static GtkCellRendererAccelHandle Signal_AccelCleared(this GtkCellRendererAccelHandle instance, GtkCellRendererAccelDelegates.AccelCleared handler)
+	public static GtkCellRendererAccelHandle Signal_AccelCleared(this GtkCellRendererAccelHandle instance, GtkCellRendererAccelSignalDelegates.AccelCleared handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "accel_cleared", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
-	public static GtkCellRendererAccelHandle Signal_AccelEdited(this GtkCellRendererAccelHandle instance, GtkCellRendererAccelDelegates.AccelEdited handler)
+	public static GtkCellRendererAccelHandle Signal_AccelEdited(this GtkCellRendererAccelHandle instance, GtkCellRendererAccelSignalDelegates.AccelEdited handler)
 	{
 		GObjectExterns.g_signal_connect_data(instance, "accel_edited", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
 		return instance;
 	}
 }
 
-public static class GtkCellRendererAccelDelegates
+public static class GtkCellRendererAccelSignalDelegates
 {
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -57,6 +45,11 @@ public static class GtkCellRendererAccelDelegates
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public delegate void AccelEdited([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererAccelHandle>))] GtkCellRendererAccelHandle self, string path_string, uint accel_key, GdkModifierType accel_mods, uint hardware_keycode, IntPtr user_data);
+}
+
+
+public static class GtkCellRendererAccelHandleExtensions
+{
 }
 
 internal class GtkCellRendererAccelExterns

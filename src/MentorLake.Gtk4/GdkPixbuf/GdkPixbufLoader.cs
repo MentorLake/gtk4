@@ -33,19 +33,46 @@ public class GdkPixbufLoaderHandle : GObjectHandle
 
 }
 
-public class GdkPixbufLoaderSignal
+public static class GdkPixbufLoaderSignalExtensions
 {
-	public string Value { get; set; }
-	public GdkPixbufLoaderSignal(string value) => Value = value;
+	public static GdkPixbufLoaderHandle Signal_AreaPrepared(this GdkPixbufLoaderHandle instance, GdkPixbufLoaderSignalDelegates.AreaPrepared handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "area_prepared", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkPixbufLoaderHandle Signal_AreaUpdated(this GdkPixbufLoaderHandle instance, GdkPixbufLoaderSignalDelegates.AreaUpdated handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "area_updated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkPixbufLoaderHandle Signal_Closed(this GdkPixbufLoaderHandle instance, GdkPixbufLoaderSignalDelegates.Closed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GdkPixbufLoaderHandle Signal_SizePrepared(this GdkPixbufLoaderHandle instance, GdkPixbufLoaderSignalDelegates.SizePrepared handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "size_prepared", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GdkPixbufLoaderSignals
+public static class GdkPixbufLoaderSignalDelegates
 {
-	public static GdkPixbufLoaderSignal AreaPrepared = new("BindingTransform.MethodDeclaration");
-	public static GdkPixbufLoaderSignal AreaUpdated = new("BindingTransform.MethodDeclaration");
-	public static GdkPixbufLoaderSignal Closed = new("BindingTransform.MethodDeclaration");
-	public static GdkPixbufLoaderSignal SizePrepared = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void AreaPrepared([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPixbufLoaderHandle>))] GdkPixbufLoaderHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void AreaUpdated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPixbufLoaderHandle>))] GdkPixbufLoaderHandle self, int x, int y, int width, int height, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPixbufLoaderHandle>))] GdkPixbufLoaderHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void SizePrepared([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPixbufLoaderHandle>))] GdkPixbufLoaderHandle self, int width, int height, IntPtr user_data);
 }
+
 
 public static class GdkPixbufLoaderHandleExtensions
 {
@@ -85,42 +112,6 @@ public static class GdkPixbufLoaderHandleExtensions
 		return GdkPixbufLoaderExterns.gdk_pixbuf_loader_write_bytes(loader, buffer, out error);
 	}
 
-	public static GdkPixbufLoaderHandle Signal_AreaPrepared(this GdkPixbufLoaderHandle instance, GdkPixbufLoaderDelegates.AreaPrepared handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "area_prepared", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkPixbufLoaderHandle Signal_AreaUpdated(this GdkPixbufLoaderHandle instance, GdkPixbufLoaderDelegates.AreaUpdated handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "area_updated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkPixbufLoaderHandle Signal_Closed(this GdkPixbufLoaderHandle instance, GdkPixbufLoaderDelegates.Closed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GdkPixbufLoaderHandle Signal_SizePrepared(this GdkPixbufLoaderHandle instance, GdkPixbufLoaderDelegates.SizePrepared handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "size_prepared", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GdkPixbufLoaderDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void AreaPrepared([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPixbufLoaderHandle>))] GdkPixbufLoaderHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void AreaUpdated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPixbufLoaderHandle>))] GdkPixbufLoaderHandle self, int x, int y, int width, int height, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPixbufLoaderHandle>))] GdkPixbufLoaderHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SizePrepared([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPixbufLoaderHandle>))] GdkPixbufLoaderHandle self, int width, int height, IntPtr user_data);
 }
 
 internal class GdkPixbufLoaderExterns

@@ -23,16 +23,22 @@ public class GtkGestureSwipeHandle : GtkGestureSingleHandle
 
 }
 
-public class GtkGestureSwipeSignal
+public static class GtkGestureSwipeSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkGestureSwipeSignal(string value) => Value = value;
+	public static GtkGestureSwipeHandle Signal_Swipe(this GtkGestureSwipeHandle instance, GtkGestureSwipeSignalDelegates.Swipe handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "swipe", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkGestureSwipeSignals
+public static class GtkGestureSwipeSignalDelegates
 {
-	public static GtkGestureSwipeSignal Swipe = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Swipe([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureSwipeHandle>))] GtkGestureSwipeHandle self, double velocity_x, double velocity_y, IntPtr user_data);
 }
+
 
 public static class GtkGestureSwipeHandleExtensions
 {
@@ -41,18 +47,6 @@ public static class GtkGestureSwipeHandleExtensions
 		return GtkGestureSwipeExterns.gtk_gesture_swipe_get_velocity(gesture, out velocity_x, out velocity_y);
 	}
 
-	public static GtkGestureSwipeHandle Signal_Swipe(this GtkGestureSwipeHandle instance, GtkGestureSwipeDelegates.Swipe handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "swipe", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkGestureSwipeDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Swipe([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureSwipeHandle>))] GtkGestureSwipeHandle self, double velocity_x, double velocity_y, IntPtr user_data);
 }
 
 internal class GtkGestureSwipeExterns

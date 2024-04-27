@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GObject;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GInstanceInitFunc(GTypeInstanceHandle instance, GTypeClassHandle g_class);
-

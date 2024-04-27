@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool GtkTreeSelectionFunc(GtkTreeSelectionHandle selection, GtkTreeModelHandle model, GtkTreePathHandle path, bool path_currently_selected, IntPtr data);
-

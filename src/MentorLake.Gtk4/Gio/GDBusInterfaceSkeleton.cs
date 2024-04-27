@@ -18,16 +18,22 @@ public class GDBusInterfaceSkeletonHandle : GObjectHandle, GDBusInterfaceHandle
 {
 }
 
-public class GDBusInterfaceSkeletonSignal
+public static class GDBusInterfaceSkeletonSignalExtensions
 {
-	public string Value { get; set; }
-	public GDBusInterfaceSkeletonSignal(string value) => Value = value;
+	public static GDBusInterfaceSkeletonHandle Signal_GAuthorizeMethod(this GDBusInterfaceSkeletonHandle instance, GDBusInterfaceSkeletonSignalDelegates.GAuthorizeMethod handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "g_authorize_method", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GDBusInterfaceSkeletonSignals
+public static class GDBusInterfaceSkeletonSignalDelegates
 {
-	public static GDBusInterfaceSkeletonSignal GAuthorizeMethod = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate bool GAuthorizeMethod([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusInterfaceSkeletonHandle>))] GDBusInterfaceSkeletonHandle self, GDBusMethodInvocationHandle invocation, IntPtr user_data);
 }
+
 
 public static class GDBusInterfaceSkeletonHandleExtensions
 {
@@ -100,18 +106,6 @@ public static class GDBusInterfaceSkeletonHandleExtensions
 		return interface_;
 	}
 
-	public static GDBusInterfaceSkeletonHandle Signal_GAuthorizeMethod(this GDBusInterfaceSkeletonHandle instance, GDBusInterfaceSkeletonDelegates.GAuthorizeMethod handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "g_authorize_method", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GDBusInterfaceSkeletonDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool GAuthorizeMethod([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusInterfaceSkeletonHandle>))] GDBusInterfaceSkeletonHandle self, GDBusMethodInvocationHandle invocation, IntPtr user_data);
 }
 
 internal class GDBusInterfaceSkeletonExterns

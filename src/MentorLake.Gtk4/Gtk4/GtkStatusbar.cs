@@ -23,17 +23,30 @@ public class GtkStatusbarHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuild
 
 }
 
-public class GtkStatusbarSignal
+public static class GtkStatusbarSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkStatusbarSignal(string value) => Value = value;
+	public static GtkStatusbarHandle Signal_TextPopped(this GtkStatusbarHandle instance, GtkStatusbarSignalDelegates.TextPopped handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "text_popped", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkStatusbarHandle Signal_TextPushed(this GtkStatusbarHandle instance, GtkStatusbarSignalDelegates.TextPushed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "text_pushed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkStatusbarSignals
+public static class GtkStatusbarSignalDelegates
 {
-	public static GtkStatusbarSignal TextPopped = new("BindingTransform.MethodDeclaration");
-	public static GtkStatusbarSignal TextPushed = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void TextPopped([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkStatusbarHandle>))] GtkStatusbarHandle self, uint context_id, string text, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void TextPushed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkStatusbarHandle>))] GtkStatusbarHandle self, uint context_id, string text, IntPtr user_data);
 }
+
 
 public static class GtkStatusbarHandleExtensions
 {
@@ -65,26 +78,6 @@ public static class GtkStatusbarHandleExtensions
 		return statusbar;
 	}
 
-	public static GtkStatusbarHandle Signal_TextPopped(this GtkStatusbarHandle instance, GtkStatusbarDelegates.TextPopped handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "text_popped", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkStatusbarHandle Signal_TextPushed(this GtkStatusbarHandle instance, GtkStatusbarDelegates.TextPushed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "text_pushed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkStatusbarDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void TextPopped([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkStatusbarHandle>))] GtkStatusbarHandle self, uint context_id, string text, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void TextPushed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkStatusbarHandle>))] GtkStatusbarHandle self, uint context_id, string text, IntPtr user_data);
 }
 
 internal class GtkStatusbarExterns

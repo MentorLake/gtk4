@@ -18,16 +18,22 @@ public class GFileMonitorHandle : GObjectHandle
 {
 }
 
-public class GFileMonitorSignal
+public static class GFileMonitorSignalExtensions
 {
-	public string Value { get; set; }
-	public GFileMonitorSignal(string value) => Value = value;
+	public static GFileMonitorHandle Signal_Changed(this GFileMonitorHandle instance, GFileMonitorSignalDelegates.Changed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GFileMonitorSignals
+public static class GFileMonitorSignalDelegates
 {
-	public static GFileMonitorSignal Changed = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GFileMonitorHandle>))] GFileMonitorHandle self, GFileHandle file, GFileHandle other_file, GFileMonitorEvent event_type, IntPtr user_data);
 }
+
 
 public static class GFileMonitorHandleExtensions
 {
@@ -53,18 +59,6 @@ public static class GFileMonitorHandleExtensions
 		return monitor;
 	}
 
-	public static GFileMonitorHandle Signal_Changed(this GFileMonitorHandle instance, GFileMonitorDelegates.Changed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GFileMonitorDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GFileMonitorHandle>))] GFileMonitorHandle self, GFileHandle file, GFileHandle other_file, GFileMonitorEvent event_type, IntPtr user_data);
 }
 
 internal class GFileMonitorExterns

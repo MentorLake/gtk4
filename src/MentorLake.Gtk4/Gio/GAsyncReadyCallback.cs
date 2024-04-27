@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GAsyncReadyCallback(GObjectHandle source_object, GAsyncResultHandle res, IntPtr data);
-

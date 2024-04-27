@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GtkIconViewForeachFunc(GtkIconViewHandle icon_view, GtkTreePathHandle path, IntPtr data);
-

@@ -23,18 +23,38 @@ public class GtkApplicationHandle : GApplicationHandle, GActionGroupHandle, GAct
 
 }
 
-public class GtkApplicationSignal
+public static class GtkApplicationSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkApplicationSignal(string value) => Value = value;
+	public static GtkApplicationHandle Signal_QueryEnd(this GtkApplicationHandle instance, GtkApplicationSignalDelegates.QueryEnd handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "query_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkApplicationHandle Signal_WindowAdded(this GtkApplicationHandle instance, GtkApplicationSignalDelegates.WindowAdded handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "window_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkApplicationHandle Signal_WindowRemoved(this GtkApplicationHandle instance, GtkApplicationSignalDelegates.WindowRemoved handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "window_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkApplicationSignals
+public static class GtkApplicationSignalDelegates
 {
-	public static GtkApplicationSignal QueryEnd = new("BindingTransform.MethodDeclaration");
-	public static GtkApplicationSignal WindowAdded = new("BindingTransform.MethodDeclaration");
-	public static GtkApplicationSignal WindowRemoved = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void QueryEnd([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkApplicationHandle>))] GtkApplicationHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void WindowAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkApplicationHandle>))] GtkApplicationHandle self, GtkWindowHandle window, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void WindowRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkApplicationHandle>))] GtkApplicationHandle self, GtkWindowHandle window, IntPtr user_data);
 }
+
 
 public static class GtkApplicationHandleExtensions
 {
@@ -113,34 +133,6 @@ public static class GtkApplicationHandleExtensions
 		return application;
 	}
 
-	public static GtkApplicationHandle Signal_QueryEnd(this GtkApplicationHandle instance, GtkApplicationDelegates.QueryEnd handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "query_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkApplicationHandle Signal_WindowAdded(this GtkApplicationHandle instance, GtkApplicationDelegates.WindowAdded handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "window_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkApplicationHandle Signal_WindowRemoved(this GtkApplicationHandle instance, GtkApplicationDelegates.WindowRemoved handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "window_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkApplicationDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void QueryEnd([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkApplicationHandle>))] GtkApplicationHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void WindowAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkApplicationHandle>))] GtkApplicationHandle self, GtkWindowHandle window, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void WindowRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkApplicationHandle>))] GtkApplicationHandle self, GtkWindowHandle window, IntPtr user_data);
 }
 
 internal class GtkApplicationExterns

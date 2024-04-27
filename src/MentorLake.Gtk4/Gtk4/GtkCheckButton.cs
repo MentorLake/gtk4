@@ -33,17 +33,30 @@ public class GtkCheckButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAct
 
 }
 
-public class GtkCheckButtonSignal
+public static class GtkCheckButtonSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkCheckButtonSignal(string value) => Value = value;
+	public static GtkCheckButtonHandle Signal_Activate(this GtkCheckButtonHandle instance, GtkCheckButtonSignalDelegates.Activate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkCheckButtonHandle Signal_Toggled(this GtkCheckButtonHandle instance, GtkCheckButtonSignalDelegates.Toggled handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "toggled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkCheckButtonSignals
+public static class GtkCheckButtonSignalDelegates
 {
-	public static GtkCheckButtonSignal Activate = new("BindingTransform.MethodDeclaration");
-	public static GtkCheckButtonSignal Toggled = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCheckButtonHandle>))] GtkCheckButtonHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Toggled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCheckButtonHandle>))] GtkCheckButtonHandle self, IntPtr user_data);
 }
+
 
 public static class GtkCheckButtonHandleExtensions
 {
@@ -108,26 +121,6 @@ public static class GtkCheckButtonHandleExtensions
 		return self;
 	}
 
-	public static GtkCheckButtonHandle Signal_Activate(this GtkCheckButtonHandle instance, GtkCheckButtonDelegates.Activate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkCheckButtonHandle Signal_Toggled(this GtkCheckButtonHandle instance, GtkCheckButtonDelegates.Toggled handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "toggled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkCheckButtonDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCheckButtonHandle>))] GtkCheckButtonHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Toggled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCheckButtonHandle>))] GtkCheckButtonHandle self, IntPtr user_data);
 }
 
 internal class GtkCheckButtonExterns

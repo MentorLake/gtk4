@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GdkPixbuf;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool GdkPixbufModuleStopLoadFunc(IntPtr context, out GErrorHandle error);
-

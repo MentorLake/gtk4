@@ -28,17 +28,30 @@ public class GtkInfoBarHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildab
 
 }
 
-public class GtkInfoBarSignal
+public static class GtkInfoBarSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkInfoBarSignal(string value) => Value = value;
+	public static GtkInfoBarHandle Signal_Close(this GtkInfoBarHandle instance, GtkInfoBarSignalDelegates.Close handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "close", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkInfoBarHandle Signal_Response(this GtkInfoBarHandle instance, GtkInfoBarSignalDelegates.Response handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "response", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkInfoBarSignals
+public static class GtkInfoBarSignalDelegates
 {
-	public static GtkInfoBarSignal Close = new("BindingTransform.MethodDeclaration");
-	public static GtkInfoBarSignal Response = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Close([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkInfoBarHandle>))] GtkInfoBarHandle self, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Response([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkInfoBarHandle>))] GtkInfoBarHandle self, int response_id, IntPtr user_data);
 }
+
 
 public static class GtkInfoBarHandleExtensions
 {
@@ -128,26 +141,6 @@ public static class GtkInfoBarHandleExtensions
 		return info_bar;
 	}
 
-	public static GtkInfoBarHandle Signal_Close(this GtkInfoBarHandle instance, GtkInfoBarDelegates.Close handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "close", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkInfoBarHandle Signal_Response(this GtkInfoBarHandle instance, GtkInfoBarDelegates.Response handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "response", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkInfoBarDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Close([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkInfoBarHandle>))] GtkInfoBarHandle self, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Response([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkInfoBarHandle>))] GtkInfoBarHandle self, int response_id, IntPtr user_data);
 }
 
 internal class GtkInfoBarExterns

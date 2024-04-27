@@ -18,16 +18,22 @@ public class GdkMonitorHandle : GObjectHandle
 {
 }
 
-public class GdkMonitorSignal
+public static class GdkMonitorSignalExtensions
 {
-	public string Value { get; set; }
-	public GdkMonitorSignal(string value) => Value = value;
+	public static GdkMonitorHandle Signal_Invalidate(this GdkMonitorHandle instance, GdkMonitorSignalDelegates.Invalidate handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "invalidate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GdkMonitorSignals
+public static class GdkMonitorSignalDelegates
 {
-	public static GdkMonitorSignal Invalidate = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Invalidate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkMonitorHandle>))] GdkMonitorHandle self, IntPtr user_data);
 }
+
 
 public static class GdkMonitorHandleExtensions
 {
@@ -97,18 +103,6 @@ public static class GdkMonitorHandleExtensions
 		return GdkMonitorExterns.gdk_monitor_is_valid(monitor);
 	}
 
-	public static GdkMonitorHandle Signal_Invalidate(this GdkMonitorHandle instance, GdkMonitorDelegates.Invalidate handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "invalidate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GdkMonitorDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Invalidate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkMonitorHandle>))] GdkMonitorHandle self, IntPtr user_data);
 }
 
 internal class GdkMonitorExterns

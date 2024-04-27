@@ -18,16 +18,22 @@ public class GtkTreeSelectionHandle : GObjectHandle
 {
 }
 
-public class GtkTreeSelectionSignal
+public static class GtkTreeSelectionSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkTreeSelectionSignal(string value) => Value = value;
+	public static GtkTreeSelectionHandle Signal_Changed(this GtkTreeSelectionHandle instance, GtkTreeSelectionSignalDelegates.Changed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkTreeSelectionSignals
+public static class GtkTreeSelectionSignalDelegates
 {
-	public static GtkTreeSelectionSignal Changed = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeSelectionHandle>))] GtkTreeSelectionHandle self, IntPtr user_data);
 }
+
 
 public static class GtkTreeSelectionHandleExtensions
 {
@@ -142,18 +148,6 @@ public static class GtkTreeSelectionHandleExtensions
 		return selection;
 	}
 
-	public static GtkTreeSelectionHandle Signal_Changed(this GtkTreeSelectionHandle instance, GtkTreeSelectionDelegates.Changed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkTreeSelectionDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeSelectionHandle>))] GtkTreeSelectionHandle self, IntPtr user_data);
 }
 
 internal class GtkTreeSelectionExterns

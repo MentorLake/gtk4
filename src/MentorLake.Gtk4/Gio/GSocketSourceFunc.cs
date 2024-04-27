@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool GSocketSourceFunc(GSocketHandle socket, GIOCondition condition, IntPtr data);
-

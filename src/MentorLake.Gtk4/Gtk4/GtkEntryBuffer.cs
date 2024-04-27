@@ -23,17 +23,30 @@ public class GtkEntryBufferHandle : GObjectHandle
 
 }
 
-public class GtkEntryBufferSignal
+public static class GtkEntryBufferSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkEntryBufferSignal(string value) => Value = value;
+	public static GtkEntryBufferHandle Signal_DeletedText(this GtkEntryBufferHandle instance, GtkEntryBufferSignalDelegates.DeletedText handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "deleted_text", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
+	public static GtkEntryBufferHandle Signal_InsertedText(this GtkEntryBufferHandle instance, GtkEntryBufferSignalDelegates.InsertedText handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "inserted_text", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkEntryBufferSignals
+public static class GtkEntryBufferSignalDelegates
 {
-	public static GtkEntryBufferSignal DeletedText = new("BindingTransform.MethodDeclaration");
-	public static GtkEntryBufferSignal InsertedText = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DeletedText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryBufferHandle>))] GtkEntryBufferHandle self, uint position, uint n_chars, IntPtr user_data);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void InsertedText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryBufferHandle>))] GtkEntryBufferHandle self, uint position, string chars, uint n_chars, IntPtr user_data);
 }
+
 
 public static class GtkEntryBufferHandleExtensions
 {
@@ -91,26 +104,6 @@ public static class GtkEntryBufferHandleExtensions
 		return buffer;
 	}
 
-	public static GtkEntryBufferHandle Signal_DeletedText(this GtkEntryBufferHandle instance, GtkEntryBufferDelegates.DeletedText handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "deleted_text", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-	public static GtkEntryBufferHandle Signal_InsertedText(this GtkEntryBufferHandle instance, GtkEntryBufferDelegates.InsertedText handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "inserted_text", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkEntryBufferDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DeletedText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryBufferHandle>))] GtkEntryBufferHandle self, uint position, uint n_chars, IntPtr user_data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void InsertedText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryBufferHandle>))] GtkEntryBufferHandle self, uint position, string chars, uint n_chars, IntPtr user_data);
 }
 
 internal class GtkEntryBufferExterns

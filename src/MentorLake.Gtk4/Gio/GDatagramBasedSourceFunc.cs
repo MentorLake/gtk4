@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool GDatagramBasedSourceFunc(GDatagramBasedHandle datagram_based, GIOCondition condition, IntPtr data);
-

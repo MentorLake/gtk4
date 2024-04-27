@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GtkListBoxForeachFunc(GtkListBoxHandle box, GtkListBoxRowHandle row, IntPtr user_data);
-

@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GObject;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GToggleNotify(IntPtr data, GObjectHandle @object, bool is_last_ref);
-

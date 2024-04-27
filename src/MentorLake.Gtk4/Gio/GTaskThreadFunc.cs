@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void GTaskThreadFunc(GTaskHandle task, GObjectHandle source_object, IntPtr task_data, GCancellableHandle cancellable);
-

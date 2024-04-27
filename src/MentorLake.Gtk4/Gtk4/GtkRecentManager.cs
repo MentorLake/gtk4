@@ -28,16 +28,22 @@ public class GtkRecentManagerHandle : GObjectHandle
 
 }
 
-public class GtkRecentManagerSignal
+public static class GtkRecentManagerSignalExtensions
 {
-	public string Value { get; set; }
-	public GtkRecentManagerSignal(string value) => Value = value;
+	public static GtkRecentManagerHandle Signal_Changed(this GtkRecentManagerHandle instance, GtkRecentManagerSignalDelegates.Changed handler)
+	{
+		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+		return instance;
+	}
 }
 
-public static class GtkRecentManagerSignals
+public static class GtkRecentManagerSignalDelegates
 {
-	public static GtkRecentManagerSignal Changed = new("BindingTransform.MethodDeclaration");
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRecentManagerHandle>))] GtkRecentManagerHandle self, IntPtr user_data);
 }
+
 
 public static class GtkRecentManagerHandleExtensions
 {
@@ -81,18 +87,6 @@ public static class GtkRecentManagerHandleExtensions
 		return GtkRecentManagerExterns.gtk_recent_manager_remove_item(manager, uri, out error);
 	}
 
-	public static GtkRecentManagerHandle Signal_Changed(this GtkRecentManagerHandle instance, GtkRecentManagerDelegates.Changed handler)
-	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
-	}
-}
-
-public static class GtkRecentManagerDelegates
-{
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRecentManagerHandle>))] GtkRecentManagerHandle self, IntPtr user_data);
 }
 
 internal class GtkRecentManagerExterns

@@ -16,4 +16,3 @@ namespace MentorLake.Gtk4.GObject;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate bool GTypeClassCacheFunc(IntPtr cache_data, GTypeClassHandle g_class);
-
