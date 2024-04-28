@@ -18,6 +18,10 @@ public interface GPollableOutputStreamHandle
 {
 }
 
+internal class GPollableOutputStreamHandleImpl : BaseSafeHandle, GPollableOutputStreamHandle
+{
+}
+
 public static class GPollableOutputStreamHandleExtensions
 {
 	public static bool CanPoll(this GPollableOutputStreamHandle stream)

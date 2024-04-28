@@ -18,6 +18,10 @@ public interface GtkAppChooserHandle
 {
 }
 
+internal class GtkAppChooserHandleImpl : BaseSafeHandle, GtkAppChooserHandle
+{
+}
+
 public static class GtkAppChooserHandleExtensions
 {
 	public static GAppInfoHandle GetAppInfo(this GtkAppChooserHandle self)

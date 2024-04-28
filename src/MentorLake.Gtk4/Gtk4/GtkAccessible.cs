@@ -18,6 +18,10 @@ public interface GtkAccessibleHandle
 {
 }
 
+internal class GtkAccessibleHandleImpl : BaseSafeHandle, GtkAccessibleHandle
+{
+}
+
 public static class GtkAccessibleHandleExtensions
 {
 	public static GtkAccessibleHandle Announce(this GtkAccessibleHandle self, string message, GtkAccessibleAnnouncementPriority priority)

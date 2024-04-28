@@ -18,6 +18,10 @@ public interface GTlsClientConnectionHandle
 {
 }
 
+internal class GTlsClientConnectionHandleImpl : BaseSafeHandle, GTlsClientConnectionHandle
+{
+}
+
 public static class GTlsClientConnectionHandleExtensions
 {
 	public static GTlsClientConnectionHandle CopySessionState(this GTlsClientConnectionHandle conn, GTlsClientConnectionHandle source)

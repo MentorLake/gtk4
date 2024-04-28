@@ -1,0 +1,10 @@
+namespace MentorLake.Gtk4.Cairo;
+
+public enum cairo_subpixel_order_t : uint
+{
+	CAIRO_SUBPIXEL_ORDER_DEFAULT,
+	CAIRO_SUBPIXEL_ORDER_RGB,
+	CAIRO_SUBPIXEL_ORDER_BGR,
+	CAIRO_SUBPIXEL_ORDER_VRGB,
+	CAIRO_SUBPIXEL_ORDER_VBGR
+}

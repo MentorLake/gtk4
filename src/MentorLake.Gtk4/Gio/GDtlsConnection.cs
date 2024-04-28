@@ -18,6 +18,10 @@ public interface GDtlsConnectionHandle
 {
 }
 
+internal class GDtlsConnectionHandleImpl : BaseSafeHandle, GDtlsConnectionHandle
+{
+}
+
 public static class GDtlsConnectionHandleExtensions
 {
 	public static bool Close(this GDtlsConnectionHandle conn, GCancellableHandle cancellable, out GErrorHandle error)

@@ -18,6 +18,10 @@ public interface GtkSymbolicPaintableHandle
 {
 }
 
+internal class GtkSymbolicPaintableHandleImpl : BaseSafeHandle, GtkSymbolicPaintableHandle
+{
+}
+
 public static class GtkSymbolicPaintableHandleExtensions
 {
 	public static GtkSymbolicPaintableHandle SnapshotSymbolic(this GtkSymbolicPaintableHandle paintable, GdkSnapshotHandle snapshot, double width, double height, GdkRGBA[] colors, int n_colors)

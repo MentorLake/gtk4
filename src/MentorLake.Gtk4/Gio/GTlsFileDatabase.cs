@@ -18,6 +18,10 @@ public interface GTlsFileDatabaseHandle
 {
 }
 
+internal class GTlsFileDatabaseHandleImpl : BaseSafeHandle, GTlsFileDatabaseHandle
+{
+}
+
 public static class GTlsFileDatabaseHandleExtensions
 {
 }

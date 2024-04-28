@@ -1,0 +1,11 @@
+namespace MentorLake.Gtk4.Cairo;
+
+public enum cairo_filter_t : uint
+{
+	CAIRO_FILTER_FAST,
+	CAIRO_FILTER_GOOD,
+	CAIRO_FILTER_BEST,
+	CAIRO_FILTER_NEAREST,
+	CAIRO_FILTER_BILINEAR,
+	CAIRO_FILTER_GAUSSIAN
+}

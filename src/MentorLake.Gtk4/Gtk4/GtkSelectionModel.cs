@@ -18,6 +18,10 @@ public interface GtkSelectionModelHandle
 {
 }
 
+internal class GtkSelectionModelHandleImpl : BaseSafeHandle, GtkSelectionModelHandle
+{
+}
+
 public static class GtkSelectionModelHandleExtensions
 {
 	public static GtkBitsetHandle GetSelection(this GtkSelectionModelHandle model)

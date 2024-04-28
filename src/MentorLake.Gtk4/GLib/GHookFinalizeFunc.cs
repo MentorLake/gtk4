@@ -15,4 +15,4 @@ using MentorLake.Gtk4.Gtk4;
 namespace MentorLake.Gtk4.GLib;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public delegate void GHookFinalizeFunc(GHookListHandle hook_list, GHookHandle hook);
+public delegate void GHookFinalizeFunc([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GHookListHandle>))] GHookListHandle hook_list, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GHookHandle>))] GHookHandle hook);

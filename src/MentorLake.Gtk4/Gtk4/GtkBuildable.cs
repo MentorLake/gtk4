@@ -18,6 +18,10 @@ public interface GtkBuildableHandle
 {
 }
 
+internal class GtkBuildableHandleImpl : BaseSafeHandle, GtkBuildableHandle
+{
+}
+
 public static class GtkBuildableHandleExtensions
 {
 	public static string GetBuildableId(this GtkBuildableHandle buildable)

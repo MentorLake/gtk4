@@ -15,4 +15,4 @@ using MentorLake.Gtk4.Gtk4;
 namespace MentorLake.Gtk4.GLib;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public delegate void GSourceDisposeFunc(GSourceHandle source);
+public delegate void GSourceDisposeFunc([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSourceHandle>))] GSourceHandle source);

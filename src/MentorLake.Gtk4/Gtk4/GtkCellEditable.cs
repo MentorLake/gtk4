@@ -18,6 +18,10 @@ public interface GtkCellEditableHandle
 {
 }
 
+internal class GtkCellEditableHandleImpl : BaseSafeHandle, GtkCellEditableHandle
+{
+}
+
 public static class GtkCellEditableHandleExtensions
 {
 	public static GtkCellEditableHandle EditingDone(this GtkCellEditableHandle cell_editable)

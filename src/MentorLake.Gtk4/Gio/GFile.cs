@@ -18,6 +18,10 @@ public interface GFileHandle
 {
 }
 
+internal class GFileHandleImpl : BaseSafeHandle, GFileHandle
+{
+}
+
 public static class GFileHandleExtensions
 {
 	public static GFileOutputStreamHandle AppendTo(this GFileHandle file, GFileCreateFlags flags, GCancellableHandle cancellable, out GErrorHandle error)

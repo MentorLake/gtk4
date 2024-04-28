@@ -18,6 +18,10 @@ public interface GtkSectionModelHandle
 {
 }
 
+internal class GtkSectionModelHandleImpl : BaseSafeHandle, GtkSectionModelHandle
+{
+}
+
 public static class GtkSectionModelHandleExtensions
 {
 	public static GtkSectionModelHandle GetSection(this GtkSectionModelHandle self, uint position, out uint out_start, out uint out_end)

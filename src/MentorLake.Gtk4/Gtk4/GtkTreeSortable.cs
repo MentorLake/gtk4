@@ -18,6 +18,10 @@ public interface GtkTreeSortableHandle
 {
 }
 
+internal class GtkTreeSortableHandleImpl : BaseSafeHandle, GtkTreeSortableHandle
+{
+}
+
 public static class GtkTreeSortableHandleExtensions
 {
 	public static bool GetSortColumnId(this GtkTreeSortableHandle sortable, out int sort_column_id, out GtkSortType order)

@@ -18,6 +18,10 @@ public interface GVolumeHandle
 {
 }
 
+internal class GVolumeHandleImpl : BaseSafeHandle, GVolumeHandle
+{
+}
+
 public static class GVolumeHandleExtensions
 {
 	public static bool CanEject(this GVolumeHandle volume)

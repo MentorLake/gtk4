@@ -18,6 +18,10 @@ public interface GtkScrollableHandle
 {
 }
 
+internal class GtkScrollableHandleImpl : BaseSafeHandle, GtkScrollableHandle
+{
+}
+
 public static class GtkScrollableHandleExtensions
 {
 	public static bool GetBorder(this GtkScrollableHandle scrollable, out GtkBorder border)

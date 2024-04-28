@@ -18,6 +18,10 @@ public interface GdkDevicePadHandle
 {
 }
 
+internal class GdkDevicePadHandleImpl : BaseSafeHandle, GdkDevicePadHandle
+{
+}
+
 public static class GdkDevicePadHandleExtensions
 {
 	public static int GetFeatureGroup(this GdkDevicePadHandle pad, GdkDevicePadFeature feature, int feature_idx)

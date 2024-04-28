@@ -15,4 +15,4 @@ using MentorLake.Gtk4.Gtk4;
 namespace MentorLake.Gtk4.GLib;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public delegate bool GTraverseNodeFunc(GTreeNodeHandle node, IntPtr data);
+public delegate bool GTraverseNodeFunc([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GTreeNodeHandle>))] GTreeNodeHandle node, IntPtr data);

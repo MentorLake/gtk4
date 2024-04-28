@@ -18,6 +18,10 @@ public interface GActionMapHandle
 {
 }
 
+internal class GActionMapHandleImpl : BaseSafeHandle, GActionMapHandle
+{
+}
+
 public static class GActionMapHandleExtensions
 {
 	public static GActionMapHandle AddAction(this GActionMapHandle action_map, GActionHandle action)

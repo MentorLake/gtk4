@@ -18,6 +18,10 @@ public interface GMountHandle
 {
 }
 
+internal class GMountHandleImpl : BaseSafeHandle, GMountHandle
+{
+}
+
 public static class GMountHandleExtensions
 {
 	public static bool CanEject(this GMountHandle mount)

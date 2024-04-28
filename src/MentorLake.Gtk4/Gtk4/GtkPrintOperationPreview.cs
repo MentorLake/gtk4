@@ -18,6 +18,10 @@ public interface GtkPrintOperationPreviewHandle
 {
 }
 
+internal class GtkPrintOperationPreviewHandleImpl : BaseSafeHandle, GtkPrintOperationPreviewHandle
+{
+}
+
 public static class GtkPrintOperationPreviewHandleExtensions
 {
 	public static GtkPrintOperationPreviewHandle EndPreview(this GtkPrintOperationPreviewHandle preview)

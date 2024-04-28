@@ -18,6 +18,10 @@ public interface GtkTreeModelHandle
 {
 }
 
+internal class GtkTreeModelHandleImpl : BaseSafeHandle, GtkTreeModelHandle
+{
+}
+
 public static class GtkTreeModelHandleExtensions
 {
 	public static GtkTreeModelHandle FilterNew(this GtkTreeModelHandle child_model, GtkTreePathHandle root)

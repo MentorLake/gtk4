@@ -18,6 +18,10 @@ public interface GNetworkMonitorHandle
 {
 }
 
+internal class GNetworkMonitorHandleImpl : BaseSafeHandle, GNetworkMonitorHandle
+{
+}
+
 public static class GNetworkMonitorHandleExtensions
 {
 	public static bool CanReach(this GNetworkMonitorHandle monitor, GSocketConnectableHandle connectable, GCancellableHandle cancellable, out GErrorHandle error)

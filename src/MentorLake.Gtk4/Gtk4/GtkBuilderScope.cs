@@ -18,6 +18,10 @@ public interface GtkBuilderScopeHandle
 {
 }
 
+internal class GtkBuilderScopeHandleImpl : BaseSafeHandle, GtkBuilderScopeHandle
+{
+}
+
 public static class GtkBuilderScopeHandleExtensions
 {
 }

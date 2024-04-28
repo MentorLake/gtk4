@@ -18,6 +18,10 @@ public interface GtkTreeDragSourceHandle
 {
 }
 
+internal class GtkTreeDragSourceHandleImpl : BaseSafeHandle, GtkTreeDragSourceHandle
+{
+}
+
 public static class GtkTreeDragSourceHandleExtensions
 {
 	public static bool DragDataDelete(this GtkTreeDragSourceHandle drag_source, GtkTreePathHandle path)

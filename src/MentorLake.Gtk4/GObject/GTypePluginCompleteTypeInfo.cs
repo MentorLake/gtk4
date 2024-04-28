@@ -15,4 +15,4 @@ using MentorLake.Gtk4.Gtk4;
 namespace MentorLake.Gtk4.GObject;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public delegate void GTypePluginCompleteTypeInfo(GTypePluginHandle plugin, GType g_type, GTypeInfoHandle info, GTypeValueTableHandle value_table);
+public delegate void GTypePluginCompleteTypeInfo([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GTypePluginHandleImpl>))] GTypePluginHandle plugin, GType g_type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GTypeInfoHandle>))] GTypeInfoHandle info, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GTypeValueTableHandle>))] GTypeValueTableHandle value_table);

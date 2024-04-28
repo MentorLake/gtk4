@@ -18,6 +18,10 @@ public interface GtkAccessibleRangeHandle
 {
 }
 
+internal class GtkAccessibleRangeHandleImpl : BaseSafeHandle, GtkAccessibleRangeHandle
+{
+}
+
 public static class GtkAccessibleRangeHandleExtensions
 {
 }

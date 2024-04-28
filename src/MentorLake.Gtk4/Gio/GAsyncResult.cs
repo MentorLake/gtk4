@@ -18,6 +18,10 @@ public interface GAsyncResultHandle
 {
 }
 
+internal class GAsyncResultHandleImpl : BaseSafeHandle, GAsyncResultHandle
+{
+}
+
 public static class GAsyncResultHandleExtensions
 {
 	public static GObjectHandle GetSourceObject(this GAsyncResultHandle res)

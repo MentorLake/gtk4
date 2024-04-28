@@ -18,6 +18,10 @@ public interface GAppInfoHandle
 {
 }
 
+internal class GAppInfoHandleImpl : BaseSafeHandle, GAppInfoHandle
+{
+}
+
 public static class GAppInfoHandleExtensions
 {
 	public static bool AddSupportsType(this GAppInfoHandle appinfo, string content_type, out GErrorHandle error)

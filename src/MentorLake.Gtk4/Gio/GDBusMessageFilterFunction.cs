@@ -15,4 +15,4 @@ using MentorLake.Gtk4.Gtk4;
 namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public delegate GDBusMessageHandle GDBusMessageFilterFunction(GDBusConnectionHandle connection, GDBusMessageHandle message, bool incoming, IntPtr user_data);
+public delegate GDBusMessageHandle GDBusMessageFilterFunction([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusConnectionHandle>))] GDBusConnectionHandle connection, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusMessageHandle>))] GDBusMessageHandle message, bool incoming, IntPtr user_data);

@@ -18,6 +18,10 @@ public interface GDBusObjectHandle
 {
 }
 
+internal class GDBusObjectHandleImpl : BaseSafeHandle, GDBusObjectHandle
+{
+}
+
 public static class GDBusObjectHandleExtensions
 {
 	public static GDBusInterfaceHandle GDbusObjectGetInterface(this GDBusObjectHandle @object, string interface_name)

@@ -15,4 +15,4 @@ using MentorLake.Gtk4.Gtk4;
 namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public delegate bool GtkPrinterFunc(GtkPrinterHandle printer, IntPtr data);
+public delegate bool GtkPrinterFunc([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrinterHandle>))] GtkPrinterHandle printer, IntPtr data);

@@ -18,6 +18,10 @@ public interface GSocketConnectableHandle
 {
 }
 
+internal class GSocketConnectableHandleImpl : BaseSafeHandle, GSocketConnectableHandle
+{
+}
+
 public static class GSocketConnectableHandleExtensions
 {
 	public static GSocketAddressEnumeratorHandle Enumerate(this GSocketConnectableHandle connectable)

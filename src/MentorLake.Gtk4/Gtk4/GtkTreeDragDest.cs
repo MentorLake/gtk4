@@ -18,6 +18,10 @@ public interface GtkTreeDragDestHandle
 {
 }
 
+internal class GtkTreeDragDestHandleImpl : BaseSafeHandle, GtkTreeDragDestHandle
+{
+}
+
 public static class GtkTreeDragDestHandleExtensions
 {
 	public static bool DragDataReceived(this GtkTreeDragDestHandle drag_dest, GtkTreePathHandle dest, GValueHandle value)

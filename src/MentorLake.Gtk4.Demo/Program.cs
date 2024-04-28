@@ -1,4 +1,5 @@
-﻿using MentorLake.Gtk4.Gio;
+﻿using MentorLake.Gtk4.Cairo;
+using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Demo;
@@ -13,9 +14,15 @@ public static class Program
 
 		appHandle.Signal_Activate(async (self, data) =>
 		{
-			//Console.WriteLine(self.GetResourceBasePath());
 			var window = GtkWindowHandle.New()
 				.SetChild(GtkBoxHandle.New(GtkOrientation.GTK_ORIENTATION_HORIZONTAL, 0)
+					.Append(GtkDrawingAreaHandle.New()
+						.SetDrawFunc((area, cr, width, height, userData) =>
+						{
+							cr.CairoArc(0, 0, 10, 0, 180);
+							cr.CairoStroke();
+						}, IntPtr.Zero, null)
+						.SetSizeRequest(200, 200))
 					.Append(GtkButtonHandle.New()
 						.SetLabel("TEST")
 						.Signal_Clicked((button, _) =>

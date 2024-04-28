@@ -18,6 +18,10 @@ public interface GIconHandle
 {
 }
 
+internal class GIconHandleImpl : BaseSafeHandle, GIconHandle
+{
+}
+
 public static class GIconHandleExtensions
 {
 	public static bool Equal(this GIconHandle icon1, GIconHandle icon2)

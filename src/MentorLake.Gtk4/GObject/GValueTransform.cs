@@ -15,4 +15,4 @@ using MentorLake.Gtk4.Gtk4;
 namespace MentorLake.Gtk4.GObject;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public delegate void GValueTransform(GValueHandle src_value, GValueHandle dest_value);
+public delegate void GValueTransform([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GValueHandle>))] GValueHandle src_value, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GValueHandle>))] GValueHandle dest_value);

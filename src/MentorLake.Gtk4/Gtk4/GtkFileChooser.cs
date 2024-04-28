@@ -18,6 +18,10 @@ public interface GtkFileChooserHandle
 {
 }
 
+internal class GtkFileChooserHandleImpl : BaseSafeHandle, GtkFileChooserHandle
+{
+}
+
 public static class GtkFileChooserHandleExtensions
 {
 	public static GtkFileChooserHandle AddChoice(this GtkFileChooserHandle chooser, string id, string label, string[] options, string[] option_labels)

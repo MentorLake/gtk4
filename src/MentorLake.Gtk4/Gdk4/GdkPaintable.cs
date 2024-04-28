@@ -18,6 +18,10 @@ public interface GdkPaintableHandle
 {
 }
 
+internal class GdkPaintableHandleImpl : BaseSafeHandle, GdkPaintableHandle
+{
+}
+
 public static class GdkPaintableHandleExtensions
 {
 	public static GdkPaintableHandle ComputeConcreteSize(this GdkPaintableHandle paintable, double specified_width, double specified_height, double default_width, double default_height, out double concrete_width, out double concrete_height)

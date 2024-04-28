@@ -18,6 +18,10 @@ public interface GtkNativeHandle
 {
 }
 
+internal class GtkNativeHandleImpl : BaseSafeHandle, GtkNativeHandle
+{
+}
+
 public static class GtkNativeHandleExtensions
 {
 	public static GskRendererHandle GetRenderer(this GtkNativeHandle self)

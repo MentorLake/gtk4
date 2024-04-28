@@ -18,6 +18,10 @@ public interface GListModelHandle
 {
 }
 
+internal class GListModelHandleImpl : BaseSafeHandle, GListModelHandle
+{
+}
+
 public static class GListModelHandleExtensions
 {
 	public static IntPtr GetItem(this GListModelHandle list, uint position)

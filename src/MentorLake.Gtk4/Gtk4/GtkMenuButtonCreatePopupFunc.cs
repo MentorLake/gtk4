@@ -15,4 +15,4 @@ using MentorLake.Gtk4.Gtk4;
 namespace MentorLake.Gtk4.Gtk4;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public delegate void GtkMenuButtonCreatePopupFunc(GtkMenuButtonHandle menu_button, IntPtr user_data);
+public delegate void GtkMenuButtonCreatePopupFunc([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkMenuButtonHandle>))] GtkMenuButtonHandle menu_button, IntPtr user_data);

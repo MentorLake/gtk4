@@ -18,6 +18,10 @@ public interface GdkToplevelHandle
 {
 }
 
+internal class GdkToplevelHandleImpl : BaseSafeHandle, GdkToplevelHandle
+{
+}
+
 public static class GdkToplevelHandleExtensions
 {
 	public static GdkToplevelHandle BeginMove(this GdkToplevelHandle toplevel, GdkDeviceHandle device, int button, double x, double y, uint timestamp)

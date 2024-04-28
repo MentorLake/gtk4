@@ -18,6 +18,10 @@ public interface GTypePluginHandle
 {
 }
 
+internal class GTypePluginHandleImpl : BaseSafeHandle, GTypePluginHandle
+{
+}
+
 public static class GTypePluginHandleExtensions
 {
 	public static GTypePluginHandle CompleteInterfaceInfo(this GTypePluginHandle plugin, GType instance_type, GType interface_type, GInterfaceInfoHandle info)

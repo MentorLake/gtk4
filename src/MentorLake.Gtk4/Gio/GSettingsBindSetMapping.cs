@@ -15,4 +15,4 @@ using MentorLake.Gtk4.Gtk4;
 namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public delegate GVariantHandle GSettingsBindSetMapping(GValueHandle value, GVariantTypeHandle expected_type, IntPtr user_data);
+public delegate GVariantHandle GSettingsBindSetMapping([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GValueHandle>))] GValueHandle value, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVariantTypeHandle>))] GVariantTypeHandle expected_type, IntPtr user_data);

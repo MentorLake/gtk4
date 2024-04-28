@@ -18,6 +18,10 @@ public interface GtkCellLayoutHandle
 {
 }
 
+internal class GtkCellLayoutHandleImpl : BaseSafeHandle, GtkCellLayoutHandle
+{
+}
+
 public static class GtkCellLayoutHandleExtensions
 {
 	public static GtkCellLayoutHandle AddAttribute(this GtkCellLayoutHandle cell_layout, GtkCellRendererHandle cell, string attribute, int column)

@@ -18,6 +18,10 @@ public interface GLoadableIconHandle
 {
 }
 
+internal class GLoadableIconHandleImpl : BaseSafeHandle, GLoadableIconHandle
+{
+}
+
 public static class GLoadableIconHandleExtensions
 {
 	public static GInputStreamHandle Load(this GLoadableIconHandle icon, int size, out string type, GCancellableHandle cancellable, out GErrorHandle error)

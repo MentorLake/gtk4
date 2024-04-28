@@ -18,6 +18,10 @@ public interface GtkColorChooserHandle
 {
 }
 
+internal class GtkColorChooserHandleImpl : BaseSafeHandle, GtkColorChooserHandle
+{
+}
+
 public static class GtkColorChooserHandleExtensions
 {
 	public static GtkColorChooserHandle AddPalette(this GtkColorChooserHandle chooser, GtkOrientation orientation, int colors_per_line, int n_colors, GdkRGBA[] colors)

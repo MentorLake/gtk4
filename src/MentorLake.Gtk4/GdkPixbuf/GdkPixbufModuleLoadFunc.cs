@@ -15,4 +15,4 @@ using MentorLake.Gtk4.Gtk4;
 namespace MentorLake.Gtk4.GdkPixbuf;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public delegate GdkPixbufHandle GdkPixbufModuleLoadFunc(IntPtr f, out GErrorHandle error);
+public delegate GdkPixbufHandle GdkPixbufModuleLoadFunc(IntPtr f, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GErrorHandle>))] out GErrorHandle error);

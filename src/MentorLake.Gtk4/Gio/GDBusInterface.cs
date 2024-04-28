@@ -18,6 +18,10 @@ public interface GDBusInterfaceHandle
 {
 }
 
+internal class GDBusInterfaceHandleImpl : BaseSafeHandle, GDBusInterfaceHandle
+{
+}
+
 public static class GDBusInterfaceHandleExtensions
 {
 	public static GDBusObjectHandle GDbusInterfaceDupObject(this GDBusInterfaceHandle interface_)

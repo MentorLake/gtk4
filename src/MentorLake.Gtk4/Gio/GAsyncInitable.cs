@@ -18,6 +18,10 @@ public interface GAsyncInitableHandle
 {
 }
 
+internal class GAsyncInitableHandleImpl : BaseSafeHandle, GAsyncInitableHandle
+{
+}
+
 public static class GAsyncInitableHandleExtensions
 {
 	public static GAsyncInitableHandle InitAsync(this GAsyncInitableHandle initable, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)

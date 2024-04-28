@@ -18,6 +18,10 @@ public interface GtkOrientableHandle
 {
 }
 
+internal class GtkOrientableHandleImpl : BaseSafeHandle, GtkOrientableHandle
+{
+}
+
 public static class GtkOrientableHandleExtensions
 {
 	public static GtkOrientation GetOrientation(this GtkOrientableHandle orientable)

@@ -18,6 +18,10 @@ public interface GdkPopupHandle
 {
 }
 
+internal class GdkPopupHandleImpl : BaseSafeHandle, GdkPopupHandle
+{
+}
+
 public static class GdkPopupHandleExtensions
 {
 	public static bool GetAutohide(this GdkPopupHandle popup)

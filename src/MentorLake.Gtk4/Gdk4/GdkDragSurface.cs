@@ -18,6 +18,10 @@ public interface GdkDragSurfaceHandle
 {
 }
 
+internal class GdkDragSurfaceHandleImpl : BaseSafeHandle, GdkDragSurfaceHandle
+{
+}
+
 public static class GdkDragSurfaceHandleExtensions
 {
 	public static bool Present(this GdkDragSurfaceHandle drag_surface, int width, int height)

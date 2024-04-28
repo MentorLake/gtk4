@@ -18,6 +18,10 @@ public interface GtkActionableHandle
 {
 }
 
+internal class GtkActionableHandleImpl : BaseSafeHandle, GtkActionableHandle
+{
+}
+
 public static class GtkActionableHandleExtensions
 {
 	public static string GetActionName(this GtkActionableHandle actionable)

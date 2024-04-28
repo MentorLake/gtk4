@@ -18,6 +18,10 @@ public interface GDebugControllerHandle
 {
 }
 
+internal class GDebugControllerHandleImpl : BaseSafeHandle, GDebugControllerHandle
+{
+}
+
 public static class GDebugControllerHandleExtensions
 {
 	public static bool GetDebugEnabled(this GDebugControllerHandle self)

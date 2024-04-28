@@ -18,6 +18,10 @@ public interface GActionGroupHandle
 {
 }
 
+internal class GActionGroupHandleImpl : BaseSafeHandle, GActionGroupHandle
+{
+}
+
 public static class GActionGroupHandleExtensions
 {
 	public static GActionGroupHandle ActionAdded(this GActionGroupHandle action_group, string action_name)

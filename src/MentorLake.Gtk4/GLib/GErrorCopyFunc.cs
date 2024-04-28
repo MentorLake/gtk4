@@ -15,4 +15,4 @@ using MentorLake.Gtk4.Gtk4;
 namespace MentorLake.Gtk4.GLib;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public delegate void GErrorCopyFunc(GErrorHandle src_error, GErrorHandle dest_error);
+public delegate void GErrorCopyFunc([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GErrorHandle>))] GErrorHandle src_error, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GErrorHandle>))] GErrorHandle dest_error);

@@ -18,6 +18,10 @@ public interface GMemoryMonitorHandle
 {
 }
 
+internal class GMemoryMonitorHandleImpl : BaseSafeHandle, GMemoryMonitorHandle
+{
+}
+
 public static class GMemoryMonitorHandleExtensions
 {
 }

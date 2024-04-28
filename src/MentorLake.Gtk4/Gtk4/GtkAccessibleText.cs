@@ -18,6 +18,10 @@ public interface GtkAccessibleTextHandle
 {
 }
 
+internal class GtkAccessibleTextHandleImpl : BaseSafeHandle, GtkAccessibleTextHandle
+{
+}
+
 public static class GtkAccessibleTextHandleExtensions
 {
 	public static GtkAccessibleTextHandle UpdateCaretPosition(this GtkAccessibleTextHandle self)

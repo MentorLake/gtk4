@@ -15,4 +15,4 @@ using MentorLake.Gtk4.Gtk4;
 namespace MentorLake.Gtk4.GLib;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public delegate bool GIOFunc(GIOChannelHandle source, GIOCondition condition, IntPtr data);
+public delegate bool GIOFunc([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GIOChannelHandle>))] GIOChannelHandle source, GIOCondition condition, IntPtr data);

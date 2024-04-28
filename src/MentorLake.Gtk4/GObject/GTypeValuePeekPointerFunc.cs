@@ -15,4 +15,4 @@ using MentorLake.Gtk4.Gtk4;
 namespace MentorLake.Gtk4.GObject;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public delegate IntPtr GTypeValuePeekPointerFunc(GValueHandle value);
+public delegate IntPtr GTypeValuePeekPointerFunc([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GValueHandle>))] GValueHandle value);

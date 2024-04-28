@@ -18,6 +18,10 @@ public interface GTlsBackendHandle
 {
 }
 
+internal class GTlsBackendHandleImpl : BaseSafeHandle, GTlsBackendHandle
+{
+}
+
 public static class GTlsBackendHandleExtensions
 {
 	public static GType GetCertificateType(this GTlsBackendHandle backend)

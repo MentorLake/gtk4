@@ -18,6 +18,10 @@ public interface GDesktopAppInfoLookupHandle
 {
 }
 
+internal class GDesktopAppInfoLookupHandleImpl : BaseSafeHandle, GDesktopAppInfoLookupHandle
+{
+}
+
 public static class GDesktopAppInfoLookupHandleExtensions
 {
 	public static GAppInfoHandle GetDefaultForUriScheme(this GDesktopAppInfoLookupHandle lookup, string uri_scheme)

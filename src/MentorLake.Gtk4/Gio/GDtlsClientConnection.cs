@@ -18,6 +18,10 @@ public interface GDtlsClientConnectionHandle
 {
 }
 
+internal class GDtlsClientConnectionHandleImpl : BaseSafeHandle, GDtlsClientConnectionHandle
+{
+}
+
 public static class GDtlsClientConnectionHandleExtensions
 {
 	public static GListHandle GetAcceptedCas(this GDtlsClientConnectionHandle conn)

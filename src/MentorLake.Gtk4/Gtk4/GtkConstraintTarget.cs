@@ -18,6 +18,10 @@ public interface GtkConstraintTargetHandle
 {
 }
 
+internal class GtkConstraintTargetHandleImpl : BaseSafeHandle, GtkConstraintTargetHandle
+{
+}
+
 public static class GtkConstraintTargetHandleExtensions
 {
 }

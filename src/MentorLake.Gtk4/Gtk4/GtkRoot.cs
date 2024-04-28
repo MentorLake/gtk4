@@ -18,6 +18,10 @@ public interface GtkRootHandle
 {
 }
 
+internal class GtkRootHandleImpl : BaseSafeHandle, GtkRootHandle
+{
+}
+
 public static class GtkRootHandleExtensions
 {
 	public static GdkDisplayHandle GetDisplay(this GtkRootHandle self)

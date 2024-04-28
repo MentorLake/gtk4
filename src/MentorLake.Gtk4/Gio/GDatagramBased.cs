@@ -18,6 +18,10 @@ public interface GDatagramBasedHandle
 {
 }
 
+internal class GDatagramBasedHandleImpl : BaseSafeHandle, GDatagramBasedHandle
+{
+}
+
 public static class GDatagramBasedHandleExtensions
 {
 	public static GIOCondition ConditionCheck(this GDatagramBasedHandle datagram_based, GIOCondition condition)

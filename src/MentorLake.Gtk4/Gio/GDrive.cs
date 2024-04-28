@@ -18,6 +18,10 @@ public interface GDriveHandle
 {
 }
 
+internal class GDriveHandleImpl : BaseSafeHandle, GDriveHandle
+{
+}
+
 public static class GDriveHandleExtensions
 {
 	public static bool CanEject(this GDriveHandle drive)

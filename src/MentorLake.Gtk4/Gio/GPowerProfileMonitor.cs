@@ -18,6 +18,10 @@ public interface GPowerProfileMonitorHandle
 {
 }
 
+internal class GPowerProfileMonitorHandleImpl : BaseSafeHandle, GPowerProfileMonitorHandle
+{
+}
+
 public static class GPowerProfileMonitorHandleExtensions
 {
 	public static bool GetPowerSaverEnabled(this GPowerProfileMonitorHandle monitor)

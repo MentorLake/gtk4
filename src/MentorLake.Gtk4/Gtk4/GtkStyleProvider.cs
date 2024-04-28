@@ -18,6 +18,10 @@ public interface GtkStyleProviderHandle
 {
 }
 
+internal class GtkStyleProviderHandleImpl : BaseSafeHandle, GtkStyleProviderHandle
+{
+}
+
 public static class GtkStyleProviderHandleExtensions
 {
 }

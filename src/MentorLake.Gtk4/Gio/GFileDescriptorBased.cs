@@ -18,6 +18,10 @@ public interface GFileDescriptorBasedHandle
 {
 }
 
+internal class GFileDescriptorBasedHandleImpl : BaseSafeHandle, GFileDescriptorBasedHandle
+{
+}
+
 public static class GFileDescriptorBasedHandleExtensions
 {
 	public static int GetFd(this GFileDescriptorBasedHandle fd_based)

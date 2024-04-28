@@ -18,6 +18,10 @@ public interface GtkFontChooserHandle
 {
 }
 
+internal class GtkFontChooserHandleImpl : BaseSafeHandle, GtkFontChooserHandle
+{
+}
+
 public static class GtkFontChooserHandleExtensions
 {
 	public static string GetFont(this GtkFontChooserHandle fontchooser)

@@ -18,6 +18,10 @@ public interface GProxyResolverHandle
 {
 }
 
+internal class GProxyResolverHandleImpl : BaseSafeHandle, GProxyResolverHandle
+{
+}
+
 public static class GProxyResolverHandleExtensions
 {
 	public static bool IsSupported(this GProxyResolverHandle resolver)

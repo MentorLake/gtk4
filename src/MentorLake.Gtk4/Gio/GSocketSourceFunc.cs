@@ -15,4 +15,4 @@ using MentorLake.Gtk4.Gtk4;
 namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public delegate bool GSocketSourceFunc(GSocketHandle socket, GIOCondition condition, IntPtr data);
+public delegate bool GSocketSourceFunc([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSocketHandle>))] GSocketHandle socket, GIOCondition condition, IntPtr data);

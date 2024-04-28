@@ -15,4 +15,4 @@ using MentorLake.Gtk4.Gtk4;
 namespace MentorLake.Gtk4.GObject;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public delegate void GTypePluginUnuse(GTypePluginHandle plugin);
+public delegate void GTypePluginUnuse([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GTypePluginHandleImpl>))] GTypePluginHandle plugin);

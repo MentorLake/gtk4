@@ -18,6 +18,10 @@ public interface GtkEditableHandle
 {
 }
 
+internal class GtkEditableHandleImpl : BaseSafeHandle, GtkEditableHandle
+{
+}
+
 public static class GtkEditableHandleExtensions
 {
 	public static bool DelegateGetAccessiblePlatformState(this GtkEditableHandle editable, GtkAccessiblePlatformState state)

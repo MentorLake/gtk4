@@ -18,6 +18,10 @@ public interface GInitableHandle
 {
 }
 
+internal class GInitableHandleImpl : BaseSafeHandle, GInitableHandle
+{
+}
+
 public static class GInitableHandleExtensions
 {
 	public static bool Init(this GInitableHandle initable, GCancellableHandle cancellable, out GErrorHandle error)

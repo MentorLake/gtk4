@@ -15,4 +15,4 @@ using MentorLake.Gtk4.Gtk4;
 namespace MentorLake.Gtk4.Gio;
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public delegate GFileHandle GVfsFileLookupFunc(GVfsHandle vfs, string identifier, IntPtr user_data);
+public delegate GFileHandle GVfsFileLookupFunc([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVfsHandle>))] GVfsHandle vfs, string identifier, IntPtr user_data);

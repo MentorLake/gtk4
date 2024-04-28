@@ -18,6 +18,10 @@ public interface GActionHandle
 {
 }
 
+internal class GActionHandleImpl : BaseSafeHandle, GActionHandle
+{
+}
+
 public static class GActionHandleExtensions
 {
 	public static GActionHandle Activate(this GActionHandle action, GVariantHandle parameter)

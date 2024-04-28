@@ -18,6 +18,10 @@ public interface GProxyHandle
 {
 }
 
+internal class GProxyHandleImpl : BaseSafeHandle, GProxyHandle
+{
+}
+
 public static class GProxyHandleExtensions
 {
 	public static GIOStreamHandle Connect(this GProxyHandle proxy, GIOStreamHandle connection, GProxyAddressHandle proxy_address, GCancellableHandle cancellable, out GErrorHandle error)

@@ -18,6 +18,10 @@ public interface GRemoteActionGroupHandle
 {
 }
 
+internal class GRemoteActionGroupHandleImpl : BaseSafeHandle, GRemoteActionGroupHandle
+{
+}
+
 public static class GRemoteActionGroupHandleExtensions
 {
 	public static GRemoteActionGroupHandle ActivateActionFull(this GRemoteActionGroupHandle remote, string action_name, GVariantHandle parameter, GVariantHandle platform_data)

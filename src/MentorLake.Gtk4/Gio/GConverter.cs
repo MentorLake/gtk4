@@ -18,6 +18,10 @@ public interface GConverterHandle
 {
 }
 
+internal class GConverterHandleImpl : BaseSafeHandle, GConverterHandle
+{
+}
+
 public static class GConverterHandleExtensions
 {
 	public static GConverterResult Convert(this GConverterHandle converter, IntPtr inbuf, int inbuf_size, IntPtr outbuf, int outbuf_size, GConverterFlags flags, out int bytes_read, out int bytes_written, out GErrorHandle error)

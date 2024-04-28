@@ -18,6 +18,10 @@ public interface GSeekableHandle
 {
 }
 
+internal class GSeekableHandleImpl : BaseSafeHandle, GSeekableHandle
+{
+}
+
 public static class GSeekableHandleExtensions
 {
 	public static bool CanSeek(this GSeekableHandle seekable)

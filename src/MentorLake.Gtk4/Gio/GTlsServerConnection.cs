@@ -18,6 +18,10 @@ public interface GTlsServerConnectionHandle
 {
 }
 
+internal class GTlsServerConnectionHandleImpl : BaseSafeHandle, GTlsServerConnectionHandle
+{
+}
+
 public static class GTlsServerConnectionHandleExtensions
 {
 }

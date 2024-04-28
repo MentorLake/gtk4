@@ -18,6 +18,10 @@ public interface GtkShortcutManagerHandle
 {
 }
 
+internal class GtkShortcutManagerHandleImpl : BaseSafeHandle, GtkShortcutManagerHandle
+{
+}
+
 public static class GtkShortcutManagerHandleExtensions
 {
 }
