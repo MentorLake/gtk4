@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,16 +32,78 @@ public class GSimpleActionHandle : GObjectHandle, GActionHandle
 
 public static class GSimpleActionSignalExtensions
 {
-	public static GSimpleActionHandle Signal_Activate(this GSimpleActionHandle instance, GSimpleActionSignalDelegates.Activate handler)
+
+	public static IObservable<GSimpleActionSignalStructs.ActivateSignal> Signal_Activate(this GSimpleActionHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GSimpleActionSignalStructs.ActivateSignal> obs) =>
+		{
+			GSimpleActionSignalDelegates.Activate handler = (GSimpleActionHandle self, GVariantHandle parameter, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GSimpleActionSignalStructs.ActivateSignal()
+				{
+					Self = self, Parameter = parameter, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GSimpleActionHandle Signal_ChangeState(this GSimpleActionHandle instance, GSimpleActionSignalDelegates.ChangeState handler)
+
+	public static IObservable<GSimpleActionSignalStructs.ChangeStateSignal> Signal_ChangeState(this GSimpleActionHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "change_state", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GSimpleActionSignalStructs.ChangeStateSignal> obs) =>
+		{
+			GSimpleActionSignalDelegates.ChangeState handler = (GSimpleActionHandle self, GVariantHandle value, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GSimpleActionSignalStructs.ChangeStateSignal()
+				{
+					Self = self, Value = value, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "change_state", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GSimpleActionSignalStructs
+{
+
+public struct ActivateSignal
+{
+	public GSimpleActionHandle Self;
+	public GVariantHandle Parameter;
+	public IntPtr UserData;
+}
+
+public struct ChangeStateSignal
+{
+	public GSimpleActionHandle Self;
+	public GVariantHandle Value;
+	public IntPtr UserData;
+}
 }
 
 public static class GSimpleActionSignalDelegates

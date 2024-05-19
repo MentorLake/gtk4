@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -20,11 +22,46 @@ public class GMenuModelHandle : GObjectHandle
 
 public static class GMenuModelSignalExtensions
 {
-	public static GMenuModelHandle Signal_ItemsChanged(this GMenuModelHandle instance, GMenuModelSignalDelegates.ItemsChanged handler)
+
+	public static IObservable<GMenuModelSignalStructs.ItemsChangedSignal> Signal_ItemsChanged(this GMenuModelHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "items_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GMenuModelSignalStructs.ItemsChangedSignal> obs) =>
+		{
+			GMenuModelSignalDelegates.ItemsChanged handler = (GMenuModelHandle self, int position, int removed, int added, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GMenuModelSignalStructs.ItemsChangedSignal()
+				{
+					Self = self, Position = position, Removed = removed, Added = added, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "items_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GMenuModelSignalStructs
+{
+
+public struct ItemsChangedSignal
+{
+	public GMenuModelHandle Self;
+	public int Position;
+	public int Removed;
+	public int Added;
+	public IntPtr UserData;
+}
 }
 
 public static class GMenuModelSignalDelegates

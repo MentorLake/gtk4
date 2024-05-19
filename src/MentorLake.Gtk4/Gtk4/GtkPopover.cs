@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,16 +27,76 @@ public class GtkPopoverHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildab
 
 public static class GtkPopoverSignalExtensions
 {
-	public static GtkPopoverHandle Signal_ActivateDefault(this GtkPopoverHandle instance, GtkPopoverSignalDelegates.ActivateDefault handler)
+
+	public static IObservable<GtkPopoverSignalStructs.ActivateDefaultSignal> Signal_ActivateDefault(this GtkPopoverHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_default", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPopoverSignalStructs.ActivateDefaultSignal> obs) =>
+		{
+			GtkPopoverSignalDelegates.ActivateDefault handler = (GtkPopoverHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPopoverSignalStructs.ActivateDefaultSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate_default", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkPopoverHandle Signal_Closed(this GtkPopoverHandle instance, GtkPopoverSignalDelegates.Closed handler)
+
+	public static IObservable<GtkPopoverSignalStructs.ClosedSignal> Signal_Closed(this GtkPopoverHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPopoverSignalStructs.ClosedSignal> obs) =>
+		{
+			GtkPopoverSignalDelegates.Closed handler = (GtkPopoverHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPopoverSignalStructs.ClosedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkPopoverSignalStructs
+{
+
+public struct ActivateDefaultSignal
+{
+	public GtkPopoverHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ClosedSignal
+{
+	public GtkPopoverHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkPopoverSignalDelegates

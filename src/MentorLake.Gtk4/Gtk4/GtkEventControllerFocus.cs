@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,16 +27,76 @@ public class GtkEventControllerFocusHandle : GtkEventControllerHandle
 
 public static class GtkEventControllerFocusSignalExtensions
 {
-	public static GtkEventControllerFocusHandle Signal_Enter(this GtkEventControllerFocusHandle instance, GtkEventControllerFocusSignalDelegates.Enter handler)
+
+	public static IObservable<GtkEventControllerFocusSignalStructs.EnterSignal> Signal_Enter(this GtkEventControllerFocusHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "enter", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEventControllerFocusSignalStructs.EnterSignal> obs) =>
+		{
+			GtkEventControllerFocusSignalDelegates.Enter handler = (GtkEventControllerFocusHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEventControllerFocusSignalStructs.EnterSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "enter", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkEventControllerFocusHandle Signal_Leave(this GtkEventControllerFocusHandle instance, GtkEventControllerFocusSignalDelegates.Leave handler)
+
+	public static IObservable<GtkEventControllerFocusSignalStructs.LeaveSignal> Signal_Leave(this GtkEventControllerFocusHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "leave", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEventControllerFocusSignalStructs.LeaveSignal> obs) =>
+		{
+			GtkEventControllerFocusSignalDelegates.Leave handler = (GtkEventControllerFocusHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEventControllerFocusSignalStructs.LeaveSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "leave", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkEventControllerFocusSignalStructs
+{
+
+public struct EnterSignal
+{
+	public GtkEventControllerFocusHandle Self;
+	public IntPtr UserData;
+}
+
+public struct LeaveSignal
+{
+	public GtkEventControllerFocusHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkEventControllerFocusSignalDelegates

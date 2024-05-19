@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,45 @@ public class GtkGestureRotateHandle : GtkGestureHandle
 
 public static class GtkGestureRotateSignalExtensions
 {
-	public static GtkGestureRotateHandle Signal_AngleChanged(this GtkGestureRotateHandle instance, GtkGestureRotateSignalDelegates.AngleChanged handler)
+
+	public static IObservable<GtkGestureRotateSignalStructs.AngleChangedSignal> Signal_AngleChanged(this GtkGestureRotateHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "angle_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkGestureRotateSignalStructs.AngleChangedSignal> obs) =>
+		{
+			GtkGestureRotateSignalDelegates.AngleChanged handler = (GtkGestureRotateHandle self, double angle, double angle_delta, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkGestureRotateSignalStructs.AngleChangedSignal()
+				{
+					Self = self, Angle = angle, AngleDelta = angle_delta, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "angle_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkGestureRotateSignalStructs
+{
+
+public struct AngleChangedSignal
+{
+	public GtkGestureRotateHandle Self;
+	public double Angle;
+	public double AngleDelta;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkGestureRotateSignalDelegates

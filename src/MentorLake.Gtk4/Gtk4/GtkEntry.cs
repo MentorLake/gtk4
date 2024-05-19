@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,21 +32,111 @@ public class GtkEntryHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildable
 
 public static class GtkEntrySignalExtensions
 {
-	public static GtkEntryHandle Signal_Activate(this GtkEntryHandle instance, GtkEntrySignalDelegates.Activate handler)
+
+	public static IObservable<GtkEntrySignalStructs.ActivateSignal> Signal_Activate(this GtkEntryHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEntrySignalStructs.ActivateSignal> obs) =>
+		{
+			GtkEntrySignalDelegates.Activate handler = (GtkEntryHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEntrySignalStructs.ActivateSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkEntryHandle Signal_IconPress(this GtkEntryHandle instance, GtkEntrySignalDelegates.IconPress handler)
+
+	public static IObservable<GtkEntrySignalStructs.IconPressSignal> Signal_IconPress(this GtkEntryHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "icon_press", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEntrySignalStructs.IconPressSignal> obs) =>
+		{
+			GtkEntrySignalDelegates.IconPress handler = (GtkEntryHandle self, GtkEntryIconPosition icon_pos, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEntrySignalStructs.IconPressSignal()
+				{
+					Self = self, IconPos = icon_pos, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "icon_press", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkEntryHandle Signal_IconRelease(this GtkEntryHandle instance, GtkEntrySignalDelegates.IconRelease handler)
+
+	public static IObservable<GtkEntrySignalStructs.IconReleaseSignal> Signal_IconRelease(this GtkEntryHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "icon_release", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEntrySignalStructs.IconReleaseSignal> obs) =>
+		{
+			GtkEntrySignalDelegates.IconRelease handler = (GtkEntryHandle self, GtkEntryIconPosition icon_pos, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEntrySignalStructs.IconReleaseSignal()
+				{
+					Self = self, IconPos = icon_pos, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "icon_release", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkEntrySignalStructs
+{
+
+public struct ActivateSignal
+{
+	public GtkEntryHandle Self;
+	public IntPtr UserData;
+}
+
+public struct IconPressSignal
+{
+	public GtkEntryHandle Self;
+	public GtkEntryIconPosition IconPos;
+	public IntPtr UserData;
+}
+
+public struct IconReleaseSignal
+{
+	public GtkEntryHandle Self;
+	public GtkEntryIconPosition IconPos;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkEntrySignalDelegates

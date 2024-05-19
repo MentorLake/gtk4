@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,46 +27,280 @@ public class GtkListBoxHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildab
 
 public static class GtkListBoxSignalExtensions
 {
-	public static GtkListBoxHandle Signal_ActivateCursorRow(this GtkListBoxHandle instance, GtkListBoxSignalDelegates.ActivateCursorRow handler)
+
+	public static IObservable<GtkListBoxSignalStructs.ActivateCursorRowSignal> Signal_ActivateCursorRow(this GtkListBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkListBoxSignalStructs.ActivateCursorRowSignal> obs) =>
+		{
+			GtkListBoxSignalDelegates.ActivateCursorRow handler = (GtkListBoxHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkListBoxSignalStructs.ActivateCursorRowSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkListBoxHandle Signal_MoveCursor(this GtkListBoxHandle instance, GtkListBoxSignalDelegates.MoveCursor handler)
+
+	public static IObservable<GtkListBoxSignalStructs.MoveCursorSignal> Signal_MoveCursor(this GtkListBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkListBoxSignalStructs.MoveCursorSignal> obs) =>
+		{
+			GtkListBoxSignalDelegates.MoveCursor handler = (GtkListBoxHandle self, ref GtkMovementStep @object, int p0, bool p1, bool p2, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkListBoxSignalStructs.MoveCursorSignal()
+				{
+					Self = self, Object = @object, P0 = p0, P1 = p1, P2 = p2, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkListBoxHandle Signal_RowActivated(this GtkListBoxHandle instance, GtkListBoxSignalDelegates.RowActivated handler)
+
+	public static IObservable<GtkListBoxSignalStructs.RowActivatedSignal> Signal_RowActivated(this GtkListBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "row_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkListBoxSignalStructs.RowActivatedSignal> obs) =>
+		{
+			GtkListBoxSignalDelegates.RowActivated handler = (GtkListBoxHandle self, GtkListBoxRowHandle row, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkListBoxSignalStructs.RowActivatedSignal()
+				{
+					Self = self, Row = row, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "row_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkListBoxHandle Signal_RowSelected(this GtkListBoxHandle instance, GtkListBoxSignalDelegates.RowSelected handler)
+
+	public static IObservable<GtkListBoxSignalStructs.RowSelectedSignal> Signal_RowSelected(this GtkListBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "row_selected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkListBoxSignalStructs.RowSelectedSignal> obs) =>
+		{
+			GtkListBoxSignalDelegates.RowSelected handler = (GtkListBoxHandle self, GtkListBoxRowHandle row, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkListBoxSignalStructs.RowSelectedSignal()
+				{
+					Self = self, Row = row, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "row_selected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkListBoxHandle Signal_SelectAll(this GtkListBoxHandle instance, GtkListBoxSignalDelegates.SelectAll handler)
+
+	public static IObservable<GtkListBoxSignalStructs.SelectAllSignal> Signal_SelectAll(this GtkListBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkListBoxSignalStructs.SelectAllSignal> obs) =>
+		{
+			GtkListBoxSignalDelegates.SelectAll handler = (GtkListBoxHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkListBoxSignalStructs.SelectAllSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkListBoxHandle Signal_SelectedRowsChanged(this GtkListBoxHandle instance, GtkListBoxSignalDelegates.SelectedRowsChanged handler)
+
+	public static IObservable<GtkListBoxSignalStructs.SelectedRowsChangedSignal> Signal_SelectedRowsChanged(this GtkListBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "selected_rows_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkListBoxSignalStructs.SelectedRowsChangedSignal> obs) =>
+		{
+			GtkListBoxSignalDelegates.SelectedRowsChanged handler = (GtkListBoxHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkListBoxSignalStructs.SelectedRowsChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "selected_rows_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkListBoxHandle Signal_ToggleCursorRow(this GtkListBoxHandle instance, GtkListBoxSignalDelegates.ToggleCursorRow handler)
+
+	public static IObservable<GtkListBoxSignalStructs.ToggleCursorRowSignal> Signal_ToggleCursorRow(this GtkListBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkListBoxSignalStructs.ToggleCursorRowSignal> obs) =>
+		{
+			GtkListBoxSignalDelegates.ToggleCursorRow handler = (GtkListBoxHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkListBoxSignalStructs.ToggleCursorRowSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkListBoxHandle Signal_UnselectAll(this GtkListBoxHandle instance, GtkListBoxSignalDelegates.UnselectAll handler)
+
+	public static IObservable<GtkListBoxSignalStructs.UnselectAllSignal> Signal_UnselectAll(this GtkListBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkListBoxSignalStructs.UnselectAllSignal> obs) =>
+		{
+			GtkListBoxSignalDelegates.UnselectAll handler = (GtkListBoxHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkListBoxSignalStructs.UnselectAllSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkListBoxSignalStructs
+{
+
+public struct ActivateCursorRowSignal
+{
+	public GtkListBoxHandle Self;
+	public IntPtr UserData;
+}
+
+public struct MoveCursorSignal
+{
+	public GtkListBoxHandle Self;
+	public GtkMovementStep Object;
+	public int P0;
+	public bool P1;
+	public bool P2;
+	public IntPtr UserData;
+}
+
+public struct RowActivatedSignal
+{
+	public GtkListBoxHandle Self;
+	public GtkListBoxRowHandle Row;
+	public IntPtr UserData;
+}
+
+public struct RowSelectedSignal
+{
+	public GtkListBoxHandle Self;
+	public GtkListBoxRowHandle Row;
+	public IntPtr UserData;
+}
+
+public struct SelectAllSignal
+{
+	public GtkListBoxHandle Self;
+	public IntPtr UserData;
+}
+
+public struct SelectedRowsChangedSignal
+{
+	public GtkListBoxHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ToggleCursorRowSignal
+{
+	public GtkListBoxHandle Self;
+	public IntPtr UserData;
+}
+
+public struct UnselectAllSignal
+{
+	public GtkListBoxHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkListBoxSignalDelegates

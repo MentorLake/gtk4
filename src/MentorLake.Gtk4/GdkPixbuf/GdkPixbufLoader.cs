@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -35,26 +37,148 @@ public class GdkPixbufLoaderHandle : GObjectHandle
 
 public static class GdkPixbufLoaderSignalExtensions
 {
-	public static GdkPixbufLoaderHandle Signal_AreaPrepared(this GdkPixbufLoaderHandle instance, GdkPixbufLoaderSignalDelegates.AreaPrepared handler)
+
+	public static IObservable<GdkPixbufLoaderSignalStructs.AreaPreparedSignal> Signal_AreaPrepared(this GdkPixbufLoaderHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "area_prepared", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkPixbufLoaderSignalStructs.AreaPreparedSignal> obs) =>
+		{
+			GdkPixbufLoaderSignalDelegates.AreaPrepared handler = (GdkPixbufLoaderHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkPixbufLoaderSignalStructs.AreaPreparedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "area_prepared", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkPixbufLoaderHandle Signal_AreaUpdated(this GdkPixbufLoaderHandle instance, GdkPixbufLoaderSignalDelegates.AreaUpdated handler)
+
+	public static IObservable<GdkPixbufLoaderSignalStructs.AreaUpdatedSignal> Signal_AreaUpdated(this GdkPixbufLoaderHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "area_updated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkPixbufLoaderSignalStructs.AreaUpdatedSignal> obs) =>
+		{
+			GdkPixbufLoaderSignalDelegates.AreaUpdated handler = (GdkPixbufLoaderHandle self, int x, int y, int width, int height, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkPixbufLoaderSignalStructs.AreaUpdatedSignal()
+				{
+					Self = self, X = x, Y = y, Width = width, Height = height, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "area_updated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkPixbufLoaderHandle Signal_Closed(this GdkPixbufLoaderHandle instance, GdkPixbufLoaderSignalDelegates.Closed handler)
+
+	public static IObservable<GdkPixbufLoaderSignalStructs.ClosedSignal> Signal_Closed(this GdkPixbufLoaderHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkPixbufLoaderSignalStructs.ClosedSignal> obs) =>
+		{
+			GdkPixbufLoaderSignalDelegates.Closed handler = (GdkPixbufLoaderHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkPixbufLoaderSignalStructs.ClosedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkPixbufLoaderHandle Signal_SizePrepared(this GdkPixbufLoaderHandle instance, GdkPixbufLoaderSignalDelegates.SizePrepared handler)
+
+	public static IObservable<GdkPixbufLoaderSignalStructs.SizePreparedSignal> Signal_SizePrepared(this GdkPixbufLoaderHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "size_prepared", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkPixbufLoaderSignalStructs.SizePreparedSignal> obs) =>
+		{
+			GdkPixbufLoaderSignalDelegates.SizePrepared handler = (GdkPixbufLoaderHandle self, int width, int height, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkPixbufLoaderSignalStructs.SizePreparedSignal()
+				{
+					Self = self, Width = width, Height = height, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "size_prepared", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GdkPixbufLoaderSignalStructs
+{
+
+public struct AreaPreparedSignal
+{
+	public GdkPixbufLoaderHandle Self;
+	public IntPtr UserData;
+}
+
+public struct AreaUpdatedSignal
+{
+	public GdkPixbufLoaderHandle Self;
+	public int X;
+	public int Y;
+	public int Width;
+	public int Height;
+	public IntPtr UserData;
+}
+
+public struct ClosedSignal
+{
+	public GdkPixbufLoaderHandle Self;
+	public IntPtr UserData;
+}
+
+public struct SizePreparedSignal
+{
+	public GdkPixbufLoaderHandle Self;
+	public int Width;
+	public int Height;
+	public IntPtr UserData;
+}
 }
 
 public static class GdkPixbufLoaderSignalDelegates

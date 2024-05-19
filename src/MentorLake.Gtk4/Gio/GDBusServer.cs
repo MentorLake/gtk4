@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,45 @@ public class GDBusServerHandle : GObjectHandle, GInitableHandle
 
 public static class GDBusServerSignalExtensions
 {
-	public static GDBusServerHandle Signal_NewConnection(this GDBusServerHandle instance, GDBusServerSignalDelegates.NewConnection handler)
+
+	public static IObservable<GDBusServerSignalStructs.NewConnectionSignal> Signal_NewConnection(this GDBusServerHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "new_connection", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GDBusServerSignalStructs.NewConnectionSignal> obs) =>
+		{
+			GDBusServerSignalDelegates.NewConnection handler = (GDBusServerHandle self, GDBusConnectionHandle connection, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GDBusServerSignalStructs.NewConnectionSignal()
+				{
+					Self = self, Connection = connection, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "new_connection", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GDBusServerSignalStructs
+{
+
+public struct NewConnectionSignal
+{
+	public GDBusServerHandle Self;
+	public GDBusConnectionHandle Connection;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
 }
 
 public static class GDBusServerSignalDelegates

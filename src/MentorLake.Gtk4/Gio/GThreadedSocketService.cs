@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,46 @@ public class GThreadedSocketServiceHandle : GSocketServiceHandle
 
 public static class GThreadedSocketServiceSignalExtensions
 {
-	public static GThreadedSocketServiceHandle Signal_Run(this GThreadedSocketServiceHandle instance, GThreadedSocketServiceSignalDelegates.Run handler)
+
+	public static IObservable<GThreadedSocketServiceSignalStructs.RunSignal> Signal_Run(this GThreadedSocketServiceHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "run", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GThreadedSocketServiceSignalStructs.RunSignal> obs) =>
+		{
+			GThreadedSocketServiceSignalDelegates.Run handler = (GThreadedSocketServiceHandle self, GSocketConnectionHandle connection, GObjectHandle source_object, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GThreadedSocketServiceSignalStructs.RunSignal()
+				{
+					Self = self, Connection = connection, SourceObject = source_object, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "run", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GThreadedSocketServiceSignalStructs
+{
+
+public struct RunSignal
+{
+	public GThreadedSocketServiceHandle Self;
+	public GSocketConnectionHandle Connection;
+	public GObjectHandle SourceObject;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
 }
 
 public static class GThreadedSocketServiceSignalDelegates

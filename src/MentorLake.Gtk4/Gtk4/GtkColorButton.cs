@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,16 +32,76 @@ public class GtkColorButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBui
 
 public static class GtkColorButtonSignalExtensions
 {
-	public static GtkColorButtonHandle Signal_Activate(this GtkColorButtonHandle instance, GtkColorButtonSignalDelegates.Activate handler)
+
+	public static IObservable<GtkColorButtonSignalStructs.ActivateSignal> Signal_Activate(this GtkColorButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkColorButtonSignalStructs.ActivateSignal> obs) =>
+		{
+			GtkColorButtonSignalDelegates.Activate handler = (GtkColorButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkColorButtonSignalStructs.ActivateSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkColorButtonHandle Signal_ColorSet(this GtkColorButtonHandle instance, GtkColorButtonSignalDelegates.ColorSet handler)
+
+	public static IObservable<GtkColorButtonSignalStructs.ColorSetSignal> Signal_ColorSet(this GtkColorButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "color_set", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkColorButtonSignalStructs.ColorSetSignal> obs) =>
+		{
+			GtkColorButtonSignalDelegates.ColorSet handler = (GtkColorButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkColorButtonSignalStructs.ColorSetSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "color_set", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkColorButtonSignalStructs
+{
+
+public struct ActivateSignal
+{
+	public GtkColorButtonHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ColorSetSignal
+{
+	public GtkColorButtonHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkColorButtonSignalDelegates

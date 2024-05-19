@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,26 +27,151 @@ public class GtkDragSourceHandle : GtkGestureSingleHandle
 
 public static class GtkDragSourceSignalExtensions
 {
-	public static GtkDragSourceHandle Signal_DragBegin(this GtkDragSourceHandle instance, GtkDragSourceSignalDelegates.DragBegin handler)
+
+	public static IObservable<GtkDragSourceSignalStructs.DragBeginSignal> Signal_DragBegin(this GtkDragSourceHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "drag_begin", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkDragSourceSignalStructs.DragBeginSignal> obs) =>
+		{
+			GtkDragSourceSignalDelegates.DragBegin handler = (GtkDragSourceHandle self, GdkDragHandle drag, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkDragSourceSignalStructs.DragBeginSignal()
+				{
+					Self = self, Drag = drag, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "drag_begin", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkDragSourceHandle Signal_DragCancel(this GtkDragSourceHandle instance, GtkDragSourceSignalDelegates.DragCancel handler)
+
+	public static IObservable<GtkDragSourceSignalStructs.DragCancelSignal> Signal_DragCancel(this GtkDragSourceHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "drag_cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkDragSourceSignalStructs.DragCancelSignal> obs) =>
+		{
+			GtkDragSourceSignalDelegates.DragCancel handler = (GtkDragSourceHandle self, GdkDragHandle drag, ref GdkDragCancelReason reason, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkDragSourceSignalStructs.DragCancelSignal()
+				{
+					Self = self, Drag = drag, Reason = reason, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "drag_cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkDragSourceHandle Signal_DragEnd(this GtkDragSourceHandle instance, GtkDragSourceSignalDelegates.DragEnd handler)
+
+	public static IObservable<GtkDragSourceSignalStructs.DragEndSignal> Signal_DragEnd(this GtkDragSourceHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "drag_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkDragSourceSignalStructs.DragEndSignal> obs) =>
+		{
+			GtkDragSourceSignalDelegates.DragEnd handler = (GtkDragSourceHandle self, GdkDragHandle drag, bool delete_data, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkDragSourceSignalStructs.DragEndSignal()
+				{
+					Self = self, Drag = drag, DeleteData = delete_data, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "drag_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkDragSourceHandle Signal_Prepare(this GtkDragSourceHandle instance, GtkDragSourceSignalDelegates.Prepare handler)
+
+	public static IObservable<GtkDragSourceSignalStructs.PrepareSignal> Signal_Prepare(this GtkDragSourceHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "prepare", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkDragSourceSignalStructs.PrepareSignal> obs) =>
+		{
+			GtkDragSourceSignalDelegates.Prepare handler = (GtkDragSourceHandle self, double x, double y, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkDragSourceSignalStructs.PrepareSignal()
+				{
+					Self = self, X = x, Y = y, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "prepare", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkDragSourceSignalStructs
+{
+
+public struct DragBeginSignal
+{
+	public GtkDragSourceHandle Self;
+	public GdkDragHandle Drag;
+	public IntPtr UserData;
+}
+
+public struct DragCancelSignal
+{
+	public GtkDragSourceHandle Self;
+	public GdkDragHandle Drag;
+	public GdkDragCancelReason Reason;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct DragEndSignal
+{
+	public GtkDragSourceHandle Self;
+	public GdkDragHandle Drag;
+	public bool DeleteData;
+	public IntPtr UserData;
+}
+
+public struct PrepareSignal
+{
+	public GtkDragSourceHandle Self;
+	public double X;
+	public double Y;
+	public IntPtr UserData;
+	public GdkContentProviderHandle ReturnValue;
+}
 }
 
 public static class GtkDragSourceSignalDelegates

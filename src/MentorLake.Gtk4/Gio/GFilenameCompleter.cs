@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,43 @@ public class GFilenameCompleterHandle : GObjectHandle
 
 public static class GFilenameCompleterSignalExtensions
 {
-	public static GFilenameCompleterHandle Signal_GotCompletionData(this GFilenameCompleterHandle instance, GFilenameCompleterSignalDelegates.GotCompletionData handler)
+
+	public static IObservable<GFilenameCompleterSignalStructs.GotCompletionDataSignal> Signal_GotCompletionData(this GFilenameCompleterHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "got_completion_data", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GFilenameCompleterSignalStructs.GotCompletionDataSignal> obs) =>
+		{
+			GFilenameCompleterSignalDelegates.GotCompletionData handler = (GFilenameCompleterHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GFilenameCompleterSignalStructs.GotCompletionDataSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "got_completion_data", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GFilenameCompleterSignalStructs
+{
+
+public struct GotCompletionDataSignal
+{
+	public GFilenameCompleterHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GFilenameCompleterSignalDelegates

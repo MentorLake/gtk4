@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,44 @@ public class GtkPrinterHandle : GObjectHandle
 
 public static class GtkPrinterSignalExtensions
 {
-	public static GtkPrinterHandle Signal_DetailsAcquired(this GtkPrinterHandle instance, GtkPrinterSignalDelegates.DetailsAcquired handler)
+
+	public static IObservable<GtkPrinterSignalStructs.DetailsAcquiredSignal> Signal_DetailsAcquired(this GtkPrinterHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "details_acquired", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPrinterSignalStructs.DetailsAcquiredSignal> obs) =>
+		{
+			GtkPrinterSignalDelegates.DetailsAcquired handler = (GtkPrinterHandle self, bool success, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPrinterSignalStructs.DetailsAcquiredSignal()
+				{
+					Self = self, Success = success, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "details_acquired", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkPrinterSignalStructs
+{
+
+public struct DetailsAcquiredSignal
+{
+	public GtkPrinterHandle Self;
+	public bool Success;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkPrinterSignalDelegates

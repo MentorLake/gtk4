@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -20,11 +22,43 @@ public class GdkMonitorHandle : GObjectHandle
 
 public static class GdkMonitorSignalExtensions
 {
-	public static GdkMonitorHandle Signal_Invalidate(this GdkMonitorHandle instance, GdkMonitorSignalDelegates.Invalidate handler)
+
+	public static IObservable<GdkMonitorSignalStructs.InvalidateSignal> Signal_Invalidate(this GdkMonitorHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "invalidate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkMonitorSignalStructs.InvalidateSignal> obs) =>
+		{
+			GdkMonitorSignalDelegates.Invalidate handler = (GdkMonitorHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkMonitorSignalStructs.InvalidateSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "invalidate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GdkMonitorSignalStructs
+{
+
+public struct InvalidateSignal
+{
+	public GdkMonitorHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GdkMonitorSignalDelegates

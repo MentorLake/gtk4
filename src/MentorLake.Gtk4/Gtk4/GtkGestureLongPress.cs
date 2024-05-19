@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,16 +27,78 @@ public class GtkGestureLongPressHandle : GtkGestureSingleHandle
 
 public static class GtkGestureLongPressSignalExtensions
 {
-	public static GtkGestureLongPressHandle Signal_Cancelled(this GtkGestureLongPressHandle instance, GtkGestureLongPressSignalDelegates.Cancelled handler)
+
+	public static IObservable<GtkGestureLongPressSignalStructs.CancelledSignal> Signal_Cancelled(this GtkGestureLongPressHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "cancelled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkGestureLongPressSignalStructs.CancelledSignal> obs) =>
+		{
+			GtkGestureLongPressSignalDelegates.Cancelled handler = (GtkGestureLongPressHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkGestureLongPressSignalStructs.CancelledSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "cancelled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkGestureLongPressHandle Signal_Pressed(this GtkGestureLongPressHandle instance, GtkGestureLongPressSignalDelegates.Pressed handler)
+
+	public static IObservable<GtkGestureLongPressSignalStructs.PressedSignal> Signal_Pressed(this GtkGestureLongPressHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "pressed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkGestureLongPressSignalStructs.PressedSignal> obs) =>
+		{
+			GtkGestureLongPressSignalDelegates.Pressed handler = (GtkGestureLongPressHandle self, double x, double y, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkGestureLongPressSignalStructs.PressedSignal()
+				{
+					Self = self, X = x, Y = y, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "pressed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkGestureLongPressSignalStructs
+{
+
+public struct CancelledSignal
+{
+	public GtkGestureLongPressHandle Self;
+	public IntPtr UserData;
+}
+
+public struct PressedSignal
+{
+	public GtkGestureLongPressHandle Self;
+	public double X;
+	public double Y;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkGestureLongPressSignalDelegates

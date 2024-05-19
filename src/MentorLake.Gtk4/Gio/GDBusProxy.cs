@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -50,16 +52,81 @@ public class GDBusProxyHandle : GObjectHandle, GAsyncInitableHandle, GDBusInterf
 
 public static class GDBusProxySignalExtensions
 {
-	public static GDBusProxyHandle Signal_GPropertiesChanged(this GDBusProxyHandle instance, GDBusProxySignalDelegates.GPropertiesChanged handler)
+
+	public static IObservable<GDBusProxySignalStructs.GPropertiesChangedSignal> Signal_GPropertiesChanged(this GDBusProxyHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "g_properties_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GDBusProxySignalStructs.GPropertiesChangedSignal> obs) =>
+		{
+			GDBusProxySignalDelegates.GPropertiesChanged handler = (GDBusProxyHandle self, GVariantHandle changed_properties, string[] invalidated_properties, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GDBusProxySignalStructs.GPropertiesChangedSignal()
+				{
+					Self = self, ChangedProperties = changed_properties, InvalidatedProperties = invalidated_properties, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "g_properties_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GDBusProxyHandle Signal_GSignal(this GDBusProxyHandle instance, GDBusProxySignalDelegates.GSignal handler)
+
+	public static IObservable<GDBusProxySignalStructs.GSignalSignal> Signal_GSignal(this GDBusProxyHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "g_signal", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GDBusProxySignalStructs.GSignalSignal> obs) =>
+		{
+			GDBusProxySignalDelegates.GSignal handler = (GDBusProxyHandle self, string sender_name, string signal_name, GVariantHandle parameters, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GDBusProxySignalStructs.GSignalSignal()
+				{
+					Self = self, SenderName = sender_name, SignalName = signal_name, Parameters = parameters, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "g_signal", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GDBusProxySignalStructs
+{
+
+public struct GPropertiesChangedSignal
+{
+	public GDBusProxyHandle Self;
+	public GVariantHandle ChangedProperties;
+	public string[] InvalidatedProperties;
+	public IntPtr UserData;
+}
+
+public struct GSignalSignal
+{
+	public GDBusProxyHandle Self;
+	public string SenderName;
+	public string SignalName;
+	public GVariantHandle Parameters;
+	public IntPtr UserData;
+}
 }
 
 public static class GDBusProxySignalDelegates

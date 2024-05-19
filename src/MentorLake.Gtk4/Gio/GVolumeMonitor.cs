@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,66 +32,418 @@ public class GVolumeMonitorHandle : GObjectHandle
 
 public static class GVolumeMonitorSignalExtensions
 {
-	public static GVolumeMonitorHandle Signal_DriveChanged(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.DriveChanged handler)
+
+	public static IObservable<GVolumeMonitorSignalStructs.DriveChangedSignal> Signal_DriveChanged(this GVolumeMonitorHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "drive_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.DriveChangedSignal> obs) =>
+		{
+			GVolumeMonitorSignalDelegates.DriveChanged handler = (GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data) =>
+			{
+
+
+				var signalStruct = new GVolumeMonitorSignalStructs.DriveChangedSignal()
+				{
+					Self = self, Drive = drive, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "drive_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GVolumeMonitorHandle Signal_DriveConnected(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.DriveConnected handler)
+
+	public static IObservable<GVolumeMonitorSignalStructs.DriveConnectedSignal> Signal_DriveConnected(this GVolumeMonitorHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "drive_connected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.DriveConnectedSignal> obs) =>
+		{
+			GVolumeMonitorSignalDelegates.DriveConnected handler = (GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data) =>
+			{
+
+
+				var signalStruct = new GVolumeMonitorSignalStructs.DriveConnectedSignal()
+				{
+					Self = self, Drive = drive, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "drive_connected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GVolumeMonitorHandle Signal_DriveDisconnected(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.DriveDisconnected handler)
+
+	public static IObservable<GVolumeMonitorSignalStructs.DriveDisconnectedSignal> Signal_DriveDisconnected(this GVolumeMonitorHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "drive_disconnected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.DriveDisconnectedSignal> obs) =>
+		{
+			GVolumeMonitorSignalDelegates.DriveDisconnected handler = (GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data) =>
+			{
+
+
+				var signalStruct = new GVolumeMonitorSignalStructs.DriveDisconnectedSignal()
+				{
+					Self = self, Drive = drive, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "drive_disconnected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GVolumeMonitorHandle Signal_DriveEjectButton(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.DriveEjectButton handler)
+
+	public static IObservable<GVolumeMonitorSignalStructs.DriveEjectButtonSignal> Signal_DriveEjectButton(this GVolumeMonitorHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "drive_eject_button", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.DriveEjectButtonSignal> obs) =>
+		{
+			GVolumeMonitorSignalDelegates.DriveEjectButton handler = (GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data) =>
+			{
+
+
+				var signalStruct = new GVolumeMonitorSignalStructs.DriveEjectButtonSignal()
+				{
+					Self = self, Drive = drive, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "drive_eject_button", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GVolumeMonitorHandle Signal_DriveStopButton(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.DriveStopButton handler)
+
+	public static IObservable<GVolumeMonitorSignalStructs.DriveStopButtonSignal> Signal_DriveStopButton(this GVolumeMonitorHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "drive_stop_button", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.DriveStopButtonSignal> obs) =>
+		{
+			GVolumeMonitorSignalDelegates.DriveStopButton handler = (GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data) =>
+			{
+
+
+				var signalStruct = new GVolumeMonitorSignalStructs.DriveStopButtonSignal()
+				{
+					Self = self, Drive = drive, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "drive_stop_button", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GVolumeMonitorHandle Signal_MountAdded(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.MountAdded handler)
+
+	public static IObservable<GVolumeMonitorSignalStructs.MountAddedSignal> Signal_MountAdded(this GVolumeMonitorHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "mount_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.MountAddedSignal> obs) =>
+		{
+			GVolumeMonitorSignalDelegates.MountAdded handler = (GVolumeMonitorHandle self, GMountHandle mount, IntPtr user_data) =>
+			{
+
+
+				var signalStruct = new GVolumeMonitorSignalStructs.MountAddedSignal()
+				{
+					Self = self, Mount = mount, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "mount_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GVolumeMonitorHandle Signal_MountChanged(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.MountChanged handler)
+
+	public static IObservable<GVolumeMonitorSignalStructs.MountChangedSignal> Signal_MountChanged(this GVolumeMonitorHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "mount_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.MountChangedSignal> obs) =>
+		{
+			GVolumeMonitorSignalDelegates.MountChanged handler = (GVolumeMonitorHandle self, GMountHandle mount, IntPtr user_data) =>
+			{
+
+
+				var signalStruct = new GVolumeMonitorSignalStructs.MountChangedSignal()
+				{
+					Self = self, Mount = mount, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "mount_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GVolumeMonitorHandle Signal_MountPreUnmount(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.MountPreUnmount handler)
+
+	public static IObservable<GVolumeMonitorSignalStructs.MountPreUnmountSignal> Signal_MountPreUnmount(this GVolumeMonitorHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "mount_pre_unmount", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.MountPreUnmountSignal> obs) =>
+		{
+			GVolumeMonitorSignalDelegates.MountPreUnmount handler = (GVolumeMonitorHandle self, GMountHandle mount, IntPtr user_data) =>
+			{
+
+
+				var signalStruct = new GVolumeMonitorSignalStructs.MountPreUnmountSignal()
+				{
+					Self = self, Mount = mount, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "mount_pre_unmount", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GVolumeMonitorHandle Signal_MountRemoved(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.MountRemoved handler)
+
+	public static IObservable<GVolumeMonitorSignalStructs.MountRemovedSignal> Signal_MountRemoved(this GVolumeMonitorHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "mount_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.MountRemovedSignal> obs) =>
+		{
+			GVolumeMonitorSignalDelegates.MountRemoved handler = (GVolumeMonitorHandle self, GMountHandle mount, IntPtr user_data) =>
+			{
+
+
+				var signalStruct = new GVolumeMonitorSignalStructs.MountRemovedSignal()
+				{
+					Self = self, Mount = mount, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "mount_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GVolumeMonitorHandle Signal_VolumeAdded(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.VolumeAdded handler)
+
+	public static IObservable<GVolumeMonitorSignalStructs.VolumeAddedSignal> Signal_VolumeAdded(this GVolumeMonitorHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "volume_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.VolumeAddedSignal> obs) =>
+		{
+			GVolumeMonitorSignalDelegates.VolumeAdded handler = (GVolumeMonitorHandle self, GVolumeHandle volume, IntPtr user_data) =>
+			{
+
+
+				var signalStruct = new GVolumeMonitorSignalStructs.VolumeAddedSignal()
+				{
+					Self = self, Volume = volume, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "volume_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GVolumeMonitorHandle Signal_VolumeChanged(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.VolumeChanged handler)
+
+	public static IObservable<GVolumeMonitorSignalStructs.VolumeChangedSignal> Signal_VolumeChanged(this GVolumeMonitorHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "volume_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.VolumeChangedSignal> obs) =>
+		{
+			GVolumeMonitorSignalDelegates.VolumeChanged handler = (GVolumeMonitorHandle self, GVolumeHandle volume, IntPtr user_data) =>
+			{
+
+
+				var signalStruct = new GVolumeMonitorSignalStructs.VolumeChangedSignal()
+				{
+					Self = self, Volume = volume, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "volume_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GVolumeMonitorHandle Signal_VolumeRemoved(this GVolumeMonitorHandle instance, GVolumeMonitorSignalDelegates.VolumeRemoved handler)
+
+	public static IObservable<GVolumeMonitorSignalStructs.VolumeRemovedSignal> Signal_VolumeRemoved(this GVolumeMonitorHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "volume_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.VolumeRemovedSignal> obs) =>
+		{
+			GVolumeMonitorSignalDelegates.VolumeRemoved handler = (GVolumeMonitorHandle self, GVolumeHandle volume, IntPtr user_data) =>
+			{
+
+
+				var signalStruct = new GVolumeMonitorSignalStructs.VolumeRemovedSignal()
+				{
+					Self = self, Volume = volume, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "volume_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GVolumeMonitorSignalStructs
+{
+
+public struct DriveChangedSignal
+{
+	public GVolumeMonitorHandle Self;
+	public GDriveHandle Drive;
+	public IntPtr UserData;
+}
+
+public struct DriveConnectedSignal
+{
+	public GVolumeMonitorHandle Self;
+	public GDriveHandle Drive;
+	public IntPtr UserData;
+}
+
+public struct DriveDisconnectedSignal
+{
+	public GVolumeMonitorHandle Self;
+	public GDriveHandle Drive;
+	public IntPtr UserData;
+}
+
+public struct DriveEjectButtonSignal
+{
+	public GVolumeMonitorHandle Self;
+	public GDriveHandle Drive;
+	public IntPtr UserData;
+}
+
+public struct DriveStopButtonSignal
+{
+	public GVolumeMonitorHandle Self;
+	public GDriveHandle Drive;
+	public IntPtr UserData;
+}
+
+public struct MountAddedSignal
+{
+	public GVolumeMonitorHandle Self;
+	public GMountHandle Mount;
+	public IntPtr UserData;
+}
+
+public struct MountChangedSignal
+{
+	public GVolumeMonitorHandle Self;
+	public GMountHandle Mount;
+	public IntPtr UserData;
+}
+
+public struct MountPreUnmountSignal
+{
+	public GVolumeMonitorHandle Self;
+	public GMountHandle Mount;
+	public IntPtr UserData;
+}
+
+public struct MountRemovedSignal
+{
+	public GVolumeMonitorHandle Self;
+	public GMountHandle Mount;
+	public IntPtr UserData;
+}
+
+public struct VolumeAddedSignal
+{
+	public GVolumeMonitorHandle Self;
+	public GVolumeHandle Volume;
+	public IntPtr UserData;
+}
+
+public struct VolumeChangedSignal
+{
+	public GVolumeMonitorHandle Self;
+	public GVolumeHandle Volume;
+	public IntPtr UserData;
+}
+
+public struct VolumeRemovedSignal
+{
+	public GVolumeMonitorHandle Self;
+	public GVolumeHandle Volume;
+	public IntPtr UserData;
+}
 }
 
 public static class GVolumeMonitorSignalDelegates

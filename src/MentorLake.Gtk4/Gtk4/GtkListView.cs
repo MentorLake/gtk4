@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,44 @@ public class GtkListViewHandle : GtkListBaseHandle, GtkAccessibleHandle, GtkBuil
 
 public static class GtkListViewSignalExtensions
 {
-	public static GtkListViewHandle Signal_Activate(this GtkListViewHandle instance, GtkListViewSignalDelegates.Activate handler)
+
+	public static IObservable<GtkListViewSignalStructs.ActivateSignal> Signal_Activate(this GtkListViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkListViewSignalStructs.ActivateSignal> obs) =>
+		{
+			GtkListViewSignalDelegates.Activate handler = (GtkListViewHandle self, uint position, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkListViewSignalStructs.ActivateSignal()
+				{
+					Self = self, Position = position, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkListViewSignalStructs
+{
+
+public struct ActivateSignal
+{
+	public GtkListViewHandle Self;
+	public uint Position;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkListViewSignalDelegates

@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,36 +32,212 @@ public class GtkSpinButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAcce
 
 public static class GtkSpinButtonSignalExtensions
 {
-	public static GtkSpinButtonHandle Signal_Activate(this GtkSpinButtonHandle instance, GtkSpinButtonSignalDelegates.Activate handler)
+
+	public static IObservable<GtkSpinButtonSignalStructs.ActivateSignal> Signal_Activate(this GtkSpinButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkSpinButtonSignalStructs.ActivateSignal> obs) =>
+		{
+			GtkSpinButtonSignalDelegates.Activate handler = (GtkSpinButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkSpinButtonSignalStructs.ActivateSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkSpinButtonHandle Signal_ChangeValue(this GtkSpinButtonHandle instance, GtkSpinButtonSignalDelegates.ChangeValue handler)
+
+	public static IObservable<GtkSpinButtonSignalStructs.ChangeValueSignal> Signal_ChangeValue(this GtkSpinButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "change_value", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkSpinButtonSignalStructs.ChangeValueSignal> obs) =>
+		{
+			GtkSpinButtonSignalDelegates.ChangeValue handler = (GtkSpinButtonHandle self, ref GtkScrollType scroll, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkSpinButtonSignalStructs.ChangeValueSignal()
+				{
+					Self = self, Scroll = scroll, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "change_value", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkSpinButtonHandle Signal_Input(this GtkSpinButtonHandle instance, GtkSpinButtonSignalDelegates.Input handler)
+
+	public static IObservable<GtkSpinButtonSignalStructs.InputSignal> Signal_Input(this GtkSpinButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "input", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkSpinButtonSignalStructs.InputSignal> obs) =>
+		{
+			GtkSpinButtonSignalDelegates.Input handler = (GtkSpinButtonHandle self, out double new_value, IntPtr user_data) =>
+			{
+				new_value = default;
+
+				var signalStruct = new GtkSpinButtonSignalStructs.InputSignal()
+				{
+					Self = self, NewValue = new_value, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "input", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkSpinButtonHandle Signal_Output(this GtkSpinButtonHandle instance, GtkSpinButtonSignalDelegates.Output handler)
+
+	public static IObservable<GtkSpinButtonSignalStructs.OutputSignal> Signal_Output(this GtkSpinButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "output", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkSpinButtonSignalStructs.OutputSignal> obs) =>
+		{
+			GtkSpinButtonSignalDelegates.Output handler = (GtkSpinButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkSpinButtonSignalStructs.OutputSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "output", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkSpinButtonHandle Signal_ValueChanged(this GtkSpinButtonHandle instance, GtkSpinButtonSignalDelegates.ValueChanged handler)
+
+	public static IObservable<GtkSpinButtonSignalStructs.ValueChangedSignal> Signal_ValueChanged(this GtkSpinButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkSpinButtonSignalStructs.ValueChangedSignal> obs) =>
+		{
+			GtkSpinButtonSignalDelegates.ValueChanged handler = (GtkSpinButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkSpinButtonSignalStructs.ValueChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkSpinButtonHandle Signal_Wrapped(this GtkSpinButtonHandle instance, GtkSpinButtonSignalDelegates.Wrapped handler)
+
+	public static IObservable<GtkSpinButtonSignalStructs.WrappedSignal> Signal_Wrapped(this GtkSpinButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "wrapped", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkSpinButtonSignalStructs.WrappedSignal> obs) =>
+		{
+			GtkSpinButtonSignalDelegates.Wrapped handler = (GtkSpinButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkSpinButtonSignalStructs.WrappedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "wrapped", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkSpinButtonSignalStructs
+{
+
+public struct ActivateSignal
+{
+	public GtkSpinButtonHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ChangeValueSignal
+{
+	public GtkSpinButtonHandle Self;
+	public GtkScrollType Scroll;
+	public IntPtr UserData;
+}
+
+public struct InputSignal
+{
+	public GtkSpinButtonHandle Self;
+	public double NewValue;
+	public IntPtr UserData;
+	public int ReturnValue;
+}
+
+public struct OutputSignal
+{
+	public GtkSpinButtonHandle Self;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct ValueChangedSignal
+{
+	public GtkSpinButtonHandle Self;
+	public IntPtr UserData;
+}
+
+public struct WrappedSignal
+{
+	public GtkSpinButtonHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkSpinButtonSignalDelegates

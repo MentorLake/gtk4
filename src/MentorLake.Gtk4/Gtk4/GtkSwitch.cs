@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,16 +27,78 @@ public class GtkSwitchHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkActionab
 
 public static class GtkSwitchSignalExtensions
 {
-	public static GtkSwitchHandle Signal_Activate(this GtkSwitchHandle instance, GtkSwitchSignalDelegates.Activate handler)
+
+	public static IObservable<GtkSwitchSignalStructs.ActivateSignal> Signal_Activate(this GtkSwitchHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkSwitchSignalStructs.ActivateSignal> obs) =>
+		{
+			GtkSwitchSignalDelegates.Activate handler = (GtkSwitchHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkSwitchSignalStructs.ActivateSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkSwitchHandle Signal_StateSet(this GtkSwitchHandle instance, GtkSwitchSignalDelegates.StateSet handler)
+
+	public static IObservable<GtkSwitchSignalStructs.StateSetSignal> Signal_StateSet(this GtkSwitchHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "state_set", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkSwitchSignalStructs.StateSetSignal> obs) =>
+		{
+			GtkSwitchSignalDelegates.StateSet handler = (GtkSwitchHandle self, bool state, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkSwitchSignalStructs.StateSetSignal()
+				{
+					Self = self, State = state, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "state_set", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkSwitchSignalStructs
+{
+
+public struct ActivateSignal
+{
+	public GtkSwitchHandle Self;
+	public IntPtr UserData;
+}
+
+public struct StateSetSignal
+{
+	public GtkSwitchHandle Self;
+	public bool State;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
 }
 
 public static class GtkSwitchSignalDelegates

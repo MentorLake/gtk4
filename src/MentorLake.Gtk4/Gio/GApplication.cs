@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -35,41 +37,249 @@ public class GApplicationHandle : GObjectHandle, GActionGroupHandle, GActionMapH
 
 public static class GApplicationSignalExtensions
 {
-	public static GApplicationHandle Signal_Activate(this GApplicationHandle instance, GApplicationSignalDelegates.Activate handler)
+
+	public static IObservable<GApplicationSignalStructs.ActivateSignal> Signal_Activate(this GApplicationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GApplicationSignalStructs.ActivateSignal> obs) =>
+		{
+			GApplicationSignalDelegates.Activate handler = (GApplicationHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GApplicationSignalStructs.ActivateSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GApplicationHandle Signal_CommandLine(this GApplicationHandle instance, GApplicationSignalDelegates.CommandLine handler)
+
+	public static IObservable<GApplicationSignalStructs.CommandLineSignal> Signal_CommandLine(this GApplicationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "command_line", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GApplicationSignalStructs.CommandLineSignal> obs) =>
+		{
+			GApplicationSignalDelegates.CommandLine handler = (GApplicationHandle self, GApplicationCommandLineHandle command_line, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GApplicationSignalStructs.CommandLineSignal()
+				{
+					Self = self, CommandLine = command_line, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "command_line", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GApplicationHandle Signal_HandleLocalOptions(this GApplicationHandle instance, GApplicationSignalDelegates.HandleLocalOptions handler)
+
+	public static IObservable<GApplicationSignalStructs.HandleLocalOptionsSignal> Signal_HandleLocalOptions(this GApplicationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "handle_local_options", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GApplicationSignalStructs.HandleLocalOptionsSignal> obs) =>
+		{
+			GApplicationSignalDelegates.HandleLocalOptions handler = (GApplicationHandle self, GVariantDictHandle options, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GApplicationSignalStructs.HandleLocalOptionsSignal()
+				{
+					Self = self, Options = options, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "handle_local_options", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GApplicationHandle Signal_NameLost(this GApplicationHandle instance, GApplicationSignalDelegates.NameLost handler)
+
+	public static IObservable<GApplicationSignalStructs.NameLostSignal> Signal_NameLost(this GApplicationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "name_lost", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GApplicationSignalStructs.NameLostSignal> obs) =>
+		{
+			GApplicationSignalDelegates.NameLost handler = (GApplicationHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GApplicationSignalStructs.NameLostSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "name_lost", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GApplicationHandle Signal_Open(this GApplicationHandle instance, GApplicationSignalDelegates.Open handler)
+
+	public static IObservable<GApplicationSignalStructs.OpenSignal> Signal_Open(this GApplicationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "open", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GApplicationSignalStructs.OpenSignal> obs) =>
+		{
+			GApplicationSignalDelegates.Open handler = (GApplicationHandle self, IntPtr files, int n_files, string hint, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GApplicationSignalStructs.OpenSignal()
+				{
+					Self = self, Files = files, NFiles = n_files, Hint = hint, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "open", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GApplicationHandle Signal_Shutdown(this GApplicationHandle instance, GApplicationSignalDelegates.Shutdown handler)
+
+	public static IObservable<GApplicationSignalStructs.ShutdownSignal> Signal_Shutdown(this GApplicationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "shutdown", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GApplicationSignalStructs.ShutdownSignal> obs) =>
+		{
+			GApplicationSignalDelegates.Shutdown handler = (GApplicationHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GApplicationSignalStructs.ShutdownSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "shutdown", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GApplicationHandle Signal_Startup(this GApplicationHandle instance, GApplicationSignalDelegates.Startup handler)
+
+	public static IObservable<GApplicationSignalStructs.StartupSignal> Signal_Startup(this GApplicationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "startup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GApplicationSignalStructs.StartupSignal> obs) =>
+		{
+			GApplicationSignalDelegates.Startup handler = (GApplicationHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GApplicationSignalStructs.StartupSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "startup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GApplicationSignalStructs
+{
+
+public struct ActivateSignal
+{
+	public GApplicationHandle Self;
+	public IntPtr UserData;
+}
+
+public struct CommandLineSignal
+{
+	public GApplicationHandle Self;
+	public GApplicationCommandLineHandle CommandLine;
+	public IntPtr UserData;
+	public int ReturnValue;
+}
+
+public struct HandleLocalOptionsSignal
+{
+	public GApplicationHandle Self;
+	public GVariantDictHandle Options;
+	public IntPtr UserData;
+	public int ReturnValue;
+}
+
+public struct NameLostSignal
+{
+	public GApplicationHandle Self;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct OpenSignal
+{
+	public GApplicationHandle Self;
+	public IntPtr Files;
+	public int NFiles;
+	public string Hint;
+	public IntPtr UserData;
+}
+
+public struct ShutdownSignal
+{
+	public GApplicationHandle Self;
+	public IntPtr UserData;
+}
+
+public struct StartupSignal
+{
+	public GApplicationHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GApplicationSignalDelegates

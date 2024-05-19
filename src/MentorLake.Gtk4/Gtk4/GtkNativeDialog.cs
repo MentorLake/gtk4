@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -20,11 +22,44 @@ public class GtkNativeDialogHandle : GObjectHandle
 
 public static class GtkNativeDialogSignalExtensions
 {
-	public static GtkNativeDialogHandle Signal_Response(this GtkNativeDialogHandle instance, GtkNativeDialogSignalDelegates.Response handler)
+
+	public static IObservable<GtkNativeDialogSignalStructs.ResponseSignal> Signal_Response(this GtkNativeDialogHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "response", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkNativeDialogSignalStructs.ResponseSignal> obs) =>
+		{
+			GtkNativeDialogSignalDelegates.Response handler = (GtkNativeDialogHandle self, int response_id, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkNativeDialogSignalStructs.ResponseSignal()
+				{
+					Self = self, ResponseId = response_id, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "response", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkNativeDialogSignalStructs
+{
+
+public struct ResponseSignal
+{
+	public GtkNativeDialogHandle Self;
+	public int ResponseId;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkNativeDialogSignalDelegates

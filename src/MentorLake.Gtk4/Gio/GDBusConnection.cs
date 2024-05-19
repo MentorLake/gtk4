@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -50,11 +52,45 @@ public class GDBusConnectionHandle : GObjectHandle, GAsyncInitableHandle, GInita
 
 public static class GDBusConnectionSignalExtensions
 {
-	public static GDBusConnectionHandle Signal_Closed(this GDBusConnectionHandle instance, GDBusConnectionSignalDelegates.Closed handler)
+
+	public static IObservable<GDBusConnectionSignalStructs.ClosedSignal> Signal_Closed(this GDBusConnectionHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GDBusConnectionSignalStructs.ClosedSignal> obs) =>
+		{
+			GDBusConnectionSignalDelegates.Closed handler = (GDBusConnectionHandle self, bool remote_peer_vanished, GErrorHandle error, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GDBusConnectionSignalStructs.ClosedSignal()
+				{
+					Self = self, RemotePeerVanished = remote_peer_vanished, Error = error, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GDBusConnectionSignalStructs
+{
+
+public struct ClosedSignal
+{
+	public GDBusConnectionHandle Self;
+	public bool RemotePeerVanished;
+	public GErrorHandle Error;
+	public IntPtr UserData;
+}
 }
 
 public static class GDBusConnectionSignalDelegates

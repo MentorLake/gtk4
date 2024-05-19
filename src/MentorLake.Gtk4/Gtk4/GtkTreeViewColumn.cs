@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -35,11 +37,43 @@ public class GtkTreeViewColumnHandle : GInitiallyUnownedHandle, GtkBuildableHand
 
 public static class GtkTreeViewColumnSignalExtensions
 {
-	public static GtkTreeViewColumnHandle Signal_Clicked(this GtkTreeViewColumnHandle instance, GtkTreeViewColumnSignalDelegates.Clicked handler)
+
+	public static IObservable<GtkTreeViewColumnSignalStructs.ClickedSignal> Signal_Clicked(this GtkTreeViewColumnHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "clicked", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTreeViewColumnSignalStructs.ClickedSignal> obs) =>
+		{
+			GtkTreeViewColumnSignalDelegates.Clicked handler = (GtkTreeViewColumnHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTreeViewColumnSignalStructs.ClickedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "clicked", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkTreeViewColumnSignalStructs
+{
+
+public struct ClickedSignal
+{
+	public GtkTreeViewColumnHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkTreeViewColumnSignalDelegates

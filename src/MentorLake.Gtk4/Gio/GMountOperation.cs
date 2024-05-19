@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,36 +27,221 @@ public class GMountOperationHandle : GObjectHandle
 
 public static class GMountOperationSignalExtensions
 {
-	public static GMountOperationHandle Signal_Aborted(this GMountOperationHandle instance, GMountOperationSignalDelegates.Aborted handler)
+
+	public static IObservable<GMountOperationSignalStructs.AbortedSignal> Signal_Aborted(this GMountOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "aborted", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GMountOperationSignalStructs.AbortedSignal> obs) =>
+		{
+			GMountOperationSignalDelegates.Aborted handler = (GMountOperationHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GMountOperationSignalStructs.AbortedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "aborted", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GMountOperationHandle Signal_AskPassword(this GMountOperationHandle instance, GMountOperationSignalDelegates.AskPassword handler)
+
+	public static IObservable<GMountOperationSignalStructs.AskPasswordSignal> Signal_AskPassword(this GMountOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "ask_password", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GMountOperationSignalStructs.AskPasswordSignal> obs) =>
+		{
+			GMountOperationSignalDelegates.AskPassword handler = (GMountOperationHandle self, string message, string default_user, string default_domain, GAskPasswordFlags flags, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GMountOperationSignalStructs.AskPasswordSignal()
+				{
+					Self = self, Message = message, DefaultUser = default_user, DefaultDomain = default_domain, Flags = flags, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "ask_password", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GMountOperationHandle Signal_AskQuestion(this GMountOperationHandle instance, GMountOperationSignalDelegates.AskQuestion handler)
+
+	public static IObservable<GMountOperationSignalStructs.AskQuestionSignal> Signal_AskQuestion(this GMountOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "ask_question", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GMountOperationSignalStructs.AskQuestionSignal> obs) =>
+		{
+			GMountOperationSignalDelegates.AskQuestion handler = (GMountOperationHandle self, string message, string[] choices, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GMountOperationSignalStructs.AskQuestionSignal()
+				{
+					Self = self, Message = message, Choices = choices, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "ask_question", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GMountOperationHandle Signal_Reply(this GMountOperationHandle instance, GMountOperationSignalDelegates.Reply handler)
+
+	public static IObservable<GMountOperationSignalStructs.ReplySignal> Signal_Reply(this GMountOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "reply", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GMountOperationSignalStructs.ReplySignal> obs) =>
+		{
+			GMountOperationSignalDelegates.Reply handler = (GMountOperationHandle self, GMountOperationResult result, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GMountOperationSignalStructs.ReplySignal()
+				{
+					Self = self, Result = result, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "reply", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GMountOperationHandle Signal_ShowProcesses(this GMountOperationHandle instance, GMountOperationSignalDelegates.ShowProcesses handler)
+
+	public static IObservable<GMountOperationSignalStructs.ShowProcessesSignal> Signal_ShowProcesses(this GMountOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "show_processes", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GMountOperationSignalStructs.ShowProcessesSignal> obs) =>
+		{
+			GMountOperationSignalDelegates.ShowProcesses handler = (GMountOperationHandle self, string message, GPid[] processes, string[] choices, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GMountOperationSignalStructs.ShowProcessesSignal()
+				{
+					Self = self, Message = message, Processes = processes, Choices = choices, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "show_processes", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GMountOperationHandle Signal_ShowUnmountProgress(this GMountOperationHandle instance, GMountOperationSignalDelegates.ShowUnmountProgress handler)
+
+	public static IObservable<GMountOperationSignalStructs.ShowUnmountProgressSignal> Signal_ShowUnmountProgress(this GMountOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "show_unmount_progress", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GMountOperationSignalStructs.ShowUnmountProgressSignal> obs) =>
+		{
+			GMountOperationSignalDelegates.ShowUnmountProgress handler = (GMountOperationHandle self, string message, long time_left, long bytes_left, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GMountOperationSignalStructs.ShowUnmountProgressSignal()
+				{
+					Self = self, Message = message, TimeLeft = time_left, BytesLeft = bytes_left, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "show_unmount_progress", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GMountOperationSignalStructs
+{
+
+public struct AbortedSignal
+{
+	public GMountOperationHandle Self;
+	public IntPtr UserData;
+}
+
+public struct AskPasswordSignal
+{
+	public GMountOperationHandle Self;
+	public string Message;
+	public string DefaultUser;
+	public string DefaultDomain;
+	public GAskPasswordFlags Flags;
+	public IntPtr UserData;
+}
+
+public struct AskQuestionSignal
+{
+	public GMountOperationHandle Self;
+	public string Message;
+	public string[] Choices;
+	public IntPtr UserData;
+}
+
+public struct ReplySignal
+{
+	public GMountOperationHandle Self;
+	public GMountOperationResult Result;
+	public IntPtr UserData;
+}
+
+public struct ShowProcessesSignal
+{
+	public GMountOperationHandle Self;
+	public string Message;
+	public GPid[] Processes;
+	public string[] Choices;
+	public IntPtr UserData;
+}
+
+public struct ShowUnmountProgressSignal
+{
+	public GMountOperationHandle Self;
+	public string Message;
+	public long TimeLeft;
+	public long BytesLeft;
+	public IntPtr UserData;
+}
 }
 
 public static class GMountOperationSignalDelegates

@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -20,11 +22,43 @@ public class GdkClipboardHandle : GObjectHandle
 
 public static class GdkClipboardSignalExtensions
 {
-	public static GdkClipboardHandle Signal_Changed(this GdkClipboardHandle instance, GdkClipboardSignalDelegates.Changed handler)
+
+	public static IObservable<GdkClipboardSignalStructs.ChangedSignal> Signal_Changed(this GdkClipboardHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkClipboardSignalStructs.ChangedSignal> obs) =>
+		{
+			GdkClipboardSignalDelegates.Changed handler = (GdkClipboardHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkClipboardSignalStructs.ChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GdkClipboardSignalStructs
+{
+
+public struct ChangedSignal
+{
+	public GdkClipboardHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GdkClipboardSignalDelegates

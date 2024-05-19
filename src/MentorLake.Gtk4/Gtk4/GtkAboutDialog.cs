@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,45 @@ public class GtkAboutDialogHandle : GtkWindowHandle, GtkAccessibleHandle, GtkBui
 
 public static class GtkAboutDialogSignalExtensions
 {
-	public static GtkAboutDialogHandle Signal_ActivateLink(this GtkAboutDialogHandle instance, GtkAboutDialogSignalDelegates.ActivateLink handler)
+
+	public static IObservable<GtkAboutDialogSignalStructs.ActivateLinkSignal> Signal_ActivateLink(this GtkAboutDialogHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkAboutDialogSignalStructs.ActivateLinkSignal> obs) =>
+		{
+			GtkAboutDialogSignalDelegates.ActivateLink handler = (GtkAboutDialogHandle self, string uri, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkAboutDialogSignalStructs.ActivateLinkSignal()
+				{
+					Self = self, Uri = uri, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkAboutDialogSignalStructs
+{
+
+public struct ActivateLinkSignal
+{
+	public GtkAboutDialogHandle Self;
+	public string Uri;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
 }
 
 public static class GtkAboutDialogSignalDelegates

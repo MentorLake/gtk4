@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -40,11 +42,43 @@ public class GdkContentProviderHandle : GObjectHandle
 
 public static class GdkContentProviderSignalExtensions
 {
-	public static GdkContentProviderHandle Signal_ContentChanged(this GdkContentProviderHandle instance, GdkContentProviderSignalDelegates.ContentChanged handler)
+
+	public static IObservable<GdkContentProviderSignalStructs.ContentChangedSignal> Signal_ContentChanged(this GdkContentProviderHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "content_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkContentProviderSignalStructs.ContentChangedSignal> obs) =>
+		{
+			GdkContentProviderSignalDelegates.ContentChanged handler = (GdkContentProviderHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkContentProviderSignalStructs.ContentChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "content_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GdkContentProviderSignalStructs
+{
+
+public struct ContentChangedSignal
+{
+	public GdkContentProviderHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GdkContentProviderSignalDelegates

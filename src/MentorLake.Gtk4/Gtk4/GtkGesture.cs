@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -20,31 +22,181 @@ public class GtkGestureHandle : GtkEventControllerHandle
 
 public static class GtkGestureSignalExtensions
 {
-	public static GtkGestureHandle Signal_Begin(this GtkGestureHandle instance, GtkGestureSignalDelegates.Begin handler)
+
+	public static IObservable<GtkGestureSignalStructs.BeginSignal> Signal_Begin(this GtkGestureHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "begin", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkGestureSignalStructs.BeginSignal> obs) =>
+		{
+			GtkGestureSignalDelegates.Begin handler = (GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkGestureSignalStructs.BeginSignal()
+				{
+					Self = self, Sequence = sequence, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "begin", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkGestureHandle Signal_Cancel(this GtkGestureHandle instance, GtkGestureSignalDelegates.Cancel handler)
+
+	public static IObservable<GtkGestureSignalStructs.CancelSignal> Signal_Cancel(this GtkGestureHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkGestureSignalStructs.CancelSignal> obs) =>
+		{
+			GtkGestureSignalDelegates.Cancel handler = (GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkGestureSignalStructs.CancelSignal()
+				{
+					Self = self, Sequence = sequence, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkGestureHandle Signal_End(this GtkGestureHandle instance, GtkGestureSignalDelegates.End handler)
+
+	public static IObservable<GtkGestureSignalStructs.EndSignal> Signal_End(this GtkGestureHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkGestureSignalStructs.EndSignal> obs) =>
+		{
+			GtkGestureSignalDelegates.End handler = (GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkGestureSignalStructs.EndSignal()
+				{
+					Self = self, Sequence = sequence, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkGestureHandle Signal_SequenceStateChanged(this GtkGestureHandle instance, GtkGestureSignalDelegates.SequenceStateChanged handler)
+
+	public static IObservable<GtkGestureSignalStructs.SequenceStateChangedSignal> Signal_SequenceStateChanged(this GtkGestureHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "sequence_state_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkGestureSignalStructs.SequenceStateChangedSignal> obs) =>
+		{
+			GtkGestureSignalDelegates.SequenceStateChanged handler = (GtkGestureHandle self, GdkEventSequenceHandle sequence, GtkEventSequenceState state, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkGestureSignalStructs.SequenceStateChangedSignal()
+				{
+					Self = self, Sequence = sequence, State = state, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "sequence_state_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkGestureHandle Signal_Update(this GtkGestureHandle instance, GtkGestureSignalDelegates.Update handler)
+
+	public static IObservable<GtkGestureSignalStructs.UpdateSignal> Signal_Update(this GtkGestureHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "update", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkGestureSignalStructs.UpdateSignal> obs) =>
+		{
+			GtkGestureSignalDelegates.Update handler = (GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkGestureSignalStructs.UpdateSignal()
+				{
+					Self = self, Sequence = sequence, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "update", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkGestureSignalStructs
+{
+
+public struct BeginSignal
+{
+	public GtkGestureHandle Self;
+	public GdkEventSequenceHandle Sequence;
+	public IntPtr UserData;
+}
+
+public struct CancelSignal
+{
+	public GtkGestureHandle Self;
+	public GdkEventSequenceHandle Sequence;
+	public IntPtr UserData;
+}
+
+public struct EndSignal
+{
+	public GtkGestureHandle Self;
+	public GdkEventSequenceHandle Sequence;
+	public IntPtr UserData;
+}
+
+public struct SequenceStateChangedSignal
+{
+	public GtkGestureHandle Self;
+	public GdkEventSequenceHandle Sequence;
+	public GtkEventSequenceState State;
+	public IntPtr UserData;
+}
+
+public struct UpdateSignal
+{
+	public GtkGestureHandle Self;
+	public GdkEventSequenceHandle Sequence;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkGestureSignalDelegates

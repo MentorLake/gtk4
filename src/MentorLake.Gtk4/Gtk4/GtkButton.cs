@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -40,16 +42,76 @@ public class GtkButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkActionab
 
 public static class GtkButtonSignalExtensions
 {
-	public static GtkButtonHandle Signal_Activate(this GtkButtonHandle instance, GtkButtonSignalDelegates.Activate handler)
+
+	public static IObservable<GtkButtonSignalStructs.ActivateSignal> Signal_Activate(this GtkButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkButtonSignalStructs.ActivateSignal> obs) =>
+		{
+			GtkButtonSignalDelegates.Activate handler = (GtkButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkButtonSignalStructs.ActivateSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkButtonHandle Signal_Clicked(this GtkButtonHandle instance, GtkButtonSignalDelegates.Clicked handler)
+
+	public static IObservable<GtkButtonSignalStructs.ClickedSignal> Signal_Clicked(this GtkButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "clicked", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkButtonSignalStructs.ClickedSignal> obs) =>
+		{
+			GtkButtonSignalDelegates.Clicked handler = (GtkButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkButtonSignalStructs.ClickedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "clicked", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkButtonSignalStructs
+{
+
+public struct ActivateSignal
+{
+	public GtkButtonHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ClickedSignal
+{
+	public GtkButtonHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkButtonSignalDelegates

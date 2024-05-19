@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,11 +32,43 @@ public class GCancellableHandle : GObjectHandle
 
 public static class GCancellableSignalExtensions
 {
-	public static GCancellableHandle Signal_Cancelled(this GCancellableHandle instance, GCancellableSignalDelegates.Cancelled handler)
+
+	public static IObservable<GCancellableSignalStructs.CancelledSignal> Signal_Cancelled(this GCancellableHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "cancelled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GCancellableSignalStructs.CancelledSignal> obs) =>
+		{
+			GCancellableSignalDelegates.Cancelled handler = (GCancellableHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GCancellableSignalStructs.CancelledSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "cancelled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GCancellableSignalStructs
+{
+
+public struct CancelledSignal
+{
+	public GCancellableHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GCancellableSignalDelegates

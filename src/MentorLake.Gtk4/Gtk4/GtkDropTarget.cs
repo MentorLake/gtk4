@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,31 +27,187 @@ public class GtkDropTargetHandle : GtkEventControllerHandle
 
 public static class GtkDropTargetSignalExtensions
 {
-	public static GtkDropTargetHandle Signal_Accept(this GtkDropTargetHandle instance, GtkDropTargetSignalDelegates.Accept handler)
+
+	public static IObservable<GtkDropTargetSignalStructs.AcceptSignal> Signal_Accept(this GtkDropTargetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "accept", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkDropTargetSignalStructs.AcceptSignal> obs) =>
+		{
+			GtkDropTargetSignalDelegates.Accept handler = (GtkDropTargetHandle self, GdkDropHandle drop, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkDropTargetSignalStructs.AcceptSignal()
+				{
+					Self = self, Drop = drop, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "accept", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkDropTargetHandle Signal_Drop(this GtkDropTargetHandle instance, GtkDropTargetSignalDelegates.Drop handler)
+
+	public static IObservable<GtkDropTargetSignalStructs.DropSignal> Signal_Drop(this GtkDropTargetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "drop", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkDropTargetSignalStructs.DropSignal> obs) =>
+		{
+			GtkDropTargetSignalDelegates.Drop handler = (GtkDropTargetHandle self, GValueHandle value, double x, double y, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkDropTargetSignalStructs.DropSignal()
+				{
+					Self = self, Value = value, X = x, Y = y, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "drop", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkDropTargetHandle Signal_Enter(this GtkDropTargetHandle instance, GtkDropTargetSignalDelegates.Enter handler)
+
+	public static IObservable<GtkDropTargetSignalStructs.EnterSignal> Signal_Enter(this GtkDropTargetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "enter", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkDropTargetSignalStructs.EnterSignal> obs) =>
+		{
+			GtkDropTargetSignalDelegates.Enter handler = (GtkDropTargetHandle self, double x, double y, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkDropTargetSignalStructs.EnterSignal()
+				{
+					Self = self, X = x, Y = y, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "enter", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkDropTargetHandle Signal_Leave(this GtkDropTargetHandle instance, GtkDropTargetSignalDelegates.Leave handler)
+
+	public static IObservable<GtkDropTargetSignalStructs.LeaveSignal> Signal_Leave(this GtkDropTargetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "leave", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkDropTargetSignalStructs.LeaveSignal> obs) =>
+		{
+			GtkDropTargetSignalDelegates.Leave handler = (GtkDropTargetHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkDropTargetSignalStructs.LeaveSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "leave", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkDropTargetHandle Signal_Motion(this GtkDropTargetHandle instance, GtkDropTargetSignalDelegates.Motion handler)
+
+	public static IObservable<GtkDropTargetSignalStructs.MotionSignal> Signal_Motion(this GtkDropTargetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "motion", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkDropTargetSignalStructs.MotionSignal> obs) =>
+		{
+			GtkDropTargetSignalDelegates.Motion handler = (GtkDropTargetHandle self, double x, double y, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkDropTargetSignalStructs.MotionSignal()
+				{
+					Self = self, X = x, Y = y, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "motion", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkDropTargetSignalStructs
+{
+
+public struct AcceptSignal
+{
+	public GtkDropTargetHandle Self;
+	public GdkDropHandle Drop;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct DropSignal
+{
+	public GtkDropTargetHandle Self;
+	public GValueHandle Value;
+	public double X;
+	public double Y;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct EnterSignal
+{
+	public GtkDropTargetHandle Self;
+	public double X;
+	public double Y;
+	public IntPtr UserData;
+	public GdkDragAction ReturnValue;
+}
+
+public struct LeaveSignal
+{
+	public GtkDropTargetHandle Self;
+	public IntPtr UserData;
+}
+
+public struct MotionSignal
+{
+	public GtkDropTargetHandle Self;
+	public double X;
+	public double Y;
+	public IntPtr UserData;
+	public GdkDragAction ReturnValue;
+}
 }
 
 public static class GtkDropTargetSignalDelegates

@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,45 @@ public class GtkCellRendererComboHandle : GtkCellRendererTextHandle
 
 public static class GtkCellRendererComboSignalExtensions
 {
-	public static GtkCellRendererComboHandle Signal_Changed(this GtkCellRendererComboHandle instance, GtkCellRendererComboSignalDelegates.Changed handler)
+
+	public static IObservable<GtkCellRendererComboSignalStructs.ChangedSignal> Signal_Changed(this GtkCellRendererComboHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkCellRendererComboSignalStructs.ChangedSignal> obs) =>
+		{
+			GtkCellRendererComboSignalDelegates.Changed handler = (GtkCellRendererComboHandle self, string path_string, GtkTreeIterHandle new_iter, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkCellRendererComboSignalStructs.ChangedSignal()
+				{
+					Self = self, PathString = path_string, NewIter = new_iter, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkCellRendererComboSignalStructs
+{
+
+public struct ChangedSignal
+{
+	public GtkCellRendererComboHandle Self;
+	public string PathString;
+	public GtkTreeIterHandle NewIter;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkCellRendererComboSignalDelegates

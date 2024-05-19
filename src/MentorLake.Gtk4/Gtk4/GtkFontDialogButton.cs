@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,43 @@ public class GtkFontDialogButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, G
 
 public static class GtkFontDialogButtonSignalExtensions
 {
-	public static GtkFontDialogButtonHandle Signal_Activate(this GtkFontDialogButtonHandle instance, GtkFontDialogButtonSignalDelegates.Activate handler)
+
+	public static IObservable<GtkFontDialogButtonSignalStructs.ActivateSignal> Signal_Activate(this GtkFontDialogButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkFontDialogButtonSignalStructs.ActivateSignal> obs) =>
+		{
+			GtkFontDialogButtonSignalDelegates.Activate handler = (GtkFontDialogButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkFontDialogButtonSignalStructs.ActivateSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkFontDialogButtonSignalStructs
+{
+
+public struct ActivateSignal
+{
+	public GtkFontDialogButtonHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkFontDialogButtonSignalDelegates

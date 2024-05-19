@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,31 +32,179 @@ public class GdkDisplayHandle : GObjectHandle
 
 public static class GdkDisplaySignalExtensions
 {
-	public static GdkDisplayHandle Signal_Closed(this GdkDisplayHandle instance, GdkDisplaySignalDelegates.Closed handler)
+
+	public static IObservable<GdkDisplaySignalStructs.ClosedSignal> Signal_Closed(this GdkDisplayHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkDisplaySignalStructs.ClosedSignal> obs) =>
+		{
+			GdkDisplaySignalDelegates.Closed handler = (GdkDisplayHandle self, bool is_error, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkDisplaySignalStructs.ClosedSignal()
+				{
+					Self = self, IsError = is_error, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "closed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkDisplayHandle Signal_Opened(this GdkDisplayHandle instance, GdkDisplaySignalDelegates.Opened handler)
+
+	public static IObservable<GdkDisplaySignalStructs.OpenedSignal> Signal_Opened(this GdkDisplayHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "opened", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkDisplaySignalStructs.OpenedSignal> obs) =>
+		{
+			GdkDisplaySignalDelegates.Opened handler = (GdkDisplayHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkDisplaySignalStructs.OpenedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "opened", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkDisplayHandle Signal_SeatAdded(this GdkDisplayHandle instance, GdkDisplaySignalDelegates.SeatAdded handler)
+
+	public static IObservable<GdkDisplaySignalStructs.SeatAddedSignal> Signal_SeatAdded(this GdkDisplayHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "seat_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkDisplaySignalStructs.SeatAddedSignal> obs) =>
+		{
+			GdkDisplaySignalDelegates.SeatAdded handler = (GdkDisplayHandle self, GdkSeatHandle seat, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkDisplaySignalStructs.SeatAddedSignal()
+				{
+					Self = self, Seat = seat, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "seat_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkDisplayHandle Signal_SeatRemoved(this GdkDisplayHandle instance, GdkDisplaySignalDelegates.SeatRemoved handler)
+
+	public static IObservable<GdkDisplaySignalStructs.SeatRemovedSignal> Signal_SeatRemoved(this GdkDisplayHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "seat_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkDisplaySignalStructs.SeatRemovedSignal> obs) =>
+		{
+			GdkDisplaySignalDelegates.SeatRemoved handler = (GdkDisplayHandle self, GdkSeatHandle seat, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkDisplaySignalStructs.SeatRemovedSignal()
+				{
+					Self = self, Seat = seat, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "seat_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkDisplayHandle Signal_SettingChanged(this GdkDisplayHandle instance, GdkDisplaySignalDelegates.SettingChanged handler)
+
+	public static IObservable<GdkDisplaySignalStructs.SettingChangedSignal> Signal_SettingChanged(this GdkDisplayHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "setting_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkDisplaySignalStructs.SettingChangedSignal> obs) =>
+		{
+			GdkDisplaySignalDelegates.SettingChanged handler = (GdkDisplayHandle self, string setting, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkDisplaySignalStructs.SettingChangedSignal()
+				{
+					Self = self, Setting = setting, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "setting_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GdkDisplaySignalStructs
+{
+
+public struct ClosedSignal
+{
+	public GdkDisplayHandle Self;
+	public bool IsError;
+	public IntPtr UserData;
+}
+
+public struct OpenedSignal
+{
+	public GdkDisplayHandle Self;
+	public IntPtr UserData;
+}
+
+public struct SeatAddedSignal
+{
+	public GdkDisplayHandle Self;
+	public GdkSeatHandle Seat;
+	public IntPtr UserData;
+}
+
+public struct SeatRemovedSignal
+{
+	public GdkDisplayHandle Self;
+	public GdkSeatHandle Seat;
+	public IntPtr UserData;
+}
+
+public struct SettingChangedSignal
+{
+	public GdkDisplayHandle Self;
+	public string Setting;
+	public IntPtr UserData;
+}
 }
 
 public static class GdkDisplaySignalDelegates

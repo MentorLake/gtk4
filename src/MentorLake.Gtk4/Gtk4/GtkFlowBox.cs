@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,41 +27,247 @@ public class GtkFlowBoxHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildab
 
 public static class GtkFlowBoxSignalExtensions
 {
-	public static GtkFlowBoxHandle Signal_ActivateCursorChild(this GtkFlowBoxHandle instance, GtkFlowBoxSignalDelegates.ActivateCursorChild handler)
+
+	public static IObservable<GtkFlowBoxSignalStructs.ActivateCursorChildSignal> Signal_ActivateCursorChild(this GtkFlowBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_cursor_child", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkFlowBoxSignalStructs.ActivateCursorChildSignal> obs) =>
+		{
+			GtkFlowBoxSignalDelegates.ActivateCursorChild handler = (GtkFlowBoxHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkFlowBoxSignalStructs.ActivateCursorChildSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate_cursor_child", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkFlowBoxHandle Signal_ChildActivated(this GtkFlowBoxHandle instance, GtkFlowBoxSignalDelegates.ChildActivated handler)
+
+	public static IObservable<GtkFlowBoxSignalStructs.ChildActivatedSignal> Signal_ChildActivated(this GtkFlowBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "child_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkFlowBoxSignalStructs.ChildActivatedSignal> obs) =>
+		{
+			GtkFlowBoxSignalDelegates.ChildActivated handler = (GtkFlowBoxHandle self, GtkFlowBoxChildHandle child, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkFlowBoxSignalStructs.ChildActivatedSignal()
+				{
+					Self = self, Child = child, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "child_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkFlowBoxHandle Signal_MoveCursor(this GtkFlowBoxHandle instance, GtkFlowBoxSignalDelegates.MoveCursor handler)
+
+	public static IObservable<GtkFlowBoxSignalStructs.MoveCursorSignal> Signal_MoveCursor(this GtkFlowBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkFlowBoxSignalStructs.MoveCursorSignal> obs) =>
+		{
+			GtkFlowBoxSignalDelegates.MoveCursor handler = (GtkFlowBoxHandle self, ref GtkMovementStep step, int count, bool extend, bool modify, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkFlowBoxSignalStructs.MoveCursorSignal()
+				{
+					Self = self, Step = step, Count = count, Extend = extend, Modify = modify, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkFlowBoxHandle Signal_SelectAll(this GtkFlowBoxHandle instance, GtkFlowBoxSignalDelegates.SelectAll handler)
+
+	public static IObservable<GtkFlowBoxSignalStructs.SelectAllSignal> Signal_SelectAll(this GtkFlowBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkFlowBoxSignalStructs.SelectAllSignal> obs) =>
+		{
+			GtkFlowBoxSignalDelegates.SelectAll handler = (GtkFlowBoxHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkFlowBoxSignalStructs.SelectAllSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkFlowBoxHandle Signal_SelectedChildrenChanged(this GtkFlowBoxHandle instance, GtkFlowBoxSignalDelegates.SelectedChildrenChanged handler)
+
+	public static IObservable<GtkFlowBoxSignalStructs.SelectedChildrenChangedSignal> Signal_SelectedChildrenChanged(this GtkFlowBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "selected_children_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkFlowBoxSignalStructs.SelectedChildrenChangedSignal> obs) =>
+		{
+			GtkFlowBoxSignalDelegates.SelectedChildrenChanged handler = (GtkFlowBoxHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkFlowBoxSignalStructs.SelectedChildrenChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "selected_children_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkFlowBoxHandle Signal_ToggleCursorChild(this GtkFlowBoxHandle instance, GtkFlowBoxSignalDelegates.ToggleCursorChild handler)
+
+	public static IObservable<GtkFlowBoxSignalStructs.ToggleCursorChildSignal> Signal_ToggleCursorChild(this GtkFlowBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_child", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkFlowBoxSignalStructs.ToggleCursorChildSignal> obs) =>
+		{
+			GtkFlowBoxSignalDelegates.ToggleCursorChild handler = (GtkFlowBoxHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkFlowBoxSignalStructs.ToggleCursorChildSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_child", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkFlowBoxHandle Signal_UnselectAll(this GtkFlowBoxHandle instance, GtkFlowBoxSignalDelegates.UnselectAll handler)
+
+	public static IObservable<GtkFlowBoxSignalStructs.UnselectAllSignal> Signal_UnselectAll(this GtkFlowBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkFlowBoxSignalStructs.UnselectAllSignal> obs) =>
+		{
+			GtkFlowBoxSignalDelegates.UnselectAll handler = (GtkFlowBoxHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkFlowBoxSignalStructs.UnselectAllSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkFlowBoxSignalStructs
+{
+
+public struct ActivateCursorChildSignal
+{
+	public GtkFlowBoxHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ChildActivatedSignal
+{
+	public GtkFlowBoxHandle Self;
+	public GtkFlowBoxChildHandle Child;
+	public IntPtr UserData;
+}
+
+public struct MoveCursorSignal
+{
+	public GtkFlowBoxHandle Self;
+	public GtkMovementStep Step;
+	public int Count;
+	public bool Extend;
+	public bool Modify;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct SelectAllSignal
+{
+	public GtkFlowBoxHandle Self;
+	public IntPtr UserData;
+}
+
+public struct SelectedChildrenChangedSignal
+{
+	public GtkFlowBoxHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ToggleCursorChildSignal
+{
+	public GtkFlowBoxHandle Self;
+	public IntPtr UserData;
+}
+
+public struct UnselectAllSignal
+{
+	public GtkFlowBoxHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkFlowBoxSignalDelegates

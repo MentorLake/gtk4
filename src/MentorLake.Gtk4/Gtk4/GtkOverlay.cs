@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,46 @@ public class GtkOverlayHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildab
 
 public static class GtkOverlaySignalExtensions
 {
-	public static GtkOverlayHandle Signal_GetChildPosition(this GtkOverlayHandle instance, GtkOverlaySignalDelegates.GetChildPosition handler)
+
+	public static IObservable<GtkOverlaySignalStructs.GetChildPositionSignal> Signal_GetChildPosition(this GtkOverlayHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "get_child_position", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkOverlaySignalStructs.GetChildPositionSignal> obs) =>
+		{
+			GtkOverlaySignalDelegates.GetChildPosition handler = (GtkOverlayHandle self, GtkWidgetHandle widget, out GdkRectangle allocation, IntPtr user_data) =>
+			{
+				allocation = default;
+
+				var signalStruct = new GtkOverlaySignalStructs.GetChildPositionSignal()
+				{
+					Self = self, Widget = widget, Allocation = allocation, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "get_child_position", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkOverlaySignalStructs
+{
+
+public struct GetChildPositionSignal
+{
+	public GtkOverlayHandle Self;
+	public GtkWidgetHandle Widget;
+	public GdkRectangle Allocation;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
 }
 
 public static class GtkOverlaySignalDelegates

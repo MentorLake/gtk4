@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -20,11 +22,44 @@ public class GtkFilterHandle : GObjectHandle
 
 public static class GtkFilterSignalExtensions
 {
-	public static GtkFilterHandle Signal_Changed(this GtkFilterHandle instance, GtkFilterSignalDelegates.Changed handler)
+
+	public static IObservable<GtkFilterSignalStructs.ChangedSignal> Signal_Changed(this GtkFilterHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkFilterSignalStructs.ChangedSignal> obs) =>
+		{
+			GtkFilterSignalDelegates.Changed handler = (GtkFilterHandle self, GtkFilterChange change, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkFilterSignalStructs.ChangedSignal()
+				{
+					Self = self, Change = change, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkFilterSignalStructs
+{
+
+public struct ChangedSignal
+{
+	public GtkFilterHandle Self;
+	public GtkFilterChange Change;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkFilterSignalDelegates

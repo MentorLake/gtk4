@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,21 +27,110 @@ public class GtkAppChooserButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, G
 
 public static class GtkAppChooserButtonSignalExtensions
 {
-	public static GtkAppChooserButtonHandle Signal_Activate(this GtkAppChooserButtonHandle instance, GtkAppChooserButtonSignalDelegates.Activate handler)
+
+	public static IObservable<GtkAppChooserButtonSignalStructs.ActivateSignal> Signal_Activate(this GtkAppChooserButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkAppChooserButtonSignalStructs.ActivateSignal> obs) =>
+		{
+			GtkAppChooserButtonSignalDelegates.Activate handler = (GtkAppChooserButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkAppChooserButtonSignalStructs.ActivateSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkAppChooserButtonHandle Signal_Changed(this GtkAppChooserButtonHandle instance, GtkAppChooserButtonSignalDelegates.Changed handler)
+
+	public static IObservable<GtkAppChooserButtonSignalStructs.ChangedSignal> Signal_Changed(this GtkAppChooserButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkAppChooserButtonSignalStructs.ChangedSignal> obs) =>
+		{
+			GtkAppChooserButtonSignalDelegates.Changed handler = (GtkAppChooserButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkAppChooserButtonSignalStructs.ChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkAppChooserButtonHandle Signal_CustomItemActivated(this GtkAppChooserButtonHandle instance, GtkAppChooserButtonSignalDelegates.CustomItemActivated handler)
+
+	public static IObservable<GtkAppChooserButtonSignalStructs.CustomItemActivatedSignal> Signal_CustomItemActivated(this GtkAppChooserButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "custom_item_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkAppChooserButtonSignalStructs.CustomItemActivatedSignal> obs) =>
+		{
+			GtkAppChooserButtonSignalDelegates.CustomItemActivated handler = (GtkAppChooserButtonHandle self, string item_name, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkAppChooserButtonSignalStructs.CustomItemActivatedSignal()
+				{
+					Self = self, ItemName = item_name, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "custom_item_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkAppChooserButtonSignalStructs
+{
+
+public struct ActivateSignal
+{
+	public GtkAppChooserButtonHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ChangedSignal
+{
+	public GtkAppChooserButtonHandle Self;
+	public IntPtr UserData;
+}
+
+public struct CustomItemActivatedSignal
+{
+	public GtkAppChooserButtonHandle Self;
+	public string ItemName;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkAppChooserButtonSignalDelegates

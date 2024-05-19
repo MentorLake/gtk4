@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,21 +27,114 @@ public class GAppLaunchContextHandle : GObjectHandle
 
 public static class GAppLaunchContextSignalExtensions
 {
-	public static GAppLaunchContextHandle Signal_LaunchFailed(this GAppLaunchContextHandle instance, GAppLaunchContextSignalDelegates.LaunchFailed handler)
+
+	public static IObservable<GAppLaunchContextSignalStructs.LaunchFailedSignal> Signal_LaunchFailed(this GAppLaunchContextHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "launch_failed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GAppLaunchContextSignalStructs.LaunchFailedSignal> obs) =>
+		{
+			GAppLaunchContextSignalDelegates.LaunchFailed handler = (GAppLaunchContextHandle self, string startup_notify_id, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GAppLaunchContextSignalStructs.LaunchFailedSignal()
+				{
+					Self = self, StartupNotifyId = startup_notify_id, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "launch_failed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GAppLaunchContextHandle Signal_LaunchStarted(this GAppLaunchContextHandle instance, GAppLaunchContextSignalDelegates.LaunchStarted handler)
+
+	public static IObservable<GAppLaunchContextSignalStructs.LaunchStartedSignal> Signal_LaunchStarted(this GAppLaunchContextHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "launch_started", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GAppLaunchContextSignalStructs.LaunchStartedSignal> obs) =>
+		{
+			GAppLaunchContextSignalDelegates.LaunchStarted handler = (GAppLaunchContextHandle self, GAppInfoHandle info, GVariantHandle platform_data, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GAppLaunchContextSignalStructs.LaunchStartedSignal()
+				{
+					Self = self, Info = info, PlatformData = platform_data, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "launch_started", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GAppLaunchContextHandle Signal_Launched(this GAppLaunchContextHandle instance, GAppLaunchContextSignalDelegates.Launched handler)
+
+	public static IObservable<GAppLaunchContextSignalStructs.LaunchedSignal> Signal_Launched(this GAppLaunchContextHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "launched", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GAppLaunchContextSignalStructs.LaunchedSignal> obs) =>
+		{
+			GAppLaunchContextSignalDelegates.Launched handler = (GAppLaunchContextHandle self, GAppInfoHandle info, GVariantHandle platform_data, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GAppLaunchContextSignalStructs.LaunchedSignal()
+				{
+					Self = self, Info = info, PlatformData = platform_data, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "launched", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GAppLaunchContextSignalStructs
+{
+
+public struct LaunchFailedSignal
+{
+	public GAppLaunchContextHandle Self;
+	public string StartupNotifyId;
+	public IntPtr UserData;
+}
+
+public struct LaunchStartedSignal
+{
+	public GAppLaunchContextHandle Self;
+	public GAppInfoHandle Info;
+	public GVariantHandle PlatformData;
+	public IntPtr UserData;
+}
+
+public struct LaunchedSignal
+{
+	public GAppLaunchContextHandle Self;
+	public GAppInfoHandle Info;
+	public GVariantHandle PlatformData;
+	public IntPtr UserData;
+}
 }
 
 public static class GAppLaunchContextSignalDelegates

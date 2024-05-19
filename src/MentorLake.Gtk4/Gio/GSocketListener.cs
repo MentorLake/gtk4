@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,45 @@ public class GSocketListenerHandle : GObjectHandle
 
 public static class GSocketListenerSignalExtensions
 {
-	public static GSocketListenerHandle Signal_Event(this GSocketListenerHandle instance, GSocketListenerSignalDelegates.Event handler)
+
+	public static IObservable<GSocketListenerSignalStructs.EventSignal> Signal_Event(this GSocketListenerHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GSocketListenerSignalStructs.EventSignal> obs) =>
+		{
+			GSocketListenerSignalDelegates.Event handler = (GSocketListenerHandle self, GSocketListenerEvent @event, GSocketHandle socket, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GSocketListenerSignalStructs.EventSignal()
+				{
+					Self = self, Event = @event, Socket = socket, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GSocketListenerSignalStructs
+{
+
+public struct EventSignal
+{
+	public GSocketListenerHandle Self;
+	public GSocketListenerEvent Event;
+	public GSocketHandle Socket;
+	public IntPtr UserData;
+}
 }
 
 public static class GSocketListenerSignalDelegates

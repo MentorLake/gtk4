@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,21 +27,113 @@ public class GtkTextTagTableHandle : GObjectHandle, GtkBuildableHandle
 
 public static class GtkTextTagTableSignalExtensions
 {
-	public static GtkTextTagTableHandle Signal_TagAdded(this GtkTextTagTableHandle instance, GtkTextTagTableSignalDelegates.TagAdded handler)
+
+	public static IObservable<GtkTextTagTableSignalStructs.TagAddedSignal> Signal_TagAdded(this GtkTextTagTableHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "tag_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextTagTableSignalStructs.TagAddedSignal> obs) =>
+		{
+			GtkTextTagTableSignalDelegates.TagAdded handler = (GtkTextTagTableHandle self, GtkTextTagHandle tag, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextTagTableSignalStructs.TagAddedSignal()
+				{
+					Self = self, Tag = tag, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "tag_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTextTagTableHandle Signal_TagChanged(this GtkTextTagTableHandle instance, GtkTextTagTableSignalDelegates.TagChanged handler)
+
+	public static IObservable<GtkTextTagTableSignalStructs.TagChangedSignal> Signal_TagChanged(this GtkTextTagTableHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "tag_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextTagTableSignalStructs.TagChangedSignal> obs) =>
+		{
+			GtkTextTagTableSignalDelegates.TagChanged handler = (GtkTextTagTableHandle self, GtkTextTagHandle tag, bool size_changed, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextTagTableSignalStructs.TagChangedSignal()
+				{
+					Self = self, Tag = tag, SizeChanged = size_changed, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "tag_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTextTagTableHandle Signal_TagRemoved(this GtkTextTagTableHandle instance, GtkTextTagTableSignalDelegates.TagRemoved handler)
+
+	public static IObservable<GtkTextTagTableSignalStructs.TagRemovedSignal> Signal_TagRemoved(this GtkTextTagTableHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "tag_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextTagTableSignalStructs.TagRemovedSignal> obs) =>
+		{
+			GtkTextTagTableSignalDelegates.TagRemoved handler = (GtkTextTagTableHandle self, GtkTextTagHandle tag, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextTagTableSignalStructs.TagRemovedSignal()
+				{
+					Self = self, Tag = tag, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "tag_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkTextTagTableSignalStructs
+{
+
+public struct TagAddedSignal
+{
+	public GtkTextTagTableHandle Self;
+	public GtkTextTagHandle Tag;
+	public IntPtr UserData;
+}
+
+public struct TagChangedSignal
+{
+	public GtkTextTagTableHandle Self;
+	public GtkTextTagHandle Tag;
+	public bool SizeChanged;
+	public IntPtr UserData;
+}
+
+public struct TagRemovedSignal
+{
+	public GtkTextTagTableHandle Self;
+	public GtkTextTagHandle Tag;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkTextTagTableSignalDelegates

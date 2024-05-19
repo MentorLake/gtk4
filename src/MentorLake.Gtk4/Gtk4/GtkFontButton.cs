@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,16 +32,76 @@ public class GtkFontButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuil
 
 public static class GtkFontButtonSignalExtensions
 {
-	public static GtkFontButtonHandle Signal_Activate(this GtkFontButtonHandle instance, GtkFontButtonSignalDelegates.Activate handler)
+
+	public static IObservable<GtkFontButtonSignalStructs.ActivateSignal> Signal_Activate(this GtkFontButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkFontButtonSignalStructs.ActivateSignal> obs) =>
+		{
+			GtkFontButtonSignalDelegates.Activate handler = (GtkFontButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkFontButtonSignalStructs.ActivateSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkFontButtonHandle Signal_FontSet(this GtkFontButtonHandle instance, GtkFontButtonSignalDelegates.FontSet handler)
+
+	public static IObservable<GtkFontButtonSignalStructs.FontSetSignal> Signal_FontSet(this GtkFontButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "font_set", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkFontButtonSignalStructs.FontSetSignal> obs) =>
+		{
+			GtkFontButtonSignalDelegates.FontSet handler = (GtkFontButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkFontButtonSignalStructs.FontSetSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "font_set", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkFontButtonSignalStructs
+{
+
+public struct ActivateSignal
+{
+	public GtkFontButtonHandle Self;
+	public IntPtr UserData;
+}
+
+public struct FontSetSignal
+{
+	public GtkFontButtonHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkFontButtonSignalDelegates

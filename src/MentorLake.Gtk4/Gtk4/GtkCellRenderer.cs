@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -20,16 +22,78 @@ public class GtkCellRendererHandle : GInitiallyUnownedHandle
 
 public static class GtkCellRendererSignalExtensions
 {
-	public static GtkCellRendererHandle Signal_EditingCanceled(this GtkCellRendererHandle instance, GtkCellRendererSignalDelegates.EditingCanceled handler)
+
+	public static IObservable<GtkCellRendererSignalStructs.EditingCanceledSignal> Signal_EditingCanceled(this GtkCellRendererHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "editing_canceled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkCellRendererSignalStructs.EditingCanceledSignal> obs) =>
+		{
+			GtkCellRendererSignalDelegates.EditingCanceled handler = (GtkCellRendererHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkCellRendererSignalStructs.EditingCanceledSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "editing_canceled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkCellRendererHandle Signal_EditingStarted(this GtkCellRendererHandle instance, GtkCellRendererSignalDelegates.EditingStarted handler)
+
+	public static IObservable<GtkCellRendererSignalStructs.EditingStartedSignal> Signal_EditingStarted(this GtkCellRendererHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "editing_started", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkCellRendererSignalStructs.EditingStartedSignal> obs) =>
+		{
+			GtkCellRendererSignalDelegates.EditingStarted handler = (GtkCellRendererHandle self, GtkCellEditableHandle editable, string path, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkCellRendererSignalStructs.EditingStartedSignal()
+				{
+					Self = self, Editable = editable, Path = path, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "editing_started", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkCellRendererSignalStructs
+{
+
+public struct EditingCanceledSignal
+{
+	public GtkCellRendererHandle Self;
+	public IntPtr UserData;
+}
+
+public struct EditingStartedSignal
+{
+	public GtkCellRendererHandle Self;
+	public GtkCellEditableHandle Editable;
+	public string Path;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkCellRendererSignalDelegates

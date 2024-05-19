@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,11 +32,43 @@ public class GtkExpanderHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuilda
 
 public static class GtkExpanderSignalExtensions
 {
-	public static GtkExpanderHandle Signal_Activate(this GtkExpanderHandle instance, GtkExpanderSignalDelegates.Activate handler)
+
+	public static IObservable<GtkExpanderSignalStructs.ActivateSignal> Signal_Activate(this GtkExpanderHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkExpanderSignalStructs.ActivateSignal> obs) =>
+		{
+			GtkExpanderSignalDelegates.Activate handler = (GtkExpanderHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkExpanderSignalStructs.ActivateSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkExpanderSignalStructs
+{
+
+public struct ActivateSignal
+{
+	public GtkExpanderHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkExpanderSignalDelegates

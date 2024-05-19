@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -35,46 +37,281 @@ public class GtkIconViewHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuilda
 
 public static class GtkIconViewSignalExtensions
 {
-	public static GtkIconViewHandle Signal_ActivateCursorItem(this GtkIconViewHandle instance, GtkIconViewSignalDelegates.ActivateCursorItem handler)
+
+	public static IObservable<GtkIconViewSignalStructs.ActivateCursorItemSignal> Signal_ActivateCursorItem(this GtkIconViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_cursor_item", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkIconViewSignalStructs.ActivateCursorItemSignal> obs) =>
+		{
+			GtkIconViewSignalDelegates.ActivateCursorItem handler = (GtkIconViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkIconViewSignalStructs.ActivateCursorItemSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate_cursor_item", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkIconViewHandle Signal_ItemActivated(this GtkIconViewHandle instance, GtkIconViewSignalDelegates.ItemActivated handler)
+
+	public static IObservable<GtkIconViewSignalStructs.ItemActivatedSignal> Signal_ItemActivated(this GtkIconViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "item_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkIconViewSignalStructs.ItemActivatedSignal> obs) =>
+		{
+			GtkIconViewSignalDelegates.ItemActivated handler = (GtkIconViewHandle self, GtkTreePathHandle path, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkIconViewSignalStructs.ItemActivatedSignal()
+				{
+					Self = self, Path = path, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "item_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkIconViewHandle Signal_MoveCursor(this GtkIconViewHandle instance, GtkIconViewSignalDelegates.MoveCursor handler)
+
+	public static IObservable<GtkIconViewSignalStructs.MoveCursorSignal> Signal_MoveCursor(this GtkIconViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkIconViewSignalStructs.MoveCursorSignal> obs) =>
+		{
+			GtkIconViewSignalDelegates.MoveCursor handler = (GtkIconViewHandle self, ref GtkMovementStep step, int count, bool extend, bool modify, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkIconViewSignalStructs.MoveCursorSignal()
+				{
+					Self = self, Step = step, Count = count, Extend = extend, Modify = modify, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkIconViewHandle Signal_SelectAll(this GtkIconViewHandle instance, GtkIconViewSignalDelegates.SelectAll handler)
+
+	public static IObservable<GtkIconViewSignalStructs.SelectAllSignal> Signal_SelectAll(this GtkIconViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkIconViewSignalStructs.SelectAllSignal> obs) =>
+		{
+			GtkIconViewSignalDelegates.SelectAll handler = (GtkIconViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkIconViewSignalStructs.SelectAllSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkIconViewHandle Signal_SelectCursorItem(this GtkIconViewHandle instance, GtkIconViewSignalDelegates.SelectCursorItem handler)
+
+	public static IObservable<GtkIconViewSignalStructs.SelectCursorItemSignal> Signal_SelectCursorItem(this GtkIconViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "select_cursor_item", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkIconViewSignalStructs.SelectCursorItemSignal> obs) =>
+		{
+			GtkIconViewSignalDelegates.SelectCursorItem handler = (GtkIconViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkIconViewSignalStructs.SelectCursorItemSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "select_cursor_item", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkIconViewHandle Signal_SelectionChanged(this GtkIconViewHandle instance, GtkIconViewSignalDelegates.SelectionChanged handler)
+
+	public static IObservable<GtkIconViewSignalStructs.SelectionChangedSignal> Signal_SelectionChanged(this GtkIconViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "selection_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkIconViewSignalStructs.SelectionChangedSignal> obs) =>
+		{
+			GtkIconViewSignalDelegates.SelectionChanged handler = (GtkIconViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkIconViewSignalStructs.SelectionChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "selection_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkIconViewHandle Signal_ToggleCursorItem(this GtkIconViewHandle instance, GtkIconViewSignalDelegates.ToggleCursorItem handler)
+
+	public static IObservable<GtkIconViewSignalStructs.ToggleCursorItemSignal> Signal_ToggleCursorItem(this GtkIconViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_item", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkIconViewSignalStructs.ToggleCursorItemSignal> obs) =>
+		{
+			GtkIconViewSignalDelegates.ToggleCursorItem handler = (GtkIconViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkIconViewSignalStructs.ToggleCursorItemSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_item", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkIconViewHandle Signal_UnselectAll(this GtkIconViewHandle instance, GtkIconViewSignalDelegates.UnselectAll handler)
+
+	public static IObservable<GtkIconViewSignalStructs.UnselectAllSignal> Signal_UnselectAll(this GtkIconViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkIconViewSignalStructs.UnselectAllSignal> obs) =>
+		{
+			GtkIconViewSignalDelegates.UnselectAll handler = (GtkIconViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkIconViewSignalStructs.UnselectAllSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkIconViewSignalStructs
+{
+
+public struct ActivateCursorItemSignal
+{
+	public GtkIconViewHandle Self;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct ItemActivatedSignal
+{
+	public GtkIconViewHandle Self;
+	public GtkTreePathHandle Path;
+	public IntPtr UserData;
+}
+
+public struct MoveCursorSignal
+{
+	public GtkIconViewHandle Self;
+	public GtkMovementStep Step;
+	public int Count;
+	public bool Extend;
+	public bool Modify;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct SelectAllSignal
+{
+	public GtkIconViewHandle Self;
+	public IntPtr UserData;
+}
+
+public struct SelectCursorItemSignal
+{
+	public GtkIconViewHandle Self;
+	public IntPtr UserData;
+}
+
+public struct SelectionChangedSignal
+{
+	public GtkIconViewHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ToggleCursorItemSignal
+{
+	public GtkIconViewHandle Self;
+	public IntPtr UserData;
+}
+
+public struct UnselectAllSignal
+{
+	public GtkIconViewHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkIconViewSignalDelegates

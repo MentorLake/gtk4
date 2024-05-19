@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,26 +27,147 @@ public class GtkEventControllerScrollHandle : GtkEventControllerHandle
 
 public static class GtkEventControllerScrollSignalExtensions
 {
-	public static GtkEventControllerScrollHandle Signal_Decelerate(this GtkEventControllerScrollHandle instance, GtkEventControllerScrollSignalDelegates.Decelerate handler)
+
+	public static IObservable<GtkEventControllerScrollSignalStructs.DecelerateSignal> Signal_Decelerate(this GtkEventControllerScrollHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "decelerate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEventControllerScrollSignalStructs.DecelerateSignal> obs) =>
+		{
+			GtkEventControllerScrollSignalDelegates.Decelerate handler = (GtkEventControllerScrollHandle self, double vel_x, double vel_y, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEventControllerScrollSignalStructs.DecelerateSignal()
+				{
+					Self = self, VelX = vel_x, VelY = vel_y, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "decelerate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkEventControllerScrollHandle Signal_Scroll(this GtkEventControllerScrollHandle instance, GtkEventControllerScrollSignalDelegates.Scroll handler)
+
+	public static IObservable<GtkEventControllerScrollSignalStructs.ScrollSignal> Signal_Scroll(this GtkEventControllerScrollHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "scroll", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEventControllerScrollSignalStructs.ScrollSignal> obs) =>
+		{
+			GtkEventControllerScrollSignalDelegates.Scroll handler = (GtkEventControllerScrollHandle self, double dx, double dy, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEventControllerScrollSignalStructs.ScrollSignal()
+				{
+					Self = self, Dx = dx, Dy = dy, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "scroll", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkEventControllerScrollHandle Signal_ScrollBegin(this GtkEventControllerScrollHandle instance, GtkEventControllerScrollSignalDelegates.ScrollBegin handler)
+
+	public static IObservable<GtkEventControllerScrollSignalStructs.ScrollBeginSignal> Signal_ScrollBegin(this GtkEventControllerScrollHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "scroll_begin", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEventControllerScrollSignalStructs.ScrollBeginSignal> obs) =>
+		{
+			GtkEventControllerScrollSignalDelegates.ScrollBegin handler = (GtkEventControllerScrollHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEventControllerScrollSignalStructs.ScrollBeginSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "scroll_begin", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkEventControllerScrollHandle Signal_ScrollEnd(this GtkEventControllerScrollHandle instance, GtkEventControllerScrollSignalDelegates.ScrollEnd handler)
+
+	public static IObservable<GtkEventControllerScrollSignalStructs.ScrollEndSignal> Signal_ScrollEnd(this GtkEventControllerScrollHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "scroll_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEventControllerScrollSignalStructs.ScrollEndSignal> obs) =>
+		{
+			GtkEventControllerScrollSignalDelegates.ScrollEnd handler = (GtkEventControllerScrollHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEventControllerScrollSignalStructs.ScrollEndSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "scroll_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkEventControllerScrollSignalStructs
+{
+
+public struct DecelerateSignal
+{
+	public GtkEventControllerScrollHandle Self;
+	public double VelX;
+	public double VelY;
+	public IntPtr UserData;
+}
+
+public struct ScrollSignal
+{
+	public GtkEventControllerScrollHandle Self;
+	public double Dx;
+	public double Dy;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct ScrollBeginSignal
+{
+	public GtkEventControllerScrollHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ScrollEndSignal
+{
+	public GtkEventControllerScrollHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkEventControllerScrollSignalDelegates

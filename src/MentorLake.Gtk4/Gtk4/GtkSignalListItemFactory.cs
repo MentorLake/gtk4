@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,26 +27,146 @@ public class GtkSignalListItemFactoryHandle : GtkListItemFactoryHandle
 
 public static class GtkSignalListItemFactorySignalExtensions
 {
-	public static GtkSignalListItemFactoryHandle Signal_Bind(this GtkSignalListItemFactoryHandle instance, GtkSignalListItemFactorySignalDelegates.Bind handler)
+
+	public static IObservable<GtkSignalListItemFactorySignalStructs.BindSignal> Signal_Bind(this GtkSignalListItemFactoryHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "bind", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkSignalListItemFactorySignalStructs.BindSignal> obs) =>
+		{
+			GtkSignalListItemFactorySignalDelegates.Bind handler = (GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkSignalListItemFactorySignalStructs.BindSignal()
+				{
+					Self = self, Object = @object, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "bind", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkSignalListItemFactoryHandle Signal_Setup(this GtkSignalListItemFactoryHandle instance, GtkSignalListItemFactorySignalDelegates.Setup handler)
+
+	public static IObservable<GtkSignalListItemFactorySignalStructs.SetupSignal> Signal_Setup(this GtkSignalListItemFactoryHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "setup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkSignalListItemFactorySignalStructs.SetupSignal> obs) =>
+		{
+			GtkSignalListItemFactorySignalDelegates.Setup handler = (GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkSignalListItemFactorySignalStructs.SetupSignal()
+				{
+					Self = self, Object = @object, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "setup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkSignalListItemFactoryHandle Signal_Teardown(this GtkSignalListItemFactoryHandle instance, GtkSignalListItemFactorySignalDelegates.Teardown handler)
+
+	public static IObservable<GtkSignalListItemFactorySignalStructs.TeardownSignal> Signal_Teardown(this GtkSignalListItemFactoryHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "teardown", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkSignalListItemFactorySignalStructs.TeardownSignal> obs) =>
+		{
+			GtkSignalListItemFactorySignalDelegates.Teardown handler = (GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkSignalListItemFactorySignalStructs.TeardownSignal()
+				{
+					Self = self, Object = @object, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "teardown", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkSignalListItemFactoryHandle Signal_Unbind(this GtkSignalListItemFactoryHandle instance, GtkSignalListItemFactorySignalDelegates.Unbind handler)
+
+	public static IObservable<GtkSignalListItemFactorySignalStructs.UnbindSignal> Signal_Unbind(this GtkSignalListItemFactoryHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "unbind", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkSignalListItemFactorySignalStructs.UnbindSignal> obs) =>
+		{
+			GtkSignalListItemFactorySignalDelegates.Unbind handler = (GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkSignalListItemFactorySignalStructs.UnbindSignal()
+				{
+					Self = self, Object = @object, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "unbind", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkSignalListItemFactorySignalStructs
+{
+
+public struct BindSignal
+{
+	public GtkSignalListItemFactoryHandle Self;
+	public GObjectHandle Object;
+	public IntPtr UserData;
+}
+
+public struct SetupSignal
+{
+	public GtkSignalListItemFactoryHandle Self;
+	public GObjectHandle Object;
+	public IntPtr UserData;
+}
+
+public struct TeardownSignal
+{
+	public GtkSignalListItemFactoryHandle Self;
+	public GObjectHandle Object;
+	public IntPtr UserData;
+}
+
+public struct UnbindSignal
+{
+	public GtkSignalListItemFactoryHandle Self;
+	public GObjectHandle Object;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkSignalListItemFactorySignalDelegates

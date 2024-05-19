@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,11 +32,44 @@ public class GtkLinkButtonHandle : GtkButtonHandle, GtkAccessibleHandle, GtkActi
 
 public static class GtkLinkButtonSignalExtensions
 {
-	public static GtkLinkButtonHandle Signal_ActivateLink(this GtkLinkButtonHandle instance, GtkLinkButtonSignalDelegates.ActivateLink handler)
+
+	public static IObservable<GtkLinkButtonSignalStructs.ActivateLinkSignal> Signal_ActivateLink(this GtkLinkButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkLinkButtonSignalStructs.ActivateLinkSignal> obs) =>
+		{
+			GtkLinkButtonSignalDelegates.ActivateLink handler = (GtkLinkButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkLinkButtonSignalStructs.ActivateLinkSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkLinkButtonSignalStructs
+{
+
+public struct ActivateLinkSignal
+{
+	public GtkLinkButtonHandle Self;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
 }
 
 public static class GtkLinkButtonSignalDelegates

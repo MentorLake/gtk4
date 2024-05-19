@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,46 @@ public class GSocketClientHandle : GObjectHandle
 
 public static class GSocketClientSignalExtensions
 {
-	public static GSocketClientHandle Signal_Event(this GSocketClientHandle instance, GSocketClientSignalDelegates.Event handler)
+
+	public static IObservable<GSocketClientSignalStructs.EventSignal> Signal_Event(this GSocketClientHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GSocketClientSignalStructs.EventSignal> obs) =>
+		{
+			GSocketClientSignalDelegates.Event handler = (GSocketClientHandle self, GSocketClientEvent @event, GSocketConnectableHandle connectable, GIOStreamHandle connection, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GSocketClientSignalStructs.EventSignal()
+				{
+					Self = self, Event = @event, Connectable = connectable, Connection = connection, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GSocketClientSignalStructs
+{
+
+public struct EventSignal
+{
+	public GSocketClientHandle Self;
+	public GSocketClientEvent Event;
+	public GSocketConnectableHandle Connectable;
+	public GIOStreamHandle Connection;
+	public IntPtr UserData;
+}
 }
 
 public static class GSocketClientSignalDelegates

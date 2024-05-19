@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,71 +32,451 @@ public class GtkWidgetHandle : GInitiallyUnownedHandle, GtkAccessibleHandle, Gtk
 
 public static class GtkWidgetSignalExtensions
 {
-	public static GtkWidgetHandle Signal_Destroy(this GtkWidgetHandle instance, GtkWidgetSignalDelegates.Destroy handler)
+
+	public static IObservable<GtkWidgetSignalStructs.DestroySignal> Signal_Destroy(this GtkWidgetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "destroy", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWidgetSignalStructs.DestroySignal> obs) =>
+		{
+			GtkWidgetSignalDelegates.Destroy handler = (GtkWidgetHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWidgetSignalStructs.DestroySignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "destroy", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkWidgetHandle Signal_DirectionChanged(this GtkWidgetHandle instance, GtkWidgetSignalDelegates.DirectionChanged handler)
+
+	public static IObservable<GtkWidgetSignalStructs.DirectionChangedSignal> Signal_DirectionChanged(this GtkWidgetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "direction_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWidgetSignalStructs.DirectionChangedSignal> obs) =>
+		{
+			GtkWidgetSignalDelegates.DirectionChanged handler = (GtkWidgetHandle self, GtkTextDirection previous_direction, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWidgetSignalStructs.DirectionChangedSignal()
+				{
+					Self = self, PreviousDirection = previous_direction, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "direction_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkWidgetHandle Signal_Hide(this GtkWidgetHandle instance, GtkWidgetSignalDelegates.Hide handler)
+
+	public static IObservable<GtkWidgetSignalStructs.HideSignal> Signal_Hide(this GtkWidgetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "hide", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWidgetSignalStructs.HideSignal> obs) =>
+		{
+			GtkWidgetSignalDelegates.Hide handler = (GtkWidgetHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWidgetSignalStructs.HideSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "hide", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkWidgetHandle Signal_KeynavFailed(this GtkWidgetHandle instance, GtkWidgetSignalDelegates.KeynavFailed handler)
+
+	public static IObservable<GtkWidgetSignalStructs.KeynavFailedSignal> Signal_KeynavFailed(this GtkWidgetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "keynav_failed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWidgetSignalStructs.KeynavFailedSignal> obs) =>
+		{
+			GtkWidgetSignalDelegates.KeynavFailed handler = (GtkWidgetHandle self, GtkDirectionType direction, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWidgetSignalStructs.KeynavFailedSignal()
+				{
+					Self = self, Direction = direction, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "keynav_failed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkWidgetHandle Signal_Map(this GtkWidgetHandle instance, GtkWidgetSignalDelegates.Map handler)
+
+	public static IObservable<GtkWidgetSignalStructs.MapSignal> Signal_Map(this GtkWidgetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "map", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWidgetSignalStructs.MapSignal> obs) =>
+		{
+			GtkWidgetSignalDelegates.Map handler = (GtkWidgetHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWidgetSignalStructs.MapSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "map", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkWidgetHandle Signal_MnemonicActivate(this GtkWidgetHandle instance, GtkWidgetSignalDelegates.MnemonicActivate handler)
+
+	public static IObservable<GtkWidgetSignalStructs.MnemonicActivateSignal> Signal_MnemonicActivate(this GtkWidgetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "mnemonic_activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWidgetSignalStructs.MnemonicActivateSignal> obs) =>
+		{
+			GtkWidgetSignalDelegates.MnemonicActivate handler = (GtkWidgetHandle self, bool group_cycling, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWidgetSignalStructs.MnemonicActivateSignal()
+				{
+					Self = self, GroupCycling = group_cycling, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "mnemonic_activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkWidgetHandle Signal_MoveFocus(this GtkWidgetHandle instance, GtkWidgetSignalDelegates.MoveFocus handler)
+
+	public static IObservable<GtkWidgetSignalStructs.MoveFocusSignal> Signal_MoveFocus(this GtkWidgetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "move_focus", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWidgetSignalStructs.MoveFocusSignal> obs) =>
+		{
+			GtkWidgetSignalDelegates.MoveFocus handler = (GtkWidgetHandle self, GtkDirectionType direction, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWidgetSignalStructs.MoveFocusSignal()
+				{
+					Self = self, Direction = direction, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "move_focus", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkWidgetHandle Signal_QueryTooltip(this GtkWidgetHandle instance, GtkWidgetSignalDelegates.QueryTooltip handler)
+
+	public static IObservable<GtkWidgetSignalStructs.QueryTooltipSignal> Signal_QueryTooltip(this GtkWidgetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "query_tooltip", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWidgetSignalStructs.QueryTooltipSignal> obs) =>
+		{
+			GtkWidgetSignalDelegates.QueryTooltip handler = (GtkWidgetHandle self, int x, int y, bool keyboard_mode, GtkTooltipHandle tooltip, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWidgetSignalStructs.QueryTooltipSignal()
+				{
+					Self = self, X = x, Y = y, KeyboardMode = keyboard_mode, Tooltip = tooltip, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "query_tooltip", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkWidgetHandle Signal_Realize(this GtkWidgetHandle instance, GtkWidgetSignalDelegates.Realize handler)
+
+	public static IObservable<GtkWidgetSignalStructs.RealizeSignal> Signal_Realize(this GtkWidgetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "realize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWidgetSignalStructs.RealizeSignal> obs) =>
+		{
+			GtkWidgetSignalDelegates.Realize handler = (GtkWidgetHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWidgetSignalStructs.RealizeSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "realize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkWidgetHandle Signal_Show(this GtkWidgetHandle instance, GtkWidgetSignalDelegates.Show handler)
+
+	public static IObservable<GtkWidgetSignalStructs.ShowSignal> Signal_Show(this GtkWidgetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "show", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWidgetSignalStructs.ShowSignal> obs) =>
+		{
+			GtkWidgetSignalDelegates.Show handler = (GtkWidgetHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWidgetSignalStructs.ShowSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "show", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkWidgetHandle Signal_StateFlagsChanged(this GtkWidgetHandle instance, GtkWidgetSignalDelegates.StateFlagsChanged handler)
+
+	public static IObservable<GtkWidgetSignalStructs.StateFlagsChangedSignal> Signal_StateFlagsChanged(this GtkWidgetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "state_flags_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWidgetSignalStructs.StateFlagsChangedSignal> obs) =>
+		{
+			GtkWidgetSignalDelegates.StateFlagsChanged handler = (GtkWidgetHandle self, GtkStateFlags flags, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWidgetSignalStructs.StateFlagsChangedSignal()
+				{
+					Self = self, Flags = flags, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "state_flags_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkWidgetHandle Signal_Unmap(this GtkWidgetHandle instance, GtkWidgetSignalDelegates.Unmap handler)
+
+	public static IObservable<GtkWidgetSignalStructs.UnmapSignal> Signal_Unmap(this GtkWidgetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "unmap", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWidgetSignalStructs.UnmapSignal> obs) =>
+		{
+			GtkWidgetSignalDelegates.Unmap handler = (GtkWidgetHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWidgetSignalStructs.UnmapSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "unmap", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkWidgetHandle Signal_Unrealize(this GtkWidgetHandle instance, GtkWidgetSignalDelegates.Unrealize handler)
+
+	public static IObservable<GtkWidgetSignalStructs.UnrealizeSignal> Signal_Unrealize(this GtkWidgetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "unrealize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWidgetSignalStructs.UnrealizeSignal> obs) =>
+		{
+			GtkWidgetSignalDelegates.Unrealize handler = (GtkWidgetHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWidgetSignalStructs.UnrealizeSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "unrealize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkWidgetSignalStructs
+{
+
+public struct DestroySignal
+{
+	public GtkWidgetHandle Self;
+	public IntPtr UserData;
+}
+
+public struct DirectionChangedSignal
+{
+	public GtkWidgetHandle Self;
+	public GtkTextDirection PreviousDirection;
+	public IntPtr UserData;
+}
+
+public struct HideSignal
+{
+	public GtkWidgetHandle Self;
+	public IntPtr UserData;
+}
+
+public struct KeynavFailedSignal
+{
+	public GtkWidgetHandle Self;
+	public GtkDirectionType Direction;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct MapSignal
+{
+	public GtkWidgetHandle Self;
+	public IntPtr UserData;
+}
+
+public struct MnemonicActivateSignal
+{
+	public GtkWidgetHandle Self;
+	public bool GroupCycling;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct MoveFocusSignal
+{
+	public GtkWidgetHandle Self;
+	public GtkDirectionType Direction;
+	public IntPtr UserData;
+}
+
+public struct QueryTooltipSignal
+{
+	public GtkWidgetHandle Self;
+	public int X;
+	public int Y;
+	public bool KeyboardMode;
+	public GtkTooltipHandle Tooltip;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct RealizeSignal
+{
+	public GtkWidgetHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ShowSignal
+{
+	public GtkWidgetHandle Self;
+	public IntPtr UserData;
+}
+
+public struct StateFlagsChangedSignal
+{
+	public GtkWidgetHandle Self;
+	public GtkStateFlags Flags;
+	public IntPtr UserData;
+}
+
+public struct UnmapSignal
+{
+	public GtkWidgetHandle Self;
+	public IntPtr UserData;
+}
+
+public struct UnrealizeSignal
+{
+	public GtkWidgetHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkWidgetSignalDelegates

@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,81 +32,520 @@ public class GtkTextViewHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAccess
 
 public static class GtkTextViewSignalExtensions
 {
-	public static GtkTextViewHandle Signal_Backspace(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.Backspace handler)
+
+	public static IObservable<GtkTextViewSignalStructs.BackspaceSignal> Signal_Backspace(this GtkTextViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "backspace", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextViewSignalStructs.BackspaceSignal> obs) =>
+		{
+			GtkTextViewSignalDelegates.Backspace handler = (GtkTextViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextViewSignalStructs.BackspaceSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "backspace", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTextViewHandle Signal_CopyClipboard(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.CopyClipboard handler)
+
+	public static IObservable<GtkTextViewSignalStructs.CopyClipboardSignal> Signal_CopyClipboard(this GtkTextViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "copy_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextViewSignalStructs.CopyClipboardSignal> obs) =>
+		{
+			GtkTextViewSignalDelegates.CopyClipboard handler = (GtkTextViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextViewSignalStructs.CopyClipboardSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "copy_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTextViewHandle Signal_CutClipboard(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.CutClipboard handler)
+
+	public static IObservable<GtkTextViewSignalStructs.CutClipboardSignal> Signal_CutClipboard(this GtkTextViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "cut_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextViewSignalStructs.CutClipboardSignal> obs) =>
+		{
+			GtkTextViewSignalDelegates.CutClipboard handler = (GtkTextViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextViewSignalStructs.CutClipboardSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "cut_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTextViewHandle Signal_DeleteFromCursor(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.DeleteFromCursor handler)
+
+	public static IObservable<GtkTextViewSignalStructs.DeleteFromCursorSignal> Signal_DeleteFromCursor(this GtkTextViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "delete_from_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextViewSignalStructs.DeleteFromCursorSignal> obs) =>
+		{
+			GtkTextViewSignalDelegates.DeleteFromCursor handler = (GtkTextViewHandle self, ref GtkDeleteType type, int count, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextViewSignalStructs.DeleteFromCursorSignal()
+				{
+					Self = self, Type = type, Count = count, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "delete_from_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTextViewHandle Signal_ExtendSelection(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.ExtendSelection handler)
+
+	public static IObservable<GtkTextViewSignalStructs.ExtendSelectionSignal> Signal_ExtendSelection(this GtkTextViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "extend_selection", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextViewSignalStructs.ExtendSelectionSignal> obs) =>
+		{
+			GtkTextViewSignalDelegates.ExtendSelection handler = (GtkTextViewHandle self, GtkTextExtendSelection granularity, GtkTextIterHandle location, GtkTextIterHandle start, GtkTextIterHandle end, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextViewSignalStructs.ExtendSelectionSignal()
+				{
+					Self = self, Granularity = granularity, Location = location, Start = start, End = end, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "extend_selection", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTextViewHandle Signal_InsertAtCursor(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.InsertAtCursor handler)
+
+	public static IObservable<GtkTextViewSignalStructs.InsertAtCursorSignal> Signal_InsertAtCursor(this GtkTextViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "insert_at_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextViewSignalStructs.InsertAtCursorSignal> obs) =>
+		{
+			GtkTextViewSignalDelegates.InsertAtCursor handler = (GtkTextViewHandle self, string @string, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextViewSignalStructs.InsertAtCursorSignal()
+				{
+					Self = self, String = @string, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "insert_at_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTextViewHandle Signal_InsertEmoji(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.InsertEmoji handler)
+
+	public static IObservable<GtkTextViewSignalStructs.InsertEmojiSignal> Signal_InsertEmoji(this GtkTextViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "insert_emoji", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextViewSignalStructs.InsertEmojiSignal> obs) =>
+		{
+			GtkTextViewSignalDelegates.InsertEmoji handler = (GtkTextViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextViewSignalStructs.InsertEmojiSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "insert_emoji", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTextViewHandle Signal_MoveCursor(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.MoveCursor handler)
+
+	public static IObservable<GtkTextViewSignalStructs.MoveCursorSignal> Signal_MoveCursor(this GtkTextViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextViewSignalStructs.MoveCursorSignal> obs) =>
+		{
+			GtkTextViewSignalDelegates.MoveCursor handler = (GtkTextViewHandle self, ref GtkMovementStep step, int count, bool extend_selection, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextViewSignalStructs.MoveCursorSignal()
+				{
+					Self = self, Step = step, Count = count, ExtendSelection = extend_selection, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTextViewHandle Signal_MoveViewport(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.MoveViewport handler)
+
+	public static IObservable<GtkTextViewSignalStructs.MoveViewportSignal> Signal_MoveViewport(this GtkTextViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "move_viewport", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextViewSignalStructs.MoveViewportSignal> obs) =>
+		{
+			GtkTextViewSignalDelegates.MoveViewport handler = (GtkTextViewHandle self, ref GtkScrollStep step, int count, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextViewSignalStructs.MoveViewportSignal()
+				{
+					Self = self, Step = step, Count = count, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "move_viewport", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTextViewHandle Signal_PasteClipboard(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.PasteClipboard handler)
+
+	public static IObservable<GtkTextViewSignalStructs.PasteClipboardSignal> Signal_PasteClipboard(this GtkTextViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "paste_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextViewSignalStructs.PasteClipboardSignal> obs) =>
+		{
+			GtkTextViewSignalDelegates.PasteClipboard handler = (GtkTextViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextViewSignalStructs.PasteClipboardSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "paste_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTextViewHandle Signal_PreeditChanged(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.PreeditChanged handler)
+
+	public static IObservable<GtkTextViewSignalStructs.PreeditChangedSignal> Signal_PreeditChanged(this GtkTextViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "preedit_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextViewSignalStructs.PreeditChangedSignal> obs) =>
+		{
+			GtkTextViewSignalDelegates.PreeditChanged handler = (GtkTextViewHandle self, string preedit, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextViewSignalStructs.PreeditChangedSignal()
+				{
+					Self = self, Preedit = preedit, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "preedit_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTextViewHandle Signal_SelectAll(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.SelectAll handler)
+
+	public static IObservable<GtkTextViewSignalStructs.SelectAllSignal> Signal_SelectAll(this GtkTextViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextViewSignalStructs.SelectAllSignal> obs) =>
+		{
+			GtkTextViewSignalDelegates.SelectAll handler = (GtkTextViewHandle self, bool select, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextViewSignalStructs.SelectAllSignal()
+				{
+					Self = self, Select = select, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTextViewHandle Signal_SetAnchor(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.SetAnchor handler)
+
+	public static IObservable<GtkTextViewSignalStructs.SetAnchorSignal> Signal_SetAnchor(this GtkTextViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "set_anchor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextViewSignalStructs.SetAnchorSignal> obs) =>
+		{
+			GtkTextViewSignalDelegates.SetAnchor handler = (GtkTextViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextViewSignalStructs.SetAnchorSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "set_anchor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTextViewHandle Signal_ToggleCursorVisible(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.ToggleCursorVisible handler)
+
+	public static IObservable<GtkTextViewSignalStructs.ToggleCursorVisibleSignal> Signal_ToggleCursorVisible(this GtkTextViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_visible", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextViewSignalStructs.ToggleCursorVisibleSignal> obs) =>
+		{
+			GtkTextViewSignalDelegates.ToggleCursorVisible handler = (GtkTextViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextViewSignalStructs.ToggleCursorVisibleSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_visible", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTextViewHandle Signal_ToggleOverwrite(this GtkTextViewHandle instance, GtkTextViewSignalDelegates.ToggleOverwrite handler)
+
+	public static IObservable<GtkTextViewSignalStructs.ToggleOverwriteSignal> Signal_ToggleOverwrite(this GtkTextViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "toggle_overwrite", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTextViewSignalStructs.ToggleOverwriteSignal> obs) =>
+		{
+			GtkTextViewSignalDelegates.ToggleOverwrite handler = (GtkTextViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTextViewSignalStructs.ToggleOverwriteSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "toggle_overwrite", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkTextViewSignalStructs
+{
+
+public struct BackspaceSignal
+{
+	public GtkTextViewHandle Self;
+	public IntPtr UserData;
+}
+
+public struct CopyClipboardSignal
+{
+	public GtkTextViewHandle Self;
+	public IntPtr UserData;
+}
+
+public struct CutClipboardSignal
+{
+	public GtkTextViewHandle Self;
+	public IntPtr UserData;
+}
+
+public struct DeleteFromCursorSignal
+{
+	public GtkTextViewHandle Self;
+	public GtkDeleteType Type;
+	public int Count;
+	public IntPtr UserData;
+}
+
+public struct ExtendSelectionSignal
+{
+	public GtkTextViewHandle Self;
+	public GtkTextExtendSelection Granularity;
+	public GtkTextIterHandle Location;
+	public GtkTextIterHandle Start;
+	public GtkTextIterHandle End;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct InsertAtCursorSignal
+{
+	public GtkTextViewHandle Self;
+	public string String;
+	public IntPtr UserData;
+}
+
+public struct InsertEmojiSignal
+{
+	public GtkTextViewHandle Self;
+	public IntPtr UserData;
+}
+
+public struct MoveCursorSignal
+{
+	public GtkTextViewHandle Self;
+	public GtkMovementStep Step;
+	public int Count;
+	public bool ExtendSelection;
+	public IntPtr UserData;
+}
+
+public struct MoveViewportSignal
+{
+	public GtkTextViewHandle Self;
+	public GtkScrollStep Step;
+	public int Count;
+	public IntPtr UserData;
+}
+
+public struct PasteClipboardSignal
+{
+	public GtkTextViewHandle Self;
+	public IntPtr UserData;
+}
+
+public struct PreeditChangedSignal
+{
+	public GtkTextViewHandle Self;
+	public string Preedit;
+	public IntPtr UserData;
+}
+
+public struct SelectAllSignal
+{
+	public GtkTextViewHandle Self;
+	public bool Select;
+	public IntPtr UserData;
+}
+
+public struct SetAnchorSignal
+{
+	public GtkTextViewHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ToggleCursorVisibleSignal
+{
+	public GtkTextViewHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ToggleOverwriteSignal
+{
+	public GtkTextViewHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkTextViewSignalDelegates

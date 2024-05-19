@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,16 +32,76 @@ public class GUnixMountMonitorHandle : GObjectHandle
 
 public static class GUnixMountMonitorSignalExtensions
 {
-	public static GUnixMountMonitorHandle Signal_MountpointsChanged(this GUnixMountMonitorHandle instance, GUnixMountMonitorSignalDelegates.MountpointsChanged handler)
+
+	public static IObservable<GUnixMountMonitorSignalStructs.MountpointsChangedSignal> Signal_MountpointsChanged(this GUnixMountMonitorHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "mountpoints_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GUnixMountMonitorSignalStructs.MountpointsChangedSignal> obs) =>
+		{
+			GUnixMountMonitorSignalDelegates.MountpointsChanged handler = (GUnixMountMonitorHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GUnixMountMonitorSignalStructs.MountpointsChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "mountpoints_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GUnixMountMonitorHandle Signal_MountsChanged(this GUnixMountMonitorHandle instance, GUnixMountMonitorSignalDelegates.MountsChanged handler)
+
+	public static IObservable<GUnixMountMonitorSignalStructs.MountsChangedSignal> Signal_MountsChanged(this GUnixMountMonitorHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "mounts_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GUnixMountMonitorSignalStructs.MountsChangedSignal> obs) =>
+		{
+			GUnixMountMonitorSignalDelegates.MountsChanged handler = (GUnixMountMonitorHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GUnixMountMonitorSignalStructs.MountsChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "mounts_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GUnixMountMonitorSignalStructs
+{
+
+public struct MountpointsChangedSignal
+{
+	public GUnixMountMonitorHandle Self;
+	public IntPtr UserData;
+}
+
+public struct MountsChangedSignal
+{
+	public GUnixMountMonitorHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GUnixMountMonitorSignalDelegates

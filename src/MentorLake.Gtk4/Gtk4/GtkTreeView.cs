@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,81 +32,533 @@ public class GtkTreeViewHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuilda
 
 public static class GtkTreeViewSignalExtensions
 {
-	public static GtkTreeViewHandle Signal_ColumnsChanged(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.ColumnsChanged handler)
+
+	public static IObservable<GtkTreeViewSignalStructs.ColumnsChangedSignal> Signal_ColumnsChanged(this GtkTreeViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "columns_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTreeViewSignalStructs.ColumnsChangedSignal> obs) =>
+		{
+			GtkTreeViewSignalDelegates.ColumnsChanged handler = (GtkTreeViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTreeViewSignalStructs.ColumnsChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "columns_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTreeViewHandle Signal_CursorChanged(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.CursorChanged handler)
+
+	public static IObservable<GtkTreeViewSignalStructs.CursorChangedSignal> Signal_CursorChanged(this GtkTreeViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "cursor_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTreeViewSignalStructs.CursorChangedSignal> obs) =>
+		{
+			GtkTreeViewSignalDelegates.CursorChanged handler = (GtkTreeViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTreeViewSignalStructs.CursorChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "cursor_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTreeViewHandle Signal_ExpandCollapseCursorRow(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.ExpandCollapseCursorRow handler)
+
+	public static IObservable<GtkTreeViewSignalStructs.ExpandCollapseCursorRowSignal> Signal_ExpandCollapseCursorRow(this GtkTreeViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "expand_collapse_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTreeViewSignalStructs.ExpandCollapseCursorRowSignal> obs) =>
+		{
+			GtkTreeViewSignalDelegates.ExpandCollapseCursorRow handler = (GtkTreeViewHandle self, bool @object, bool p0, bool p1, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTreeViewSignalStructs.ExpandCollapseCursorRowSignal()
+				{
+					Self = self, Object = @object, P0 = p0, P1 = p1, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "expand_collapse_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTreeViewHandle Signal_MoveCursor(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.MoveCursor handler)
+
+	public static IObservable<GtkTreeViewSignalStructs.MoveCursorSignal> Signal_MoveCursor(this GtkTreeViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTreeViewSignalStructs.MoveCursorSignal> obs) =>
+		{
+			GtkTreeViewSignalDelegates.MoveCursor handler = (GtkTreeViewHandle self, ref GtkMovementStep step, int direction, bool extend, bool modify, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTreeViewSignalStructs.MoveCursorSignal()
+				{
+					Self = self, Step = step, Direction = direction, Extend = extend, Modify = modify, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTreeViewHandle Signal_RowActivated(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.RowActivated handler)
+
+	public static IObservable<GtkTreeViewSignalStructs.RowActivatedSignal> Signal_RowActivated(this GtkTreeViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "row_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTreeViewSignalStructs.RowActivatedSignal> obs) =>
+		{
+			GtkTreeViewSignalDelegates.RowActivated handler = (GtkTreeViewHandle self, GtkTreePathHandle path, GtkTreeViewColumnHandle column, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTreeViewSignalStructs.RowActivatedSignal()
+				{
+					Self = self, Path = path, Column = column, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "row_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTreeViewHandle Signal_RowCollapsed(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.RowCollapsed handler)
+
+	public static IObservable<GtkTreeViewSignalStructs.RowCollapsedSignal> Signal_RowCollapsed(this GtkTreeViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "row_collapsed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTreeViewSignalStructs.RowCollapsedSignal> obs) =>
+		{
+			GtkTreeViewSignalDelegates.RowCollapsed handler = (GtkTreeViewHandle self, GtkTreeIterHandle iter, GtkTreePathHandle path, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTreeViewSignalStructs.RowCollapsedSignal()
+				{
+					Self = self, Iter = iter, Path = path, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "row_collapsed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTreeViewHandle Signal_RowExpanded(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.RowExpanded handler)
+
+	public static IObservable<GtkTreeViewSignalStructs.RowExpandedSignal> Signal_RowExpanded(this GtkTreeViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "row_expanded", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTreeViewSignalStructs.RowExpandedSignal> obs) =>
+		{
+			GtkTreeViewSignalDelegates.RowExpanded handler = (GtkTreeViewHandle self, GtkTreeIterHandle iter, GtkTreePathHandle path, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTreeViewSignalStructs.RowExpandedSignal()
+				{
+					Self = self, Iter = iter, Path = path, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "row_expanded", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTreeViewHandle Signal_SelectAll(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.SelectAll handler)
+
+	public static IObservable<GtkTreeViewSignalStructs.SelectAllSignal> Signal_SelectAll(this GtkTreeViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTreeViewSignalStructs.SelectAllSignal> obs) =>
+		{
+			GtkTreeViewSignalDelegates.SelectAll handler = (GtkTreeViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTreeViewSignalStructs.SelectAllSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "select_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTreeViewHandle Signal_SelectCursorParent(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.SelectCursorParent handler)
+
+	public static IObservable<GtkTreeViewSignalStructs.SelectCursorParentSignal> Signal_SelectCursorParent(this GtkTreeViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "select_cursor_parent", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTreeViewSignalStructs.SelectCursorParentSignal> obs) =>
+		{
+			GtkTreeViewSignalDelegates.SelectCursorParent handler = (GtkTreeViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTreeViewSignalStructs.SelectCursorParentSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "select_cursor_parent", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTreeViewHandle Signal_SelectCursorRow(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.SelectCursorRow handler)
+
+	public static IObservable<GtkTreeViewSignalStructs.SelectCursorRowSignal> Signal_SelectCursorRow(this GtkTreeViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "select_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTreeViewSignalStructs.SelectCursorRowSignal> obs) =>
+		{
+			GtkTreeViewSignalDelegates.SelectCursorRow handler = (GtkTreeViewHandle self, bool @object, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTreeViewSignalStructs.SelectCursorRowSignal()
+				{
+					Self = self, Object = @object, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "select_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTreeViewHandle Signal_StartInteractiveSearch(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.StartInteractiveSearch handler)
+
+	public static IObservable<GtkTreeViewSignalStructs.StartInteractiveSearchSignal> Signal_StartInteractiveSearch(this GtkTreeViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "start_interactive_search", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTreeViewSignalStructs.StartInteractiveSearchSignal> obs) =>
+		{
+			GtkTreeViewSignalDelegates.StartInteractiveSearch handler = (GtkTreeViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTreeViewSignalStructs.StartInteractiveSearchSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "start_interactive_search", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTreeViewHandle Signal_TestCollapseRow(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.TestCollapseRow handler)
+
+	public static IObservable<GtkTreeViewSignalStructs.TestCollapseRowSignal> Signal_TestCollapseRow(this GtkTreeViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "test_collapse_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTreeViewSignalStructs.TestCollapseRowSignal> obs) =>
+		{
+			GtkTreeViewSignalDelegates.TestCollapseRow handler = (GtkTreeViewHandle self, GtkTreeIterHandle iter, GtkTreePathHandle path, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTreeViewSignalStructs.TestCollapseRowSignal()
+				{
+					Self = self, Iter = iter, Path = path, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "test_collapse_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTreeViewHandle Signal_TestExpandRow(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.TestExpandRow handler)
+
+	public static IObservable<GtkTreeViewSignalStructs.TestExpandRowSignal> Signal_TestExpandRow(this GtkTreeViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "test_expand_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTreeViewSignalStructs.TestExpandRowSignal> obs) =>
+		{
+			GtkTreeViewSignalDelegates.TestExpandRow handler = (GtkTreeViewHandle self, GtkTreeIterHandle iter, GtkTreePathHandle path, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTreeViewSignalStructs.TestExpandRowSignal()
+				{
+					Self = self, Iter = iter, Path = path, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "test_expand_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTreeViewHandle Signal_ToggleCursorRow(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.ToggleCursorRow handler)
+
+	public static IObservable<GtkTreeViewSignalStructs.ToggleCursorRowSignal> Signal_ToggleCursorRow(this GtkTreeViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTreeViewSignalStructs.ToggleCursorRowSignal> obs) =>
+		{
+			GtkTreeViewSignalDelegates.ToggleCursorRow handler = (GtkTreeViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTreeViewSignalStructs.ToggleCursorRowSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "toggle_cursor_row", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkTreeViewHandle Signal_UnselectAll(this GtkTreeViewHandle instance, GtkTreeViewSignalDelegates.UnselectAll handler)
+
+	public static IObservable<GtkTreeViewSignalStructs.UnselectAllSignal> Signal_UnselectAll(this GtkTreeViewHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkTreeViewSignalStructs.UnselectAllSignal> obs) =>
+		{
+			GtkTreeViewSignalDelegates.UnselectAll handler = (GtkTreeViewHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkTreeViewSignalStructs.UnselectAllSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "unselect_all", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkTreeViewSignalStructs
+{
+
+public struct ColumnsChangedSignal
+{
+	public GtkTreeViewHandle Self;
+	public IntPtr UserData;
+}
+
+public struct CursorChangedSignal
+{
+	public GtkTreeViewHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ExpandCollapseCursorRowSignal
+{
+	public GtkTreeViewHandle Self;
+	public bool Object;
+	public bool P0;
+	public bool P1;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct MoveCursorSignal
+{
+	public GtkTreeViewHandle Self;
+	public GtkMovementStep Step;
+	public int Direction;
+	public bool Extend;
+	public bool Modify;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct RowActivatedSignal
+{
+	public GtkTreeViewHandle Self;
+	public GtkTreePathHandle Path;
+	public GtkTreeViewColumnHandle Column;
+	public IntPtr UserData;
+}
+
+public struct RowCollapsedSignal
+{
+	public GtkTreeViewHandle Self;
+	public GtkTreeIterHandle Iter;
+	public GtkTreePathHandle Path;
+	public IntPtr UserData;
+}
+
+public struct RowExpandedSignal
+{
+	public GtkTreeViewHandle Self;
+	public GtkTreeIterHandle Iter;
+	public GtkTreePathHandle Path;
+	public IntPtr UserData;
+}
+
+public struct SelectAllSignal
+{
+	public GtkTreeViewHandle Self;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct SelectCursorParentSignal
+{
+	public GtkTreeViewHandle Self;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct SelectCursorRowSignal
+{
+	public GtkTreeViewHandle Self;
+	public bool Object;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct StartInteractiveSearchSignal
+{
+	public GtkTreeViewHandle Self;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct TestCollapseRowSignal
+{
+	public GtkTreeViewHandle Self;
+	public GtkTreeIterHandle Iter;
+	public GtkTreePathHandle Path;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct TestExpandRowSignal
+{
+	public GtkTreeViewHandle Self;
+	public GtkTreeIterHandle Iter;
+	public GtkTreePathHandle Path;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct ToggleCursorRowSignal
+{
+	public GtkTreeViewHandle Self;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct UnselectAllSignal
+{
+	public GtkTreeViewHandle Self;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
 }
 
 public static class GtkTreeViewSignalDelegates

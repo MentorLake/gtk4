@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,61 +27,392 @@ public class GtkPrintOperationHandle : GObjectHandle, GtkPrintOperationPreviewHa
 
 public static class GtkPrintOperationSignalExtensions
 {
-	public static GtkPrintOperationHandle Signal_BeginPrint(this GtkPrintOperationHandle instance, GtkPrintOperationSignalDelegates.BeginPrint handler)
+
+	public static IObservable<GtkPrintOperationSignalStructs.BeginPrintSignal> Signal_BeginPrint(this GtkPrintOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "begin_print", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.BeginPrintSignal> obs) =>
+		{
+			GtkPrintOperationSignalDelegates.BeginPrint handler = (GtkPrintOperationHandle self, GtkPrintContextHandle context, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPrintOperationSignalStructs.BeginPrintSignal()
+				{
+					Self = self, Context = context, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "begin_print", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkPrintOperationHandle Signal_CreateCustomWidget(this GtkPrintOperationHandle instance, GtkPrintOperationSignalDelegates.CreateCustomWidget handler)
+
+	public static IObservable<GtkPrintOperationSignalStructs.CreateCustomWidgetSignal> Signal_CreateCustomWidget(this GtkPrintOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "create_custom_widget", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.CreateCustomWidgetSignal> obs) =>
+		{
+			GtkPrintOperationSignalDelegates.CreateCustomWidget handler = (GtkPrintOperationHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPrintOperationSignalStructs.CreateCustomWidgetSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "create_custom_widget", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkPrintOperationHandle Signal_CustomWidgetApply(this GtkPrintOperationHandle instance, GtkPrintOperationSignalDelegates.CustomWidgetApply handler)
+
+	public static IObservable<GtkPrintOperationSignalStructs.CustomWidgetApplySignal> Signal_CustomWidgetApply(this GtkPrintOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "custom_widget_apply", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.CustomWidgetApplySignal> obs) =>
+		{
+			GtkPrintOperationSignalDelegates.CustomWidgetApply handler = (GtkPrintOperationHandle self, GtkWidgetHandle widget, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPrintOperationSignalStructs.CustomWidgetApplySignal()
+				{
+					Self = self, Widget = widget, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "custom_widget_apply", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkPrintOperationHandle Signal_Done(this GtkPrintOperationHandle instance, GtkPrintOperationSignalDelegates.Done handler)
+
+	public static IObservable<GtkPrintOperationSignalStructs.DoneSignal> Signal_Done(this GtkPrintOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "done", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.DoneSignal> obs) =>
+		{
+			GtkPrintOperationSignalDelegates.Done handler = (GtkPrintOperationHandle self, GtkPrintOperationResult result, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPrintOperationSignalStructs.DoneSignal()
+				{
+					Self = self, Result = result, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "done", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkPrintOperationHandle Signal_DrawPage(this GtkPrintOperationHandle instance, GtkPrintOperationSignalDelegates.DrawPage handler)
+
+	public static IObservable<GtkPrintOperationSignalStructs.DrawPageSignal> Signal_DrawPage(this GtkPrintOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "draw_page", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.DrawPageSignal> obs) =>
+		{
+			GtkPrintOperationSignalDelegates.DrawPage handler = (GtkPrintOperationHandle self, GtkPrintContextHandle context, int page_nr, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPrintOperationSignalStructs.DrawPageSignal()
+				{
+					Self = self, Context = context, PageNr = page_nr, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "draw_page", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkPrintOperationHandle Signal_EndPrint(this GtkPrintOperationHandle instance, GtkPrintOperationSignalDelegates.EndPrint handler)
+
+	public static IObservable<GtkPrintOperationSignalStructs.EndPrintSignal> Signal_EndPrint(this GtkPrintOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "end_print", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.EndPrintSignal> obs) =>
+		{
+			GtkPrintOperationSignalDelegates.EndPrint handler = (GtkPrintOperationHandle self, GtkPrintContextHandle context, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPrintOperationSignalStructs.EndPrintSignal()
+				{
+					Self = self, Context = context, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "end_print", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkPrintOperationHandle Signal_Paginate(this GtkPrintOperationHandle instance, GtkPrintOperationSignalDelegates.Paginate handler)
+
+	public static IObservable<GtkPrintOperationSignalStructs.PaginateSignal> Signal_Paginate(this GtkPrintOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "paginate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.PaginateSignal> obs) =>
+		{
+			GtkPrintOperationSignalDelegates.Paginate handler = (GtkPrintOperationHandle self, GtkPrintContextHandle context, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPrintOperationSignalStructs.PaginateSignal()
+				{
+					Self = self, Context = context, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "paginate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkPrintOperationHandle Signal_Preview(this GtkPrintOperationHandle instance, GtkPrintOperationSignalDelegates.Preview handler)
+
+	public static IObservable<GtkPrintOperationSignalStructs.PreviewSignal> Signal_Preview(this GtkPrintOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "preview", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.PreviewSignal> obs) =>
+		{
+			GtkPrintOperationSignalDelegates.Preview handler = (GtkPrintOperationHandle self, GtkPrintOperationPreviewHandle preview, GtkPrintContextHandle context, GtkWindowHandle parent, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPrintOperationSignalStructs.PreviewSignal()
+				{
+					Self = self, Preview = preview, Context = context, Parent = parent, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "preview", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkPrintOperationHandle Signal_RequestPageSetup(this GtkPrintOperationHandle instance, GtkPrintOperationSignalDelegates.RequestPageSetup handler)
+
+	public static IObservable<GtkPrintOperationSignalStructs.RequestPageSetupSignal> Signal_RequestPageSetup(this GtkPrintOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "request_page_setup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.RequestPageSetupSignal> obs) =>
+		{
+			GtkPrintOperationSignalDelegates.RequestPageSetup handler = (GtkPrintOperationHandle self, GtkPrintContextHandle context, int page_nr, GtkPageSetupHandle setup, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPrintOperationSignalStructs.RequestPageSetupSignal()
+				{
+					Self = self, Context = context, PageNr = page_nr, Setup = setup, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "request_page_setup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkPrintOperationHandle Signal_StatusChanged(this GtkPrintOperationHandle instance, GtkPrintOperationSignalDelegates.StatusChanged handler)
+
+	public static IObservable<GtkPrintOperationSignalStructs.StatusChangedSignal> Signal_StatusChanged(this GtkPrintOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "status_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.StatusChangedSignal> obs) =>
+		{
+			GtkPrintOperationSignalDelegates.StatusChanged handler = (GtkPrintOperationHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPrintOperationSignalStructs.StatusChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "status_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkPrintOperationHandle Signal_UpdateCustomWidget(this GtkPrintOperationHandle instance, GtkPrintOperationSignalDelegates.UpdateCustomWidget handler)
+
+	public static IObservable<GtkPrintOperationSignalStructs.UpdateCustomWidgetSignal> Signal_UpdateCustomWidget(this GtkPrintOperationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "update_custom_widget", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.UpdateCustomWidgetSignal> obs) =>
+		{
+			GtkPrintOperationSignalDelegates.UpdateCustomWidget handler = (GtkPrintOperationHandle self, GtkWidgetHandle widget, GtkPageSetupHandle setup, GtkPrintSettingsHandle settings, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPrintOperationSignalStructs.UpdateCustomWidgetSignal()
+				{
+					Self = self, Widget = widget, Setup = setup, Settings = settings, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "update_custom_widget", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkPrintOperationSignalStructs
+{
+
+public struct BeginPrintSignal
+{
+	public GtkPrintOperationHandle Self;
+	public GtkPrintContextHandle Context;
+	public IntPtr UserData;
+}
+
+public struct CreateCustomWidgetSignal
+{
+	public GtkPrintOperationHandle Self;
+	public IntPtr UserData;
+	public GObjectHandle ReturnValue;
+}
+
+public struct CustomWidgetApplySignal
+{
+	public GtkPrintOperationHandle Self;
+	public GtkWidgetHandle Widget;
+	public IntPtr UserData;
+}
+
+public struct DoneSignal
+{
+	public GtkPrintOperationHandle Self;
+	public GtkPrintOperationResult Result;
+	public IntPtr UserData;
+}
+
+public struct DrawPageSignal
+{
+	public GtkPrintOperationHandle Self;
+	public GtkPrintContextHandle Context;
+	public int PageNr;
+	public IntPtr UserData;
+}
+
+public struct EndPrintSignal
+{
+	public GtkPrintOperationHandle Self;
+	public GtkPrintContextHandle Context;
+	public IntPtr UserData;
+}
+
+public struct PaginateSignal
+{
+	public GtkPrintOperationHandle Self;
+	public GtkPrintContextHandle Context;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct PreviewSignal
+{
+	public GtkPrintOperationHandle Self;
+	public GtkPrintOperationPreviewHandle Preview;
+	public GtkPrintContextHandle Context;
+	public GtkWindowHandle Parent;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct RequestPageSetupSignal
+{
+	public GtkPrintOperationHandle Self;
+	public GtkPrintContextHandle Context;
+	public int PageNr;
+	public GtkPageSetupHandle Setup;
+	public IntPtr UserData;
+}
+
+public struct StatusChangedSignal
+{
+	public GtkPrintOperationHandle Self;
+	public IntPtr UserData;
+}
+
+public struct UpdateCustomWidgetSignal
+{
+	public GtkPrintOperationHandle Self;
+	public GtkWidgetHandle Widget;
+	public GtkPageSetupHandle Setup;
+	public GtkPrintSettingsHandle Settings;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkPrintOperationSignalDelegates

@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -35,11 +37,43 @@ public class GResolverHandle : GObjectHandle
 
 public static class GResolverSignalExtensions
 {
-	public static GResolverHandle Signal_Reload(this GResolverHandle instance, GResolverSignalDelegates.Reload handler)
+
+	public static IObservable<GResolverSignalStructs.ReloadSignal> Signal_Reload(this GResolverHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "reload", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GResolverSignalStructs.ReloadSignal> obs) =>
+		{
+			GResolverSignalDelegates.Reload handler = (GResolverHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GResolverSignalStructs.ReloadSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "reload", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GResolverSignalStructs
+{
+
+public struct ReloadSignal
+{
+	public GResolverHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GResolverSignalDelegates

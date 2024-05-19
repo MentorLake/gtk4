@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,46 @@ public class GSocketServiceHandle : GSocketListenerHandle
 
 public static class GSocketServiceSignalExtensions
 {
-	public static GSocketServiceHandle Signal_Incoming(this GSocketServiceHandle instance, GSocketServiceSignalDelegates.Incoming handler)
+
+	public static IObservable<GSocketServiceSignalStructs.IncomingSignal> Signal_Incoming(this GSocketServiceHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "incoming", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GSocketServiceSignalStructs.IncomingSignal> obs) =>
+		{
+			GSocketServiceSignalDelegates.Incoming handler = (GSocketServiceHandle self, GSocketConnectionHandle connection, GObjectHandle source_object, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GSocketServiceSignalStructs.IncomingSignal()
+				{
+					Self = self, Connection = connection, SourceObject = source_object, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "incoming", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GSocketServiceSignalStructs
+{
+
+public struct IncomingSignal
+{
+	public GSocketServiceHandle Self;
+	public GSocketConnectionHandle Connection;
+	public GObjectHandle SourceObject;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
 }
 
 public static class GSocketServiceSignalDelegates

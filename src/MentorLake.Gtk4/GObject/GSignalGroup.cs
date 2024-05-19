@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,16 +27,77 @@ public class GSignalGroupHandle : GObjectHandle
 
 public static class GSignalGroupSignalExtensions
 {
-	public static GSignalGroupHandle Signal_Bind(this GSignalGroupHandle instance, GSignalGroupSignalDelegates.Bind handler)
+
+	public static IObservable<GSignalGroupSignalStructs.BindSignal> Signal_Bind(this GSignalGroupHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "bind", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GSignalGroupSignalStructs.BindSignal> obs) =>
+		{
+			GSignalGroupSignalDelegates.Bind handler = (GSignalGroupHandle self, GObjectHandle instance, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GSignalGroupSignalStructs.BindSignal()
+				{
+					Self = self, Instance = instance, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "bind", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GSignalGroupHandle Signal_Unbind(this GSignalGroupHandle instance, GSignalGroupSignalDelegates.Unbind handler)
+
+	public static IObservable<GSignalGroupSignalStructs.UnbindSignal> Signal_Unbind(this GSignalGroupHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "unbind", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GSignalGroupSignalStructs.UnbindSignal> obs) =>
+		{
+			GSignalGroupSignalDelegates.Unbind handler = (GSignalGroupHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GSignalGroupSignalStructs.UnbindSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "unbind", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GSignalGroupSignalStructs
+{
+
+public struct BindSignal
+{
+	public GSignalGroupHandle Self;
+	public GObjectHandle Instance;
+	public IntPtr UserData;
+}
+
+public struct UnbindSignal
+{
+	public GSignalGroupHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GSignalGroupSignalDelegates

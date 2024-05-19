@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -20,16 +22,76 @@ public class GtkShortcutsWindowHandle : GtkWindowHandle, GtkAccessibleHandle, Gt
 
 public static class GtkShortcutsWindowSignalExtensions
 {
-	public static GtkShortcutsWindowHandle Signal_Close(this GtkShortcutsWindowHandle instance, GtkShortcutsWindowSignalDelegates.Close handler)
+
+	public static IObservable<GtkShortcutsWindowSignalStructs.CloseSignal> Signal_Close(this GtkShortcutsWindowHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "close", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkShortcutsWindowSignalStructs.CloseSignal> obs) =>
+		{
+			GtkShortcutsWindowSignalDelegates.Close handler = (GtkShortcutsWindowHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkShortcutsWindowSignalStructs.CloseSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "close", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkShortcutsWindowHandle Signal_Search(this GtkShortcutsWindowHandle instance, GtkShortcutsWindowSignalDelegates.Search handler)
+
+	public static IObservable<GtkShortcutsWindowSignalStructs.SearchSignal> Signal_Search(this GtkShortcutsWindowHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "search", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkShortcutsWindowSignalStructs.SearchSignal> obs) =>
+		{
+			GtkShortcutsWindowSignalDelegates.Search handler = (GtkShortcutsWindowHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkShortcutsWindowSignalStructs.SearchSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "search", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkShortcutsWindowSignalStructs
+{
+
+public struct CloseSignal
+{
+	public GtkShortcutsWindowHandle Self;
+	public IntPtr UserData;
+}
+
+public struct SearchSignal
+{
+	public GtkShortcutsWindowHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkShortcutsWindowSignalDelegates

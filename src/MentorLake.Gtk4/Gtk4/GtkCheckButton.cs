@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -35,16 +37,76 @@ public class GtkCheckButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAct
 
 public static class GtkCheckButtonSignalExtensions
 {
-	public static GtkCheckButtonHandle Signal_Activate(this GtkCheckButtonHandle instance, GtkCheckButtonSignalDelegates.Activate handler)
+
+	public static IObservable<GtkCheckButtonSignalStructs.ActivateSignal> Signal_Activate(this GtkCheckButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkCheckButtonSignalStructs.ActivateSignal> obs) =>
+		{
+			GtkCheckButtonSignalDelegates.Activate handler = (GtkCheckButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkCheckButtonSignalStructs.ActivateSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkCheckButtonHandle Signal_Toggled(this GtkCheckButtonHandle instance, GtkCheckButtonSignalDelegates.Toggled handler)
+
+	public static IObservable<GtkCheckButtonSignalStructs.ToggledSignal> Signal_Toggled(this GtkCheckButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "toggled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkCheckButtonSignalStructs.ToggledSignal> obs) =>
+		{
+			GtkCheckButtonSignalDelegates.Toggled handler = (GtkCheckButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkCheckButtonSignalStructs.ToggledSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "toggled", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkCheckButtonSignalStructs
+{
+
+public struct ActivateSignal
+{
+	public GtkCheckButtonHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ToggledSignal
+{
+	public GtkCheckButtonHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkCheckButtonSignalDelegates

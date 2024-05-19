@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,26 +27,151 @@ public class GtkEventControllerKeyHandle : GtkEventControllerHandle
 
 public static class GtkEventControllerKeySignalExtensions
 {
-	public static GtkEventControllerKeyHandle Signal_ImUpdate(this GtkEventControllerKeyHandle instance, GtkEventControllerKeySignalDelegates.ImUpdate handler)
+
+	public static IObservable<GtkEventControllerKeySignalStructs.ImUpdateSignal> Signal_ImUpdate(this GtkEventControllerKeyHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "im_update", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEventControllerKeySignalStructs.ImUpdateSignal> obs) =>
+		{
+			GtkEventControllerKeySignalDelegates.ImUpdate handler = (GtkEventControllerKeyHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEventControllerKeySignalStructs.ImUpdateSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "im_update", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkEventControllerKeyHandle Signal_KeyPressed(this GtkEventControllerKeyHandle instance, GtkEventControllerKeySignalDelegates.KeyPressed handler)
+
+	public static IObservable<GtkEventControllerKeySignalStructs.KeyPressedSignal> Signal_KeyPressed(this GtkEventControllerKeyHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "key_pressed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEventControllerKeySignalStructs.KeyPressedSignal> obs) =>
+		{
+			GtkEventControllerKeySignalDelegates.KeyPressed handler = (GtkEventControllerKeyHandle self, uint keyval, uint keycode, GdkModifierType state, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEventControllerKeySignalStructs.KeyPressedSignal()
+				{
+					Self = self, Keyval = keyval, Keycode = keycode, State = state, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "key_pressed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkEventControllerKeyHandle Signal_KeyReleased(this GtkEventControllerKeyHandle instance, GtkEventControllerKeySignalDelegates.KeyReleased handler)
+
+	public static IObservable<GtkEventControllerKeySignalStructs.KeyReleasedSignal> Signal_KeyReleased(this GtkEventControllerKeyHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "key_released", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEventControllerKeySignalStructs.KeyReleasedSignal> obs) =>
+		{
+			GtkEventControllerKeySignalDelegates.KeyReleased handler = (GtkEventControllerKeyHandle self, uint keyval, uint keycode, GdkModifierType state, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEventControllerKeySignalStructs.KeyReleasedSignal()
+				{
+					Self = self, Keyval = keyval, Keycode = keycode, State = state, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "key_released", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkEventControllerKeyHandle Signal_Modifiers(this GtkEventControllerKeyHandle instance, GtkEventControllerKeySignalDelegates.Modifiers handler)
+
+	public static IObservable<GtkEventControllerKeySignalStructs.ModifiersSignal> Signal_Modifiers(this GtkEventControllerKeyHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "modifiers", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEventControllerKeySignalStructs.ModifiersSignal> obs) =>
+		{
+			GtkEventControllerKeySignalDelegates.Modifiers handler = (GtkEventControllerKeyHandle self, GdkModifierType state, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEventControllerKeySignalStructs.ModifiersSignal()
+				{
+					Self = self, State = state, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "modifiers", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkEventControllerKeySignalStructs
+{
+
+public struct ImUpdateSignal
+{
+	public GtkEventControllerKeyHandle Self;
+	public IntPtr UserData;
+}
+
+public struct KeyPressedSignal
+{
+	public GtkEventControllerKeyHandle Self;
+	public uint Keyval;
+	public uint Keycode;
+	public GdkModifierType State;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct KeyReleasedSignal
+{
+	public GtkEventControllerKeyHandle Self;
+	public uint Keyval;
+	public uint Keycode;
+	public GdkModifierType State;
+	public IntPtr UserData;
+}
+
+public struct ModifiersSignal
+{
+	public GtkEventControllerKeyHandle Self;
+	public GdkModifierType State;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
 }
 
 public static class GtkEventControllerKeySignalDelegates

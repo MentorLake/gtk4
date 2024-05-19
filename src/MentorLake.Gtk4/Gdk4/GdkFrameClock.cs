@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -20,41 +22,241 @@ public class GdkFrameClockHandle : GObjectHandle
 
 public static class GdkFrameClockSignalExtensions
 {
-	public static GdkFrameClockHandle Signal_AfterPaint(this GdkFrameClockHandle instance, GdkFrameClockSignalDelegates.AfterPaint handler)
+
+	public static IObservable<GdkFrameClockSignalStructs.AfterPaintSignal> Signal_AfterPaint(this GdkFrameClockHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "after_paint", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkFrameClockSignalStructs.AfterPaintSignal> obs) =>
+		{
+			GdkFrameClockSignalDelegates.AfterPaint handler = (GdkFrameClockHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkFrameClockSignalStructs.AfterPaintSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "after_paint", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkFrameClockHandle Signal_BeforePaint(this GdkFrameClockHandle instance, GdkFrameClockSignalDelegates.BeforePaint handler)
+
+	public static IObservable<GdkFrameClockSignalStructs.BeforePaintSignal> Signal_BeforePaint(this GdkFrameClockHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "before_paint", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkFrameClockSignalStructs.BeforePaintSignal> obs) =>
+		{
+			GdkFrameClockSignalDelegates.BeforePaint handler = (GdkFrameClockHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkFrameClockSignalStructs.BeforePaintSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "before_paint", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkFrameClockHandle Signal_FlushEvents(this GdkFrameClockHandle instance, GdkFrameClockSignalDelegates.FlushEvents handler)
+
+	public static IObservable<GdkFrameClockSignalStructs.FlushEventsSignal> Signal_FlushEvents(this GdkFrameClockHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "flush_events", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkFrameClockSignalStructs.FlushEventsSignal> obs) =>
+		{
+			GdkFrameClockSignalDelegates.FlushEvents handler = (GdkFrameClockHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkFrameClockSignalStructs.FlushEventsSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "flush_events", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkFrameClockHandle Signal_Layout(this GdkFrameClockHandle instance, GdkFrameClockSignalDelegates.Layout handler)
+
+	public static IObservable<GdkFrameClockSignalStructs.LayoutSignal> Signal_Layout(this GdkFrameClockHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "layout", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkFrameClockSignalStructs.LayoutSignal> obs) =>
+		{
+			GdkFrameClockSignalDelegates.Layout handler = (GdkFrameClockHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkFrameClockSignalStructs.LayoutSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "layout", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkFrameClockHandle Signal_Paint(this GdkFrameClockHandle instance, GdkFrameClockSignalDelegates.Paint handler)
+
+	public static IObservable<GdkFrameClockSignalStructs.PaintSignal> Signal_Paint(this GdkFrameClockHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "paint", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkFrameClockSignalStructs.PaintSignal> obs) =>
+		{
+			GdkFrameClockSignalDelegates.Paint handler = (GdkFrameClockHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkFrameClockSignalStructs.PaintSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "paint", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkFrameClockHandle Signal_ResumeEvents(this GdkFrameClockHandle instance, GdkFrameClockSignalDelegates.ResumeEvents handler)
+
+	public static IObservable<GdkFrameClockSignalStructs.ResumeEventsSignal> Signal_ResumeEvents(this GdkFrameClockHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "resume_events", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkFrameClockSignalStructs.ResumeEventsSignal> obs) =>
+		{
+			GdkFrameClockSignalDelegates.ResumeEvents handler = (GdkFrameClockHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkFrameClockSignalStructs.ResumeEventsSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "resume_events", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkFrameClockHandle Signal_Update(this GdkFrameClockHandle instance, GdkFrameClockSignalDelegates.Update handler)
+
+	public static IObservable<GdkFrameClockSignalStructs.UpdateSignal> Signal_Update(this GdkFrameClockHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "update", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkFrameClockSignalStructs.UpdateSignal> obs) =>
+		{
+			GdkFrameClockSignalDelegates.Update handler = (GdkFrameClockHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkFrameClockSignalStructs.UpdateSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "update", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GdkFrameClockSignalStructs
+{
+
+public struct AfterPaintSignal
+{
+	public GdkFrameClockHandle Self;
+	public IntPtr UserData;
+}
+
+public struct BeforePaintSignal
+{
+	public GdkFrameClockHandle Self;
+	public IntPtr UserData;
+}
+
+public struct FlushEventsSignal
+{
+	public GdkFrameClockHandle Self;
+	public IntPtr UserData;
+}
+
+public struct LayoutSignal
+{
+	public GdkFrameClockHandle Self;
+	public IntPtr UserData;
+}
+
+public struct PaintSignal
+{
+	public GdkFrameClockHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ResumeEventsSignal
+{
+	public GdkFrameClockHandle Self;
+	public IntPtr UserData;
+}
+
+public struct UpdateSignal
+{
+	public GdkFrameClockHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GdkFrameClockSignalDelegates

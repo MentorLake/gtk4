@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,16 +27,81 @@ public class GtkEntryBufferHandle : GObjectHandle
 
 public static class GtkEntryBufferSignalExtensions
 {
-	public static GtkEntryBufferHandle Signal_DeletedText(this GtkEntryBufferHandle instance, GtkEntryBufferSignalDelegates.DeletedText handler)
+
+	public static IObservable<GtkEntryBufferSignalStructs.DeletedTextSignal> Signal_DeletedText(this GtkEntryBufferHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "deleted_text", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEntryBufferSignalStructs.DeletedTextSignal> obs) =>
+		{
+			GtkEntryBufferSignalDelegates.DeletedText handler = (GtkEntryBufferHandle self, uint position, uint n_chars, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEntryBufferSignalStructs.DeletedTextSignal()
+				{
+					Self = self, Position = position, NChars = n_chars, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "deleted_text", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkEntryBufferHandle Signal_InsertedText(this GtkEntryBufferHandle instance, GtkEntryBufferSignalDelegates.InsertedText handler)
+
+	public static IObservable<GtkEntryBufferSignalStructs.InsertedTextSignal> Signal_InsertedText(this GtkEntryBufferHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "inserted_text", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEntryBufferSignalStructs.InsertedTextSignal> obs) =>
+		{
+			GtkEntryBufferSignalDelegates.InsertedText handler = (GtkEntryBufferHandle self, uint position, string chars, uint n_chars, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEntryBufferSignalStructs.InsertedTextSignal()
+				{
+					Self = self, Position = position, Chars = chars, NChars = n_chars, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "inserted_text", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkEntryBufferSignalStructs
+{
+
+public struct DeletedTextSignal
+{
+	public GtkEntryBufferHandle Self;
+	public uint Position;
+	public uint NChars;
+	public IntPtr UserData;
+}
+
+public struct InsertedTextSignal
+{
+	public GtkEntryBufferHandle Self;
+	public uint Position;
+	public string Chars;
+	public uint NChars;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkEntryBufferSignalDelegates

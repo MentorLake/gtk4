@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,44 @@ public class GdkDisplayManagerHandle : GObjectHandle
 
 public static class GdkDisplayManagerSignalExtensions
 {
-	public static GdkDisplayManagerHandle Signal_DisplayOpened(this GdkDisplayManagerHandle instance, GdkDisplayManagerSignalDelegates.DisplayOpened handler)
+
+	public static IObservable<GdkDisplayManagerSignalStructs.DisplayOpenedSignal> Signal_DisplayOpened(this GdkDisplayManagerHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "display_opened", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkDisplayManagerSignalStructs.DisplayOpenedSignal> obs) =>
+		{
+			GdkDisplayManagerSignalDelegates.DisplayOpened handler = (GdkDisplayManagerHandle self, GdkDisplayHandle display, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkDisplayManagerSignalStructs.DisplayOpenedSignal()
+				{
+					Self = self, Display = display, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "display_opened", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GdkDisplayManagerSignalStructs
+{
+
+public struct DisplayOpenedSignal
+{
+	public GdkDisplayManagerHandle Self;
+	public GdkDisplayHandle Display;
+	public IntPtr UserData;
+}
 }
 
 public static class GdkDisplayManagerSignalDelegates

@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,16 +27,80 @@ public class GtkStatusbarHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuild
 
 public static class GtkStatusbarSignalExtensions
 {
-	public static GtkStatusbarHandle Signal_TextPopped(this GtkStatusbarHandle instance, GtkStatusbarSignalDelegates.TextPopped handler)
+
+	public static IObservable<GtkStatusbarSignalStructs.TextPoppedSignal> Signal_TextPopped(this GtkStatusbarHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "text_popped", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkStatusbarSignalStructs.TextPoppedSignal> obs) =>
+		{
+			GtkStatusbarSignalDelegates.TextPopped handler = (GtkStatusbarHandle self, uint context_id, string text, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkStatusbarSignalStructs.TextPoppedSignal()
+				{
+					Self = self, ContextId = context_id, Text = text, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "text_popped", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkStatusbarHandle Signal_TextPushed(this GtkStatusbarHandle instance, GtkStatusbarSignalDelegates.TextPushed handler)
+
+	public static IObservable<GtkStatusbarSignalStructs.TextPushedSignal> Signal_TextPushed(this GtkStatusbarHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "text_pushed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkStatusbarSignalStructs.TextPushedSignal> obs) =>
+		{
+			GtkStatusbarSignalDelegates.TextPushed handler = (GtkStatusbarHandle self, uint context_id, string text, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkStatusbarSignalStructs.TextPushedSignal()
+				{
+					Self = self, ContextId = context_id, Text = text, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "text_pushed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkStatusbarSignalStructs
+{
+
+public struct TextPoppedSignal
+{
+	public GtkStatusbarHandle Self;
+	public uint ContextId;
+	public string Text;
+	public IntPtr UserData;
+}
+
+public struct TextPushedSignal
+{
+	public GtkStatusbarHandle Self;
+	public uint ContextId;
+	public string Text;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkStatusbarSignalDelegates

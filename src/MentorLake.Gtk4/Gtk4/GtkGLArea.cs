@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,21 +27,114 @@ public class GtkGLAreaHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildabl
 
 public static class GtkGLAreaSignalExtensions
 {
-	public static GtkGLAreaHandle Signal_CreateContext(this GtkGLAreaHandle instance, GtkGLAreaSignalDelegates.CreateContext handler)
+
+	public static IObservable<GtkGLAreaSignalStructs.CreateContextSignal> Signal_CreateContext(this GtkGLAreaHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "create_context", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkGLAreaSignalStructs.CreateContextSignal> obs) =>
+		{
+			GtkGLAreaSignalDelegates.CreateContext handler = (GtkGLAreaHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkGLAreaSignalStructs.CreateContextSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "create_context", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkGLAreaHandle Signal_Render(this GtkGLAreaHandle instance, GtkGLAreaSignalDelegates.Render handler)
+
+	public static IObservable<GtkGLAreaSignalStructs.RenderSignal> Signal_Render(this GtkGLAreaHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "render", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkGLAreaSignalStructs.RenderSignal> obs) =>
+		{
+			GtkGLAreaSignalDelegates.Render handler = (GtkGLAreaHandle self, GdkGLContextHandle context, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkGLAreaSignalStructs.RenderSignal()
+				{
+					Self = self, Context = context, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "render", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkGLAreaHandle Signal_Resize(this GtkGLAreaHandle instance, GtkGLAreaSignalDelegates.Resize handler)
+
+	public static IObservable<GtkGLAreaSignalStructs.ResizeSignal> Signal_Resize(this GtkGLAreaHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "resize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkGLAreaSignalStructs.ResizeSignal> obs) =>
+		{
+			GtkGLAreaSignalDelegates.Resize handler = (GtkGLAreaHandle self, int width, int height, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkGLAreaSignalStructs.ResizeSignal()
+				{
+					Self = self, Width = width, Height = height, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "resize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkGLAreaSignalStructs
+{
+
+public struct CreateContextSignal
+{
+	public GtkGLAreaHandle Self;
+	public IntPtr UserData;
+	public GdkGLContextHandle ReturnValue;
+}
+
+public struct RenderSignal
+{
+	public GtkGLAreaHandle Self;
+	public GdkGLContextHandle Context;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct ResizeSignal
+{
+	public GtkGLAreaHandle Self;
+	public int Width;
+	public int Height;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkGLAreaSignalDelegates

@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,31 +27,176 @@ public class GtkAssistantHandle : GtkWindowHandle, GtkAccessibleHandle, GtkBuild
 
 public static class GtkAssistantSignalExtensions
 {
-	public static GtkAssistantHandle Signal_Apply(this GtkAssistantHandle instance, GtkAssistantSignalDelegates.Apply handler)
+
+	public static IObservable<GtkAssistantSignalStructs.ApplySignal> Signal_Apply(this GtkAssistantHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "apply", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkAssistantSignalStructs.ApplySignal> obs) =>
+		{
+			GtkAssistantSignalDelegates.Apply handler = (GtkAssistantHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkAssistantSignalStructs.ApplySignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "apply", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkAssistantHandle Signal_Cancel(this GtkAssistantHandle instance, GtkAssistantSignalDelegates.Cancel handler)
+
+	public static IObservable<GtkAssistantSignalStructs.CancelSignal> Signal_Cancel(this GtkAssistantHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkAssistantSignalStructs.CancelSignal> obs) =>
+		{
+			GtkAssistantSignalDelegates.Cancel handler = (GtkAssistantHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkAssistantSignalStructs.CancelSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkAssistantHandle Signal_Close(this GtkAssistantHandle instance, GtkAssistantSignalDelegates.Close handler)
+
+	public static IObservable<GtkAssistantSignalStructs.CloseSignal> Signal_Close(this GtkAssistantHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "close", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkAssistantSignalStructs.CloseSignal> obs) =>
+		{
+			GtkAssistantSignalDelegates.Close handler = (GtkAssistantHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkAssistantSignalStructs.CloseSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "close", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkAssistantHandle Signal_Escape(this GtkAssistantHandle instance, GtkAssistantSignalDelegates.Escape handler)
+
+	public static IObservable<GtkAssistantSignalStructs.EscapeSignal> Signal_Escape(this GtkAssistantHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "escape", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkAssistantSignalStructs.EscapeSignal> obs) =>
+		{
+			GtkAssistantSignalDelegates.Escape handler = (GtkAssistantHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkAssistantSignalStructs.EscapeSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "escape", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkAssistantHandle Signal_Prepare(this GtkAssistantHandle instance, GtkAssistantSignalDelegates.Prepare handler)
+
+	public static IObservable<GtkAssistantSignalStructs.PrepareSignal> Signal_Prepare(this GtkAssistantHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "prepare", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkAssistantSignalStructs.PrepareSignal> obs) =>
+		{
+			GtkAssistantSignalDelegates.Prepare handler = (GtkAssistantHandle self, GtkWidgetHandle page, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkAssistantSignalStructs.PrepareSignal()
+				{
+					Self = self, Page = page, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "prepare", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkAssistantSignalStructs
+{
+
+public struct ApplySignal
+{
+	public GtkAssistantHandle Self;
+	public IntPtr UserData;
+}
+
+public struct CancelSignal
+{
+	public GtkAssistantHandle Self;
+	public IntPtr UserData;
+}
+
+public struct CloseSignal
+{
+	public GtkAssistantHandle Self;
+	public IntPtr UserData;
+}
+
+public struct EscapeSignal
+{
+	public GtkAssistantHandle Self;
+	public IntPtr UserData;
+}
+
+public struct PrepareSignal
+{
+	public GtkAssistantHandle Self;
+	public GtkWidgetHandle Page;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkAssistantSignalDelegates

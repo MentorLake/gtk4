@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,36 +27,217 @@ public class GtkPanedHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAccessibl
 
 public static class GtkPanedSignalExtensions
 {
-	public static GtkPanedHandle Signal_AcceptPosition(this GtkPanedHandle instance, GtkPanedSignalDelegates.AcceptPosition handler)
+
+	public static IObservable<GtkPanedSignalStructs.AcceptPositionSignal> Signal_AcceptPosition(this GtkPanedHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "accept_position", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPanedSignalStructs.AcceptPositionSignal> obs) =>
+		{
+			GtkPanedSignalDelegates.AcceptPosition handler = (GtkPanedHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPanedSignalStructs.AcceptPositionSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "accept_position", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkPanedHandle Signal_CancelPosition(this GtkPanedHandle instance, GtkPanedSignalDelegates.CancelPosition handler)
+
+	public static IObservable<GtkPanedSignalStructs.CancelPositionSignal> Signal_CancelPosition(this GtkPanedHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "cancel_position", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPanedSignalStructs.CancelPositionSignal> obs) =>
+		{
+			GtkPanedSignalDelegates.CancelPosition handler = (GtkPanedHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPanedSignalStructs.CancelPositionSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "cancel_position", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkPanedHandle Signal_CycleChildFocus(this GtkPanedHandle instance, GtkPanedSignalDelegates.CycleChildFocus handler)
+
+	public static IObservable<GtkPanedSignalStructs.CycleChildFocusSignal> Signal_CycleChildFocus(this GtkPanedHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "cycle_child_focus", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPanedSignalStructs.CycleChildFocusSignal> obs) =>
+		{
+			GtkPanedSignalDelegates.CycleChildFocus handler = (GtkPanedHandle self, bool reversed, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPanedSignalStructs.CycleChildFocusSignal()
+				{
+					Self = self, Reversed = reversed, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "cycle_child_focus", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkPanedHandle Signal_CycleHandleFocus(this GtkPanedHandle instance, GtkPanedSignalDelegates.CycleHandleFocus handler)
+
+	public static IObservable<GtkPanedSignalStructs.CycleHandleFocusSignal> Signal_CycleHandleFocus(this GtkPanedHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "cycle_handle_focus", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPanedSignalStructs.CycleHandleFocusSignal> obs) =>
+		{
+			GtkPanedSignalDelegates.CycleHandleFocus handler = (GtkPanedHandle self, bool reversed, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPanedSignalStructs.CycleHandleFocusSignal()
+				{
+					Self = self, Reversed = reversed, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "cycle_handle_focus", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkPanedHandle Signal_MoveHandle(this GtkPanedHandle instance, GtkPanedSignalDelegates.MoveHandle handler)
+
+	public static IObservable<GtkPanedSignalStructs.MoveHandleSignal> Signal_MoveHandle(this GtkPanedHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "move_handle", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPanedSignalStructs.MoveHandleSignal> obs) =>
+		{
+			GtkPanedSignalDelegates.MoveHandle handler = (GtkPanedHandle self, ref GtkScrollType scroll_type, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPanedSignalStructs.MoveHandleSignal()
+				{
+					Self = self, ScrollType = scroll_type, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "move_handle", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkPanedHandle Signal_ToggleHandleFocus(this GtkPanedHandle instance, GtkPanedSignalDelegates.ToggleHandleFocus handler)
+
+	public static IObservable<GtkPanedSignalStructs.ToggleHandleFocusSignal> Signal_ToggleHandleFocus(this GtkPanedHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "toggle_handle_focus", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkPanedSignalStructs.ToggleHandleFocusSignal> obs) =>
+		{
+			GtkPanedSignalDelegates.ToggleHandleFocus handler = (GtkPanedHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkPanedSignalStructs.ToggleHandleFocusSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "toggle_handle_focus", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkPanedSignalStructs
+{
+
+public struct AcceptPositionSignal
+{
+	public GtkPanedHandle Self;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct CancelPositionSignal
+{
+	public GtkPanedHandle Self;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct CycleChildFocusSignal
+{
+	public GtkPanedHandle Self;
+	public bool Reversed;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct CycleHandleFocusSignal
+{
+	public GtkPanedHandle Self;
+	public bool Reversed;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct MoveHandleSignal
+{
+	public GtkPanedHandle Self;
+	public GtkScrollType ScrollType;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct ToggleHandleFocusSignal
+{
+	public GtkPanedHandle Self;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
 }
 
 public static class GtkPanedSignalDelegates

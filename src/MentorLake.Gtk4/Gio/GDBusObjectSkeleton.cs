@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,46 @@ public class GDBusObjectSkeletonHandle : GObjectHandle, GDBusObjectHandle
 
 public static class GDBusObjectSkeletonSignalExtensions
 {
-	public static GDBusObjectSkeletonHandle Signal_AuthorizeMethod(this GDBusObjectSkeletonHandle instance, GDBusObjectSkeletonSignalDelegates.AuthorizeMethod handler)
+
+	public static IObservable<GDBusObjectSkeletonSignalStructs.AuthorizeMethodSignal> Signal_AuthorizeMethod(this GDBusObjectSkeletonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "authorize_method", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GDBusObjectSkeletonSignalStructs.AuthorizeMethodSignal> obs) =>
+		{
+			GDBusObjectSkeletonSignalDelegates.AuthorizeMethod handler = (GDBusObjectSkeletonHandle self, GDBusInterfaceSkeletonHandle @interface, GDBusMethodInvocationHandle invocation, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GDBusObjectSkeletonSignalStructs.AuthorizeMethodSignal()
+				{
+					Self = self, Interface = @interface, Invocation = invocation, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "authorize_method", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GDBusObjectSkeletonSignalStructs
+{
+
+public struct AuthorizeMethodSignal
+{
+	public GDBusObjectSkeletonHandle Self;
+	public GDBusInterfaceSkeletonHandle Interface;
+	public GDBusMethodInvocationHandle Invocation;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
 }
 
 public static class GDBusObjectSkeletonSignalDelegates

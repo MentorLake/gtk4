@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,21 +27,111 @@ public class GtkApplicationHandle : GApplicationHandle, GActionGroupHandle, GAct
 
 public static class GtkApplicationSignalExtensions
 {
-	public static GtkApplicationHandle Signal_QueryEnd(this GtkApplicationHandle instance, GtkApplicationSignalDelegates.QueryEnd handler)
+
+	public static IObservable<GtkApplicationSignalStructs.QueryEndSignal> Signal_QueryEnd(this GtkApplicationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "query_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkApplicationSignalStructs.QueryEndSignal> obs) =>
+		{
+			GtkApplicationSignalDelegates.QueryEnd handler = (GtkApplicationHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkApplicationSignalStructs.QueryEndSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "query_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkApplicationHandle Signal_WindowAdded(this GtkApplicationHandle instance, GtkApplicationSignalDelegates.WindowAdded handler)
+
+	public static IObservable<GtkApplicationSignalStructs.WindowAddedSignal> Signal_WindowAdded(this GtkApplicationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "window_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkApplicationSignalStructs.WindowAddedSignal> obs) =>
+		{
+			GtkApplicationSignalDelegates.WindowAdded handler = (GtkApplicationHandle self, GtkWindowHandle window, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkApplicationSignalStructs.WindowAddedSignal()
+				{
+					Self = self, Window = window, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "window_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkApplicationHandle Signal_WindowRemoved(this GtkApplicationHandle instance, GtkApplicationSignalDelegates.WindowRemoved handler)
+
+	public static IObservable<GtkApplicationSignalStructs.WindowRemovedSignal> Signal_WindowRemoved(this GtkApplicationHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "window_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkApplicationSignalStructs.WindowRemovedSignal> obs) =>
+		{
+			GtkApplicationSignalDelegates.WindowRemoved handler = (GtkApplicationHandle self, GtkWindowHandle window, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkApplicationSignalStructs.WindowRemovedSignal()
+				{
+					Self = self, Window = window, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "window_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkApplicationSignalStructs
+{
+
+public struct QueryEndSignal
+{
+	public GtkApplicationHandle Self;
+	public IntPtr UserData;
+}
+
+public struct WindowAddedSignal
+{
+	public GtkApplicationHandle Self;
+	public GtkWindowHandle Window;
+	public IntPtr UserData;
+}
+
+public struct WindowRemovedSignal
+{
+	public GtkApplicationHandle Self;
+	public GtkWindowHandle Window;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkApplicationSignalDelegates

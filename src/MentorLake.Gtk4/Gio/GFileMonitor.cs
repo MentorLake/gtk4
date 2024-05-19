@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -20,11 +22,46 @@ public class GFileMonitorHandle : GObjectHandle
 
 public static class GFileMonitorSignalExtensions
 {
-	public static GFileMonitorHandle Signal_Changed(this GFileMonitorHandle instance, GFileMonitorSignalDelegates.Changed handler)
+
+	public static IObservable<GFileMonitorSignalStructs.ChangedSignal> Signal_Changed(this GFileMonitorHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GFileMonitorSignalStructs.ChangedSignal> obs) =>
+		{
+			GFileMonitorSignalDelegates.Changed handler = (GFileMonitorHandle self, GFileHandle file, GFileHandle other_file, GFileMonitorEvent event_type, IntPtr user_data) =>
+			{
+
+
+				var signalStruct = new GFileMonitorSignalStructs.ChangedSignal()
+				{
+					Self = self, File = file, OtherFile = other_file, EventType = event_type, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GFileMonitorSignalStructs
+{
+
+public struct ChangedSignal
+{
+	public GFileMonitorHandle Self;
+	public GFileHandle File;
+	public GFileHandle OtherFile;
+	public GFileMonitorEvent EventType;
+	public IntPtr UserData;
+}
 }
 
 public static class GFileMonitorSignalDelegates

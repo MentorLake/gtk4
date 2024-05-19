@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,21 +27,113 @@ public class GtkEventControllerMotionHandle : GtkEventControllerHandle
 
 public static class GtkEventControllerMotionSignalExtensions
 {
-	public static GtkEventControllerMotionHandle Signal_Enter(this GtkEventControllerMotionHandle instance, GtkEventControllerMotionSignalDelegates.Enter handler)
+
+	public static IObservable<GtkEventControllerMotionSignalStructs.EnterSignal> Signal_Enter(this GtkEventControllerMotionHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "enter", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEventControllerMotionSignalStructs.EnterSignal> obs) =>
+		{
+			GtkEventControllerMotionSignalDelegates.Enter handler = (GtkEventControllerMotionHandle self, double x, double y, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEventControllerMotionSignalStructs.EnterSignal()
+				{
+					Self = self, X = x, Y = y, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "enter", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkEventControllerMotionHandle Signal_Leave(this GtkEventControllerMotionHandle instance, GtkEventControllerMotionSignalDelegates.Leave handler)
+
+	public static IObservable<GtkEventControllerMotionSignalStructs.LeaveSignal> Signal_Leave(this GtkEventControllerMotionHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "leave", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEventControllerMotionSignalStructs.LeaveSignal> obs) =>
+		{
+			GtkEventControllerMotionSignalDelegates.Leave handler = (GtkEventControllerMotionHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEventControllerMotionSignalStructs.LeaveSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "leave", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkEventControllerMotionHandle Signal_Motion(this GtkEventControllerMotionHandle instance, GtkEventControllerMotionSignalDelegates.Motion handler)
+
+	public static IObservable<GtkEventControllerMotionSignalStructs.MotionSignal> Signal_Motion(this GtkEventControllerMotionHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "motion", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEventControllerMotionSignalStructs.MotionSignal> obs) =>
+		{
+			GtkEventControllerMotionSignalDelegates.Motion handler = (GtkEventControllerMotionHandle self, double x, double y, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEventControllerMotionSignalStructs.MotionSignal()
+				{
+					Self = self, X = x, Y = y, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "motion", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkEventControllerMotionSignalStructs
+{
+
+public struct EnterSignal
+{
+	public GtkEventControllerMotionHandle Self;
+	public double X;
+	public double Y;
+	public IntPtr UserData;
+}
+
+public struct LeaveSignal
+{
+	public GtkEventControllerMotionHandle Self;
+	public IntPtr UserData;
+}
+
+public struct MotionSignal
+{
+	public GtkEventControllerMotionHandle Self;
+	public double X;
+	public double Y;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkEventControllerMotionSignalDelegates

@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,21 +27,110 @@ public class GtkScaleButtonHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAcc
 
 public static class GtkScaleButtonSignalExtensions
 {
-	public static GtkScaleButtonHandle Signal_Popdown(this GtkScaleButtonHandle instance, GtkScaleButtonSignalDelegates.Popdown handler)
+
+	public static IObservable<GtkScaleButtonSignalStructs.PopdownSignal> Signal_Popdown(this GtkScaleButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "popdown", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkScaleButtonSignalStructs.PopdownSignal> obs) =>
+		{
+			GtkScaleButtonSignalDelegates.Popdown handler = (GtkScaleButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkScaleButtonSignalStructs.PopdownSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "popdown", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkScaleButtonHandle Signal_Popup(this GtkScaleButtonHandle instance, GtkScaleButtonSignalDelegates.Popup handler)
+
+	public static IObservable<GtkScaleButtonSignalStructs.PopupSignal> Signal_Popup(this GtkScaleButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "popup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkScaleButtonSignalStructs.PopupSignal> obs) =>
+		{
+			GtkScaleButtonSignalDelegates.Popup handler = (GtkScaleButtonHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkScaleButtonSignalStructs.PopupSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "popup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkScaleButtonHandle Signal_ValueChanged(this GtkScaleButtonHandle instance, GtkScaleButtonSignalDelegates.ValueChanged handler)
+
+	public static IObservable<GtkScaleButtonSignalStructs.ValueChangedSignal> Signal_ValueChanged(this GtkScaleButtonHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkScaleButtonSignalStructs.ValueChangedSignal> obs) =>
+		{
+			GtkScaleButtonSignalDelegates.ValueChanged handler = (GtkScaleButtonHandle self, double value, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkScaleButtonSignalStructs.ValueChangedSignal()
+				{
+					Self = self, Value = value, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkScaleButtonSignalStructs
+{
+
+public struct PopdownSignal
+{
+	public GtkScaleButtonHandle Self;
+	public IntPtr UserData;
+}
+
+public struct PopupSignal
+{
+	public GtkScaleButtonHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ValueChangedSignal
+{
+	public GtkScaleButtonHandle Self;
+	public double Value;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkScaleButtonSignalDelegates

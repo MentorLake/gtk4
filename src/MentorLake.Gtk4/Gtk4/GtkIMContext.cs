@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -20,36 +22,213 @@ public class GtkIMContextHandle : GObjectHandle
 
 public static class GtkIMContextSignalExtensions
 {
-	public static GtkIMContextHandle Signal_Commit(this GtkIMContextHandle instance, GtkIMContextSignalDelegates.Commit handler)
+
+	public static IObservable<GtkIMContextSignalStructs.CommitSignal> Signal_Commit(this GtkIMContextHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "commit", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkIMContextSignalStructs.CommitSignal> obs) =>
+		{
+			GtkIMContextSignalDelegates.Commit handler = (GtkIMContextHandle self, string str, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkIMContextSignalStructs.CommitSignal()
+				{
+					Self = self, Str = str, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "commit", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkIMContextHandle Signal_DeleteSurrounding(this GtkIMContextHandle instance, GtkIMContextSignalDelegates.DeleteSurrounding handler)
+
+	public static IObservable<GtkIMContextSignalStructs.DeleteSurroundingSignal> Signal_DeleteSurrounding(this GtkIMContextHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "delete_surrounding", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkIMContextSignalStructs.DeleteSurroundingSignal> obs) =>
+		{
+			GtkIMContextSignalDelegates.DeleteSurrounding handler = (GtkIMContextHandle self, int offset, int n_chars, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkIMContextSignalStructs.DeleteSurroundingSignal()
+				{
+					Self = self, Offset = offset, NChars = n_chars, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "delete_surrounding", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkIMContextHandle Signal_PreeditChanged(this GtkIMContextHandle instance, GtkIMContextSignalDelegates.PreeditChanged handler)
+
+	public static IObservable<GtkIMContextSignalStructs.PreeditChangedSignal> Signal_PreeditChanged(this GtkIMContextHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "preedit_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkIMContextSignalStructs.PreeditChangedSignal> obs) =>
+		{
+			GtkIMContextSignalDelegates.PreeditChanged handler = (GtkIMContextHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkIMContextSignalStructs.PreeditChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "preedit_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkIMContextHandle Signal_PreeditEnd(this GtkIMContextHandle instance, GtkIMContextSignalDelegates.PreeditEnd handler)
+
+	public static IObservable<GtkIMContextSignalStructs.PreeditEndSignal> Signal_PreeditEnd(this GtkIMContextHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "preedit_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkIMContextSignalStructs.PreeditEndSignal> obs) =>
+		{
+			GtkIMContextSignalDelegates.PreeditEnd handler = (GtkIMContextHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkIMContextSignalStructs.PreeditEndSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "preedit_end", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkIMContextHandle Signal_PreeditStart(this GtkIMContextHandle instance, GtkIMContextSignalDelegates.PreeditStart handler)
+
+	public static IObservable<GtkIMContextSignalStructs.PreeditStartSignal> Signal_PreeditStart(this GtkIMContextHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "preedit_start", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkIMContextSignalStructs.PreeditStartSignal> obs) =>
+		{
+			GtkIMContextSignalDelegates.PreeditStart handler = (GtkIMContextHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkIMContextSignalStructs.PreeditStartSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "preedit_start", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkIMContextHandle Signal_RetrieveSurrounding(this GtkIMContextHandle instance, GtkIMContextSignalDelegates.RetrieveSurrounding handler)
+
+	public static IObservable<GtkIMContextSignalStructs.RetrieveSurroundingSignal> Signal_RetrieveSurrounding(this GtkIMContextHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "retrieve_surrounding", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkIMContextSignalStructs.RetrieveSurroundingSignal> obs) =>
+		{
+			GtkIMContextSignalDelegates.RetrieveSurrounding handler = (GtkIMContextHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkIMContextSignalStructs.RetrieveSurroundingSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "retrieve_surrounding", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkIMContextSignalStructs
+{
+
+public struct CommitSignal
+{
+	public GtkIMContextHandle Self;
+	public string Str;
+	public IntPtr UserData;
+}
+
+public struct DeleteSurroundingSignal
+{
+	public GtkIMContextHandle Self;
+	public int Offset;
+	public int NChars;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct PreeditChangedSignal
+{
+	public GtkIMContextHandle Self;
+	public IntPtr UserData;
+}
+
+public struct PreeditEndSignal
+{
+	public GtkIMContextHandle Self;
+	public IntPtr UserData;
+}
+
+public struct PreeditStartSignal
+{
+	public GtkIMContextHandle Self;
+	public IntPtr UserData;
+}
+
+public struct RetrieveSurroundingSignal
+{
+	public GtkIMContextHandle Self;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
 }
 
 public static class GtkIMContextSignalDelegates

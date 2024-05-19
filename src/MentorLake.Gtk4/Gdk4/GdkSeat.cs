@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -20,26 +22,146 @@ public class GdkSeatHandle : GObjectHandle
 
 public static class GdkSeatSignalExtensions
 {
-	public static GdkSeatHandle Signal_DeviceAdded(this GdkSeatHandle instance, GdkSeatSignalDelegates.DeviceAdded handler)
+
+	public static IObservable<GdkSeatSignalStructs.DeviceAddedSignal> Signal_DeviceAdded(this GdkSeatHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "device_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkSeatSignalStructs.DeviceAddedSignal> obs) =>
+		{
+			GdkSeatSignalDelegates.DeviceAdded handler = (GdkSeatHandle self, GdkDeviceHandle device, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkSeatSignalStructs.DeviceAddedSignal()
+				{
+					Self = self, Device = device, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "device_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkSeatHandle Signal_DeviceRemoved(this GdkSeatHandle instance, GdkSeatSignalDelegates.DeviceRemoved handler)
+
+	public static IObservable<GdkSeatSignalStructs.DeviceRemovedSignal> Signal_DeviceRemoved(this GdkSeatHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "device_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkSeatSignalStructs.DeviceRemovedSignal> obs) =>
+		{
+			GdkSeatSignalDelegates.DeviceRemoved handler = (GdkSeatHandle self, GdkDeviceHandle device, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkSeatSignalStructs.DeviceRemovedSignal()
+				{
+					Self = self, Device = device, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "device_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkSeatHandle Signal_ToolAdded(this GdkSeatHandle instance, GdkSeatSignalDelegates.ToolAdded handler)
+
+	public static IObservable<GdkSeatSignalStructs.ToolAddedSignal> Signal_ToolAdded(this GdkSeatHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "tool_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkSeatSignalStructs.ToolAddedSignal> obs) =>
+		{
+			GdkSeatSignalDelegates.ToolAdded handler = (GdkSeatHandle self, GdkDeviceToolHandle tool, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkSeatSignalStructs.ToolAddedSignal()
+				{
+					Self = self, Tool = tool, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "tool_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkSeatHandle Signal_ToolRemoved(this GdkSeatHandle instance, GdkSeatSignalDelegates.ToolRemoved handler)
+
+	public static IObservable<GdkSeatSignalStructs.ToolRemovedSignal> Signal_ToolRemoved(this GdkSeatHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "tool_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkSeatSignalStructs.ToolRemovedSignal> obs) =>
+		{
+			GdkSeatSignalDelegates.ToolRemoved handler = (GdkSeatHandle self, GdkDeviceToolHandle tool, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkSeatSignalStructs.ToolRemovedSignal()
+				{
+					Self = self, Tool = tool, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "tool_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GdkSeatSignalStructs
+{
+
+public struct DeviceAddedSignal
+{
+	public GdkSeatHandle Self;
+	public GdkDeviceHandle Device;
+	public IntPtr UserData;
+}
+
+public struct DeviceRemovedSignal
+{
+	public GdkSeatHandle Self;
+	public GdkDeviceHandle Device;
+	public IntPtr UserData;
+}
+
+public struct ToolAddedSignal
+{
+	public GdkSeatHandle Self;
+	public GdkDeviceToolHandle Tool;
+	public IntPtr UserData;
+}
+
+public struct ToolRemovedSignal
+{
+	public GdkSeatHandle Self;
+	public GdkDeviceToolHandle Tool;
+	public IntPtr UserData;
+}
 }
 
 public static class GdkSeatSignalDelegates

@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,16 +27,76 @@ public class GtkAdjustmentHandle : GInitiallyUnownedHandle
 
 public static class GtkAdjustmentSignalExtensions
 {
-	public static GtkAdjustmentHandle Signal_Changed(this GtkAdjustmentHandle instance, GtkAdjustmentSignalDelegates.Changed handler)
+
+	public static IObservable<GtkAdjustmentSignalStructs.ChangedSignal> Signal_Changed(this GtkAdjustmentHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkAdjustmentSignalStructs.ChangedSignal> obs) =>
+		{
+			GtkAdjustmentSignalDelegates.Changed handler = (GtkAdjustmentHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkAdjustmentSignalStructs.ChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkAdjustmentHandle Signal_ValueChanged(this GtkAdjustmentHandle instance, GtkAdjustmentSignalDelegates.ValueChanged handler)
+
+	public static IObservable<GtkAdjustmentSignalStructs.ValueChangedSignal> Signal_ValueChanged(this GtkAdjustmentHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkAdjustmentSignalStructs.ValueChangedSignal> obs) =>
+		{
+			GtkAdjustmentSignalDelegates.ValueChanged handler = (GtkAdjustmentHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkAdjustmentSignalStructs.ValueChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkAdjustmentSignalStructs
+{
+
+public struct ChangedSignal
+{
+	public GtkAdjustmentHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ValueChangedSignal
+{
+	public GtkAdjustmentHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkAdjustmentSignalDelegates

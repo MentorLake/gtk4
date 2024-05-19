@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,21 +27,110 @@ public class GdkDragHandle : GObjectHandle
 
 public static class GdkDragSignalExtensions
 {
-	public static GdkDragHandle Signal_Cancel(this GdkDragHandle instance, GdkDragSignalDelegates.Cancel handler)
+
+	public static IObservable<GdkDragSignalStructs.CancelSignal> Signal_Cancel(this GdkDragHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkDragSignalStructs.CancelSignal> obs) =>
+		{
+			GdkDragSignalDelegates.Cancel handler = (GdkDragHandle self, ref GdkDragCancelReason reason, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkDragSignalStructs.CancelSignal()
+				{
+					Self = self, Reason = reason, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "cancel", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkDragHandle Signal_DndFinished(this GdkDragHandle instance, GdkDragSignalDelegates.DndFinished handler)
+
+	public static IObservable<GdkDragSignalStructs.DndFinishedSignal> Signal_DndFinished(this GdkDragHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "dnd_finished", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkDragSignalStructs.DndFinishedSignal> obs) =>
+		{
+			GdkDragSignalDelegates.DndFinished handler = (GdkDragHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkDragSignalStructs.DndFinishedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "dnd_finished", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkDragHandle Signal_DropPerformed(this GdkDragHandle instance, GdkDragSignalDelegates.DropPerformed handler)
+
+	public static IObservable<GdkDragSignalStructs.DropPerformedSignal> Signal_DropPerformed(this GdkDragHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "drop_performed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkDragSignalStructs.DropPerformedSignal> obs) =>
+		{
+			GdkDragSignalDelegates.DropPerformed handler = (GdkDragHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkDragSignalStructs.DropPerformedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "drop_performed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GdkDragSignalStructs
+{
+
+public struct CancelSignal
+{
+	public GdkDragHandle Self;
+	public GdkDragCancelReason Reason;
+	public IntPtr UserData;
+}
+
+public struct DndFinishedSignal
+{
+	public GdkDragHandle Self;
+	public IntPtr UserData;
+}
+
+public struct DropPerformedSignal
+{
+	public GdkDragHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GdkDragSignalDelegates

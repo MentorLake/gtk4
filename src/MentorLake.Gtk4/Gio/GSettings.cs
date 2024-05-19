@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -65,26 +67,149 @@ public class GSettingsHandle : GObjectHandle
 
 public static class GSettingsSignalExtensions
 {
-	public static GSettingsHandle Signal_ChangeEvent(this GSettingsHandle instance, GSettingsSignalDelegates.ChangeEvent handler)
+
+	public static IObservable<GSettingsSignalStructs.ChangeEventSignal> Signal_ChangeEvent(this GSettingsHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "change_event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GSettingsSignalStructs.ChangeEventSignal> obs) =>
+		{
+			GSettingsSignalDelegates.ChangeEvent handler = (GSettingsHandle self, IntPtr keys, int n_keys, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GSettingsSignalStructs.ChangeEventSignal()
+				{
+					Self = self, Keys = keys, NKeys = n_keys, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "change_event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GSettingsHandle Signal_Changed(this GSettingsHandle instance, GSettingsSignalDelegates.Changed handler)
+
+	public static IObservable<GSettingsSignalStructs.ChangedSignal> Signal_Changed(this GSettingsHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GSettingsSignalStructs.ChangedSignal> obs) =>
+		{
+			GSettingsSignalDelegates.Changed handler = (GSettingsHandle self, string key, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GSettingsSignalStructs.ChangedSignal()
+				{
+					Self = self, Key = key, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GSettingsHandle Signal_WritableChangeEvent(this GSettingsHandle instance, GSettingsSignalDelegates.WritableChangeEvent handler)
+
+	public static IObservable<GSettingsSignalStructs.WritableChangeEventSignal> Signal_WritableChangeEvent(this GSettingsHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "writable_change_event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GSettingsSignalStructs.WritableChangeEventSignal> obs) =>
+		{
+			GSettingsSignalDelegates.WritableChangeEvent handler = (GSettingsHandle self, uint key, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GSettingsSignalStructs.WritableChangeEventSignal()
+				{
+					Self = self, Key = key, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "writable_change_event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GSettingsHandle Signal_WritableChanged(this GSettingsHandle instance, GSettingsSignalDelegates.WritableChanged handler)
+
+	public static IObservable<GSettingsSignalStructs.WritableChangedSignal> Signal_WritableChanged(this GSettingsHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "writable_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GSettingsSignalStructs.WritableChangedSignal> obs) =>
+		{
+			GSettingsSignalDelegates.WritableChanged handler = (GSettingsHandle self, string key, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GSettingsSignalStructs.WritableChangedSignal()
+				{
+					Self = self, Key = key, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "writable_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GSettingsSignalStructs
+{
+
+public struct ChangeEventSignal
+{
+	public GSettingsHandle Self;
+	public IntPtr Keys;
+	public int NKeys;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct ChangedSignal
+{
+	public GSettingsHandle Self;
+	public string Key;
+	public IntPtr UserData;
+}
+
+public struct WritableChangeEventSignal
+{
+	public GSettingsHandle Self;
+	public uint Key;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct WritableChangedSignal
+{
+	public GSettingsHandle Self;
+	public string Key;
+	public IntPtr UserData;
+}
 }
 
 public static class GSettingsSignalDelegates

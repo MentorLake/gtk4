@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,11 +32,44 @@ public class GtkLevelBarHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAccess
 
 public static class GtkLevelBarSignalExtensions
 {
-	public static GtkLevelBarHandle Signal_OffsetChanged(this GtkLevelBarHandle instance, GtkLevelBarSignalDelegates.OffsetChanged handler)
+
+	public static IObservable<GtkLevelBarSignalStructs.OffsetChangedSignal> Signal_OffsetChanged(this GtkLevelBarHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "offset_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkLevelBarSignalStructs.OffsetChangedSignal> obs) =>
+		{
+			GtkLevelBarSignalDelegates.OffsetChanged handler = (GtkLevelBarHandle self, string name, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkLevelBarSignalStructs.OffsetChangedSignal()
+				{
+					Self = self, Name = name, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "offset_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkLevelBarSignalStructs
+{
+
+public struct OffsetChangedSignal
+{
+	public GtkLevelBarHandle Self;
+	public string Name;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkLevelBarSignalDelegates

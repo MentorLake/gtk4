@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -20,26 +22,154 @@ public class GtkCellAreaHandle : GInitiallyUnownedHandle, GtkBuildableHandle, Gt
 
 public static class GtkCellAreaSignalExtensions
 {
-	public static GtkCellAreaHandle Signal_AddEditable(this GtkCellAreaHandle instance, GtkCellAreaSignalDelegates.AddEditable handler)
+
+	public static IObservable<GtkCellAreaSignalStructs.AddEditableSignal> Signal_AddEditable(this GtkCellAreaHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "add_editable", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkCellAreaSignalStructs.AddEditableSignal> obs) =>
+		{
+			GtkCellAreaSignalDelegates.AddEditable handler = (GtkCellAreaHandle self, GtkCellRendererHandle renderer, GtkCellEditableHandle editable, GdkRectangleHandle cell_area, string path, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkCellAreaSignalStructs.AddEditableSignal()
+				{
+					Self = self, Renderer = renderer, Editable = editable, CellArea = cell_area, Path = path, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "add_editable", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkCellAreaHandle Signal_ApplyAttributes(this GtkCellAreaHandle instance, GtkCellAreaSignalDelegates.ApplyAttributes handler)
+
+	public static IObservable<GtkCellAreaSignalStructs.ApplyAttributesSignal> Signal_ApplyAttributes(this GtkCellAreaHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "apply_attributes", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkCellAreaSignalStructs.ApplyAttributesSignal> obs) =>
+		{
+			GtkCellAreaSignalDelegates.ApplyAttributes handler = (GtkCellAreaHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, bool is_expander, bool is_expanded, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkCellAreaSignalStructs.ApplyAttributesSignal()
+				{
+					Self = self, Model = model, Iter = iter, IsExpander = is_expander, IsExpanded = is_expanded, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "apply_attributes", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkCellAreaHandle Signal_FocusChanged(this GtkCellAreaHandle instance, GtkCellAreaSignalDelegates.FocusChanged handler)
+
+	public static IObservable<GtkCellAreaSignalStructs.FocusChangedSignal> Signal_FocusChanged(this GtkCellAreaHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "focus_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkCellAreaSignalStructs.FocusChangedSignal> obs) =>
+		{
+			GtkCellAreaSignalDelegates.FocusChanged handler = (GtkCellAreaHandle self, GtkCellRendererHandle renderer, string path, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkCellAreaSignalStructs.FocusChangedSignal()
+				{
+					Self = self, Renderer = renderer, Path = path, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "focus_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkCellAreaHandle Signal_RemoveEditable(this GtkCellAreaHandle instance, GtkCellAreaSignalDelegates.RemoveEditable handler)
+
+	public static IObservable<GtkCellAreaSignalStructs.RemoveEditableSignal> Signal_RemoveEditable(this GtkCellAreaHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "remove_editable", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkCellAreaSignalStructs.RemoveEditableSignal> obs) =>
+		{
+			GtkCellAreaSignalDelegates.RemoveEditable handler = (GtkCellAreaHandle self, GtkCellRendererHandle renderer, GtkCellEditableHandle editable, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkCellAreaSignalStructs.RemoveEditableSignal()
+				{
+					Self = self, Renderer = renderer, Editable = editable, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "remove_editable", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkCellAreaSignalStructs
+{
+
+public struct AddEditableSignal
+{
+	public GtkCellAreaHandle Self;
+	public GtkCellRendererHandle Renderer;
+	public GtkCellEditableHandle Editable;
+	public GdkRectangleHandle CellArea;
+	public string Path;
+	public IntPtr UserData;
+}
+
+public struct ApplyAttributesSignal
+{
+	public GtkCellAreaHandle Self;
+	public GtkTreeModelHandle Model;
+	public GtkTreeIterHandle Iter;
+	public bool IsExpander;
+	public bool IsExpanded;
+	public IntPtr UserData;
+}
+
+public struct FocusChangedSignal
+{
+	public GtkCellAreaHandle Self;
+	public GtkCellRendererHandle Renderer;
+	public string Path;
+	public IntPtr UserData;
+}
+
+public struct RemoveEditableSignal
+{
+	public GtkCellAreaHandle Self;
+	public GtkCellRendererHandle Renderer;
+	public GtkCellEditableHandle Editable;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkCellAreaSignalDelegates

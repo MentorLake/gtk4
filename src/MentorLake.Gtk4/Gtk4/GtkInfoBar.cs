@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,16 +32,77 @@ public class GtkInfoBarHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildab
 
 public static class GtkInfoBarSignalExtensions
 {
-	public static GtkInfoBarHandle Signal_Close(this GtkInfoBarHandle instance, GtkInfoBarSignalDelegates.Close handler)
+
+	public static IObservable<GtkInfoBarSignalStructs.CloseSignal> Signal_Close(this GtkInfoBarHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "close", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkInfoBarSignalStructs.CloseSignal> obs) =>
+		{
+			GtkInfoBarSignalDelegates.Close handler = (GtkInfoBarHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkInfoBarSignalStructs.CloseSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "close", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkInfoBarHandle Signal_Response(this GtkInfoBarHandle instance, GtkInfoBarSignalDelegates.Response handler)
+
+	public static IObservable<GtkInfoBarSignalStructs.ResponseSignal> Signal_Response(this GtkInfoBarHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "response", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkInfoBarSignalStructs.ResponseSignal> obs) =>
+		{
+			GtkInfoBarSignalDelegates.Response handler = (GtkInfoBarHandle self, int response_id, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkInfoBarSignalStructs.ResponseSignal()
+				{
+					Self = self, ResponseId = response_id, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "response", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkInfoBarSignalStructs
+{
+
+public struct CloseSignal
+{
+	public GtkInfoBarHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ResponseSignal
+{
+	public GtkInfoBarHandle Self;
+	public int ResponseId;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkInfoBarSignalDelegates

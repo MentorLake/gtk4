@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,31 +32,183 @@ public class GdkSurfaceHandle : GObjectHandle
 
 public static class GdkSurfaceSignalExtensions
 {
-	public static GdkSurfaceHandle Signal_EnterMonitor(this GdkSurfaceHandle instance, GdkSurfaceSignalDelegates.EnterMonitor handler)
+
+	public static IObservable<GdkSurfaceSignalStructs.EnterMonitorSignal> Signal_EnterMonitor(this GdkSurfaceHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "enter_monitor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkSurfaceSignalStructs.EnterMonitorSignal> obs) =>
+		{
+			GdkSurfaceSignalDelegates.EnterMonitor handler = (GdkSurfaceHandle self, GdkMonitorHandle monitor, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkSurfaceSignalStructs.EnterMonitorSignal()
+				{
+					Self = self, Monitor = monitor, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "enter_monitor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkSurfaceHandle Signal_Event(this GdkSurfaceHandle instance, GdkSurfaceSignalDelegates.Event handler)
+
+	public static IObservable<GdkSurfaceSignalStructs.EventSignal> Signal_Event(this GdkSurfaceHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkSurfaceSignalStructs.EventSignal> obs) =>
+		{
+			GdkSurfaceSignalDelegates.Event handler = (GdkSurfaceHandle self, GdkEventHandle @event, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkSurfaceSignalStructs.EventSignal()
+				{
+					Self = self, Event = @event, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "event", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkSurfaceHandle Signal_Layout(this GdkSurfaceHandle instance, GdkSurfaceSignalDelegates.Layout handler)
+
+	public static IObservable<GdkSurfaceSignalStructs.LayoutSignal> Signal_Layout(this GdkSurfaceHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "layout", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkSurfaceSignalStructs.LayoutSignal> obs) =>
+		{
+			GdkSurfaceSignalDelegates.Layout handler = (GdkSurfaceHandle self, int width, int height, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkSurfaceSignalStructs.LayoutSignal()
+				{
+					Self = self, Width = width, Height = height, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "layout", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkSurfaceHandle Signal_LeaveMonitor(this GdkSurfaceHandle instance, GdkSurfaceSignalDelegates.LeaveMonitor handler)
+
+	public static IObservable<GdkSurfaceSignalStructs.LeaveMonitorSignal> Signal_LeaveMonitor(this GdkSurfaceHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "leave_monitor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkSurfaceSignalStructs.LeaveMonitorSignal> obs) =>
+		{
+			GdkSurfaceSignalDelegates.LeaveMonitor handler = (GdkSurfaceHandle self, GdkMonitorHandle monitor, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkSurfaceSignalStructs.LeaveMonitorSignal()
+				{
+					Self = self, Monitor = monitor, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "leave_monitor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GdkSurfaceHandle Signal_Render(this GdkSurfaceHandle instance, GdkSurfaceSignalDelegates.Render handler)
+
+	public static IObservable<GdkSurfaceSignalStructs.RenderSignal> Signal_Render(this GdkSurfaceHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "render", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GdkSurfaceSignalStructs.RenderSignal> obs) =>
+		{
+			GdkSurfaceSignalDelegates.Render handler = (GdkSurfaceHandle self, cairo_region_tHandle region, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GdkSurfaceSignalStructs.RenderSignal()
+				{
+					Self = self, Region = region, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "render", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GdkSurfaceSignalStructs
+{
+
+public struct EnterMonitorSignal
+{
+	public GdkSurfaceHandle Self;
+	public GdkMonitorHandle Monitor;
+	public IntPtr UserData;
+}
+
+public struct EventSignal
+{
+	public GdkSurfaceHandle Self;
+	public GdkEventHandle Event;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct LayoutSignal
+{
+	public GdkSurfaceHandle Self;
+	public int Width;
+	public int Height;
+	public IntPtr UserData;
+}
+
+public struct LeaveMonitorSignal
+{
+	public GdkSurfaceHandle Self;
+	public GdkMonitorHandle Monitor;
+	public IntPtr UserData;
+}
+
+public struct RenderSignal
+{
+	public GdkSurfaceHandle Self;
+	public cairo_region_tHandle Region;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
 }
 
 public static class GdkSurfaceSignalDelegates

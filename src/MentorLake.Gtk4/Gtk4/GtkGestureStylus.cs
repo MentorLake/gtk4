@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,26 +27,150 @@ public class GtkGestureStylusHandle : GtkGestureSingleHandle
 
 public static class GtkGestureStylusSignalExtensions
 {
-	public static GtkGestureStylusHandle Signal_Down(this GtkGestureStylusHandle instance, GtkGestureStylusSignalDelegates.Down handler)
+
+	public static IObservable<GtkGestureStylusSignalStructs.DownSignal> Signal_Down(this GtkGestureStylusHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "down", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkGestureStylusSignalStructs.DownSignal> obs) =>
+		{
+			GtkGestureStylusSignalDelegates.Down handler = (GtkGestureStylusHandle self, double x, double y, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkGestureStylusSignalStructs.DownSignal()
+				{
+					Self = self, X = x, Y = y, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "down", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkGestureStylusHandle Signal_Motion(this GtkGestureStylusHandle instance, GtkGestureStylusSignalDelegates.Motion handler)
+
+	public static IObservable<GtkGestureStylusSignalStructs.MotionSignal> Signal_Motion(this GtkGestureStylusHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "motion", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkGestureStylusSignalStructs.MotionSignal> obs) =>
+		{
+			GtkGestureStylusSignalDelegates.Motion handler = (GtkGestureStylusHandle self, double x, double y, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkGestureStylusSignalStructs.MotionSignal()
+				{
+					Self = self, X = x, Y = y, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "motion", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkGestureStylusHandle Signal_Proximity(this GtkGestureStylusHandle instance, GtkGestureStylusSignalDelegates.Proximity handler)
+
+	public static IObservable<GtkGestureStylusSignalStructs.ProximitySignal> Signal_Proximity(this GtkGestureStylusHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "proximity", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkGestureStylusSignalStructs.ProximitySignal> obs) =>
+		{
+			GtkGestureStylusSignalDelegates.Proximity handler = (GtkGestureStylusHandle self, double x, double y, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkGestureStylusSignalStructs.ProximitySignal()
+				{
+					Self = self, X = x, Y = y, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "proximity", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkGestureStylusHandle Signal_Up(this GtkGestureStylusHandle instance, GtkGestureStylusSignalDelegates.Up handler)
+
+	public static IObservable<GtkGestureStylusSignalStructs.UpSignal> Signal_Up(this GtkGestureStylusHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "up", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkGestureStylusSignalStructs.UpSignal> obs) =>
+		{
+			GtkGestureStylusSignalDelegates.Up handler = (GtkGestureStylusHandle self, double x, double y, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkGestureStylusSignalStructs.UpSignal()
+				{
+					Self = self, X = x, Y = y, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "up", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkGestureStylusSignalStructs
+{
+
+public struct DownSignal
+{
+	public GtkGestureStylusHandle Self;
+	public double X;
+	public double Y;
+	public IntPtr UserData;
+}
+
+public struct MotionSignal
+{
+	public GtkGestureStylusHandle Self;
+	public double X;
+	public double Y;
+	public IntPtr UserData;
+}
+
+public struct ProximitySignal
+{
+	public GtkGestureStylusHandle Self;
+	public double X;
+	public double Y;
+	public IntPtr UserData;
+}
+
+public struct UpSignal
+{
+	public GtkGestureStylusHandle Self;
+	public double X;
+	public double Y;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkGestureStylusSignalDelegates

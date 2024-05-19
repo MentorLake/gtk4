@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,45 @@ public class GtkDrawingAreaHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBui
 
 public static class GtkDrawingAreaSignalExtensions
 {
-	public static GtkDrawingAreaHandle Signal_Resize(this GtkDrawingAreaHandle instance, GtkDrawingAreaSignalDelegates.Resize handler)
+
+	public static IObservable<GtkDrawingAreaSignalStructs.ResizeSignal> Signal_Resize(this GtkDrawingAreaHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "resize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkDrawingAreaSignalStructs.ResizeSignal> obs) =>
+		{
+			GtkDrawingAreaSignalDelegates.Resize handler = (GtkDrawingAreaHandle self, int width, int height, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkDrawingAreaSignalStructs.ResizeSignal()
+				{
+					Self = self, Width = width, Height = height, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "resize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkDrawingAreaSignalStructs
+{
+
+public struct ResizeSignal
+{
+	public GtkDrawingAreaHandle Self;
+	public int Width;
+	public int Height;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkDrawingAreaSignalDelegates

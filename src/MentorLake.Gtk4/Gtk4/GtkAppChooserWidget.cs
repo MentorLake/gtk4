@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,16 +27,78 @@ public class GtkAppChooserWidgetHandle : GtkWidgetHandle, GtkAccessibleHandle, G
 
 public static class GtkAppChooserWidgetSignalExtensions
 {
-	public static GtkAppChooserWidgetHandle Signal_ApplicationActivated(this GtkAppChooserWidgetHandle instance, GtkAppChooserWidgetSignalDelegates.ApplicationActivated handler)
+
+	public static IObservable<GtkAppChooserWidgetSignalStructs.ApplicationActivatedSignal> Signal_ApplicationActivated(this GtkAppChooserWidgetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "application_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkAppChooserWidgetSignalStructs.ApplicationActivatedSignal> obs) =>
+		{
+			GtkAppChooserWidgetSignalDelegates.ApplicationActivated handler = (GtkAppChooserWidgetHandle self, GAppInfoHandle application, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkAppChooserWidgetSignalStructs.ApplicationActivatedSignal()
+				{
+					Self = self, Application = application, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "application_activated", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkAppChooserWidgetHandle Signal_ApplicationSelected(this GtkAppChooserWidgetHandle instance, GtkAppChooserWidgetSignalDelegates.ApplicationSelected handler)
+
+	public static IObservable<GtkAppChooserWidgetSignalStructs.ApplicationSelectedSignal> Signal_ApplicationSelected(this GtkAppChooserWidgetHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "application_selected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkAppChooserWidgetSignalStructs.ApplicationSelectedSignal> obs) =>
+		{
+			GtkAppChooserWidgetSignalDelegates.ApplicationSelected handler = (GtkAppChooserWidgetHandle self, GAppInfoHandle application, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkAppChooserWidgetSignalStructs.ApplicationSelectedSignal()
+				{
+					Self = self, Application = application, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "application_selected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkAppChooserWidgetSignalStructs
+{
+
+public struct ApplicationActivatedSignal
+{
+	public GtkAppChooserWidgetHandle Self;
+	public GAppInfoHandle Application;
+	public IntPtr UserData;
+}
+
+public struct ApplicationSelectedSignal
+{
+	public GtkAppChooserWidgetHandle Self;
+	public GAppInfoHandle Application;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkAppChooserWidgetSignalDelegates

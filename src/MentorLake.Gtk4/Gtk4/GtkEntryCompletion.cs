@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,26 +32,150 @@ public class GtkEntryCompletionHandle : GObjectHandle, GtkBuildableHandle, GtkCe
 
 public static class GtkEntryCompletionSignalExtensions
 {
-	public static GtkEntryCompletionHandle Signal_CursorOnMatch(this GtkEntryCompletionHandle instance, GtkEntryCompletionSignalDelegates.CursorOnMatch handler)
+
+	public static IObservable<GtkEntryCompletionSignalStructs.CursorOnMatchSignal> Signal_CursorOnMatch(this GtkEntryCompletionHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "cursor_on_match", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEntryCompletionSignalStructs.CursorOnMatchSignal> obs) =>
+		{
+			GtkEntryCompletionSignalDelegates.CursorOnMatch handler = (GtkEntryCompletionHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEntryCompletionSignalStructs.CursorOnMatchSignal()
+				{
+					Self = self, Model = model, Iter = iter, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "cursor_on_match", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkEntryCompletionHandle Signal_InsertPrefix(this GtkEntryCompletionHandle instance, GtkEntryCompletionSignalDelegates.InsertPrefix handler)
+
+	public static IObservable<GtkEntryCompletionSignalStructs.InsertPrefixSignal> Signal_InsertPrefix(this GtkEntryCompletionHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "insert_prefix", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEntryCompletionSignalStructs.InsertPrefixSignal> obs) =>
+		{
+			GtkEntryCompletionSignalDelegates.InsertPrefix handler = (GtkEntryCompletionHandle self, string prefix, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEntryCompletionSignalStructs.InsertPrefixSignal()
+				{
+					Self = self, Prefix = prefix, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "insert_prefix", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkEntryCompletionHandle Signal_MatchSelected(this GtkEntryCompletionHandle instance, GtkEntryCompletionSignalDelegates.MatchSelected handler)
+
+	public static IObservable<GtkEntryCompletionSignalStructs.MatchSelectedSignal> Signal_MatchSelected(this GtkEntryCompletionHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "match_selected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEntryCompletionSignalStructs.MatchSelectedSignal> obs) =>
+		{
+			GtkEntryCompletionSignalDelegates.MatchSelected handler = (GtkEntryCompletionHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEntryCompletionSignalStructs.MatchSelectedSignal()
+				{
+					Self = self, Model = model, Iter = iter, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "match_selected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkEntryCompletionHandle Signal_NoMatches(this GtkEntryCompletionHandle instance, GtkEntryCompletionSignalDelegates.NoMatches handler)
+
+	public static IObservable<GtkEntryCompletionSignalStructs.NoMatchesSignal> Signal_NoMatches(this GtkEntryCompletionHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "no_matches", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkEntryCompletionSignalStructs.NoMatchesSignal> obs) =>
+		{
+			GtkEntryCompletionSignalDelegates.NoMatches handler = (GtkEntryCompletionHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkEntryCompletionSignalStructs.NoMatchesSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "no_matches", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkEntryCompletionSignalStructs
+{
+
+public struct CursorOnMatchSignal
+{
+	public GtkEntryCompletionHandle Self;
+	public GtkTreeModelHandle Model;
+	public GtkTreeIterHandle Iter;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct InsertPrefixSignal
+{
+	public GtkEntryCompletionHandle Self;
+	public string Prefix;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct MatchSelectedSignal
+{
+	public GtkEntryCompletionHandle Self;
+	public GtkTreeModelHandle Model;
+	public GtkTreeIterHandle Iter;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct NoMatchesSignal
+{
+	public GtkEntryCompletionHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkEntryCompletionSignalDelegates

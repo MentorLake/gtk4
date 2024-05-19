@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,31 +27,175 @@ public class GtkCalendarHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuilda
 
 public static class GtkCalendarSignalExtensions
 {
-	public static GtkCalendarHandle Signal_DaySelected(this GtkCalendarHandle instance, GtkCalendarSignalDelegates.DaySelected handler)
+
+	public static IObservable<GtkCalendarSignalStructs.DaySelectedSignal> Signal_DaySelected(this GtkCalendarHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "day_selected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkCalendarSignalStructs.DaySelectedSignal> obs) =>
+		{
+			GtkCalendarSignalDelegates.DaySelected handler = (GtkCalendarHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkCalendarSignalStructs.DaySelectedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "day_selected", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkCalendarHandle Signal_NextMonth(this GtkCalendarHandle instance, GtkCalendarSignalDelegates.NextMonth handler)
+
+	public static IObservable<GtkCalendarSignalStructs.NextMonthSignal> Signal_NextMonth(this GtkCalendarHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "next_month", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkCalendarSignalStructs.NextMonthSignal> obs) =>
+		{
+			GtkCalendarSignalDelegates.NextMonth handler = (GtkCalendarHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkCalendarSignalStructs.NextMonthSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "next_month", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkCalendarHandle Signal_NextYear(this GtkCalendarHandle instance, GtkCalendarSignalDelegates.NextYear handler)
+
+	public static IObservable<GtkCalendarSignalStructs.NextYearSignal> Signal_NextYear(this GtkCalendarHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "next_year", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkCalendarSignalStructs.NextYearSignal> obs) =>
+		{
+			GtkCalendarSignalDelegates.NextYear handler = (GtkCalendarHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkCalendarSignalStructs.NextYearSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "next_year", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkCalendarHandle Signal_PrevMonth(this GtkCalendarHandle instance, GtkCalendarSignalDelegates.PrevMonth handler)
+
+	public static IObservable<GtkCalendarSignalStructs.PrevMonthSignal> Signal_PrevMonth(this GtkCalendarHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "prev_month", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkCalendarSignalStructs.PrevMonthSignal> obs) =>
+		{
+			GtkCalendarSignalDelegates.PrevMonth handler = (GtkCalendarHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkCalendarSignalStructs.PrevMonthSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "prev_month", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkCalendarHandle Signal_PrevYear(this GtkCalendarHandle instance, GtkCalendarSignalDelegates.PrevYear handler)
+
+	public static IObservable<GtkCalendarSignalStructs.PrevYearSignal> Signal_PrevYear(this GtkCalendarHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "prev_year", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkCalendarSignalStructs.PrevYearSignal> obs) =>
+		{
+			GtkCalendarSignalDelegates.PrevYear handler = (GtkCalendarHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkCalendarSignalStructs.PrevYearSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "prev_year", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkCalendarSignalStructs
+{
+
+public struct DaySelectedSignal
+{
+	public GtkCalendarHandle Self;
+	public IntPtr UserData;
+}
+
+public struct NextMonthSignal
+{
+	public GtkCalendarHandle Self;
+	public IntPtr UserData;
+}
+
+public struct NextYearSignal
+{
+	public GtkCalendarHandle Self;
+	public IntPtr UserData;
+}
+
+public struct PrevMonthSignal
+{
+	public GtkCalendarHandle Self;
+	public IntPtr UserData;
+}
+
+public struct PrevYearSignal
+{
+	public GtkCalendarHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkCalendarSignalDelegates

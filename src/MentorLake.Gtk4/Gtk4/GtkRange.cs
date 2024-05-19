@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -20,26 +22,147 @@ public class GtkRangeHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAccessibl
 
 public static class GtkRangeSignalExtensions
 {
-	public static GtkRangeHandle Signal_AdjustBounds(this GtkRangeHandle instance, GtkRangeSignalDelegates.AdjustBounds handler)
+
+	public static IObservable<GtkRangeSignalStructs.AdjustBoundsSignal> Signal_AdjustBounds(this GtkRangeHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "adjust_bounds", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkRangeSignalStructs.AdjustBoundsSignal> obs) =>
+		{
+			GtkRangeSignalDelegates.AdjustBounds handler = (GtkRangeHandle self, double value, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkRangeSignalStructs.AdjustBoundsSignal()
+				{
+					Self = self, Value = value, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "adjust_bounds", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkRangeHandle Signal_ChangeValue(this GtkRangeHandle instance, GtkRangeSignalDelegates.ChangeValue handler)
+
+	public static IObservable<GtkRangeSignalStructs.ChangeValueSignal> Signal_ChangeValue(this GtkRangeHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "change_value", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkRangeSignalStructs.ChangeValueSignal> obs) =>
+		{
+			GtkRangeSignalDelegates.ChangeValue handler = (GtkRangeHandle self, ref GtkScrollType scroll, double value, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkRangeSignalStructs.ChangeValueSignal()
+				{
+					Self = self, Scroll = scroll, Value = value, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "change_value", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkRangeHandle Signal_MoveSlider(this GtkRangeHandle instance, GtkRangeSignalDelegates.MoveSlider handler)
+
+	public static IObservable<GtkRangeSignalStructs.MoveSliderSignal> Signal_MoveSlider(this GtkRangeHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "move_slider", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkRangeSignalStructs.MoveSliderSignal> obs) =>
+		{
+			GtkRangeSignalDelegates.MoveSlider handler = (GtkRangeHandle self, ref GtkScrollType step, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkRangeSignalStructs.MoveSliderSignal()
+				{
+					Self = self, Step = step, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "move_slider", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkRangeHandle Signal_ValueChanged(this GtkRangeHandle instance, GtkRangeSignalDelegates.ValueChanged handler)
+
+	public static IObservable<GtkRangeSignalStructs.ValueChangedSignal> Signal_ValueChanged(this GtkRangeHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkRangeSignalStructs.ValueChangedSignal> obs) =>
+		{
+			GtkRangeSignalDelegates.ValueChanged handler = (GtkRangeHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkRangeSignalStructs.ValueChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "value_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkRangeSignalStructs
+{
+
+public struct AdjustBoundsSignal
+{
+	public GtkRangeHandle Self;
+	public double Value;
+	public IntPtr UserData;
+}
+
+public struct ChangeValueSignal
+{
+	public GtkRangeHandle Self;
+	public GtkScrollType Scroll;
+	public double Value;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct MoveSliderSignal
+{
+	public GtkRangeHandle Self;
+	public GtkScrollType Step;
+	public IntPtr UserData;
+}
+
+public struct ValueChangedSignal
+{
+	public GtkRangeHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkRangeSignalDelegates

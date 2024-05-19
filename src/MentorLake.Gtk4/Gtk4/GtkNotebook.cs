@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,56 +27,360 @@ public class GtkNotebookHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuilda
 
 public static class GtkNotebookSignalExtensions
 {
-	public static GtkNotebookHandle Signal_ChangeCurrentPage(this GtkNotebookHandle instance, GtkNotebookSignalDelegates.ChangeCurrentPage handler)
+
+	public static IObservable<GtkNotebookSignalStructs.ChangeCurrentPageSignal> Signal_ChangeCurrentPage(this GtkNotebookHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "change_current_page", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkNotebookSignalStructs.ChangeCurrentPageSignal> obs) =>
+		{
+			GtkNotebookSignalDelegates.ChangeCurrentPage handler = (GtkNotebookHandle self, int @object, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkNotebookSignalStructs.ChangeCurrentPageSignal()
+				{
+					Self = self, Object = @object, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "change_current_page", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkNotebookHandle Signal_CreateWindow(this GtkNotebookHandle instance, GtkNotebookSignalDelegates.CreateWindow handler)
+
+	public static IObservable<GtkNotebookSignalStructs.CreateWindowSignal> Signal_CreateWindow(this GtkNotebookHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "create_window", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkNotebookSignalStructs.CreateWindowSignal> obs) =>
+		{
+			GtkNotebookSignalDelegates.CreateWindow handler = (GtkNotebookHandle self, GtkWidgetHandle page, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkNotebookSignalStructs.CreateWindowSignal()
+				{
+					Self = self, Page = page, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "create_window", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkNotebookHandle Signal_FocusTab(this GtkNotebookHandle instance, GtkNotebookSignalDelegates.FocusTab handler)
+
+	public static IObservable<GtkNotebookSignalStructs.FocusTabSignal> Signal_FocusTab(this GtkNotebookHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "focus_tab", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkNotebookSignalStructs.FocusTabSignal> obs) =>
+		{
+			GtkNotebookSignalDelegates.FocusTab handler = (GtkNotebookHandle self, ref GtkNotebookTab @object, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkNotebookSignalStructs.FocusTabSignal()
+				{
+					Self = self, Object = @object, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "focus_tab", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkNotebookHandle Signal_MoveFocusOut(this GtkNotebookHandle instance, GtkNotebookSignalDelegates.MoveFocusOut handler)
+
+	public static IObservable<GtkNotebookSignalStructs.MoveFocusOutSignal> Signal_MoveFocusOut(this GtkNotebookHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "move_focus_out", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkNotebookSignalStructs.MoveFocusOutSignal> obs) =>
+		{
+			GtkNotebookSignalDelegates.MoveFocusOut handler = (GtkNotebookHandle self, GtkDirectionType @object, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkNotebookSignalStructs.MoveFocusOutSignal()
+				{
+					Self = self, Object = @object, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "move_focus_out", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkNotebookHandle Signal_PageAdded(this GtkNotebookHandle instance, GtkNotebookSignalDelegates.PageAdded handler)
+
+	public static IObservable<GtkNotebookSignalStructs.PageAddedSignal> Signal_PageAdded(this GtkNotebookHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "page_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkNotebookSignalStructs.PageAddedSignal> obs) =>
+		{
+			GtkNotebookSignalDelegates.PageAdded handler = (GtkNotebookHandle self, GtkWidgetHandle child, uint page_num, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkNotebookSignalStructs.PageAddedSignal()
+				{
+					Self = self, Child = child, PageNum = page_num, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "page_added", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkNotebookHandle Signal_PageRemoved(this GtkNotebookHandle instance, GtkNotebookSignalDelegates.PageRemoved handler)
+
+	public static IObservable<GtkNotebookSignalStructs.PageRemovedSignal> Signal_PageRemoved(this GtkNotebookHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "page_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkNotebookSignalStructs.PageRemovedSignal> obs) =>
+		{
+			GtkNotebookSignalDelegates.PageRemoved handler = (GtkNotebookHandle self, GtkWidgetHandle child, uint page_num, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkNotebookSignalStructs.PageRemovedSignal()
+				{
+					Self = self, Child = child, PageNum = page_num, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "page_removed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkNotebookHandle Signal_PageReordered(this GtkNotebookHandle instance, GtkNotebookSignalDelegates.PageReordered handler)
+
+	public static IObservable<GtkNotebookSignalStructs.PageReorderedSignal> Signal_PageReordered(this GtkNotebookHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "page_reordered", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkNotebookSignalStructs.PageReorderedSignal> obs) =>
+		{
+			GtkNotebookSignalDelegates.PageReordered handler = (GtkNotebookHandle self, GtkWidgetHandle child, uint page_num, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkNotebookSignalStructs.PageReorderedSignal()
+				{
+					Self = self, Child = child, PageNum = page_num, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "page_reordered", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkNotebookHandle Signal_ReorderTab(this GtkNotebookHandle instance, GtkNotebookSignalDelegates.ReorderTab handler)
+
+	public static IObservable<GtkNotebookSignalStructs.ReorderTabSignal> Signal_ReorderTab(this GtkNotebookHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "reorder_tab", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkNotebookSignalStructs.ReorderTabSignal> obs) =>
+		{
+			GtkNotebookSignalDelegates.ReorderTab handler = (GtkNotebookHandle self, GtkDirectionType @object, bool p0, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkNotebookSignalStructs.ReorderTabSignal()
+				{
+					Self = self, Object = @object, P0 = p0, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "reorder_tab", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkNotebookHandle Signal_SelectPage(this GtkNotebookHandle instance, GtkNotebookSignalDelegates.SelectPage handler)
+
+	public static IObservable<GtkNotebookSignalStructs.SelectPageSignal> Signal_SelectPage(this GtkNotebookHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "select_page", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkNotebookSignalStructs.SelectPageSignal> obs) =>
+		{
+			GtkNotebookSignalDelegates.SelectPage handler = (GtkNotebookHandle self, bool @object, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkNotebookSignalStructs.SelectPageSignal()
+				{
+					Self = self, Object = @object, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "select_page", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkNotebookHandle Signal_SwitchPage(this GtkNotebookHandle instance, GtkNotebookSignalDelegates.SwitchPage handler)
+
+	public static IObservable<GtkNotebookSignalStructs.SwitchPageSignal> Signal_SwitchPage(this GtkNotebookHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "switch_page", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkNotebookSignalStructs.SwitchPageSignal> obs) =>
+		{
+			GtkNotebookSignalDelegates.SwitchPage handler = (GtkNotebookHandle self, GtkWidgetHandle page, uint page_num, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkNotebookSignalStructs.SwitchPageSignal()
+				{
+					Self = self, Page = page, PageNum = page_num, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "switch_page", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkNotebookSignalStructs
+{
+
+public struct ChangeCurrentPageSignal
+{
+	public GtkNotebookHandle Self;
+	public int Object;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct CreateWindowSignal
+{
+	public GtkNotebookHandle Self;
+	public GtkWidgetHandle Page;
+	public IntPtr UserData;
+	public GtkNotebookHandle ReturnValue;
+}
+
+public struct FocusTabSignal
+{
+	public GtkNotebookHandle Self;
+	public GtkNotebookTab Object;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct MoveFocusOutSignal
+{
+	public GtkNotebookHandle Self;
+	public GtkDirectionType Object;
+	public IntPtr UserData;
+}
+
+public struct PageAddedSignal
+{
+	public GtkNotebookHandle Self;
+	public GtkWidgetHandle Child;
+	public uint PageNum;
+	public IntPtr UserData;
+}
+
+public struct PageRemovedSignal
+{
+	public GtkNotebookHandle Self;
+	public GtkWidgetHandle Child;
+	public uint PageNum;
+	public IntPtr UserData;
+}
+
+public struct PageReorderedSignal
+{
+	public GtkNotebookHandle Self;
+	public GtkWidgetHandle Child;
+	public uint PageNum;
+	public IntPtr UserData;
+}
+
+public struct ReorderTabSignal
+{
+	public GtkNotebookHandle Self;
+	public GtkDirectionType Object;
+	public bool P0;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct SelectPageSignal
+{
+	public GtkNotebookHandle Self;
+	public bool Object;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct SwitchPageSignal
+{
+	public GtkNotebookHandle Self;
+	public GtkWidgetHandle Page;
+	public uint PageNum;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkNotebookSignalDelegates

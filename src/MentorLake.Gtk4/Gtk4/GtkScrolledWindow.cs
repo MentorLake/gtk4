@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,26 +27,148 @@ public class GtkScrolledWindowHandle : GtkWidgetHandle, GtkAccessibleHandle, Gtk
 
 public static class GtkScrolledWindowSignalExtensions
 {
-	public static GtkScrolledWindowHandle Signal_EdgeOvershot(this GtkScrolledWindowHandle instance, GtkScrolledWindowSignalDelegates.EdgeOvershot handler)
+
+	public static IObservable<GtkScrolledWindowSignalStructs.EdgeOvershotSignal> Signal_EdgeOvershot(this GtkScrolledWindowHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "edge_overshot", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkScrolledWindowSignalStructs.EdgeOvershotSignal> obs) =>
+		{
+			GtkScrolledWindowSignalDelegates.EdgeOvershot handler = (GtkScrolledWindowHandle self, GtkPositionType pos, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkScrolledWindowSignalStructs.EdgeOvershotSignal()
+				{
+					Self = self, Pos = pos, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "edge_overshot", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkScrolledWindowHandle Signal_EdgeReached(this GtkScrolledWindowHandle instance, GtkScrolledWindowSignalDelegates.EdgeReached handler)
+
+	public static IObservable<GtkScrolledWindowSignalStructs.EdgeReachedSignal> Signal_EdgeReached(this GtkScrolledWindowHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "edge_reached", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkScrolledWindowSignalStructs.EdgeReachedSignal> obs) =>
+		{
+			GtkScrolledWindowSignalDelegates.EdgeReached handler = (GtkScrolledWindowHandle self, GtkPositionType pos, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkScrolledWindowSignalStructs.EdgeReachedSignal()
+				{
+					Self = self, Pos = pos, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "edge_reached", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkScrolledWindowHandle Signal_MoveFocusOut(this GtkScrolledWindowHandle instance, GtkScrolledWindowSignalDelegates.MoveFocusOut handler)
+
+	public static IObservable<GtkScrolledWindowSignalStructs.MoveFocusOutSignal> Signal_MoveFocusOut(this GtkScrolledWindowHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "move_focus_out", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkScrolledWindowSignalStructs.MoveFocusOutSignal> obs) =>
+		{
+			GtkScrolledWindowSignalDelegates.MoveFocusOut handler = (GtkScrolledWindowHandle self, GtkDirectionType direction_type, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkScrolledWindowSignalStructs.MoveFocusOutSignal()
+				{
+					Self = self, DirectionType = direction_type, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "move_focus_out", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkScrolledWindowHandle Signal_ScrollChild(this GtkScrolledWindowHandle instance, GtkScrolledWindowSignalDelegates.ScrollChild handler)
+
+	public static IObservable<GtkScrolledWindowSignalStructs.ScrollChildSignal> Signal_ScrollChild(this GtkScrolledWindowHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "scroll_child", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkScrolledWindowSignalStructs.ScrollChildSignal> obs) =>
+		{
+			GtkScrolledWindowSignalDelegates.ScrollChild handler = (GtkScrolledWindowHandle self, ref GtkScrollType scroll, bool horizontal, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkScrolledWindowSignalStructs.ScrollChildSignal()
+				{
+					Self = self, Scroll = scroll, Horizontal = horizontal, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "scroll_child", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkScrolledWindowSignalStructs
+{
+
+public struct EdgeOvershotSignal
+{
+	public GtkScrolledWindowHandle Self;
+	public GtkPositionType Pos;
+	public IntPtr UserData;
+}
+
+public struct EdgeReachedSignal
+{
+	public GtkScrolledWindowHandle Self;
+	public GtkPositionType Pos;
+	public IntPtr UserData;
+}
+
+public struct MoveFocusOutSignal
+{
+	public GtkScrolledWindowHandle Self;
+	public GtkDirectionType DirectionType;
+	public IntPtr UserData;
+}
+
+public struct ScrollChildSignal
+{
+	public GtkScrolledWindowHandle Self;
+	public GtkScrollType Scroll;
+	public bool Horizontal;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
 }
 
 public static class GtkScrolledWindowSignalDelegates

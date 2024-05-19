@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -30,26 +32,147 @@ public class GtkLabelHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkAccessibl
 
 public static class GtkLabelSignalExtensions
 {
-	public static GtkLabelHandle Signal_ActivateCurrentLink(this GtkLabelHandle instance, GtkLabelSignalDelegates.ActivateCurrentLink handler)
+
+	public static IObservable<GtkLabelSignalStructs.ActivateCurrentLinkSignal> Signal_ActivateCurrentLink(this GtkLabelHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_current_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkLabelSignalStructs.ActivateCurrentLinkSignal> obs) =>
+		{
+			GtkLabelSignalDelegates.ActivateCurrentLink handler = (GtkLabelHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkLabelSignalStructs.ActivateCurrentLinkSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate_current_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkLabelHandle Signal_ActivateLink(this GtkLabelHandle instance, GtkLabelSignalDelegates.ActivateLink handler)
+
+	public static IObservable<GtkLabelSignalStructs.ActivateLinkSignal> Signal_ActivateLink(this GtkLabelHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkLabelSignalStructs.ActivateLinkSignal> obs) =>
+		{
+			GtkLabelSignalDelegates.ActivateLink handler = (GtkLabelHandle self, string uri, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkLabelSignalStructs.ActivateLinkSignal()
+				{
+					Self = self, Uri = uri, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate_link", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkLabelHandle Signal_CopyClipboard(this GtkLabelHandle instance, GtkLabelSignalDelegates.CopyClipboard handler)
+
+	public static IObservable<GtkLabelSignalStructs.CopyClipboardSignal> Signal_CopyClipboard(this GtkLabelHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "copy_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkLabelSignalStructs.CopyClipboardSignal> obs) =>
+		{
+			GtkLabelSignalDelegates.CopyClipboard handler = (GtkLabelHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkLabelSignalStructs.CopyClipboardSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "copy_clipboard", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkLabelHandle Signal_MoveCursor(this GtkLabelHandle instance, GtkLabelSignalDelegates.MoveCursor handler)
+
+	public static IObservable<GtkLabelSignalStructs.MoveCursorSignal> Signal_MoveCursor(this GtkLabelHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkLabelSignalStructs.MoveCursorSignal> obs) =>
+		{
+			GtkLabelSignalDelegates.MoveCursor handler = (GtkLabelHandle self, ref GtkMovementStep step, int count, bool extend_selection, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkLabelSignalStructs.MoveCursorSignal()
+				{
+					Self = self, Step = step, Count = count, ExtendSelection = extend_selection, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "move_cursor", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkLabelSignalStructs
+{
+
+public struct ActivateCurrentLinkSignal
+{
+	public GtkLabelHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ActivateLinkSignal
+{
+	public GtkLabelHandle Self;
+	public string Uri;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct CopyClipboardSignal
+{
+	public GtkLabelHandle Self;
+	public IntPtr UserData;
+}
+
+public struct MoveCursorSignal
+{
+	public GtkLabelHandle Self;
+	public GtkMovementStep Step;
+	public int Count;
+	public bool ExtendSelection;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkLabelSignalDelegates

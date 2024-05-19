@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,16 +27,81 @@ public class GDBusAuthObserverHandle : GObjectHandle
 
 public static class GDBusAuthObserverSignalExtensions
 {
-	public static GDBusAuthObserverHandle Signal_AllowMechanism(this GDBusAuthObserverHandle instance, GDBusAuthObserverSignalDelegates.AllowMechanism handler)
+
+	public static IObservable<GDBusAuthObserverSignalStructs.AllowMechanismSignal> Signal_AllowMechanism(this GDBusAuthObserverHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "allow_mechanism", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GDBusAuthObserverSignalStructs.AllowMechanismSignal> obs) =>
+		{
+			GDBusAuthObserverSignalDelegates.AllowMechanism handler = (GDBusAuthObserverHandle self, string mechanism, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GDBusAuthObserverSignalStructs.AllowMechanismSignal()
+				{
+					Self = self, Mechanism = mechanism, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "allow_mechanism", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GDBusAuthObserverHandle Signal_AuthorizeAuthenticatedPeer(this GDBusAuthObserverHandle instance, GDBusAuthObserverSignalDelegates.AuthorizeAuthenticatedPeer handler)
+
+	public static IObservable<GDBusAuthObserverSignalStructs.AuthorizeAuthenticatedPeerSignal> Signal_AuthorizeAuthenticatedPeer(this GDBusAuthObserverHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "authorize_authenticated_peer", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GDBusAuthObserverSignalStructs.AuthorizeAuthenticatedPeerSignal> obs) =>
+		{
+			GDBusAuthObserverSignalDelegates.AuthorizeAuthenticatedPeer handler = (GDBusAuthObserverHandle self, GIOStreamHandle stream, GCredentialsHandle credentials, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GDBusAuthObserverSignalStructs.AuthorizeAuthenticatedPeerSignal()
+				{
+					Self = self, Stream = stream, Credentials = credentials, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "authorize_authenticated_peer", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GDBusAuthObserverSignalStructs
+{
+
+public struct AllowMechanismSignal
+{
+	public GDBusAuthObserverHandle Self;
+	public string Mechanism;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct AuthorizeAuthenticatedPeerSignal
+{
+	public GDBusAuthObserverHandle Self;
+	public GIOStreamHandle Stream;
+	public GCredentialsHandle Credentials;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
 }
 
 public static class GDBusAuthObserverSignalDelegates

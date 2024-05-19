@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -40,36 +42,212 @@ public class GtkComboBoxHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuilda
 
 public static class GtkComboBoxSignalExtensions
 {
-	public static GtkComboBoxHandle Signal_Activate(this GtkComboBoxHandle instance, GtkComboBoxSignalDelegates.Activate handler)
+
+	public static IObservable<GtkComboBoxSignalStructs.ActivateSignal> Signal_Activate(this GtkComboBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkComboBoxSignalStructs.ActivateSignal> obs) =>
+		{
+			GtkComboBoxSignalDelegates.Activate handler = (GtkComboBoxHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkComboBoxSignalStructs.ActivateSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkComboBoxHandle Signal_Changed(this GtkComboBoxHandle instance, GtkComboBoxSignalDelegates.Changed handler)
+
+	public static IObservable<GtkComboBoxSignalStructs.ChangedSignal> Signal_Changed(this GtkComboBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkComboBoxSignalStructs.ChangedSignal> obs) =>
+		{
+			GtkComboBoxSignalDelegates.Changed handler = (GtkComboBoxHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkComboBoxSignalStructs.ChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkComboBoxHandle Signal_FormatEntryText(this GtkComboBoxHandle instance, GtkComboBoxSignalDelegates.FormatEntryText handler)
+
+	public static IObservable<GtkComboBoxSignalStructs.FormatEntryTextSignal> Signal_FormatEntryText(this GtkComboBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "format_entry_text", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkComboBoxSignalStructs.FormatEntryTextSignal> obs) =>
+		{
+			GtkComboBoxSignalDelegates.FormatEntryText handler = (GtkComboBoxHandle self, string path, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkComboBoxSignalStructs.FormatEntryTextSignal()
+				{
+					Self = self, Path = path, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "format_entry_text", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkComboBoxHandle Signal_MoveActive(this GtkComboBoxHandle instance, GtkComboBoxSignalDelegates.MoveActive handler)
+
+	public static IObservable<GtkComboBoxSignalStructs.MoveActiveSignal> Signal_MoveActive(this GtkComboBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "move_active", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkComboBoxSignalStructs.MoveActiveSignal> obs) =>
+		{
+			GtkComboBoxSignalDelegates.MoveActive handler = (GtkComboBoxHandle self, ref GtkScrollType scroll_type, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkComboBoxSignalStructs.MoveActiveSignal()
+				{
+					Self = self, ScrollType = scroll_type, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "move_active", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkComboBoxHandle Signal_Popdown(this GtkComboBoxHandle instance, GtkComboBoxSignalDelegates.Popdown handler)
+
+	public static IObservable<GtkComboBoxSignalStructs.PopdownSignal> Signal_Popdown(this GtkComboBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "popdown", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkComboBoxSignalStructs.PopdownSignal> obs) =>
+		{
+			GtkComboBoxSignalDelegates.Popdown handler = (GtkComboBoxHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkComboBoxSignalStructs.PopdownSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "popdown", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkComboBoxHandle Signal_Popup(this GtkComboBoxHandle instance, GtkComboBoxSignalDelegates.Popup handler)
+
+	public static IObservable<GtkComboBoxSignalStructs.PopupSignal> Signal_Popup(this GtkComboBoxHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "popup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkComboBoxSignalStructs.PopupSignal> obs) =>
+		{
+			GtkComboBoxSignalDelegates.Popup handler = (GtkComboBoxHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkComboBoxSignalStructs.PopupSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "popup", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkComboBoxSignalStructs
+{
+
+public struct ActivateSignal
+{
+	public GtkComboBoxHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ChangedSignal
+{
+	public GtkComboBoxHandle Self;
+	public IntPtr UserData;
+}
+
+public struct FormatEntryTextSignal
+{
+	public GtkComboBoxHandle Self;
+	public string Path;
+	public IntPtr UserData;
+	public string ReturnValue;
+}
+
+public struct MoveActiveSignal
+{
+	public GtkComboBoxHandle Self;
+	public GtkScrollType ScrollType;
+	public IntPtr UserData;
+}
+
+public struct PopdownSignal
+{
+	public GtkComboBoxHandle Self;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct PopupSignal
+{
+	public GtkComboBoxHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkComboBoxSignalDelegates

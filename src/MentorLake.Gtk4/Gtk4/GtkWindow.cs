@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -55,31 +57,178 @@ public class GtkWindowHandle : GtkWidgetHandle, GtkAccessibleHandle, GtkBuildabl
 
 public static class GtkWindowSignalExtensions
 {
-	public static GtkWindowHandle Signal_ActivateDefault(this GtkWindowHandle instance, GtkWindowSignalDelegates.ActivateDefault handler)
+
+	public static IObservable<GtkWindowSignalStructs.ActivateDefaultSignal> Signal_ActivateDefault(this GtkWindowHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_default", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWindowSignalStructs.ActivateDefaultSignal> obs) =>
+		{
+			GtkWindowSignalDelegates.ActivateDefault handler = (GtkWindowHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWindowSignalStructs.ActivateDefaultSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate_default", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkWindowHandle Signal_ActivateFocus(this GtkWindowHandle instance, GtkWindowSignalDelegates.ActivateFocus handler)
+
+	public static IObservable<GtkWindowSignalStructs.ActivateFocusSignal> Signal_ActivateFocus(this GtkWindowHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "activate_focus", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWindowSignalStructs.ActivateFocusSignal> obs) =>
+		{
+			GtkWindowSignalDelegates.ActivateFocus handler = (GtkWindowHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWindowSignalStructs.ActivateFocusSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "activate_focus", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkWindowHandle Signal_CloseRequest(this GtkWindowHandle instance, GtkWindowSignalDelegates.CloseRequest handler)
+
+	public static IObservable<GtkWindowSignalStructs.CloseRequestSignal> Signal_CloseRequest(this GtkWindowHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "close_request", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWindowSignalStructs.CloseRequestSignal> obs) =>
+		{
+			GtkWindowSignalDelegates.CloseRequest handler = (GtkWindowHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWindowSignalStructs.CloseRequestSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "close_request", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkWindowHandle Signal_EnableDebugging(this GtkWindowHandle instance, GtkWindowSignalDelegates.EnableDebugging handler)
+
+	public static IObservable<GtkWindowSignalStructs.EnableDebuggingSignal> Signal_EnableDebugging(this GtkWindowHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "enable_debugging", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWindowSignalStructs.EnableDebuggingSignal> obs) =>
+		{
+			GtkWindowSignalDelegates.EnableDebugging handler = (GtkWindowHandle self, bool toggle, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWindowSignalStructs.EnableDebuggingSignal()
+				{
+					Self = self, Toggle = toggle, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "enable_debugging", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GtkWindowHandle Signal_KeysChanged(this GtkWindowHandle instance, GtkWindowSignalDelegates.KeysChanged handler)
+
+	public static IObservable<GtkWindowSignalStructs.KeysChangedSignal> Signal_KeysChanged(this GtkWindowHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "keys_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GtkWindowSignalStructs.KeysChangedSignal> obs) =>
+		{
+			GtkWindowSignalDelegates.KeysChanged handler = (GtkWindowHandle self, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GtkWindowSignalStructs.KeysChangedSignal()
+				{
+					Self = self, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "keys_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GtkWindowSignalStructs
+{
+
+public struct ActivateDefaultSignal
+{
+	public GtkWindowHandle Self;
+	public IntPtr UserData;
+}
+
+public struct ActivateFocusSignal
+{
+	public GtkWindowHandle Self;
+	public IntPtr UserData;
+}
+
+public struct CloseRequestSignal
+{
+	public GtkWindowHandle Self;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct EnableDebuggingSignal
+{
+	public GtkWindowHandle Self;
+	public bool Toggle;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
+
+public struct KeysChangedSignal
+{
+	public GtkWindowHandle Self;
+	public IntPtr UserData;
+}
 }
 
 public static class GtkWindowSignalDelegates

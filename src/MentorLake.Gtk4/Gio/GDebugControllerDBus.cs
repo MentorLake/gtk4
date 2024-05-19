@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -25,11 +27,45 @@ public class GDebugControllerDBusHandle : GObjectHandle, GDebugControllerHandle,
 
 public static class GDebugControllerDBusSignalExtensions
 {
-	public static GDebugControllerDBusHandle Signal_Authorize(this GDebugControllerDBusHandle instance, GDebugControllerDBusSignalDelegates.Authorize handler)
+
+	public static IObservable<GDebugControllerDBusSignalStructs.AuthorizeSignal> Signal_Authorize(this GDebugControllerDBusHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "authorize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GDebugControllerDBusSignalStructs.AuthorizeSignal> obs) =>
+		{
+			GDebugControllerDBusSignalDelegates.Authorize handler = (GDebugControllerDBusHandle self, GDBusMethodInvocationHandle invocation, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GDebugControllerDBusSignalStructs.AuthorizeSignal()
+				{
+					Self = self, Invocation = invocation, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return signalStruct.ReturnValue;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "authorize", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GDebugControllerDBusSignalStructs
+{
+
+public struct AuthorizeSignal
+{
+	public GDebugControllerDBusHandle Self;
+	public GDBusMethodInvocationHandle Invocation;
+	public IntPtr UserData;
+	public bool ReturnValue;
+}
 }
 
 public static class GDebugControllerDBusSignalDelegates

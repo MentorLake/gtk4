@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -60,11 +62,44 @@ public class GObjectHandle : GTypeInstanceHandle
 
 public static class GObjectSignalExtensions
 {
-	public static GObjectHandle Signal_Notify(this GObjectHandle instance, GObjectSignalDelegates.Notify handler)
+
+	public static IObservable<GObjectSignalStructs.NotifySignal> Signal_Notify(this GObjectHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "notify", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GObjectSignalStructs.NotifySignal> obs) =>
+		{
+			GObjectSignalDelegates.Notify handler = (GObjectHandle self, GParamSpecHandle pspec, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GObjectSignalStructs.NotifySignal()
+				{
+					Self = self, Pspec = pspec, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "notify", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GObjectSignalStructs
+{
+
+public struct NotifySignal
+{
+	public GObjectHandle Self;
+	public GParamSpecHandle Pspec;
+	public IntPtr UserData;
+}
 }
 
 public static class GObjectSignalDelegates

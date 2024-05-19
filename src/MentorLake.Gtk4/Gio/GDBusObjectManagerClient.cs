@@ -2,7 +2,9 @@ using MentorLake.Gtk4.Graphene;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Harfbuzz;
 using System.Runtime.InteropServices;
-using MentorLake.Gtk4.GLib;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;using MentorLake.Gtk4.GLib;
 using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gio;
 using MentorLake.Gtk4.GModule;
@@ -50,16 +52,85 @@ public class GDBusObjectManagerClientHandle : GObjectHandle, GAsyncInitableHandl
 
 public static class GDBusObjectManagerClientSignalExtensions
 {
-	public static GDBusObjectManagerClientHandle Signal_InterfaceProxyPropertiesChanged(this GDBusObjectManagerClientHandle instance, GDBusObjectManagerClientSignalDelegates.InterfaceProxyPropertiesChanged handler)
+
+	public static IObservable<GDBusObjectManagerClientSignalStructs.InterfaceProxyPropertiesChangedSignal> Signal_InterfaceProxyPropertiesChanged(this GDBusObjectManagerClientHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "interface_proxy_properties_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GDBusObjectManagerClientSignalStructs.InterfaceProxyPropertiesChangedSignal> obs) =>
+		{
+			GDBusObjectManagerClientSignalDelegates.InterfaceProxyPropertiesChanged handler = (GDBusObjectManagerClientHandle self, GDBusObjectProxyHandle object_proxy, GDBusProxyHandle interface_proxy, GVariantHandle changed_properties, string[] invalidated_properties, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GDBusObjectManagerClientSignalStructs.InterfaceProxyPropertiesChangedSignal()
+				{
+					Self = self, ObjectProxy = object_proxy, InterfaceProxy = interface_proxy, ChangedProperties = changed_properties, InvalidatedProperties = invalidated_properties, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "interface_proxy_properties_changed", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
-	public static GDBusObjectManagerClientHandle Signal_InterfaceProxySignal(this GDBusObjectManagerClientHandle instance, GDBusObjectManagerClientSignalDelegates.InterfaceProxySignal handler)
+
+	public static IObservable<GDBusObjectManagerClientSignalStructs.InterfaceProxySignalSignal> Signal_InterfaceProxySignal(this GDBusObjectManagerClientHandle instance)
 	{
-		GObjectExterns.g_signal_connect_data(instance, "interface_proxy_signal", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
-		return instance;
+		return Observable.Create((IObserver<GDBusObjectManagerClientSignalStructs.InterfaceProxySignalSignal> obs) =>
+		{
+			GDBusObjectManagerClientSignalDelegates.InterfaceProxySignal handler = (GDBusObjectManagerClientHandle self, GDBusObjectProxyHandle object_proxy, GDBusProxyHandle interface_proxy, string sender_name, string signal_name, GVariantHandle parameters, IntPtr user_data) =>
+			{
+				
+
+				var signalStruct = new GDBusObjectManagerClientSignalStructs.InterfaceProxySignalSignal()
+				{
+					Self = self, ObjectProxy = object_proxy, InterfaceProxy = interface_proxy, SenderName = sender_name, SignalName = signal_name, Parameters = parameters, UserData = user_data
+				};
+
+				obs.OnNext(signalStruct);
+				return ;
+			};
+
+			var handlerId = GObjectExterns.g_signal_connect_data(instance, "interface_proxy_signal", Marshal.GetFunctionPointerForDelegate(handler), IntPtr.Zero, null, GConnectFlags.G_CONNECT_AFTER);
+
+			return Disposable.Create(() =>
+			{
+				instance.GSignalHandlerDisconnect(handlerId);
+				obs.OnCompleted();
+			});
+		});
 	}
+}
+
+public static class GDBusObjectManagerClientSignalStructs
+{
+
+public struct InterfaceProxyPropertiesChangedSignal
+{
+	public GDBusObjectManagerClientHandle Self;
+	public GDBusObjectProxyHandle ObjectProxy;
+	public GDBusProxyHandle InterfaceProxy;
+	public GVariantHandle ChangedProperties;
+	public string[] InvalidatedProperties;
+	public IntPtr UserData;
+}
+
+public struct InterfaceProxySignalSignal
+{
+	public GDBusObjectManagerClientHandle Self;
+	public GDBusObjectProxyHandle ObjectProxy;
+	public GDBusProxyHandle InterfaceProxy;
+	public string SenderName;
+	public string SignalName;
+	public GVariantHandle Parameters;
+	public IntPtr UserData;
+}
 }
 
 public static class GDBusObjectManagerClientSignalDelegates
