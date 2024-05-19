@@ -6,7 +6,7 @@ public class GLibSynchronizationContext : SynchronizationContext
 {
 	public override void Post(SendOrPostCallback d, object state)
 	{
-		GlobalFunctionExterns.g_idle_add_full(0, _ =>
+		GLibGlobalFunctionExterns.g_idle_add_full(0, _ =>
 		{
 			d(state);
 			return false;
