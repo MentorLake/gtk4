@@ -16,7 +16,7 @@ public static class GtkCellRendererAccelSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCellRendererAccelSignalStructs.AccelClearedSignal> obs) =>
 		{
-			GtkCellRendererAccelSignalDelegates.AccelCleared handler = (GtkCellRendererAccelHandle self, string path_string, IntPtr user_data) =>
+			GtkCellRendererAccelSignalDelegates.accel_cleared handler = (GtkCellRendererAccelHandle self, string path_string, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkCellRendererAccelSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCellRendererAccelSignalStructs.AccelEditedSignal> obs) =>
 		{
-			GtkCellRendererAccelSignalDelegates.AccelEdited handler = (GtkCellRendererAccelHandle self, string path_string, uint accel_key, GdkModifierType accel_mods, uint hardware_keycode, IntPtr user_data) =>
+			GtkCellRendererAccelSignalDelegates.accel_edited handler = (GtkCellRendererAccelHandle self, string path_string, uint accel_key, GdkModifierType accel_mods, uint hardware_keycode, IntPtr user_data) =>
 			{
 				
 
@@ -91,11 +91,13 @@ public struct AccelEditedSignal
 public static class GtkCellRendererAccelSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void AccelCleared([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererAccelHandle>))] GtkCellRendererAccelHandle self, string path_string, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void accel_cleared([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererAccelHandle>))] GtkCellRendererAccelHandle self, string path_string, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void AccelEdited([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererAccelHandle>))] GtkCellRendererAccelHandle self, string path_string, uint accel_key, GdkModifierType accel_mods, uint hardware_keycode, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void accel_edited([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererAccelHandle>))] GtkCellRendererAccelHandle self, string path_string, uint accel_key, GdkModifierType accel_mods, uint hardware_keycode, IntPtr user_data);
+
 }
 
 

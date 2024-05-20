@@ -16,7 +16,7 @@ public static class GtkEmojiChooserSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEmojiChooserSignalStructs.EmojiPickedSignal> obs) =>
 		{
-			GtkEmojiChooserSignalDelegates.EmojiPicked handler = (GtkEmojiChooserHandle self, string text, IntPtr user_data) =>
+			GtkEmojiChooserSignalDelegates.emoji_picked handler = (GtkEmojiChooserHandle self, string text, IntPtr user_data) =>
 			{
 				
 
@@ -54,8 +54,9 @@ public struct EmojiPickedSignal
 public static class GtkEmojiChooserSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void EmojiPicked([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEmojiChooserHandle>))] GtkEmojiChooserHandle self, string text, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void emoji_picked([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEmojiChooserHandle>))] GtkEmojiChooserHandle self, string text, IntPtr user_data);
+
 }
 
 

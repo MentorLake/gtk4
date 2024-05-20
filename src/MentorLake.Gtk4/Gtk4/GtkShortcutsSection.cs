@@ -11,7 +11,7 @@ public static class GtkShortcutsSectionSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkShortcutsSectionSignalStructs.ChangeCurrentPageSignal> obs) =>
 		{
-			GtkShortcutsSectionSignalDelegates.ChangeCurrentPage handler = (GtkShortcutsSectionHandle self, int @object, IntPtr user_data) =>
+			GtkShortcutsSectionSignalDelegates.change_current_page handler = (GtkShortcutsSectionHandle self, int @object, IntPtr user_data) =>
 			{
 				
 
@@ -50,8 +50,9 @@ public struct ChangeCurrentPageSignal
 public static class GtkShortcutsSectionSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ChangeCurrentPage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkShortcutsSectionHandle>))] GtkShortcutsSectionHandle self, int @object, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool change_current_page([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkShortcutsSectionHandle>))] GtkShortcutsSectionHandle self, int @object, IntPtr user_data);
+
 }
 
 

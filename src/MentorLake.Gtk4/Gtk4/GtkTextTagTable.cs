@@ -16,7 +16,7 @@ public static class GtkTextTagTableSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextTagTableSignalStructs.TagAddedSignal> obs) =>
 		{
-			GtkTextTagTableSignalDelegates.TagAdded handler = (GtkTextTagTableHandle self, GtkTextTagHandle tag, IntPtr user_data) =>
+			GtkTextTagTableSignalDelegates.tag_added handler = (GtkTextTagTableHandle self, GtkTextTagHandle tag, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkTextTagTableSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextTagTableSignalStructs.TagChangedSignal> obs) =>
 		{
-			GtkTextTagTableSignalDelegates.TagChanged handler = (GtkTextTagTableHandle self, GtkTextTagHandle tag, bool size_changed, IntPtr user_data) =>
+			GtkTextTagTableSignalDelegates.tag_changed handler = (GtkTextTagTableHandle self, GtkTextTagHandle tag, bool size_changed, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkTextTagTableSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextTagTableSignalStructs.TagRemovedSignal> obs) =>
 		{
-			GtkTextTagTableSignalDelegates.TagRemoved handler = (GtkTextTagTableHandle self, GtkTextTagHandle tag, IntPtr user_data) =>
+			GtkTextTagTableSignalDelegates.tag_removed handler = (GtkTextTagTableHandle self, GtkTextTagHandle tag, IntPtr user_data) =>
 			{
 				
 
@@ -123,14 +123,17 @@ public struct TagRemovedSignal
 public static class GtkTextTagTableSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void TagAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagTableHandle>))] GtkTextTagTableHandle self, GtkTextTagHandle tag, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void tag_added([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagTableHandle>))] GtkTextTagTableHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagHandle>))] GtkTextTagHandle tag, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void TagChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagTableHandle>))] GtkTextTagTableHandle self, GtkTextTagHandle tag, bool size_changed, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void TagRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagTableHandle>))] GtkTextTagTableHandle self, GtkTextTagHandle tag, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void tag_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagTableHandle>))] GtkTextTagTableHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagHandle>))] GtkTextTagHandle tag, bool size_changed, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void tag_removed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagTableHandle>))] GtkTextTagTableHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagHandle>))] GtkTextTagHandle tag, IntPtr user_data);
+
 }
 
 

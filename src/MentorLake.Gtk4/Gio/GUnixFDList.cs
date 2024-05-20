@@ -31,12 +31,12 @@ public static class GUnixFDListHandleExtensions
 		return GUnixFDListExterns.g_unix_fd_list_get_length(list);
 	}
 
-	public static int[] GUnixFdListPeekFds(this GUnixFDListHandle list, out int length)
+	public static IntPtr GUnixFdListPeekFds(this GUnixFDListHandle list, out int length)
 	{
 		return GUnixFDListExterns.g_unix_fd_list_peek_fds(list, out length);
 	}
 
-	public static int[] GUnixFdListStealFds(this GUnixFDListHandle list, out int length)
+	public static IntPtr GUnixFdListStealFds(this GUnixFDListHandle list, out int length)
 	{
 		return GUnixFDListExterns.g_unix_fd_list_steal_fds(list, out length);
 	}
@@ -61,9 +61,9 @@ internal class GUnixFDListExterns
 	internal static extern int g_unix_fd_list_get_length(GUnixFDListHandle list);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int[] g_unix_fd_list_peek_fds(GUnixFDListHandle list, out int length);
+	internal static extern IntPtr g_unix_fd_list_peek_fds(GUnixFDListHandle list, out int length);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int[] g_unix_fd_list_steal_fds(GUnixFDListHandle list, out int length);
+	internal static extern IntPtr g_unix_fd_list_steal_fds(GUnixFDListHandle list, out int length);
 
 }

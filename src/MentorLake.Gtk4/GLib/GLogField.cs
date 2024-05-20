@@ -12,5 +12,5 @@ public struct GLogField
 {
 	public string key;
 	public IntPtr value;
-	public int length;
+	public UIntPtr length;
 }

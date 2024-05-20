@@ -16,7 +16,7 @@ public static class GtkPrintOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.BeginPrintSignal> obs) =>
 		{
-			GtkPrintOperationSignalDelegates.BeginPrint handler = (GtkPrintOperationHandle self, GtkPrintContextHandle context, IntPtr user_data) =>
+			GtkPrintOperationSignalDelegates.begin_print handler = (GtkPrintOperationHandle self, GtkPrintContextHandle context, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkPrintOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.CreateCustomWidgetSignal> obs) =>
 		{
-			GtkPrintOperationSignalDelegates.CreateCustomWidget handler = (GtkPrintOperationHandle self, IntPtr user_data) =>
+			GtkPrintOperationSignalDelegates.create_custom_widget handler = (GtkPrintOperationHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkPrintOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.CustomWidgetApplySignal> obs) =>
 		{
-			GtkPrintOperationSignalDelegates.CustomWidgetApply handler = (GtkPrintOperationHandle self, GtkWidgetHandle widget, IntPtr user_data) =>
+			GtkPrintOperationSignalDelegates.custom_widget_apply handler = (GtkPrintOperationHandle self, GtkWidgetHandle widget, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GtkPrintOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.DoneSignal> obs) =>
 		{
-			GtkPrintOperationSignalDelegates.Done handler = (GtkPrintOperationHandle self, GtkPrintOperationResult result, IntPtr user_data) =>
+			GtkPrintOperationSignalDelegates.done handler = (GtkPrintOperationHandle self, GtkPrintOperationResult result, IntPtr user_data) =>
 			{
 				
 
@@ -124,7 +124,7 @@ public static class GtkPrintOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.DrawPageSignal> obs) =>
 		{
-			GtkPrintOperationSignalDelegates.DrawPage handler = (GtkPrintOperationHandle self, GtkPrintContextHandle context, int page_nr, IntPtr user_data) =>
+			GtkPrintOperationSignalDelegates.draw_page handler = (GtkPrintOperationHandle self, GtkPrintContextHandle context, int page_nr, IntPtr user_data) =>
 			{
 				
 
@@ -151,7 +151,7 @@ public static class GtkPrintOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.EndPrintSignal> obs) =>
 		{
-			GtkPrintOperationSignalDelegates.EndPrint handler = (GtkPrintOperationHandle self, GtkPrintContextHandle context, IntPtr user_data) =>
+			GtkPrintOperationSignalDelegates.end_print handler = (GtkPrintOperationHandle self, GtkPrintContextHandle context, IntPtr user_data) =>
 			{
 				
 
@@ -178,7 +178,7 @@ public static class GtkPrintOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.PaginateSignal> obs) =>
 		{
-			GtkPrintOperationSignalDelegates.Paginate handler = (GtkPrintOperationHandle self, GtkPrintContextHandle context, IntPtr user_data) =>
+			GtkPrintOperationSignalDelegates.paginate handler = (GtkPrintOperationHandle self, GtkPrintContextHandle context, IntPtr user_data) =>
 			{
 				
 
@@ -205,7 +205,7 @@ public static class GtkPrintOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.PreviewSignal> obs) =>
 		{
-			GtkPrintOperationSignalDelegates.Preview handler = (GtkPrintOperationHandle self, GtkPrintOperationPreviewHandle preview, GtkPrintContextHandle context, GtkWindowHandle parent, IntPtr user_data) =>
+			GtkPrintOperationSignalDelegates.preview handler = (GtkPrintOperationHandle self, GtkPrintOperationPreviewHandle preview, GtkPrintContextHandle context, GtkWindowHandle parent, IntPtr user_data) =>
 			{
 				
 
@@ -232,7 +232,7 @@ public static class GtkPrintOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.RequestPageSetupSignal> obs) =>
 		{
-			GtkPrintOperationSignalDelegates.RequestPageSetup handler = (GtkPrintOperationHandle self, GtkPrintContextHandle context, int page_nr, GtkPageSetupHandle setup, IntPtr user_data) =>
+			GtkPrintOperationSignalDelegates.request_page_setup handler = (GtkPrintOperationHandle self, GtkPrintContextHandle context, int page_nr, GtkPageSetupHandle setup, IntPtr user_data) =>
 			{
 				
 
@@ -259,7 +259,7 @@ public static class GtkPrintOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.StatusChangedSignal> obs) =>
 		{
-			GtkPrintOperationSignalDelegates.StatusChanged handler = (GtkPrintOperationHandle self, IntPtr user_data) =>
+			GtkPrintOperationSignalDelegates.status_changed handler = (GtkPrintOperationHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -286,7 +286,7 @@ public static class GtkPrintOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPrintOperationSignalStructs.UpdateCustomWidgetSignal> obs) =>
 		{
-			GtkPrintOperationSignalDelegates.UpdateCustomWidget handler = (GtkPrintOperationHandle self, GtkWidgetHandle widget, GtkPageSetupHandle setup, GtkPrintSettingsHandle settings, IntPtr user_data) =>
+			GtkPrintOperationSignalDelegates.update_custom_widget handler = (GtkPrintOperationHandle self, GtkWidgetHandle widget, GtkPageSetupHandle setup, GtkPrintSettingsHandle settings, IntPtr user_data) =>
 			{
 				
 
@@ -402,38 +402,49 @@ public struct UpdateCustomWidgetSignal
 public static class GtkPrintOperationSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void BeginPrint([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkPrintContextHandle context, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void begin_print([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintContextHandle>))] GtkPrintContextHandle context, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate GObjectHandle CreateCustomWidget([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void CustomWidgetApply([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkWidgetHandle widget, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate GObjectHandle create_custom_widget([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Done([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkPrintOperationResult result, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DrawPage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkPrintContextHandle context, int page_nr, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void custom_widget_apply([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle widget, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void EndPrint([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkPrintContextHandle context, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool Paginate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkPrintContextHandle context, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void done([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkPrintOperationResult result, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool Preview([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkPrintOperationPreviewHandle preview, GtkPrintContextHandle context, GtkWindowHandle parent, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void RequestPageSetup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkPrintContextHandle context, int page_nr, GtkPageSetupHandle setup, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void draw_page([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintContextHandle>))] GtkPrintContextHandle context, int page_nr, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void StatusChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void UpdateCustomWidget([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, GtkWidgetHandle widget, GtkPageSetupHandle setup, GtkPrintSettingsHandle settings, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void end_print([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintContextHandle>))] GtkPrintContextHandle context, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool paginate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintContextHandle>))] GtkPrintContextHandle context, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool preview([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationPreviewHandleImpl>))] GtkPrintOperationPreviewHandle preview, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintContextHandle>))] GtkPrintContextHandle context, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle parent, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void request_page_setup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintContextHandle>))] GtkPrintContextHandle context, int page_nr, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPageSetupHandle>))] GtkPageSetupHandle setup, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void status_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void update_custom_widget([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintOperationHandle>))] GtkPrintOperationHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle widget, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPageSetupHandle>))] GtkPageSetupHandle setup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintSettingsHandle>))] GtkPrintSettingsHandle settings, IntPtr user_data);
+
 }
 
 

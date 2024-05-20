@@ -10,7 +10,7 @@ internal class GtkSymbolicPaintableHandleImpl : BaseSafeHandle, GtkSymbolicPaint
 
 public static class GtkSymbolicPaintableHandleExtensions
 {
-	public static GtkSymbolicPaintableHandle SnapshotSymbolic(this GtkSymbolicPaintableHandle paintable, GdkSnapshotHandle snapshot, double width, double height, GdkRGBA[] colors, int n_colors)
+	public static GtkSymbolicPaintableHandle SnapshotSymbolic(this GtkSymbolicPaintableHandle paintable, GdkSnapshotHandle snapshot, double width, double height, GdkRGBA[] colors, UIntPtr n_colors)
 	{
 		GtkSymbolicPaintableExterns.gtk_symbolic_paintable_snapshot_symbolic(paintable, snapshot, width, height, colors, n_colors);
 		return paintable;
@@ -21,6 +21,6 @@ public static class GtkSymbolicPaintableHandleExtensions
 internal class GtkSymbolicPaintableExterns
 {
 	[DllImport(Libraries.Gtk4)]
-	internal static extern void gtk_symbolic_paintable_snapshot_symbolic(GtkSymbolicPaintableHandle paintable, GdkSnapshotHandle snapshot, double width, double height, GdkRGBA[] colors, int n_colors);
+	internal static extern void gtk_symbolic_paintable_snapshot_symbolic(GtkSymbolicPaintableHandle paintable, GdkSnapshotHandle snapshot, double width, double height, GdkRGBA[] colors, UIntPtr n_colors);
 
 }

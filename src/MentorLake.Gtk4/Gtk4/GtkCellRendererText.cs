@@ -16,7 +16,7 @@ public static class GtkCellRendererTextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCellRendererTextSignalStructs.EditedSignal> obs) =>
 		{
-			GtkCellRendererTextSignalDelegates.Edited handler = (GtkCellRendererTextHandle self, string path, string new_text, IntPtr user_data) =>
+			GtkCellRendererTextSignalDelegates.edited handler = (GtkCellRendererTextHandle self, string path, string new_text, IntPtr user_data) =>
 			{
 				
 
@@ -55,8 +55,9 @@ public struct EditedSignal
 public static class GtkCellRendererTextSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Edited([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererTextHandle>))] GtkCellRendererTextHandle self, string path, string new_text, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void edited([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererTextHandle>))] GtkCellRendererTextHandle self, string path, string new_text, IntPtr user_data);
+
 }
 
 

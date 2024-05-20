@@ -16,7 +16,7 @@ public static class GtkGestureDragSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureDragSignalStructs.DragBeginSignal> obs) =>
 		{
-			GtkGestureDragSignalDelegates.DragBegin handler = (GtkGestureDragHandle self, double start_x, double start_y, IntPtr user_data) =>
+			GtkGestureDragSignalDelegates.drag_begin handler = (GtkGestureDragHandle self, double start_x, double start_y, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkGestureDragSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureDragSignalStructs.DragEndSignal> obs) =>
 		{
-			GtkGestureDragSignalDelegates.DragEnd handler = (GtkGestureDragHandle self, double offset_x, double offset_y, IntPtr user_data) =>
+			GtkGestureDragSignalDelegates.drag_end handler = (GtkGestureDragHandle self, double offset_x, double offset_y, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkGestureDragSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureDragSignalStructs.DragUpdateSignal> obs) =>
 		{
-			GtkGestureDragSignalDelegates.DragUpdate handler = (GtkGestureDragHandle self, double offset_x, double offset_y, IntPtr user_data) =>
+			GtkGestureDragSignalDelegates.drag_update handler = (GtkGestureDragHandle self, double offset_x, double offset_y, IntPtr user_data) =>
 			{
 				
 
@@ -125,14 +125,17 @@ public struct DragUpdateSignal
 public static class GtkGestureDragSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DragBegin([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureDragHandle>))] GtkGestureDragHandle self, double start_x, double start_y, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void drag_begin([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureDragHandle>))] GtkGestureDragHandle self, double start_x, double start_y, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DragEnd([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureDragHandle>))] GtkGestureDragHandle self, double offset_x, double offset_y, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DragUpdate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureDragHandle>))] GtkGestureDragHandle self, double offset_x, double offset_y, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void drag_end([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureDragHandle>))] GtkGestureDragHandle self, double offset_x, double offset_y, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void drag_update([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureDragHandle>))] GtkGestureDragHandle self, double offset_x, double offset_y, IntPtr user_data);
+
 }
 
 

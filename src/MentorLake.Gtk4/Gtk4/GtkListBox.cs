@@ -16,7 +16,7 @@ public static class GtkListBoxSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkListBoxSignalStructs.ActivateCursorRowSignal> obs) =>
 		{
-			GtkListBoxSignalDelegates.ActivateCursorRow handler = (GtkListBoxHandle self, IntPtr user_data) =>
+			GtkListBoxSignalDelegates.activate_cursor_row handler = (GtkListBoxHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkListBoxSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkListBoxSignalStructs.MoveCursorSignal> obs) =>
 		{
-			GtkListBoxSignalDelegates.MoveCursor handler = (GtkListBoxHandle self, ref GtkMovementStep @object, int p0, bool p1, bool p2, IntPtr user_data) =>
+			GtkListBoxSignalDelegates.move_cursor handler = (GtkListBoxHandle self, ref GtkMovementStep @object, int p0, bool p1, bool p2, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkListBoxSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkListBoxSignalStructs.RowActivatedSignal> obs) =>
 		{
-			GtkListBoxSignalDelegates.RowActivated handler = (GtkListBoxHandle self, GtkListBoxRowHandle row, IntPtr user_data) =>
+			GtkListBoxSignalDelegates.row_activated handler = (GtkListBoxHandle self, GtkListBoxRowHandle row, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GtkListBoxSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkListBoxSignalStructs.RowSelectedSignal> obs) =>
 		{
-			GtkListBoxSignalDelegates.RowSelected handler = (GtkListBoxHandle self, GtkListBoxRowHandle row, IntPtr user_data) =>
+			GtkListBoxSignalDelegates.row_selected handler = (GtkListBoxHandle self, GtkListBoxRowHandle row, IntPtr user_data) =>
 			{
 				
 
@@ -124,7 +124,7 @@ public static class GtkListBoxSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkListBoxSignalStructs.SelectAllSignal> obs) =>
 		{
-			GtkListBoxSignalDelegates.SelectAll handler = (GtkListBoxHandle self, IntPtr user_data) =>
+			GtkListBoxSignalDelegates.select_all handler = (GtkListBoxHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -151,7 +151,7 @@ public static class GtkListBoxSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkListBoxSignalStructs.SelectedRowsChangedSignal> obs) =>
 		{
-			GtkListBoxSignalDelegates.SelectedRowsChanged handler = (GtkListBoxHandle self, IntPtr user_data) =>
+			GtkListBoxSignalDelegates.selected_rows_changed handler = (GtkListBoxHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -178,7 +178,7 @@ public static class GtkListBoxSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkListBoxSignalStructs.ToggleCursorRowSignal> obs) =>
 		{
-			GtkListBoxSignalDelegates.ToggleCursorRow handler = (GtkListBoxHandle self, IntPtr user_data) =>
+			GtkListBoxSignalDelegates.toggle_cursor_row handler = (GtkListBoxHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -205,7 +205,7 @@ public static class GtkListBoxSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkListBoxSignalStructs.UnselectAllSignal> obs) =>
 		{
-			GtkListBoxSignalDelegates.UnselectAll handler = (GtkListBoxHandle self, IntPtr user_data) =>
+			GtkListBoxSignalDelegates.unselect_all handler = (GtkListBoxHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -290,29 +290,37 @@ public struct UnselectAllSignal
 public static class GtkListBoxSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ActivateCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate_cursor_row([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, ref GtkMovementStep @object, int p0, bool p1, bool p2, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void RowActivated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, GtkListBoxRowHandle row, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void move_cursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, ref GtkMovementStep @object, int p0, bool p1, bool p2, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void RowSelected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, GtkListBoxRowHandle row, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SelectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void row_activated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxRowHandle>))] GtkListBoxRowHandle row, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SelectedRowsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ToggleCursorRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void row_selected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxRowHandle>))] GtkListBoxRowHandle row, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void UnselectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void select_all([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void selected_rows_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void toggle_cursor_row([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void unselect_all([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxHandle>))] GtkListBoxHandle self, IntPtr user_data);
+
 }
 
 

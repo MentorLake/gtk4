@@ -11,7 +11,7 @@ public static class GdkFrameClockSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkFrameClockSignalStructs.AfterPaintSignal> obs) =>
 		{
-			GdkFrameClockSignalDelegates.AfterPaint handler = (GdkFrameClockHandle self, IntPtr user_data) =>
+			GdkFrameClockSignalDelegates.after_paint handler = (GdkFrameClockHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -38,7 +38,7 @@ public static class GdkFrameClockSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkFrameClockSignalStructs.BeforePaintSignal> obs) =>
 		{
-			GdkFrameClockSignalDelegates.BeforePaint handler = (GdkFrameClockHandle self, IntPtr user_data) =>
+			GdkFrameClockSignalDelegates.before_paint handler = (GdkFrameClockHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -65,7 +65,7 @@ public static class GdkFrameClockSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkFrameClockSignalStructs.FlushEventsSignal> obs) =>
 		{
-			GdkFrameClockSignalDelegates.FlushEvents handler = (GdkFrameClockHandle self, IntPtr user_data) =>
+			GdkFrameClockSignalDelegates.flush_events handler = (GdkFrameClockHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -92,7 +92,7 @@ public static class GdkFrameClockSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkFrameClockSignalStructs.LayoutSignal> obs) =>
 		{
-			GdkFrameClockSignalDelegates.Layout handler = (GdkFrameClockHandle self, IntPtr user_data) =>
+			GdkFrameClockSignalDelegates.layout handler = (GdkFrameClockHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -119,7 +119,7 @@ public static class GdkFrameClockSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkFrameClockSignalStructs.PaintSignal> obs) =>
 		{
-			GdkFrameClockSignalDelegates.Paint handler = (GdkFrameClockHandle self, IntPtr user_data) =>
+			GdkFrameClockSignalDelegates.paint handler = (GdkFrameClockHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -146,7 +146,7 @@ public static class GdkFrameClockSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkFrameClockSignalStructs.ResumeEventsSignal> obs) =>
 		{
-			GdkFrameClockSignalDelegates.ResumeEvents handler = (GdkFrameClockHandle self, IntPtr user_data) =>
+			GdkFrameClockSignalDelegates.resume_events handler = (GdkFrameClockHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -173,7 +173,7 @@ public static class GdkFrameClockSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkFrameClockSignalStructs.UpdateSignal> obs) =>
 		{
-			GdkFrameClockSignalDelegates.Update handler = (GdkFrameClockHandle self, IntPtr user_data) =>
+			GdkFrameClockSignalDelegates.update handler = (GdkFrameClockHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -246,26 +246,33 @@ public struct UpdateSignal
 public static class GdkFrameClockSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void AfterPaint([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void after_paint([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void BeforePaint([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void FlushEvents([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void before_paint([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Layout([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Paint([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void flush_events([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ResumeEvents([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Update([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void layout([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void paint([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void resume_events([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void update([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkFrameClockHandle>))] GdkFrameClockHandle self, IntPtr user_data);
+
 }
 
 

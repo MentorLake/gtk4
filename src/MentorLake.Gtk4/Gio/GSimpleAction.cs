@@ -21,7 +21,7 @@ public static class GSimpleActionSignalExtensions
 	{
 		return Observable.Create((IObserver<GSimpleActionSignalStructs.ActivateSignal> obs) =>
 		{
-			GSimpleActionSignalDelegates.Activate handler = (GSimpleActionHandle self, GVariantHandle parameter, IntPtr user_data) =>
+			GSimpleActionSignalDelegates.activate handler = (GSimpleActionHandle self, GVariantHandle parameter, IntPtr user_data) =>
 			{
 				
 
@@ -48,7 +48,7 @@ public static class GSimpleActionSignalExtensions
 	{
 		return Observable.Create((IObserver<GSimpleActionSignalStructs.ChangeStateSignal> obs) =>
 		{
-			GSimpleActionSignalDelegates.ChangeState handler = (GSimpleActionHandle self, GVariantHandle value, IntPtr user_data) =>
+			GSimpleActionSignalDelegates.change_state handler = (GSimpleActionHandle self, GVariantHandle value, IntPtr user_data) =>
 			{
 				
 
@@ -93,11 +93,13 @@ public struct ChangeStateSignal
 public static class GSimpleActionSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSimpleActionHandle>))] GSimpleActionHandle self, GVariantHandle parameter, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSimpleActionHandle>))] GSimpleActionHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVariantHandle>))] GVariantHandle parameter, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ChangeState([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSimpleActionHandle>))] GSimpleActionHandle self, GVariantHandle value, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void change_state([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSimpleActionHandle>))] GSimpleActionHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVariantHandle>))] GVariantHandle value, IntPtr user_data);
+
 }
 
 

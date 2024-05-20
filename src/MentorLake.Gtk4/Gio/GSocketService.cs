@@ -16,7 +16,7 @@ public static class GSocketServiceSignalExtensions
 	{
 		return Observable.Create((IObserver<GSocketServiceSignalStructs.IncomingSignal> obs) =>
 		{
-			GSocketServiceSignalDelegates.Incoming handler = (GSocketServiceHandle self, GSocketConnectionHandle connection, GObjectHandle source_object, IntPtr user_data) =>
+			GSocketServiceSignalDelegates.incoming handler = (GSocketServiceHandle self, GSocketConnectionHandle connection, GObjectHandle source_object, IntPtr user_data) =>
 			{
 				
 
@@ -56,8 +56,9 @@ public struct IncomingSignal
 public static class GSocketServiceSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool Incoming([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSocketServiceHandle>))] GSocketServiceHandle self, GSocketConnectionHandle connection, GObjectHandle source_object, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool incoming([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSocketServiceHandle>))] GSocketServiceHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSocketConnectionHandle>))] GSocketConnectionHandle connection, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GObjectHandle>))] GObjectHandle source_object, IntPtr user_data);
+
 }
 
 

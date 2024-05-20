@@ -41,7 +41,7 @@ public static class GDBusObjectManagerClientSignalExtensions
 	{
 		return Observable.Create((IObserver<GDBusObjectManagerClientSignalStructs.InterfaceProxyPropertiesChangedSignal> obs) =>
 		{
-			GDBusObjectManagerClientSignalDelegates.InterfaceProxyPropertiesChanged handler = (GDBusObjectManagerClientHandle self, GDBusObjectProxyHandle object_proxy, GDBusProxyHandle interface_proxy, GVariantHandle changed_properties, string[] invalidated_properties, IntPtr user_data) =>
+			GDBusObjectManagerClientSignalDelegates.interface_proxy_properties_changed handler = (GDBusObjectManagerClientHandle self, GDBusObjectProxyHandle object_proxy, GDBusProxyHandle interface_proxy, GVariantHandle changed_properties, string[] invalidated_properties, IntPtr user_data) =>
 			{
 				
 
@@ -68,7 +68,7 @@ public static class GDBusObjectManagerClientSignalExtensions
 	{
 		return Observable.Create((IObserver<GDBusObjectManagerClientSignalStructs.InterfaceProxySignalSignal> obs) =>
 		{
-			GDBusObjectManagerClientSignalDelegates.InterfaceProxySignal handler = (GDBusObjectManagerClientHandle self, GDBusObjectProxyHandle object_proxy, GDBusProxyHandle interface_proxy, string sender_name, string signal_name, GVariantHandle parameters, IntPtr user_data) =>
+			GDBusObjectManagerClientSignalDelegates.interface_proxy_signal handler = (GDBusObjectManagerClientHandle self, GDBusObjectProxyHandle object_proxy, GDBusProxyHandle interface_proxy, string sender_name, string signal_name, GVariantHandle parameters, IntPtr user_data) =>
 			{
 				
 
@@ -120,11 +120,13 @@ public struct InterfaceProxySignalSignal
 public static class GDBusObjectManagerClientSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void InterfaceProxyPropertiesChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusObjectManagerClientHandle>))] GDBusObjectManagerClientHandle self, GDBusObjectProxyHandle object_proxy, GDBusProxyHandle interface_proxy, GVariantHandle changed_properties, string[] invalidated_properties, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void interface_proxy_properties_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusObjectManagerClientHandle>))] GDBusObjectManagerClientHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusObjectProxyHandle>))] GDBusObjectProxyHandle object_proxy, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusProxyHandle>))] GDBusProxyHandle interface_proxy, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVariantHandle>))] GVariantHandle changed_properties, string[] invalidated_properties, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void InterfaceProxySignal([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusObjectManagerClientHandle>))] GDBusObjectManagerClientHandle self, GDBusObjectProxyHandle object_proxy, GDBusProxyHandle interface_proxy, string sender_name, string signal_name, GVariantHandle parameters, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void interface_proxy_signal([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusObjectManagerClientHandle>))] GDBusObjectManagerClientHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusObjectProxyHandle>))] GDBusObjectProxyHandle object_proxy, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusProxyHandle>))] GDBusProxyHandle interface_proxy, string sender_name, string signal_name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVariantHandle>))] GVariantHandle parameters, IntPtr user_data);
+
 }
 
 

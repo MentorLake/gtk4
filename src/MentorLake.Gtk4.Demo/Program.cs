@@ -1,6 +1,7 @@
 ﻿using System.Reactive.Linq;
 using MentorLake.Gtk4.Cairo;
 using MentorLake.Gtk4.Gio;
+using MentorLake.Gtk4.GObject;
 using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Demo;
@@ -13,6 +14,7 @@ public static class Program
 		SynchronizationContext.SetSynchronizationContext(new GLibSynchronizationContext());
 
 		var appHandle = GtkApplicationHandle.New("my.app", GApplicationFlags.G_APPLICATION_FLAGS_NONE);
+		appHandle.GetSignals().ForEach(s => Console.WriteLine(s));
 
 		appHandle.Signal_Activate().Subscribe(async e =>
 		{
@@ -27,6 +29,15 @@ public static class Program
 						.SetSizeRequest(200, 200))
 					.Append(GtkButtonHandle.New()
 						.SetLabel("TEST")
+						.With(b =>
+						{
+							var motionController = GtkEventControllerMotionHandle.New();
+							b.AddController(motionController);
+							motionController.Signal_Enter().TakeUntil(b.Signal_Destroy().Take(1)).Subscribe(_ =>
+							{
+								Console.WriteLine("ENTER");
+							});
+						})
 						.With(b => b.Signal_Clicked().TakeUntil(b.Signal_Destroy().Take(1)).Subscribe(_ =>
 						{
 							Console.WriteLine();

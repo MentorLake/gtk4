@@ -126,7 +126,7 @@ internal class PangoGlobalFunctionExterns
 	internal static extern PangoAttributeHandle pango_attr_show_new(PangoShowFlags flags);
 
 	[DllImport(Libraries.Pango)]
-	internal static extern string[] pango_split_file_list(string str);
+	internal static extern IntPtr pango_split_file_list(string str);
 
 	[DllImport(Libraries.Pango)]
 	internal static extern int pango_read_line(IntPtr stream, GStringHandle str);
@@ -135,6 +135,7 @@ internal class PangoGlobalFunctionExterns
 	internal static extern void pango_find_paragraph_boundary(string text, int length, out int paragraph_delimiter_index, out int next_paragraph_start);
 
 	[DllImport(Libraries.Pango)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string pango_version_check(int required_major, int required_minor, int required_micro);
 
 	[DllImport(Libraries.Pango)]
@@ -177,6 +178,7 @@ internal class PangoGlobalFunctionExterns
 	internal static extern PangoAttributeHandle pango_attr_baseline_shift_new(int shift);
 
 	[DllImport(Libraries.Pango)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string pango_version_string();
 
 	[DllImport(Libraries.Pango)]
@@ -198,7 +200,7 @@ internal class PangoGlobalFunctionExterns
 	internal static extern void pango_get_log_attrs(string text, int length, int level, PangoLanguageHandle language, PangoLogAttr[] attrs, int attrs_len);
 
 	[DllImport(Libraries.Pango)]
-	internal static extern byte[] pango_log2vis_get_embedding_levels(string text, int length, ref PangoDirection pbase_dir);
+	internal static extern IntPtr pango_log2vis_get_embedding_levels(string text, int length, ref PangoDirection pbase_dir);
 
 	[DllImport(Libraries.Pango)]
 	internal static extern bool pango_is_zero_width(char ch);

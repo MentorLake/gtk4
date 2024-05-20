@@ -16,7 +16,7 @@ public static class GtkCssProviderSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCssProviderSignalStructs.ParsingErrorSignal> obs) =>
 		{
-			GtkCssProviderSignalDelegates.ParsingError handler = (GtkCssProviderHandle self, GtkCssSectionHandle section, GErrorHandle error, IntPtr user_data) =>
+			GtkCssProviderSignalDelegates.parsing_error handler = (GtkCssProviderHandle self, GtkCssSectionHandle section, GErrorHandle error, IntPtr user_data) =>
 			{
 				
 
@@ -55,8 +55,9 @@ public struct ParsingErrorSignal
 public static class GtkCssProviderSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ParsingError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCssProviderHandle>))] GtkCssProviderHandle self, GtkCssSectionHandle section, GErrorHandle error, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void parsing_error([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCssProviderHandle>))] GtkCssProviderHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCssSectionHandle>))] GtkCssSectionHandle section, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GErrorHandle>))] GErrorHandle error, IntPtr user_data);
+
 }
 
 
@@ -68,7 +69,7 @@ public static class GtkCssProviderHandleExtensions
 		return css_provider;
 	}
 
-	public static GtkCssProviderHandle LoadFromData(this GtkCssProviderHandle css_provider, string data, int length)
+	public static GtkCssProviderHandle LoadFromData(this GtkCssProviderHandle css_provider, string data, UIntPtr length)
 	{
 		GtkCssProviderExterns.gtk_css_provider_load_from_data(css_provider, data, length);
 		return css_provider;
@@ -120,7 +121,7 @@ internal class GtkCssProviderExterns
 	internal static extern void gtk_css_provider_load_from_bytes(GtkCssProviderHandle css_provider, GBytesHandle data);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern void gtk_css_provider_load_from_data(GtkCssProviderHandle css_provider, string data, int length);
+	internal static extern void gtk_css_provider_load_from_data(GtkCssProviderHandle css_provider, string data, UIntPtr length);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_css_provider_load_from_file(GtkCssProviderHandle css_provider, GFileHandle file);

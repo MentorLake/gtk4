@@ -21,7 +21,7 @@ public static class GtkSpinButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSpinButtonSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkSpinButtonSignalDelegates.Activate handler = (GtkSpinButtonHandle self, IntPtr user_data) =>
+			GtkSpinButtonSignalDelegates.activate handler = (GtkSpinButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -48,7 +48,7 @@ public static class GtkSpinButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSpinButtonSignalStructs.ChangeValueSignal> obs) =>
 		{
-			GtkSpinButtonSignalDelegates.ChangeValue handler = (GtkSpinButtonHandle self, ref GtkScrollType scroll, IntPtr user_data) =>
+			GtkSpinButtonSignalDelegates.change_value handler = (GtkSpinButtonHandle self, ref GtkScrollType scroll, IntPtr user_data) =>
 			{
 				
 
@@ -75,7 +75,7 @@ public static class GtkSpinButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSpinButtonSignalStructs.InputSignal> obs) =>
 		{
-			GtkSpinButtonSignalDelegates.Input handler = (GtkSpinButtonHandle self, out double new_value, IntPtr user_data) =>
+			GtkSpinButtonSignalDelegates.input handler = (GtkSpinButtonHandle self, out double new_value, IntPtr user_data) =>
 			{
 				new_value = default;
 
@@ -102,7 +102,7 @@ public static class GtkSpinButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSpinButtonSignalStructs.OutputSignal> obs) =>
 		{
-			GtkSpinButtonSignalDelegates.Output handler = (GtkSpinButtonHandle self, IntPtr user_data) =>
+			GtkSpinButtonSignalDelegates.output handler = (GtkSpinButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -129,7 +129,7 @@ public static class GtkSpinButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSpinButtonSignalStructs.ValueChangedSignal> obs) =>
 		{
-			GtkSpinButtonSignalDelegates.ValueChanged handler = (GtkSpinButtonHandle self, IntPtr user_data) =>
+			GtkSpinButtonSignalDelegates.value_changed handler = (GtkSpinButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -156,7 +156,7 @@ public static class GtkSpinButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSpinButtonSignalStructs.WrappedSignal> obs) =>
 		{
-			GtkSpinButtonSignalDelegates.Wrapped handler = (GtkSpinButtonHandle self, IntPtr user_data) =>
+			GtkSpinButtonSignalDelegates.wrapped handler = (GtkSpinButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -227,23 +227,29 @@ public struct WrappedSignal
 public static class GtkSpinButtonSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ChangeValue([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, ref GtkScrollType scroll, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate int Input([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, out double new_value, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void change_value([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, ref GtkScrollType scroll, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool Output([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ValueChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate int input([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, out double new_value, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Wrapped([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool output([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void value_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void wrapped([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSpinButtonHandle>))] GtkSpinButtonHandle self, IntPtr user_data);
+
 }
 
 

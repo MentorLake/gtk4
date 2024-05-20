@@ -11,7 +11,7 @@ public static class GtkFilterSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFilterSignalStructs.ChangedSignal> obs) =>
 		{
-			GtkFilterSignalDelegates.Changed handler = (GtkFilterHandle self, GtkFilterChange change, IntPtr user_data) =>
+			GtkFilterSignalDelegates.changed handler = (GtkFilterHandle self, GtkFilterChange change, IntPtr user_data) =>
 			{
 				
 
@@ -49,8 +49,9 @@ public struct ChangedSignal
 public static class GtkFilterSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFilterHandle>))] GtkFilterHandle self, GtkFilterChange change, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFilterHandle>))] GtkFilterHandle self, GtkFilterChange change, IntPtr user_data);
+
 }
 
 

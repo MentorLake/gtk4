@@ -25,7 +25,7 @@ public static class GPollableInputStreamHandleExtensions
 		return GPollableInputStreamExterns.g_pollable_input_stream_is_readable(stream);
 	}
 
-	public static int ReadNonblocking(this GPollableInputStreamHandle stream, out IntPtr buffer, int count, GCancellableHandle cancellable, out GErrorHandle error)
+	public static UIntPtr ReadNonblocking(this GPollableInputStreamHandle stream, out IntPtr buffer, UIntPtr count, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GPollableInputStreamExterns.g_pollable_input_stream_read_nonblocking(stream, out buffer, count, cancellable, out error);
 	}
@@ -44,6 +44,6 @@ internal class GPollableInputStreamExterns
 	internal static extern bool g_pollable_input_stream_is_readable(GPollableInputStreamHandle stream);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_pollable_input_stream_read_nonblocking(GPollableInputStreamHandle stream, out IntPtr buffer, int count, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern UIntPtr g_pollable_input_stream_read_nonblocking(GPollableInputStreamHandle stream, out IntPtr buffer, UIntPtr count, GCancellableHandle cancellable, out GErrorHandle error);
 
 }

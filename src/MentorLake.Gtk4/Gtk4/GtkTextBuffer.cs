@@ -16,7 +16,7 @@ public static class GtkTextBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextBufferSignalStructs.ApplyTagSignal> obs) =>
 		{
-			GtkTextBufferSignalDelegates.ApplyTag handler = (GtkTextBufferHandle self, GtkTextTagHandle tag, GtkTextIterHandle start, GtkTextIterHandle end, IntPtr user_data) =>
+			GtkTextBufferSignalDelegates.apply_tag handler = (GtkTextBufferHandle self, GtkTextTagHandle tag, GtkTextIterHandle start, GtkTextIterHandle end, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkTextBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextBufferSignalStructs.BeginUserActionSignal> obs) =>
 		{
-			GtkTextBufferSignalDelegates.BeginUserAction handler = (GtkTextBufferHandle self, IntPtr user_data) =>
+			GtkTextBufferSignalDelegates.begin_user_action handler = (GtkTextBufferHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkTextBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextBufferSignalStructs.ChangedSignal> obs) =>
 		{
-			GtkTextBufferSignalDelegates.Changed handler = (GtkTextBufferHandle self, IntPtr user_data) =>
+			GtkTextBufferSignalDelegates.changed handler = (GtkTextBufferHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GtkTextBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextBufferSignalStructs.DeleteRangeSignal> obs) =>
 		{
-			GtkTextBufferSignalDelegates.DeleteRange handler = (GtkTextBufferHandle self, GtkTextIterHandle start, GtkTextIterHandle end, IntPtr user_data) =>
+			GtkTextBufferSignalDelegates.delete_range handler = (GtkTextBufferHandle self, GtkTextIterHandle start, GtkTextIterHandle end, IntPtr user_data) =>
 			{
 				
 
@@ -124,7 +124,7 @@ public static class GtkTextBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextBufferSignalStructs.EndUserActionSignal> obs) =>
 		{
-			GtkTextBufferSignalDelegates.EndUserAction handler = (GtkTextBufferHandle self, IntPtr user_data) =>
+			GtkTextBufferSignalDelegates.end_user_action handler = (GtkTextBufferHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -151,7 +151,7 @@ public static class GtkTextBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextBufferSignalStructs.InsertChildAnchorSignal> obs) =>
 		{
-			GtkTextBufferSignalDelegates.InsertChildAnchor handler = (GtkTextBufferHandle self, GtkTextIterHandle location, GtkTextChildAnchorHandle anchor, IntPtr user_data) =>
+			GtkTextBufferSignalDelegates.insert_child_anchor handler = (GtkTextBufferHandle self, GtkTextIterHandle location, GtkTextChildAnchorHandle anchor, IntPtr user_data) =>
 			{
 				
 
@@ -178,7 +178,7 @@ public static class GtkTextBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextBufferSignalStructs.InsertPaintableSignal> obs) =>
 		{
-			GtkTextBufferSignalDelegates.InsertPaintable handler = (GtkTextBufferHandle self, GtkTextIterHandle location, GdkPaintableHandle paintable, IntPtr user_data) =>
+			GtkTextBufferSignalDelegates.insert_paintable handler = (GtkTextBufferHandle self, GtkTextIterHandle location, GdkPaintableHandle paintable, IntPtr user_data) =>
 			{
 				
 
@@ -205,7 +205,7 @@ public static class GtkTextBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextBufferSignalStructs.InsertTextSignal> obs) =>
 		{
-			GtkTextBufferSignalDelegates.InsertText handler = (GtkTextBufferHandle self, GtkTextIterHandle location, string text, int len, IntPtr user_data) =>
+			GtkTextBufferSignalDelegates.insert_text handler = (GtkTextBufferHandle self, GtkTextIterHandle location, string text, int len, IntPtr user_data) =>
 			{
 				
 
@@ -232,7 +232,7 @@ public static class GtkTextBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextBufferSignalStructs.MarkDeletedSignal> obs) =>
 		{
-			GtkTextBufferSignalDelegates.MarkDeleted handler = (GtkTextBufferHandle self, GtkTextMarkHandle mark, IntPtr user_data) =>
+			GtkTextBufferSignalDelegates.mark_deleted handler = (GtkTextBufferHandle self, GtkTextMarkHandle mark, IntPtr user_data) =>
 			{
 				
 
@@ -259,7 +259,7 @@ public static class GtkTextBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextBufferSignalStructs.MarkSetSignal> obs) =>
 		{
-			GtkTextBufferSignalDelegates.MarkSet handler = (GtkTextBufferHandle self, GtkTextIterHandle location, GtkTextMarkHandle mark, IntPtr user_data) =>
+			GtkTextBufferSignalDelegates.mark_set handler = (GtkTextBufferHandle self, GtkTextIterHandle location, GtkTextMarkHandle mark, IntPtr user_data) =>
 			{
 				
 
@@ -286,7 +286,7 @@ public static class GtkTextBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextBufferSignalStructs.ModifiedChangedSignal> obs) =>
 		{
-			GtkTextBufferSignalDelegates.ModifiedChanged handler = (GtkTextBufferHandle self, IntPtr user_data) =>
+			GtkTextBufferSignalDelegates.modified_changed handler = (GtkTextBufferHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -313,7 +313,7 @@ public static class GtkTextBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextBufferSignalStructs.PasteDoneSignal> obs) =>
 		{
-			GtkTextBufferSignalDelegates.PasteDone handler = (GtkTextBufferHandle self, GdkClipboardHandle clipboard, IntPtr user_data) =>
+			GtkTextBufferSignalDelegates.paste_done handler = (GtkTextBufferHandle self, GdkClipboardHandle clipboard, IntPtr user_data) =>
 			{
 				
 
@@ -340,7 +340,7 @@ public static class GtkTextBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextBufferSignalStructs.RedoSignal> obs) =>
 		{
-			GtkTextBufferSignalDelegates.Redo handler = (GtkTextBufferHandle self, IntPtr user_data) =>
+			GtkTextBufferSignalDelegates.redo handler = (GtkTextBufferHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -367,7 +367,7 @@ public static class GtkTextBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextBufferSignalStructs.RemoveTagSignal> obs) =>
 		{
-			GtkTextBufferSignalDelegates.RemoveTag handler = (GtkTextBufferHandle self, GtkTextTagHandle tag, GtkTextIterHandle start, GtkTextIterHandle end, IntPtr user_data) =>
+			GtkTextBufferSignalDelegates.remove_tag handler = (GtkTextBufferHandle self, GtkTextTagHandle tag, GtkTextIterHandle start, GtkTextIterHandle end, IntPtr user_data) =>
 			{
 				
 
@@ -394,7 +394,7 @@ public static class GtkTextBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextBufferSignalStructs.UndoSignal> obs) =>
 		{
-			GtkTextBufferSignalDelegates.Undo handler = (GtkTextBufferHandle self, IntPtr user_data) =>
+			GtkTextBufferSignalDelegates.undo handler = (GtkTextBufferHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -534,50 +534,65 @@ public struct UndoSignal
 public static class GtkTextBufferSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ApplyTag([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, GtkTextTagHandle tag, GtkTextIterHandle start, GtkTextIterHandle end, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void apply_tag([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagHandle>))] GtkTextTagHandle tag, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextIterHandle>))] GtkTextIterHandle start, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextIterHandle>))] GtkTextIterHandle end, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void BeginUserAction([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void begin_user_action([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DeleteRange([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, GtkTextIterHandle start, GtkTextIterHandle end, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void EndUserAction([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void InsertChildAnchor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, GtkTextIterHandle location, GtkTextChildAnchorHandle anchor, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void InsertPaintable([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, GtkTextIterHandle location, GdkPaintableHandle paintable, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void delete_range([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextIterHandle>))] GtkTextIterHandle start, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextIterHandle>))] GtkTextIterHandle end, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void InsertText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, GtkTextIterHandle location, string text, int len, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MarkDeleted([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, GtkTextMarkHandle mark, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void end_user_action([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MarkSet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, GtkTextIterHandle location, GtkTextMarkHandle mark, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ModifiedChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void insert_child_anchor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextIterHandle>))] GtkTextIterHandle location, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextChildAnchorHandle>))] GtkTextChildAnchorHandle anchor, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PasteDone([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, GdkClipboardHandle clipboard, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Redo([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void insert_paintable([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextIterHandle>))] GtkTextIterHandle location, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPaintableHandleImpl>))] GdkPaintableHandle paintable, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void RemoveTag([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, GtkTextTagHandle tag, GtkTextIterHandle start, GtkTextIterHandle end, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Undo([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void insert_text([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextIterHandle>))] GtkTextIterHandle location, string text, int len, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void mark_deleted([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextMarkHandle>))] GtkTextMarkHandle mark, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void mark_set([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextIterHandle>))] GtkTextIterHandle location, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextMarkHandle>))] GtkTextMarkHandle mark, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void modified_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void paste_done([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkClipboardHandle>))] GdkClipboardHandle clipboard, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void redo([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void remove_tag([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextTagHandle>))] GtkTextTagHandle tag, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextIterHandle>))] GtkTextIterHandle start, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextIterHandle>))] GtkTextIterHandle end, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void undo([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextBufferHandle>))] GtkTextBufferHandle self, IntPtr user_data);
+
 }
 
 

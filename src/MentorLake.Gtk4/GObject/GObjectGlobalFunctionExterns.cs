@@ -48,6 +48,7 @@ internal class GObjectGlobalFunctionExterns
 	internal static extern GFlagsValueHandle g_flags_get_value_by_name(GFlagsClassHandle flags_class, string name);
 
 	[DllImport(Libraries.GObject)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_signal_name(uint signal_id);
 
 	[DllImport(Libraries.GObject)]
@@ -63,6 +64,7 @@ internal class GObjectGlobalFunctionExterns
 	internal static extern IntPtr g_boxed_copy(GType boxed_type, IntPtr src_boxed);
 
 	[DllImport(Libraries.GObject)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_type_name(GType type);
 
 	[DllImport(Libraries.GObject)]
@@ -153,6 +155,7 @@ internal class GObjectGlobalFunctionExterns
 	internal static extern bool g_type_check_class_is_a(GTypeClassHandle g_class, GType is_a_type);
 
 	[DllImport(Libraries.GObject)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_type_name_from_class(GTypeClassHandle g_class);
 
 	[DllImport(Libraries.GObject)]
@@ -174,10 +177,11 @@ internal class GObjectGlobalFunctionExterns
 	internal static extern GParamSpecHandle g_param_spec_int(string name, string nick, string blurb, int minimum, int maximum, int default_value, GParamFlags flags);
 
 	[DllImport(Libraries.GObject)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_type_name_from_instance(GTypeInstanceHandle instance);
 
 	[DllImport(Libraries.GObject)]
-	internal static extern int g_type_add_instance_private(GType class_type, int private_size);
+	internal static extern int g_type_add_instance_private(GType class_type, UIntPtr private_size);
 
 	[DllImport(Libraries.GObject)]
 	internal static extern GParamSpecHandle g_param_spec_boolean(string name, string nick, string blurb, bool default_value, GParamFlags flags);
@@ -264,13 +268,13 @@ internal class GObjectGlobalFunctionExterns
 	internal static extern void g_type_init();
 
 	[DllImport(Libraries.GObject)]
-	internal static extern GType[] g_type_interfaces(GType type, out uint n_interfaces);
+	internal static extern IntPtr g_type_interfaces(GType type, out uint n_interfaces);
 
 	[DllImport(Libraries.GObject)]
 	internal static extern GTypeInterfaceHandle g_type_default_interface_ref(GType g_type);
 
 	[DllImport(Libraries.GObject)]
-	internal static extern uint[] g_signal_list_ids(GType itype, out uint n_ids);
+	internal static extern IntPtr g_signal_list_ids(GType itype, out uint n_ids);
 
 	[DllImport(Libraries.GObject)]
 	internal static extern void g_type_free_instance(GTypeInstanceHandle instance);
@@ -303,7 +307,7 @@ internal class GObjectGlobalFunctionExterns
 	internal static extern uint g_signal_lookup(string name, GType itype);
 
 	[DllImport(Libraries.GObject)]
-	internal static extern GType[] g_type_children(GType type, out uint n_children);
+	internal static extern IntPtr g_type_children(GType type, out uint n_children);
 
 	[DllImport(Libraries.GObject)]
 	internal static extern GType g_pointer_type_register_static(string name);
@@ -330,7 +334,7 @@ internal class GObjectGlobalFunctionExterns
 	internal static extern void g_type_remove_interface_check(IntPtr check_data, GTypeInterfaceCheckFunc check_func);
 
 	[DllImport(Libraries.GObject)]
-	internal static extern void g_type_add_class_private(GType class_type, int private_size);
+	internal static extern void g_type_add_class_private(GType class_type, UIntPtr private_size);
 
 	[DllImport(Libraries.GObject)]
 	internal static extern bool g_signal_accumulator_true_handled(GSignalInvocationHintHandle ihint, GValueHandle return_accu, GValueHandle handler_return, IntPtr dummy);

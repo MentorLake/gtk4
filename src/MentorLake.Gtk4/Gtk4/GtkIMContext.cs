@@ -11,7 +11,7 @@ public static class GtkIMContextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkIMContextSignalStructs.CommitSignal> obs) =>
 		{
-			GtkIMContextSignalDelegates.Commit handler = (GtkIMContextHandle self, string str, IntPtr user_data) =>
+			GtkIMContextSignalDelegates.commit handler = (GtkIMContextHandle self, string str, IntPtr user_data) =>
 			{
 				
 
@@ -38,7 +38,7 @@ public static class GtkIMContextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkIMContextSignalStructs.DeleteSurroundingSignal> obs) =>
 		{
-			GtkIMContextSignalDelegates.DeleteSurrounding handler = (GtkIMContextHandle self, int offset, int n_chars, IntPtr user_data) =>
+			GtkIMContextSignalDelegates.delete_surrounding handler = (GtkIMContextHandle self, int offset, int n_chars, IntPtr user_data) =>
 			{
 				
 
@@ -65,7 +65,7 @@ public static class GtkIMContextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkIMContextSignalStructs.PreeditChangedSignal> obs) =>
 		{
-			GtkIMContextSignalDelegates.PreeditChanged handler = (GtkIMContextHandle self, IntPtr user_data) =>
+			GtkIMContextSignalDelegates.preedit_changed handler = (GtkIMContextHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -92,7 +92,7 @@ public static class GtkIMContextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkIMContextSignalStructs.PreeditEndSignal> obs) =>
 		{
-			GtkIMContextSignalDelegates.PreeditEnd handler = (GtkIMContextHandle self, IntPtr user_data) =>
+			GtkIMContextSignalDelegates.preedit_end handler = (GtkIMContextHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -119,7 +119,7 @@ public static class GtkIMContextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkIMContextSignalStructs.PreeditStartSignal> obs) =>
 		{
-			GtkIMContextSignalDelegates.PreeditStart handler = (GtkIMContextHandle self, IntPtr user_data) =>
+			GtkIMContextSignalDelegates.preedit_start handler = (GtkIMContextHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -146,7 +146,7 @@ public static class GtkIMContextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkIMContextSignalStructs.RetrieveSurroundingSignal> obs) =>
 		{
-			GtkIMContextSignalDelegates.RetrieveSurrounding handler = (GtkIMContextHandle self, IntPtr user_data) =>
+			GtkIMContextSignalDelegates.retrieve_surrounding handler = (GtkIMContextHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -218,23 +218,29 @@ public struct RetrieveSurroundingSignal
 public static class GtkIMContextSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Commit([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, string str, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void commit([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, string str, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool DeleteSurrounding([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, int offset, int n_chars, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PreeditChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool delete_surrounding([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, int offset, int n_chars, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PreeditEnd([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PreeditStart([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void preedit_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool RetrieveSurrounding([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void preedit_end([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void preedit_start([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool retrieve_surrounding([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIMContextHandle>))] GtkIMContextHandle self, IntPtr user_data);
+
 }
 
 

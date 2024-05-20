@@ -16,7 +16,7 @@ public static class GdkDragSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkDragSignalStructs.CancelSignal> obs) =>
 		{
-			GdkDragSignalDelegates.Cancel handler = (GdkDragHandle self, ref GdkDragCancelReason reason, IntPtr user_data) =>
+			GdkDragSignalDelegates.cancel handler = (GdkDragHandle self, ref GdkDragCancelReason reason, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GdkDragSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkDragSignalStructs.DndFinishedSignal> obs) =>
 		{
-			GdkDragSignalDelegates.DndFinished handler = (GdkDragHandle self, IntPtr user_data) =>
+			GdkDragSignalDelegates.dnd_finished handler = (GdkDragHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GdkDragSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkDragSignalStructs.DropPerformedSignal> obs) =>
 		{
-			GdkDragSignalDelegates.DropPerformed handler = (GdkDragHandle self, IntPtr user_data) =>
+			GdkDragSignalDelegates.drop_performed handler = (GdkDragHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -120,14 +120,17 @@ public struct DropPerformedSignal
 public static class GdkDragSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Cancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle self, ref GdkDragCancelReason reason, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void cancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle self, ref GdkDragCancelReason reason, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DndFinished([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DropPerformed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void dnd_finished([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void drop_performed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle self, IntPtr user_data);
+
 }
 
 

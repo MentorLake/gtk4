@@ -16,7 +16,7 @@ public static class GtkEventControllerFocusSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEventControllerFocusSignalStructs.EnterSignal> obs) =>
 		{
-			GtkEventControllerFocusSignalDelegates.Enter handler = (GtkEventControllerFocusHandle self, IntPtr user_data) =>
+			GtkEventControllerFocusSignalDelegates.enter handler = (GtkEventControllerFocusHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkEventControllerFocusSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEventControllerFocusSignalStructs.LeaveSignal> obs) =>
 		{
-			GtkEventControllerFocusSignalDelegates.Leave handler = (GtkEventControllerFocusHandle self, IntPtr user_data) =>
+			GtkEventControllerFocusSignalDelegates.leave handler = (GtkEventControllerFocusHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -86,11 +86,13 @@ public struct LeaveSignal
 public static class GtkEventControllerFocusSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Enter([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerFocusHandle>))] GtkEventControllerFocusHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void enter([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerFocusHandle>))] GtkEventControllerFocusHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Leave([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerFocusHandle>))] GtkEventControllerFocusHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void leave([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerFocusHandle>))] GtkEventControllerFocusHandle self, IntPtr user_data);
+
 }
 
 

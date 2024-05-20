@@ -16,7 +16,7 @@ public static class GtkPrinterSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPrinterSignalStructs.DetailsAcquiredSignal> obs) =>
 		{
-			GtkPrinterSignalDelegates.DetailsAcquired handler = (GtkPrinterHandle self, bool success, IntPtr user_data) =>
+			GtkPrinterSignalDelegates.details_acquired handler = (GtkPrinterHandle self, bool success, IntPtr user_data) =>
 			{
 				
 
@@ -54,8 +54,9 @@ public struct DetailsAcquiredSignal
 public static class GtkPrinterSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DetailsAcquired([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrinterHandle>))] GtkPrinterHandle self, bool success, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void details_acquired([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrinterHandle>))] GtkPrinterHandle self, bool success, IntPtr user_data);
+
 }
 
 

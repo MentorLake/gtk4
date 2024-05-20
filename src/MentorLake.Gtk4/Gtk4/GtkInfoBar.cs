@@ -21,7 +21,7 @@ public static class GtkInfoBarSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkInfoBarSignalStructs.CloseSignal> obs) =>
 		{
-			GtkInfoBarSignalDelegates.Close handler = (GtkInfoBarHandle self, IntPtr user_data) =>
+			GtkInfoBarSignalDelegates.close handler = (GtkInfoBarHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -48,7 +48,7 @@ public static class GtkInfoBarSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkInfoBarSignalStructs.ResponseSignal> obs) =>
 		{
-			GtkInfoBarSignalDelegates.Response handler = (GtkInfoBarHandle self, int response_id, IntPtr user_data) =>
+			GtkInfoBarSignalDelegates.response handler = (GtkInfoBarHandle self, int response_id, IntPtr user_data) =>
 			{
 				
 
@@ -92,11 +92,13 @@ public struct ResponseSignal
 public static class GtkInfoBarSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Close([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkInfoBarHandle>))] GtkInfoBarHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void close([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkInfoBarHandle>))] GtkInfoBarHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Response([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkInfoBarHandle>))] GtkInfoBarHandle self, int response_id, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void response([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkInfoBarHandle>))] GtkInfoBarHandle self, int response_id, IntPtr user_data);
+
 }
 
 

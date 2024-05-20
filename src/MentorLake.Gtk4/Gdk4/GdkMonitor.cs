@@ -11,7 +11,7 @@ public static class GdkMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkMonitorSignalStructs.InvalidateSignal> obs) =>
 		{
-			GdkMonitorSignalDelegates.Invalidate handler = (GdkMonitorHandle self, IntPtr user_data) =>
+			GdkMonitorSignalDelegates.invalidate handler = (GdkMonitorHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -48,8 +48,9 @@ public struct InvalidateSignal
 public static class GdkMonitorSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Invalidate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkMonitorHandle>))] GdkMonitorHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void invalidate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkMonitorHandle>))] GdkMonitorHandle self, IntPtr user_data);
+
 }
 
 

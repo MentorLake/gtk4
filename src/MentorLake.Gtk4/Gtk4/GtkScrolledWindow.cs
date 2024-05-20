@@ -16,7 +16,7 @@ public static class GtkScrolledWindowSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkScrolledWindowSignalStructs.EdgeOvershotSignal> obs) =>
 		{
-			GtkScrolledWindowSignalDelegates.EdgeOvershot handler = (GtkScrolledWindowHandle self, GtkPositionType pos, IntPtr user_data) =>
+			GtkScrolledWindowSignalDelegates.edge_overshot handler = (GtkScrolledWindowHandle self, GtkPositionType pos, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkScrolledWindowSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkScrolledWindowSignalStructs.EdgeReachedSignal> obs) =>
 		{
-			GtkScrolledWindowSignalDelegates.EdgeReached handler = (GtkScrolledWindowHandle self, GtkPositionType pos, IntPtr user_data) =>
+			GtkScrolledWindowSignalDelegates.edge_reached handler = (GtkScrolledWindowHandle self, GtkPositionType pos, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkScrolledWindowSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkScrolledWindowSignalStructs.MoveFocusOutSignal> obs) =>
 		{
-			GtkScrolledWindowSignalDelegates.MoveFocusOut handler = (GtkScrolledWindowHandle self, GtkDirectionType direction_type, IntPtr user_data) =>
+			GtkScrolledWindowSignalDelegates.move_focus_out handler = (GtkScrolledWindowHandle self, GtkDirectionType direction_type, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GtkScrolledWindowSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkScrolledWindowSignalStructs.ScrollChildSignal> obs) =>
 		{
-			GtkScrolledWindowSignalDelegates.ScrollChild handler = (GtkScrolledWindowHandle self, ref GtkScrollType scroll, bool horizontal, IntPtr user_data) =>
+			GtkScrolledWindowSignalDelegates.scroll_child handler = (GtkScrolledWindowHandle self, ref GtkScrollType scroll, bool horizontal, IntPtr user_data) =>
 			{
 				
 
@@ -158,17 +158,21 @@ public struct ScrollChildSignal
 public static class GtkScrolledWindowSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void EdgeOvershot([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, GtkPositionType pos, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void edge_overshot([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, GtkPositionType pos, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void EdgeReached([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, GtkPositionType pos, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MoveFocusOut([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, GtkDirectionType direction_type, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void edge_reached([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, GtkPositionType pos, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ScrollChild([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, ref GtkScrollType scroll, bool horizontal, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void move_focus_out([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, GtkDirectionType direction_type, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool scroll_child([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScrolledWindowHandle>))] GtkScrolledWindowHandle self, ref GtkScrollType scroll, bool horizontal, IntPtr user_data);
+
 }
 
 

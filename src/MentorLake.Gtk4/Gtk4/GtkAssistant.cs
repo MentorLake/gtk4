@@ -16,7 +16,7 @@ public static class GtkAssistantSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkAssistantSignalStructs.ApplySignal> obs) =>
 		{
-			GtkAssistantSignalDelegates.Apply handler = (GtkAssistantHandle self, IntPtr user_data) =>
+			GtkAssistantSignalDelegates.apply handler = (GtkAssistantHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkAssistantSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkAssistantSignalStructs.CancelSignal> obs) =>
 		{
-			GtkAssistantSignalDelegates.Cancel handler = (GtkAssistantHandle self, IntPtr user_data) =>
+			GtkAssistantSignalDelegates.cancel handler = (GtkAssistantHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkAssistantSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkAssistantSignalStructs.CloseSignal> obs) =>
 		{
-			GtkAssistantSignalDelegates.Close handler = (GtkAssistantHandle self, IntPtr user_data) =>
+			GtkAssistantSignalDelegates.close handler = (GtkAssistantHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GtkAssistantSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkAssistantSignalStructs.EscapeSignal> obs) =>
 		{
-			GtkAssistantSignalDelegates.Escape handler = (GtkAssistantHandle self, IntPtr user_data) =>
+			GtkAssistantSignalDelegates.escape handler = (GtkAssistantHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -124,7 +124,7 @@ public static class GtkAssistantSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkAssistantSignalStructs.PrepareSignal> obs) =>
 		{
-			GtkAssistantSignalDelegates.Prepare handler = (GtkAssistantHandle self, GtkWidgetHandle page, IntPtr user_data) =>
+			GtkAssistantSignalDelegates.prepare handler = (GtkAssistantHandle self, GtkWidgetHandle page, IntPtr user_data) =>
 			{
 				
 
@@ -186,20 +186,25 @@ public struct PrepareSignal
 public static class GtkAssistantSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Apply([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void apply([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Cancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Close([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void cancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Escape([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Prepare([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, GtkWidgetHandle page, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void close([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void escape([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void prepare([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAssistantHandle>))] GtkAssistantHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle page, IntPtr user_data);
+
 }
 
 

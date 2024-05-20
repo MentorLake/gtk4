@@ -11,5 +11,5 @@ internal class GInputVectorExterns
 public struct GInputVector
 {
 	public IntPtr buffer;
-	public int size;
+	public UIntPtr size;
 }

@@ -26,7 +26,7 @@ public static class GVfsHandleExtensions
 		return GVfsExterns.g_vfs_get_file_for_uri(vfs, uri);
 	}
 
-	public static string GetSupportedUriSchemes(this GVfsHandle vfs)
+	public static IntPtr GetSupportedUriSchemes(this GVfsHandle vfs)
 	{
 		return GVfsExterns.g_vfs_get_supported_uri_schemes(vfs);
 	}
@@ -62,7 +62,7 @@ internal class GVfsExterns
 	internal static extern GFileHandle g_vfs_get_file_for_uri(GVfsHandle vfs, string uri);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string g_vfs_get_supported_uri_schemes(GVfsHandle vfs);
+	internal static extern IntPtr g_vfs_get_supported_uri_schemes(GVfsHandle vfs);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_vfs_is_active(GVfsHandle vfs);

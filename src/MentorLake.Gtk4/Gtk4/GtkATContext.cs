@@ -16,7 +16,7 @@ public static class GtkATContextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkATContextSignalStructs.StateChangeSignal> obs) =>
 		{
-			GtkATContextSignalDelegates.StateChange handler = (GtkATContextHandle self, IntPtr user_data) =>
+			GtkATContextSignalDelegates.state_change handler = (GtkATContextHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -53,8 +53,9 @@ public struct StateChangeSignal
 public static class GtkATContextSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void StateChange([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkATContextHandle>))] GtkATContextHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void state_change([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkATContextHandle>))] GtkATContextHandle self, IntPtr user_data);
+
 }
 
 

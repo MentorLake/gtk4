@@ -16,7 +16,7 @@ public static class GtkPasswordEntrySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPasswordEntrySignalStructs.ActivateSignal> obs) =>
 		{
-			GtkPasswordEntrySignalDelegates.Activate handler = (GtkPasswordEntryHandle self, IntPtr user_data) =>
+			GtkPasswordEntrySignalDelegates.activate handler = (GtkPasswordEntryHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -53,8 +53,9 @@ public struct ActivateSignal
 public static class GtkPasswordEntrySignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPasswordEntryHandle>))] GtkPasswordEntryHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPasswordEntryHandle>))] GtkPasswordEntryHandle self, IntPtr user_data);
+
 }
 
 

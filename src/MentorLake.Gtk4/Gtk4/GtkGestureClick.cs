@@ -16,7 +16,7 @@ public static class GtkGestureClickSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureClickSignalStructs.PressedSignal> obs) =>
 		{
-			GtkGestureClickSignalDelegates.Pressed handler = (GtkGestureClickHandle self, int n_press, double x, double y, IntPtr user_data) =>
+			GtkGestureClickSignalDelegates.pressed handler = (GtkGestureClickHandle self, int n_press, double x, double y, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkGestureClickSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureClickSignalStructs.ReleasedSignal> obs) =>
 		{
-			GtkGestureClickSignalDelegates.Released handler = (GtkGestureClickHandle self, int n_press, double x, double y, IntPtr user_data) =>
+			GtkGestureClickSignalDelegates.released handler = (GtkGestureClickHandle self, int n_press, double x, double y, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkGestureClickSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureClickSignalStructs.StoppedSignal> obs) =>
 		{
-			GtkGestureClickSignalDelegates.Stopped handler = (GtkGestureClickHandle self, IntPtr user_data) =>
+			GtkGestureClickSignalDelegates.stopped handler = (GtkGestureClickHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GtkGestureClickSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureClickSignalStructs.UnpairedReleaseSignal> obs) =>
 		{
-			GtkGestureClickSignalDelegates.UnpairedRelease handler = (GtkGestureClickHandle self, double x, double y, uint button, GdkEventSequenceHandle sequence, IntPtr user_data) =>
+			GtkGestureClickSignalDelegates.unpaired_release handler = (GtkGestureClickHandle self, double x, double y, uint button, GdkEventSequenceHandle sequence, IntPtr user_data) =>
 			{
 				
 
@@ -162,17 +162,21 @@ public struct UnpairedReleaseSignal
 public static class GtkGestureClickSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Pressed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureClickHandle>))] GtkGestureClickHandle self, int n_press, double x, double y, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void pressed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureClickHandle>))] GtkGestureClickHandle self, int n_press, double x, double y, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Released([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureClickHandle>))] GtkGestureClickHandle self, int n_press, double x, double y, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Stopped([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureClickHandle>))] GtkGestureClickHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void released([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureClickHandle>))] GtkGestureClickHandle self, int n_press, double x, double y, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void UnpairedRelease([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureClickHandle>))] GtkGestureClickHandle self, double x, double y, uint button, GdkEventSequenceHandle sequence, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void stopped([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureClickHandle>))] GtkGestureClickHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void unpaired_release([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureClickHandle>))] GtkGestureClickHandle self, double x, double y, uint button, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkEventSequenceHandle>))] GdkEventSequenceHandle sequence, IntPtr user_data);
+
 }
 
 

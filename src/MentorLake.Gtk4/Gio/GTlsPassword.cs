@@ -21,7 +21,7 @@ public static class GTlsPasswordHandleExtensions
 		return GTlsPasswordExterns.g_tls_password_get_flags(password);
 	}
 
-	public static string GetValue(this GTlsPasswordHandle password, out int length)
+	public static IntPtr GetValue(this GTlsPasswordHandle password, out UIntPtr length)
 	{
 		return GTlsPasswordExterns.g_tls_password_get_value(password, out length);
 	}
@@ -43,13 +43,13 @@ public static class GTlsPasswordHandleExtensions
 		return password;
 	}
 
-	public static GTlsPasswordHandle SetValue(this GTlsPasswordHandle password, string value, int length)
+	public static GTlsPasswordHandle SetValue(this GTlsPasswordHandle password, string value, UIntPtr length)
 	{
 		GTlsPasswordExterns.g_tls_password_set_value(password, value, length);
 		return password;
 	}
 
-	public static GTlsPasswordHandle SetValueFull(this GTlsPasswordHandle password, string value, int length, GDestroyNotify destroy)
+	public static GTlsPasswordHandle SetValueFull(this GTlsPasswordHandle password, string value, UIntPtr length, GDestroyNotify destroy)
 	{
 		GTlsPasswordExterns.g_tls_password_set_value_full(password, value, length, destroy);
 		return password;
@@ -75,7 +75,7 @@ internal class GTlsPasswordExterns
 	internal static extern GTlsPasswordFlags g_tls_password_get_flags(GTlsPasswordHandle password);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string g_tls_password_get_value(GTlsPasswordHandle password, out int length);
+	internal static extern IntPtr g_tls_password_get_value(GTlsPasswordHandle password, out UIntPtr length);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_tls_password_get_warning(GTlsPasswordHandle password);
@@ -87,10 +87,10 @@ internal class GTlsPasswordExterns
 	internal static extern void g_tls_password_set_flags(GTlsPasswordHandle password, GTlsPasswordFlags flags);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern void g_tls_password_set_value(GTlsPasswordHandle password, string value, int length);
+	internal static extern void g_tls_password_set_value(GTlsPasswordHandle password, string value, UIntPtr length);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern void g_tls_password_set_value_full(GTlsPasswordHandle password, string value, int length, GDestroyNotify destroy);
+	internal static extern void g_tls_password_set_value_full(GTlsPasswordHandle password, string value, UIntPtr length, GDestroyNotify destroy);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_tls_password_set_warning(GTlsPasswordHandle password, string warning);

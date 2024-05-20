@@ -41,7 +41,7 @@ public static class GUnixSocketAddressHandleExtensions
 		return GUnixSocketAddressExterns.g_unix_socket_address_get_path(address);
 	}
 
-	public static int GetPathLen(this GUnixSocketAddressHandle address)
+	public static UIntPtr GetPathLen(this GUnixSocketAddressHandle address)
 	{
 		return GUnixSocketAddressExterns.g_unix_socket_address_get_path_len(address);
 	}
@@ -69,7 +69,7 @@ internal class GUnixSocketAddressExterns
 	internal static extern string g_unix_socket_address_get_path(GUnixSocketAddressHandle address);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_unix_socket_address_get_path_len(GUnixSocketAddressHandle address);
+	internal static extern UIntPtr g_unix_socket_address_get_path_len(GUnixSocketAddressHandle address);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_unix_socket_address_abstract_names_supported();

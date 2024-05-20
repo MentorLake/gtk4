@@ -11,7 +11,7 @@ public static class GdkClipboardSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkClipboardSignalStructs.ChangedSignal> obs) =>
 		{
-			GdkClipboardSignalDelegates.Changed handler = (GdkClipboardHandle self, IntPtr user_data) =>
+			GdkClipboardSignalDelegates.changed handler = (GdkClipboardHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -48,8 +48,9 @@ public struct ChangedSignal
 public static class GdkClipboardSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkClipboardHandle>))] GdkClipboardHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkClipboardHandle>))] GdkClipboardHandle self, IntPtr user_data);
+
 }
 
 

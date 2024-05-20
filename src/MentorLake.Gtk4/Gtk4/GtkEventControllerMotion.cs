@@ -16,7 +16,7 @@ public static class GtkEventControllerMotionSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEventControllerMotionSignalStructs.EnterSignal> obs) =>
 		{
-			GtkEventControllerMotionSignalDelegates.Enter handler = (GtkEventControllerMotionHandle self, double x, double y, IntPtr user_data) =>
+			GtkEventControllerMotionSignalDelegates.enter handler = (GtkEventControllerMotionHandle self, double x, double y, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkEventControllerMotionSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEventControllerMotionSignalStructs.LeaveSignal> obs) =>
 		{
-			GtkEventControllerMotionSignalDelegates.Leave handler = (GtkEventControllerMotionHandle self, IntPtr user_data) =>
+			GtkEventControllerMotionSignalDelegates.leave handler = (GtkEventControllerMotionHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkEventControllerMotionSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEventControllerMotionSignalStructs.MotionSignal> obs) =>
 		{
-			GtkEventControllerMotionSignalDelegates.Motion handler = (GtkEventControllerMotionHandle self, double x, double y, IntPtr user_data) =>
+			GtkEventControllerMotionSignalDelegates.motion handler = (GtkEventControllerMotionHandle self, double x, double y, IntPtr user_data) =>
 			{
 				
 
@@ -123,14 +123,17 @@ public struct MotionSignal
 public static class GtkEventControllerMotionSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Enter([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerMotionHandle>))] GtkEventControllerMotionHandle self, double x, double y, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void enter([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerMotionHandle>))] GtkEventControllerMotionHandle self, double x, double y, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Leave([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerMotionHandle>))] GtkEventControllerMotionHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Motion([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerMotionHandle>))] GtkEventControllerMotionHandle self, double x, double y, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void leave([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerMotionHandle>))] GtkEventControllerMotionHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void motion([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerMotionHandle>))] GtkEventControllerMotionHandle self, double x, double y, IntPtr user_data);
+
 }
 
 

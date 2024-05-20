@@ -11,7 +11,7 @@ public static class GtkCellRendererSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCellRendererSignalStructs.EditingCanceledSignal> obs) =>
 		{
-			GtkCellRendererSignalDelegates.EditingCanceled handler = (GtkCellRendererHandle self, IntPtr user_data) =>
+			GtkCellRendererSignalDelegates.editing_canceled handler = (GtkCellRendererHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -38,7 +38,7 @@ public static class GtkCellRendererSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCellRendererSignalStructs.EditingStartedSignal> obs) =>
 		{
-			GtkCellRendererSignalDelegates.EditingStarted handler = (GtkCellRendererHandle self, GtkCellEditableHandle editable, string path, IntPtr user_data) =>
+			GtkCellRendererSignalDelegates.editing_started handler = (GtkCellRendererHandle self, GtkCellEditableHandle editable, string path, IntPtr user_data) =>
 			{
 				
 
@@ -83,11 +83,13 @@ public struct EditingStartedSignal
 public static class GtkCellRendererSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void EditingCanceled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererHandle>))] GtkCellRendererHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void editing_canceled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererHandle>))] GtkCellRendererHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void EditingStarted([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererHandle>))] GtkCellRendererHandle self, GtkCellEditableHandle editable, string path, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void editing_started([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererHandle>))] GtkCellRendererHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellEditableHandleImpl>))] GtkCellEditableHandle editable, string path, IntPtr user_data);
+
 }
 
 

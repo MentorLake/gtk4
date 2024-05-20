@@ -16,7 +16,7 @@ public static class GtkAdjustmentSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkAdjustmentSignalStructs.ChangedSignal> obs) =>
 		{
-			GtkAdjustmentSignalDelegates.Changed handler = (GtkAdjustmentHandle self, IntPtr user_data) =>
+			GtkAdjustmentSignalDelegates.changed handler = (GtkAdjustmentHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkAdjustmentSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkAdjustmentSignalStructs.ValueChangedSignal> obs) =>
 		{
-			GtkAdjustmentSignalDelegates.ValueChanged handler = (GtkAdjustmentHandle self, IntPtr user_data) =>
+			GtkAdjustmentSignalDelegates.value_changed handler = (GtkAdjustmentHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -86,11 +86,13 @@ public struct ValueChangedSignal
 public static class GtkAdjustmentSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAdjustmentHandle>))] GtkAdjustmentHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAdjustmentHandle>))] GtkAdjustmentHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ValueChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAdjustmentHandle>))] GtkAdjustmentHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void value_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAdjustmentHandle>))] GtkAdjustmentHandle self, IntPtr user_data);
+
 }
 
 

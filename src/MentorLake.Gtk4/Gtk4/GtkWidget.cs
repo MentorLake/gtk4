@@ -21,7 +21,7 @@ public static class GtkWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWidgetSignalStructs.DestroySignal> obs) =>
 		{
-			GtkWidgetSignalDelegates.Destroy handler = (GtkWidgetHandle self, IntPtr user_data) =>
+			GtkWidgetSignalDelegates.destroy handler = (GtkWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -48,7 +48,7 @@ public static class GtkWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWidgetSignalStructs.DirectionChangedSignal> obs) =>
 		{
-			GtkWidgetSignalDelegates.DirectionChanged handler = (GtkWidgetHandle self, GtkTextDirection previous_direction, IntPtr user_data) =>
+			GtkWidgetSignalDelegates.direction_changed handler = (GtkWidgetHandle self, GtkTextDirection previous_direction, IntPtr user_data) =>
 			{
 				
 
@@ -75,7 +75,7 @@ public static class GtkWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWidgetSignalStructs.HideSignal> obs) =>
 		{
-			GtkWidgetSignalDelegates.Hide handler = (GtkWidgetHandle self, IntPtr user_data) =>
+			GtkWidgetSignalDelegates.hide handler = (GtkWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -102,7 +102,7 @@ public static class GtkWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWidgetSignalStructs.KeynavFailedSignal> obs) =>
 		{
-			GtkWidgetSignalDelegates.KeynavFailed handler = (GtkWidgetHandle self, GtkDirectionType direction, IntPtr user_data) =>
+			GtkWidgetSignalDelegates.keynav_failed handler = (GtkWidgetHandle self, GtkDirectionType direction, IntPtr user_data) =>
 			{
 				
 
@@ -129,7 +129,7 @@ public static class GtkWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWidgetSignalStructs.MapSignal> obs) =>
 		{
-			GtkWidgetSignalDelegates.Map handler = (GtkWidgetHandle self, IntPtr user_data) =>
+			GtkWidgetSignalDelegates.map handler = (GtkWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -156,7 +156,7 @@ public static class GtkWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWidgetSignalStructs.MnemonicActivateSignal> obs) =>
 		{
-			GtkWidgetSignalDelegates.MnemonicActivate handler = (GtkWidgetHandle self, bool group_cycling, IntPtr user_data) =>
+			GtkWidgetSignalDelegates.mnemonic_activate handler = (GtkWidgetHandle self, bool group_cycling, IntPtr user_data) =>
 			{
 				
 
@@ -183,7 +183,7 @@ public static class GtkWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWidgetSignalStructs.MoveFocusSignal> obs) =>
 		{
-			GtkWidgetSignalDelegates.MoveFocus handler = (GtkWidgetHandle self, GtkDirectionType direction, IntPtr user_data) =>
+			GtkWidgetSignalDelegates.move_focus handler = (GtkWidgetHandle self, GtkDirectionType direction, IntPtr user_data) =>
 			{
 				
 
@@ -210,7 +210,7 @@ public static class GtkWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWidgetSignalStructs.QueryTooltipSignal> obs) =>
 		{
-			GtkWidgetSignalDelegates.QueryTooltip handler = (GtkWidgetHandle self, int x, int y, bool keyboard_mode, GtkTooltipHandle tooltip, IntPtr user_data) =>
+			GtkWidgetSignalDelegates.query_tooltip handler = (GtkWidgetHandle self, int x, int y, bool keyboard_mode, GtkTooltipHandle tooltip, IntPtr user_data) =>
 			{
 				
 
@@ -237,7 +237,7 @@ public static class GtkWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWidgetSignalStructs.RealizeSignal> obs) =>
 		{
-			GtkWidgetSignalDelegates.Realize handler = (GtkWidgetHandle self, IntPtr user_data) =>
+			GtkWidgetSignalDelegates.realize handler = (GtkWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -264,7 +264,7 @@ public static class GtkWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWidgetSignalStructs.ShowSignal> obs) =>
 		{
-			GtkWidgetSignalDelegates.Show handler = (GtkWidgetHandle self, IntPtr user_data) =>
+			GtkWidgetSignalDelegates.show handler = (GtkWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -291,7 +291,7 @@ public static class GtkWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWidgetSignalStructs.StateFlagsChangedSignal> obs) =>
 		{
-			GtkWidgetSignalDelegates.StateFlagsChanged handler = (GtkWidgetHandle self, GtkStateFlags flags, IntPtr user_data) =>
+			GtkWidgetSignalDelegates.state_flags_changed handler = (GtkWidgetHandle self, GtkStateFlags flags, IntPtr user_data) =>
 			{
 				
 
@@ -318,7 +318,7 @@ public static class GtkWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWidgetSignalStructs.UnmapSignal> obs) =>
 		{
-			GtkWidgetSignalDelegates.Unmap handler = (GtkWidgetHandle self, IntPtr user_data) =>
+			GtkWidgetSignalDelegates.unmap handler = (GtkWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -345,7 +345,7 @@ public static class GtkWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWidgetSignalStructs.UnrealizeSignal> obs) =>
 		{
-			GtkWidgetSignalDelegates.Unrealize handler = (GtkWidgetHandle self, IntPtr user_data) =>
+			GtkWidgetSignalDelegates.unrealize handler = (GtkWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -466,44 +466,57 @@ public struct UnrealizeSignal
 public static class GtkWidgetSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Destroy([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void destroy([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DirectionChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, GtkTextDirection previous_direction, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Hide([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void direction_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, GtkTextDirection previous_direction, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool KeynavFailed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, GtkDirectionType direction, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Map([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void hide([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool MnemonicActivate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, bool group_cycling, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MoveFocus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, GtkDirectionType direction, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool keynav_failed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, GtkDirectionType direction, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool QueryTooltip([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, int x, int y, bool keyboard_mode, GtkTooltipHandle tooltip, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Realize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void map([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Show([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void StateFlagsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, GtkStateFlags flags, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool mnemonic_activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, bool group_cycling, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Unmap([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Unrealize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void move_focus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, GtkDirectionType direction, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool query_tooltip([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, int x, int y, bool keyboard_mode, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTooltipHandle>))] GtkTooltipHandle tooltip, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void realize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void show([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void state_flags_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, GtkStateFlags flags, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void unmap([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void unrealize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle self, IntPtr user_data);
+
 }
 
 
@@ -679,7 +692,7 @@ public static class GtkWidgetHandleExtensions
 		return widget;
 	}
 
-	public static string[] GetCssClasses(this GtkWidgetHandle widget)
+	public static IntPtr GetCssClasses(this GtkWidgetHandle widget)
 	{
 		return GtkWidgetExterns.gtk_widget_get_css_classes(widget);
 	}
@@ -1496,7 +1509,7 @@ internal class GtkWidgetExterns
 	internal static extern void gtk_widget_get_color(GtkWidgetHandle widget, out GdkRGBA color);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern string[] gtk_widget_get_css_classes(GtkWidgetHandle widget);
+	internal static extern IntPtr gtk_widget_get_css_classes(GtkWidgetHandle widget);
 
 	[DllImport(Libraries.Gtk4)]
 	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]

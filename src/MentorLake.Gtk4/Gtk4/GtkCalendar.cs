@@ -16,7 +16,7 @@ public static class GtkCalendarSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCalendarSignalStructs.DaySelectedSignal> obs) =>
 		{
-			GtkCalendarSignalDelegates.DaySelected handler = (GtkCalendarHandle self, IntPtr user_data) =>
+			GtkCalendarSignalDelegates.day_selected handler = (GtkCalendarHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkCalendarSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCalendarSignalStructs.NextMonthSignal> obs) =>
 		{
-			GtkCalendarSignalDelegates.NextMonth handler = (GtkCalendarHandle self, IntPtr user_data) =>
+			GtkCalendarSignalDelegates.next_month handler = (GtkCalendarHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkCalendarSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCalendarSignalStructs.NextYearSignal> obs) =>
 		{
-			GtkCalendarSignalDelegates.NextYear handler = (GtkCalendarHandle self, IntPtr user_data) =>
+			GtkCalendarSignalDelegates.next_year handler = (GtkCalendarHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GtkCalendarSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCalendarSignalStructs.PrevMonthSignal> obs) =>
 		{
-			GtkCalendarSignalDelegates.PrevMonth handler = (GtkCalendarHandle self, IntPtr user_data) =>
+			GtkCalendarSignalDelegates.prev_month handler = (GtkCalendarHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -124,7 +124,7 @@ public static class GtkCalendarSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCalendarSignalStructs.PrevYearSignal> obs) =>
 		{
-			GtkCalendarSignalDelegates.PrevYear handler = (GtkCalendarHandle self, IntPtr user_data) =>
+			GtkCalendarSignalDelegates.prev_year handler = (GtkCalendarHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -185,20 +185,25 @@ public struct PrevYearSignal
 public static class GtkCalendarSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DaySelected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCalendarHandle>))] GtkCalendarHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void day_selected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCalendarHandle>))] GtkCalendarHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void NextMonth([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCalendarHandle>))] GtkCalendarHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void NextYear([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCalendarHandle>))] GtkCalendarHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void next_month([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCalendarHandle>))] GtkCalendarHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PrevMonth([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCalendarHandle>))] GtkCalendarHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PrevYear([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCalendarHandle>))] GtkCalendarHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void next_year([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCalendarHandle>))] GtkCalendarHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void prev_month([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCalendarHandle>))] GtkCalendarHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void prev_year([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCalendarHandle>))] GtkCalendarHandle self, IntPtr user_data);
+
 }
 
 

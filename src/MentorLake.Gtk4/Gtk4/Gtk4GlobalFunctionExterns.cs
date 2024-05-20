@@ -3,6 +3,7 @@ namespace MentorLake.Gtk4.Gtk4;
 internal class Gtk4GlobalFunctionExterns
 {
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_check_version(uint required_major, uint required_minor, uint required_micro);
 
 	[DllImport(Libraries.Gtk4)]
@@ -39,7 +40,7 @@ internal class Gtk4GlobalFunctionExterns
 	internal static extern bool gtk_init_check();
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern GType[] gtk_test_list_all_types(out uint n_types);
+	internal static extern IntPtr gtk_test_list_all_types(out uint n_types);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_get_minor_version();

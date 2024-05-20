@@ -21,7 +21,7 @@ public static class GUnixMountMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GUnixMountMonitorSignalStructs.MountpointsChangedSignal> obs) =>
 		{
-			GUnixMountMonitorSignalDelegates.MountpointsChanged handler = (GUnixMountMonitorHandle self, IntPtr user_data) =>
+			GUnixMountMonitorSignalDelegates.mountpoints_changed handler = (GUnixMountMonitorHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -48,7 +48,7 @@ public static class GUnixMountMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GUnixMountMonitorSignalStructs.MountsChangedSignal> obs) =>
 		{
-			GUnixMountMonitorSignalDelegates.MountsChanged handler = (GUnixMountMonitorHandle self, IntPtr user_data) =>
+			GUnixMountMonitorSignalDelegates.mounts_changed handler = (GUnixMountMonitorHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -91,11 +91,13 @@ public struct MountsChangedSignal
 public static class GUnixMountMonitorSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MountpointsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GUnixMountMonitorHandle>))] GUnixMountMonitorHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void mountpoints_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GUnixMountMonitorHandle>))] GUnixMountMonitorHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MountsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GUnixMountMonitorHandle>))] GUnixMountMonitorHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void mounts_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GUnixMountMonitorHandle>))] GUnixMountMonitorHandle self, IntPtr user_data);
+
 }
 
 

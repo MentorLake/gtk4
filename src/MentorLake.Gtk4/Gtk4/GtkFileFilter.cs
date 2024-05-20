@@ -40,7 +40,7 @@ public static class GtkFileFilterHandleExtensions
 		return filter;
 	}
 
-	public static string[] GetAttributes(this GtkFileFilterHandle filter)
+	public static IntPtr GetAttributes(this GtkFileFilterHandle filter)
 	{
 		return GtkFileFilterExterns.gtk_file_filter_get_attributes(filter);
 	}
@@ -84,7 +84,7 @@ internal class GtkFileFilterExterns
 	internal static extern void gtk_file_filter_add_suffix(GtkFileFilterHandle filter, string suffix);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern string[] gtk_file_filter_get_attributes(GtkFileFilterHandle filter);
+	internal static extern IntPtr gtk_file_filter_get_attributes(GtkFileFilterHandle filter);
 
 	[DllImport(Libraries.Gtk4)]
 	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]

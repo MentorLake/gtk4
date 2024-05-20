@@ -76,7 +76,7 @@ public static class GActionGroupHandleExtensions
 		return GActionGroupExterns.g_action_group_has_action(action_group, action_name);
 	}
 
-	public static string[] ListActions(this GActionGroupHandle action_group)
+	public static IntPtr ListActions(this GActionGroupHandle action_group)
 	{
 		return GActionGroupExterns.g_action_group_list_actions(action_group);
 	}
@@ -127,7 +127,7 @@ internal class GActionGroupExterns
 	internal static extern bool g_action_group_has_action(GActionGroupHandle action_group, string action_name);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_action_group_list_actions(GActionGroupHandle action_group);
+	internal static extern IntPtr g_action_group_list_actions(GActionGroupHandle action_group);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_action_group_query_action(GActionGroupHandle action_group, string action_name, out bool enabled, out GVariantTypeHandle parameter_type, out GVariantTypeHandle state_type, out GVariantHandle state_hint, out GVariantHandle state);

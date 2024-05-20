@@ -2,7 +2,7 @@ namespace MentorLake.Gtk4.Gsk4;
 
 public class GskShadowNodeHandle : GskRenderNodeHandle
 {
-	public static GskShadowNodeHandle New(GskRenderNodeHandle child, GskShadow[] shadows, int n_shadows)
+	public static GskShadowNodeHandle New(GskRenderNodeHandle child, GskShadow[] shadows, UIntPtr n_shadows)
 	{
 		return GskShadowNodeExterns.gsk_shadow_node_new(child, shadows, n_shadows);
 	}
@@ -16,12 +16,12 @@ public static class GskShadowNodeHandleExtensions
 		return GskShadowNodeExterns.gsk_shadow_node_get_child(node);
 	}
 
-	public static int GetNShadows(this GskShadowNodeHandle node)
+	public static UIntPtr GetNShadows(this GskShadowNodeHandle node)
 	{
 		return GskShadowNodeExterns.gsk_shadow_node_get_n_shadows(node);
 	}
 
-	public static GskShadowHandle GetShadow(this GskShadowNodeHandle node, int i)
+	public static GskShadowHandle GetShadow(this GskShadowNodeHandle node, UIntPtr i)
 	{
 		return GskShadowNodeExterns.gsk_shadow_node_get_shadow(node, i);
 	}
@@ -31,15 +31,15 @@ public static class GskShadowNodeHandleExtensions
 internal class GskShadowNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
-	internal static extern GskShadowNodeHandle gsk_shadow_node_new(GskRenderNodeHandle child, GskShadow[] shadows, int n_shadows);
+	internal static extern GskShadowNodeHandle gsk_shadow_node_new(GskRenderNodeHandle child, GskShadow[] shadows, UIntPtr n_shadows);
 
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRenderNodeHandle gsk_shadow_node_get_child(GskRenderNodeHandle node);
 
 	[DllImport(Libraries.Gsk4)]
-	internal static extern int gsk_shadow_node_get_n_shadows(GskRenderNodeHandle node);
+	internal static extern UIntPtr gsk_shadow_node_get_n_shadows(GskRenderNodeHandle node);
 
 	[DllImport(Libraries.Gsk4)]
-	internal static extern GskShadowHandle gsk_shadow_node_get_shadow(GskRenderNodeHandle node, int i);
+	internal static extern GskShadowHandle gsk_shadow_node_get_shadow(GskRenderNodeHandle node, UIntPtr i);
 
 }

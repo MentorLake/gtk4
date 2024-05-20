@@ -26,7 +26,7 @@ public static class GResolverSignalExtensions
 	{
 		return Observable.Create((IObserver<GResolverSignalStructs.ReloadSignal> obs) =>
 		{
-			GResolverSignalDelegates.Reload handler = (GResolverHandle self, IntPtr user_data) =>
+			GResolverSignalDelegates.reload handler = (GResolverHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -63,8 +63,9 @@ public struct ReloadSignal
 public static class GResolverSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Reload([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GResolverHandle>))] GResolverHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void reload([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GResolverHandle>))] GResolverHandle self, IntPtr user_data);
+
 }
 
 

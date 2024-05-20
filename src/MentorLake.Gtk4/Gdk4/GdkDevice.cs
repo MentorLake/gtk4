@@ -11,7 +11,7 @@ public static class GdkDeviceSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkDeviceSignalStructs.ChangedSignal> obs) =>
 		{
-			GdkDeviceSignalDelegates.Changed handler = (GdkDeviceHandle self, IntPtr user_data) =>
+			GdkDeviceSignalDelegates.changed handler = (GdkDeviceHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -38,7 +38,7 @@ public static class GdkDeviceSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkDeviceSignalStructs.ToolChangedSignal> obs) =>
 		{
-			GdkDeviceSignalDelegates.ToolChanged handler = (GdkDeviceHandle self, GdkDeviceToolHandle tool, IntPtr user_data) =>
+			GdkDeviceSignalDelegates.tool_changed handler = (GdkDeviceHandle self, GdkDeviceToolHandle tool, IntPtr user_data) =>
 			{
 				
 
@@ -82,11 +82,13 @@ public struct ToolChangedSignal
 public static class GdkDeviceSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDeviceHandle>))] GdkDeviceHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDeviceHandle>))] GdkDeviceHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ToolChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDeviceHandle>))] GdkDeviceHandle self, GdkDeviceToolHandle tool, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void tool_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDeviceHandle>))] GdkDeviceHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDeviceToolHandle>))] GdkDeviceToolHandle tool, IntPtr user_data);
+
 }
 
 

@@ -16,7 +16,7 @@ public static class GtkScaleButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkScaleButtonSignalStructs.PopdownSignal> obs) =>
 		{
-			GtkScaleButtonSignalDelegates.Popdown handler = (GtkScaleButtonHandle self, IntPtr user_data) =>
+			GtkScaleButtonSignalDelegates.popdown handler = (GtkScaleButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkScaleButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkScaleButtonSignalStructs.PopupSignal> obs) =>
 		{
-			GtkScaleButtonSignalDelegates.Popup handler = (GtkScaleButtonHandle self, IntPtr user_data) =>
+			GtkScaleButtonSignalDelegates.popup handler = (GtkScaleButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkScaleButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkScaleButtonSignalStructs.ValueChangedSignal> obs) =>
 		{
-			GtkScaleButtonSignalDelegates.ValueChanged handler = (GtkScaleButtonHandle self, double value, IntPtr user_data) =>
+			GtkScaleButtonSignalDelegates.value_changed handler = (GtkScaleButtonHandle self, double value, IntPtr user_data) =>
 			{
 				
 
@@ -120,14 +120,17 @@ public struct ValueChangedSignal
 public static class GtkScaleButtonSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Popdown([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScaleButtonHandle>))] GtkScaleButtonHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void popdown([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScaleButtonHandle>))] GtkScaleButtonHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Popup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScaleButtonHandle>))] GtkScaleButtonHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ValueChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScaleButtonHandle>))] GtkScaleButtonHandle self, double value, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void popup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScaleButtonHandle>))] GtkScaleButtonHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void value_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkScaleButtonHandle>))] GtkScaleButtonHandle self, double value, IntPtr user_data);
+
 }
 
 

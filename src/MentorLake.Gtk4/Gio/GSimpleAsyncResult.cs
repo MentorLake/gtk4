@@ -53,7 +53,7 @@ public static class GSimpleAsyncResultHandleExtensions
 		return GSimpleAsyncResultExterns.g_simple_async_result_get_op_res_gpointer(simple);
 	}
 
-	public static int GetOpResGssize(this GSimpleAsyncResultHandle simple)
+	public static UIntPtr GetOpResGssize(this GSimpleAsyncResultHandle simple)
 	{
 		return GSimpleAsyncResultExterns.g_simple_async_result_get_op_res_gssize(simple);
 	}
@@ -116,7 +116,7 @@ public static class GSimpleAsyncResultHandleExtensions
 		return simple;
 	}
 
-	public static GSimpleAsyncResultHandle SetOpResGssize(this GSimpleAsyncResultHandle simple, int op_res)
+	public static GSimpleAsyncResultHandle SetOpResGssize(this GSimpleAsyncResultHandle simple, UIntPtr op_res)
 	{
 		GSimpleAsyncResultExterns.g_simple_async_result_set_op_res_gssize(simple, op_res);
 		return simple;
@@ -157,7 +157,7 @@ internal class GSimpleAsyncResultExterns
 	internal static extern IntPtr g_simple_async_result_get_op_res_gpointer(GSimpleAsyncResultHandle simple);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_simple_async_result_get_op_res_gssize(GSimpleAsyncResultHandle simple);
+	internal static extern UIntPtr g_simple_async_result_get_op_res_gssize(GSimpleAsyncResultHandle simple);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern IntPtr g_simple_async_result_get_source_tag(GSimpleAsyncResultHandle simple);
@@ -190,7 +190,7 @@ internal class GSimpleAsyncResultExterns
 	internal static extern void g_simple_async_result_set_op_res_gpointer(GSimpleAsyncResultHandle simple, IntPtr op_res, GDestroyNotify destroy_op_res);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern void g_simple_async_result_set_op_res_gssize(GSimpleAsyncResultHandle simple, int op_res);
+	internal static extern void g_simple_async_result_set_op_res_gssize(GSimpleAsyncResultHandle simple, UIntPtr op_res);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_async_result_take_error(GSimpleAsyncResultHandle simple, GErrorHandle error);

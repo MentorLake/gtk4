@@ -175,7 +175,7 @@ public static class GdkPixbufHandleExtensions
 		return GdkPixbufExterns.gdk_pixbuf_get_bits_per_sample(pixbuf);
 	}
 
-	public static int GetByteLength(this GdkPixbufHandle pixbuf)
+	public static UIntPtr GetByteLength(this GdkPixbufHandle pixbuf)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_get_byte_length(pixbuf);
 	}
@@ -210,12 +210,12 @@ public static class GdkPixbufHandleExtensions
 		return GdkPixbufExterns.gdk_pixbuf_get_options(pixbuf);
 	}
 
-	public static string GetPixels(this GdkPixbufHandle pixbuf)
+	public static IntPtr GetPixels(this GdkPixbufHandle pixbuf)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_get_pixels(pixbuf);
 	}
 
-	public static string GetPixelsWithLength(this GdkPixbufHandle pixbuf, out uint length)
+	public static IntPtr GetPixelsWithLength(this GdkPixbufHandle pixbuf, out uint length)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_get_pixels_with_length(pixbuf, out length);
 	}
@@ -240,7 +240,7 @@ public static class GdkPixbufHandleExtensions
 		return GdkPixbufExterns.gdk_pixbuf_read_pixel_bytes(pixbuf);
 	}
 
-	public static byte[] ReadPixels(this GdkPixbufHandle pixbuf)
+	public static IntPtr ReadPixels(this GdkPixbufHandle pixbuf)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_read_pixels(pixbuf);
 	}
@@ -271,12 +271,12 @@ public static class GdkPixbufHandleExtensions
 		return GdkPixbufExterns.gdk_pixbuf_save(pixbuf, filename, type, out error, @__arglist);
 	}
 
-	public static bool SaveToBuffer(this GdkPixbufHandle pixbuf, out string buffer, out int buffer_size, string type, out GErrorHandle error, IntPtr @__arglist)
+	public static bool SaveToBuffer(this GdkPixbufHandle pixbuf, out string buffer, out UIntPtr buffer_size, string type, out GErrorHandle error, IntPtr @__arglist)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_save_to_buffer(pixbuf, out buffer, out buffer_size, type, out error, @__arglist);
 	}
 
-	public static bool SaveToBufferv(this GdkPixbufHandle pixbuf, out string buffer, out int buffer_size, string type, string[] option_keys, string[] option_values, out GErrorHandle error)
+	public static bool SaveToBufferv(this GdkPixbufHandle pixbuf, out string buffer, out UIntPtr buffer_size, string type, string[] option_keys, string[] option_values, out GErrorHandle error)
 	{
 		return GdkPixbufExterns.gdk_pixbuf_save_to_bufferv(pixbuf, out buffer, out buffer_size, type, option_keys, option_values, out error);
 	}
@@ -417,7 +417,7 @@ internal class GdkPixbufExterns
 	internal static extern int gdk_pixbuf_get_bits_per_sample(GdkPixbufHandle pixbuf);
 
 	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern int gdk_pixbuf_get_byte_length(GdkPixbufHandle pixbuf);
+	internal static extern UIntPtr gdk_pixbuf_get_byte_length(GdkPixbufHandle pixbuf);
 
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkColorspace gdk_pixbuf_get_colorspace(GdkPixbufHandle pixbuf);
@@ -439,12 +439,10 @@ internal class GdkPixbufExterns
 	internal static extern GHashTableHandle gdk_pixbuf_get_options(GdkPixbufHandle pixbuf);
 
 	[DllImport(Libraries.GdkPixbuf)]
-	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
-	internal static extern string gdk_pixbuf_get_pixels(GdkPixbufHandle pixbuf);
+	internal static extern IntPtr gdk_pixbuf_get_pixels(GdkPixbufHandle pixbuf);
 
 	[DllImport(Libraries.GdkPixbuf)]
-	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
-	internal static extern string gdk_pixbuf_get_pixels_with_length(GdkPixbufHandle pixbuf, out uint length);
+	internal static extern IntPtr gdk_pixbuf_get_pixels_with_length(GdkPixbufHandle pixbuf, out uint length);
 
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern int gdk_pixbuf_get_rowstride(GdkPixbufHandle pixbuf);
@@ -459,7 +457,7 @@ internal class GdkPixbufExterns
 	internal static extern GBytesHandle gdk_pixbuf_read_pixel_bytes(GdkPixbufHandle pixbuf);
 
 	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern byte[] gdk_pixbuf_read_pixels(GdkPixbufHandle pixbuf);
+	internal static extern IntPtr gdk_pixbuf_read_pixels(GdkPixbufHandle pixbuf);
 
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern GdkPixbufHandle gdk_pixbuf_ref(GdkPixbufHandle pixbuf);
@@ -477,10 +475,10 @@ internal class GdkPixbufExterns
 	internal static extern bool gdk_pixbuf_save(GdkPixbufHandle pixbuf, string filename, string type, out GErrorHandle error, IntPtr @__arglist);
 
 	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern bool gdk_pixbuf_save_to_buffer(GdkPixbufHandle pixbuf, out string buffer, out int buffer_size, string type, out GErrorHandle error, IntPtr @__arglist);
+	internal static extern bool gdk_pixbuf_save_to_buffer(GdkPixbufHandle pixbuf, out string buffer, out UIntPtr buffer_size, string type, out GErrorHandle error, IntPtr @__arglist);
 
 	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern bool gdk_pixbuf_save_to_bufferv(GdkPixbufHandle pixbuf, out string buffer, out int buffer_size, string type, string[] option_keys, string[] option_values, out GErrorHandle error);
+	internal static extern bool gdk_pixbuf_save_to_bufferv(GdkPixbufHandle pixbuf, out string buffer, out UIntPtr buffer_size, string type, string[] option_keys, string[] option_values, out GErrorHandle error);
 
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_save_to_callback(GdkPixbufHandle pixbuf, GdkPixbufSaveFunc save_func, IntPtr user_data, string type, out GErrorHandle error, IntPtr @__arglist);

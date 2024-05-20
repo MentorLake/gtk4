@@ -7,7 +7,7 @@ public class GIOModuleHandle : GTypeModuleHandle, GTypePluginHandle
 		return GIOModuleExterns.g_io_module_new(filename);
 	}
 
-	public static string[] GIoModuleQuery()
+	public static IntPtr GIoModuleQuery()
 	{
 		return GIOModuleExterns.g_io_module_query();
 	}
@@ -42,6 +42,6 @@ internal class GIOModuleExterns
 	internal static extern void g_io_module_unload(GIOModuleHandle module);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_io_module_query();
+	internal static extern IntPtr g_io_module_query();
 
 }

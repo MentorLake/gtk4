@@ -21,7 +21,7 @@ public static class GtkEntrySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEntrySignalStructs.ActivateSignal> obs) =>
 		{
-			GtkEntrySignalDelegates.Activate handler = (GtkEntryHandle self, IntPtr user_data) =>
+			GtkEntrySignalDelegates.activate handler = (GtkEntryHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -48,7 +48,7 @@ public static class GtkEntrySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEntrySignalStructs.IconPressSignal> obs) =>
 		{
-			GtkEntrySignalDelegates.IconPress handler = (GtkEntryHandle self, GtkEntryIconPosition icon_pos, IntPtr user_data) =>
+			GtkEntrySignalDelegates.icon_press handler = (GtkEntryHandle self, GtkEntryIconPosition icon_pos, IntPtr user_data) =>
 			{
 				
 
@@ -75,7 +75,7 @@ public static class GtkEntrySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEntrySignalStructs.IconReleaseSignal> obs) =>
 		{
-			GtkEntrySignalDelegates.IconRelease handler = (GtkEntryHandle self, GtkEntryIconPosition icon_pos, IntPtr user_data) =>
+			GtkEntrySignalDelegates.icon_release handler = (GtkEntryHandle self, GtkEntryIconPosition icon_pos, IntPtr user_data) =>
 			{
 				
 
@@ -126,14 +126,17 @@ public struct IconReleaseSignal
 public static class GtkEntrySignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryHandle>))] GtkEntryHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryHandle>))] GtkEntryHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void IconPress([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryHandle>))] GtkEntryHandle self, GtkEntryIconPosition icon_pos, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void IconRelease([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryHandle>))] GtkEntryHandle self, GtkEntryIconPosition icon_pos, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void icon_press([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryHandle>))] GtkEntryHandle self, GtkEntryIconPosition icon_pos, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void icon_release([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryHandle>))] GtkEntryHandle self, GtkEntryIconPosition icon_pos, IntPtr user_data);
+
 }
 
 

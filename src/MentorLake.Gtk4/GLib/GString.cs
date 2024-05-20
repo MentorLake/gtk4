@@ -7,7 +7,7 @@ public class GStringHandle : BaseSafeHandle
 		return GStringExterns.g_string_new(init);
 	}
 
-	public static GStringHandle NewLen(string init, int len)
+	public static GStringHandle NewLen(string init, UIntPtr len)
 	{
 		return GStringExterns.g_string_new_len(init, len);
 	}
@@ -17,7 +17,7 @@ public class GStringHandle : BaseSafeHandle
 		return GStringExterns.g_string_new_take(init);
 	}
 
-	public static GStringHandle SizedNew(int dfl_size)
+	public static GStringHandle SizedNew(UIntPtr dfl_size)
 	{
 		return GStringExterns.g_string_sized_new(dfl_size);
 	}
@@ -30,19 +30,19 @@ internal class GStringExterns
 	internal static extern GStringHandle g_string_new(string init);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern GStringHandle g_string_new_len(string init, int len);
+	internal static extern GStringHandle g_string_new_len(string init, UIntPtr len);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GStringHandle g_string_new_take(string init);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern GStringHandle g_string_sized_new(int dfl_size);
+	internal static extern GStringHandle g_string_sized_new(UIntPtr dfl_size);
 
 }
 
 public struct GString
 {
 	public string str;
-	public int len;
-	public int allocated_len;
+	public UIntPtr len;
+	public UIntPtr allocated_len;
 }

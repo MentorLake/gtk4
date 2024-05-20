@@ -17,7 +17,7 @@ public class GtkBuilderHandle : GObjectHandle
 		return GtkBuilderExterns.gtk_builder_new_from_resource(resource_path);
 	}
 
-	public static GtkBuilderHandle NewFromString(string @string, int length)
+	public static GtkBuilderHandle NewFromString(string @string, UIntPtr length)
 	{
 		return GtkBuilderExterns.gtk_builder_new_from_string(@string, length);
 	}
@@ -36,7 +36,7 @@ public static class GtkBuilderHandleExtensions
 		return GtkBuilderExterns.gtk_builder_add_from_resource(builder, resource_path, out error);
 	}
 
-	public static bool AddFromString(this GtkBuilderHandle builder, string buffer, int length, out GErrorHandle error)
+	public static bool AddFromString(this GtkBuilderHandle builder, string buffer, UIntPtr length, out GErrorHandle error)
 	{
 		return GtkBuilderExterns.gtk_builder_add_from_string(builder, buffer, length, out error);
 	}
@@ -51,7 +51,7 @@ public static class GtkBuilderHandleExtensions
 		return GtkBuilderExterns.gtk_builder_add_objects_from_resource(builder, resource_path, object_ids, out error);
 	}
 
-	public static bool AddObjectsFromString(this GtkBuilderHandle builder, string buffer, int length, string[] object_ids, out GErrorHandle error)
+	public static bool AddObjectsFromString(this GtkBuilderHandle builder, string buffer, UIntPtr length, string[] object_ids, out GErrorHandle error)
 	{
 		return GtkBuilderExterns.gtk_builder_add_objects_from_string(builder, buffer, length, object_ids, out error);
 	}
@@ -67,7 +67,7 @@ public static class GtkBuilderHandleExtensions
 		return builder;
 	}
 
-	public static bool ExtendWithTemplate(this GtkBuilderHandle builder, GObjectHandle @object, GType template_type, string buffer, int length, out GErrorHandle error)
+	public static bool ExtendWithTemplate(this GtkBuilderHandle builder, GObjectHandle @object, GType template_type, string buffer, UIntPtr length, out GErrorHandle error)
 	{
 		return GtkBuilderExterns.gtk_builder_extend_with_template(builder, @object, template_type, buffer, length, out error);
 	}
@@ -144,7 +144,7 @@ internal class GtkBuilderExterns
 	internal static extern GtkBuilderHandle gtk_builder_new_from_resource(string resource_path);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkBuilderHandle gtk_builder_new_from_string(string @string, int length);
+	internal static extern GtkBuilderHandle gtk_builder_new_from_string(string @string, UIntPtr length);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_builder_add_from_file(GtkBuilderHandle builder, string filename, out GErrorHandle error);
@@ -153,7 +153,7 @@ internal class GtkBuilderExterns
 	internal static extern bool gtk_builder_add_from_resource(GtkBuilderHandle builder, string resource_path, out GErrorHandle error);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern bool gtk_builder_add_from_string(GtkBuilderHandle builder, string buffer, int length, out GErrorHandle error);
+	internal static extern bool gtk_builder_add_from_string(GtkBuilderHandle builder, string buffer, UIntPtr length, out GErrorHandle error);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_builder_add_objects_from_file(GtkBuilderHandle builder, string filename, string[] object_ids, out GErrorHandle error);
@@ -162,7 +162,7 @@ internal class GtkBuilderExterns
 	internal static extern bool gtk_builder_add_objects_from_resource(GtkBuilderHandle builder, string resource_path, string[] object_ids, out GErrorHandle error);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern bool gtk_builder_add_objects_from_string(GtkBuilderHandle builder, string buffer, int length, string[] object_ids, out GErrorHandle error);
+	internal static extern bool gtk_builder_add_objects_from_string(GtkBuilderHandle builder, string buffer, UIntPtr length, string[] object_ids, out GErrorHandle error);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GClosureHandle gtk_builder_create_closure(GtkBuilderHandle builder, string function_name, GtkBuilderClosureFlags flags, GObjectHandle @object, out GErrorHandle error);
@@ -171,7 +171,7 @@ internal class GtkBuilderExterns
 	internal static extern void gtk_builder_expose_object(GtkBuilderHandle builder, string name, GObjectHandle @object);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern bool gtk_builder_extend_with_template(GtkBuilderHandle builder, GObjectHandle @object, GType template_type, string buffer, int length, out GErrorHandle error);
+	internal static extern bool gtk_builder_extend_with_template(GtkBuilderHandle builder, GObjectHandle @object, GType template_type, string buffer, UIntPtr length, out GErrorHandle error);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GObjectHandle gtk_builder_get_current_object(GtkBuilderHandle builder);

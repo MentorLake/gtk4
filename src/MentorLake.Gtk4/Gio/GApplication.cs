@@ -26,7 +26,7 @@ public static class GApplicationSignalExtensions
 	{
 		return Observable.Create((IObserver<GApplicationSignalStructs.ActivateSignal> obs) =>
 		{
-			GApplicationSignalDelegates.Activate handler = (GApplicationHandle self, IntPtr user_data) =>
+			GApplicationSignalDelegates.activate handler = (GApplicationHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -53,7 +53,7 @@ public static class GApplicationSignalExtensions
 	{
 		return Observable.Create((IObserver<GApplicationSignalStructs.CommandLineSignal> obs) =>
 		{
-			GApplicationSignalDelegates.CommandLine handler = (GApplicationHandle self, GApplicationCommandLineHandle command_line, IntPtr user_data) =>
+			GApplicationSignalDelegates.command_line handler = (GApplicationHandle self, GApplicationCommandLineHandle command_line, IntPtr user_data) =>
 			{
 				
 
@@ -80,7 +80,7 @@ public static class GApplicationSignalExtensions
 	{
 		return Observable.Create((IObserver<GApplicationSignalStructs.HandleLocalOptionsSignal> obs) =>
 		{
-			GApplicationSignalDelegates.HandleLocalOptions handler = (GApplicationHandle self, GVariantDictHandle options, IntPtr user_data) =>
+			GApplicationSignalDelegates.handle_local_options handler = (GApplicationHandle self, GVariantDictHandle options, IntPtr user_data) =>
 			{
 				
 
@@ -107,7 +107,7 @@ public static class GApplicationSignalExtensions
 	{
 		return Observable.Create((IObserver<GApplicationSignalStructs.NameLostSignal> obs) =>
 		{
-			GApplicationSignalDelegates.NameLost handler = (GApplicationHandle self, IntPtr user_data) =>
+			GApplicationSignalDelegates.name_lost handler = (GApplicationHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -134,7 +134,7 @@ public static class GApplicationSignalExtensions
 	{
 		return Observable.Create((IObserver<GApplicationSignalStructs.OpenSignal> obs) =>
 		{
-			GApplicationSignalDelegates.Open handler = (GApplicationHandle self, IntPtr files, int n_files, string hint, IntPtr user_data) =>
+			GApplicationSignalDelegates.open handler = (GApplicationHandle self, IntPtr files, int n_files, string hint, IntPtr user_data) =>
 			{
 				
 
@@ -161,7 +161,7 @@ public static class GApplicationSignalExtensions
 	{
 		return Observable.Create((IObserver<GApplicationSignalStructs.ShutdownSignal> obs) =>
 		{
-			GApplicationSignalDelegates.Shutdown handler = (GApplicationHandle self, IntPtr user_data) =>
+			GApplicationSignalDelegates.shutdown handler = (GApplicationHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -188,7 +188,7 @@ public static class GApplicationSignalExtensions
 	{
 		return Observable.Create((IObserver<GApplicationSignalStructs.StartupSignal> obs) =>
 		{
-			GApplicationSignalDelegates.Startup handler = (GApplicationHandle self, IntPtr user_data) =>
+			GApplicationSignalDelegates.startup handler = (GApplicationHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -269,26 +269,33 @@ public struct StartupSignal
 public static class GApplicationSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate int CommandLine([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, GApplicationCommandLineHandle command_line, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate int HandleLocalOptions([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, GVariantDictHandle options, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate int command_line([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationCommandLineHandle>))] GApplicationCommandLineHandle command_line, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool NameLost([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Open([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr files, int n_files, string hint, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate int handle_local_options([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVariantDictHandle>))] GVariantDictHandle options, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Shutdown([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Startup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool name_lost([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void open([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr files, int n_files, string hint, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void shutdown([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void startup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GApplicationHandle>))] GApplicationHandle self, IntPtr user_data);
+
 }
 
 

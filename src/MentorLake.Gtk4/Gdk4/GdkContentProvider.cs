@@ -17,7 +17,7 @@ public class GdkContentProviderHandle : GObjectHandle
 		return GdkContentProviderExterns.gdk_content_provider_new_typed(type, @__arglist);
 	}
 
-	public static GdkContentProviderHandle NewUnion(GdkContentProviderHandle[] providers, int n_providers)
+	public static GdkContentProviderHandle NewUnion(GdkContentProviderHandle[] providers, UIntPtr n_providers)
 	{
 		return GdkContentProviderExterns.gdk_content_provider_new_union(providers, n_providers);
 	}
@@ -31,7 +31,7 @@ public static class GdkContentProviderSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkContentProviderSignalStructs.ContentChangedSignal> obs) =>
 		{
-			GdkContentProviderSignalDelegates.ContentChanged handler = (GdkContentProviderHandle self, IntPtr user_data) =>
+			GdkContentProviderSignalDelegates.content_changed handler = (GdkContentProviderHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -68,8 +68,9 @@ public struct ContentChangedSignal
 public static class GdkContentProviderSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ContentChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkContentProviderHandle>))] GdkContentProviderHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void content_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkContentProviderHandle>))] GdkContentProviderHandle self, IntPtr user_data);
+
 }
 
 
@@ -121,7 +122,7 @@ internal class GdkContentProviderExterns
 	internal static extern GdkContentProviderHandle gdk_content_provider_new_typed(GType type, IntPtr @__arglist);
 
 	[DllImport(Libraries.Gdk4)]
-	internal static extern GdkContentProviderHandle gdk_content_provider_new_union(GdkContentProviderHandle[] providers, int n_providers);
+	internal static extern GdkContentProviderHandle gdk_content_provider_new_union(GdkContentProviderHandle[] providers, UIntPtr n_providers);
 
 	[DllImport(Libraries.Gdk4)]
 	internal static extern void gdk_content_provider_content_changed(GdkContentProviderHandle provider);

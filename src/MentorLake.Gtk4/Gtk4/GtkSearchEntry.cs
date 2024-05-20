@@ -16,7 +16,7 @@ public static class GtkSearchEntrySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSearchEntrySignalStructs.ActivateSignal> obs) =>
 		{
-			GtkSearchEntrySignalDelegates.Activate handler = (GtkSearchEntryHandle self, IntPtr user_data) =>
+			GtkSearchEntrySignalDelegates.activate handler = (GtkSearchEntryHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkSearchEntrySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSearchEntrySignalStructs.NextMatchSignal> obs) =>
 		{
-			GtkSearchEntrySignalDelegates.NextMatch handler = (GtkSearchEntryHandle self, IntPtr user_data) =>
+			GtkSearchEntrySignalDelegates.next_match handler = (GtkSearchEntryHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkSearchEntrySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSearchEntrySignalStructs.PreviousMatchSignal> obs) =>
 		{
-			GtkSearchEntrySignalDelegates.PreviousMatch handler = (GtkSearchEntryHandle self, IntPtr user_data) =>
+			GtkSearchEntrySignalDelegates.previous_match handler = (GtkSearchEntryHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GtkSearchEntrySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSearchEntrySignalStructs.SearchChangedSignal> obs) =>
 		{
-			GtkSearchEntrySignalDelegates.SearchChanged handler = (GtkSearchEntryHandle self, IntPtr user_data) =>
+			GtkSearchEntrySignalDelegates.search_changed handler = (GtkSearchEntryHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -124,7 +124,7 @@ public static class GtkSearchEntrySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSearchEntrySignalStructs.SearchStartedSignal> obs) =>
 		{
-			GtkSearchEntrySignalDelegates.SearchStarted handler = (GtkSearchEntryHandle self, IntPtr user_data) =>
+			GtkSearchEntrySignalDelegates.search_started handler = (GtkSearchEntryHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -151,7 +151,7 @@ public static class GtkSearchEntrySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSearchEntrySignalStructs.StopSearchSignal> obs) =>
 		{
-			GtkSearchEntrySignalDelegates.StopSearch handler = (GtkSearchEntryHandle self, IntPtr user_data) =>
+			GtkSearchEntrySignalDelegates.stop_search handler = (GtkSearchEntryHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -218,23 +218,29 @@ public struct StopSearchSignal
 public static class GtkSearchEntrySignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void NextMatch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PreviousMatch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void next_match([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SearchChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SearchStarted([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void previous_match([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void StopSearch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void search_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void search_started([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void stop_search([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSearchEntryHandle>))] GtkSearchEntryHandle self, IntPtr user_data);
+
 }
 
 

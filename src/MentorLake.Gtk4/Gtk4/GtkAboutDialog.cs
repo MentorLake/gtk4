@@ -16,7 +16,7 @@ public static class GtkAboutDialogSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkAboutDialogSignalStructs.ActivateLinkSignal> obs) =>
 		{
-			GtkAboutDialogSignalDelegates.ActivateLink handler = (GtkAboutDialogHandle self, string uri, IntPtr user_data) =>
+			GtkAboutDialogSignalDelegates.activate_link handler = (GtkAboutDialogHandle self, string uri, IntPtr user_data) =>
 			{
 				
 
@@ -55,8 +55,9 @@ public struct ActivateLinkSignal
 public static class GtkAboutDialogSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ActivateLink([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAboutDialogHandle>))] GtkAboutDialogHandle self, string uri, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool activate_link([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAboutDialogHandle>))] GtkAboutDialogHandle self, string uri, IntPtr user_data);
+
 }
 
 
@@ -68,12 +69,12 @@ public static class GtkAboutDialogHandleExtensions
 		return about;
 	}
 
-	public static string GetArtists(this GtkAboutDialogHandle about)
+	public static IntPtr GetArtists(this GtkAboutDialogHandle about)
 	{
 		return GtkAboutDialogExterns.gtk_about_dialog_get_artists(about);
 	}
 
-	public static string GetAuthors(this GtkAboutDialogHandle about)
+	public static IntPtr GetAuthors(this GtkAboutDialogHandle about)
 	{
 		return GtkAboutDialogExterns.gtk_about_dialog_get_authors(about);
 	}
@@ -88,7 +89,7 @@ public static class GtkAboutDialogHandleExtensions
 		return GtkAboutDialogExterns.gtk_about_dialog_get_copyright(about);
 	}
 
-	public static string GetDocumenters(this GtkAboutDialogHandle about)
+	public static IntPtr GetDocumenters(this GtkAboutDialogHandle about)
 	{
 		return GtkAboutDialogExterns.gtk_about_dialog_get_documenters(about);
 	}
@@ -255,12 +256,10 @@ internal class GtkAboutDialogExterns
 	internal static extern void gtk_about_dialog_add_credit_section(GtkAboutDialogHandle about, string section_name, string[] people);
 
 	[DllImport(Libraries.Gtk4)]
-	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
-	internal static extern string gtk_about_dialog_get_artists(GtkAboutDialogHandle about);
+	internal static extern IntPtr gtk_about_dialog_get_artists(GtkAboutDialogHandle about);
 
 	[DllImport(Libraries.Gtk4)]
-	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
-	internal static extern string gtk_about_dialog_get_authors(GtkAboutDialogHandle about);
+	internal static extern IntPtr gtk_about_dialog_get_authors(GtkAboutDialogHandle about);
 
 	[DllImport(Libraries.Gtk4)]
 	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
@@ -271,8 +270,7 @@ internal class GtkAboutDialogExterns
 	internal static extern string gtk_about_dialog_get_copyright(GtkAboutDialogHandle about);
 
 	[DllImport(Libraries.Gtk4)]
-	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
-	internal static extern string gtk_about_dialog_get_documenters(GtkAboutDialogHandle about);
+	internal static extern IntPtr gtk_about_dialog_get_documenters(GtkAboutDialogHandle about);
 
 	[DllImport(Libraries.Gtk4)]
 	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]

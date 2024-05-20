@@ -16,7 +16,7 @@ public static class GtkGestureStylusSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureStylusSignalStructs.DownSignal> obs) =>
 		{
-			GtkGestureStylusSignalDelegates.Down handler = (GtkGestureStylusHandle self, double x, double y, IntPtr user_data) =>
+			GtkGestureStylusSignalDelegates.down handler = (GtkGestureStylusHandle self, double x, double y, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkGestureStylusSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureStylusSignalStructs.MotionSignal> obs) =>
 		{
-			GtkGestureStylusSignalDelegates.Motion handler = (GtkGestureStylusHandle self, double x, double y, IntPtr user_data) =>
+			GtkGestureStylusSignalDelegates.motion handler = (GtkGestureStylusHandle self, double x, double y, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkGestureStylusSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureStylusSignalStructs.ProximitySignal> obs) =>
 		{
-			GtkGestureStylusSignalDelegates.Proximity handler = (GtkGestureStylusHandle self, double x, double y, IntPtr user_data) =>
+			GtkGestureStylusSignalDelegates.proximity handler = (GtkGestureStylusHandle self, double x, double y, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GtkGestureStylusSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureStylusSignalStructs.UpSignal> obs) =>
 		{
-			GtkGestureStylusSignalDelegates.Up handler = (GtkGestureStylusHandle self, double x, double y, IntPtr user_data) =>
+			GtkGestureStylusSignalDelegates.up handler = (GtkGestureStylusHandle self, double x, double y, IntPtr user_data) =>
 			{
 				
 
@@ -160,17 +160,21 @@ public struct UpSignal
 public static class GtkGestureStylusSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Down([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureStylusHandle>))] GtkGestureStylusHandle self, double x, double y, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void down([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureStylusHandle>))] GtkGestureStylusHandle self, double x, double y, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Motion([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureStylusHandle>))] GtkGestureStylusHandle self, double x, double y, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Proximity([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureStylusHandle>))] GtkGestureStylusHandle self, double x, double y, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void motion([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureStylusHandle>))] GtkGestureStylusHandle self, double x, double y, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Up([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureStylusHandle>))] GtkGestureStylusHandle self, double x, double y, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void proximity([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureStylusHandle>))] GtkGestureStylusHandle self, double x, double y, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void up([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureStylusHandle>))] GtkGestureStylusHandle self, double x, double y, IntPtr user_data);
+
 }
 
 

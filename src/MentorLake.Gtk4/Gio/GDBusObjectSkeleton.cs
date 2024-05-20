@@ -16,7 +16,7 @@ public static class GDBusObjectSkeletonSignalExtensions
 	{
 		return Observable.Create((IObserver<GDBusObjectSkeletonSignalStructs.AuthorizeMethodSignal> obs) =>
 		{
-			GDBusObjectSkeletonSignalDelegates.AuthorizeMethod handler = (GDBusObjectSkeletonHandle self, GDBusInterfaceSkeletonHandle @interface, GDBusMethodInvocationHandle invocation, IntPtr user_data) =>
+			GDBusObjectSkeletonSignalDelegates.authorize_method handler = (GDBusObjectSkeletonHandle self, GDBusInterfaceSkeletonHandle @interface, GDBusMethodInvocationHandle invocation, IntPtr user_data) =>
 			{
 				
 
@@ -56,8 +56,9 @@ public struct AuthorizeMethodSignal
 public static class GDBusObjectSkeletonSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool AuthorizeMethod([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusObjectSkeletonHandle>))] GDBusObjectSkeletonHandle self, GDBusInterfaceSkeletonHandle @interface, GDBusMethodInvocationHandle invocation, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool authorize_method([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusObjectSkeletonHandle>))] GDBusObjectSkeletonHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusInterfaceSkeletonHandle>))] GDBusInterfaceSkeletonHandle @interface, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusMethodInvocationHandle>))] GDBusMethodInvocationHandle invocation, IntPtr user_data);
+
 }
 
 

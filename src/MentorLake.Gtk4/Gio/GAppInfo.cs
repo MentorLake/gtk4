@@ -75,7 +75,7 @@ public static class GAppInfoHandleExtensions
 		return GAppInfoExterns.g_app_info_get_name(appinfo);
 	}
 
-	public static string[] GetSupportedTypes(this GAppInfoHandle appinfo)
+	public static IntPtr GetSupportedTypes(this GAppInfoHandle appinfo)
 	{
 		return GAppInfoExterns.g_app_info_get_supported_types(appinfo);
 	}
@@ -180,7 +180,7 @@ internal class GAppInfoExterns
 	internal static extern string g_app_info_get_name(GAppInfoHandle appinfo);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_app_info_get_supported_types(GAppInfoHandle appinfo);
+	internal static extern IntPtr g_app_info_get_supported_types(GAppInfoHandle appinfo);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_app_info_launch(GAppInfoHandle appinfo, GListHandle files, GAppLaunchContextHandle context, out GErrorHandle error);

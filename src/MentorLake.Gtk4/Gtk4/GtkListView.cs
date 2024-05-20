@@ -16,7 +16,7 @@ public static class GtkListViewSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkListViewSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkListViewSignalDelegates.Activate handler = (GtkListViewHandle self, uint position, IntPtr user_data) =>
+			GtkListViewSignalDelegates.activate handler = (GtkListViewHandle self, uint position, IntPtr user_data) =>
 			{
 				
 
@@ -54,8 +54,9 @@ public struct ActivateSignal
 public static class GtkListViewSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListViewHandle>))] GtkListViewHandle self, uint position, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListViewHandle>))] GtkListViewHandle self, uint position, IntPtr user_data);
+
 }
 
 

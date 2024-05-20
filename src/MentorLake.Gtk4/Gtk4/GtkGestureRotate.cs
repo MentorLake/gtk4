@@ -16,7 +16,7 @@ public static class GtkGestureRotateSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureRotateSignalStructs.AngleChangedSignal> obs) =>
 		{
-			GtkGestureRotateSignalDelegates.AngleChanged handler = (GtkGestureRotateHandle self, double angle, double angle_delta, IntPtr user_data) =>
+			GtkGestureRotateSignalDelegates.angle_changed handler = (GtkGestureRotateHandle self, double angle, double angle_delta, IntPtr user_data) =>
 			{
 				
 
@@ -55,8 +55,9 @@ public struct AngleChangedSignal
 public static class GtkGestureRotateSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void AngleChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureRotateHandle>))] GtkGestureRotateHandle self, double angle, double angle_delta, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void angle_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureRotateHandle>))] GtkGestureRotateHandle self, double angle, double angle_delta, IntPtr user_data);
+
 }
 
 

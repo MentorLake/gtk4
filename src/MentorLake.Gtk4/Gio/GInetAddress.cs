@@ -86,12 +86,12 @@ public static class GInetAddressHandleExtensions
 		return GInetAddressExterns.g_inet_address_get_is_site_local(address);
 	}
 
-	public static int GetNativeSize(this GInetAddressHandle address)
+	public static UIntPtr GetNativeSize(this GInetAddressHandle address)
 	{
 		return GInetAddressExterns.g_inet_address_get_native_size(address);
 	}
 
-	public static byte[] ToBytes(this GInetAddressHandle address)
+	public static IntPtr ToBytes(this GInetAddressHandle address)
 	{
 		return GInetAddressExterns.g_inet_address_to_bytes(address);
 	}
@@ -154,10 +154,10 @@ internal class GInetAddressExterns
 	internal static extern bool g_inet_address_get_is_site_local(GInetAddressHandle address);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_inet_address_get_native_size(GInetAddressHandle address);
+	internal static extern UIntPtr g_inet_address_get_native_size(GInetAddressHandle address);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern byte[] g_inet_address_to_bytes(GInetAddressHandle address);
+	internal static extern IntPtr g_inet_address_to_bytes(GInetAddressHandle address);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_inet_address_to_string(GInetAddressHandle address);

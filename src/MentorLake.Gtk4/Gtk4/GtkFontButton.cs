@@ -21,7 +21,7 @@ public static class GtkFontButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFontButtonSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkFontButtonSignalDelegates.Activate handler = (GtkFontButtonHandle self, IntPtr user_data) =>
+			GtkFontButtonSignalDelegates.activate handler = (GtkFontButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -48,7 +48,7 @@ public static class GtkFontButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFontButtonSignalStructs.FontSetSignal> obs) =>
 		{
-			GtkFontButtonSignalDelegates.FontSet handler = (GtkFontButtonHandle self, IntPtr user_data) =>
+			GtkFontButtonSignalDelegates.font_set handler = (GtkFontButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -91,11 +91,13 @@ public struct FontSetSignal
 public static class GtkFontButtonSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFontButtonHandle>))] GtkFontButtonHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFontButtonHandle>))] GtkFontButtonHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void FontSet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFontButtonHandle>))] GtkFontButtonHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void font_set([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFontButtonHandle>))] GtkFontButtonHandle self, IntPtr user_data);
+
 }
 
 

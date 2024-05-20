@@ -21,7 +21,7 @@ public static class GdkDisplaySignalExtensions
 	{
 		return Observable.Create((IObserver<GdkDisplaySignalStructs.ClosedSignal> obs) =>
 		{
-			GdkDisplaySignalDelegates.Closed handler = (GdkDisplayHandle self, bool is_error, IntPtr user_data) =>
+			GdkDisplaySignalDelegates.closed handler = (GdkDisplayHandle self, bool is_error, IntPtr user_data) =>
 			{
 				
 
@@ -48,7 +48,7 @@ public static class GdkDisplaySignalExtensions
 	{
 		return Observable.Create((IObserver<GdkDisplaySignalStructs.OpenedSignal> obs) =>
 		{
-			GdkDisplaySignalDelegates.Opened handler = (GdkDisplayHandle self, IntPtr user_data) =>
+			GdkDisplaySignalDelegates.opened handler = (GdkDisplayHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -75,7 +75,7 @@ public static class GdkDisplaySignalExtensions
 	{
 		return Observable.Create((IObserver<GdkDisplaySignalStructs.SeatAddedSignal> obs) =>
 		{
-			GdkDisplaySignalDelegates.SeatAdded handler = (GdkDisplayHandle self, GdkSeatHandle seat, IntPtr user_data) =>
+			GdkDisplaySignalDelegates.seat_added handler = (GdkDisplayHandle self, GdkSeatHandle seat, IntPtr user_data) =>
 			{
 				
 
@@ -102,7 +102,7 @@ public static class GdkDisplaySignalExtensions
 	{
 		return Observable.Create((IObserver<GdkDisplaySignalStructs.SeatRemovedSignal> obs) =>
 		{
-			GdkDisplaySignalDelegates.SeatRemoved handler = (GdkDisplayHandle self, GdkSeatHandle seat, IntPtr user_data) =>
+			GdkDisplaySignalDelegates.seat_removed handler = (GdkDisplayHandle self, GdkSeatHandle seat, IntPtr user_data) =>
 			{
 				
 
@@ -129,7 +129,7 @@ public static class GdkDisplaySignalExtensions
 	{
 		return Observable.Create((IObserver<GdkDisplaySignalStructs.SettingChangedSignal> obs) =>
 		{
-			GdkDisplaySignalDelegates.SettingChanged handler = (GdkDisplayHandle self, string setting, IntPtr user_data) =>
+			GdkDisplaySignalDelegates.setting_changed handler = (GdkDisplayHandle self, string setting, IntPtr user_data) =>
 			{
 				
 
@@ -194,20 +194,25 @@ public struct SettingChangedSignal
 public static class GdkDisplaySignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, bool is_error, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, bool is_error, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Opened([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SeatAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, GdkSeatHandle seat, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void opened([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SeatRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, GdkSeatHandle seat, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SettingChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, string setting, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void seat_added([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle seat, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void seat_removed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle seat, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void setting_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle self, string setting, IntPtr user_data);
+
 }
 
 

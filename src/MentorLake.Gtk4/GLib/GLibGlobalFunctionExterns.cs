@@ -9,6 +9,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_usleep(ulong microseconds);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string glib_check_version(uint required_major, uint required_minor, uint required_micro);
 
 	[DllImport(Libraries.GLib)]
@@ -21,7 +22,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern bool g_idle_remove_by_data(IntPtr data);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_memdup2(IntPtr mem, int byte_size);
+	internal static extern IntPtr g_memdup2(IntPtr mem, UIntPtr byte_size);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_ref_count_init(ref int rc);
@@ -30,19 +31,20 @@ internal class GLibGlobalFunctionExterns
 	internal static extern string g_utf8_substring(string str, long start_pos, long end_pos);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_basename(string file_name);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern uint g_log_set_handler_full(string log_domain, GLogLevelFlags log_levels, GLogFunc log_func, IntPtr user_data, GDestroyNotify destroy);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string[] g_str_tokenize_and_fold(string @string, string translit_locale, out string[] ascii_alternates);
+	internal static extern IntPtr g_str_tokenize_and_fold(string @string, string translit_locale, out string[] ascii_alternates);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_log_set_writer_func(GLogWriterFunc func, IntPtr user_data, GDestroyNotify user_data_free);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string[] g_listenv();
+	internal static extern IntPtr g_listenv();
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_test_minimized_result(double minimized_quantity, string format, IntPtr @__arglist);
@@ -57,19 +59,22 @@ internal class GLibGlobalFunctionExterns
 	internal static extern bool g_atomic_ref_count_dec(ref int arc);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_dngettext(string domain, string msgid, string msgid_plural, ulong n);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern string g_str_to_ascii(string str, string from_locale);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_get_real_name();
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_utf8_find_prev_char(string str, string p);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_aligned_alloc0(int n_blocks, int n_block_bytes, int alignment);
+	internal static extern IntPtr g_aligned_alloc0(UIntPtr n_blocks, UIntPtr n_block_bytes, UIntPtr alignment);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_pattern_match(GPatternSpecHandle pspec, uint string_length, string @string, string string_reversed);
@@ -93,6 +98,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_dataset_foreach(IntPtr dataset_location, GDataForeachFunc func, IntPtr user_data);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_test_log_type_name(GTestLogType log_type);
 
 	[DllImport(Libraries.GLib)]
@@ -102,13 +108,13 @@ internal class GLibGlobalFunctionExterns
 	internal static extern int g_atomic_int_exchange_and_add(ref int atomic, int val);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern int g_atomic_rc_box_get_size(IntPtr mem_block);
+	internal static extern UIntPtr g_atomic_rc_box_get_size(IntPtr mem_block);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_strndup(string str, int n);
+	internal static extern string g_strndup(string str, UIntPtr n);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern bool g_file_set_contents_full(string filename, string contents, int length, GFileSetContentsFlags flags, int mode, out GErrorHandle error);
+	internal static extern bool g_file_set_contents_full(string filename, string contents, UIntPtr length, GFileSetContentsFlags flags, int mode, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern string g_hostname_to_ascii(string hostname);
@@ -120,16 +126,16 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_test_init(ref int argc, ref string[] argv, IntPtr @__arglist);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern void g_free_sized(IntPtr mem, int size);
+	internal static extern void g_free_sized(IntPtr mem, UIntPtr size);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_unix_set_fd_nonblocking(int fd, bool nonblock, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern int g_iconv(GIConv converter, ref string inbuf, ref int inbytes_left, ref string outbuf, ref int outbytes_left);
+	internal static extern UIntPtr g_iconv(GIConv converter, ref string inbuf, ref UIntPtr inbytes_left, ref string outbuf, ref UIntPtr outbytes_left);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string[] g_get_environ();
+	internal static extern IntPtr g_get_environ();
 
 	[DllImport(Libraries.GLib)]
 	internal static extern long g_slice_get_config(GSliceConfig ckey);
@@ -162,16 +168,16 @@ internal class GLibGlobalFunctionExterns
 	internal static extern int g_lstat(string filename, GStatBufHandle buf);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern int g_ref_string_length(string str);
+	internal static extern UIntPtr g_ref_string_length(string str);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_convert_with_fallback(string str, int len, string to_codeset, string from_codeset, string fallback, out int bytes_read, out int bytes_written, out GErrorHandle error);
+	internal static extern IntPtr g_convert_with_fallback(string str, UIntPtr len, string to_codeset, string from_codeset, string fallback, out UIntPtr bytes_read, out UIntPtr bytes_written, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern int g_ascii_xdigit_value(char c);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern int g_strlcpy(string dest, string src, int dest_size);
+	internal static extern UIntPtr g_strlcpy(string dest, string src, UIntPtr dest_size);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_log_get_debug_enabled();
@@ -180,10 +186,10 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_clear_handle_id(ref uint tag_ptr, GClearHandleFunc clear_func);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_compute_checksum_for_string(GChecksumType checksum_type, string str, int length);
+	internal static extern string g_compute_checksum_for_string(GChecksumType checksum_type, string str, UIntPtr length);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string[] g_environ_unsetenv(string[] envp, string variable);
+	internal static extern IntPtr g_environ_unsetenv(string[] envp, string variable);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern int g_vprintf(string format, IntPtr args);
@@ -192,7 +198,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern bool g_unichar_isdefined(char c);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern nuint g_atomic_pointer_or(IntPtr atomic, int val);
+	internal static extern nuint g_atomic_pointer_or(IntPtr atomic, UIntPtr val);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern IntPtr g_memdup(IntPtr mem, uint byte_size);
@@ -207,7 +213,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern bool g_double_equal(IntPtr v1, IntPtr v2);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern GLogWriterOutput g_log_writer_journald(GLogLevelFlags log_level, GLogField[] fields, int n_fields, IntPtr user_data);
+	internal static extern GLogWriterOutput g_log_writer_journald(GLogLevelFlags log_level, GLogField[] fields, UIntPtr n_fields, IntPtr user_data);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern int g_vsprintf(string @string, string format, IntPtr args);
@@ -216,13 +222,13 @@ internal class GLibGlobalFunctionExterns
 	internal static extern int g_strncasecmp(string s1, string s2, uint n);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_compute_hmac_for_string(GChecksumType digest_type, string key, int key_len, string str, int length);
+	internal static extern string g_compute_hmac_for_string(GChecksumType digest_type, string key, UIntPtr key_len, string str, UIntPtr length);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_log_writer_default_set_debug_domains(string domains);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string[] g_strsplit_set(string @string, string delimiters, int max_tokens);
+	internal static extern IntPtr g_strsplit_set(string @string, string delimiters, int max_tokens);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern string g_path_get_dirname(string file_name);
@@ -246,7 +252,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern string g_path_get_basename(string file_name);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_get_language_names_with_category(string category_name);
+	internal static extern IntPtr g_get_language_names_with_category(string category_name);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern IntPtr g_pointer_bit_lock_mask_ptr(IntPtr ptr, uint lock_bit, bool set, nuint preserve_mask, IntPtr preserve_ptr);
@@ -255,7 +261,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_test_trap_assertions(string domain, string file, int line, string func, ulong assertion_flags, string pattern);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_atomic_rc_box_alloc0(int block_size);
+	internal static extern IntPtr g_atomic_rc_box_alloc0(UIntPtr block_size);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern string g_strdup_printf(string format, IntPtr @__arglist);
@@ -264,7 +270,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern int g_stat(string filename, GStatBufHandle buf);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern bool g_file_get_contents(string filename, out string contents, out int length, out GErrorHandle error);
+	internal static extern bool g_file_get_contents(string filename, out string contents, out UIntPtr length, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_atomic_pointer_compare_and_exchange(IntPtr atomic, IntPtr oldval, IntPtr newval);
@@ -282,7 +288,8 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_set_application_name(string application_name);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_utf8_strncpy(string dest, string src, int n);
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
+	internal static extern string g_utf8_strncpy(string dest, string src, UIntPtr n);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_log_structured_standard(string log_domain, GLogLevelFlags log_level, string file, string line, string func, string message_format, IntPtr @__arglist);
@@ -300,9 +307,10 @@ internal class GLibGlobalFunctionExterns
 	internal static extern bool g_spawn_sync(string working_directory, string[] argv, string[] envp, GSpawnFlags flags, GSpawnChildSetupFunc child_setup, IntPtr user_data, out string standard_output, out string standard_error, out int wait_status, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern bool g_utf8_validate(string str, int max_len, out string end);
+	internal static extern bool g_utf8_validate(string str, UIntPtr max_len, out string end);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_dgettext(string domain, string msgid);
 
 	[DllImport(Libraries.GLib)]
@@ -318,16 +326,16 @@ internal class GLibGlobalFunctionExterns
 	internal static extern double g_test_rand_double_range(double range_start, double range_end);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern int g_ascii_strncasecmp(string s1, string s2, int n);
+	internal static extern int g_ascii_strncasecmp(string s1, string s2, UIntPtr n);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_test_queue_free(IntPtr gfree_pointer);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_utf8_collate_key_for_filename(string str, int len);
+	internal static extern string g_utf8_collate_key_for_filename(string str, UIntPtr len);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern int g_unichar_fully_decompose(char ch, bool compat, out string result, int result_len);
+	internal static extern UIntPtr g_unichar_fully_decompose(char ch, bool compat, out string result, UIntPtr result_len);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern double g_test_rand_double();
@@ -336,10 +344,11 @@ internal class GLibGlobalFunctionExterns
 	internal static extern uint g_int64_hash(IntPtr v);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_get_prgname();
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_utf8_make_valid(string str, int len);
+	internal static extern string g_utf8_make_valid(string str, UIntPtr len);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern int g_atomic_int_exchange(ref int atomic, int newval);
@@ -348,7 +357,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern int g_printf(string format, IntPtr @__arglist);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_utf8_collate_key(string str, int len);
+	internal static extern string g_utf8_collate_key(string str, UIntPtr len);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern int g_vfprintf(IntPtr file, string format, IntPtr args);
@@ -357,16 +366,17 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_prefix_error_literal(out GErrorHandle err, string prefix);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_locale_to_utf8(string opsysstring, int len, out int bytes_read, out int bytes_written, out GErrorHandle error);
+	internal static extern string g_locale_to_utf8(string opsysstring, UIntPtr len, out UIntPtr bytes_read, out UIntPtr bytes_written, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_unichar_get_mirror_char(char ch, out string mirrored_ch);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_get_user_data_dir();
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_markup_escape_text(string text, int length);
+	internal static extern string g_markup_escape_text(string text, UIntPtr length);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern uint g_unix_fd_add_full(int priority, int fd, GIOCondition condition, GUnixFDSourceFunc function, IntPtr user_data, GDestroyNotify notify);
@@ -375,7 +385,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern IntPtr g_dataset_id_remove_no_notify(IntPtr dataset_location, GQuark key_id);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern bool g_utf8_validate_len(string str, int max_len, out string end);
+	internal static extern bool g_utf8_validate_len(string str, UIntPtr max_len, out string end);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern string g_build_pathv(string separator, string[] args);
@@ -387,7 +397,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern string g_build_filename_valist(string first_element, IntPtr args);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern GLogWriterOutput g_log_writer_standard_streams(GLogLevelFlags log_level, GLogField[] fields, int n_fields, IntPtr user_data);
+	internal static extern GLogWriterOutput g_log_writer_standard_streams(GLogLevelFlags log_level, GLogField[] fields, UIntPtr n_fields, IntPtr user_data);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_atomic_ref_count_init(ref int arc);
@@ -402,25 +412,27 @@ internal class GLibGlobalFunctionExterns
 	internal static extern uint g_bit_storage(ulong number);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_utf8_strchr(string p, int len, char c);
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
+	internal static extern string g_utf8_strchr(string p, UIntPtr len, char c);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern string g_hostname_to_unicode(string hostname);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_unicode_canonical_decomposition(char ch, ref int result_len);
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
+	internal static extern string g_unicode_canonical_decomposition(char ch, ref UIntPtr result_len);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GLogLevelFlags g_log_set_fatal_mask(string log_domain, GLogLevelFlags fatal_mask);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_get_system_data_dirs();
+	internal static extern IntPtr g_get_system_data_dirs();
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_rc_box_release(IntPtr mem_block);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern void g_log_structured_array(GLogLevelFlags log_level, GLogField[] fields, int n_fields);
+	internal static extern void g_log_structured_array(GLogLevelFlags log_level, GLogField[] fields, UIntPtr n_fields);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_log_writer_default_would_drop(GLogLevelFlags log_level, string log_domain);
@@ -429,25 +441,26 @@ internal class GLibGlobalFunctionExterns
 	internal static extern string g_mkdtemp_full(string tmpl, int mode);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_convert(string str, int len, string to_codeset, string from_codeset, out int bytes_read, out int bytes_written, out GErrorHandle error);
+	internal static extern IntPtr g_convert(string str, UIntPtr len, string to_codeset, string from_codeset, out UIntPtr bytes_read, out UIntPtr bytes_written, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_spawn_check_wait_status(int wait_status, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_malloc_n(int n_blocks, int n_block_bytes);
+	internal static extern IntPtr g_malloc_n(UIntPtr n_blocks, UIntPtr n_block_bytes);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_compute_checksum_for_data(GChecksumType checksum_type, string data, int length);
+	internal static extern string g_compute_checksum_for_data(GChecksumType checksum_type, string data, UIntPtr length);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_get_user_special_dir(GUserDirectory directory);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GUnicodeType g_unichar_type(char c);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_get_system_config_dirs();
+	internal static extern IntPtr g_get_system_config_dirs();
 
 	[DllImport(Libraries.GLib)]
 	internal static extern int g_main_depth();
@@ -462,7 +475,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern bool g_unichar_decompose(char ch, out string a, out string b);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_ref_string_new_len(string str, int len);
+	internal static extern string g_ref_string_new_len(string str, UIntPtr len);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern int g_poll(GPollFDHandle fds, uint nfds, int timeout);
@@ -471,6 +484,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern GTestSuiteHandle g_test_create_suite(string suite_name);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_get_tmp_dir();
 
 	[DllImport(Libraries.GLib)]
@@ -486,7 +500,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern IntPtr g_datalist_id_get_data(ref GDataHandle datalist, GQuark key_id);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern nuint g_atomic_pointer_and(IntPtr atomic, int val);
+	internal static extern nuint g_atomic_pointer_and(IntPtr atomic, UIntPtr val);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_datalist_foreach(ref GDataHandle datalist, GDataForeachFunc func, IntPtr user_data);
@@ -495,7 +509,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_clear_list(ref GListHandle list_ptr, GDestroyNotify destroy);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string[] g_get_locale_variants(string locale);
+	internal static extern IntPtr g_get_locale_variants(string locale);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern int g_unichar_xdigit_value(char c);
@@ -516,6 +530,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern string g_ascii_dtostr(string buffer, int buf_len, double d);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_intern_string(string @string);
 
 	[DllImport(Libraries.GLib)]
@@ -528,18 +543,20 @@ internal class GLibGlobalFunctionExterns
 	internal static extern string g_strchug(string @string);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_strsignal(int signum);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_ref_string_release(string str);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_realloc(IntPtr mem, int n_bytes);
+	internal static extern IntPtr g_realloc(IntPtr mem, UIntPtr n_bytes);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_spawn_close_pid(GPid pid);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_get_user_state_dir();
 
 	[DllImport(Libraries.GLib)]
@@ -552,13 +569,13 @@ internal class GLibGlobalFunctionExterns
 	internal static extern GQuark g_number_parser_error_quark();
 
 	[DllImport(Libraries.GLib)]
-	internal static extern char g_utf8_get_char_validated(string p, int max_len);
+	internal static extern char g_utf8_get_char_validated(string p, UIntPtr max_len);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_test_maximized_result(double maximized_quantity, string format, IntPtr @__arglist);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_locale_from_utf8(string utf8string, int len, out int bytes_read, out int bytes_written, out GErrorHandle error);
+	internal static extern IntPtr g_locale_from_utf8(string utf8string, UIntPtr len, out UIntPtr bytes_read, out UIntPtr bytes_written, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern uint g_timeout_add_seconds_once(uint interval, GSourceOnceFunc function, IntPtr data);
@@ -570,12 +587,13 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_log_remove_handler(string log_domain, uint handler_id);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern void g_slice_free1(int block_size, IntPtr mem_block);
+	internal static extern void g_slice_free1(UIntPtr block_size, IntPtr mem_block);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern int g_unichar_to_utf8(char c, out string outbuf);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_utf8_offset_to_pointer(string str, long offset);
 
 	[DllImport(Libraries.GLib)]
@@ -603,16 +621,17 @@ internal class GLibGlobalFunctionExterns
 	internal static extern IntPtr g_atomic_pointer_exchange(IntPtr atomic, IntPtr newval);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_filename_from_utf8(string utf8string, int len, out int bytes_read, out int bytes_written, out GErrorHandle error);
+	internal static extern string g_filename_from_utf8(string utf8string, UIntPtr len, out UIntPtr bytes_read, out UIntPtr bytes_written, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_spawn_async_with_pipes(string working_directory, string[] argv, string[] envp, GSpawnFlags flags, GSpawnChildSetupFunc child_setup, IntPtr user_data, out GPid child_pid, out int standard_input, out int standard_output, out int standard_error, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_base64_decode_inplace(string text, ref int out_len);
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
+	internal static extern string g_base64_decode_inplace(string text, ref UIntPtr out_len);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern int g_rc_box_get_size(IntPtr mem_block);
+	internal static extern UIntPtr g_rc_box_get_size(IntPtr mem_block);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern uint g_get_num_processors();
@@ -621,7 +640,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern bool g_hostname_is_ascii_encoded(string hostname);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_strstr_len(string haystack, int haystack_len, string needle);
+	internal static extern string g_strstr_len(string haystack, UIntPtr haystack_len, string needle);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern IntPtr g_fopen(string filename, string mode);
@@ -645,7 +664,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_pointer_bit_lock_and_get(IntPtr address, uint lock_bit, out nuint out_ptr);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern void g_test_add_vtable(string testpath, int data_size, IntPtr test_data, GTestFixtureFunc data_setup, GTestFixtureFunc data_test, GTestFixtureFunc data_teardown);
+	internal static extern void g_test_add_vtable(string testpath, UIntPtr data_size, IntPtr test_data, GTestFixtureFunc data_setup, GTestFixtureFunc data_test, GTestFixtureFunc data_teardown);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_int_equal(IntPtr v1, IntPtr v2);
@@ -684,6 +703,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_test_set_nonfatal_assertions();
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_quark_to_string(GQuark quark);
 
 	[DllImport(Libraries.GLib)]
@@ -693,7 +713,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern int g_atomic_int_add(ref int atomic, int val);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern long g_utf8_strlen(string p, int max);
+	internal static extern long g_utf8_strlen(string p, UIntPtr max);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern int g_remove(string filename);
@@ -708,13 +728,14 @@ internal class GLibGlobalFunctionExterns
 	internal static extern IntPtr g_atomic_pointer_get(IntPtr atomic);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_utf8_prev_char(string p);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_rc_box_release_full(IntPtr mem_block, GDestroyNotify clear_func);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_utf8_casefold(string str, int len);
+	internal static extern string g_utf8_casefold(string str, UIntPtr len);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_test_trap_reached_timeout();
@@ -753,7 +774,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_log_structured(string log_domain, GLogLevelFlags log_level, IntPtr @__arglist);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_convert_with_iconv(string str, int len, GIConv converter, out int bytes_read, out int bytes_written, out GErrorHandle error);
+	internal static extern IntPtr g_convert_with_iconv(string str, UIntPtr len, GIConv converter, out UIntPtr bytes_read, out UIntPtr bytes_written, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_assertion_message_cmpstr(string domain, string file, int line, string func, string expr, string arg1, string cmp, string arg2);
@@ -786,6 +807,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern GQuark g_markup_error_quark();
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_get_home_dir();
 
 	[DllImport(Libraries.GLib)]
@@ -798,7 +820,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern int g_test_rand_int();
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_rc_box_dup(int block_size, IntPtr mem_block);
+	internal static extern IntPtr g_rc_box_dup(UIntPtr block_size, IntPtr mem_block);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_spawn_command_line_async(string command_line, out GErrorHandle error);
@@ -816,13 +838,13 @@ internal class GLibGlobalFunctionExterns
 	internal static extern int g_ascii_strcasecmp(string s1, string s2);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern void g_slice_free_chain_with_offset(int block_size, IntPtr mem_chain, int next_offset);
+	internal static extern void g_slice_free_chain_with_offset(UIntPtr block_size, IntPtr mem_chain, UIntPtr next_offset);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_atomic_int_compare_and_exchange_full(ref int atomic, int oldval, int newval, out int preval);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_get_language_names();
+	internal static extern IntPtr g_get_language_names();
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GType g_variant_get_gtype();
@@ -831,7 +853,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern bool g_markup_collect_attributes(string element_name, ref string attribute_names, ref string attribute_values, out GErrorHandle error, GMarkupCollectType first_type, string first_attr, IntPtr @__arglist);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern GLogWriterOutput g_log_writer_syslog(GLogLevelFlags log_level, GLogField[] fields, int n_fields, IntPtr user_data);
+	internal static extern GLogWriterOutput g_log_writer_syslog(GLogLevelFlags log_level, GLogField[] fields, UIntPtr n_fields, IntPtr user_data);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_test_trap_subprocess_with_envp(string test_path, string envp, ulong usec_timeout, GTestSubprocessFlags test_flags);
@@ -840,6 +862,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern uint g_timeout_add_once(uint interval, GSourceOnceFunc function, IntPtr data);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_intern_static_string(string @string);
 
 	[DllImport(Libraries.GLib)]
@@ -873,7 +896,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_mem_set_vtable(GMemVTableHandle vtable);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_ascii_strup(string str, int len);
+	internal static extern string g_ascii_strup(string str, UIntPtr len);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_test_trap_has_passed();
@@ -882,6 +905,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_printerr(string format, IntPtr @__arglist);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_dpgettext2(string domain, string context, string msgid);
 
 	[DllImport(Libraries.GLib)]
@@ -891,7 +915,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_test_message(string format, IntPtr @__arglist);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern GTestCaseHandle g_test_create_case(string test_name, int data_size, IntPtr test_data, GTestFixtureFunc data_setup, GTestFixtureFunc data_test, GTestFixtureFunc data_teardown);
+	internal static extern GTestCaseHandle g_test_create_case(string test_name, UIntPtr data_size, IntPtr test_data, GTestFixtureFunc data_setup, GTestFixtureFunc data_test, GTestFixtureFunc data_teardown);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GQuark g_quark_from_static_string(string @string);
@@ -903,18 +927,21 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_bit_lock(ref int address, int lock_bit);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string[] g_strdupv(string[] str_array);
+	internal static extern IntPtr g_strdupv(string[] str_array);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_compute_hmac_for_data(GChecksumType digest_type, string key, int key_len, string data, int length);
+	internal static extern string g_compute_hmac_for_data(GChecksumType digest_type, string key, UIntPtr key_len, string data, UIntPtr length);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_get_application_name();
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_get_user_runtime_dir();
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_get_user_name();
 
 	[DllImport(Libraries.GLib)]
@@ -933,7 +960,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_dataset_id_set_data_full(IntPtr dataset_location, GQuark key_id, IntPtr data, GDestroyNotify destroy_func);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_filename_to_utf8(string opsysstring, int len, out int bytes_read, out int bytes_written, out GErrorHandle error);
+	internal static extern string g_filename_to_utf8(string opsysstring, UIntPtr len, out UIntPtr bytes_read, out UIntPtr bytes_written, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_assertion_message_cmpint(string domain, string file, int line, string func, string expr, ulong arg1, string cmp, ulong arg2, char numtype);
@@ -954,16 +981,18 @@ internal class GLibGlobalFunctionExterns
 	internal static extern int g_fsync(int fd);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_test_get_dir(GTestFileType file_type);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_atomic_rc_box_dup(int block_size, IntPtr mem_block);
+	internal static extern IntPtr g_atomic_rc_box_dup(UIntPtr block_size, IntPtr mem_block);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_get_user_cache_dir();
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_try_malloc0(int n_bytes);
+	internal static extern IntPtr g_try_malloc0(UIntPtr n_bytes);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern uint g_atomic_int_xor(ref uint atomic, uint val);
@@ -975,7 +1004,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern bool g_ref_count_compare(ref int rc, int val);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_malloc0_n(int n_blocks, int n_block_bytes);
+	internal static extern IntPtr g_malloc0_n(UIntPtr n_blocks, UIntPtr n_block_bytes);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern long g_get_monotonic_time();
@@ -993,13 +1022,13 @@ internal class GLibGlobalFunctionExterns
 	internal static extern string g_strdup(string str);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_base64_encode(string data, int len);
+	internal static extern string g_base64_encode(string data, UIntPtr len);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern int g_test_rand_int_range(int begin, int end);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern long[] g_slice_get_config_state(GSliceConfig ckey, long address, ref uint n_values);
+	internal static extern IntPtr g_slice_get_config_state(GSliceConfig ckey, long address, ref uint n_values);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_print(string format, IntPtr @__arglist);
@@ -1029,7 +1058,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern bool g_shell_parse_argv(string command_line, out int argcp, out string[] argvp, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern bool g_spawn_async_with_pipes_and_fds(string working_directory, string argv, string envp, GSpawnFlags flags, GSpawnChildSetupFunc child_setup, IntPtr user_data, int stdin_fd, int stdout_fd, int stderr_fd, int[] source_fds, int[] target_fds, int n_fds, out GPid child_pid_out, out int stdin_pipe_out, out int stdout_pipe_out, out int stderr_pipe_out, out GErrorHandle error);
+	internal static extern bool g_spawn_async_with_pipes_and_fds(string working_directory, string argv, string envp, GSpawnFlags flags, GSpawnChildSetupFunc child_setup, IntPtr user_data, int stdin_fd, int stdout_fd, int stderr_fd, int[] source_fds, int[] target_fds, UIntPtr n_fds, out GPid child_pid_out, out int stdin_pipe_out, out int stdout_pipe_out, out int stderr_pipe_out, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern char g_ascii_toupper(char c);
@@ -1056,6 +1085,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern bool g_strv_equal(string strv1, string strv2);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_utf8_find_next_char(string p, string end);
 
 	[DllImport(Libraries.GLib)]
@@ -1071,7 +1101,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_test_skip(string msg);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_slice_alloc0(int block_size);
+	internal static extern IntPtr g_slice_alloc0(UIntPtr block_size);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern char g_unichar_totitle(char c);
@@ -1095,10 +1125,10 @@ internal class GLibGlobalFunctionExterns
 	internal static extern GSourceHandle g_unix_fd_source_new(int fd, GIOCondition condition);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_try_realloc(IntPtr mem, int n_bytes);
+	internal static extern IntPtr g_try_realloc(IntPtr mem, UIntPtr n_bytes);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_realloc_n(IntPtr mem, int n_blocks, int n_block_bytes);
+	internal static extern IntPtr g_realloc_n(IntPtr mem, UIntPtr n_blocks, UIntPtr n_block_bytes);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GSourceHandle g_io_create_watch(GIOChannelHandle channel, GIOCondition condition);
@@ -1119,6 +1149,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_bit_unlock(ref int address, int lock_bit);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_strip_context(string msgid, string msgval);
 
 	[DllImport(Libraries.GLib)]
@@ -1146,6 +1177,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern bool g_unichar_iscntrl(char c);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_test_get_path();
 
 	[DllImport(Libraries.GLib)]
@@ -1155,28 +1187,29 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_datalist_unset_flags(ref GDataHandle datalist, uint flags);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_strnfill(int length, char fill_char);
+	internal static extern string g_strnfill(UIntPtr length, char fill_char);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_ref_count_dec(ref int rc);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern void g_aligned_free_sized(IntPtr mem, int alignment, int size);
+	internal static extern void g_aligned_free_sized(IntPtr mem, UIntPtr alignment, UIntPtr size);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_aligned_free(IntPtr mem);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_utf8_strrchr(string p, int len, char c);
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
+	internal static extern string g_utf8_strrchr(string p, UIntPtr len, char c);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GQuark g_convert_error_quark();
 
 	[DllImport(Libraries.GLib)]
-	internal static extern GLogWriterOutput g_log_writer_default(GLogLevelFlags log_level, GLogField[] fields, int n_fields, IntPtr user_data);
+	internal static extern GLogWriterOutput g_log_writer_default(GLogLevelFlags log_level, GLogField[] fields, UIntPtr n_fields, IntPtr user_data);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern int g_strlcat(string dest, string src, int dest_size);
+	internal static extern UIntPtr g_strlcat(string dest, string src, UIntPtr dest_size);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern int g_unichar_combining_class(char uc);
@@ -1236,9 +1269,10 @@ internal class GLibGlobalFunctionExterns
 	internal static extern string g_ref_string_acquire(string str);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_rc_box_alloc0(int block_size);
+	internal static extern IntPtr g_rc_box_alloc0(UIntPtr block_size);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_environ_getenv(string[] envp, string variable);
 
 	[DllImport(Libraries.GLib)]
@@ -1251,19 +1285,20 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_prefix_error(out GErrorHandle err, string format, IntPtr @__arglist);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern int g_base64_decode_step(string @in, int len, out string @out, ref int state, ref uint save);
+	internal static extern UIntPtr g_base64_decode_step(string @in, UIntPtr len, out string @out, ref int state, ref uint save);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_clear_slist(ref GSListHandle slist_ptr, GDestroyNotify destroy);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern nint g_atomic_pointer_add(IntPtr atomic, int val);
+	internal static extern nint g_atomic_pointer_add(IntPtr atomic, UIntPtr val);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_get_user_config_dir();
 
 	[DllImport(Libraries.GLib)]
-	internal static extern void g_qsort_with_data(IntPtr pbase, int total_elems, int size, GCompareDataFunc compare_func, IntPtr user_data);
+	internal static extern void g_qsort_with_data(IntPtr pbase, int total_elems, UIntPtr size, GCompareDataFunc compare_func, IntPtr user_data);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern char g_utf8_get_char(string p);
@@ -1272,7 +1307,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_datalist_init(ref GDataHandle datalist);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_utf8_strup(string str, int len);
+	internal static extern string g_utf8_strup(string str, UIntPtr len);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GSourceHandle g_main_current_source();
@@ -1281,7 +1316,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern string g_uuid_string_random();
 
 	[DllImport(Libraries.GLib)]
-	internal static extern int g_printf_string_upper_bound(string format, IntPtr args);
+	internal static extern UIntPtr g_printf_string_upper_bound(string format, IntPtr args);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_clear_pointer(ref IntPtr pp, GDestroyNotify destroy);
@@ -1296,13 +1331,13 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_ref_count_inc(ref int rc);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_utf8_truncate_middle(string @string, int truncate_length);
+	internal static extern string g_utf8_truncate_middle(string @string, UIntPtr truncate_length);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern char g_ascii_tolower(char c);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string[] g_strsplit(string @string, string delimiter, int max_tokens);
+	internal static extern IntPtr g_strsplit(string @string, string delimiter, int max_tokens);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GLogLevelFlags g_log_set_always_fatal(GLogLevelFlags fatal_mask);
@@ -1314,7 +1349,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern long g_utf8_pointer_to_offset(string str, string pos);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern int g_base64_encode_close(bool break_lines, out string @out, ref int state, ref int save);
+	internal static extern UIntPtr g_base64_encode_close(bool break_lines, out string @out, ref int state, ref int save);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern char g_unichar_toupper(char c);
@@ -1329,13 +1364,13 @@ internal class GLibGlobalFunctionExterns
 	internal static extern string g_get_codeset();
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_rc_box_alloc(int block_size);
+	internal static extern IntPtr g_rc_box_alloc(UIntPtr block_size);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_assertion_message(string domain, string file, int line, string func, string message);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_try_malloc(int n_bytes);
+	internal static extern IntPtr g_try_malloc(UIntPtr n_bytes);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GSourceHandle g_child_watch_source_new(GPid pid);
@@ -1350,13 +1385,14 @@ internal class GLibGlobalFunctionExterns
 	internal static extern GQuark g_quark_try_string(string @string);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_strerror(int errnum);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern IntPtr g_atomic_rc_box_acquire(IntPtr mem_block);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_ascii_strdown(string str, int len);
+	internal static extern string g_ascii_strdown(string str, UIntPtr len);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern int g_vasprintf(out string @string, string format, IntPtr args);
@@ -1365,6 +1401,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern uint g_atomic_int_or(ref uint atomic, uint val);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_getenv(string variable);
 
 	[DllImport(Libraries.GLib)]
@@ -1377,7 +1414,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_atomic_int_set(ref int atomic, int newval);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_try_realloc_n(IntPtr mem, int n_blocks, int n_block_bytes);
+	internal static extern IntPtr g_try_realloc_n(IntPtr mem, UIntPtr n_blocks, UIntPtr n_block_bytes);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_datalist_set_flags(ref GDataHandle datalist, uint flags);
@@ -1407,10 +1444,10 @@ internal class GLibGlobalFunctionExterns
 	internal static extern bool g_unichar_isxdigit(char c);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_base64_decode(string text, out int out_len);
+	internal static extern IntPtr g_base64_decode(string text, out UIntPtr out_len);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_slice_copy(int block_size, IntPtr mem_block);
+	internal static extern IntPtr g_slice_copy(UIntPtr block_size, IntPtr mem_block);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_bit_trylock(ref int address, int lock_bit);
@@ -1434,25 +1471,26 @@ internal class GLibGlobalFunctionExterns
 	internal static extern string g_strcompress(string source);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_atomic_rc_box_alloc(int block_size);
+	internal static extern IntPtr g_atomic_rc_box_alloc(UIntPtr block_size);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_random_set_seed(uint seed);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_dcgettext(string domain, string msgid, int category);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern uint g_child_watch_add_full(int priority, GPid pid, GChildWatchFunc function, IntPtr data, GDestroyNotify notify);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern int g_base64_encode_step(string @in, int len, bool break_lines, out string @out, ref int state, ref int save);
+	internal static extern UIntPtr g_base64_encode_step(string @in, UIntPtr len, bool break_lines, out string @out, ref int state, ref int save);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern string g_test_build_filename(GTestFileType file_type, string first_path, IntPtr @__arglist);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern void g_datalist_id_remove_multiple(ref GDataHandle datalist, GQuark[] keys, int n_keys);
+	internal static extern void g_datalist_id_remove_multiple(ref GDataHandle datalist, GQuark[] keys, UIntPtr n_keys);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_test_disable_crash_reporting();
@@ -1461,7 +1499,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern bool g_unichar_isspace(char c);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_utf8_strreverse(string str, int len);
+	internal static extern string g_utf8_strreverse(string str, UIntPtr len);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern uint g_strv_length(string[] str_array);
@@ -1488,7 +1526,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_set_prgname(string prgname);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_try_malloc0_n(int n_blocks, int n_block_bytes);
+	internal static extern IntPtr g_try_malloc0_n(UIntPtr n_blocks, UIntPtr n_block_bytes);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_test_log_set_fatal_handler(GTestLogFatalFunc log_func, IntPtr user_data);
@@ -1497,7 +1535,8 @@ internal class GLibGlobalFunctionExterns
 	internal static extern bool g_get_charset(out string charset);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_dpgettext(string domain, string msgctxtid, int msgidoffset);
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
+	internal static extern string g_dpgettext(string domain, string msgctxtid, UIntPtr msgidoffset);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_unichar_iszerowidth(char c);
@@ -1512,10 +1551,10 @@ internal class GLibGlobalFunctionExterns
 	internal static extern char g_unichar_tolower(char c);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_log_writer_format_fields(GLogLevelFlags log_level, GLogField[] fields, int n_fields, bool use_color);
+	internal static extern string g_log_writer_format_fields(GLogLevelFlags log_level, GLogField[] fields, UIntPtr n_fields, bool use_color);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern nuint g_atomic_pointer_xor(IntPtr atomic, int val);
+	internal static extern nuint g_atomic_pointer_xor(IntPtr atomic, UIntPtr val);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern string g_ucs4_to_utf16(string str, long len, out long items_read, out long items_written, out GErrorHandle error);
@@ -1524,16 +1563,18 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_datalist_clear(ref GDataHandle datalist);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_path_skip_root(string file_name);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_str_is_ascii(string str);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_test_get_filename(GTestFileType file_type, string first_path, IntPtr @__arglist);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string[] g_environ_setenv(string[] envp, string variable, string value, bool overwrite);
+	internal static extern IntPtr g_environ_setenv(string[] envp, string variable, string value, bool overwrite);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_str_equal(IntPtr v1, IntPtr v2);
@@ -1545,7 +1586,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern int g_chmod(string filename, int mode);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_try_malloc_n(int n_blocks, int n_block_bytes);
+	internal static extern IntPtr g_try_malloc_n(UIntPtr n_blocks, UIntPtr n_block_bytes);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_unichar_validate(char ch);
@@ -1554,19 +1595,19 @@ internal class GLibGlobalFunctionExterns
 	internal static extern void g_free(IntPtr mem);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_aligned_alloc(int n_blocks, int n_block_bytes, int alignment);
+	internal static extern IntPtr g_aligned_alloc(UIntPtr n_blocks, UIntPtr n_block_bytes, UIntPtr alignment);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern int g_closefrom(int lowfd);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_strrstr_len(string haystack, int haystack_len, string needle);
+	internal static extern string g_strrstr_len(string haystack, UIntPtr haystack_len, string needle);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_direct_equal(IntPtr v1, IntPtr v2);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_utf8_strdown(string str, int len);
+	internal static extern string g_utf8_strdown(string str, UIntPtr len);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_str_has_suffix(string str, string suffix);
@@ -1587,7 +1628,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern GPrintFunc g_set_printerr_handler(GPrintFunc func);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern string g_utf8_normalize(string str, int len, GNormalizeMode mode);
+	internal static extern string g_utf8_normalize(string str, UIntPtr len, GNormalizeMode mode);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_datalist_id_replace_data(ref GDataHandle datalist, GQuark key_id, IntPtr oldval, IntPtr newval, GDestroyNotify destroy, out GDestroyNotify old_destroy);
@@ -1599,7 +1640,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern GQuark g_spawn_error_quark();
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_malloc(int n_bytes);
+	internal static extern IntPtr g_malloc(UIntPtr n_bytes);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_log(string log_domain, GLogLevelFlags log_level, string format, IntPtr @__arglist);
@@ -1611,7 +1652,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern string g_strescape(string source, string exceptions);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_slice_alloc(int block_size);
+	internal static extern IntPtr g_slice_alloc(UIntPtr block_size);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_file_test(string filename, GFileTest test);
@@ -1629,19 +1670,19 @@ internal class GLibGlobalFunctionExterns
 	internal static extern string g_build_path(string separator, string first_element, IntPtr @__arglist);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern void g_assertion_message_cmpstrv(string domain, string file, int line, string func, string expr, string arg1, string arg2, int first_wrong_idx);
+	internal static extern void g_assertion_message_cmpstrv(string domain, string file, int line, string func, string expr, string arg1, string arg2, UIntPtr first_wrong_idx);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern string g_shell_unquote(string quoted_string, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern bool g_file_set_contents(string filename, string contents, int length, out GErrorHandle error);
+	internal static extern bool g_file_set_contents(string filename, string contents, UIntPtr length, out GErrorHandle error);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern void g_on_error_stack_trace(string prg_name);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern IntPtr g_malloc0(int n_bytes);
+	internal static extern IntPtr g_malloc0(UIntPtr n_bytes);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern bool g_pattern_match_string(GPatternSpecHandle pspec, string @string);
@@ -1650,6 +1691,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern bool g_pattern_match_simple(string pattern, string @string);
 
 	[DllImport(Libraries.GLib)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_get_host_name();
 
 	[DllImport(Libraries.GLib)]
@@ -1662,7 +1704,7 @@ internal class GLibGlobalFunctionExterns
 	internal static extern uint g_idle_add_full(int priority, GSourceFunc function, IntPtr data, GDestroyNotify notify);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern void g_unicode_canonical_ordering(string @string, int len);
+	internal static extern void g_unicode_canonical_ordering(string @string, UIntPtr len);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern string g_shell_quote(string unquoted_string);

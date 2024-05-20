@@ -41,7 +41,7 @@ public static class GDBusProxySignalExtensions
 	{
 		return Observable.Create((IObserver<GDBusProxySignalStructs.GPropertiesChangedSignal> obs) =>
 		{
-			GDBusProxySignalDelegates.GPropertiesChanged handler = (GDBusProxyHandle self, GVariantHandle changed_properties, string[] invalidated_properties, IntPtr user_data) =>
+			GDBusProxySignalDelegates.g_properties_changed handler = (GDBusProxyHandle self, GVariantHandle changed_properties, string[] invalidated_properties, IntPtr user_data) =>
 			{
 				
 
@@ -68,7 +68,7 @@ public static class GDBusProxySignalExtensions
 	{
 		return Observable.Create((IObserver<GDBusProxySignalStructs.GSignalSignal> obs) =>
 		{
-			GDBusProxySignalDelegates.GSignal handler = (GDBusProxyHandle self, string sender_name, string signal_name, GVariantHandle parameters, IntPtr user_data) =>
+			GDBusProxySignalDelegates.g_signal handler = (GDBusProxyHandle self, string sender_name, string signal_name, GVariantHandle parameters, IntPtr user_data) =>
 			{
 				
 
@@ -116,11 +116,13 @@ public struct GSignalSignal
 public static class GDBusProxySignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void GPropertiesChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusProxyHandle>))] GDBusProxyHandle self, GVariantHandle changed_properties, string[] invalidated_properties, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void g_properties_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusProxyHandle>))] GDBusProxyHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVariantHandle>))] GVariantHandle changed_properties, string[] invalidated_properties, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void GSignal([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusProxyHandle>))] GDBusProxyHandle self, string sender_name, string signal_name, GVariantHandle parameters, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void g_signal([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusProxyHandle>))] GDBusProxyHandle self, string sender_name, string signal_name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVariantHandle>))] GVariantHandle parameters, IntPtr user_data);
+
 }
 
 
@@ -163,7 +165,7 @@ public static class GDBusProxyHandleExtensions
 		return GDBusProxyExterns.g_dbus_proxy_get_cached_property(proxy, property_name);
 	}
 
-	public static string[] GDbusProxyGetCachedPropertyNames(this GDBusProxyHandle proxy)
+	public static IntPtr GDbusProxyGetCachedPropertyNames(this GDBusProxyHandle proxy)
 	{
 		return GDBusProxyExterns.g_dbus_proxy_get_cached_property_names(proxy);
 	}
@@ -264,7 +266,7 @@ internal class GDBusProxyExterns
 	internal static extern GVariantHandle g_dbus_proxy_get_cached_property(GDBusProxyHandle proxy, string property_name);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_dbus_proxy_get_cached_property_names(GDBusProxyHandle proxy);
+	internal static extern IntPtr g_dbus_proxy_get_cached_property_names(GDBusProxyHandle proxy);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern GDBusConnectionHandle g_dbus_proxy_get_connection(GDBusProxyHandle proxy);

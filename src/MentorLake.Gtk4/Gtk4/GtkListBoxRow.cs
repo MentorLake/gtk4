@@ -16,7 +16,7 @@ public static class GtkListBoxRowSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkListBoxRowSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkListBoxRowSignalDelegates.Activate handler = (GtkListBoxRowHandle self, IntPtr user_data) =>
+			GtkListBoxRowSignalDelegates.activate handler = (GtkListBoxRowHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -53,8 +53,9 @@ public struct ActivateSignal
 public static class GtkListBoxRowSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxRowHandle>))] GtkListBoxRowHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkListBoxRowHandle>))] GtkListBoxRowHandle self, IntPtr user_data);
+
 }
 
 

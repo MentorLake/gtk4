@@ -16,7 +16,7 @@ public static class GtkColorDialogButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkColorDialogButtonSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkColorDialogButtonSignalDelegates.Activate handler = (GtkColorDialogButtonHandle self, IntPtr user_data) =>
+			GtkColorDialogButtonSignalDelegates.activate handler = (GtkColorDialogButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -53,8 +53,9 @@ public struct ActivateSignal
 public static class GtkColorDialogButtonSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColorDialogButtonHandle>))] GtkColorDialogButtonHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColorDialogButtonHandle>))] GtkColorDialogButtonHandle self, IntPtr user_data);
+
 }
 
 

@@ -17,12 +17,12 @@ public static class GtkConstraintLayoutHandleExtensions
 		return layout;
 	}
 
-	public static GListHandle AddConstraintsFromDescription(this GtkConstraintLayoutHandle layout, string lines, int n_lines, int hspacing, int vspacing, out GErrorHandle error, string first_view, IntPtr @__arglist)
+	public static GListHandle AddConstraintsFromDescription(this GtkConstraintLayoutHandle layout, string lines, UIntPtr n_lines, int hspacing, int vspacing, out GErrorHandle error, string first_view, IntPtr @__arglist)
 	{
 		return GtkConstraintLayoutExterns.gtk_constraint_layout_add_constraints_from_description(layout, lines, n_lines, hspacing, vspacing, out error, first_view, @__arglist);
 	}
 
-	public static GListHandle AddConstraintsFromDescriptionv(this GtkConstraintLayoutHandle layout, string lines, int n_lines, int hspacing, int vspacing, GHashTableHandle views, out GErrorHandle error)
+	public static GListHandle AddConstraintsFromDescriptionv(this GtkConstraintLayoutHandle layout, string lines, UIntPtr n_lines, int hspacing, int vspacing, GHashTableHandle views, out GErrorHandle error)
 	{
 		return GtkConstraintLayoutExterns.gtk_constraint_layout_add_constraints_from_descriptionv(layout, lines, n_lines, hspacing, vspacing, views, out error);
 	}
@@ -72,10 +72,10 @@ internal class GtkConstraintLayoutExterns
 	internal static extern void gtk_constraint_layout_add_constraint(GtkConstraintLayoutHandle layout, GtkConstraintHandle constraint);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern GListHandle gtk_constraint_layout_add_constraints_from_description(GtkConstraintLayoutHandle layout, string lines, int n_lines, int hspacing, int vspacing, out GErrorHandle error, string first_view, IntPtr @__arglist);
+	internal static extern GListHandle gtk_constraint_layout_add_constraints_from_description(GtkConstraintLayoutHandle layout, string lines, UIntPtr n_lines, int hspacing, int vspacing, out GErrorHandle error, string first_view, IntPtr @__arglist);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern GListHandle gtk_constraint_layout_add_constraints_from_descriptionv(GtkConstraintLayoutHandle layout, string lines, int n_lines, int hspacing, int vspacing, GHashTableHandle views, out GErrorHandle error);
+	internal static extern GListHandle gtk_constraint_layout_add_constraints_from_descriptionv(GtkConstraintLayoutHandle layout, string lines, UIntPtr n_lines, int hspacing, int vspacing, GHashTableHandle views, out GErrorHandle error);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_constraint_layout_add_guide(GtkConstraintLayoutHandle layout, GtkConstraintGuideHandle guide);

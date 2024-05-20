@@ -16,7 +16,7 @@ public static class GDBusServerSignalExtensions
 	{
 		return Observable.Create((IObserver<GDBusServerSignalStructs.NewConnectionSignal> obs) =>
 		{
-			GDBusServerSignalDelegates.NewConnection handler = (GDBusServerHandle self, GDBusConnectionHandle connection, IntPtr user_data) =>
+			GDBusServerSignalDelegates.new_connection handler = (GDBusServerHandle self, GDBusConnectionHandle connection, IntPtr user_data) =>
 			{
 				
 
@@ -55,8 +55,9 @@ public struct NewConnectionSignal
 public static class GDBusServerSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool NewConnection([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusServerHandle>))] GDBusServerHandle self, GDBusConnectionHandle connection, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool new_connection([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusServerHandle>))] GDBusServerHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusConnectionHandle>))] GDBusConnectionHandle connection, IntPtr user_data);
+
 }
 
 

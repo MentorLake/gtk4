@@ -7,7 +7,7 @@ public class GVariantHandle : BaseSafeHandle
 		return GVariantExterns.g_variant_new(format_string, @__arglist);
 	}
 
-	public static GVariantHandle NewArray(GVariantTypeHandle child_type, GVariant[] children, int n_children)
+	public static GVariantHandle NewArray(GVariantTypeHandle child_type, GVariant[] children, UIntPtr n_children)
 	{
 		return GVariantExterns.g_variant_new_array(child_type, children, n_children);
 	}
@@ -27,7 +27,7 @@ public class GVariantHandle : BaseSafeHandle
 		return GVariantExterns.g_variant_new_bytestring(@string);
 	}
 
-	public static GVariantHandle NewBytestringArray(string strv, int length)
+	public static GVariantHandle NewBytestringArray(string strv, UIntPtr length)
 	{
 		return GVariantExterns.g_variant_new_bytestring_array(strv, length);
 	}
@@ -42,7 +42,7 @@ public class GVariantHandle : BaseSafeHandle
 		return GVariantExterns.g_variant_new_double(value);
 	}
 
-	public static GVariantHandle NewFixedArray(GVariantTypeHandle element_type, IntPtr elements, int n_elements, int element_size)
+	public static GVariantHandle NewFixedArray(GVariantTypeHandle element_type, IntPtr elements, UIntPtr n_elements, UIntPtr element_size)
 	{
 		return GVariantExterns.g_variant_new_fixed_array(element_type, elements, n_elements, element_size);
 	}
@@ -52,7 +52,7 @@ public class GVariantHandle : BaseSafeHandle
 		return GVariantExterns.g_variant_new_from_bytes(type, bytes, trusted);
 	}
 
-	public static GVariantHandle NewFromData(GVariantTypeHandle type, IntPtr data, int size, bool trusted, GDestroyNotify notify, IntPtr user_data)
+	public static GVariantHandle NewFromData(GVariantTypeHandle type, IntPtr data, UIntPtr size, bool trusted, GDestroyNotify notify, IntPtr user_data)
 	{
 		return GVariantExterns.g_variant_new_from_data(type, data, size, trusted, notify, user_data);
 	}
@@ -87,7 +87,7 @@ public class GVariantHandle : BaseSafeHandle
 		return GVariantExterns.g_variant_new_object_path(object_path);
 	}
 
-	public static GVariantHandle NewObjv(string strv, int length)
+	public static GVariantHandle NewObjv(string strv, UIntPtr length)
 	{
 		return GVariantExterns.g_variant_new_objv(strv, length);
 	}
@@ -117,7 +117,7 @@ public class GVariantHandle : BaseSafeHandle
 		return GVariantExterns.g_variant_new_string(@string);
 	}
 
-	public static GVariantHandle NewStrv(string strv, int length)
+	public static GVariantHandle NewStrv(string strv, UIntPtr length)
 	{
 		return GVariantExterns.g_variant_new_strv(strv, length);
 	}
@@ -127,7 +127,7 @@ public class GVariantHandle : BaseSafeHandle
 		return GVariantExterns.g_variant_new_take_string(@string);
 	}
 
-	public static GVariantHandle NewTuple(GVariant[] children, int n_children)
+	public static GVariantHandle NewTuple(GVariant[] children, UIntPtr n_children)
 	{
 		return GVariantExterns.g_variant_new_tuple(children, n_children);
 	}
@@ -165,7 +165,7 @@ internal class GVariantExterns
 	internal static extern GVariantHandle g_variant_new(string format_string, IntPtr @__arglist);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern GVariantHandle g_variant_new_array(GVariantTypeHandle child_type, GVariant[] children, int n_children);
+	internal static extern GVariantHandle g_variant_new_array(GVariantTypeHandle child_type, GVariant[] children, UIntPtr n_children);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GVariantHandle g_variant_new_boolean(bool value);
@@ -177,7 +177,7 @@ internal class GVariantExterns
 	internal static extern GVariantHandle g_variant_new_bytestring(string @string);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern GVariantHandle g_variant_new_bytestring_array(string strv, int length);
+	internal static extern GVariantHandle g_variant_new_bytestring_array(string strv, UIntPtr length);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GVariantHandle g_variant_new_dict_entry(GVariantHandle key, GVariantHandle value);
@@ -186,13 +186,13 @@ internal class GVariantExterns
 	internal static extern GVariantHandle g_variant_new_double(double value);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern GVariantHandle g_variant_new_fixed_array(GVariantTypeHandle element_type, IntPtr elements, int n_elements, int element_size);
+	internal static extern GVariantHandle g_variant_new_fixed_array(GVariantTypeHandle element_type, IntPtr elements, UIntPtr n_elements, UIntPtr element_size);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GVariantHandle g_variant_new_from_bytes(GVariantTypeHandle type, GBytesHandle bytes, bool trusted);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern GVariantHandle g_variant_new_from_data(GVariantTypeHandle type, IntPtr data, int size, bool trusted, GDestroyNotify notify, IntPtr user_data);
+	internal static extern GVariantHandle g_variant_new_from_data(GVariantTypeHandle type, IntPtr data, UIntPtr size, bool trusted, GDestroyNotify notify, IntPtr user_data);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GVariantHandle g_variant_new_handle(int value);
@@ -213,7 +213,7 @@ internal class GVariantExterns
 	internal static extern GVariantHandle g_variant_new_object_path(string object_path);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern GVariantHandle g_variant_new_objv(string strv, int length);
+	internal static extern GVariantHandle g_variant_new_objv(string strv, UIntPtr length);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GVariantHandle g_variant_new_parsed(string format, IntPtr @__arglist);
@@ -231,13 +231,13 @@ internal class GVariantExterns
 	internal static extern GVariantHandle g_variant_new_string(string @string);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern GVariantHandle g_variant_new_strv(string strv, int length);
+	internal static extern GVariantHandle g_variant_new_strv(string strv, UIntPtr length);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GVariantHandle g_variant_new_take_string(string @string);
 
 	[DllImport(Libraries.GLib)]
-	internal static extern GVariantHandle g_variant_new_tuple(GVariant[] children, int n_children);
+	internal static extern GVariantHandle g_variant_new_tuple(GVariant[] children, UIntPtr n_children);
 
 	[DllImport(Libraries.GLib)]
 	internal static extern GVariantHandle g_variant_new_uint16(ushort value);

@@ -21,7 +21,7 @@ public static class GVolumeMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.DriveChangedSignal> obs) =>
 		{
-			GVolumeMonitorSignalDelegates.DriveChanged handler = (GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data) =>
+			GVolumeMonitorSignalDelegates.drive_changed handler = (GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data) =>
 			{
 
 
@@ -48,7 +48,7 @@ public static class GVolumeMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.DriveConnectedSignal> obs) =>
 		{
-			GVolumeMonitorSignalDelegates.DriveConnected handler = (GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data) =>
+			GVolumeMonitorSignalDelegates.drive_connected handler = (GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data) =>
 			{
 
 
@@ -75,7 +75,7 @@ public static class GVolumeMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.DriveDisconnectedSignal> obs) =>
 		{
-			GVolumeMonitorSignalDelegates.DriveDisconnected handler = (GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data) =>
+			GVolumeMonitorSignalDelegates.drive_disconnected handler = (GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data) =>
 			{
 
 
@@ -102,7 +102,7 @@ public static class GVolumeMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.DriveEjectButtonSignal> obs) =>
 		{
-			GVolumeMonitorSignalDelegates.DriveEjectButton handler = (GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data) =>
+			GVolumeMonitorSignalDelegates.drive_eject_button handler = (GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data) =>
 			{
 
 
@@ -129,7 +129,7 @@ public static class GVolumeMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.DriveStopButtonSignal> obs) =>
 		{
-			GVolumeMonitorSignalDelegates.DriveStopButton handler = (GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data) =>
+			GVolumeMonitorSignalDelegates.drive_stop_button handler = (GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data) =>
 			{
 
 
@@ -156,7 +156,7 @@ public static class GVolumeMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.MountAddedSignal> obs) =>
 		{
-			GVolumeMonitorSignalDelegates.MountAdded handler = (GVolumeMonitorHandle self, GMountHandle mount, IntPtr user_data) =>
+			GVolumeMonitorSignalDelegates.mount_added handler = (GVolumeMonitorHandle self, GMountHandle mount, IntPtr user_data) =>
 			{
 
 
@@ -183,7 +183,7 @@ public static class GVolumeMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.MountChangedSignal> obs) =>
 		{
-			GVolumeMonitorSignalDelegates.MountChanged handler = (GVolumeMonitorHandle self, GMountHandle mount, IntPtr user_data) =>
+			GVolumeMonitorSignalDelegates.mount_changed handler = (GVolumeMonitorHandle self, GMountHandle mount, IntPtr user_data) =>
 			{
 
 
@@ -210,7 +210,7 @@ public static class GVolumeMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.MountPreUnmountSignal> obs) =>
 		{
-			GVolumeMonitorSignalDelegates.MountPreUnmount handler = (GVolumeMonitorHandle self, GMountHandle mount, IntPtr user_data) =>
+			GVolumeMonitorSignalDelegates.mount_pre_unmount handler = (GVolumeMonitorHandle self, GMountHandle mount, IntPtr user_data) =>
 			{
 
 
@@ -237,7 +237,7 @@ public static class GVolumeMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.MountRemovedSignal> obs) =>
 		{
-			GVolumeMonitorSignalDelegates.MountRemoved handler = (GVolumeMonitorHandle self, GMountHandle mount, IntPtr user_data) =>
+			GVolumeMonitorSignalDelegates.mount_removed handler = (GVolumeMonitorHandle self, GMountHandle mount, IntPtr user_data) =>
 			{
 
 
@@ -264,7 +264,7 @@ public static class GVolumeMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.VolumeAddedSignal> obs) =>
 		{
-			GVolumeMonitorSignalDelegates.VolumeAdded handler = (GVolumeMonitorHandle self, GVolumeHandle volume, IntPtr user_data) =>
+			GVolumeMonitorSignalDelegates.volume_added handler = (GVolumeMonitorHandle self, GVolumeHandle volume, IntPtr user_data) =>
 			{
 
 
@@ -291,7 +291,7 @@ public static class GVolumeMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.VolumeChangedSignal> obs) =>
 		{
-			GVolumeMonitorSignalDelegates.VolumeChanged handler = (GVolumeMonitorHandle self, GVolumeHandle volume, IntPtr user_data) =>
+			GVolumeMonitorSignalDelegates.volume_changed handler = (GVolumeMonitorHandle self, GVolumeHandle volume, IntPtr user_data) =>
 			{
 
 
@@ -318,7 +318,7 @@ public static class GVolumeMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GVolumeMonitorSignalStructs.VolumeRemovedSignal> obs) =>
 		{
-			GVolumeMonitorSignalDelegates.VolumeRemoved handler = (GVolumeMonitorHandle self, GVolumeHandle volume, IntPtr user_data) =>
+			GVolumeMonitorSignalDelegates.volume_removed handler = (GVolumeMonitorHandle self, GVolumeHandle volume, IntPtr user_data) =>
 			{
 
 
@@ -433,41 +433,53 @@ public struct VolumeRemovedSignal
 public static class GVolumeMonitorSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DriveChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void drive_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDriveHandleImpl>))] GDriveHandle drive, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DriveConnected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DriveDisconnected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void drive_connected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDriveHandleImpl>))] GDriveHandle drive, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DriveEjectButton([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DriveStopButton([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, GDriveHandle drive, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void drive_disconnected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDriveHandleImpl>))] GDriveHandle drive, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MountAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, GMountHandle mount, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MountChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, GMountHandle mount, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void drive_eject_button([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDriveHandleImpl>))] GDriveHandle drive, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MountPreUnmount([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, GMountHandle mount, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MountRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, GMountHandle mount, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void drive_stop_button([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDriveHandleImpl>))] GDriveHandle drive, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void VolumeAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, GVolumeHandle volume, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void VolumeChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, GVolumeHandle volume, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void mount_added([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountHandleImpl>))] GMountHandle mount, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void VolumeRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, GVolumeHandle volume, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void mount_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountHandleImpl>))] GMountHandle mount, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void mount_pre_unmount([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountHandleImpl>))] GMountHandle mount, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void mount_removed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountHandleImpl>))] GMountHandle mount, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void volume_added([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeHandleImpl>))] GVolumeHandle volume, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void volume_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeHandleImpl>))] GVolumeHandle volume, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void volume_removed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeMonitorHandle>))] GVolumeMonitorHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GVolumeHandleImpl>))] GVolumeHandle volume, IntPtr user_data);
+
 }
 
 

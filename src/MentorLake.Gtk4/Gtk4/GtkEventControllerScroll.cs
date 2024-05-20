@@ -16,7 +16,7 @@ public static class GtkEventControllerScrollSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEventControllerScrollSignalStructs.DecelerateSignal> obs) =>
 		{
-			GtkEventControllerScrollSignalDelegates.Decelerate handler = (GtkEventControllerScrollHandle self, double vel_x, double vel_y, IntPtr user_data) =>
+			GtkEventControllerScrollSignalDelegates.decelerate handler = (GtkEventControllerScrollHandle self, double vel_x, double vel_y, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkEventControllerScrollSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEventControllerScrollSignalStructs.ScrollSignal> obs) =>
 		{
-			GtkEventControllerScrollSignalDelegates.Scroll handler = (GtkEventControllerScrollHandle self, double dx, double dy, IntPtr user_data) =>
+			GtkEventControllerScrollSignalDelegates.scroll handler = (GtkEventControllerScrollHandle self, double dx, double dy, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkEventControllerScrollSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEventControllerScrollSignalStructs.ScrollBeginSignal> obs) =>
 		{
-			GtkEventControllerScrollSignalDelegates.ScrollBegin handler = (GtkEventControllerScrollHandle self, IntPtr user_data) =>
+			GtkEventControllerScrollSignalDelegates.scroll_begin handler = (GtkEventControllerScrollHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GtkEventControllerScrollSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEventControllerScrollSignalStructs.ScrollEndSignal> obs) =>
 		{
-			GtkEventControllerScrollSignalDelegates.ScrollEnd handler = (GtkEventControllerScrollHandle self, IntPtr user_data) =>
+			GtkEventControllerScrollSignalDelegates.scroll_end handler = (GtkEventControllerScrollHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -157,17 +157,21 @@ public struct ScrollEndSignal
 public static class GtkEventControllerScrollSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Decelerate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerScrollHandle>))] GtkEventControllerScrollHandle self, double vel_x, double vel_y, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void decelerate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerScrollHandle>))] GtkEventControllerScrollHandle self, double vel_x, double vel_y, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool Scroll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerScrollHandle>))] GtkEventControllerScrollHandle self, double dx, double dy, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ScrollBegin([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerScrollHandle>))] GtkEventControllerScrollHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool scroll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerScrollHandle>))] GtkEventControllerScrollHandle self, double dx, double dy, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ScrollEnd([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerScrollHandle>))] GtkEventControllerScrollHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void scroll_begin([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerScrollHandle>))] GtkEventControllerScrollHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void scroll_end([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerScrollHandle>))] GtkEventControllerScrollHandle self, IntPtr user_data);
+
 }
 
 

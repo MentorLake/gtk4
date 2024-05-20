@@ -16,7 +16,7 @@ public static class GtkEntryBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEntryBufferSignalStructs.DeletedTextSignal> obs) =>
 		{
-			GtkEntryBufferSignalDelegates.DeletedText handler = (GtkEntryBufferHandle self, uint position, uint n_chars, IntPtr user_data) =>
+			GtkEntryBufferSignalDelegates.deleted_text handler = (GtkEntryBufferHandle self, uint position, uint n_chars, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkEntryBufferSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEntryBufferSignalStructs.InsertedTextSignal> obs) =>
 		{
-			GtkEntryBufferSignalDelegates.InsertedText handler = (GtkEntryBufferHandle self, uint position, string chars, uint n_chars, IntPtr user_data) =>
+			GtkEntryBufferSignalDelegates.inserted_text handler = (GtkEntryBufferHandle self, uint position, string chars, uint n_chars, IntPtr user_data) =>
 			{
 				
 
@@ -91,11 +91,13 @@ public struct InsertedTextSignal
 public static class GtkEntryBufferSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DeletedText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryBufferHandle>))] GtkEntryBufferHandle self, uint position, uint n_chars, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void deleted_text([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryBufferHandle>))] GtkEntryBufferHandle self, uint position, uint n_chars, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void InsertedText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryBufferHandle>))] GtkEntryBufferHandle self, uint position, string chars, uint n_chars, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void inserted_text([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryBufferHandle>))] GtkEntryBufferHandle self, uint position, string chars, uint n_chars, IntPtr user_data);
+
 }
 
 
@@ -118,7 +120,7 @@ public static class GtkEntryBufferHandleExtensions
 		return buffer;
 	}
 
-	public static int GetBytes(this GtkEntryBufferHandle buffer)
+	public static UIntPtr GetBytes(this GtkEntryBufferHandle buffer)
 	{
 		return GtkEntryBufferExterns.gtk_entry_buffer_get_bytes(buffer);
 	}
@@ -172,7 +174,7 @@ internal class GtkEntryBufferExterns
 	internal static extern void gtk_entry_buffer_emit_inserted_text(GtkEntryBufferHandle buffer, uint position, string chars, uint n_chars);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern int gtk_entry_buffer_get_bytes(GtkEntryBufferHandle buffer);
+	internal static extern UIntPtr gtk_entry_buffer_get_bytes(GtkEntryBufferHandle buffer);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern uint gtk_entry_buffer_get_length(GtkEntryBufferHandle buffer);

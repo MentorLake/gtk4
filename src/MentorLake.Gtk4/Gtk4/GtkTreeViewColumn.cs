@@ -26,7 +26,7 @@ public static class GtkTreeViewColumnSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTreeViewColumnSignalStructs.ClickedSignal> obs) =>
 		{
-			GtkTreeViewColumnSignalDelegates.Clicked handler = (GtkTreeViewColumnHandle self, IntPtr user_data) =>
+			GtkTreeViewColumnSignalDelegates.clicked handler = (GtkTreeViewColumnHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -63,8 +63,9 @@ public struct ClickedSignal
 public static class GtkTreeViewColumnSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Clicked([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewColumnHandle>))] GtkTreeViewColumnHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void clicked([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeViewColumnHandle>))] GtkTreeViewColumnHandle self, IntPtr user_data);
+
 }
 
 

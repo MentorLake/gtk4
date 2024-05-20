@@ -92,7 +92,7 @@ public static class GTaskHandleExtensions
 		return GTaskExterns.g_task_propagate_boolean(task, out error);
 	}
 
-	public static int PropagateInt(this GTaskHandle task, out GErrorHandle error)
+	public static UIntPtr PropagateInt(this GTaskHandle task, out GErrorHandle error)
 	{
 		return GTaskExterns.g_task_propagate_int(task, out error);
 	}
@@ -124,7 +124,7 @@ public static class GTaskHandleExtensions
 		return GTaskExterns.g_task_return_error_if_cancelled(task);
 	}
 
-	public static GTaskHandle ReturnInt(this GTaskHandle task, int result)
+	public static GTaskHandle ReturnInt(this GTaskHandle task, UIntPtr result)
 	{
 		GTaskExterns.g_task_return_int(task, result);
 		return task;
@@ -260,7 +260,7 @@ internal class GTaskExterns
 	internal static extern bool g_task_propagate_boolean(GTaskHandle task, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_task_propagate_int(GTaskHandle task, out GErrorHandle error);
+	internal static extern UIntPtr g_task_propagate_int(GTaskHandle task, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern IntPtr g_task_propagate_pointer(GTaskHandle task, out GErrorHandle error);
@@ -278,7 +278,7 @@ internal class GTaskExterns
 	internal static extern bool g_task_return_error_if_cancelled(GTaskHandle task);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern void g_task_return_int(GTaskHandle task, int result);
+	internal static extern void g_task_return_int(GTaskHandle task, UIntPtr result);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_task_return_new_error(GTaskHandle task, GQuark domain, int code, string format, IntPtr @__arglist);

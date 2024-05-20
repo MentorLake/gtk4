@@ -16,7 +16,7 @@ public static class GtkCellRendererToggleSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCellRendererToggleSignalStructs.ToggledSignal> obs) =>
 		{
-			GtkCellRendererToggleSignalDelegates.Toggled handler = (GtkCellRendererToggleHandle self, string path, IntPtr user_data) =>
+			GtkCellRendererToggleSignalDelegates.toggled handler = (GtkCellRendererToggleHandle self, string path, IntPtr user_data) =>
 			{
 				
 
@@ -54,8 +54,9 @@ public struct ToggledSignal
 public static class GtkCellRendererToggleSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Toggled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererToggleHandle>))] GtkCellRendererToggleHandle self, string path, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void toggled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererToggleHandle>))] GtkCellRendererToggleHandle self, string path, IntPtr user_data);
+
 }
 
 

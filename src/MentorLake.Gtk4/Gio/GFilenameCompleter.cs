@@ -16,7 +16,7 @@ public static class GFilenameCompleterSignalExtensions
 	{
 		return Observable.Create((IObserver<GFilenameCompleterSignalStructs.GotCompletionDataSignal> obs) =>
 		{
-			GFilenameCompleterSignalDelegates.GotCompletionData handler = (GFilenameCompleterHandle self, IntPtr user_data) =>
+			GFilenameCompleterSignalDelegates.got_completion_data handler = (GFilenameCompleterHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -53,8 +53,9 @@ public struct GotCompletionDataSignal
 public static class GFilenameCompleterSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void GotCompletionData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GFilenameCompleterHandle>))] GFilenameCompleterHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void got_completion_data([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GFilenameCompleterHandle>))] GFilenameCompleterHandle self, IntPtr user_data);
+
 }
 
 
@@ -65,7 +66,7 @@ public static class GFilenameCompleterHandleExtensions
 		return GFilenameCompleterExterns.g_filename_completer_get_completion_suffix(completer, initial_text);
 	}
 
-	public static string[] GetCompletions(this GFilenameCompleterHandle completer, string initial_text)
+	public static IntPtr GetCompletions(this GFilenameCompleterHandle completer, string initial_text)
 	{
 		return GFilenameCompleterExterns.g_filename_completer_get_completions(completer, initial_text);
 	}
@@ -87,7 +88,7 @@ internal class GFilenameCompleterExterns
 	internal static extern string g_filename_completer_get_completion_suffix(GFilenameCompleterHandle completer, string initial_text);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_filename_completer_get_completions(GFilenameCompleterHandle completer, string initial_text);
+	internal static extern IntPtr g_filename_completer_get_completions(GFilenameCompleterHandle completer, string initial_text);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_filename_completer_set_dirs_only(GFilenameCompleterHandle completer, bool dirs_only);

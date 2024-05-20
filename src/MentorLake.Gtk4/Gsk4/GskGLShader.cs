@@ -74,7 +74,7 @@ public static class GskGLShaderHandleExtensions
 		return shader;
 	}
 
-	public static int GskGlShaderGetArgsSize(this GskGLShaderHandle shader)
+	public static UIntPtr GskGlShaderGetArgsSize(this GskGLShaderHandle shader)
 	{
 		return GskGLShaderExterns.gsk_gl_shader_get_args_size(shader);
 	}
@@ -158,7 +158,7 @@ internal class GskGLShaderExterns
 	internal static extern void gsk_gl_shader_get_arg_vec4(GskGLShaderHandle shader, GBytesHandle args, int idx, graphene_vec4_tHandle out_value);
 
 	[DllImport(Libraries.Gsk4)]
-	internal static extern int gsk_gl_shader_get_args_size(GskGLShaderHandle shader);
+	internal static extern UIntPtr gsk_gl_shader_get_args_size(GskGLShaderHandle shader);
 
 	[DllImport(Libraries.Gsk4)]
 	internal static extern int gsk_gl_shader_get_n_textures(GskGLShaderHandle shader);

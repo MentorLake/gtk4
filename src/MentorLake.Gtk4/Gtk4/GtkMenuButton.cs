@@ -16,7 +16,7 @@ public static class GtkMenuButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkMenuButtonSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkMenuButtonSignalDelegates.Activate handler = (GtkMenuButtonHandle self, IntPtr user_data) =>
+			GtkMenuButtonSignalDelegates.activate handler = (GtkMenuButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -53,8 +53,9 @@ public struct ActivateSignal
 public static class GtkMenuButtonSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkMenuButtonHandle>))] GtkMenuButtonHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkMenuButtonHandle>))] GtkMenuButtonHandle self, IntPtr user_data);
+
 }
 
 

@@ -16,7 +16,7 @@ public static class GtkEventControllerKeySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEventControllerKeySignalStructs.ImUpdateSignal> obs) =>
 		{
-			GtkEventControllerKeySignalDelegates.ImUpdate handler = (GtkEventControllerKeyHandle self, IntPtr user_data) =>
+			GtkEventControllerKeySignalDelegates.im_update handler = (GtkEventControllerKeyHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkEventControllerKeySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEventControllerKeySignalStructs.KeyPressedSignal> obs) =>
 		{
-			GtkEventControllerKeySignalDelegates.KeyPressed handler = (GtkEventControllerKeyHandle self, uint keyval, uint keycode, GdkModifierType state, IntPtr user_data) =>
+			GtkEventControllerKeySignalDelegates.key_pressed handler = (GtkEventControllerKeyHandle self, uint keyval, uint keycode, GdkModifierType state, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkEventControllerKeySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEventControllerKeySignalStructs.KeyReleasedSignal> obs) =>
 		{
-			GtkEventControllerKeySignalDelegates.KeyReleased handler = (GtkEventControllerKeyHandle self, uint keyval, uint keycode, GdkModifierType state, IntPtr user_data) =>
+			GtkEventControllerKeySignalDelegates.key_released handler = (GtkEventControllerKeyHandle self, uint keyval, uint keycode, GdkModifierType state, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GtkEventControllerKeySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEventControllerKeySignalStructs.ModifiersSignal> obs) =>
 		{
-			GtkEventControllerKeySignalDelegates.Modifiers handler = (GtkEventControllerKeyHandle self, GdkModifierType state, IntPtr user_data) =>
+			GtkEventControllerKeySignalDelegates.modifiers handler = (GtkEventControllerKeyHandle self, GdkModifierType state, IntPtr user_data) =>
 			{
 				
 
@@ -161,17 +161,21 @@ public struct ModifiersSignal
 public static class GtkEventControllerKeySignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ImUpdate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerKeyHandle>))] GtkEventControllerKeyHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void im_update([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerKeyHandle>))] GtkEventControllerKeyHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool KeyPressed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerKeyHandle>))] GtkEventControllerKeyHandle self, uint keyval, uint keycode, GdkModifierType state, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void KeyReleased([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerKeyHandle>))] GtkEventControllerKeyHandle self, uint keyval, uint keycode, GdkModifierType state, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool key_pressed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerKeyHandle>))] GtkEventControllerKeyHandle self, uint keyval, uint keycode, GdkModifierType state, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool Modifiers([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerKeyHandle>))] GtkEventControllerKeyHandle self, GdkModifierType state, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void key_released([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerKeyHandle>))] GtkEventControllerKeyHandle self, uint keyval, uint keycode, GdkModifierType state, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool modifiers([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerKeyHandle>))] GtkEventControllerKeyHandle self, GdkModifierType state, IntPtr user_data);
+
 }
 
 

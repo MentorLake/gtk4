@@ -21,7 +21,7 @@ public static class GtkLinkButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkLinkButtonSignalStructs.ActivateLinkSignal> obs) =>
 		{
-			GtkLinkButtonSignalDelegates.ActivateLink handler = (GtkLinkButtonHandle self, IntPtr user_data) =>
+			GtkLinkButtonSignalDelegates.activate_link handler = (GtkLinkButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -59,8 +59,9 @@ public struct ActivateLinkSignal
 public static class GtkLinkButtonSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ActivateLink([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLinkButtonHandle>))] GtkLinkButtonHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool activate_link([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLinkButtonHandle>))] GtkLinkButtonHandle self, IntPtr user_data);
+
 }
 
 

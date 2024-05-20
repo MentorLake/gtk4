@@ -10,9 +10,9 @@ internal class GskParseLocationExterns
 
 public struct GskParseLocation
 {
-	public int bytes;
-	public int chars;
-	public int lines;
-	public int line_bytes;
-	public int line_chars;
+	public UIntPtr bytes;
+	public UIntPtr chars;
+	public UIntPtr lines;
+	public UIntPtr line_bytes;
+	public UIntPtr line_chars;
 }

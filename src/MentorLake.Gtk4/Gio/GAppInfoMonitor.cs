@@ -16,7 +16,7 @@ public static class GAppInfoMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GAppInfoMonitorSignalStructs.ChangedSignal> obs) =>
 		{
-			GAppInfoMonitorSignalDelegates.Changed handler = (GAppInfoMonitorHandle self, IntPtr user_data) =>
+			GAppInfoMonitorSignalDelegates.changed handler = (GAppInfoMonitorHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -53,8 +53,9 @@ public struct ChangedSignal
 public static class GAppInfoMonitorSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GAppInfoMonitorHandle>))] GAppInfoMonitorHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GAppInfoMonitorHandle>))] GAppInfoMonitorHandle self, IntPtr user_data);
+
 }
 
 

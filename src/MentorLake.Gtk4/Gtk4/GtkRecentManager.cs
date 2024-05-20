@@ -21,7 +21,7 @@ public static class GtkRecentManagerSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkRecentManagerSignalStructs.ChangedSignal> obs) =>
 		{
-			GtkRecentManagerSignalDelegates.Changed handler = (GtkRecentManagerHandle self, IntPtr user_data) =>
+			GtkRecentManagerSignalDelegates.changed handler = (GtkRecentManagerHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -58,8 +58,9 @@ public struct ChangedSignal
 public static class GtkRecentManagerSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRecentManagerHandle>))] GtkRecentManagerHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRecentManagerHandle>))] GtkRecentManagerHandle self, IntPtr user_data);
+
 }
 
 

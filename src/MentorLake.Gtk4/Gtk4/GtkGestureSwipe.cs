@@ -16,7 +16,7 @@ public static class GtkGestureSwipeSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureSwipeSignalStructs.SwipeSignal> obs) =>
 		{
-			GtkGestureSwipeSignalDelegates.Swipe handler = (GtkGestureSwipeHandle self, double velocity_x, double velocity_y, IntPtr user_data) =>
+			GtkGestureSwipeSignalDelegates.swipe handler = (GtkGestureSwipeHandle self, double velocity_x, double velocity_y, IntPtr user_data) =>
 			{
 				
 
@@ -55,8 +55,9 @@ public struct SwipeSignal
 public static class GtkGestureSwipeSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Swipe([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureSwipeHandle>))] GtkGestureSwipeHandle self, double velocity_x, double velocity_y, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void swipe([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureSwipeHandle>))] GtkGestureSwipeHandle self, double velocity_x, double velocity_y, IntPtr user_data);
+
 }
 
 

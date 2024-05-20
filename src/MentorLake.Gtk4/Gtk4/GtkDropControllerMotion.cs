@@ -16,7 +16,7 @@ public static class GtkDropControllerMotionSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkDropControllerMotionSignalStructs.EnterSignal> obs) =>
 		{
-			GtkDropControllerMotionSignalDelegates.Enter handler = (GtkDropControllerMotionHandle self, double x, double y, IntPtr user_data) =>
+			GtkDropControllerMotionSignalDelegates.enter handler = (GtkDropControllerMotionHandle self, double x, double y, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkDropControllerMotionSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkDropControllerMotionSignalStructs.LeaveSignal> obs) =>
 		{
-			GtkDropControllerMotionSignalDelegates.Leave handler = (GtkDropControllerMotionHandle self, IntPtr user_data) =>
+			GtkDropControllerMotionSignalDelegates.leave handler = (GtkDropControllerMotionHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkDropControllerMotionSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkDropControllerMotionSignalStructs.MotionSignal> obs) =>
 		{
-			GtkDropControllerMotionSignalDelegates.Motion handler = (GtkDropControllerMotionHandle self, double x, double y, IntPtr user_data) =>
+			GtkDropControllerMotionSignalDelegates.motion handler = (GtkDropControllerMotionHandle self, double x, double y, IntPtr user_data) =>
 			{
 				
 
@@ -123,14 +123,17 @@ public struct MotionSignal
 public static class GtkDropControllerMotionSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Enter([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropControllerMotionHandle>))] GtkDropControllerMotionHandle self, double x, double y, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void enter([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropControllerMotionHandle>))] GtkDropControllerMotionHandle self, double x, double y, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Leave([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropControllerMotionHandle>))] GtkDropControllerMotionHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Motion([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropControllerMotionHandle>))] GtkDropControllerMotionHandle self, double x, double y, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void leave([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropControllerMotionHandle>))] GtkDropControllerMotionHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void motion([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropControllerMotionHandle>))] GtkDropControllerMotionHandle self, double x, double y, IntPtr user_data);
+
 }
 
 

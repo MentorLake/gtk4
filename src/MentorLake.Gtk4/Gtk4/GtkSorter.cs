@@ -11,7 +11,7 @@ public static class GtkSorterSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSorterSignalStructs.ChangedSignal> obs) =>
 		{
-			GtkSorterSignalDelegates.Changed handler = (GtkSorterHandle self, GtkSorterChange change, IntPtr user_data) =>
+			GtkSorterSignalDelegates.changed handler = (GtkSorterHandle self, GtkSorterChange change, IntPtr user_data) =>
 			{
 				
 
@@ -49,8 +49,9 @@ public struct ChangedSignal
 public static class GtkSorterSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSorterHandle>))] GtkSorterHandle self, GtkSorterChange change, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSorterHandle>))] GtkSorterHandle self, GtkSorterChange change, IntPtr user_data);
+
 }
 
 

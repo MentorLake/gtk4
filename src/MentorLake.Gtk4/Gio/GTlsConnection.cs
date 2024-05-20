@@ -11,7 +11,7 @@ public static class GTlsConnectionSignalExtensions
 	{
 		return Observable.Create((IObserver<GTlsConnectionSignalStructs.AcceptCertificateSignal> obs) =>
 		{
-			GTlsConnectionSignalDelegates.AcceptCertificate handler = (GTlsConnectionHandle self, GTlsCertificateHandle peer_cert, GTlsCertificateFlags errors, IntPtr user_data) =>
+			GTlsConnectionSignalDelegates.accept_certificate handler = (GTlsConnectionHandle self, GTlsCertificateHandle peer_cert, GTlsCertificateFlags errors, IntPtr user_data) =>
 			{
 				
 
@@ -51,8 +51,9 @@ public struct AcceptCertificateSignal
 public static class GTlsConnectionSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool AcceptCertificate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GTlsConnectionHandle>))] GTlsConnectionHandle self, GTlsCertificateHandle peer_cert, GTlsCertificateFlags errors, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool accept_certificate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GTlsConnectionHandle>))] GTlsConnectionHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GTlsCertificateHandle>))] GTlsCertificateHandle peer_cert, GTlsCertificateFlags errors, IntPtr user_data);
+
 }
 
 

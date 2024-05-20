@@ -26,7 +26,7 @@ public static class GUnixFDMessageHandleExtensions
 		return GUnixFDMessageExterns.g_unix_fd_message_get_fd_list(message);
 	}
 
-	public static int[] GUnixFdMessageStealFds(this GUnixFDMessageHandle message, out int length)
+	public static IntPtr GUnixFdMessageStealFds(this GUnixFDMessageHandle message, out int length)
 	{
 		return GUnixFDMessageExterns.g_unix_fd_message_steal_fds(message, out length);
 	}
@@ -48,6 +48,6 @@ internal class GUnixFDMessageExterns
 	internal static extern GUnixFDListHandle g_unix_fd_message_get_fd_list(GUnixFDMessageHandle message);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int[] g_unix_fd_message_steal_fds(GUnixFDMessageHandle message, out int length);
+	internal static extern IntPtr g_unix_fd_message_steal_fds(GUnixFDMessageHandle message, out int length);
 
 }

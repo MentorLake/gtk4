@@ -31,7 +31,7 @@ public class GdkTextureHandle : GObjectHandle, GdkPaintableHandle, GIconHandle, 
 
 public static class GdkTextureHandleExtensions
 {
-	public static GdkTextureHandle Download(this GdkTextureHandle texture, string data, int stride)
+	public static GdkTextureHandle Download(this GdkTextureHandle texture, string data, UIntPtr stride)
 	{
 		GdkTextureExterns.gdk_texture_download(texture, data, stride);
 		return texture;
@@ -97,7 +97,7 @@ internal class GdkTextureExterns
 	internal static extern GdkTextureHandle gdk_texture_new_from_resource(string resource_path);
 
 	[DllImport(Libraries.Gdk4)]
-	internal static extern void gdk_texture_download(GdkTextureHandle texture, string data, int stride);
+	internal static extern void gdk_texture_download(GdkTextureHandle texture, string data, UIntPtr stride);
 
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkMemoryFormat gdk_texture_get_format(GdkTextureHandle self);

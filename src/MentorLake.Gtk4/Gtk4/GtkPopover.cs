@@ -16,7 +16,7 @@ public static class GtkPopoverSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPopoverSignalStructs.ActivateDefaultSignal> obs) =>
 		{
-			GtkPopoverSignalDelegates.ActivateDefault handler = (GtkPopoverHandle self, IntPtr user_data) =>
+			GtkPopoverSignalDelegates.activate_default handler = (GtkPopoverHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkPopoverSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPopoverSignalStructs.ClosedSignal> obs) =>
 		{
-			GtkPopoverSignalDelegates.Closed handler = (GtkPopoverHandle self, IntPtr user_data) =>
+			GtkPopoverSignalDelegates.closed handler = (GtkPopoverHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -86,11 +86,13 @@ public struct ClosedSignal
 public static class GtkPopoverSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ActivateDefault([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPopoverHandle>))] GtkPopoverHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate_default([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPopoverHandle>))] GtkPopoverHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPopoverHandle>))] GtkPopoverHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPopoverHandle>))] GtkPopoverHandle self, IntPtr user_data);
+
 }
 
 

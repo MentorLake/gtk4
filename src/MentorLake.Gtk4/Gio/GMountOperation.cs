@@ -16,7 +16,7 @@ public static class GMountOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GMountOperationSignalStructs.AbortedSignal> obs) =>
 		{
-			GMountOperationSignalDelegates.Aborted handler = (GMountOperationHandle self, IntPtr user_data) =>
+			GMountOperationSignalDelegates.aborted handler = (GMountOperationHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GMountOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GMountOperationSignalStructs.AskPasswordSignal> obs) =>
 		{
-			GMountOperationSignalDelegates.AskPassword handler = (GMountOperationHandle self, string message, string default_user, string default_domain, GAskPasswordFlags flags, IntPtr user_data) =>
+			GMountOperationSignalDelegates.ask_password handler = (GMountOperationHandle self, string message, string default_user, string default_domain, GAskPasswordFlags flags, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GMountOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GMountOperationSignalStructs.AskQuestionSignal> obs) =>
 		{
-			GMountOperationSignalDelegates.AskQuestion handler = (GMountOperationHandle self, string message, string[] choices, IntPtr user_data) =>
+			GMountOperationSignalDelegates.ask_question handler = (GMountOperationHandle self, string message, string[] choices, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GMountOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GMountOperationSignalStructs.ReplySignal> obs) =>
 		{
-			GMountOperationSignalDelegates.Reply handler = (GMountOperationHandle self, GMountOperationResult result, IntPtr user_data) =>
+			GMountOperationSignalDelegates.reply handler = (GMountOperationHandle self, GMountOperationResult result, IntPtr user_data) =>
 			{
 				
 
@@ -124,7 +124,7 @@ public static class GMountOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GMountOperationSignalStructs.ShowProcessesSignal> obs) =>
 		{
-			GMountOperationSignalDelegates.ShowProcesses handler = (GMountOperationHandle self, string message, GPid[] processes, string[] choices, IntPtr user_data) =>
+			GMountOperationSignalDelegates.show_processes handler = (GMountOperationHandle self, string message, GPid[] processes, string[] choices, IntPtr user_data) =>
 			{
 				
 
@@ -151,7 +151,7 @@ public static class GMountOperationSignalExtensions
 	{
 		return Observable.Create((IObserver<GMountOperationSignalStructs.ShowUnmountProgressSignal> obs) =>
 		{
-			GMountOperationSignalDelegates.ShowUnmountProgress handler = (GMountOperationHandle self, string message, long time_left, long bytes_left, IntPtr user_data) =>
+			GMountOperationSignalDelegates.show_unmount_progress handler = (GMountOperationHandle self, string message, long time_left, long bytes_left, IntPtr user_data) =>
 			{
 				
 
@@ -231,23 +231,29 @@ public struct ShowUnmountProgressSignal
 public static class GMountOperationSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Aborted([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void aborted([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void AskPassword([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, string message, string default_user, string default_domain, GAskPasswordFlags flags, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void AskQuestion([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, string message, string[] choices, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void ask_password([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, string message, string default_user, string default_domain, GAskPasswordFlags flags, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Reply([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, GMountOperationResult result, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ShowProcesses([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, string message, GPid[] processes, string[] choices, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void ask_question([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, string message, string[] choices, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ShowUnmountProgress([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, string message, long time_left, long bytes_left, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void reply([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, GMountOperationResult result, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void show_processes([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, string message, GPid[] processes, string[] choices, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void show_unmount_progress([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMountOperationHandle>))] GMountOperationHandle self, string message, long time_left, long bytes_left, IntPtr user_data);
+
 }
 
 

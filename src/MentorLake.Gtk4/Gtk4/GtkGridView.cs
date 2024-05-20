@@ -16,7 +16,7 @@ public static class GtkGridViewSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGridViewSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkGridViewSignalDelegates.Activate handler = (GtkGridViewHandle self, uint position, IntPtr user_data) =>
+			GtkGridViewSignalDelegates.activate handler = (GtkGridViewHandle self, uint position, IntPtr user_data) =>
 			{
 				
 
@@ -54,8 +54,9 @@ public struct ActivateSignal
 public static class GtkGridViewSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGridViewHandle>))] GtkGridViewHandle self, uint position, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGridViewHandle>))] GtkGridViewHandle self, uint position, IntPtr user_data);
+
 }
 
 

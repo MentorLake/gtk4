@@ -16,7 +16,7 @@ public static class GtkDrawingAreaSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkDrawingAreaSignalStructs.ResizeSignal> obs) =>
 		{
-			GtkDrawingAreaSignalDelegates.Resize handler = (GtkDrawingAreaHandle self, int width, int height, IntPtr user_data) =>
+			GtkDrawingAreaSignalDelegates.resize handler = (GtkDrawingAreaHandle self, int width, int height, IntPtr user_data) =>
 			{
 				
 
@@ -55,8 +55,9 @@ public struct ResizeSignal
 public static class GtkDrawingAreaSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Resize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDrawingAreaHandle>))] GtkDrawingAreaHandle self, int width, int height, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void resize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDrawingAreaHandle>))] GtkDrawingAreaHandle self, int width, int height, IntPtr user_data);
+
 }
 
 

@@ -2,7 +2,7 @@ namespace MentorLake.Gtk4.Gsk4;
 
 public class GskRadialGradientNodeHandle : GskRenderNodeHandle
 {
-	public static GskRadialGradientNodeHandle New(graphene_rect_tHandle bounds, graphene_point_tHandle center, float hradius, float vradius, float start, float end, GskColorStop[] color_stops, int n_color_stops)
+	public static GskRadialGradientNodeHandle New(graphene_rect_tHandle bounds, graphene_point_tHandle center, float hradius, float vradius, float start, float end, GskColorStop[] color_stops, UIntPtr n_color_stops)
 	{
 		return GskRadialGradientNodeExterns.gsk_radial_gradient_node_new(bounds, center, hradius, vradius, start, end, color_stops, n_color_stops);
 	}
@@ -16,7 +16,7 @@ public static class GskRadialGradientNodeHandleExtensions
 		return GskRadialGradientNodeExterns.gsk_radial_gradient_node_get_center(node);
 	}
 
-	public static GskColorStop[] GetColorStops(this GskRadialGradientNodeHandle node, out int n_stops)
+	public static IntPtr GetColorStops(this GskRadialGradientNodeHandle node, out UIntPtr n_stops)
 	{
 		return GskRadialGradientNodeExterns.gsk_radial_gradient_node_get_color_stops(node, out n_stops);
 	}
@@ -31,7 +31,7 @@ public static class GskRadialGradientNodeHandleExtensions
 		return GskRadialGradientNodeExterns.gsk_radial_gradient_node_get_hradius(node);
 	}
 
-	public static int GetNColorStops(this GskRadialGradientNodeHandle node)
+	public static UIntPtr GetNColorStops(this GskRadialGradientNodeHandle node)
 	{
 		return GskRadialGradientNodeExterns.gsk_radial_gradient_node_get_n_color_stops(node);
 	}
@@ -51,13 +51,13 @@ public static class GskRadialGradientNodeHandleExtensions
 internal class GskRadialGradientNodeExterns
 {
 	[DllImport(Libraries.Gsk4)]
-	internal static extern GskRadialGradientNodeHandle gsk_radial_gradient_node_new(graphene_rect_tHandle bounds, graphene_point_tHandle center, float hradius, float vradius, float start, float end, GskColorStop[] color_stops, int n_color_stops);
+	internal static extern GskRadialGradientNodeHandle gsk_radial_gradient_node_new(graphene_rect_tHandle bounds, graphene_point_tHandle center, float hradius, float vradius, float start, float end, GskColorStop[] color_stops, UIntPtr n_color_stops);
 
 	[DllImport(Libraries.Gsk4)]
 	internal static extern graphene_point_tHandle gsk_radial_gradient_node_get_center(GskRenderNodeHandle node);
 
 	[DllImport(Libraries.Gsk4)]
-	internal static extern GskColorStop[] gsk_radial_gradient_node_get_color_stops(GskRenderNodeHandle node, out int n_stops);
+	internal static extern IntPtr gsk_radial_gradient_node_get_color_stops(GskRenderNodeHandle node, out UIntPtr n_stops);
 
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_radial_gradient_node_get_end(GskRenderNodeHandle node);
@@ -66,7 +66,7 @@ internal class GskRadialGradientNodeExterns
 	internal static extern float gsk_radial_gradient_node_get_hradius(GskRenderNodeHandle node);
 
 	[DllImport(Libraries.Gsk4)]
-	internal static extern int gsk_radial_gradient_node_get_n_color_stops(GskRenderNodeHandle node);
+	internal static extern UIntPtr gsk_radial_gradient_node_get_n_color_stops(GskRenderNodeHandle node);
 
 	[DllImport(Libraries.Gsk4)]
 	internal static extern float gsk_radial_gradient_node_get_start(GskRenderNodeHandle node);

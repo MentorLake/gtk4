@@ -2,7 +2,7 @@ namespace MentorLake.Gtk4.Gio;
 
 public class GSocketControlMessageHandle : GObjectHandle
 {
-	public static GSocketControlMessageHandle Deserialize(int level, int type, int size, IntPtr data)
+	public static GSocketControlMessageHandle Deserialize(int level, int type, UIntPtr size, IntPtr data)
 	{
 		return GSocketControlMessageExterns.g_socket_control_message_deserialize(level, type, size, data);
 	}
@@ -21,7 +21,7 @@ public static class GSocketControlMessageHandleExtensions
 		return GSocketControlMessageExterns.g_socket_control_message_get_msg_type(message);
 	}
 
-	public static int GetSize(this GSocketControlMessageHandle message)
+	public static UIntPtr GetSize(this GSocketControlMessageHandle message)
 	{
 		return GSocketControlMessageExterns.g_socket_control_message_get_size(message);
 	}
@@ -43,12 +43,12 @@ internal class GSocketControlMessageExterns
 	internal static extern int g_socket_control_message_get_msg_type(GSocketControlMessageHandle message);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_socket_control_message_get_size(GSocketControlMessageHandle message);
+	internal static extern UIntPtr g_socket_control_message_get_size(GSocketControlMessageHandle message);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_control_message_serialize(GSocketControlMessageHandle message, IntPtr data);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern GSocketControlMessageHandle g_socket_control_message_deserialize(int level, int type, int size, IntPtr data);
+	internal static extern GSocketControlMessageHandle g_socket_control_message_deserialize(int level, int type, UIntPtr size, IntPtr data);
 
 }

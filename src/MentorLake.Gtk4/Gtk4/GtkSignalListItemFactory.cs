@@ -16,7 +16,7 @@ public static class GtkSignalListItemFactorySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSignalListItemFactorySignalStructs.BindSignal> obs) =>
 		{
-			GtkSignalListItemFactorySignalDelegates.Bind handler = (GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data) =>
+			GtkSignalListItemFactorySignalDelegates.bind handler = (GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkSignalListItemFactorySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSignalListItemFactorySignalStructs.SetupSignal> obs) =>
 		{
-			GtkSignalListItemFactorySignalDelegates.Setup handler = (GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data) =>
+			GtkSignalListItemFactorySignalDelegates.setup handler = (GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkSignalListItemFactorySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSignalListItemFactorySignalStructs.TeardownSignal> obs) =>
 		{
-			GtkSignalListItemFactorySignalDelegates.Teardown handler = (GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data) =>
+			GtkSignalListItemFactorySignalDelegates.teardown handler = (GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GtkSignalListItemFactorySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSignalListItemFactorySignalStructs.UnbindSignal> obs) =>
 		{
-			GtkSignalListItemFactorySignalDelegates.Unbind handler = (GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data) =>
+			GtkSignalListItemFactorySignalDelegates.unbind handler = (GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data) =>
 			{
 				
 
@@ -156,17 +156,21 @@ public struct UnbindSignal
 public static class GtkSignalListItemFactorySignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Bind([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSignalListItemFactoryHandle>))] GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void bind([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSignalListItemFactoryHandle>))] GtkSignalListItemFactoryHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GObjectHandle>))] GObjectHandle @object, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Setup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSignalListItemFactoryHandle>))] GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Teardown([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSignalListItemFactoryHandle>))] GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void setup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSignalListItemFactoryHandle>))] GtkSignalListItemFactoryHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GObjectHandle>))] GObjectHandle @object, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Unbind([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSignalListItemFactoryHandle>))] GtkSignalListItemFactoryHandle self, GObjectHandle @object, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void teardown([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSignalListItemFactoryHandle>))] GtkSignalListItemFactoryHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GObjectHandle>))] GObjectHandle @object, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void unbind([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSignalListItemFactoryHandle>))] GtkSignalListItemFactoryHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GObjectHandle>))] GObjectHandle @object, IntPtr user_data);
+
 }
 
 

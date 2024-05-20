@@ -16,7 +16,7 @@ public static class GtkGestureZoomSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureZoomSignalStructs.ScaleChangedSignal> obs) =>
 		{
-			GtkGestureZoomSignalDelegates.ScaleChanged handler = (GtkGestureZoomHandle self, double scale, IntPtr user_data) =>
+			GtkGestureZoomSignalDelegates.scale_changed handler = (GtkGestureZoomHandle self, double scale, IntPtr user_data) =>
 			{
 				
 
@@ -54,8 +54,9 @@ public struct ScaleChangedSignal
 public static class GtkGestureZoomSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ScaleChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureZoomHandle>))] GtkGestureZoomHandle self, double scale, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void scale_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureZoomHandle>))] GtkGestureZoomHandle self, double scale, IntPtr user_data);
+
 }
 
 

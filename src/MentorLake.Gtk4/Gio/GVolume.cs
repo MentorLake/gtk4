@@ -42,7 +42,7 @@ public static class GVolumeHandleExtensions
 		return GVolumeExterns.g_volume_eject_with_operation_finish(volume, result, out error);
 	}
 
-	public static string[] EnumerateIdentifiers(this GVolumeHandle volume)
+	public static IntPtr EnumerateIdentifiers(this GVolumeHandle volume)
 	{
 		return GVolumeExterns.g_volume_enumerate_identifiers(volume);
 	}
@@ -131,7 +131,7 @@ internal class GVolumeExterns
 	internal static extern bool g_volume_eject_with_operation_finish(GVolumeHandle volume, GAsyncResultHandle result, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_volume_enumerate_identifiers(GVolumeHandle volume);
+	internal static extern IntPtr g_volume_enumerate_identifiers(GVolumeHandle volume);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileHandle g_volume_get_activation_root(GVolumeHandle volume);

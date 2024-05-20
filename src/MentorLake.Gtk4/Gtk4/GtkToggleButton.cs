@@ -26,7 +26,7 @@ public static class GtkToggleButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkToggleButtonSignalStructs.ToggledSignal> obs) =>
 		{
-			GtkToggleButtonSignalDelegates.Toggled handler = (GtkToggleButtonHandle self, IntPtr user_data) =>
+			GtkToggleButtonSignalDelegates.toggled handler = (GtkToggleButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -63,8 +63,9 @@ public struct ToggledSignal
 public static class GtkToggleButtonSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Toggled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkToggleButtonHandle>))] GtkToggleButtonHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void toggled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkToggleButtonHandle>))] GtkToggleButtonHandle self, IntPtr user_data);
+
 }
 
 

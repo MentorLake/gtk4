@@ -11,7 +11,7 @@ public static class GdkVulkanContextSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkVulkanContextSignalStructs.ImagesUpdatedSignal> obs) =>
 		{
-			GdkVulkanContextSignalDelegates.ImagesUpdated handler = (GdkVulkanContextHandle self, IntPtr user_data) =>
+			GdkVulkanContextSignalDelegates.images_updated handler = (GdkVulkanContextHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -48,8 +48,9 @@ public struct ImagesUpdatedSignal
 public static class GdkVulkanContextSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ImagesUpdated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkVulkanContextHandle>))] GdkVulkanContextHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void images_updated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkVulkanContextHandle>))] GdkVulkanContextHandle self, IntPtr user_data);
+
 }
 
 

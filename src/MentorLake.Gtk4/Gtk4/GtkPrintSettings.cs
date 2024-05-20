@@ -127,7 +127,7 @@ public static class GtkPrintSettingsHandleExtensions
 		return GtkPrintSettingsExterns.gtk_print_settings_get_output_bin(settings);
 	}
 
-	public static GtkPageRange[] GetPageRanges(this GtkPrintSettingsHandle settings, out int num_ranges)
+	public static IntPtr GetPageRanges(this GtkPrintSettingsHandle settings, out int num_ranges)
 	{
 		return GtkPrintSettingsExterns.gtk_print_settings_get_page_ranges(settings, out num_ranges);
 	}
@@ -502,7 +502,7 @@ internal class GtkPrintSettingsExterns
 	internal static extern string gtk_print_settings_get_output_bin(GtkPrintSettingsHandle settings);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPageRange[] gtk_print_settings_get_page_ranges(GtkPrintSettingsHandle settings, out int num_ranges);
+	internal static extern IntPtr gtk_print_settings_get_page_ranges(GtkPrintSettingsHandle settings, out int num_ranges);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageSet gtk_print_settings_get_page_set(GtkPrintSettingsHandle settings);

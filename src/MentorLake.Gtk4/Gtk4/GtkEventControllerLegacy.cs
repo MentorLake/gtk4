@@ -16,7 +16,7 @@ public static class GtkEventControllerLegacySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEventControllerLegacySignalStructs.EventSignal> obs) =>
 		{
-			GtkEventControllerLegacySignalDelegates.Event handler = (GtkEventControllerLegacyHandle self, GdkEventHandle @event, IntPtr user_data) =>
+			GtkEventControllerLegacySignalDelegates.@event handler = (GtkEventControllerLegacyHandle self, GdkEventHandle @event, IntPtr user_data) =>
 			{
 				
 
@@ -55,8 +55,9 @@ public struct EventSignal
 public static class GtkEventControllerLegacySignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool Event([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerLegacyHandle>))] GtkEventControllerLegacyHandle self, GdkEventHandle @event, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool @event([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEventControllerLegacyHandle>))] GtkEventControllerLegacyHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkEventHandle>))] GdkEventHandle @event, IntPtr user_data);
+
 }
 
 

@@ -21,7 +21,7 @@ public static class GskTextNodeHandleExtensions
 		return GskTextNodeExterns.gsk_text_node_get_font(node);
 	}
 
-	public static PangoGlyphInfo[] GetGlyphs(this GskTextNodeHandle node, out uint n_glyphs)
+	public static IntPtr GetGlyphs(this GskTextNodeHandle node, out uint n_glyphs)
 	{
 		return GskTextNodeExterns.gsk_text_node_get_glyphs(node, out n_glyphs);
 	}
@@ -55,7 +55,7 @@ internal class GskTextNodeExterns
 	internal static extern PangoFontHandle gsk_text_node_get_font(GskRenderNodeHandle node);
 
 	[DllImport(Libraries.Gsk4)]
-	internal static extern PangoGlyphInfo[] gsk_text_node_get_glyphs(GskRenderNodeHandle node, out uint n_glyphs);
+	internal static extern IntPtr gsk_text_node_get_glyphs(GskRenderNodeHandle node, out uint n_glyphs);
 
 	[DllImport(Libraries.Gsk4)]
 	internal static extern uint gsk_text_node_get_num_glyphs(GskRenderNodeHandle node);

@@ -26,7 +26,7 @@ public static class GtkCheckButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCheckButtonSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkCheckButtonSignalDelegates.Activate handler = (GtkCheckButtonHandle self, IntPtr user_data) =>
+			GtkCheckButtonSignalDelegates.activate handler = (GtkCheckButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -53,7 +53,7 @@ public static class GtkCheckButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCheckButtonSignalStructs.ToggledSignal> obs) =>
 		{
-			GtkCheckButtonSignalDelegates.Toggled handler = (GtkCheckButtonHandle self, IntPtr user_data) =>
+			GtkCheckButtonSignalDelegates.toggled handler = (GtkCheckButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -96,11 +96,13 @@ public struct ToggledSignal
 public static class GtkCheckButtonSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCheckButtonHandle>))] GtkCheckButtonHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCheckButtonHandle>))] GtkCheckButtonHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Toggled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCheckButtonHandle>))] GtkCheckButtonHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void toggled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCheckButtonHandle>))] GtkCheckButtonHandle self, IntPtr user_data);
+
 }
 
 

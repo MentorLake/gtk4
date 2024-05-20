@@ -21,7 +21,7 @@ public static class GtkExpanderSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkExpanderSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkExpanderSignalDelegates.Activate handler = (GtkExpanderHandle self, IntPtr user_data) =>
+			GtkExpanderSignalDelegates.activate handler = (GtkExpanderHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -58,8 +58,9 @@ public struct ActivateSignal
 public static class GtkExpanderSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkExpanderHandle>))] GtkExpanderHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkExpanderHandle>))] GtkExpanderHandle self, IntPtr user_data);
+
 }
 
 

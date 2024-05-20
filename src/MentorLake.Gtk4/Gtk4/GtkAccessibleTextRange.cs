@@ -10,6 +10,6 @@ internal class GtkAccessibleTextRangeExterns
 
 public struct GtkAccessibleTextRange
 {
-	public int start;
-	public int length;
+	public UIntPtr start;
+	public UIntPtr length;
 }

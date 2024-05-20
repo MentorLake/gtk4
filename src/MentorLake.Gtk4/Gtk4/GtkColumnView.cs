@@ -16,7 +16,7 @@ public static class GtkColumnViewSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkColumnViewSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkColumnViewSignalDelegates.Activate handler = (GtkColumnViewHandle self, uint position, IntPtr user_data) =>
+			GtkColumnViewSignalDelegates.activate handler = (GtkColumnViewHandle self, uint position, IntPtr user_data) =>
 			{
 				
 
@@ -54,8 +54,9 @@ public struct ActivateSignal
 public static class GtkColumnViewSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColumnViewHandle>))] GtkColumnViewHandle self, uint position, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColumnViewHandle>))] GtkColumnViewHandle self, uint position, IntPtr user_data);
+
 }
 
 

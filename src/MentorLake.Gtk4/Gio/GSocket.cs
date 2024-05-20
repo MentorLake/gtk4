@@ -66,7 +66,7 @@ public static class GSocketHandleExtensions
 		return GSocketExterns.g_socket_create_source(socket, condition, cancellable);
 	}
 
-	public static int GetAvailableBytes(this GSocketHandle socket)
+	public static UIntPtr GetAvailableBytes(this GSocketHandle socket)
 	{
 		return GSocketExterns.g_socket_get_available_bytes(socket);
 	}
@@ -186,27 +186,27 @@ public static class GSocketHandleExtensions
 		return GSocketExterns.g_socket_listen(socket, out error);
 	}
 
-	public static int Receive(this GSocketHandle socket, out string buffer, int size, GCancellableHandle cancellable, out GErrorHandle error)
+	public static UIntPtr Receive(this GSocketHandle socket, out string buffer, UIntPtr size, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GSocketExterns.g_socket_receive(socket, out buffer, size, cancellable, out error);
 	}
 
-	public static GBytesHandle ReceiveBytes(this GSocketHandle socket, int size, long timeout_us, GCancellableHandle cancellable, out GErrorHandle error)
+	public static GBytesHandle ReceiveBytes(this GSocketHandle socket, UIntPtr size, long timeout_us, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GSocketExterns.g_socket_receive_bytes(socket, size, timeout_us, cancellable, out error);
 	}
 
-	public static GBytesHandle ReceiveBytesFrom(this GSocketHandle socket, out GSocketAddressHandle address, int size, long timeout_us, GCancellableHandle cancellable, out GErrorHandle error)
+	public static GBytesHandle ReceiveBytesFrom(this GSocketHandle socket, out GSocketAddressHandle address, UIntPtr size, long timeout_us, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GSocketExterns.g_socket_receive_bytes_from(socket, out address, size, timeout_us, cancellable, out error);
 	}
 
-	public static int ReceiveFrom(this GSocketHandle socket, out GSocketAddressHandle address, out string buffer, int size, GCancellableHandle cancellable, out GErrorHandle error)
+	public static UIntPtr ReceiveFrom(this GSocketHandle socket, out GSocketAddressHandle address, out string buffer, UIntPtr size, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GSocketExterns.g_socket_receive_from(socket, out address, out buffer, size, cancellable, out error);
 	}
 
-	public static int ReceiveMessage(this GSocketHandle socket, out GSocketAddressHandle address, GInputVector[] vectors, int num_vectors, out GSocketControlMessageHandle[] messages, out int num_messages, ref int flags, GCancellableHandle cancellable, out GErrorHandle error)
+	public static UIntPtr ReceiveMessage(this GSocketHandle socket, out GSocketAddressHandle address, GInputVector[] vectors, int num_vectors, out GSocketControlMessageHandle[] messages, out int num_messages, ref int flags, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GSocketExterns.g_socket_receive_message(socket, out address, vectors, num_vectors, out messages, out num_messages, ref flags, cancellable, out error);
 	}
@@ -216,22 +216,22 @@ public static class GSocketHandleExtensions
 		return GSocketExterns.g_socket_receive_messages(socket, messages, num_messages, flags, cancellable, out error);
 	}
 
-	public static int ReceiveWithBlocking(this GSocketHandle socket, out string buffer, int size, bool blocking, GCancellableHandle cancellable, out GErrorHandle error)
+	public static UIntPtr ReceiveWithBlocking(this GSocketHandle socket, out string buffer, UIntPtr size, bool blocking, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GSocketExterns.g_socket_receive_with_blocking(socket, out buffer, size, blocking, cancellable, out error);
 	}
 
-	public static int Send(this GSocketHandle socket, string buffer, int size, GCancellableHandle cancellable, out GErrorHandle error)
+	public static UIntPtr Send(this GSocketHandle socket, string buffer, UIntPtr size, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GSocketExterns.g_socket_send(socket, buffer, size, cancellable, out error);
 	}
 
-	public static int SendMessage(this GSocketHandle socket, GSocketAddressHandle address, GOutputVector[] vectors, int num_vectors, GSocketControlMessageHandle[] messages, int num_messages, int flags, GCancellableHandle cancellable, out GErrorHandle error)
+	public static UIntPtr SendMessage(this GSocketHandle socket, GSocketAddressHandle address, GOutputVector[] vectors, int num_vectors, GSocketControlMessageHandle[] messages, int num_messages, int flags, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GSocketExterns.g_socket_send_message(socket, address, vectors, num_vectors, messages, num_messages, flags, cancellable, out error);
 	}
 
-	public static GPollableReturn SendMessageWithTimeout(this GSocketHandle socket, GSocketAddressHandle address, GOutputVector[] vectors, int num_vectors, GSocketControlMessageHandle[] messages, int num_messages, int flags, long timeout_us, out int bytes_written, GCancellableHandle cancellable, out GErrorHandle error)
+	public static GPollableReturn SendMessageWithTimeout(this GSocketHandle socket, GSocketAddressHandle address, GOutputVector[] vectors, int num_vectors, GSocketControlMessageHandle[] messages, int num_messages, int flags, long timeout_us, out UIntPtr bytes_written, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GSocketExterns.g_socket_send_message_with_timeout(socket, address, vectors, num_vectors, messages, num_messages, flags, timeout_us, out bytes_written, cancellable, out error);
 	}
@@ -241,12 +241,12 @@ public static class GSocketHandleExtensions
 		return GSocketExterns.g_socket_send_messages(socket, messages, num_messages, flags, cancellable, out error);
 	}
 
-	public static int SendTo(this GSocketHandle socket, GSocketAddressHandle address, string buffer, int size, GCancellableHandle cancellable, out GErrorHandle error)
+	public static UIntPtr SendTo(this GSocketHandle socket, GSocketAddressHandle address, string buffer, UIntPtr size, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GSocketExterns.g_socket_send_to(socket, address, buffer, size, cancellable, out error);
 	}
 
-	public static int SendWithBlocking(this GSocketHandle socket, string buffer, int size, bool blocking, GCancellableHandle cancellable, out GErrorHandle error)
+	public static UIntPtr SendWithBlocking(this GSocketHandle socket, string buffer, UIntPtr size, bool blocking, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GSocketExterns.g_socket_send_with_blocking(socket, buffer, size, blocking, cancellable, out error);
 	}
@@ -355,7 +355,7 @@ internal class GSocketExterns
 	internal static extern GSourceHandle g_socket_create_source(GSocketHandle socket, GIOCondition condition, GCancellableHandle cancellable);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_socket_get_available_bytes(GSocketHandle socket);
+	internal static extern UIntPtr g_socket_get_available_bytes(GSocketHandle socket);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_socket_get_blocking(GSocketHandle socket);
@@ -427,43 +427,43 @@ internal class GSocketExterns
 	internal static extern bool g_socket_listen(GSocketHandle socket, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_socket_receive(GSocketHandle socket, out string buffer, int size, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern UIntPtr g_socket_receive(GSocketHandle socket, out string buffer, UIntPtr size, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern GBytesHandle g_socket_receive_bytes(GSocketHandle socket, int size, long timeout_us, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern GBytesHandle g_socket_receive_bytes(GSocketHandle socket, UIntPtr size, long timeout_us, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern GBytesHandle g_socket_receive_bytes_from(GSocketHandle socket, out GSocketAddressHandle address, int size, long timeout_us, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern GBytesHandle g_socket_receive_bytes_from(GSocketHandle socket, out GSocketAddressHandle address, UIntPtr size, long timeout_us, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_socket_receive_from(GSocketHandle socket, out GSocketAddressHandle address, out string buffer, int size, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern UIntPtr g_socket_receive_from(GSocketHandle socket, out GSocketAddressHandle address, out string buffer, UIntPtr size, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_socket_receive_message(GSocketHandle socket, out GSocketAddressHandle address, GInputVector[] vectors, int num_vectors, out GSocketControlMessageHandle[] messages, out int num_messages, ref int flags, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern UIntPtr g_socket_receive_message(GSocketHandle socket, out GSocketAddressHandle address, GInputVector[] vectors, int num_vectors, out GSocketControlMessageHandle[] messages, out int num_messages, ref int flags, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_receive_messages(GSocketHandle socket, GInputMessage[] messages, uint num_messages, int flags, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_socket_receive_with_blocking(GSocketHandle socket, out string buffer, int size, bool blocking, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern UIntPtr g_socket_receive_with_blocking(GSocketHandle socket, out string buffer, UIntPtr size, bool blocking, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_socket_send(GSocketHandle socket, string buffer, int size, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern UIntPtr g_socket_send(GSocketHandle socket, string buffer, UIntPtr size, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_socket_send_message(GSocketHandle socket, GSocketAddressHandle address, GOutputVector[] vectors, int num_vectors, GSocketControlMessageHandle[] messages, int num_messages, int flags, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern UIntPtr g_socket_send_message(GSocketHandle socket, GSocketAddressHandle address, GOutputVector[] vectors, int num_vectors, GSocketControlMessageHandle[] messages, int num_messages, int flags, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern GPollableReturn g_socket_send_message_with_timeout(GSocketHandle socket, GSocketAddressHandle address, GOutputVector[] vectors, int num_vectors, GSocketControlMessageHandle[] messages, int num_messages, int flags, long timeout_us, out int bytes_written, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern GPollableReturn g_socket_send_message_with_timeout(GSocketHandle socket, GSocketAddressHandle address, GOutputVector[] vectors, int num_vectors, GSocketControlMessageHandle[] messages, int num_messages, int flags, long timeout_us, out UIntPtr bytes_written, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_socket_send_messages(GSocketHandle socket, GOutputMessage[] messages, uint num_messages, int flags, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_socket_send_to(GSocketHandle socket, GSocketAddressHandle address, string buffer, int size, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern UIntPtr g_socket_send_to(GSocketHandle socket, GSocketAddressHandle address, string buffer, UIntPtr size, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_socket_send_with_blocking(GSocketHandle socket, string buffer, int size, bool blocking, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern UIntPtr g_socket_send_with_blocking(GSocketHandle socket, string buffer, UIntPtr size, bool blocking, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_socket_set_blocking(GSocketHandle socket, bool blocking);

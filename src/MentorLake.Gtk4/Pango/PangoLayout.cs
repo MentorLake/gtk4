@@ -151,7 +151,7 @@ public static class PangoLayoutHandleExtensions
 		return layout;
 	}
 
-	public static PangoLogAttr[] GetLogAttrsReadonly(this PangoLayoutHandle layout, out int n_attrs)
+	public static IntPtr GetLogAttrsReadonly(this PangoLayoutHandle layout, out int n_attrs)
 	{
 		return PangoLayoutExterns.pango_layout_get_log_attrs_readonly(layout, out n_attrs);
 	}
@@ -451,7 +451,7 @@ internal class PangoLayoutExterns
 	internal static extern void pango_layout_get_log_attrs(PangoLayoutHandle layout, out PangoLogAttr[] attrs, out int n_attrs);
 
 	[DllImport(Libraries.Pango)]
-	internal static extern PangoLogAttr[] pango_layout_get_log_attrs_readonly(PangoLayoutHandle layout, out int n_attrs);
+	internal static extern IntPtr pango_layout_get_log_attrs_readonly(PangoLayoutHandle layout, out int n_attrs);
 
 	[DllImport(Libraries.Pango)]
 	internal static extern void pango_layout_get_pixel_extents(PangoLayoutHandle layout, out PangoRectangle ink_rect, out PangoRectangle logical_rect);

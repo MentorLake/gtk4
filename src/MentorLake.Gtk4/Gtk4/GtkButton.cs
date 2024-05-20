@@ -31,7 +31,7 @@ public static class GtkButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkButtonSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkButtonSignalDelegates.Activate handler = (GtkButtonHandle self, IntPtr user_data) =>
+			GtkButtonSignalDelegates.activate handler = (GtkButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -58,7 +58,7 @@ public static class GtkButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkButtonSignalStructs.ClickedSignal> obs) =>
 		{
-			GtkButtonSignalDelegates.Clicked handler = (GtkButtonHandle self, IntPtr user_data) =>
+			GtkButtonSignalDelegates.clicked handler = (GtkButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -101,11 +101,13 @@ public struct ClickedSignal
 public static class GtkButtonSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkButtonHandle>))] GtkButtonHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkButtonHandle>))] GtkButtonHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Clicked([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkButtonHandle>))] GtkButtonHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void clicked([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkButtonHandle>))] GtkButtonHandle self, IntPtr user_data);
+
 }
 
 

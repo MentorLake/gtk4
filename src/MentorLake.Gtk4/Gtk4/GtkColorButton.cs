@@ -21,7 +21,7 @@ public static class GtkColorButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkColorButtonSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkColorButtonSignalDelegates.Activate handler = (GtkColorButtonHandle self, IntPtr user_data) =>
+			GtkColorButtonSignalDelegates.activate handler = (GtkColorButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -48,7 +48,7 @@ public static class GtkColorButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkColorButtonSignalStructs.ColorSetSignal> obs) =>
 		{
-			GtkColorButtonSignalDelegates.ColorSet handler = (GtkColorButtonHandle self, IntPtr user_data) =>
+			GtkColorButtonSignalDelegates.color_set handler = (GtkColorButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -91,11 +91,13 @@ public struct ColorSetSignal
 public static class GtkColorButtonSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColorButtonHandle>))] GtkColorButtonHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColorButtonHandle>))] GtkColorButtonHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ColorSet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColorButtonHandle>))] GtkColorButtonHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void color_set([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkColorButtonHandle>))] GtkColorButtonHandle self, IntPtr user_data);
+
 }
 
 

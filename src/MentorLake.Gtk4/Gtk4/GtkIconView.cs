@@ -26,7 +26,7 @@ public static class GtkIconViewSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkIconViewSignalStructs.ActivateCursorItemSignal> obs) =>
 		{
-			GtkIconViewSignalDelegates.ActivateCursorItem handler = (GtkIconViewHandle self, IntPtr user_data) =>
+			GtkIconViewSignalDelegates.activate_cursor_item handler = (GtkIconViewHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -53,7 +53,7 @@ public static class GtkIconViewSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkIconViewSignalStructs.ItemActivatedSignal> obs) =>
 		{
-			GtkIconViewSignalDelegates.ItemActivated handler = (GtkIconViewHandle self, GtkTreePathHandle path, IntPtr user_data) =>
+			GtkIconViewSignalDelegates.item_activated handler = (GtkIconViewHandle self, GtkTreePathHandle path, IntPtr user_data) =>
 			{
 				
 
@@ -80,7 +80,7 @@ public static class GtkIconViewSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkIconViewSignalStructs.MoveCursorSignal> obs) =>
 		{
-			GtkIconViewSignalDelegates.MoveCursor handler = (GtkIconViewHandle self, ref GtkMovementStep step, int count, bool extend, bool modify, IntPtr user_data) =>
+			GtkIconViewSignalDelegates.move_cursor handler = (GtkIconViewHandle self, ref GtkMovementStep step, int count, bool extend, bool modify, IntPtr user_data) =>
 			{
 				
 
@@ -107,7 +107,7 @@ public static class GtkIconViewSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkIconViewSignalStructs.SelectAllSignal> obs) =>
 		{
-			GtkIconViewSignalDelegates.SelectAll handler = (GtkIconViewHandle self, IntPtr user_data) =>
+			GtkIconViewSignalDelegates.select_all handler = (GtkIconViewHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -134,7 +134,7 @@ public static class GtkIconViewSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkIconViewSignalStructs.SelectCursorItemSignal> obs) =>
 		{
-			GtkIconViewSignalDelegates.SelectCursorItem handler = (GtkIconViewHandle self, IntPtr user_data) =>
+			GtkIconViewSignalDelegates.select_cursor_item handler = (GtkIconViewHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -161,7 +161,7 @@ public static class GtkIconViewSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkIconViewSignalStructs.SelectionChangedSignal> obs) =>
 		{
-			GtkIconViewSignalDelegates.SelectionChanged handler = (GtkIconViewHandle self, IntPtr user_data) =>
+			GtkIconViewSignalDelegates.selection_changed handler = (GtkIconViewHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -188,7 +188,7 @@ public static class GtkIconViewSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkIconViewSignalStructs.ToggleCursorItemSignal> obs) =>
 		{
-			GtkIconViewSignalDelegates.ToggleCursorItem handler = (GtkIconViewHandle self, IntPtr user_data) =>
+			GtkIconViewSignalDelegates.toggle_cursor_item handler = (GtkIconViewHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -215,7 +215,7 @@ public static class GtkIconViewSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkIconViewSignalStructs.UnselectAllSignal> obs) =>
 		{
-			GtkIconViewSignalDelegates.UnselectAll handler = (GtkIconViewHandle self, IntPtr user_data) =>
+			GtkIconViewSignalDelegates.unselect_all handler = (GtkIconViewHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -301,29 +301,37 @@ public struct UnselectAllSignal
 public static class GtkIconViewSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ActivateCursorItem([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool activate_cursor_item([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ItemActivated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, GtkTreePathHandle path, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, ref GtkMovementStep step, int count, bool extend, bool modify, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void item_activated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreePathHandle>))] GtkTreePathHandle path, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SelectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SelectCursorItem([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool move_cursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, ref GtkMovementStep step, int count, bool extend, bool modify, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SelectionChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ToggleCursorItem([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void select_all([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void UnselectAll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void select_cursor_item([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void selection_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void toggle_cursor_item([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void unselect_all([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconViewHandle>))] GtkIconViewHandle self, IntPtr user_data);
+
 }
 
 

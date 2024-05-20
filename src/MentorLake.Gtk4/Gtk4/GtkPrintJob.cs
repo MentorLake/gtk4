@@ -16,7 +16,7 @@ public static class GtkPrintJobSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPrintJobSignalStructs.StatusChangedSignal> obs) =>
 		{
-			GtkPrintJobSignalDelegates.StatusChanged handler = (GtkPrintJobHandle self, IntPtr user_data) =>
+			GtkPrintJobSignalDelegates.status_changed handler = (GtkPrintJobHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -53,8 +53,9 @@ public struct StatusChangedSignal
 public static class GtkPrintJobSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void StatusChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintJobHandle>))] GtkPrintJobHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void status_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPrintJobHandle>))] GtkPrintJobHandle self, IntPtr user_data);
+
 }
 
 
@@ -80,7 +81,7 @@ public static class GtkPrintJobHandleExtensions
 		return GtkPrintJobExterns.gtk_print_job_get_num_copies(job);
 	}
 
-	public static GtkPageRange[] GetPageRanges(this GtkPrintJobHandle job, out int n_ranges)
+	public static IntPtr GetPageRanges(this GtkPrintJobHandle job, out int n_ranges)
 	{
 		return GtkPrintJobExterns.gtk_print_job_get_page_ranges(job, out n_ranges);
 	}
@@ -242,7 +243,7 @@ internal class GtkPrintJobExterns
 	internal static extern int gtk_print_job_get_num_copies(GtkPrintJobHandle job);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkPageRange[] gtk_print_job_get_page_ranges(GtkPrintJobHandle job, out int n_ranges);
+	internal static extern IntPtr gtk_print_job_get_page_ranges(GtkPrintJobHandle job, out int n_ranges);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkPageSet gtk_print_job_get_page_set(GtkPrintJobHandle job);

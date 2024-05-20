@@ -11,7 +11,7 @@ public static class GtkRangeSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkRangeSignalStructs.AdjustBoundsSignal> obs) =>
 		{
-			GtkRangeSignalDelegates.AdjustBounds handler = (GtkRangeHandle self, double value, IntPtr user_data) =>
+			GtkRangeSignalDelegates.adjust_bounds handler = (GtkRangeHandle self, double value, IntPtr user_data) =>
 			{
 				
 
@@ -38,7 +38,7 @@ public static class GtkRangeSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkRangeSignalStructs.ChangeValueSignal> obs) =>
 		{
-			GtkRangeSignalDelegates.ChangeValue handler = (GtkRangeHandle self, ref GtkScrollType scroll, double value, IntPtr user_data) =>
+			GtkRangeSignalDelegates.change_value handler = (GtkRangeHandle self, ref GtkScrollType scroll, double value, IntPtr user_data) =>
 			{
 				
 
@@ -65,7 +65,7 @@ public static class GtkRangeSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkRangeSignalStructs.MoveSliderSignal> obs) =>
 		{
-			GtkRangeSignalDelegates.MoveSlider handler = (GtkRangeHandle self, ref GtkScrollType step, IntPtr user_data) =>
+			GtkRangeSignalDelegates.move_slider handler = (GtkRangeHandle self, ref GtkScrollType step, IntPtr user_data) =>
 			{
 				
 
@@ -92,7 +92,7 @@ public static class GtkRangeSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkRangeSignalStructs.ValueChangedSignal> obs) =>
 		{
-			GtkRangeSignalDelegates.ValueChanged handler = (GtkRangeHandle self, IntPtr user_data) =>
+			GtkRangeSignalDelegates.value_changed handler = (GtkRangeHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -152,17 +152,21 @@ public struct ValueChangedSignal
 public static class GtkRangeSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void AdjustBounds([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, double value, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void adjust_bounds([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, double value, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ChangeValue([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, ref GtkScrollType scroll, double value, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MoveSlider([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, ref GtkScrollType step, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool change_value([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, ref GtkScrollType scroll, double value, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ValueChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void move_slider([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, ref GtkScrollType step, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void value_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkRangeHandle>))] GtkRangeHandle self, IntPtr user_data);
+
 }
 
 

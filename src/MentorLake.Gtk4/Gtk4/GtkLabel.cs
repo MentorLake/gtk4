@@ -21,7 +21,7 @@ public static class GtkLabelSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkLabelSignalStructs.ActivateCurrentLinkSignal> obs) =>
 		{
-			GtkLabelSignalDelegates.ActivateCurrentLink handler = (GtkLabelHandle self, IntPtr user_data) =>
+			GtkLabelSignalDelegates.activate_current_link handler = (GtkLabelHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -48,7 +48,7 @@ public static class GtkLabelSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkLabelSignalStructs.ActivateLinkSignal> obs) =>
 		{
-			GtkLabelSignalDelegates.ActivateLink handler = (GtkLabelHandle self, string uri, IntPtr user_data) =>
+			GtkLabelSignalDelegates.activate_link handler = (GtkLabelHandle self, string uri, IntPtr user_data) =>
 			{
 				
 
@@ -75,7 +75,7 @@ public static class GtkLabelSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkLabelSignalStructs.CopyClipboardSignal> obs) =>
 		{
-			GtkLabelSignalDelegates.CopyClipboard handler = (GtkLabelHandle self, IntPtr user_data) =>
+			GtkLabelSignalDelegates.copy_clipboard handler = (GtkLabelHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -102,7 +102,7 @@ public static class GtkLabelSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkLabelSignalStructs.MoveCursorSignal> obs) =>
 		{
-			GtkLabelSignalDelegates.MoveCursor handler = (GtkLabelHandle self, ref GtkMovementStep step, int count, bool extend_selection, IntPtr user_data) =>
+			GtkLabelSignalDelegates.move_cursor handler = (GtkLabelHandle self, ref GtkMovementStep step, int count, bool extend_selection, IntPtr user_data) =>
 			{
 				
 
@@ -162,17 +162,21 @@ public struct MoveCursorSignal
 public static class GtkLabelSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ActivateCurrentLink([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate_current_link([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ActivateLink([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, string uri, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void CopyClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool activate_link([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, string uri, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, ref GtkMovementStep step, int count, bool extend_selection, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void copy_clipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void move_cursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLabelHandle>))] GtkLabelHandle self, ref GtkMovementStep step, int count, bool extend_selection, IntPtr user_data);
+
 }
 
 

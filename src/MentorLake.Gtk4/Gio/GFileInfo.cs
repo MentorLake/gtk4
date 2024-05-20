@@ -83,7 +83,7 @@ public static class GFileInfoHandleExtensions
 		return GFileInfoExterns.g_file_info_get_attribute_string(info, attribute);
 	}
 
-	public static string[] GetAttributeStringv(this GFileInfoHandle info, string attribute)
+	public static IntPtr GetAttributeStringv(this GFileInfoHandle info, string attribute)
 	{
 		return GFileInfoExterns.g_file_info_get_attribute_stringv(info, attribute);
 	}
@@ -204,7 +204,7 @@ public static class GFileInfoHandleExtensions
 		return GFileInfoExterns.g_file_info_has_namespace(info, name_space);
 	}
 
-	public static string[] ListAttributes(this GFileInfoHandle info, string name_space)
+	public static IntPtr ListAttributes(this GFileInfoHandle info, string name_space)
 	{
 		return GFileInfoExterns.g_file_info_list_attributes(info, name_space);
 	}
@@ -444,7 +444,7 @@ internal class GFileInfoExterns
 	internal static extern string g_file_info_get_attribute_string(GFileInfoHandle info, string attribute);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_file_info_get_attribute_stringv(GFileInfoHandle info, string attribute);
+	internal static extern IntPtr g_file_info_get_attribute_stringv(GFileInfoHandle info, string attribute);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern GFileAttributeType g_file_info_get_attribute_type(GFileInfoHandle info, string attribute);
@@ -516,7 +516,7 @@ internal class GFileInfoExterns
 	internal static extern bool g_file_info_has_namespace(GFileInfoHandle info, string name_space);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_file_info_list_attributes(GFileInfoHandle info, string name_space);
+	internal static extern IntPtr g_file_info_list_attributes(GFileInfoHandle info, string name_space);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_info_remove_attribute(GFileInfoHandle info, string attribute);

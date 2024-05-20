@@ -16,7 +16,7 @@ public static class GtkFlowBoxChildSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFlowBoxChildSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkFlowBoxChildSignalDelegates.Activate handler = (GtkFlowBoxChildHandle self, IntPtr user_data) =>
+			GtkFlowBoxChildSignalDelegates.activate handler = (GtkFlowBoxChildHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -53,8 +53,9 @@ public struct ActivateSignal
 public static class GtkFlowBoxChildSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxChildHandle>))] GtkFlowBoxChildHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFlowBoxChildHandle>))] GtkFlowBoxChildHandle self, IntPtr user_data);
+
 }
 
 

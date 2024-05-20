@@ -16,7 +16,7 @@ public static class GSignalGroupSignalExtensions
 	{
 		return Observable.Create((IObserver<GSignalGroupSignalStructs.BindSignal> obs) =>
 		{
-			GSignalGroupSignalDelegates.Bind handler = (GSignalGroupHandle self, GObjectHandle instance, IntPtr user_data) =>
+			GSignalGroupSignalDelegates.bind handler = (GSignalGroupHandle self, GObjectHandle instance, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GSignalGroupSignalExtensions
 	{
 		return Observable.Create((IObserver<GSignalGroupSignalStructs.UnbindSignal> obs) =>
 		{
-			GSignalGroupSignalDelegates.Unbind handler = (GSignalGroupHandle self, IntPtr user_data) =>
+			GSignalGroupSignalDelegates.unbind handler = (GSignalGroupHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -87,11 +87,13 @@ public struct UnbindSignal
 public static class GSignalGroupSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Bind([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSignalGroupHandle>))] GSignalGroupHandle self, GObjectHandle instance, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void bind([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSignalGroupHandle>))] GSignalGroupHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GObjectHandle>))] GObjectHandle instance, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Unbind([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSignalGroupHandle>))] GSignalGroupHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void unbind([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSignalGroupHandle>))] GSignalGroupHandle self, IntPtr user_data);
+
 }
 
 

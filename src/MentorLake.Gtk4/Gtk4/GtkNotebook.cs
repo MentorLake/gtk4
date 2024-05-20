@@ -16,7 +16,7 @@ public static class GtkNotebookSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkNotebookSignalStructs.ChangeCurrentPageSignal> obs) =>
 		{
-			GtkNotebookSignalDelegates.ChangeCurrentPage handler = (GtkNotebookHandle self, int @object, IntPtr user_data) =>
+			GtkNotebookSignalDelegates.change_current_page handler = (GtkNotebookHandle self, int @object, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkNotebookSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkNotebookSignalStructs.CreateWindowSignal> obs) =>
 		{
-			GtkNotebookSignalDelegates.CreateWindow handler = (GtkNotebookHandle self, GtkWidgetHandle page, IntPtr user_data) =>
+			GtkNotebookSignalDelegates.create_window handler = (GtkNotebookHandle self, GtkWidgetHandle page, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkNotebookSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkNotebookSignalStructs.FocusTabSignal> obs) =>
 		{
-			GtkNotebookSignalDelegates.FocusTab handler = (GtkNotebookHandle self, ref GtkNotebookTab @object, IntPtr user_data) =>
+			GtkNotebookSignalDelegates.focus_tab handler = (GtkNotebookHandle self, ref GtkNotebookTab @object, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GtkNotebookSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkNotebookSignalStructs.MoveFocusOutSignal> obs) =>
 		{
-			GtkNotebookSignalDelegates.MoveFocusOut handler = (GtkNotebookHandle self, GtkDirectionType @object, IntPtr user_data) =>
+			GtkNotebookSignalDelegates.move_focus_out handler = (GtkNotebookHandle self, GtkDirectionType @object, IntPtr user_data) =>
 			{
 				
 
@@ -124,7 +124,7 @@ public static class GtkNotebookSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkNotebookSignalStructs.PageAddedSignal> obs) =>
 		{
-			GtkNotebookSignalDelegates.PageAdded handler = (GtkNotebookHandle self, GtkWidgetHandle child, uint page_num, IntPtr user_data) =>
+			GtkNotebookSignalDelegates.page_added handler = (GtkNotebookHandle self, GtkWidgetHandle child, uint page_num, IntPtr user_data) =>
 			{
 				
 
@@ -151,7 +151,7 @@ public static class GtkNotebookSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkNotebookSignalStructs.PageRemovedSignal> obs) =>
 		{
-			GtkNotebookSignalDelegates.PageRemoved handler = (GtkNotebookHandle self, GtkWidgetHandle child, uint page_num, IntPtr user_data) =>
+			GtkNotebookSignalDelegates.page_removed handler = (GtkNotebookHandle self, GtkWidgetHandle child, uint page_num, IntPtr user_data) =>
 			{
 				
 
@@ -178,7 +178,7 @@ public static class GtkNotebookSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkNotebookSignalStructs.PageReorderedSignal> obs) =>
 		{
-			GtkNotebookSignalDelegates.PageReordered handler = (GtkNotebookHandle self, GtkWidgetHandle child, uint page_num, IntPtr user_data) =>
+			GtkNotebookSignalDelegates.page_reordered handler = (GtkNotebookHandle self, GtkWidgetHandle child, uint page_num, IntPtr user_data) =>
 			{
 				
 
@@ -205,7 +205,7 @@ public static class GtkNotebookSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkNotebookSignalStructs.ReorderTabSignal> obs) =>
 		{
-			GtkNotebookSignalDelegates.ReorderTab handler = (GtkNotebookHandle self, GtkDirectionType @object, bool p0, IntPtr user_data) =>
+			GtkNotebookSignalDelegates.reorder_tab handler = (GtkNotebookHandle self, GtkDirectionType @object, bool p0, IntPtr user_data) =>
 			{
 				
 
@@ -232,7 +232,7 @@ public static class GtkNotebookSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkNotebookSignalStructs.SelectPageSignal> obs) =>
 		{
-			GtkNotebookSignalDelegates.SelectPage handler = (GtkNotebookHandle self, bool @object, IntPtr user_data) =>
+			GtkNotebookSignalDelegates.select_page handler = (GtkNotebookHandle self, bool @object, IntPtr user_data) =>
 			{
 				
 
@@ -259,7 +259,7 @@ public static class GtkNotebookSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkNotebookSignalStructs.SwitchPageSignal> obs) =>
 		{
-			GtkNotebookSignalDelegates.SwitchPage handler = (GtkNotebookHandle self, GtkWidgetHandle page, uint page_num, IntPtr user_data) =>
+			GtkNotebookSignalDelegates.switch_page handler = (GtkNotebookHandle self, GtkWidgetHandle page, uint page_num, IntPtr user_data) =>
 			{
 				
 
@@ -370,35 +370,45 @@ public struct SwitchPageSignal
 public static class GtkNotebookSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ChangeCurrentPage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, int @object, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool change_current_page([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, int @object, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate GtkNotebookHandle CreateWindow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, GtkWidgetHandle page, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool FocusTab([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, ref GtkNotebookTab @object, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate GtkNotebookHandle create_window([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle page, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MoveFocusOut([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, GtkDirectionType @object, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PageAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, GtkWidgetHandle child, uint page_num, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool focus_tab([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, ref GtkNotebookTab @object, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PageRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, GtkWidgetHandle child, uint page_num, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PageReordered([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, GtkWidgetHandle child, uint page_num, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void move_focus_out([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, GtkDirectionType @object, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ReorderTab([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, GtkDirectionType @object, bool p0, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool SelectPage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, bool @object, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void page_added([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle child, uint page_num, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SwitchPage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, GtkWidgetHandle page, uint page_num, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void page_removed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle child, uint page_num, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void page_reordered([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle child, uint page_num, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool reorder_tab([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, GtkDirectionType @object, bool p0, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool select_page([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, bool @object, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void switch_page([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNotebookHandle>))] GtkNotebookHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle page, uint page_num, IntPtr user_data);
+
 }
 
 

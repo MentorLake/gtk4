@@ -16,7 +16,7 @@ public static class GdkDisplayManagerSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkDisplayManagerSignalStructs.DisplayOpenedSignal> obs) =>
 		{
-			GdkDisplayManagerSignalDelegates.DisplayOpened handler = (GdkDisplayManagerHandle self, GdkDisplayHandle display, IntPtr user_data) =>
+			GdkDisplayManagerSignalDelegates.display_opened handler = (GdkDisplayManagerHandle self, GdkDisplayHandle display, IntPtr user_data) =>
 			{
 				
 
@@ -54,8 +54,9 @@ public struct DisplayOpenedSignal
 public static class GdkDisplayManagerSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DisplayOpened([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayManagerHandle>))] GdkDisplayManagerHandle self, GdkDisplayHandle display, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void display_opened([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayManagerHandle>))] GdkDisplayManagerHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDisplayHandle>))] GdkDisplayHandle display, IntPtr user_data);
+
 }
 
 

@@ -16,7 +16,7 @@ public static class GtkSwitchSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSwitchSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkSwitchSignalDelegates.Activate handler = (GtkSwitchHandle self, IntPtr user_data) =>
+			GtkSwitchSignalDelegates.activate handler = (GtkSwitchHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkSwitchSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkSwitchSignalStructs.StateSetSignal> obs) =>
 		{
-			GtkSwitchSignalDelegates.StateSet handler = (GtkSwitchHandle self, bool state, IntPtr user_data) =>
+			GtkSwitchSignalDelegates.state_set handler = (GtkSwitchHandle self, bool state, IntPtr user_data) =>
 			{
 				
 
@@ -88,11 +88,13 @@ public struct StateSetSignal
 public static class GtkSwitchSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSwitchHandle>))] GtkSwitchHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSwitchHandle>))] GtkSwitchHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool StateSet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSwitchHandle>))] GtkSwitchHandle self, bool state, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool state_set([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkSwitchHandle>))] GtkSwitchHandle self, bool state, IntPtr user_data);
+
 }
 
 

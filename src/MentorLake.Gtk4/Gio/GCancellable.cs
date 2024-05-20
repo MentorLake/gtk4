@@ -21,7 +21,7 @@ public static class GCancellableSignalExtensions
 	{
 		return Observable.Create((IObserver<GCancellableSignalStructs.CancelledSignal> obs) =>
 		{
-			GCancellableSignalDelegates.Cancelled handler = (GCancellableHandle self, IntPtr user_data) =>
+			GCancellableSignalDelegates.cancelled handler = (GCancellableHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -58,8 +58,9 @@ public struct CancelledSignal
 public static class GCancellableSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Cancelled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GCancellableHandle>))] GCancellableHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void cancelled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GCancellableHandle>))] GCancellableHandle self, IntPtr user_data);
+
 }
 
 

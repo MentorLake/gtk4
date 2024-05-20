@@ -11,7 +11,7 @@ public static class GDBusInterfaceSkeletonSignalExtensions
 	{
 		return Observable.Create((IObserver<GDBusInterfaceSkeletonSignalStructs.GAuthorizeMethodSignal> obs) =>
 		{
-			GDBusInterfaceSkeletonSignalDelegates.GAuthorizeMethod handler = (GDBusInterfaceSkeletonHandle self, GDBusMethodInvocationHandle invocation, IntPtr user_data) =>
+			GDBusInterfaceSkeletonSignalDelegates.g_authorize_method handler = (GDBusInterfaceSkeletonHandle self, GDBusMethodInvocationHandle invocation, IntPtr user_data) =>
 			{
 				
 
@@ -50,8 +50,9 @@ public struct GAuthorizeMethodSignal
 public static class GDBusInterfaceSkeletonSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool GAuthorizeMethod([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusInterfaceSkeletonHandle>))] GDBusInterfaceSkeletonHandle self, GDBusMethodInvocationHandle invocation, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool g_authorize_method([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusInterfaceSkeletonHandle>))] GDBusInterfaceSkeletonHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusMethodInvocationHandle>))] GDBusMethodInvocationHandle invocation, IntPtr user_data);
+
 }
 
 

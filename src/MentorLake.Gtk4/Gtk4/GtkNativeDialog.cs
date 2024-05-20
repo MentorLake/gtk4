@@ -11,7 +11,7 @@ public static class GtkNativeDialogSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkNativeDialogSignalStructs.ResponseSignal> obs) =>
 		{
-			GtkNativeDialogSignalDelegates.Response handler = (GtkNativeDialogHandle self, int response_id, IntPtr user_data) =>
+			GtkNativeDialogSignalDelegates.response handler = (GtkNativeDialogHandle self, int response_id, IntPtr user_data) =>
 			{
 				
 
@@ -49,8 +49,9 @@ public struct ResponseSignal
 public static class GtkNativeDialogSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Response([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNativeDialogHandle>))] GtkNativeDialogHandle self, int response_id, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void response([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkNativeDialogHandle>))] GtkNativeDialogHandle self, int response_id, IntPtr user_data);
+
 }
 
 

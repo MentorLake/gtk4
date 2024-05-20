@@ -58,7 +58,7 @@ public static class PangoFontHandleExtensions
 		return PangoFontExterns.pango_font_get_hb_font(font);
 	}
 
-	public static PangoLanguageHandle[] GetLanguages(this PangoFontHandle font)
+	public static IntPtr GetLanguages(this PangoFontHandle font)
 	{
 		return PangoFontExterns.pango_font_get_languages(font);
 	}
@@ -107,7 +107,7 @@ internal class PangoFontExterns
 	internal static extern hb_font_tHandle pango_font_get_hb_font(PangoFontHandle font);
 
 	[DllImport(Libraries.Pango)]
-	internal static extern PangoLanguageHandle[] pango_font_get_languages(PangoFontHandle font);
+	internal static extern IntPtr pango_font_get_languages(PangoFontHandle font);
 
 	[DllImport(Libraries.Pango)]
 	internal static extern PangoFontMetricsHandle pango_font_get_metrics(PangoFontHandle font, PangoLanguageHandle language);

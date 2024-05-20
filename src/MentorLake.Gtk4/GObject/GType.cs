@@ -2,5 +2,5 @@ namespace MentorLake.Gtk4.GObject;
 
 public struct GType
 {
-	public int Value;
+	public UIntPtr Value;
 }

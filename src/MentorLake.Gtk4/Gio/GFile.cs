@@ -250,7 +250,7 @@ public static class GFileHandleExtensions
 		return GFileExterns.g_file_load_bytes_finish(file, result, out etag_out, out error);
 	}
 
-	public static bool LoadContents(this GFileHandle file, GCancellableHandle cancellable, out string contents, out int length, out string etag_out, out GErrorHandle error)
+	public static bool LoadContents(this GFileHandle file, GCancellableHandle cancellable, out string contents, out UIntPtr length, out string etag_out, out GErrorHandle error)
 	{
 		return GFileExterns.g_file_load_contents(file, cancellable, out contents, out length, out etag_out, out error);
 	}
@@ -261,7 +261,7 @@ public static class GFileHandleExtensions
 		return file;
 	}
 
-	public static bool LoadContentsFinish(this GFileHandle file, GAsyncResultHandle res, out string contents, out int length, out string etag_out, out GErrorHandle error)
+	public static bool LoadContentsFinish(this GFileHandle file, GAsyncResultHandle res, out string contents, out UIntPtr length, out string etag_out, out GErrorHandle error)
 	{
 		return GFileExterns.g_file_load_contents_finish(file, res, out contents, out length, out etag_out, out error);
 	}
@@ -272,7 +272,7 @@ public static class GFileHandleExtensions
 		return file;
 	}
 
-	public static bool LoadPartialContentsFinish(this GFileHandle file, GAsyncResultHandle res, out string contents, out int length, out string etag_out, out GErrorHandle error)
+	public static bool LoadPartialContentsFinish(this GFileHandle file, GAsyncResultHandle res, out string contents, out UIntPtr length, out string etag_out, out GErrorHandle error)
 	{
 		return GFileExterns.g_file_load_partial_contents_finish(file, res, out contents, out length, out etag_out, out error);
 	}
@@ -510,12 +510,12 @@ public static class GFileHandleExtensions
 		return file;
 	}
 
-	public static bool ReplaceContents(this GFileHandle file, string contents, int length, string etag, bool make_backup, GFileCreateFlags flags, out string new_etag, GCancellableHandle cancellable, out GErrorHandle error)
+	public static bool ReplaceContents(this GFileHandle file, string contents, UIntPtr length, string etag, bool make_backup, GFileCreateFlags flags, out string new_etag, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GFileExterns.g_file_replace_contents(file, contents, length, etag, make_backup, flags, out new_etag, cancellable, out error);
 	}
 
-	public static GFileHandle ReplaceContentsAsync(this GFileHandle file, string contents, int length, string etag, bool make_backup, GFileCreateFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	public static GFileHandle ReplaceContentsAsync(this GFileHandle file, string contents, UIntPtr length, string etag, bool make_backup, GFileCreateFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
 	{
 		GFileExterns.g_file_replace_contents_async(file, contents, length, etag, make_backup, flags, cancellable, callback, user_data);
 		return file;
@@ -833,19 +833,19 @@ internal class GFileExterns
 	internal static extern GBytesHandle g_file_load_bytes_finish(GFileHandle file, GAsyncResultHandle result, out string etag_out, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern bool g_file_load_contents(GFileHandle file, GCancellableHandle cancellable, out string contents, out int length, out string etag_out, out GErrorHandle error);
+	internal static extern bool g_file_load_contents(GFileHandle file, GCancellableHandle cancellable, out string contents, out UIntPtr length, out string etag_out, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_load_contents_async(GFileHandle file, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern bool g_file_load_contents_finish(GFileHandle file, GAsyncResultHandle res, out string contents, out int length, out string etag_out, out GErrorHandle error);
+	internal static extern bool g_file_load_contents_finish(GFileHandle file, GAsyncResultHandle res, out string contents, out UIntPtr length, out string etag_out, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_load_partial_contents_async(GFileHandle file, GCancellableHandle cancellable, GFileReadMoreCallback read_more_callback, GAsyncReadyCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern bool g_file_load_partial_contents_finish(GFileHandle file, GAsyncResultHandle res, out string contents, out int length, out string etag_out, out GErrorHandle error);
+	internal static extern bool g_file_load_partial_contents_finish(GFileHandle file, GAsyncResultHandle res, out string contents, out UIntPtr length, out string etag_out, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_file_make_directory(GFileHandle file, GCancellableHandle cancellable, out GErrorHandle error);
@@ -980,10 +980,10 @@ internal class GFileExterns
 	internal static extern void g_file_replace_async(GFileHandle file, string etag, bool make_backup, GFileCreateFlags flags, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern bool g_file_replace_contents(GFileHandle file, string contents, int length, string etag, bool make_backup, GFileCreateFlags flags, out string new_etag, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern bool g_file_replace_contents(GFileHandle file, string contents, UIntPtr length, string etag, bool make_backup, GFileCreateFlags flags, out string new_etag, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern void g_file_replace_contents_async(GFileHandle file, string contents, int length, string etag, bool make_backup, GFileCreateFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+	internal static extern void g_file_replace_contents_async(GFileHandle file, string contents, UIntPtr length, string etag, bool make_backup, GFileCreateFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_file_replace_contents_bytes_async(GFileHandle file, GBytesHandle contents, string etag, bool make_backup, GFileCreateFlags flags, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);

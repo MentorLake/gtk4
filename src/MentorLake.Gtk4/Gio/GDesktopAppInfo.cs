@@ -22,7 +22,7 @@ public class GDesktopAppInfoHandle : GObjectHandle, GAppInfoHandle
 		return GDesktopAppInfoExterns.g_desktop_app_info_get_implementations(@interface);
 	}
 
-	public static string[][] Search(string search_string)
+	public static IntPtr Search(string search_string)
 	{
 		return GDesktopAppInfoExterns.g_desktop_app_info_search(search_string);
 	}
@@ -66,7 +66,7 @@ public static class GDesktopAppInfoHandleExtensions
 		return GDesktopAppInfoExterns.g_desktop_app_info_get_is_hidden(info);
 	}
 
-	public static string GetKeywords(this GDesktopAppInfoHandle info)
+	public static IntPtr GetKeywords(this GDesktopAppInfoHandle info)
 	{
 		return GDesktopAppInfoExterns.g_desktop_app_info_get_keywords(info);
 	}
@@ -96,7 +96,7 @@ public static class GDesktopAppInfoHandleExtensions
 		return GDesktopAppInfoExterns.g_desktop_app_info_get_string(info, key);
 	}
 
-	public static string[] GetStringList(this GDesktopAppInfoHandle info, string key, out int length)
+	public static IntPtr GetStringList(this GDesktopAppInfoHandle info, string key, out UIntPtr length)
 	{
 		return GDesktopAppInfoExterns.g_desktop_app_info_get_string_list(info, key, out length);
 	}
@@ -122,7 +122,7 @@ public static class GDesktopAppInfoHandleExtensions
 		return GDesktopAppInfoExterns.g_desktop_app_info_launch_uris_as_manager_with_fds(appinfo, uris, launch_context, spawn_flags, user_setup, user_setup_data, pid_callback, pid_callback_data, stdin_fd, stdout_fd, stderr_fd, out error);
 	}
 
-	public static string ListActions(this GDesktopAppInfoHandle info)
+	public static IntPtr ListActions(this GDesktopAppInfoHandle info)
 	{
 		return GDesktopAppInfoExterns.g_desktop_app_info_list_actions(info);
 	}
@@ -159,7 +159,7 @@ internal class GDesktopAppInfoExterns
 	internal static extern bool g_desktop_app_info_get_is_hidden(GDesktopAppInfoHandle info);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string g_desktop_app_info_get_keywords(GDesktopAppInfoHandle info);
+	internal static extern IntPtr g_desktop_app_info_get_keywords(GDesktopAppInfoHandle info);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_desktop_app_info_get_locale_string(GDesktopAppInfoHandle info, string key);
@@ -177,7 +177,7 @@ internal class GDesktopAppInfoExterns
 	internal static extern string g_desktop_app_info_get_string(GDesktopAppInfoHandle info, string key);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_desktop_app_info_get_string_list(GDesktopAppInfoHandle info, string key, out int length);
+	internal static extern IntPtr g_desktop_app_info_get_string_list(GDesktopAppInfoHandle info, string key, out UIntPtr length);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_desktop_app_info_has_key(GDesktopAppInfoHandle info, string key);
@@ -192,13 +192,13 @@ internal class GDesktopAppInfoExterns
 	internal static extern bool g_desktop_app_info_launch_uris_as_manager_with_fds(GDesktopAppInfoHandle appinfo, GListHandle uris, GAppLaunchContextHandle launch_context, GSpawnFlags spawn_flags, GSpawnChildSetupFunc user_setup, IntPtr user_setup_data, GDesktopAppLaunchCallback pid_callback, IntPtr pid_callback_data, int stdin_fd, int stdout_fd, int stderr_fd, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string g_desktop_app_info_list_actions(GDesktopAppInfoHandle info);
+	internal static extern IntPtr g_desktop_app_info_list_actions(GDesktopAppInfoHandle info);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_desktop_app_info_get_implementations(string @interface);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[][] g_desktop_app_info_search(string search_string);
+	internal static extern IntPtr g_desktop_app_info_search(string search_string);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_desktop_app_info_set_desktop_env(string desktop_env);

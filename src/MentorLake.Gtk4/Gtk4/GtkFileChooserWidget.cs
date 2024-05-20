@@ -16,7 +16,7 @@ public static class GtkFileChooserWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFileChooserWidgetSignalStructs.DesktopFolderSignal> obs) =>
 		{
-			GtkFileChooserWidgetSignalDelegates.DesktopFolder handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
+			GtkFileChooserWidgetSignalDelegates.desktop_folder handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkFileChooserWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFileChooserWidgetSignalStructs.DownFolderSignal> obs) =>
 		{
-			GtkFileChooserWidgetSignalDelegates.DownFolder handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
+			GtkFileChooserWidgetSignalDelegates.down_folder handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkFileChooserWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFileChooserWidgetSignalStructs.HomeFolderSignal> obs) =>
 		{
-			GtkFileChooserWidgetSignalDelegates.HomeFolder handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
+			GtkFileChooserWidgetSignalDelegates.home_folder handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GtkFileChooserWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFileChooserWidgetSignalStructs.LocationPopupSignal> obs) =>
 		{
-			GtkFileChooserWidgetSignalDelegates.LocationPopup handler = (GtkFileChooserWidgetHandle self, string path, IntPtr user_data) =>
+			GtkFileChooserWidgetSignalDelegates.location_popup handler = (GtkFileChooserWidgetHandle self, string path, IntPtr user_data) =>
 			{
 				
 
@@ -124,7 +124,7 @@ public static class GtkFileChooserWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFileChooserWidgetSignalStructs.LocationPopupOnPasteSignal> obs) =>
 		{
-			GtkFileChooserWidgetSignalDelegates.LocationPopupOnPaste handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
+			GtkFileChooserWidgetSignalDelegates.location_popup_on_paste handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -151,7 +151,7 @@ public static class GtkFileChooserWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFileChooserWidgetSignalStructs.LocationTogglePopupSignal> obs) =>
 		{
-			GtkFileChooserWidgetSignalDelegates.LocationTogglePopup handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
+			GtkFileChooserWidgetSignalDelegates.location_toggle_popup handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -178,7 +178,7 @@ public static class GtkFileChooserWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFileChooserWidgetSignalStructs.PlacesShortcutSignal> obs) =>
 		{
-			GtkFileChooserWidgetSignalDelegates.PlacesShortcut handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
+			GtkFileChooserWidgetSignalDelegates.places_shortcut handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -205,7 +205,7 @@ public static class GtkFileChooserWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFileChooserWidgetSignalStructs.QuickBookmarkSignal> obs) =>
 		{
-			GtkFileChooserWidgetSignalDelegates.QuickBookmark handler = (GtkFileChooserWidgetHandle self, int bookmark_index, IntPtr user_data) =>
+			GtkFileChooserWidgetSignalDelegates.quick_bookmark handler = (GtkFileChooserWidgetHandle self, int bookmark_index, IntPtr user_data) =>
 			{
 				
 
@@ -232,7 +232,7 @@ public static class GtkFileChooserWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFileChooserWidgetSignalStructs.RecentShortcutSignal> obs) =>
 		{
-			GtkFileChooserWidgetSignalDelegates.RecentShortcut handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
+			GtkFileChooserWidgetSignalDelegates.recent_shortcut handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -259,7 +259,7 @@ public static class GtkFileChooserWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFileChooserWidgetSignalStructs.SearchShortcutSignal> obs) =>
 		{
-			GtkFileChooserWidgetSignalDelegates.SearchShortcut handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
+			GtkFileChooserWidgetSignalDelegates.search_shortcut handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -286,7 +286,7 @@ public static class GtkFileChooserWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFileChooserWidgetSignalStructs.ShowHiddenSignal> obs) =>
 		{
-			GtkFileChooserWidgetSignalDelegates.ShowHidden handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
+			GtkFileChooserWidgetSignalDelegates.show_hidden handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -313,7 +313,7 @@ public static class GtkFileChooserWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFileChooserWidgetSignalStructs.UpFolderSignal> obs) =>
 		{
-			GtkFileChooserWidgetSignalDelegates.UpFolder handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
+			GtkFileChooserWidgetSignalDelegates.up_folder handler = (GtkFileChooserWidgetHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -418,41 +418,53 @@ public struct UpFolderSignal
 public static class GtkFileChooserWidgetSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DesktopFolder([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void desktop_folder([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DownFolder([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void HomeFolder([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void down_folder([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void LocationPopup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, string path, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void LocationPopupOnPaste([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void home_folder([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void LocationTogglePopup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PlacesShortcut([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void location_popup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, string path, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void QuickBookmark([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, int bookmark_index, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void RecentShortcut([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void location_popup_on_paste([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SearchShortcut([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ShowHidden([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void location_toggle_popup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void UpFolder([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void places_shortcut([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void quick_bookmark([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, int bookmark_index, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void recent_shortcut([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void search_shortcut([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void show_hidden([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void up_folder([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFileChooserWidgetHandle>))] GtkFileChooserWidgetHandle self, IntPtr user_data);
+
 }
 
 

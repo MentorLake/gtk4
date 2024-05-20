@@ -16,7 +16,7 @@ public static class GtkDragSourceSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkDragSourceSignalStructs.DragBeginSignal> obs) =>
 		{
-			GtkDragSourceSignalDelegates.DragBegin handler = (GtkDragSourceHandle self, GdkDragHandle drag, IntPtr user_data) =>
+			GtkDragSourceSignalDelegates.drag_begin handler = (GtkDragSourceHandle self, GdkDragHandle drag, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkDragSourceSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkDragSourceSignalStructs.DragCancelSignal> obs) =>
 		{
-			GtkDragSourceSignalDelegates.DragCancel handler = (GtkDragSourceHandle self, GdkDragHandle drag, ref GdkDragCancelReason reason, IntPtr user_data) =>
+			GtkDragSourceSignalDelegates.drag_cancel handler = (GtkDragSourceHandle self, GdkDragHandle drag, ref GdkDragCancelReason reason, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkDragSourceSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkDragSourceSignalStructs.DragEndSignal> obs) =>
 		{
-			GtkDragSourceSignalDelegates.DragEnd handler = (GtkDragSourceHandle self, GdkDragHandle drag, bool delete_data, IntPtr user_data) =>
+			GtkDragSourceSignalDelegates.drag_end handler = (GtkDragSourceHandle self, GdkDragHandle drag, bool delete_data, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GtkDragSourceSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkDragSourceSignalStructs.PrepareSignal> obs) =>
 		{
-			GtkDragSourceSignalDelegates.Prepare handler = (GtkDragSourceHandle self, double x, double y, IntPtr user_data) =>
+			GtkDragSourceSignalDelegates.prepare handler = (GtkDragSourceHandle self, double x, double y, IntPtr user_data) =>
 			{
 				
 
@@ -161,17 +161,21 @@ public struct PrepareSignal
 public static class GtkDragSourceSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DragBegin([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, GdkDragHandle drag, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void drag_begin([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle drag, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool DragCancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, GdkDragHandle drag, ref GdkDragCancelReason reason, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DragEnd([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, GdkDragHandle drag, bool delete_data, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool drag_cancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle drag, ref GdkDragCancelReason reason, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate GdkContentProviderHandle Prepare([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, double x, double y, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void drag_end([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDragHandle>))] GdkDragHandle drag, bool delete_data, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate GdkContentProviderHandle prepare([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDragSourceHandle>))] GtkDragSourceHandle self, double x, double y, IntPtr user_data);
+
 }
 
 

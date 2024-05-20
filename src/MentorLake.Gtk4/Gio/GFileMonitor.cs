@@ -11,7 +11,7 @@ public static class GFileMonitorSignalExtensions
 	{
 		return Observable.Create((IObserver<GFileMonitorSignalStructs.ChangedSignal> obs) =>
 		{
-			GFileMonitorSignalDelegates.Changed handler = (GFileMonitorHandle self, GFileHandle file, GFileHandle other_file, GFileMonitorEvent event_type, IntPtr user_data) =>
+			GFileMonitorSignalDelegates.changed handler = (GFileMonitorHandle self, GFileHandle file, GFileHandle other_file, GFileMonitorEvent event_type, IntPtr user_data) =>
 			{
 
 
@@ -51,8 +51,9 @@ public struct ChangedSignal
 public static class GFileMonitorSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GFileMonitorHandle>))] GFileMonitorHandle self, GFileHandle file, GFileHandle other_file, GFileMonitorEvent event_type, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GFileMonitorHandle>))] GFileMonitorHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GFileHandleImpl>))] GFileHandle file, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GFileHandleImpl>))] GFileHandle other_file, GFileMonitorEvent event_type, IntPtr user_data);
+
 }
 
 

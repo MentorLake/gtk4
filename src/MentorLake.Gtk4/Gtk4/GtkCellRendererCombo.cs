@@ -16,7 +16,7 @@ public static class GtkCellRendererComboSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCellRendererComboSignalStructs.ChangedSignal> obs) =>
 		{
-			GtkCellRendererComboSignalDelegates.Changed handler = (GtkCellRendererComboHandle self, string path_string, GtkTreeIterHandle new_iter, IntPtr user_data) =>
+			GtkCellRendererComboSignalDelegates.changed handler = (GtkCellRendererComboHandle self, string path_string, GtkTreeIterHandle new_iter, IntPtr user_data) =>
 			{
 				
 
@@ -55,8 +55,9 @@ public struct ChangedSignal
 public static class GtkCellRendererComboSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererComboHandle>))] GtkCellRendererComboHandle self, string path_string, GtkTreeIterHandle new_iter, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererComboHandle>))] GtkCellRendererComboHandle self, string path_string, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeIterHandle>))] GtkTreeIterHandle new_iter, IntPtr user_data);
+
 }
 
 

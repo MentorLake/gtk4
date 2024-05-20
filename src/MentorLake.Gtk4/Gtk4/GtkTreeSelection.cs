@@ -11,7 +11,7 @@ public static class GtkTreeSelectionSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTreeSelectionSignalStructs.ChangedSignal> obs) =>
 		{
-			GtkTreeSelectionSignalDelegates.Changed handler = (GtkTreeSelectionHandle self, IntPtr user_data) =>
+			GtkTreeSelectionSignalDelegates.changed handler = (GtkTreeSelectionHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -48,8 +48,9 @@ public struct ChangedSignal
 public static class GtkTreeSelectionSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeSelectionHandle>))] GtkTreeSelectionHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeSelectionHandle>))] GtkTreeSelectionHandle self, IntPtr user_data);
+
 }
 
 

@@ -16,7 +16,7 @@ public static class GtkOverlaySignalExtensions
 	{
 		return Observable.Create((IObserver<GtkOverlaySignalStructs.GetChildPositionSignal> obs) =>
 		{
-			GtkOverlaySignalDelegates.GetChildPosition handler = (GtkOverlayHandle self, GtkWidgetHandle widget, out GdkRectangle allocation, IntPtr user_data) =>
+			GtkOverlaySignalDelegates.get_child_position handler = (GtkOverlayHandle self, GtkWidgetHandle widget, out GdkRectangle allocation, IntPtr user_data) =>
 			{
 				allocation = default;
 
@@ -56,8 +56,9 @@ public struct GetChildPositionSignal
 public static class GtkOverlaySignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool GetChildPosition([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkOverlayHandle>))] GtkOverlayHandle self, GtkWidgetHandle widget, out GdkRectangle allocation, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool get_child_position([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkOverlayHandle>))] GtkOverlayHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWidgetHandle>))] GtkWidgetHandle widget, out GdkRectangle allocation, IntPtr user_data);
+
 }
 
 

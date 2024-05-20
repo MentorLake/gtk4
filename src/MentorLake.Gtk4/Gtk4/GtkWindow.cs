@@ -46,7 +46,7 @@ public static class GtkWindowSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWindowSignalStructs.ActivateDefaultSignal> obs) =>
 		{
-			GtkWindowSignalDelegates.ActivateDefault handler = (GtkWindowHandle self, IntPtr user_data) =>
+			GtkWindowSignalDelegates.activate_default handler = (GtkWindowHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -73,7 +73,7 @@ public static class GtkWindowSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWindowSignalStructs.ActivateFocusSignal> obs) =>
 		{
-			GtkWindowSignalDelegates.ActivateFocus handler = (GtkWindowHandle self, IntPtr user_data) =>
+			GtkWindowSignalDelegates.activate_focus handler = (GtkWindowHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -100,7 +100,7 @@ public static class GtkWindowSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWindowSignalStructs.CloseRequestSignal> obs) =>
 		{
-			GtkWindowSignalDelegates.CloseRequest handler = (GtkWindowHandle self, IntPtr user_data) =>
+			GtkWindowSignalDelegates.close_request handler = (GtkWindowHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -127,7 +127,7 @@ public static class GtkWindowSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWindowSignalStructs.EnableDebuggingSignal> obs) =>
 		{
-			GtkWindowSignalDelegates.EnableDebugging handler = (GtkWindowHandle self, bool toggle, IntPtr user_data) =>
+			GtkWindowSignalDelegates.enable_debugging handler = (GtkWindowHandle self, bool toggle, IntPtr user_data) =>
 			{
 				
 
@@ -154,7 +154,7 @@ public static class GtkWindowSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkWindowSignalStructs.KeysChangedSignal> obs) =>
 		{
-			GtkWindowSignalDelegates.KeysChanged handler = (GtkWindowHandle self, IntPtr user_data) =>
+			GtkWindowSignalDelegates.keys_changed handler = (GtkWindowHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -218,20 +218,25 @@ public struct KeysChangedSignal
 public static class GtkWindowSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ActivateDefault([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate_default([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ActivateFocus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool CloseRequest([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate_focus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool EnableDebugging([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle self, bool toggle, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void KeysChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool close_request([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool enable_debugging([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle self, bool toggle, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void keys_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle self, IntPtr user_data);
+
 }
 
 
@@ -771,6 +776,7 @@ internal class GtkWindowExterns
 	internal static extern void gtk_show_uri(GtkWindowHandle parent, string uri, uint timestamp);
 
 	[DllImport(Libraries.Gtk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gtk_window_get_default_icon_name();
 
 	[DllImport(Libraries.Gtk4)]

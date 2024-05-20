@@ -11,7 +11,7 @@ public static class GtkCellAreaSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCellAreaSignalStructs.AddEditableSignal> obs) =>
 		{
-			GtkCellAreaSignalDelegates.AddEditable handler = (GtkCellAreaHandle self, GtkCellRendererHandle renderer, GtkCellEditableHandle editable, GdkRectangleHandle cell_area, string path, IntPtr user_data) =>
+			GtkCellAreaSignalDelegates.add_editable handler = (GtkCellAreaHandle self, GtkCellRendererHandle renderer, GtkCellEditableHandle editable, GdkRectangleHandle cell_area, string path, IntPtr user_data) =>
 			{
 				
 
@@ -38,7 +38,7 @@ public static class GtkCellAreaSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCellAreaSignalStructs.ApplyAttributesSignal> obs) =>
 		{
-			GtkCellAreaSignalDelegates.ApplyAttributes handler = (GtkCellAreaHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, bool is_expander, bool is_expanded, IntPtr user_data) =>
+			GtkCellAreaSignalDelegates.apply_attributes handler = (GtkCellAreaHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, bool is_expander, bool is_expanded, IntPtr user_data) =>
 			{
 				
 
@@ -65,7 +65,7 @@ public static class GtkCellAreaSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCellAreaSignalStructs.FocusChangedSignal> obs) =>
 		{
-			GtkCellAreaSignalDelegates.FocusChanged handler = (GtkCellAreaHandle self, GtkCellRendererHandle renderer, string path, IntPtr user_data) =>
+			GtkCellAreaSignalDelegates.focus_changed handler = (GtkCellAreaHandle self, GtkCellRendererHandle renderer, string path, IntPtr user_data) =>
 			{
 				
 
@@ -92,7 +92,7 @@ public static class GtkCellAreaSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkCellAreaSignalStructs.RemoveEditableSignal> obs) =>
 		{
-			GtkCellAreaSignalDelegates.RemoveEditable handler = (GtkCellAreaHandle self, GtkCellRendererHandle renderer, GtkCellEditableHandle editable, IntPtr user_data) =>
+			GtkCellAreaSignalDelegates.remove_editable handler = (GtkCellAreaHandle self, GtkCellRendererHandle renderer, GtkCellEditableHandle editable, IntPtr user_data) =>
 			{
 				
 
@@ -159,17 +159,21 @@ public struct RemoveEditableSignal
 public static class GtkCellAreaSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void AddEditable([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, GtkCellRendererHandle renderer, GtkCellEditableHandle editable, GdkRectangleHandle cell_area, string path, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void add_editable([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererHandle>))] GtkCellRendererHandle renderer, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellEditableHandleImpl>))] GtkCellEditableHandle editable, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkRectangleHandle>))] GdkRectangleHandle cell_area, string path, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ApplyAttributes([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, bool is_expander, bool is_expanded, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void FocusChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, GtkCellRendererHandle renderer, string path, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void apply_attributes([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeModelHandleImpl>))] GtkTreeModelHandle model, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeIterHandle>))] GtkTreeIterHandle iter, bool is_expander, bool is_expanded, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void RemoveEditable([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, GtkCellRendererHandle renderer, GtkCellEditableHandle editable, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void focus_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererHandle>))] GtkCellRendererHandle renderer, string path, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void remove_editable([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellAreaHandle>))] GtkCellAreaHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellRendererHandle>))] GtkCellRendererHandle renderer, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkCellEditableHandleImpl>))] GtkCellEditableHandle editable, IntPtr user_data);
+
 }
 
 

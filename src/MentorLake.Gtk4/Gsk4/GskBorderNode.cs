@@ -11,7 +11,7 @@ public class GskBorderNodeHandle : GskRenderNodeHandle
 
 public static class GskBorderNodeHandleExtensions
 {
-	public static GdkRGBA[] GetColors(this GskBorderNodeHandle node)
+	public static IntPtr GetColors(this GskBorderNodeHandle node)
 	{
 		return GskBorderNodeExterns.gsk_border_node_get_colors(node);
 	}
@@ -21,7 +21,7 @@ public static class GskBorderNodeHandleExtensions
 		return GskBorderNodeExterns.gsk_border_node_get_outline(node);
 	}
 
-	public static float[] GetWidths(this GskBorderNodeHandle node)
+	public static IntPtr GetWidths(this GskBorderNodeHandle node)
 	{
 		return GskBorderNodeExterns.gsk_border_node_get_widths(node);
 	}
@@ -34,12 +34,12 @@ internal class GskBorderNodeExterns
 	internal static extern GskBorderNodeHandle gsk_border_node_new(GskRoundedRectHandle outline, float[] border_width, GdkRGBA[] border_color);
 
 	[DllImport(Libraries.Gsk4)]
-	internal static extern GdkRGBA[] gsk_border_node_get_colors(GskRenderNodeHandle node);
+	internal static extern IntPtr gsk_border_node_get_colors(GskRenderNodeHandle node);
 
 	[DllImport(Libraries.Gsk4)]
 	internal static extern GskRoundedRectHandle gsk_border_node_get_outline(GskRenderNodeHandle node);
 
 	[DllImport(Libraries.Gsk4)]
-	internal static extern float[] gsk_border_node_get_widths(GskRenderNodeHandle node);
+	internal static extern IntPtr gsk_border_node_get_widths(GskRenderNodeHandle node);
 
 }

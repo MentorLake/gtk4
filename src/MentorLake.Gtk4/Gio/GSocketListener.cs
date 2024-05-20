@@ -16,7 +16,7 @@ public static class GSocketListenerSignalExtensions
 	{
 		return Observable.Create((IObserver<GSocketListenerSignalStructs.EventSignal> obs) =>
 		{
-			GSocketListenerSignalDelegates.Event handler = (GSocketListenerHandle self, GSocketListenerEvent @event, GSocketHandle socket, IntPtr user_data) =>
+			GSocketListenerSignalDelegates.@event handler = (GSocketListenerHandle self, GSocketListenerEvent @event, GSocketHandle socket, IntPtr user_data) =>
 			{
 				
 
@@ -55,8 +55,9 @@ public struct EventSignal
 public static class GSocketListenerSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Event([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSocketListenerHandle>))] GSocketListenerHandle self, GSocketListenerEvent @event, GSocketHandle socket, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void @event([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSocketListenerHandle>))] GSocketListenerHandle self, GSocketListenerEvent @event, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSocketHandle>))] GSocketHandle socket, IntPtr user_data);
+
 }
 
 

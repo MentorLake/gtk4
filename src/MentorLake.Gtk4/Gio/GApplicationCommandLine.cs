@@ -17,7 +17,7 @@ public static class GApplicationCommandLineHandleExtensions
 		return cmdline;
 	}
 
-	public static string[] GetArguments(this GApplicationCommandLineHandle cmdline, out int argc)
+	public static IntPtr GetArguments(this GApplicationCommandLineHandle cmdline, out int argc)
 	{
 		return GApplicationCommandLineExterns.g_application_command_line_get_arguments(cmdline, out argc);
 	}
@@ -27,7 +27,7 @@ public static class GApplicationCommandLineHandleExtensions
 		return GApplicationCommandLineExterns.g_application_command_line_get_cwd(cmdline);
 	}
 
-	public static string GetEnviron(this GApplicationCommandLineHandle cmdline)
+	public static IntPtr GetEnviron(this GApplicationCommandLineHandle cmdline)
 	{
 		return GApplicationCommandLineExterns.g_application_command_line_get_environ(cmdline);
 	}
@@ -103,13 +103,13 @@ internal class GApplicationCommandLineExterns
 	internal static extern void g_application_command_line_done(GApplicationCommandLineHandle cmdline);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_application_command_line_get_arguments(GApplicationCommandLineHandle cmdline, out int argc);
+	internal static extern IntPtr g_application_command_line_get_arguments(GApplicationCommandLineHandle cmdline, out int argc);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_application_command_line_get_cwd(GApplicationCommandLineHandle cmdline);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string g_application_command_line_get_environ(GApplicationCommandLineHandle cmdline);
+	internal static extern IntPtr g_application_command_line_get_environ(GApplicationCommandLineHandle cmdline);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern int g_application_command_line_get_exit_status(GApplicationCommandLineHandle cmdline);

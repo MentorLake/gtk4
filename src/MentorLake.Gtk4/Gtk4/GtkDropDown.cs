@@ -21,7 +21,7 @@ public static class GtkDropDownSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkDropDownSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkDropDownSignalDelegates.Activate handler = (GtkDropDownHandle self, IntPtr user_data) =>
+			GtkDropDownSignalDelegates.activate handler = (GtkDropDownHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -58,8 +58,9 @@ public struct ActivateSignal
 public static class GtkDropDownSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropDownHandle>))] GtkDropDownHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkDropDownHandle>))] GtkDropDownHandle self, IntPtr user_data);
+
 }
 
 

@@ -21,7 +21,7 @@ public static class GtkIconThemeSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkIconThemeSignalStructs.ChangedSignal> obs) =>
 		{
-			GtkIconThemeSignalDelegates.Changed handler = (GtkIconThemeHandle self, IntPtr user_data) =>
+			GtkIconThemeSignalDelegates.changed handler = (GtkIconThemeHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -58,8 +58,9 @@ public struct ChangedSignal
 public static class GtkIconThemeSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconThemeHandle>))] GtkIconThemeHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkIconThemeHandle>))] GtkIconThemeHandle self, IntPtr user_data);
+
 }
 
 
@@ -82,22 +83,22 @@ public static class GtkIconThemeHandleExtensions
 		return GtkIconThemeExterns.gtk_icon_theme_get_display(self);
 	}
 
-	public static string[] GetIconNames(this GtkIconThemeHandle self)
+	public static IntPtr GetIconNames(this GtkIconThemeHandle self)
 	{
 		return GtkIconThemeExterns.gtk_icon_theme_get_icon_names(self);
 	}
 
-	public static int[] GetIconSizes(this GtkIconThemeHandle self, string icon_name)
+	public static IntPtr GetIconSizes(this GtkIconThemeHandle self, string icon_name)
 	{
 		return GtkIconThemeExterns.gtk_icon_theme_get_icon_sizes(self, icon_name);
 	}
 
-	public static string[] GetResourcePath(this GtkIconThemeHandle self)
+	public static IntPtr GetResourcePath(this GtkIconThemeHandle self)
 	{
 		return GtkIconThemeExterns.gtk_icon_theme_get_resource_path(self);
 	}
 
-	public static string[] GetSearchPath(this GtkIconThemeHandle self)
+	public static IntPtr GetSearchPath(this GtkIconThemeHandle self)
 	{
 		return GtkIconThemeExterns.gtk_icon_theme_get_search_path(self);
 	}
@@ -162,16 +163,16 @@ internal class GtkIconThemeExterns
 	internal static extern GdkDisplayHandle gtk_icon_theme_get_display(GtkIconThemeHandle self);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern string[] gtk_icon_theme_get_icon_names(GtkIconThemeHandle self);
+	internal static extern IntPtr gtk_icon_theme_get_icon_names(GtkIconThemeHandle self);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern int[] gtk_icon_theme_get_icon_sizes(GtkIconThemeHandle self, string icon_name);
+	internal static extern IntPtr gtk_icon_theme_get_icon_sizes(GtkIconThemeHandle self, string icon_name);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern string[] gtk_icon_theme_get_resource_path(GtkIconThemeHandle self);
+	internal static extern IntPtr gtk_icon_theme_get_resource_path(GtkIconThemeHandle self);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern string[] gtk_icon_theme_get_search_path(GtkIconThemeHandle self);
+	internal static extern IntPtr gtk_icon_theme_get_search_path(GtkIconThemeHandle self);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern string gtk_icon_theme_get_theme_name(GtkIconThemeHandle self);

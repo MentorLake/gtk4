@@ -16,7 +16,7 @@ public static class GtkGesturePanSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGesturePanSignalStructs.PanSignal> obs) =>
 		{
-			GtkGesturePanSignalDelegates.Pan handler = (GtkGesturePanHandle self, ref GtkPanDirection direction, double offset, IntPtr user_data) =>
+			GtkGesturePanSignalDelegates.pan handler = (GtkGesturePanHandle self, ref GtkPanDirection direction, double offset, IntPtr user_data) =>
 			{
 				
 
@@ -55,8 +55,9 @@ public struct PanSignal
 public static class GtkGesturePanSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Pan([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGesturePanHandle>))] GtkGesturePanHandle self, ref GtkPanDirection direction, double offset, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void pan([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGesturePanHandle>))] GtkGesturePanHandle self, ref GtkPanDirection direction, double offset, IntPtr user_data);
+
 }
 
 

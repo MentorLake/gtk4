@@ -11,7 +11,7 @@ public static class GdkSeatSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkSeatSignalStructs.DeviceAddedSignal> obs) =>
 		{
-			GdkSeatSignalDelegates.DeviceAdded handler = (GdkSeatHandle self, GdkDeviceHandle device, IntPtr user_data) =>
+			GdkSeatSignalDelegates.device_added handler = (GdkSeatHandle self, GdkDeviceHandle device, IntPtr user_data) =>
 			{
 				
 
@@ -38,7 +38,7 @@ public static class GdkSeatSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkSeatSignalStructs.DeviceRemovedSignal> obs) =>
 		{
-			GdkSeatSignalDelegates.DeviceRemoved handler = (GdkSeatHandle self, GdkDeviceHandle device, IntPtr user_data) =>
+			GdkSeatSignalDelegates.device_removed handler = (GdkSeatHandle self, GdkDeviceHandle device, IntPtr user_data) =>
 			{
 				
 
@@ -65,7 +65,7 @@ public static class GdkSeatSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkSeatSignalStructs.ToolAddedSignal> obs) =>
 		{
-			GdkSeatSignalDelegates.ToolAdded handler = (GdkSeatHandle self, GdkDeviceToolHandle tool, IntPtr user_data) =>
+			GdkSeatSignalDelegates.tool_added handler = (GdkSeatHandle self, GdkDeviceToolHandle tool, IntPtr user_data) =>
 			{
 				
 
@@ -92,7 +92,7 @@ public static class GdkSeatSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkSeatSignalStructs.ToolRemovedSignal> obs) =>
 		{
-			GdkSeatSignalDelegates.ToolRemoved handler = (GdkSeatHandle self, GdkDeviceToolHandle tool, IntPtr user_data) =>
+			GdkSeatSignalDelegates.tool_removed handler = (GdkSeatHandle self, GdkDeviceToolHandle tool, IntPtr user_data) =>
 			{
 				
 
@@ -151,17 +151,21 @@ public struct ToolRemovedSignal
 public static class GdkSeatSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DeviceAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle self, GdkDeviceHandle device, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void device_added([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDeviceHandle>))] GdkDeviceHandle device, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DeviceRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle self, GdkDeviceHandle device, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ToolAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle self, GdkDeviceToolHandle tool, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void device_removed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDeviceHandle>))] GdkDeviceHandle device, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ToolRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle self, GdkDeviceToolHandle tool, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void tool_added([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDeviceToolHandle>))] GdkDeviceToolHandle tool, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void tool_removed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSeatHandle>))] GdkSeatHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkDeviceToolHandle>))] GdkDeviceToolHandle tool, IntPtr user_data);
+
 }
 
 

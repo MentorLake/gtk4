@@ -24,6 +24,7 @@ internal class Gdk4GlobalFunctionExterns
 	internal static extern void gdk_cairo_set_source_pixbuf(cairo_tHandle cr, GdkPixbufHandle pixbuf, double pixbuf_x, double pixbuf_y);
 
 	[DllImport(Libraries.Gdk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gdk_intern_mime_type(string @string);
 
 	[DllImport(Libraries.Gdk4)]
@@ -75,6 +76,7 @@ internal class Gdk4GlobalFunctionExterns
 	internal static extern GType gdk_drag_surface_size_get_type();
 
 	[DllImport(Libraries.Gdk4)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string gdk_keyval_name(uint keyval);
 
 	[DllImport(Libraries.Gdk4)]

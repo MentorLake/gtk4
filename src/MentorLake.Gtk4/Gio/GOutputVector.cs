@@ -11,5 +11,5 @@ internal class GOutputVectorExterns
 public struct GOutputVector
 {
 	public IntPtr buffer;
-	public int size;
+	public UIntPtr size;
 }

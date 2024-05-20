@@ -16,7 +16,7 @@ public static class GtkStatusbarSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkStatusbarSignalStructs.TextPoppedSignal> obs) =>
 		{
-			GtkStatusbarSignalDelegates.TextPopped handler = (GtkStatusbarHandle self, uint context_id, string text, IntPtr user_data) =>
+			GtkStatusbarSignalDelegates.text_popped handler = (GtkStatusbarHandle self, uint context_id, string text, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkStatusbarSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkStatusbarSignalStructs.TextPushedSignal> obs) =>
 		{
-			GtkStatusbarSignalDelegates.TextPushed handler = (GtkStatusbarHandle self, uint context_id, string text, IntPtr user_data) =>
+			GtkStatusbarSignalDelegates.text_pushed handler = (GtkStatusbarHandle self, uint context_id, string text, IntPtr user_data) =>
 			{
 				
 
@@ -90,11 +90,13 @@ public struct TextPushedSignal
 public static class GtkStatusbarSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void TextPopped([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkStatusbarHandle>))] GtkStatusbarHandle self, uint context_id, string text, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void text_popped([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkStatusbarHandle>))] GtkStatusbarHandle self, uint context_id, string text, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void TextPushed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkStatusbarHandle>))] GtkStatusbarHandle self, uint context_id, string text, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void text_pushed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkStatusbarHandle>))] GtkStatusbarHandle self, uint context_id, string text, IntPtr user_data);
+
 }
 
 

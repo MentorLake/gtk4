@@ -69,7 +69,7 @@ internal class GioGlobalFunctionExterns
 	internal static extern string g_content_type_get_mime_type(string type);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern bool g_resources_get_info(string path, GResourceLookupFlags lookup_flags, out int size, out uint flags, out GErrorHandle error);
+	internal static extern bool g_resources_get_info(string path, GResourceLookupFlags lookup_flags, out UIntPtr size, out uint flags, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern GVariantHandle g_dbus_gvalue_to_gvariant(GValueHandle gvalue, GVariantTypeHandle type);
@@ -87,15 +87,17 @@ internal class GioGlobalFunctionExterns
 	internal static extern int g_unix_mount_compare(GUnixMountEntryHandle mount1, GUnixMountEntryHandle mount2);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_content_type_guess_for_tree(GFileHandle root);
+	internal static extern IntPtr g_content_type_guess_for_tree(GFileHandle root);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_dbus_address_get_for_bus_sync(GBusType bus_type, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_unix_mount_get_root_path(GUnixMountEntryHandle mount_entry);
 
 	[DllImport(Libraries.Gio)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_unix_mount_get_fs_type(GUnixMountEntryHandle mount_entry);
 
 	[DllImport(Libraries.Gio)]
@@ -135,7 +137,7 @@ internal class GioGlobalFunctionExterns
 	internal static extern string g_unix_mount_guess_name(GUnixMountEntryHandle mount_entry);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern byte[] g_dbus_unescape_object_path(string s);
+	internal static extern IntPtr g_dbus_unescape_object_path(string s);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern string g_content_type_get_description(string type);
@@ -144,7 +146,7 @@ internal class GioGlobalFunctionExterns
 	internal static extern void g_networking_init();
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string g_content_type_guess(string filename, string data, int data_size, out bool result_uncertain);
+	internal static extern string g_content_type_guess(string filename, string data, UIntPtr data_size, out bool result_uncertain);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern GListHandle g_io_modules_load_all_in_directory(string dirname);
@@ -210,6 +212,7 @@ internal class GioGlobalFunctionExterns
 	internal static extern bool g_dbus_is_name(string @string);
 
 	[DllImport(Libraries.Gio)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_unix_mount_get_mount_path(GUnixMountEntryHandle mount_entry);
 
 	[DllImport(Libraries.Gio)]
@@ -237,6 +240,7 @@ internal class GioGlobalFunctionExterns
 	internal static extern bool g_dbus_is_supported_address(string @string, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_unix_mount_get_options(GUnixMountEntryHandle mount_entry);
 
 	[DllImport(Libraries.Gio)]
@@ -255,7 +259,7 @@ internal class GioGlobalFunctionExterns
 	internal static extern bool g_unix_mount_is_system_internal(GUnixMountEntryHandle mount_entry);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_resources_enumerate_children(string path, GResourceLookupFlags lookup_flags, out GErrorHandle error);
+	internal static extern IntPtr g_resources_enumerate_children(string path, GResourceLookupFlags lookup_flags, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_simple_async_report_gerror_in_idle(GObjectHandle @object, GAsyncReadyCallback callback, IntPtr user_data, GErrorHandle error);
@@ -270,10 +274,11 @@ internal class GioGlobalFunctionExterns
 	internal static extern void g_resources_register(GResourceHandle resource);
 
 	[DllImport(Libraries.Gio)]
+	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
 	internal static extern string g_unix_mount_get_device_path(GUnixMountEntryHandle mount_entry);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string g_content_type_get_mime_dirs();
+	internal static extern IntPtr g_content_type_get_mime_dirs();
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_resources_unregister(GResourceHandle resource);

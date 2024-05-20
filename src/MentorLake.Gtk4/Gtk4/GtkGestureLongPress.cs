@@ -16,7 +16,7 @@ public static class GtkGestureLongPressSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureLongPressSignalStructs.CancelledSignal> obs) =>
 		{
-			GtkGestureLongPressSignalDelegates.Cancelled handler = (GtkGestureLongPressHandle self, IntPtr user_data) =>
+			GtkGestureLongPressSignalDelegates.cancelled handler = (GtkGestureLongPressHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkGestureLongPressSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureLongPressSignalStructs.PressedSignal> obs) =>
 		{
-			GtkGestureLongPressSignalDelegates.Pressed handler = (GtkGestureLongPressHandle self, double x, double y, IntPtr user_data) =>
+			GtkGestureLongPressSignalDelegates.pressed handler = (GtkGestureLongPressHandle self, double x, double y, IntPtr user_data) =>
 			{
 				
 
@@ -88,11 +88,13 @@ public struct PressedSignal
 public static class GtkGestureLongPressSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Cancelled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureLongPressHandle>))] GtkGestureLongPressHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void cancelled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureLongPressHandle>))] GtkGestureLongPressHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Pressed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureLongPressHandle>))] GtkGestureLongPressHandle self, double x, double y, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void pressed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureLongPressHandle>))] GtkGestureLongPressHandle self, double x, double y, IntPtr user_data);
+
 }
 
 

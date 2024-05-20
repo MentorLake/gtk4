@@ -26,7 +26,7 @@ public static class GdkPixbufLoaderSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkPixbufLoaderSignalStructs.AreaPreparedSignal> obs) =>
 		{
-			GdkPixbufLoaderSignalDelegates.AreaPrepared handler = (GdkPixbufLoaderHandle self, IntPtr user_data) =>
+			GdkPixbufLoaderSignalDelegates.area_prepared handler = (GdkPixbufLoaderHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -53,7 +53,7 @@ public static class GdkPixbufLoaderSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkPixbufLoaderSignalStructs.AreaUpdatedSignal> obs) =>
 		{
-			GdkPixbufLoaderSignalDelegates.AreaUpdated handler = (GdkPixbufLoaderHandle self, int x, int y, int width, int height, IntPtr user_data) =>
+			GdkPixbufLoaderSignalDelegates.area_updated handler = (GdkPixbufLoaderHandle self, int x, int y, int width, int height, IntPtr user_data) =>
 			{
 				
 
@@ -80,7 +80,7 @@ public static class GdkPixbufLoaderSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkPixbufLoaderSignalStructs.ClosedSignal> obs) =>
 		{
-			GdkPixbufLoaderSignalDelegates.Closed handler = (GdkPixbufLoaderHandle self, IntPtr user_data) =>
+			GdkPixbufLoaderSignalDelegates.closed handler = (GdkPixbufLoaderHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -107,7 +107,7 @@ public static class GdkPixbufLoaderSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkPixbufLoaderSignalStructs.SizePreparedSignal> obs) =>
 		{
-			GdkPixbufLoaderSignalDelegates.SizePrepared handler = (GdkPixbufLoaderHandle self, int width, int height, IntPtr user_data) =>
+			GdkPixbufLoaderSignalDelegates.size_prepared handler = (GdkPixbufLoaderHandle self, int width, int height, IntPtr user_data) =>
 			{
 				
 
@@ -168,17 +168,21 @@ public struct SizePreparedSignal
 public static class GdkPixbufLoaderSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void AreaPrepared([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPixbufLoaderHandle>))] GdkPixbufLoaderHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void area_prepared([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPixbufLoaderHandle>))] GdkPixbufLoaderHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void AreaUpdated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPixbufLoaderHandle>))] GdkPixbufLoaderHandle self, int x, int y, int width, int height, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPixbufLoaderHandle>))] GdkPixbufLoaderHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void area_updated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPixbufLoaderHandle>))] GdkPixbufLoaderHandle self, int x, int y, int width, int height, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SizePrepared([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPixbufLoaderHandle>))] GdkPixbufLoaderHandle self, int width, int height, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPixbufLoaderHandle>))] GdkPixbufLoaderHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void size_prepared([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkPixbufLoaderHandle>))] GdkPixbufLoaderHandle self, int width, int height, IntPtr user_data);
+
 }
 
 
@@ -210,7 +214,7 @@ public static class GdkPixbufLoaderHandleExtensions
 		return loader;
 	}
 
-	public static bool Write(this GdkPixbufLoaderHandle loader, string buf, int count, out GErrorHandle error)
+	public static bool Write(this GdkPixbufLoaderHandle loader, string buf, UIntPtr count, out GErrorHandle error)
 	{
 		return GdkPixbufLoaderExterns.gdk_pixbuf_loader_write(loader, buf, count, out error);
 	}
@@ -249,7 +253,7 @@ internal class GdkPixbufLoaderExterns
 	internal static extern void gdk_pixbuf_loader_set_size(GdkPixbufLoaderHandle loader, int width, int height);
 
 	[DllImport(Libraries.GdkPixbuf)]
-	internal static extern bool gdk_pixbuf_loader_write(GdkPixbufLoaderHandle loader, string buf, int count, out GErrorHandle error);
+	internal static extern bool gdk_pixbuf_loader_write(GdkPixbufLoaderHandle loader, string buf, UIntPtr count, out GErrorHandle error);
 
 	[DllImport(Libraries.GdkPixbuf)]
 	internal static extern bool gdk_pixbuf_loader_write_bytes(GdkPixbufLoaderHandle loader, GBytesHandle buffer, out GErrorHandle error);

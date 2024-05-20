@@ -21,7 +21,7 @@ public static class GdkSurfaceSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkSurfaceSignalStructs.EnterMonitorSignal> obs) =>
 		{
-			GdkSurfaceSignalDelegates.EnterMonitor handler = (GdkSurfaceHandle self, GdkMonitorHandle monitor, IntPtr user_data) =>
+			GdkSurfaceSignalDelegates.enter_monitor handler = (GdkSurfaceHandle self, GdkMonitorHandle monitor, IntPtr user_data) =>
 			{
 				
 
@@ -48,7 +48,7 @@ public static class GdkSurfaceSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkSurfaceSignalStructs.EventSignal> obs) =>
 		{
-			GdkSurfaceSignalDelegates.Event handler = (GdkSurfaceHandle self, GdkEventHandle @event, IntPtr user_data) =>
+			GdkSurfaceSignalDelegates.@event handler = (GdkSurfaceHandle self, GdkEventHandle @event, IntPtr user_data) =>
 			{
 				
 
@@ -75,7 +75,7 @@ public static class GdkSurfaceSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkSurfaceSignalStructs.LayoutSignal> obs) =>
 		{
-			GdkSurfaceSignalDelegates.Layout handler = (GdkSurfaceHandle self, int width, int height, IntPtr user_data) =>
+			GdkSurfaceSignalDelegates.layout handler = (GdkSurfaceHandle self, int width, int height, IntPtr user_data) =>
 			{
 				
 
@@ -102,7 +102,7 @@ public static class GdkSurfaceSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkSurfaceSignalStructs.LeaveMonitorSignal> obs) =>
 		{
-			GdkSurfaceSignalDelegates.LeaveMonitor handler = (GdkSurfaceHandle self, GdkMonitorHandle monitor, IntPtr user_data) =>
+			GdkSurfaceSignalDelegates.leave_monitor handler = (GdkSurfaceHandle self, GdkMonitorHandle monitor, IntPtr user_data) =>
 			{
 				
 
@@ -129,7 +129,7 @@ public static class GdkSurfaceSignalExtensions
 	{
 		return Observable.Create((IObserver<GdkSurfaceSignalStructs.RenderSignal> obs) =>
 		{
-			GdkSurfaceSignalDelegates.Render handler = (GdkSurfaceHandle self, cairo_region_tHandle region, IntPtr user_data) =>
+			GdkSurfaceSignalDelegates.render handler = (GdkSurfaceHandle self, cairo_region_tHandle region, IntPtr user_data) =>
 			{
 				
 
@@ -198,20 +198,25 @@ public struct RenderSignal
 public static class GdkSurfaceSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void EnterMonitor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSurfaceHandle>))] GdkSurfaceHandle self, GdkMonitorHandle monitor, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void enter_monitor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSurfaceHandle>))] GdkSurfaceHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkMonitorHandle>))] GdkMonitorHandle monitor, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool Event([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSurfaceHandle>))] GdkSurfaceHandle self, GdkEventHandle @event, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Layout([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSurfaceHandle>))] GdkSurfaceHandle self, int width, int height, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool @event([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSurfaceHandle>))] GdkSurfaceHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkEventHandle>))] GdkEventHandle @event, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void LeaveMonitor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSurfaceHandle>))] GdkSurfaceHandle self, GdkMonitorHandle monitor, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool Render([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSurfaceHandle>))] GdkSurfaceHandle self, cairo_region_tHandle region, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void layout([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSurfaceHandle>))] GdkSurfaceHandle self, int width, int height, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void leave_monitor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSurfaceHandle>))] GdkSurfaceHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkMonitorHandle>))] GdkMonitorHandle monitor, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool render([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkSurfaceHandle>))] GdkSurfaceHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<cairo_region_tHandle>))] cairo_region_tHandle region, IntPtr user_data);
+
 }
 
 

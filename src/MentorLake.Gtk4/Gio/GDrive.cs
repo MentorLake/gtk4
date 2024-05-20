@@ -57,7 +57,7 @@ public static class GDriveHandleExtensions
 		return GDriveExterns.g_drive_eject_with_operation_finish(drive, result, out error);
 	}
 
-	public static string[] EnumerateIdentifiers(this GDriveHandle drive)
+	public static IntPtr EnumerateIdentifiers(this GDriveHandle drive)
 	{
 		return GDriveExterns.g_drive_enumerate_identifiers(drive);
 	}
@@ -187,7 +187,7 @@ internal class GDriveExterns
 	internal static extern bool g_drive_eject_with_operation_finish(GDriveHandle drive, GAsyncResultHandle result, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_drive_enumerate_identifiers(GDriveHandle drive);
+	internal static extern IntPtr g_drive_enumerate_identifiers(GDriveHandle drive);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern GIconHandle g_drive_get_icon(GDriveHandle drive);

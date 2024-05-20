@@ -11,7 +11,7 @@ public static class GtkGestureSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureSignalStructs.BeginSignal> obs) =>
 		{
-			GtkGestureSignalDelegates.Begin handler = (GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data) =>
+			GtkGestureSignalDelegates.begin handler = (GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data) =>
 			{
 				
 
@@ -38,7 +38,7 @@ public static class GtkGestureSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureSignalStructs.CancelSignal> obs) =>
 		{
-			GtkGestureSignalDelegates.Cancel handler = (GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data) =>
+			GtkGestureSignalDelegates.cancel handler = (GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data) =>
 			{
 				
 
@@ -65,7 +65,7 @@ public static class GtkGestureSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureSignalStructs.EndSignal> obs) =>
 		{
-			GtkGestureSignalDelegates.End handler = (GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data) =>
+			GtkGestureSignalDelegates.end handler = (GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data) =>
 			{
 				
 
@@ -92,7 +92,7 @@ public static class GtkGestureSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureSignalStructs.SequenceStateChangedSignal> obs) =>
 		{
-			GtkGestureSignalDelegates.SequenceStateChanged handler = (GtkGestureHandle self, GdkEventSequenceHandle sequence, GtkEventSequenceState state, IntPtr user_data) =>
+			GtkGestureSignalDelegates.sequence_state_changed handler = (GtkGestureHandle self, GdkEventSequenceHandle sequence, GtkEventSequenceState state, IntPtr user_data) =>
 			{
 				
 
@@ -119,7 +119,7 @@ public static class GtkGestureSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGestureSignalStructs.UpdateSignal> obs) =>
 		{
-			GtkGestureSignalDelegates.Update handler = (GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data) =>
+			GtkGestureSignalDelegates.update handler = (GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data) =>
 			{
 				
 
@@ -186,20 +186,25 @@ public struct UpdateSignal
 public static class GtkGestureSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Begin([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureHandle>))] GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void begin([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureHandle>))] GtkGestureHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkEventSequenceHandle>))] GdkEventSequenceHandle sequence, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Cancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureHandle>))] GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void End([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureHandle>))] GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void cancel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureHandle>))] GtkGestureHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkEventSequenceHandle>))] GdkEventSequenceHandle sequence, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void SequenceStateChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureHandle>))] GtkGestureHandle self, GdkEventSequenceHandle sequence, GtkEventSequenceState state, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Update([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureHandle>))] GtkGestureHandle self, GdkEventSequenceHandle sequence, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void end([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureHandle>))] GtkGestureHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkEventSequenceHandle>))] GdkEventSequenceHandle sequence, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void sequence_state_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureHandle>))] GtkGestureHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkEventSequenceHandle>))] GdkEventSequenceHandle sequence, GtkEventSequenceState state, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void update([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGestureHandle>))] GtkGestureHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkEventSequenceHandle>))] GdkEventSequenceHandle sequence, IntPtr user_data);
+
 }
 
 

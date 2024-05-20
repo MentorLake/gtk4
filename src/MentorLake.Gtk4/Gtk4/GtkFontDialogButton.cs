@@ -16,7 +16,7 @@ public static class GtkFontDialogButtonSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkFontDialogButtonSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkFontDialogButtonSignalDelegates.Activate handler = (GtkFontDialogButtonHandle self, IntPtr user_data) =>
+			GtkFontDialogButtonSignalDelegates.activate handler = (GtkFontDialogButtonHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -53,8 +53,9 @@ public struct ActivateSignal
 public static class GtkFontDialogButtonSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFontDialogButtonHandle>))] GtkFontDialogButtonHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkFontDialogButtonHandle>))] GtkFontDialogButtonHandle self, IntPtr user_data);
+
 }
 
 

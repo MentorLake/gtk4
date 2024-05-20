@@ -16,7 +16,7 @@ public static class GSocketClientSignalExtensions
 	{
 		return Observable.Create((IObserver<GSocketClientSignalStructs.EventSignal> obs) =>
 		{
-			GSocketClientSignalDelegates.Event handler = (GSocketClientHandle self, GSocketClientEvent @event, GSocketConnectableHandle connectable, GIOStreamHandle connection, IntPtr user_data) =>
+			GSocketClientSignalDelegates.@event handler = (GSocketClientHandle self, GSocketClientEvent @event, GSocketConnectableHandle connectable, GIOStreamHandle connection, IntPtr user_data) =>
 			{
 				
 
@@ -56,8 +56,9 @@ public struct EventSignal
 public static class GSocketClientSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Event([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSocketClientHandle>))] GSocketClientHandle self, GSocketClientEvent @event, GSocketConnectableHandle connectable, GIOStreamHandle connection, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void @event([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSocketClientHandle>))] GSocketClientHandle self, GSocketClientEvent @event, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSocketConnectableHandleImpl>))] GSocketConnectableHandle connectable, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GIOStreamHandle>))] GIOStreamHandle connection, IntPtr user_data);
+
 }
 
 

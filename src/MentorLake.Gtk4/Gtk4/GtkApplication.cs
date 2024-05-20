@@ -16,7 +16,7 @@ public static class GtkApplicationSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkApplicationSignalStructs.QueryEndSignal> obs) =>
 		{
-			GtkApplicationSignalDelegates.QueryEnd handler = (GtkApplicationHandle self, IntPtr user_data) =>
+			GtkApplicationSignalDelegates.query_end handler = (GtkApplicationHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkApplicationSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkApplicationSignalStructs.WindowAddedSignal> obs) =>
 		{
-			GtkApplicationSignalDelegates.WindowAdded handler = (GtkApplicationHandle self, GtkWindowHandle window, IntPtr user_data) =>
+			GtkApplicationSignalDelegates.window_added handler = (GtkApplicationHandle self, GtkWindowHandle window, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkApplicationSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkApplicationSignalStructs.WindowRemovedSignal> obs) =>
 		{
-			GtkApplicationSignalDelegates.WindowRemoved handler = (GtkApplicationHandle self, GtkWindowHandle window, IntPtr user_data) =>
+			GtkApplicationSignalDelegates.window_removed handler = (GtkApplicationHandle self, GtkWindowHandle window, IntPtr user_data) =>
 			{
 				
 
@@ -121,14 +121,17 @@ public struct WindowRemovedSignal
 public static class GtkApplicationSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void QueryEnd([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkApplicationHandle>))] GtkApplicationHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void query_end([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkApplicationHandle>))] GtkApplicationHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void WindowAdded([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkApplicationHandle>))] GtkApplicationHandle self, GtkWindowHandle window, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void WindowRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkApplicationHandle>))] GtkApplicationHandle self, GtkWindowHandle window, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void window_added([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkApplicationHandle>))] GtkApplicationHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle window, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void window_removed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkApplicationHandle>))] GtkApplicationHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkWindowHandle>))] GtkWindowHandle window, IntPtr user_data);
+
 }
 
 
@@ -140,12 +143,12 @@ public static class GtkApplicationHandleExtensions
 		return application;
 	}
 
-	public static string[] GetAccelsForAction(this GtkApplicationHandle application, string detailed_action_name)
+	public static IntPtr GetAccelsForAction(this GtkApplicationHandle application, string detailed_action_name)
 	{
 		return GtkApplicationExterns.gtk_application_get_accels_for_action(application, detailed_action_name);
 	}
 
-	public static string[] GetActionsForAccel(this GtkApplicationHandle application, string accel)
+	public static IntPtr GetActionsForAccel(this GtkApplicationHandle application, string accel)
 	{
 		return GtkApplicationExterns.gtk_application_get_actions_for_accel(application, accel);
 	}
@@ -180,7 +183,7 @@ public static class GtkApplicationHandleExtensions
 		return GtkApplicationExterns.gtk_application_inhibit(application, window, flags, reason);
 	}
 
-	public static string[] ListActionDescriptions(this GtkApplicationHandle application)
+	public static IntPtr ListActionDescriptions(this GtkApplicationHandle application)
 	{
 		return GtkApplicationExterns.gtk_application_list_action_descriptions(application);
 	}
@@ -220,10 +223,10 @@ internal class GtkApplicationExterns
 	internal static extern void gtk_application_add_window(GtkApplicationHandle application, GtkWindowHandle window);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern string[] gtk_application_get_accels_for_action(GtkApplicationHandle application, string detailed_action_name);
+	internal static extern IntPtr gtk_application_get_accels_for_action(GtkApplicationHandle application, string detailed_action_name);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern string[] gtk_application_get_actions_for_accel(GtkApplicationHandle application, string accel);
+	internal static extern IntPtr gtk_application_get_actions_for_accel(GtkApplicationHandle application, string accel);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkWindowHandle gtk_application_get_active_window(GtkApplicationHandle application);
@@ -244,7 +247,7 @@ internal class GtkApplicationExterns
 	internal static extern uint gtk_application_inhibit(GtkApplicationHandle application, GtkWindowHandle window, GtkApplicationInhibitFlags flags, string reason);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern string[] gtk_application_list_action_descriptions(GtkApplicationHandle application);
+	internal static extern IntPtr gtk_application_list_action_descriptions(GtkApplicationHandle application);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_application_remove_window(GtkApplicationHandle application, GtkWindowHandle window);

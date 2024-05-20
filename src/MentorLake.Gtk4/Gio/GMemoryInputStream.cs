@@ -12,7 +12,7 @@ public class GMemoryInputStreamHandle : GInputStreamHandle, GPollableInputStream
 		return GMemoryInputStreamExterns.g_memory_input_stream_new_from_bytes(bytes);
 	}
 
-	public static GMemoryInputStreamHandle NewFromData(IntPtr data, int len, GDestroyNotify destroy)
+	public static GMemoryInputStreamHandle NewFromData(IntPtr data, UIntPtr len, GDestroyNotify destroy)
 	{
 		return GMemoryInputStreamExterns.g_memory_input_stream_new_from_data(data, len, destroy);
 	}
@@ -27,7 +27,7 @@ public static class GMemoryInputStreamHandleExtensions
 		return stream;
 	}
 
-	public static GMemoryInputStreamHandle AddData(this GMemoryInputStreamHandle stream, IntPtr data, int len, GDestroyNotify destroy)
+	public static GMemoryInputStreamHandle AddData(this GMemoryInputStreamHandle stream, IntPtr data, UIntPtr len, GDestroyNotify destroy)
 	{
 		GMemoryInputStreamExterns.g_memory_input_stream_add_data(stream, data, len, destroy);
 		return stream;
@@ -44,12 +44,12 @@ internal class GMemoryInputStreamExterns
 	internal static extern GMemoryInputStreamHandle g_memory_input_stream_new_from_bytes(GBytesHandle bytes);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern GMemoryInputStreamHandle g_memory_input_stream_new_from_data(IntPtr data, int len, GDestroyNotify destroy);
+	internal static extern GMemoryInputStreamHandle g_memory_input_stream_new_from_data(IntPtr data, UIntPtr len, GDestroyNotify destroy);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_memory_input_stream_add_bytes(GMemoryInputStreamHandle stream, GBytesHandle bytes);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern void g_memory_input_stream_add_data(GMemoryInputStreamHandle stream, IntPtr data, int len, GDestroyNotify destroy);
+	internal static extern void g_memory_input_stream_add_data(GMemoryInputStreamHandle stream, IntPtr data, UIntPtr len, GDestroyNotify destroy);
 
 }

@@ -28,7 +28,7 @@ public static class GtkSnapshotHandleExtensions
 		return snapshot;
 	}
 
-	public static GtkSnapshotHandle AppendConicGradient(this GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle center, float rotation, GskColorStop[] stops, int n_stops)
+	public static GtkSnapshotHandle AppendConicGradient(this GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle center, float rotation, GskColorStop[] stops, UIntPtr n_stops)
 	{
 		GtkSnapshotExterns.gtk_snapshot_append_conic_gradient(snapshot, bounds, center, rotation, stops, n_stops);
 		return snapshot;
@@ -52,7 +52,7 @@ public static class GtkSnapshotHandleExtensions
 		return snapshot;
 	}
 
-	public static GtkSnapshotHandle AppendLinearGradient(this GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle start_point, graphene_point_tHandle end_point, GskColorStop[] stops, int n_stops)
+	public static GtkSnapshotHandle AppendLinearGradient(this GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle start_point, graphene_point_tHandle end_point, GskColorStop[] stops, UIntPtr n_stops)
 	{
 		GtkSnapshotExterns.gtk_snapshot_append_linear_gradient(snapshot, bounds, start_point, end_point, stops, n_stops);
 		return snapshot;
@@ -70,19 +70,19 @@ public static class GtkSnapshotHandleExtensions
 		return snapshot;
 	}
 
-	public static GtkSnapshotHandle AppendRadialGradient(this GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle center, float hradius, float vradius, float start, float end, GskColorStop[] stops, int n_stops)
+	public static GtkSnapshotHandle AppendRadialGradient(this GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle center, float hradius, float vradius, float start, float end, GskColorStop[] stops, UIntPtr n_stops)
 	{
 		GtkSnapshotExterns.gtk_snapshot_append_radial_gradient(snapshot, bounds, center, hradius, vradius, start, end, stops, n_stops);
 		return snapshot;
 	}
 
-	public static GtkSnapshotHandle AppendRepeatingLinearGradient(this GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle start_point, graphene_point_tHandle end_point, GskColorStop[] stops, int n_stops)
+	public static GtkSnapshotHandle AppendRepeatingLinearGradient(this GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle start_point, graphene_point_tHandle end_point, GskColorStop[] stops, UIntPtr n_stops)
 	{
 		GtkSnapshotExterns.gtk_snapshot_append_repeating_linear_gradient(snapshot, bounds, start_point, end_point, stops, n_stops);
 		return snapshot;
 	}
 
-	public static GtkSnapshotHandle AppendRepeatingRadialGradient(this GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle center, float hradius, float vradius, float start, float end, GskColorStop[] stops, int n_stops)
+	public static GtkSnapshotHandle AppendRepeatingRadialGradient(this GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle center, float hradius, float vradius, float start, float end, GskColorStop[] stops, UIntPtr n_stops)
 	{
 		GtkSnapshotExterns.gtk_snapshot_append_repeating_radial_gradient(snapshot, bounds, center, hradius, vradius, start, end, stops, n_stops);
 		return snapshot;
@@ -206,7 +206,7 @@ public static class GtkSnapshotHandleExtensions
 		return snapshot;
 	}
 
-	public static GtkSnapshotHandle PushShadow(this GtkSnapshotHandle snapshot, GskShadow[] shadow, int n_shadows)
+	public static GtkSnapshotHandle PushShadow(this GtkSnapshotHandle snapshot, GskShadow[] shadow, UIntPtr n_shadows)
 	{
 		GtkSnapshotExterns.gtk_snapshot_push_shadow(snapshot, shadow, n_shadows);
 		return snapshot;
@@ -335,7 +335,7 @@ internal class GtkSnapshotExterns
 	internal static extern void gtk_snapshot_append_color(GtkSnapshotHandle snapshot, GdkRGBAHandle color, graphene_rect_tHandle bounds);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern void gtk_snapshot_append_conic_gradient(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle center, float rotation, GskColorStop[] stops, int n_stops);
+	internal static extern void gtk_snapshot_append_conic_gradient(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle center, float rotation, GskColorStop[] stops, UIntPtr n_stops);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_fill(GtkSnapshotHandle snapshot, GskPathHandle path, GskFillRule fill_rule, GdkRGBAHandle color);
@@ -347,7 +347,7 @@ internal class GtkSnapshotExterns
 	internal static extern void gtk_snapshot_append_layout(GtkSnapshotHandle snapshot, PangoLayoutHandle layout, GdkRGBAHandle color);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern void gtk_snapshot_append_linear_gradient(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle start_point, graphene_point_tHandle end_point, GskColorStop[] stops, int n_stops);
+	internal static extern void gtk_snapshot_append_linear_gradient(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle start_point, graphene_point_tHandle end_point, GskColorStop[] stops, UIntPtr n_stops);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_node(GtkSnapshotHandle snapshot, GskRenderNodeHandle node);
@@ -356,13 +356,13 @@ internal class GtkSnapshotExterns
 	internal static extern void gtk_snapshot_append_outset_shadow(GtkSnapshotHandle snapshot, GskRoundedRectHandle outline, GdkRGBAHandle color, float dx, float dy, float spread, float blur_radius);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern void gtk_snapshot_append_radial_gradient(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle center, float hradius, float vradius, float start, float end, GskColorStop[] stops, int n_stops);
+	internal static extern void gtk_snapshot_append_radial_gradient(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle center, float hradius, float vradius, float start, float end, GskColorStop[] stops, UIntPtr n_stops);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern void gtk_snapshot_append_repeating_linear_gradient(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle start_point, graphene_point_tHandle end_point, GskColorStop[] stops, int n_stops);
+	internal static extern void gtk_snapshot_append_repeating_linear_gradient(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle start_point, graphene_point_tHandle end_point, GskColorStop[] stops, UIntPtr n_stops);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern void gtk_snapshot_append_repeating_radial_gradient(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle center, float hradius, float vradius, float start, float end, GskColorStop[] stops, int n_stops);
+	internal static extern void gtk_snapshot_append_repeating_radial_gradient(GtkSnapshotHandle snapshot, graphene_rect_tHandle bounds, graphene_point_tHandle center, float hradius, float vradius, float start, float end, GskColorStop[] stops, UIntPtr n_stops);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_append_scaled_texture(GtkSnapshotHandle snapshot, GdkTextureHandle texture, GskScalingFilter filter, graphene_rect_tHandle bounds);
@@ -425,7 +425,7 @@ internal class GtkSnapshotExterns
 	internal static extern void gtk_snapshot_push_rounded_clip(GtkSnapshotHandle snapshot, GskRoundedRectHandle bounds);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern void gtk_snapshot_push_shadow(GtkSnapshotHandle snapshot, GskShadow[] shadow, int n_shadows);
+	internal static extern void gtk_snapshot_push_shadow(GtkSnapshotHandle snapshot, GskShadow[] shadow, UIntPtr n_shadows);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern void gtk_snapshot_push_stroke(GtkSnapshotHandle snapshot, GskPathHandle path, GskStrokeHandle stroke);

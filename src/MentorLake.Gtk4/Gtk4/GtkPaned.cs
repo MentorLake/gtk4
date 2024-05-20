@@ -16,7 +16,7 @@ public static class GtkPanedSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPanedSignalStructs.AcceptPositionSignal> obs) =>
 		{
-			GtkPanedSignalDelegates.AcceptPosition handler = (GtkPanedHandle self, IntPtr user_data) =>
+			GtkPanedSignalDelegates.accept_position handler = (GtkPanedHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkPanedSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPanedSignalStructs.CancelPositionSignal> obs) =>
 		{
-			GtkPanedSignalDelegates.CancelPosition handler = (GtkPanedHandle self, IntPtr user_data) =>
+			GtkPanedSignalDelegates.cancel_position handler = (GtkPanedHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkPanedSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPanedSignalStructs.CycleChildFocusSignal> obs) =>
 		{
-			GtkPanedSignalDelegates.CycleChildFocus handler = (GtkPanedHandle self, bool reversed, IntPtr user_data) =>
+			GtkPanedSignalDelegates.cycle_child_focus handler = (GtkPanedHandle self, bool reversed, IntPtr user_data) =>
 			{
 				
 
@@ -97,7 +97,7 @@ public static class GtkPanedSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPanedSignalStructs.CycleHandleFocusSignal> obs) =>
 		{
-			GtkPanedSignalDelegates.CycleHandleFocus handler = (GtkPanedHandle self, bool reversed, IntPtr user_data) =>
+			GtkPanedSignalDelegates.cycle_handle_focus handler = (GtkPanedHandle self, bool reversed, IntPtr user_data) =>
 			{
 				
 
@@ -124,7 +124,7 @@ public static class GtkPanedSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPanedSignalStructs.MoveHandleSignal> obs) =>
 		{
-			GtkPanedSignalDelegates.MoveHandle handler = (GtkPanedHandle self, ref GtkScrollType scroll_type, IntPtr user_data) =>
+			GtkPanedSignalDelegates.move_handle handler = (GtkPanedHandle self, ref GtkScrollType scroll_type, IntPtr user_data) =>
 			{
 				
 
@@ -151,7 +151,7 @@ public static class GtkPanedSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkPanedSignalStructs.ToggleHandleFocusSignal> obs) =>
 		{
-			GtkPanedSignalDelegates.ToggleHandleFocus handler = (GtkPanedHandle self, IntPtr user_data) =>
+			GtkPanedSignalDelegates.toggle_handle_focus handler = (GtkPanedHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -227,23 +227,29 @@ public struct ToggleHandleFocusSignal
 public static class GtkPanedSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool AcceptPosition([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool accept_position([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool CancelPosition([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool CycleChildFocus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, bool reversed, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool cancel_position([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool CycleHandleFocus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, bool reversed, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool MoveHandle([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, ref GtkScrollType scroll_type, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool cycle_child_focus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, bool reversed, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ToggleHandleFocus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool cycle_handle_focus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, bool reversed, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool move_handle([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, ref GtkScrollType scroll_type, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool toggle_handle_focus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkPanedHandle>))] GtkPanedHandle self, IntPtr user_data);
+
 }
 
 

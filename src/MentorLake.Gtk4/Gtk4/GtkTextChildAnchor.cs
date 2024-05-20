@@ -21,7 +21,7 @@ public static class GtkTextChildAnchorHandleExtensions
 		return GtkTextChildAnchorExterns.gtk_text_child_anchor_get_deleted(anchor);
 	}
 
-	public static GtkWidgetHandle[] GetWidgets(this GtkTextChildAnchorHandle anchor, out uint out_len)
+	public static IntPtr GetWidgets(this GtkTextChildAnchorHandle anchor, out uint out_len)
 	{
 		return GtkTextChildAnchorExterns.gtk_text_child_anchor_get_widgets(anchor, out out_len);
 	}
@@ -40,6 +40,6 @@ internal class GtkTextChildAnchorExterns
 	internal static extern bool gtk_text_child_anchor_get_deleted(GtkTextChildAnchorHandle anchor);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkWidgetHandle[] gtk_text_child_anchor_get_widgets(GtkTextChildAnchorHandle anchor, out uint out_len);
+	internal static extern IntPtr gtk_text_child_anchor_get_widgets(GtkTextChildAnchorHandle anchor, out uint out_len);
 
 }

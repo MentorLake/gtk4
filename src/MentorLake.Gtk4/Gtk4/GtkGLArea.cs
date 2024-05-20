@@ -16,7 +16,7 @@ public static class GtkGLAreaSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGLAreaSignalStructs.CreateContextSignal> obs) =>
 		{
-			GtkGLAreaSignalDelegates.CreateContext handler = (GtkGLAreaHandle self, IntPtr user_data) =>
+			GtkGLAreaSignalDelegates.create_context handler = (GtkGLAreaHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkGLAreaSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGLAreaSignalStructs.RenderSignal> obs) =>
 		{
-			GtkGLAreaSignalDelegates.Render handler = (GtkGLAreaHandle self, GdkGLContextHandle context, IntPtr user_data) =>
+			GtkGLAreaSignalDelegates.render handler = (GtkGLAreaHandle self, GdkGLContextHandle context, IntPtr user_data) =>
 			{
 				
 
@@ -70,7 +70,7 @@ public static class GtkGLAreaSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkGLAreaSignalStructs.ResizeSignal> obs) =>
 		{
-			GtkGLAreaSignalDelegates.Resize handler = (GtkGLAreaHandle self, int width, int height, IntPtr user_data) =>
+			GtkGLAreaSignalDelegates.resize handler = (GtkGLAreaHandle self, int width, int height, IntPtr user_data) =>
 			{
 				
 
@@ -124,14 +124,17 @@ public struct ResizeSignal
 public static class GtkGLAreaSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate GdkGLContextHandle CreateContext([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGLAreaHandle>))] GtkGLAreaHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate GdkGLContextHandle create_context([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGLAreaHandle>))] GtkGLAreaHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool Render([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGLAreaHandle>))] GtkGLAreaHandle self, GdkGLContextHandle context, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Resize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGLAreaHandle>))] GtkGLAreaHandle self, int width, int height, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool render([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGLAreaHandle>))] GtkGLAreaHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GdkGLContextHandle>))] GdkGLContextHandle context, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void resize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkGLAreaHandle>))] GtkGLAreaHandle self, int width, int height, IntPtr user_data);
+
 }
 
 

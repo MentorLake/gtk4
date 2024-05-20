@@ -17,7 +17,7 @@ public class GtkTreePathHandle : BaseSafeHandle
 		return GtkTreePathExterns.gtk_tree_path_new_from_indices(first_index, @__arglist);
 	}
 
-	public static GtkTreePathHandle NewFromIndicesv(int[] indices, int length)
+	public static GtkTreePathHandle NewFromIndicesv(int[] indices, UIntPtr length)
 	{
 		return GtkTreePathExterns.gtk_tree_path_new_from_indicesv(indices, length);
 	}
@@ -41,7 +41,7 @@ internal class GtkTreePathExterns
 	internal static extern GtkTreePathHandle gtk_tree_path_new_from_indices(int first_index, IntPtr @__arglist);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkTreePathHandle gtk_tree_path_new_from_indicesv(int[] indices, int length);
+	internal static extern GtkTreePathHandle gtk_tree_path_new_from_indicesv(int[] indices, UIntPtr length);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkTreePathHandle gtk_tree_path_new_from_string(string path);

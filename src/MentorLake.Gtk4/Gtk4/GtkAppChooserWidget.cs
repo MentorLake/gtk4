@@ -16,7 +16,7 @@ public static class GtkAppChooserWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkAppChooserWidgetSignalStructs.ApplicationActivatedSignal> obs) =>
 		{
-			GtkAppChooserWidgetSignalDelegates.ApplicationActivated handler = (GtkAppChooserWidgetHandle self, GAppInfoHandle application, IntPtr user_data) =>
+			GtkAppChooserWidgetSignalDelegates.application_activated handler = (GtkAppChooserWidgetHandle self, GAppInfoHandle application, IntPtr user_data) =>
 			{
 				
 
@@ -43,7 +43,7 @@ public static class GtkAppChooserWidgetSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkAppChooserWidgetSignalStructs.ApplicationSelectedSignal> obs) =>
 		{
-			GtkAppChooserWidgetSignalDelegates.ApplicationSelected handler = (GtkAppChooserWidgetHandle self, GAppInfoHandle application, IntPtr user_data) =>
+			GtkAppChooserWidgetSignalDelegates.application_selected handler = (GtkAppChooserWidgetHandle self, GAppInfoHandle application, IntPtr user_data) =>
 			{
 				
 
@@ -88,11 +88,13 @@ public struct ApplicationSelectedSignal
 public static class GtkAppChooserWidgetSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ApplicationActivated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAppChooserWidgetHandle>))] GtkAppChooserWidgetHandle self, GAppInfoHandle application, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void application_activated([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAppChooserWidgetHandle>))] GtkAppChooserWidgetHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GAppInfoHandleImpl>))] GAppInfoHandle application, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ApplicationSelected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAppChooserWidgetHandle>))] GtkAppChooserWidgetHandle self, GAppInfoHandle application, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void application_selected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkAppChooserWidgetHandle>))] GtkAppChooserWidgetHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GAppInfoHandleImpl>))] GAppInfoHandle application, IntPtr user_data);
+
 }
 
 

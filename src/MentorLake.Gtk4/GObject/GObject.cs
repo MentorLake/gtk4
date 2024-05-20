@@ -22,7 +22,7 @@ public class GObjectHandle : GTypeInstanceHandle
 		return GObjectExterns.g_object_newv(object_type, n_parameters, parameters);
 	}
 
-	public static int CompatControl(int what, IntPtr data)
+	public static UIntPtr CompatControl(UIntPtr what, IntPtr data)
 	{
 		return GObjectExterns.g_object_compat_control(what, data);
 	}
@@ -37,7 +37,7 @@ public class GObjectHandle : GTypeInstanceHandle
 		GObjectExterns.g_object_interface_install_property(g_iface, pspec);
 	}
 
-	public static GParamSpecHandle[] InterfaceListProperties(GTypeInterfaceHandle g_iface, out uint n_properties_p)
+	public static IntPtr InterfaceListProperties(GTypeInterfaceHandle g_iface, out uint n_properties_p)
 	{
 		return GObjectExterns.g_object_interface_list_properties(g_iface, out n_properties_p);
 	}
@@ -51,7 +51,7 @@ public static class GObjectSignalExtensions
 	{
 		return Observable.Create((IObserver<GObjectSignalStructs.NotifySignal> obs) =>
 		{
-			GObjectSignalDelegates.Notify handler = (GObjectHandle self, GParamSpecHandle pspec, IntPtr user_data) =>
+			GObjectSignalDelegates.notify handler = (GObjectHandle self, GParamSpecHandle pspec, IntPtr user_data) =>
 			{
 				
 
@@ -89,8 +89,9 @@ public struct NotifySignal
 public static class GObjectSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Notify([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GObjectHandle>))] GObjectHandle self, GParamSpecHandle pspec, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void notify([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GObjectHandle>))] GObjectHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GParamSpecHandle>))] GParamSpecHandle pspec, IntPtr user_data);
+
 }
 
 
@@ -636,7 +637,7 @@ internal class GObjectExterns
 	internal static extern void g_signal_stop_emission(GObjectHandle instance, uint signal_id, GQuark detail);
 
 	[DllImport(Libraries.GObject)]
-	internal static extern int g_object_compat_control(int what, IntPtr data);
+	internal static extern UIntPtr g_object_compat_control(UIntPtr what, IntPtr data);
 
 	[DllImport(Libraries.GObject)]
 	internal static extern GParamSpecHandle g_object_interface_find_property(GTypeInterfaceHandle g_iface, string property_name);
@@ -645,6 +646,6 @@ internal class GObjectExterns
 	internal static extern void g_object_interface_install_property(GTypeInterfaceHandle g_iface, GParamSpecHandle pspec);
 
 	[DllImport(Libraries.GObject)]
-	internal static extern GParamSpecHandle[] g_object_interface_list_properties(GTypeInterfaceHandle g_iface, out uint n_properties_p);
+	internal static extern IntPtr g_object_interface_list_properties(GTypeInterfaceHandle g_iface, out uint n_properties_p);
 
 }

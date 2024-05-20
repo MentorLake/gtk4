@@ -2,7 +2,7 @@ namespace MentorLake.Gtk4.Gtk4;
 
 public class GtkAccessibleListHandle : BaseSafeHandle
 {
-	public static GtkAccessibleListHandle NewFromArray(GtkAccessibleHandle[] accessibles, int n_accessibles)
+	public static GtkAccessibleListHandle NewFromArray(GtkAccessibleHandle[] accessibles, UIntPtr n_accessibles)
 	{
 		return GtkAccessibleListExterns.gtk_accessible_list_new_from_array(accessibles, n_accessibles);
 	}
@@ -17,7 +17,7 @@ public class GtkAccessibleListHandle : BaseSafeHandle
 internal class GtkAccessibleListExterns
 {
 	[DllImport(Libraries.Gtk4)]
-	internal static extern GtkAccessibleListHandle gtk_accessible_list_new_from_array(GtkAccessibleHandle[] accessibles, int n_accessibles);
+	internal static extern GtkAccessibleListHandle gtk_accessible_list_new_from_array(GtkAccessibleHandle[] accessibles, UIntPtr n_accessibles);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAccessibleListHandle gtk_accessible_list_new_from_list(GListHandle list);

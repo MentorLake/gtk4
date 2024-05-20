@@ -21,7 +21,7 @@ public static class GtkTextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextSignalStructs.ActivateSignal> obs) =>
 		{
-			GtkTextSignalDelegates.Activate handler = (GtkTextHandle self, IntPtr user_data) =>
+			GtkTextSignalDelegates.activate handler = (GtkTextHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -48,7 +48,7 @@ public static class GtkTextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextSignalStructs.BackspaceSignal> obs) =>
 		{
-			GtkTextSignalDelegates.Backspace handler = (GtkTextHandle self, IntPtr user_data) =>
+			GtkTextSignalDelegates.backspace handler = (GtkTextHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -75,7 +75,7 @@ public static class GtkTextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextSignalStructs.CopyClipboardSignal> obs) =>
 		{
-			GtkTextSignalDelegates.CopyClipboard handler = (GtkTextHandle self, IntPtr user_data) =>
+			GtkTextSignalDelegates.copy_clipboard handler = (GtkTextHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -102,7 +102,7 @@ public static class GtkTextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextSignalStructs.CutClipboardSignal> obs) =>
 		{
-			GtkTextSignalDelegates.CutClipboard handler = (GtkTextHandle self, IntPtr user_data) =>
+			GtkTextSignalDelegates.cut_clipboard handler = (GtkTextHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -129,7 +129,7 @@ public static class GtkTextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextSignalStructs.DeleteFromCursorSignal> obs) =>
 		{
-			GtkTextSignalDelegates.DeleteFromCursor handler = (GtkTextHandle self, ref GtkDeleteType type, int count, IntPtr user_data) =>
+			GtkTextSignalDelegates.delete_from_cursor handler = (GtkTextHandle self, ref GtkDeleteType type, int count, IntPtr user_data) =>
 			{
 				
 
@@ -156,7 +156,7 @@ public static class GtkTextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextSignalStructs.InsertAtCursorSignal> obs) =>
 		{
-			GtkTextSignalDelegates.InsertAtCursor handler = (GtkTextHandle self, string @string, IntPtr user_data) =>
+			GtkTextSignalDelegates.insert_at_cursor handler = (GtkTextHandle self, string @string, IntPtr user_data) =>
 			{
 				
 
@@ -183,7 +183,7 @@ public static class GtkTextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextSignalStructs.InsertEmojiSignal> obs) =>
 		{
-			GtkTextSignalDelegates.InsertEmoji handler = (GtkTextHandle self, IntPtr user_data) =>
+			GtkTextSignalDelegates.insert_emoji handler = (GtkTextHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -210,7 +210,7 @@ public static class GtkTextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextSignalStructs.MoveCursorSignal> obs) =>
 		{
-			GtkTextSignalDelegates.MoveCursor handler = (GtkTextHandle self, ref GtkMovementStep step, int count, bool extend, IntPtr user_data) =>
+			GtkTextSignalDelegates.move_cursor handler = (GtkTextHandle self, ref GtkMovementStep step, int count, bool extend, IntPtr user_data) =>
 			{
 				
 
@@ -237,7 +237,7 @@ public static class GtkTextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextSignalStructs.PasteClipboardSignal> obs) =>
 		{
-			GtkTextSignalDelegates.PasteClipboard handler = (GtkTextHandle self, IntPtr user_data) =>
+			GtkTextSignalDelegates.paste_clipboard handler = (GtkTextHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -264,7 +264,7 @@ public static class GtkTextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextSignalStructs.PreeditChangedSignal> obs) =>
 		{
-			GtkTextSignalDelegates.PreeditChanged handler = (GtkTextHandle self, string preedit, IntPtr user_data) =>
+			GtkTextSignalDelegates.preedit_changed handler = (GtkTextHandle self, string preedit, IntPtr user_data) =>
 			{
 				
 
@@ -291,7 +291,7 @@ public static class GtkTextSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkTextSignalStructs.ToggleOverwriteSignal> obs) =>
 		{
-			GtkTextSignalDelegates.ToggleOverwrite handler = (GtkTextHandle self, IntPtr user_data) =>
+			GtkTextSignalDelegates.toggle_overwrite handler = (GtkTextHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -395,44 +395,55 @@ public struct ToggleOverwriteSignal
 public static class GtkTextSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void activate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Backspace([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void CopyClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void backspace([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void CutClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void DeleteFromCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, ref GtkDeleteType type, int count, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void copy_clipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void InsertAtCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, string @string, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void InsertEmoji([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void cut_clipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MoveCursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, ref GtkMovementStep step, int count, bool extend, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PasteClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void delete_from_cursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, ref GtkDeleteType type, int count, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void PreeditChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, string preedit, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ToggleOverwrite([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void insert_at_cursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, string @string, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void insert_emoji([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void move_cursor([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, ref GtkMovementStep step, int count, bool extend, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void paste_clipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void preedit_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, string preedit, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void toggle_overwrite([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTextHandle>))] GtkTextHandle self, IntPtr user_data);
+
 }
 
 
 public static class GtkTextHandleExtensions
 {
-	public static GtkTextHandle ComputeCursorExtents(this GtkTextHandle self, int position, out graphene_rect_t strong, out graphene_rect_t weak)
+	public static GtkTextHandle ComputeCursorExtents(this GtkTextHandle self, UIntPtr position, out graphene_rect_t strong, out graphene_rect_t weak)
 	{
 		GtkTextExterns.gtk_text_compute_cursor_extents(self, position, out strong, out weak);
 		return self;
@@ -630,7 +641,7 @@ internal class GtkTextExterns
 	internal static extern GtkTextHandle gtk_text_new_with_buffer(GtkEntryBufferHandle buffer);
 
 	[DllImport(Libraries.Gtk4)]
-	internal static extern void gtk_text_compute_cursor_extents(GtkTextHandle self, int position, out graphene_rect_t strong, out graphene_rect_t weak);
+	internal static extern void gtk_text_compute_cursor_extents(GtkTextHandle self, UIntPtr position, out graphene_rect_t strong, out graphene_rect_t weak);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern bool gtk_text_get_activates_default(GtkTextHandle self);

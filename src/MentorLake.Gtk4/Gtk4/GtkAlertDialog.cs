@@ -22,7 +22,7 @@ public static class GtkAlertDialogHandleExtensions
 		return GtkAlertDialogExterns.gtk_alert_dialog_choose_finish(self, result, out error);
 	}
 
-	public static string GetButtons(this GtkAlertDialogHandle self)
+	public static IntPtr GetButtons(this GtkAlertDialogHandle self)
 	{
 		return GtkAlertDialogExterns.gtk_alert_dialog_get_buttons(self);
 	}
@@ -108,8 +108,7 @@ internal class GtkAlertDialogExterns
 	internal static extern int gtk_alert_dialog_choose_finish(GtkAlertDialogHandle self, GAsyncResultHandle result, out GErrorHandle error);
 
 	[DllImport(Libraries.Gtk4)]
-	[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NoNativeFreeStringMarshaller))]
-	internal static extern string gtk_alert_dialog_get_buttons(GtkAlertDialogHandle self);
+	internal static extern IntPtr gtk_alert_dialog_get_buttons(GtkAlertDialogHandle self);
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern int gtk_alert_dialog_get_cancel_button(GtkAlertDialogHandle self);

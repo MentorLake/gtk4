@@ -27,7 +27,7 @@ public static class GThemedIconHandleExtensions
 		return icon;
 	}
 
-	public static string GetNames(this GThemedIconHandle icon)
+	public static IntPtr GetNames(this GThemedIconHandle icon)
 	{
 		return GThemedIconExterns.g_themed_icon_get_names(icon);
 	}
@@ -55,7 +55,7 @@ internal class GThemedIconExterns
 	internal static extern void g_themed_icon_append_name(GThemedIconHandle icon, string iconname);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string g_themed_icon_get_names(GThemedIconHandle icon);
+	internal static extern IntPtr g_themed_icon_get_names(GThemedIconHandle icon);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_themed_icon_prepend_name(GThemedIconHandle icon, string iconname);

@@ -16,7 +16,7 @@ public static class GDebugControllerDBusSignalExtensions
 	{
 		return Observable.Create((IObserver<GDebugControllerDBusSignalStructs.AuthorizeSignal> obs) =>
 		{
-			GDebugControllerDBusSignalDelegates.Authorize handler = (GDebugControllerDBusHandle self, GDBusMethodInvocationHandle invocation, IntPtr user_data) =>
+			GDebugControllerDBusSignalDelegates.authorize handler = (GDebugControllerDBusHandle self, GDBusMethodInvocationHandle invocation, IntPtr user_data) =>
 			{
 				
 
@@ -55,8 +55,9 @@ public struct AuthorizeSignal
 public static class GDebugControllerDBusSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool Authorize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDebugControllerDBusHandle>))] GDebugControllerDBusHandle self, GDBusMethodInvocationHandle invocation, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool authorize([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDebugControllerDBusHandle>))] GDebugControllerDBusHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusMethodInvocationHandle>))] GDBusMethodInvocationHandle invocation, IntPtr user_data);
+
 }
 
 

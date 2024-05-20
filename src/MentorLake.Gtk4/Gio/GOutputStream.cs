@@ -59,7 +59,7 @@ public static class GOutputStreamHandleExtensions
 		return GOutputStreamExterns.g_output_stream_is_closing(stream);
 	}
 
-	public static bool Printf(this GOutputStreamHandle stream, out int bytes_written, GCancellableHandle cancellable, out GErrorHandle error, string format, IntPtr @__arglist)
+	public static bool Printf(this GOutputStreamHandle stream, out UIntPtr bytes_written, GCancellableHandle cancellable, out GErrorHandle error, string format, IntPtr @__arglist)
 	{
 		return GOutputStreamExterns.g_output_stream_printf(stream, out bytes_written, cancellable, out error, format, @__arglist);
 	}
@@ -69,7 +69,7 @@ public static class GOutputStreamHandleExtensions
 		return GOutputStreamExterns.g_output_stream_set_pending(stream, out error);
 	}
 
-	public static int Splice(this GOutputStreamHandle stream, GInputStreamHandle source, GOutputStreamSpliceFlags flags, GCancellableHandle cancellable, out GErrorHandle error)
+	public static UIntPtr Splice(this GOutputStreamHandle stream, GInputStreamHandle source, GOutputStreamSpliceFlags flags, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GOutputStreamExterns.g_output_stream_splice(stream, source, flags, cancellable, out error);
 	}
@@ -80,44 +80,44 @@ public static class GOutputStreamHandleExtensions
 		return stream;
 	}
 
-	public static int SpliceFinish(this GOutputStreamHandle stream, GAsyncResultHandle result, out GErrorHandle error)
+	public static UIntPtr SpliceFinish(this GOutputStreamHandle stream, GAsyncResultHandle result, out GErrorHandle error)
 	{
 		return GOutputStreamExterns.g_output_stream_splice_finish(stream, result, out error);
 	}
 
-	public static bool Vprintf(this GOutputStreamHandle stream, out int bytes_written, GCancellableHandle cancellable, out GErrorHandle error, string format, IntPtr args)
+	public static bool Vprintf(this GOutputStreamHandle stream, out UIntPtr bytes_written, GCancellableHandle cancellable, out GErrorHandle error, string format, IntPtr args)
 	{
 		return GOutputStreamExterns.g_output_stream_vprintf(stream, out bytes_written, cancellable, out error, format, args);
 	}
 
-	public static int Write(this GOutputStreamHandle stream, IntPtr buffer, int count, GCancellableHandle cancellable, out GErrorHandle error)
+	public static UIntPtr Write(this GOutputStreamHandle stream, IntPtr buffer, UIntPtr count, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GOutputStreamExterns.g_output_stream_write(stream, buffer, count, cancellable, out error);
 	}
 
-	public static bool WriteAll(this GOutputStreamHandle stream, IntPtr buffer, int count, out int bytes_written, GCancellableHandle cancellable, out GErrorHandle error)
+	public static bool WriteAll(this GOutputStreamHandle stream, IntPtr buffer, UIntPtr count, out UIntPtr bytes_written, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GOutputStreamExterns.g_output_stream_write_all(stream, buffer, count, out bytes_written, cancellable, out error);
 	}
 
-	public static GOutputStreamHandle WriteAllAsync(this GOutputStreamHandle stream, IntPtr buffer, int count, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	public static GOutputStreamHandle WriteAllAsync(this GOutputStreamHandle stream, IntPtr buffer, UIntPtr count, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
 	{
 		GOutputStreamExterns.g_output_stream_write_all_async(stream, buffer, count, io_priority, cancellable, callback, user_data);
 		return stream;
 	}
 
-	public static bool WriteAllFinish(this GOutputStreamHandle stream, GAsyncResultHandle result, out int bytes_written, out GErrorHandle error)
+	public static bool WriteAllFinish(this GOutputStreamHandle stream, GAsyncResultHandle result, out UIntPtr bytes_written, out GErrorHandle error)
 	{
 		return GOutputStreamExterns.g_output_stream_write_all_finish(stream, result, out bytes_written, out error);
 	}
 
-	public static GOutputStreamHandle WriteAsync(this GOutputStreamHandle stream, IntPtr buffer, int count, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	public static GOutputStreamHandle WriteAsync(this GOutputStreamHandle stream, IntPtr buffer, UIntPtr count, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
 	{
 		GOutputStreamExterns.g_output_stream_write_async(stream, buffer, count, io_priority, cancellable, callback, user_data);
 		return stream;
 	}
 
-	public static int WriteBytes(this GOutputStreamHandle stream, GBytesHandle bytes, GCancellableHandle cancellable, out GErrorHandle error)
+	public static UIntPtr WriteBytes(this GOutputStreamHandle stream, GBytesHandle bytes, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GOutputStreamExterns.g_output_stream_write_bytes(stream, bytes, cancellable, out error);
 	}
@@ -128,54 +128,54 @@ public static class GOutputStreamHandleExtensions
 		return stream;
 	}
 
-	public static int WriteBytesFinish(this GOutputStreamHandle stream, GAsyncResultHandle result, out GErrorHandle error)
+	public static UIntPtr WriteBytesFinish(this GOutputStreamHandle stream, GAsyncResultHandle result, out GErrorHandle error)
 	{
 		return GOutputStreamExterns.g_output_stream_write_bytes_finish(stream, result, out error);
 	}
 
-	public static int WriteFinish(this GOutputStreamHandle stream, GAsyncResultHandle result, out GErrorHandle error)
+	public static UIntPtr WriteFinish(this GOutputStreamHandle stream, GAsyncResultHandle result, out GErrorHandle error)
 	{
 		return GOutputStreamExterns.g_output_stream_write_finish(stream, result, out error);
 	}
 
-	public static bool Writev(this GOutputStreamHandle stream, GOutputVector[] vectors, int n_vectors, out int bytes_written, GCancellableHandle cancellable, out GErrorHandle error)
+	public static bool Writev(this GOutputStreamHandle stream, GOutputVector[] vectors, UIntPtr n_vectors, out UIntPtr bytes_written, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GOutputStreamExterns.g_output_stream_writev(stream, vectors, n_vectors, out bytes_written, cancellable, out error);
 	}
 
-	public static bool WritevAll(this GOutputStreamHandle stream, GOutputVector[] vectors, int n_vectors, out int bytes_written, GCancellableHandle cancellable, out GErrorHandle error)
+	public static bool WritevAll(this GOutputStreamHandle stream, GOutputVector[] vectors, UIntPtr n_vectors, out UIntPtr bytes_written, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GOutputStreamExterns.g_output_stream_writev_all(stream, vectors, n_vectors, out bytes_written, cancellable, out error);
 	}
 
-	public static GOutputStreamHandle WritevAllAsync(this GOutputStreamHandle stream, GOutputVector[] vectors, int n_vectors, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	public static GOutputStreamHandle WritevAllAsync(this GOutputStreamHandle stream, GOutputVector[] vectors, UIntPtr n_vectors, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
 	{
 		GOutputStreamExterns.g_output_stream_writev_all_async(stream, vectors, n_vectors, io_priority, cancellable, callback, user_data);
 		return stream;
 	}
 
-	public static bool WritevAllFinish(this GOutputStreamHandle stream, GAsyncResultHandle result, out int bytes_written, out GErrorHandle error)
+	public static bool WritevAllFinish(this GOutputStreamHandle stream, GAsyncResultHandle result, out UIntPtr bytes_written, out GErrorHandle error)
 	{
 		return GOutputStreamExterns.g_output_stream_writev_all_finish(stream, result, out bytes_written, out error);
 	}
 
-	public static GOutputStreamHandle WritevAsync(this GOutputStreamHandle stream, GOutputVector[] vectors, int n_vectors, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
+	public static GOutputStreamHandle WritevAsync(this GOutputStreamHandle stream, GOutputVector[] vectors, UIntPtr n_vectors, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data)
 	{
 		GOutputStreamExterns.g_output_stream_writev_async(stream, vectors, n_vectors, io_priority, cancellable, callback, user_data);
 		return stream;
 	}
 
-	public static bool WritevFinish(this GOutputStreamHandle stream, GAsyncResultHandle result, out int bytes_written, out GErrorHandle error)
+	public static bool WritevFinish(this GOutputStreamHandle stream, GAsyncResultHandle result, out UIntPtr bytes_written, out GErrorHandle error)
 	{
 		return GOutputStreamExterns.g_output_stream_writev_finish(stream, result, out bytes_written, out error);
 	}
 
-	public static int GPollableStreamWrite(this GOutputStreamHandle stream, IntPtr buffer, int count, bool blocking, GCancellableHandle cancellable, out GErrorHandle error)
+	public static UIntPtr GPollableStreamWrite(this GOutputStreamHandle stream, IntPtr buffer, UIntPtr count, bool blocking, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GOutputStreamExterns.g_pollable_stream_write(stream, buffer, count, blocking, cancellable, out error);
 	}
 
-	public static bool GPollableStreamWriteAll(this GOutputStreamHandle stream, IntPtr buffer, int count, bool blocking, out int bytes_written, GCancellableHandle cancellable, out GErrorHandle error)
+	public static bool GPollableStreamWriteAll(this GOutputStreamHandle stream, IntPtr buffer, UIntPtr count, bool blocking, out UIntPtr bytes_written, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GOutputStreamExterns.g_pollable_stream_write_all(stream, buffer, count, blocking, out bytes_written, cancellable, out error);
 	}
@@ -215,72 +215,72 @@ internal class GOutputStreamExterns
 	internal static extern bool g_output_stream_is_closing(GOutputStreamHandle stream);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern bool g_output_stream_printf(GOutputStreamHandle stream, out int bytes_written, GCancellableHandle cancellable, out GErrorHandle error, string format, IntPtr @__arglist);
+	internal static extern bool g_output_stream_printf(GOutputStreamHandle stream, out UIntPtr bytes_written, GCancellableHandle cancellable, out GErrorHandle error, string format, IntPtr @__arglist);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_output_stream_set_pending(GOutputStreamHandle stream, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_output_stream_splice(GOutputStreamHandle stream, GInputStreamHandle source, GOutputStreamSpliceFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern UIntPtr g_output_stream_splice(GOutputStreamHandle stream, GInputStreamHandle source, GOutputStreamSpliceFlags flags, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_output_stream_splice_async(GOutputStreamHandle stream, GInputStreamHandle source, GOutputStreamSpliceFlags flags, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_output_stream_splice_finish(GOutputStreamHandle stream, GAsyncResultHandle result, out GErrorHandle error);
+	internal static extern UIntPtr g_output_stream_splice_finish(GOutputStreamHandle stream, GAsyncResultHandle result, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern bool g_output_stream_vprintf(GOutputStreamHandle stream, out int bytes_written, GCancellableHandle cancellable, out GErrorHandle error, string format, IntPtr args);
+	internal static extern bool g_output_stream_vprintf(GOutputStreamHandle stream, out UIntPtr bytes_written, GCancellableHandle cancellable, out GErrorHandle error, string format, IntPtr args);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_output_stream_write(GOutputStreamHandle stream, IntPtr buffer, int count, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern UIntPtr g_output_stream_write(GOutputStreamHandle stream, IntPtr buffer, UIntPtr count, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern bool g_output_stream_write_all(GOutputStreamHandle stream, IntPtr buffer, int count, out int bytes_written, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern bool g_output_stream_write_all(GOutputStreamHandle stream, IntPtr buffer, UIntPtr count, out UIntPtr bytes_written, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern void g_output_stream_write_all_async(GOutputStreamHandle stream, IntPtr buffer, int count, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+	internal static extern void g_output_stream_write_all_async(GOutputStreamHandle stream, IntPtr buffer, UIntPtr count, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern bool g_output_stream_write_all_finish(GOutputStreamHandle stream, GAsyncResultHandle result, out int bytes_written, out GErrorHandle error);
+	internal static extern bool g_output_stream_write_all_finish(GOutputStreamHandle stream, GAsyncResultHandle result, out UIntPtr bytes_written, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern void g_output_stream_write_async(GOutputStreamHandle stream, IntPtr buffer, int count, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+	internal static extern void g_output_stream_write_async(GOutputStreamHandle stream, IntPtr buffer, UIntPtr count, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_output_stream_write_bytes(GOutputStreamHandle stream, GBytesHandle bytes, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern UIntPtr g_output_stream_write_bytes(GOutputStreamHandle stream, GBytesHandle bytes, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_output_stream_write_bytes_async(GOutputStreamHandle stream, GBytesHandle bytes, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_output_stream_write_bytes_finish(GOutputStreamHandle stream, GAsyncResultHandle result, out GErrorHandle error);
+	internal static extern UIntPtr g_output_stream_write_bytes_finish(GOutputStreamHandle stream, GAsyncResultHandle result, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_output_stream_write_finish(GOutputStreamHandle stream, GAsyncResultHandle result, out GErrorHandle error);
+	internal static extern UIntPtr g_output_stream_write_finish(GOutputStreamHandle stream, GAsyncResultHandle result, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern bool g_output_stream_writev(GOutputStreamHandle stream, GOutputVector[] vectors, int n_vectors, out int bytes_written, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern bool g_output_stream_writev(GOutputStreamHandle stream, GOutputVector[] vectors, UIntPtr n_vectors, out UIntPtr bytes_written, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern bool g_output_stream_writev_all(GOutputStreamHandle stream, GOutputVector[] vectors, int n_vectors, out int bytes_written, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern bool g_output_stream_writev_all(GOutputStreamHandle stream, GOutputVector[] vectors, UIntPtr n_vectors, out UIntPtr bytes_written, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern void g_output_stream_writev_all_async(GOutputStreamHandle stream, GOutputVector[] vectors, int n_vectors, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+	internal static extern void g_output_stream_writev_all_async(GOutputStreamHandle stream, GOutputVector[] vectors, UIntPtr n_vectors, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern bool g_output_stream_writev_all_finish(GOutputStreamHandle stream, GAsyncResultHandle result, out int bytes_written, out GErrorHandle error);
+	internal static extern bool g_output_stream_writev_all_finish(GOutputStreamHandle stream, GAsyncResultHandle result, out UIntPtr bytes_written, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern void g_output_stream_writev_async(GOutputStreamHandle stream, GOutputVector[] vectors, int n_vectors, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
+	internal static extern void g_output_stream_writev_async(GOutputStreamHandle stream, GOutputVector[] vectors, UIntPtr n_vectors, int io_priority, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern bool g_output_stream_writev_finish(GOutputStreamHandle stream, GAsyncResultHandle result, out int bytes_written, out GErrorHandle error);
+	internal static extern bool g_output_stream_writev_finish(GOutputStreamHandle stream, GAsyncResultHandle result, out UIntPtr bytes_written, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern int g_pollable_stream_write(GOutputStreamHandle stream, IntPtr buffer, int count, bool blocking, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern UIntPtr g_pollable_stream_write(GOutputStreamHandle stream, IntPtr buffer, UIntPtr count, bool blocking, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern bool g_pollable_stream_write_all(GOutputStreamHandle stream, IntPtr buffer, int count, bool blocking, out int bytes_written, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern bool g_pollable_stream_write_all(GOutputStreamHandle stream, IntPtr buffer, UIntPtr count, bool blocking, out UIntPtr bytes_written, GCancellableHandle cancellable, out GErrorHandle error);
 
 }

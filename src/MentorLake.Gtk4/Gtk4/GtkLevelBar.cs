@@ -21,7 +21,7 @@ public static class GtkLevelBarSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkLevelBarSignalStructs.OffsetChangedSignal> obs) =>
 		{
-			GtkLevelBarSignalDelegates.OffsetChanged handler = (GtkLevelBarHandle self, string name, IntPtr user_data) =>
+			GtkLevelBarSignalDelegates.offset_changed handler = (GtkLevelBarHandle self, string name, IntPtr user_data) =>
 			{
 				
 
@@ -59,8 +59,9 @@ public struct OffsetChangedSignal
 public static class GtkLevelBarSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void OffsetChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLevelBarHandle>))] GtkLevelBarHandle self, string name, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void offset_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkLevelBarHandle>))] GtkLevelBarHandle self, string name, IntPtr user_data);
+
 }
 
 

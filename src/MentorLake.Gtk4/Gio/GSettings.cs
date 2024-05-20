@@ -27,12 +27,12 @@ public class GSettingsHandle : GObjectHandle
 		return GSettingsExterns.g_settings_new_with_path(schema_id, path);
 	}
 
-	public static string ListRelocatableSchemas()
+	public static IntPtr ListRelocatableSchemas()
 	{
 		return GSettingsExterns.g_settings_list_relocatable_schemas();
 	}
 
-	public static string ListSchemas()
+	public static IntPtr ListSchemas()
 	{
 		return GSettingsExterns.g_settings_list_schemas();
 	}
@@ -56,7 +56,7 @@ public static class GSettingsSignalExtensions
 	{
 		return Observable.Create((IObserver<GSettingsSignalStructs.ChangeEventSignal> obs) =>
 		{
-			GSettingsSignalDelegates.ChangeEvent handler = (GSettingsHandle self, IntPtr keys, int n_keys, IntPtr user_data) =>
+			GSettingsSignalDelegates.change_event handler = (GSettingsHandle self, IntPtr keys, int n_keys, IntPtr user_data) =>
 			{
 				
 
@@ -83,7 +83,7 @@ public static class GSettingsSignalExtensions
 	{
 		return Observable.Create((IObserver<GSettingsSignalStructs.ChangedSignal> obs) =>
 		{
-			GSettingsSignalDelegates.Changed handler = (GSettingsHandle self, string key, IntPtr user_data) =>
+			GSettingsSignalDelegates.changed handler = (GSettingsHandle self, string key, IntPtr user_data) =>
 			{
 				
 
@@ -110,7 +110,7 @@ public static class GSettingsSignalExtensions
 	{
 		return Observable.Create((IObserver<GSettingsSignalStructs.WritableChangeEventSignal> obs) =>
 		{
-			GSettingsSignalDelegates.WritableChangeEvent handler = (GSettingsHandle self, uint key, IntPtr user_data) =>
+			GSettingsSignalDelegates.writable_change_event handler = (GSettingsHandle self, uint key, IntPtr user_data) =>
 			{
 				
 
@@ -137,7 +137,7 @@ public static class GSettingsSignalExtensions
 	{
 		return Observable.Create((IObserver<GSettingsSignalStructs.WritableChangedSignal> obs) =>
 		{
-			GSettingsSignalDelegates.WritableChanged handler = (GSettingsHandle self, string key, IntPtr user_data) =>
+			GSettingsSignalDelegates.writable_changed handler = (GSettingsHandle self, string key, IntPtr user_data) =>
 			{
 				
 
@@ -199,17 +199,21 @@ public struct WritableChangedSignal
 public static class GSettingsSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool ChangeEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, IntPtr keys, int n_keys, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool change_event([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, IntPtr keys, int n_keys, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, string key, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool WritableChangeEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, uint key, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, string key, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void WritableChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, string key, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool writable_change_event([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, uint key, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void writable_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GSettingsHandle>))] GSettingsHandle self, string key, IntPtr user_data);
+
 }
 
 
@@ -316,7 +320,7 @@ public static class GSettingsHandleExtensions
 		return GSettingsExterns.g_settings_get_string(settings, key);
 	}
 
-	public static string[] GetStrv(this GSettingsHandle settings, string key)
+	public static IntPtr GetStrv(this GSettingsHandle settings, string key)
 	{
 		return GSettingsExterns.g_settings_get_strv(settings, key);
 	}
@@ -346,12 +350,12 @@ public static class GSettingsHandleExtensions
 		return GSettingsExterns.g_settings_is_writable(settings, name);
 	}
 
-	public static string[] ListChildren(this GSettingsHandle settings)
+	public static IntPtr ListChildren(this GSettingsHandle settings)
 	{
 		return GSettingsExterns.g_settings_list_children(settings);
 	}
 
-	public static string[] ListKeys(this GSettingsHandle settings)
+	public static IntPtr ListKeys(this GSettingsHandle settings)
 	{
 		return GSettingsExterns.g_settings_list_keys(settings);
 	}
@@ -510,7 +514,7 @@ internal class GSettingsExterns
 	internal static extern string g_settings_get_string(GSettingsHandle settings, string key);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_settings_get_strv(GSettingsHandle settings, string key);
+	internal static extern IntPtr g_settings_get_strv(GSettingsHandle settings, string key);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern uint g_settings_get_uint(GSettingsHandle settings, string key);
@@ -528,10 +532,10 @@ internal class GSettingsExterns
 	internal static extern bool g_settings_is_writable(GSettingsHandle settings, string name);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_settings_list_children(GSettingsHandle settings);
+	internal static extern IntPtr g_settings_list_children(GSettingsHandle settings);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_settings_list_keys(GSettingsHandle settings);
+	internal static extern IntPtr g_settings_list_keys(GSettingsHandle settings);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_settings_range_check(GSettingsHandle settings, string key, GVariantHandle value);
@@ -579,10 +583,10 @@ internal class GSettingsExterns
 	internal static extern bool g_settings_set_value(GSettingsHandle settings, string key, GVariantHandle value);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string g_settings_list_relocatable_schemas();
+	internal static extern IntPtr g_settings_list_relocatable_schemas();
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string g_settings_list_schemas();
+	internal static extern IntPtr g_settings_list_schemas();
 
 	[DllImport(Libraries.Gio)]
 	internal static extern void g_settings_sync();

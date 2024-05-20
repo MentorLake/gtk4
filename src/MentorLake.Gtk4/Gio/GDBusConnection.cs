@@ -41,7 +41,7 @@ public static class GDBusConnectionSignalExtensions
 	{
 		return Observable.Create((IObserver<GDBusConnectionSignalStructs.ClosedSignal> obs) =>
 		{
-			GDBusConnectionSignalDelegates.Closed handler = (GDBusConnectionHandle self, bool remote_peer_vanished, GErrorHandle error, IntPtr user_data) =>
+			GDBusConnectionSignalDelegates.closed handler = (GDBusConnectionHandle self, bool remote_peer_vanished, GErrorHandle error, IntPtr user_data) =>
 			{
 				
 
@@ -80,8 +80,9 @@ public struct ClosedSignal
 public static class GDBusConnectionSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusConnectionHandle>))] GDBusConnectionHandle self, bool remote_peer_vanished, GErrorHandle error, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void closed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GDBusConnectionHandle>))] GDBusConnectionHandle self, bool remote_peer_vanished, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GErrorHandle>))] GErrorHandle error, IntPtr user_data);
+
 }
 
 

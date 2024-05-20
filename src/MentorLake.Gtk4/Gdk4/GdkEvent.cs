@@ -56,7 +56,7 @@ public static class GdkEventHandleExtensions
 		return GdkEventExterns.gdk_event_get_event_type(@event);
 	}
 
-	public static GdkTimeCoord[] GetHistory(this GdkEventHandle @event, out uint out_n_coords)
+	public static IntPtr GetHistory(this GdkEventHandle @event, out uint out_n_coords)
 	{
 		return GdkEventExterns.gdk_event_get_history(@event, out out_n_coords);
 	}
@@ -142,7 +142,7 @@ internal class GdkEventExterns
 	internal static extern GdkEventType gdk_event_get_event_type(GdkEventHandle @event);
 
 	[DllImport(Libraries.Gdk4)]
-	internal static extern GdkTimeCoord[] gdk_event_get_history(GdkEventHandle @event, out uint out_n_coords);
+	internal static extern IntPtr gdk_event_get_history(GdkEventHandle @event, out uint out_n_coords);
 
 	[DllImport(Libraries.Gdk4)]
 	internal static extern GdkModifierType gdk_event_get_modifier_state(GdkEventHandle @event);

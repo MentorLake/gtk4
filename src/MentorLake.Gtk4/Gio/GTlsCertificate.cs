@@ -17,7 +17,7 @@ public class GTlsCertificateHandle : GObjectHandle
 		return GTlsCertificateExterns.g_tls_certificate_new_from_files(cert_file, key_file, out error);
 	}
 
-	public static GTlsCertificateHandle NewFromPem(string data, int length, out GErrorHandle error)
+	public static GTlsCertificateHandle NewFromPem(string data, UIntPtr length, out GErrorHandle error)
 	{
 		return GTlsCertificateExterns.g_tls_certificate_new_from_pem(data, length, out error);
 	}
@@ -27,7 +27,7 @@ public class GTlsCertificateHandle : GObjectHandle
 		return GTlsCertificateExterns.g_tls_certificate_new_from_pkcs11_uris(pkcs11_uri, private_key_pkcs11_uri, out error);
 	}
 
-	public static GTlsCertificateHandle NewFromPkcs12(byte[] data, int length, string password, out GErrorHandle error)
+	public static GTlsCertificateHandle NewFromPkcs12(byte[] data, UIntPtr length, string password, out GErrorHandle error)
 	{
 		return GTlsCertificateExterns.g_tls_certificate_new_from_pkcs12(data, length, password, out error);
 	}
@@ -41,12 +41,12 @@ public class GTlsCertificateHandle : GObjectHandle
 
 public static class GTlsCertificateHandleExtensions
 {
-	public static GPtrArray[] GetDnsNames(this GTlsCertificateHandle cert)
+	public static IntPtr GetDnsNames(this GTlsCertificateHandle cert)
 	{
 		return GTlsCertificateExterns.g_tls_certificate_get_dns_names(cert);
 	}
 
-	public static GPtrArray[] GetIpAddresses(this GTlsCertificateHandle cert)
+	public static IntPtr GetIpAddresses(this GTlsCertificateHandle cert)
 	{
 		return GTlsCertificateExterns.g_tls_certificate_get_ip_addresses(cert);
 	}
@@ -100,19 +100,19 @@ internal class GTlsCertificateExterns
 	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_files(string cert_file, string key_file, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_pem(string data, int length, out GErrorHandle error);
+	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_pem(string data, UIntPtr length, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_pkcs11_uris(string pkcs11_uri, string private_key_pkcs11_uri, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_pkcs12(byte[] data, int length, string password, out GErrorHandle error);
+	internal static extern GTlsCertificateHandle g_tls_certificate_new_from_pkcs12(byte[] data, UIntPtr length, string password, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern GPtrArray[] g_tls_certificate_get_dns_names(GTlsCertificateHandle cert);
+	internal static extern IntPtr g_tls_certificate_get_dns_names(GTlsCertificateHandle cert);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern GPtrArray[] g_tls_certificate_get_ip_addresses(GTlsCertificateHandle cert);
+	internal static extern IntPtr g_tls_certificate_get_ip_addresses(GTlsCertificateHandle cert);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern GTlsCertificateHandle g_tls_certificate_get_issuer(GTlsCertificateHandle cert);

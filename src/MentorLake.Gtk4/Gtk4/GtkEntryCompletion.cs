@@ -21,7 +21,7 @@ public static class GtkEntryCompletionSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEntryCompletionSignalStructs.CursorOnMatchSignal> obs) =>
 		{
-			GtkEntryCompletionSignalDelegates.CursorOnMatch handler = (GtkEntryCompletionHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, IntPtr user_data) =>
+			GtkEntryCompletionSignalDelegates.cursor_on_match handler = (GtkEntryCompletionHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, IntPtr user_data) =>
 			{
 				
 
@@ -48,7 +48,7 @@ public static class GtkEntryCompletionSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEntryCompletionSignalStructs.InsertPrefixSignal> obs) =>
 		{
-			GtkEntryCompletionSignalDelegates.InsertPrefix handler = (GtkEntryCompletionHandle self, string prefix, IntPtr user_data) =>
+			GtkEntryCompletionSignalDelegates.insert_prefix handler = (GtkEntryCompletionHandle self, string prefix, IntPtr user_data) =>
 			{
 				
 
@@ -75,7 +75,7 @@ public static class GtkEntryCompletionSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEntryCompletionSignalStructs.MatchSelectedSignal> obs) =>
 		{
-			GtkEntryCompletionSignalDelegates.MatchSelected handler = (GtkEntryCompletionHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, IntPtr user_data) =>
+			GtkEntryCompletionSignalDelegates.match_selected handler = (GtkEntryCompletionHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, IntPtr user_data) =>
 			{
 				
 
@@ -102,7 +102,7 @@ public static class GtkEntryCompletionSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkEntryCompletionSignalStructs.NoMatchesSignal> obs) =>
 		{
-			GtkEntryCompletionSignalDelegates.NoMatches handler = (GtkEntryCompletionHandle self, IntPtr user_data) =>
+			GtkEntryCompletionSignalDelegates.no_matches handler = (GtkEntryCompletionHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -165,17 +165,21 @@ public struct NoMatchesSignal
 public static class GtkEntryCompletionSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool CursorOnMatch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryCompletionHandle>))] GtkEntryCompletionHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool cursor_on_match([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryCompletionHandle>))] GtkEntryCompletionHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeModelHandleImpl>))] GtkTreeModelHandle model, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeIterHandle>))] GtkTreeIterHandle iter, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool InsertPrefix([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryCompletionHandle>))] GtkEntryCompletionHandle self, string prefix, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate bool MatchSelected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryCompletionHandle>))] GtkEntryCompletionHandle self, GtkTreeModelHandle model, GtkTreeIterHandle iter, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool insert_prefix([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryCompletionHandle>))] GtkEntryCompletionHandle self, string prefix, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void NoMatches([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryCompletionHandle>))] GtkEntryCompletionHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate bool match_selected([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryCompletionHandle>))] GtkEntryCompletionHandle self, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeModelHandleImpl>))] GtkTreeModelHandle model, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkTreeIterHandle>))] GtkTreeIterHandle iter, IntPtr user_data);
+
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void no_matches([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkEntryCompletionHandle>))] GtkEntryCompletionHandle self, IntPtr user_data);
+
 }
 
 

@@ -11,7 +11,7 @@ public static class GtkShortcutsWindowSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkShortcutsWindowSignalStructs.CloseSignal> obs) =>
 		{
-			GtkShortcutsWindowSignalDelegates.Close handler = (GtkShortcutsWindowHandle self, IntPtr user_data) =>
+			GtkShortcutsWindowSignalDelegates.close handler = (GtkShortcutsWindowHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -38,7 +38,7 @@ public static class GtkShortcutsWindowSignalExtensions
 	{
 		return Observable.Create((IObserver<GtkShortcutsWindowSignalStructs.SearchSignal> obs) =>
 		{
-			GtkShortcutsWindowSignalDelegates.Search handler = (GtkShortcutsWindowHandle self, IntPtr user_data) =>
+			GtkShortcutsWindowSignalDelegates.search handler = (GtkShortcutsWindowHandle self, IntPtr user_data) =>
 			{
 				
 
@@ -81,11 +81,13 @@ public struct SearchSignal
 public static class GtkShortcutsWindowSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Close([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkShortcutsWindowHandle>))] GtkShortcutsWindowHandle self, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void close([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkShortcutsWindowHandle>))] GtkShortcutsWindowHandle self, IntPtr user_data);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void Search([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkShortcutsWindowHandle>))] GtkShortcutsWindowHandle self, IntPtr user_data);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void search([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GtkShortcutsWindowHandle>))] GtkShortcutsWindowHandle self, IntPtr user_data);
+
 }
 
 

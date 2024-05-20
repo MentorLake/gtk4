@@ -11,7 +11,7 @@ public static class GMenuModelSignalExtensions
 	{
 		return Observable.Create((IObserver<GMenuModelSignalStructs.ItemsChangedSignal> obs) =>
 		{
-			GMenuModelSignalDelegates.ItemsChanged handler = (GMenuModelHandle self, int position, int removed, int added, IntPtr user_data) =>
+			GMenuModelSignalDelegates.items_changed handler = (GMenuModelHandle self, int position, int removed, int added, IntPtr user_data) =>
 			{
 				
 
@@ -51,8 +51,9 @@ public struct ItemsChangedSignal
 public static class GMenuModelSignalDelegates
 {
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void ItemsChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMenuModelHandle>))] GMenuModelHandle self, int position, int removed, int added, IntPtr user_data);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public delegate void items_changed([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(DelegateSafeHandleMarshaller<GMenuModelHandle>))] GMenuModelHandle self, int position, int removed, int added, IntPtr user_data);
+
 }
 
 

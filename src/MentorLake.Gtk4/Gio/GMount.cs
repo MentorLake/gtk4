@@ -93,12 +93,12 @@ public static class GMountHandleExtensions
 		return mount;
 	}
 
-	public static string[] GuessContentTypeFinish(this GMountHandle mount, GAsyncResultHandle result, out GErrorHandle error)
+	public static IntPtr GuessContentTypeFinish(this GMountHandle mount, GAsyncResultHandle result, out GErrorHandle error)
 	{
 		return GMountExterns.g_mount_guess_content_type_finish(mount, result, out error);
 	}
 
-	public static string[] GuessContentTypeSync(this GMountHandle mount, bool force_rescan, GCancellableHandle cancellable, out GErrorHandle error)
+	public static IntPtr GuessContentTypeSync(this GMountHandle mount, bool force_rescan, GCancellableHandle cancellable, out GErrorHandle error)
 	{
 		return GMountExterns.g_mount_guess_content_type_sync(mount, force_rescan, cancellable, out error);
 	}
@@ -206,10 +206,10 @@ internal class GMountExterns
 	internal static extern void g_mount_guess_content_type(GMountHandle mount, bool force_rescan, GCancellableHandle cancellable, GAsyncReadyCallback callback, IntPtr user_data);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_mount_guess_content_type_finish(GMountHandle mount, GAsyncResultHandle result, out GErrorHandle error);
+	internal static extern IntPtr g_mount_guess_content_type_finish(GMountHandle mount, GAsyncResultHandle result, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
-	internal static extern string[] g_mount_guess_content_type_sync(GMountHandle mount, bool force_rescan, GCancellableHandle cancellable, out GErrorHandle error);
+	internal static extern IntPtr g_mount_guess_content_type_sync(GMountHandle mount, bool force_rescan, GCancellableHandle cancellable, out GErrorHandle error);
 
 	[DllImport(Libraries.Gio)]
 	internal static extern bool g_mount_is_shadowed(GMountHandle mount);
