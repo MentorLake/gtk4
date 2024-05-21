@@ -4,6 +4,10 @@ public class GListHandle : BaseSafeHandle
 {
 }
 
+
+public static class GListHandleExtensions
+{
+}
 internal class GListExterns
 {
 }

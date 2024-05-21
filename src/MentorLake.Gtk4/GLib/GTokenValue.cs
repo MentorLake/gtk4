@@ -4,6 +4,10 @@ public class GTokenValueHandle : BaseSafeHandle
 {
 }
 
+
+public static class GTokenValueHandleExtensions
+{
+}
 internal class GTokenValueExterns
 {
 }

@@ -4,6 +4,10 @@ public class PangoAnalysisHandle : BaseSafeHandle
 {
 }
 
+
+public static class PangoAnalysisHandleExtensions
+{
+}
 internal class PangoAnalysisExterns
 {
 }

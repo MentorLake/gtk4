@@ -4,6 +4,10 @@ public class GTestConfigHandle : BaseSafeHandle
 {
 }
 
+
+public static class GTestConfigHandleExtensions
+{
+}
 internal class GTestConfigExterns
 {
 }

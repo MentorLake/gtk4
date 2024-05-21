@@ -4,6 +4,10 @@ public class GFileAttributeInfoHandle : BaseSafeHandle
 {
 }
 
+
+public static class GFileAttributeInfoHandleExtensions
+{
+}
 internal class GFileAttributeInfoExterns
 {
 }

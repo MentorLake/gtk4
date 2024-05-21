@@ -4,6 +4,10 @@ public class GtkPadActionEntryHandle : BaseSafeHandle
 {
 }
 
+
+public static class GtkPadActionEntryHandleExtensions
+{
+}
 internal class GtkPadActionEntryExterns
 {
 }

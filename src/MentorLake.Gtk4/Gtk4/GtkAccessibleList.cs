@@ -14,6 +14,15 @@ public class GtkAccessibleListHandle : BaseSafeHandle
 
 }
 
+
+public static class GtkAccessibleListHandleExtensions
+{
+	public static GListHandle GetObjects(this GtkAccessibleListHandle accessible_list)
+	{
+		return GtkAccessibleListExterns.gtk_accessible_list_get_objects(accessible_list);
+	}
+
+}
 internal class GtkAccessibleListExterns
 {
 	[DllImport(Libraries.Gtk4)]
@@ -21,6 +30,9 @@ internal class GtkAccessibleListExterns
 
 	[DllImport(Libraries.Gtk4)]
 	internal static extern GtkAccessibleListHandle gtk_accessible_list_new_from_list(GListHandle list);
+
+	[DllImport(Libraries.Gtk4)]
+	internal static extern GListHandle gtk_accessible_list_get_objects(GtkAccessibleListHandle accessible_list);
 
 }
 

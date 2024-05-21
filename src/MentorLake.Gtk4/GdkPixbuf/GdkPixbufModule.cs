@@ -4,6 +4,10 @@ public class GdkPixbufModuleHandle : BaseSafeHandle
 {
 }
 
+
+public static class GdkPixbufModuleHandleExtensions
+{
+}
 internal class GdkPixbufModuleExterns
 {
 }

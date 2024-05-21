@@ -4,6 +4,10 @@ public class PangoAttrColorHandle : BaseSafeHandle
 {
 }
 
+
+public static class PangoAttrColorHandleExtensions
+{
+}
 internal class PangoAttrColorExterns
 {
 }

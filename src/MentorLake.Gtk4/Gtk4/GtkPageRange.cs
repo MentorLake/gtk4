@@ -4,6 +4,10 @@ public class GtkPageRangeHandle : BaseSafeHandle
 {
 }
 
+
+public static class GtkPageRangeHandleExtensions
+{
+}
 internal class GtkPageRangeExterns
 {
 }

@@ -4,6 +4,10 @@ public class GUnixMountEntryHandle : BaseSafeHandle
 {
 }
 
+
+public static class GUnixMountEntryHandleExtensions
+{
+}
 internal class GUnixMountEntryExterns
 {
 }

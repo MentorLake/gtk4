@@ -4,6 +4,10 @@ public class GActionEntryHandle : BaseSafeHandle
 {
 }
 
+
+public static class GActionEntryHandleExtensions
+{
+}
 internal class GActionEntryExterns
 {
 }

@@ -4,6 +4,10 @@ public class GSourceCallbackFuncsHandle : BaseSafeHandle
 {
 }
 
+
+public static class GSourceCallbackFuncsHandleExtensions
+{
+}
 internal class GSourceCallbackFuncsExterns
 {
 }

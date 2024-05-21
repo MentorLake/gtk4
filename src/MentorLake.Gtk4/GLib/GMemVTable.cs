@@ -4,6 +4,10 @@ public class GMemVTableHandle : BaseSafeHandle
 {
 }
 
+
+public static class GMemVTableHandleExtensions
+{
+}
 internal class GMemVTableExterns
 {
 }

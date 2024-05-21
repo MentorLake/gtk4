@@ -4,6 +4,10 @@ public class GDBusErrorEntryHandle : BaseSafeHandle
 {
 }
 
+
+public static class GDBusErrorEntryHandleExtensions
+{
+}
 internal class GDBusErrorEntryExterns
 {
 }

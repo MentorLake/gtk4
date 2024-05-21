@@ -4,6 +4,10 @@ public class GEnumValueHandle : BaseSafeHandle
 {
 }
 
+
+public static class GEnumValueHandleExtensions
+{
+}
 internal class GEnumValueExterns
 {
 }

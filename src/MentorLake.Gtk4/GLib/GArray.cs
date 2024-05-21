@@ -4,6 +4,10 @@ public class GArrayHandle : BaseSafeHandle
 {
 }
 
+
+public static class GArrayHandleExtensions
+{
+}
 internal class GArrayExterns
 {
 }

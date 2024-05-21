@@ -4,6 +4,10 @@ public class GMarkupParserHandle : BaseSafeHandle
 {
 }
 
+
+public static class GMarkupParserHandleExtensions
+{
+}
 internal class GMarkupParserExterns
 {
 }

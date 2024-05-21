@@ -12,4 +12,5 @@ public class Libraries
 	public const string GObject = "libgobject-2.0.so";
 	public const string Cairo = "libcairo.so";
 	public const string GdkPixbuf = "libgdk_pixbuf-2.so";
+	public const string GModule = "libgmodule-2.0.so";
 }

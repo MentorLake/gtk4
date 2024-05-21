@@ -4,6 +4,10 @@ public class GTypeInfoHandle : BaseSafeHandle
 {
 }
 
+
+public static class GTypeInfoHandleExtensions
+{
+}
 internal class GTypeInfoExterns
 {
 }

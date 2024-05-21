@@ -4,6 +4,10 @@ public class PangoGlyphInfoHandle : BaseSafeHandle
 {
 }
 
+
+public static class PangoGlyphInfoHandleExtensions
+{
+}
 internal class PangoGlyphInfoExterns
 {
 }

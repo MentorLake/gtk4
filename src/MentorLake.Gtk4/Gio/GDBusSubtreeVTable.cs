@@ -4,6 +4,10 @@ public class GDBusSubtreeVTableHandle : BaseSafeHandle
 {
 }
 
+
+public static class GDBusSubtreeVTableHandleExtensions
+{
+}
 internal class GDBusSubtreeVTableExterns
 {
 }

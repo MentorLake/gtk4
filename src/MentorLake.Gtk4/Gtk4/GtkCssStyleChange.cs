@@ -4,6 +4,10 @@ public class GtkCssStyleChangeHandle : BaseSafeHandle
 {
 }
 
+
+public static class GtkCssStyleChangeHandleExtensions
+{
+}
 internal class GtkCssStyleChangeExterns
 {
 }

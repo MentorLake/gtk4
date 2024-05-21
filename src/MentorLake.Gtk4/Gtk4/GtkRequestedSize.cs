@@ -4,6 +4,10 @@ public class GtkRequestedSizeHandle : BaseSafeHandle
 {
 }
 
+
+public static class GtkRequestedSizeHandleExtensions
+{
+}
 internal class GtkRequestedSizeExterns
 {
 }

@@ -4,6 +4,10 @@ public class GOptionEntryHandle : BaseSafeHandle
 {
 }
 
+
+public static class GOptionEntryHandleExtensions
+{
+}
 internal class GOptionEntryExterns
 {
 }

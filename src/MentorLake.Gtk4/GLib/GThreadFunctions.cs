@@ -4,6 +4,10 @@ public class GThreadFunctionsHandle : BaseSafeHandle
 {
 }
 
+
+public static class GThreadFunctionsHandleExtensions
+{
+}
 internal class GThreadFunctionsExterns
 {
 }

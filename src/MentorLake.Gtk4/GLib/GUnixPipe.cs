@@ -4,6 +4,10 @@ public class GUnixPipeHandle : BaseSafeHandle
 {
 }
 
+
+public static class GUnixPipeHandleExtensions
+{
+}
 internal class GUnixPipeExterns
 {
 }

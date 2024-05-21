@@ -4,6 +4,10 @@ public class GHashTableHandle : BaseSafeHandle
 {
 }
 
+
+public static class GHashTableHandleExtensions
+{
+}
 internal class GHashTableExterns
 {
 }

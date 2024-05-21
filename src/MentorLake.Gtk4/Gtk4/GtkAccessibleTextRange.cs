@@ -4,6 +4,10 @@ public class GtkAccessibleTextRangeHandle : BaseSafeHandle
 {
 }
 
+
+public static class GtkAccessibleTextRangeHandleExtensions
+{
+}
 internal class GtkAccessibleTextRangeExterns
 {
 }

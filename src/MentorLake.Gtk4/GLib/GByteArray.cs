@@ -4,6 +4,10 @@ public class GByteArrayHandle : BaseSafeHandle
 {
 }
 
+
+public static class GByteArrayHandleExtensions
+{
+}
 internal class GByteArrayExterns
 {
 }

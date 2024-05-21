@@ -4,6 +4,10 @@ public class PangoAttrFontDescHandle : BaseSafeHandle
 {
 }
 
+
+public static class PangoAttrFontDescHandleExtensions
+{
+}
 internal class PangoAttrFontDescExterns
 {
 }

@@ -4,6 +4,10 @@ public class GSignalInvocationHintHandle : BaseSafeHandle
 {
 }
 
+
+public static class GSignalInvocationHintHandleExtensions
+{
+}
 internal class GSignalInvocationHintExterns
 {
 }

@@ -4,6 +4,10 @@ public class GTypeCValueHandle : BaseSafeHandle
 {
 }
 
+
+public static class GTypeCValueHandleExtensions
+{
+}
 internal class GTypeCValueExterns
 {
 }

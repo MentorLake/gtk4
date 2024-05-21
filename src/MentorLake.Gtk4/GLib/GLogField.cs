@@ -4,6 +4,10 @@ public class GLogFieldHandle : BaseSafeHandle
 {
 }
 
+
+public static class GLogFieldHandleExtensions
+{
+}
 internal class GLogFieldExterns
 {
 }

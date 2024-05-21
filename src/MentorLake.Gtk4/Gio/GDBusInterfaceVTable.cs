@@ -4,6 +4,10 @@ public class GDBusInterfaceVTableHandle : BaseSafeHandle
 {
 }
 
+
+public static class GDBusInterfaceVTableHandleExtensions
+{
+}
 internal class GDBusInterfaceVTableExterns
 {
 }

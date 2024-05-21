@@ -4,6 +4,10 @@ public class GskParseLocationHandle : BaseSafeHandle
 {
 }
 
+
+public static class GskParseLocationHandleExtensions
+{
+}
 internal class GskParseLocationExterns
 {
 }

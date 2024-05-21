@@ -4,6 +4,10 @@ public class GCClosureHandle : BaseSafeHandle
 {
 }
 
+
+public static class GCClosureHandleExtensions
+{
+}
 internal class GCClosureExterns
 {
 }

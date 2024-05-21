@@ -4,6 +4,10 @@ public class GScannerConfigHandle : BaseSafeHandle
 {
 }
 
+
+public static class GScannerConfigHandleExtensions
+{
+}
 internal class GScannerConfigExterns
 {
 }

@@ -4,6 +4,10 @@ public class GSListHandle : BaseSafeHandle
 {
 }
 
+
+public static class GSListHandleExtensions
+{
+}
 internal class GSListExterns
 {
 }

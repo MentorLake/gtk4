@@ -4,6 +4,10 @@ public class GTypePluginClassHandle : BaseSafeHandle
 {
 }
 
+
+public static class GTypePluginClassHandleExtensions
+{
+}
 internal class GTypePluginClassExterns
 {
 }

@@ -4,6 +4,10 @@ public class GTypeQueryHandle : BaseSafeHandle
 {
 }
 
+
+public static class GTypeQueryHandleExtensions
+{
+}
 internal class GTypeQueryExterns
 {
 }

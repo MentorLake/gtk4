@@ -4,6 +4,10 @@ public class GSignalQueryHandle : BaseSafeHandle
 {
 }
 
+
+public static class GSignalQueryHandleExtensions
+{
+}
 internal class GSignalQueryExterns
 {
 }

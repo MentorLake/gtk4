@@ -4,6 +4,10 @@ public class GOutputVectorHandle : BaseSafeHandle
 {
 }
 
+
+public static class GOutputVectorHandleExtensions
+{
+}
 internal class GOutputVectorExterns
 {
 }

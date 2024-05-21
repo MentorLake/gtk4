@@ -6,7 +6,6 @@ using MentorLake.Gtk4.Gtk4;
 
 namespace MentorLake.Gtk4.Demo;
 
-
 public static class Program
 {
 	public static void Main(string[] args)
@@ -14,7 +13,6 @@ public static class Program
 		SynchronizationContext.SetSynchronizationContext(new GLibSynchronizationContext());
 
 		var appHandle = GtkApplicationHandle.New("my.app", GApplicationFlags.G_APPLICATION_FLAGS_NONE);
-		appHandle.GetSignals().ForEach(s => Console.WriteLine(s));
 
 		appHandle.Signal_Activate().Subscribe(async e =>
 		{

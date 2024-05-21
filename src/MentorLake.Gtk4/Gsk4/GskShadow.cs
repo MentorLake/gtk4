@@ -4,6 +4,10 @@ public class GskShadowHandle : BaseSafeHandle
 {
 }
 
+
+public static class GskShadowHandleExtensions
+{
+}
 internal class GskShadowExterns
 {
 }

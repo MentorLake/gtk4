@@ -4,6 +4,10 @@ public class GtkRecentDataHandle : BaseSafeHandle
 {
 }
 
+
+public static class GtkRecentDataHandleExtensions
+{
+}
 internal class GtkRecentDataExterns
 {
 }

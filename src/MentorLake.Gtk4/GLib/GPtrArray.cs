@@ -4,6 +4,10 @@ public class GPtrArrayHandle : BaseSafeHandle
 {
 }
 
+
+public static class GPtrArrayHandleExtensions
+{
+}
 internal class GPtrArrayExterns
 {
 }

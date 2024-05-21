@@ -4,6 +4,10 @@ public class GtkBuildableParserHandle : BaseSafeHandle
 {
 }
 
+
+public static class GtkBuildableParserHandleExtensions
+{
+}
 internal class GtkBuildableParserExterns
 {
 }

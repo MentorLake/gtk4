@@ -4,6 +4,10 @@ public class GPollFDHandle : BaseSafeHandle
 {
 }
 
+
+public static class GPollFDHandleExtensions
+{
+}
 internal class GPollFDExterns
 {
 }

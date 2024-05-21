@@ -4,6 +4,10 @@ public class PangoRectangleHandle : BaseSafeHandle
 {
 }
 
+
+public static class PangoRectangleHandleExtensions
+{
+}
 internal class PangoRectangleExterns
 {
 }

@@ -4,6 +4,10 @@ public class GParamSpecTypeInfoHandle : BaseSafeHandle
 {
 }
 
+
+public static class GParamSpecTypeInfoHandleExtensions
+{
+}
 internal class GParamSpecTypeInfoExterns
 {
 }

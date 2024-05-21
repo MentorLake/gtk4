@@ -6,6 +6,7 @@ public struct graphene_rect_t { }
 public class graphene_rect_tHandle : BaseSafeHandle { }
 public class graphene_size_tHandle : BaseSafeHandle { }
 public class graphene_vec2_tHandle : BaseSafeHandle { }
+public struct graphene_vec2_t { }
 public class graphene_vec3_tHandle : BaseSafeHandle { }
 public class graphene_vec4_tHandle : BaseSafeHandle{ }
 public struct graphene_matrix_t { }

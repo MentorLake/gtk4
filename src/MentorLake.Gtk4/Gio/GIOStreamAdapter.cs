@@ -4,6 +4,10 @@ public class GIOStreamAdapterHandle : BaseSafeHandle
 {
 }
 
+
+public static class GIOStreamAdapterHandleExtensions
+{
+}
 internal class GIOStreamAdapterExterns
 {
 }

@@ -4,6 +4,10 @@ public class GFlagsClassHandle : BaseSafeHandle
 {
 }
 
+
+public static class GFlagsClassHandleExtensions
+{
+}
 internal class GFlagsClassExterns
 {
 }

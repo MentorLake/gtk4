@@ -4,6 +4,10 @@ public class GStatBufHandle : BaseSafeHandle
 {
 }
 
+
+public static class GStatBufHandleExtensions
+{
+}
 internal class GStatBufExterns
 {
 }

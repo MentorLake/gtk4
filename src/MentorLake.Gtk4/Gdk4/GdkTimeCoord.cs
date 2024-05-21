@@ -4,6 +4,10 @@ public class GdkTimeCoordHandle : BaseSafeHandle
 {
 }
 
+
+public static class GdkTimeCoordHandleExtensions
+{
+}
 internal class GdkTimeCoordExterns
 {
 }

@@ -4,6 +4,10 @@ public class GFloatIEEE754Handle : BaseSafeHandle
 {
 }
 
+
+public static class GFloatIEEE754HandleExtensions
+{
+}
 internal class GFloatIEEE754Externs
 {
 }

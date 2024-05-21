@@ -4,6 +4,10 @@ public class GParameterHandle : BaseSafeHandle
 {
 }
 
+
+public static class GParameterHandleExtensions
+{
+}
 internal class GParameterExterns
 {
 }

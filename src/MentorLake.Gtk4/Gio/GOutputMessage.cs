@@ -4,6 +4,10 @@ public class GOutputMessageHandle : BaseSafeHandle
 {
 }
 
+
+public static class GOutputMessageHandleExtensions
+{
+}
 internal class GOutputMessageExterns
 {
 }

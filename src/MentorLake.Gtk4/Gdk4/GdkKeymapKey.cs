@@ -4,6 +4,10 @@ public class GdkKeymapKeyHandle : BaseSafeHandle
 {
 }
 
+
+public static class GdkKeymapKeyHandleExtensions
+{
+}
 internal class GdkKeymapKeyExterns
 {
 }

@@ -4,6 +4,10 @@ public class GIOFuncsHandle : BaseSafeHandle
 {
 }
 
+
+public static class GIOFuncsHandleExtensions
+{
+}
 internal class GIOFuncsExterns
 {
 }

@@ -4,6 +4,10 @@ public class GInputVectorHandle : BaseSafeHandle
 {
 }
 
+
+public static class GInputVectorHandleExtensions
+{
+}
 internal class GInputVectorExterns
 {
 }

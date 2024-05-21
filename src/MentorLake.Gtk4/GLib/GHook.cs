@@ -4,8 +4,20 @@ public class GHookHandle : BaseSafeHandle
 {
 }
 
+
+public static class GHookHandleExtensions
+{
+	public static int CompareIds(this GHookHandle new_hook, GHookHandle sibling)
+	{
+		return GHookExterns.g_hook_compare_ids(new_hook, sibling);
+	}
+
+}
 internal class GHookExterns
 {
+	[DllImport(Libraries.GLib)]
+	internal static extern int g_hook_compare_ids(GHookHandle new_hook, GHookHandle sibling);
+
 }
 
 public struct GHook

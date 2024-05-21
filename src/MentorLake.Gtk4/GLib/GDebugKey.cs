@@ -4,6 +4,10 @@ public class GDebugKeyHandle : BaseSafeHandle
 {
 }
 
+
+public static class GDebugKeyHandleExtensions
+{
+}
 internal class GDebugKeyExterns
 {
 }

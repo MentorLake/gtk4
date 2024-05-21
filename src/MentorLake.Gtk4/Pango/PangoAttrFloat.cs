@@ -4,6 +4,10 @@ public class PangoAttrFloatHandle : BaseSafeHandle
 {
 }
 
+
+public static class PangoAttrFloatHandleExtensions
+{
+}
 internal class PangoAttrFloatExterns
 {
 }

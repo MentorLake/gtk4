@@ -4,6 +4,10 @@ public class PangoAttrClassHandle : BaseSafeHandle
 {
 }
 
+
+public static class PangoAttrClassHandleExtensions
+{
+}
 internal class PangoAttrClassExterns
 {
 }

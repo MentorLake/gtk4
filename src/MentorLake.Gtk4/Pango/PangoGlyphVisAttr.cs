@@ -4,6 +4,10 @@ public class PangoGlyphVisAttrHandle : BaseSafeHandle
 {
 }
 
+
+public static class PangoGlyphVisAttrHandleExtensions
+{
+}
 internal class PangoGlyphVisAttrExterns
 {
 }

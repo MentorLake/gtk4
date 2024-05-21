@@ -4,6 +4,10 @@ public class GInputMessageHandle : BaseSafeHandle
 {
 }
 
+
+public static class GInputMessageHandleExtensions
+{
+}
 internal class GInputMessageExterns
 {
 }

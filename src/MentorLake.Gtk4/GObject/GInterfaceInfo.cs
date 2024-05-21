@@ -4,6 +4,10 @@ public class GInterfaceInfoHandle : BaseSafeHandle
 {
 }
 
+
+public static class GInterfaceInfoHandleExtensions
+{
+}
 internal class GInterfaceInfoExterns
 {
 }

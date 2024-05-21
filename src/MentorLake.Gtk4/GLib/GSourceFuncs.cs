@@ -4,6 +4,10 @@ public class GSourceFuncsHandle : BaseSafeHandle
 {
 }
 
+
+public static class GSourceFuncsHandleExtensions
+{
+}
 internal class GSourceFuncsExterns
 {
 }

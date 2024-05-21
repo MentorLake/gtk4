@@ -4,6 +4,10 @@ public class GObjectConstructParamHandle : BaseSafeHandle
 {
 }
 
+
+public static class GObjectConstructParamHandleExtensions
+{
+}
 internal class GObjectConstructParamExterns
 {
 }

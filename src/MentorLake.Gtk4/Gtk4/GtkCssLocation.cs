@@ -4,6 +4,10 @@ public class GtkCssLocationHandle : BaseSafeHandle
 {
 }
 
+
+public static class GtkCssLocationHandleExtensions
+{
+}
 internal class GtkCssLocationExterns
 {
 }

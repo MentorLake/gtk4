@@ -4,6 +4,10 @@ public class GTrashStackHandle : BaseSafeHandle
 {
 }
 
+
+public static class GTrashStackHandleExtensions
+{
+}
 internal class GTrashStackExterns
 {
 }

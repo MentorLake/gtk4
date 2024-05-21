@@ -4,6 +4,10 @@ public class GClosureNotifyDataHandle : BaseSafeHandle
 {
 }
 
+
+public static class GClosureNotifyDataHandleExtensions
+{
+}
 internal class GClosureNotifyDataExterns
 {
 }

@@ -4,6 +4,10 @@ public class GskColorStopHandle : BaseSafeHandle
 {
 }
 
+
+public static class GskColorStopHandleExtensions
+{
+}
 internal class GskColorStopExterns
 {
 }

@@ -4,6 +4,10 @@ public class GtkPrintBackendHandle : BaseSafeHandle
 {
 }
 
+
+public static class GtkPrintBackendHandleExtensions
+{
+}
 internal class GtkPrintBackendExterns
 {
 }
