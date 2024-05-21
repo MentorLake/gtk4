@@ -19,6 +19,7 @@ public static class Program
 			var window = GtkWindowHandle.New()
 				.SetChild(GtkBoxHandle.New(GtkOrientation.GTK_ORIENTATION_HORIZONTAL, 0)
 					.Append(GtkDrawingAreaHandle.New()
+						.SetManagedData("DrawingAreaKeyVal", "TestValue")
 						.SetDrawFunc((area, cr, width, height, userData) =>
 						{
 							cr.CairoArc(0, 0, 10, 0, 180);
@@ -27,13 +28,14 @@ public static class Program
 						.SetSizeRequest(200, 200))
 					.Append(GtkButtonHandle.New()
 						.SetLabel("TEST")
+						.SetManagedData("SomeKey", "TestValue")
 						.With(b =>
 						{
 							var motionController = GtkEventControllerMotionHandle.New();
 							b.AddController(motionController);
 							motionController.Signal_Enter().TakeUntil(b.Signal_Destroy().Take(1)).Subscribe(_ =>
 							{
-								Console.WriteLine("ENTER");
+								Console.WriteLine(b.GetManagedData<string>("SomeKey"));
 							});
 						})
 						.With(b => b.Signal_Clicked().TakeUntil(b.Signal_Destroy().Take(1)).Subscribe(_ =>

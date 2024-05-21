@@ -45,4 +45,26 @@ public static class Extensions
 		Marshal.FreeHGlobal(idArrayPointer);
 		return ids.Select(id => GObjectGlobalFunctionExterns.g_signal_name((uint)id)).ToList();
 	}
+
+	private static readonly Dictionary<string, object> s_managedData = new();
+
+	public static T SetManagedData<T>(this T obj, string key, object val) where T : GObjectHandle
+	{
+		lock (s_managedData)
+		{
+			var fullKey = $"{obj.GetHashCode()}_{key}";
+			s_managedData[fullKey] = val;
+			obj.WeakRef((_, _) => { lock (s_managedData) s_managedData.Remove(fullKey); }, IntPtr.Zero);
+		}
+
+		return obj;
+	}
+
+	public static T GetManagedData<T>(this GObjectHandle obj, string key) where T : class
+	{
+		lock (s_managedData)
+		{
+			return s_managedData[$"{obj.GetHashCode()}_{key}"] as T;
+		}
+	}
 }
