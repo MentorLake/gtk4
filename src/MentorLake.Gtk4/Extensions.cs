@@ -67,4 +67,11 @@ public static class Extensions
 			return s_managedData[$"{obj.GetHashCode()}_{key}"] as T;
 		}
 	}
+
+	public static T ToHandle<T>(BaseSafeHandle handle) where T : BaseSafeHandle, new()
+	{
+		var newHandle = new T();
+		Marshal.InitHandle(newHandle, handle.DangerousGetHandle());
+		return newHandle;
+	}
 }
