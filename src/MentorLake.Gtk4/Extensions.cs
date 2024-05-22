@@ -68,7 +68,7 @@ public static class Extensions
 		}
 	}
 
-	public static T ToHandle<T>(BaseSafeHandle handle) where T : BaseSafeHandle, new()
+	public static T ToHandle<T>(this BaseSafeHandle handle) where T : BaseSafeHandle, new()
 	{
 		var newHandle = new T();
 		Marshal.InitHandle(newHandle, handle.DangerousGetHandle());
