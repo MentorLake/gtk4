@@ -1,0 +1,8 @@
+namespace MentorLake.Gtk4.Gdk4X11;
+
+public enum GdkX11DeviceType
+{
+	GDK_X11_DEVICE_TYPE_LOGICAL,
+	GDK_X11_DEVICE_TYPE_PHYSICAL,
+	GDK_X11_DEVICE_TYPE_FLOATING
+}

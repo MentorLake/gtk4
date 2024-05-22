@@ -14,3 +14,4 @@ global using MentorLake.Gtk4.GdkPixbuf;
 global using MentorLake.Gtk4.Gdk4;
 global using MentorLake.Gtk4.Gsk4;
 global using MentorLake.Gtk4.Gtk4;
+global using MentorLake.Gtk4.Gdk4X11;
