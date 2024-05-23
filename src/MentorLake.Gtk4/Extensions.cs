@@ -46,13 +46,13 @@ public static class Extensions
 		return ids.Select(id => GObjectGlobalFunctionExterns.g_signal_name((uint)id)).ToList();
 	}
 
-	private static readonly Dictionary<string, object> s_managedData = new();
+	private static readonly Dictionary<object, object> s_managedData = new();
 
-	public static T SetManagedData<T>(this T obj, string key, object val) where T : GObjectHandle
+	public static T SetManagedData<T>(this T obj, object key, object val) where T : GObjectHandle
 	{
 		lock (s_managedData)
 		{
-			var fullKey = $"{obj.GetHashCode()}_{key}";
+			var fullKey = $"{obj.GetHashCode()}_{key.GetHashCode()}";
 			s_managedData[fullKey] = val;
 			obj.WeakRef((_, _) => { lock (s_managedData) s_managedData.Remove(fullKey); }, IntPtr.Zero);
 		}
@@ -60,11 +60,11 @@ public static class Extensions
 		return obj;
 	}
 
-	public static T GetManagedData<T>(this GObjectHandle obj, string key) where T : class
+	public static T GetManagedData<T>(this GObjectHandle obj, object key)
 	{
 		lock (s_managedData)
 		{
-			return s_managedData[$"{obj.GetHashCode()}_{key}"] as T;
+			return (T) s_managedData[$"{obj.GetHashCode()}_{key.GetHashCode()}"];
 		}
 	}
 
